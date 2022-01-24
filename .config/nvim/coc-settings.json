@@ -1,0 +1,123 @@
+{
+  "hover.floatConfig": {
+    "border": true,
+    "highlight": "CocHoverFloating"
+  },
+  "suggest.autoTrigger": "always",
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.asciiCharactersOnly": true,
+  "suggest.snippetIndicator": " >>",
+  "suggest.languageSourcePriority": 200,
+  "suggest.floatConfig": {
+    "border": true,
+    "highlight": "CocSuggestFloating"
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "highlight": "CocSignatureFloating"
+  },
+  "snippets.priority": 500,
+  "coc.source.ultisnips-select.priority": 500,
+  "tabnine.priority": 100,
+  "diagnostic.level": "hint",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.messageDelay": 0,
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.floatConfig": {
+    "border": true,
+    "highlight": "CocDiagnosticFloating"
+  },
+  "coc.preferences.promptInput": true,
+  "coc.preferences.useQuickfixForLocations": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "*"
+  ],
+  "diagnostic.locationlistUpdate": false,
+  "prettier.disableLanguages": [
+    "markdown"
+  ],
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "filetypes": [
+        "go",
+        "ruby",
+        "vim",
+        "sh",
+        "zsh",
+        "markdown"
+      ]
+    }
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "deno.unstable": true,
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.onlyUseLocalVersion": true,
+  "prettier.statusItemText": "",
+  "rust-analyzer.procMacro.enable": true,
+  "pyright.enable": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "jedi.enable": false,
+  "solargraph.diagnostics": true,
+  "json.schemas": [
+    {
+      "url": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json",
+      "fileMatch": [
+        "/*"
+      ]
+    }
+  ],
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json": "/*",
+    "https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json": [
+      "/docker-compose.yml"
+    ]
+  },
+  "prisma.prismaFmtBinPath": "",
+  "cSpell.showStatus": false,
+  "cSpell.diagnosticLevel": "Hint",
+  "cSpell.enabledLanguageIds": [
+    "css",
+    "deno",
+    "git-commit",
+    "go",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "python",
+    "ruby",
+    "sh",
+    "sql",
+    "svelte",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "yaml"
+  ],
+  "tsserver.enable": false,
+  "deno.enable": false,
+  "deno.lint": true,
+  "coc.source.file.trimSameExts": [],
+  "svelte.enable-ts-plugin": true
+}

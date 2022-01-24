@@ -1,0 +1,147 @@
+/*
+	// Place your snippets for C here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+{
+	"C Basic": {
+		"prefix": "cbasic",
+		"body": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <ctype.h>\n#include <math.h>\n#include <time.h>\n#include <limits.h>\nint main(int argc, char const *argv[]) {\n    ${1:/*code*/}\n    return 0;\n}",
+		"description": "C Basic"
+	},
+	"#ifndef … #define … #endif": {
+		"prefix": "def",
+		"body": "#ifndef ${1:SYMBOL}\n#define $1 ${2:value}\n#endif",
+		"description": "#ifndef … #define… #endif"
+	},
+	"#include <>": {
+		"prefix": "Inc",
+		"body": "#include <${1:.h}>",
+		"description": "#include <>"
+	},
+	"#include \"\"": {
+		"prefix": "inc",
+		"body": "#include \"${1:.h}\"",
+		"description": "#include \"\""
+	},
+	"#pragma mark": {
+		"prefix": "mark",
+		"body": "#if 0\n${1:#pragma mark -\n}#pragma mark $2\n#endif\n\n$0",
+		"description": "#pragma mark"
+	},
+	"main()": {
+		"prefix": "main",
+		"body": "int main(int argc, char const *argv[]) {\n\t${1:/* code */}\n\treturn 0;\n}",
+		"description": "main()"
+	},
+	"For Loop": {
+		"prefix": "for",
+		"body": "for (size_t ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}${3:++}) {\n\t${4:/* code */}\n}",
+		"description": "For Loop"
+	},
+	"Header Include-Guard": {
+		"prefix": "once",
+		"body": "#ifndef ${1:SYMBOL}\n#define $1\n\n${2}\n\n#endif /* end of include guard: $1 */\n",
+		"description": "Header Include-Guard"
+	},
+	"Shared Pointer": {
+		"prefix": "sp",
+		"body": "typedef std::shared_ptr<${2:${1:my_type}_t}> ${3:${4:my_type}_ptr};",
+		"description": "Shared Pointer"
+	},
+	"Typedef": {
+		"prefix": "td",
+		"body": "typedef ${1:int} ${2:MyCustomType};",
+		"description": "Typedef"
+	},
+	"Do While Loop": {
+		"prefix": "do",
+		"body": "do {\n\t${0:/* code */}\n} while(${1:/* condition */});",
+		"description": "Do While Loop"
+	},
+	"While Loop": {
+		"prefix": "while",
+		"body": "while (${1:/* condition */}) {\n\t${2:/* code */}\n}",
+		"description": "While Loop"
+	},
+	"fprintf": {
+		"prefix": "fprintf",
+		"body": "fprintf(${1:stderr}, \"${2:%s}\\\\n\", $3);$4",
+		"description": "fprintf"
+	},
+	"If Condition": {
+		"prefix": "if",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n}",
+		"description": "If Condition"
+	},
+	"If Else": {
+		"prefix": "ife",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else {\n\t${3:/* code */}\n}",
+		"description": "If Else"
+	},
+	"If ElseIf": {
+		"prefix": "iff",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else if (${3:/* condition */}) {\n\t${4:/* code */}\n}",
+		"description": "If ElseIf"
+	},
+	"If ElseIf Else": {
+		"prefix": "iffe",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else if (${3:/* condition */}) {\n\t${4:/* code */}\n} else {\n\t${5:/* code */}\n}",
+		"description": "If ElseIf Else"
+	},
+	"Switch Statement": {
+		"prefix": "switch",
+		"body": "switch (${1:/* expression */}) {\n\tcase ${2:/* value */}:\n}",
+		"description": "Switch Statement"
+	},
+	"case": {
+		"prefix": "cs",
+		"body": "case ${1:/* value */}:$0",
+		"description": "case"
+	},
+	"printf": {
+		"prefix": "printf",
+		"body": "printf(\"${1:%s}\\\\n\", $2);$3",
+		"description": "printf"
+	},
+	"scanf": {
+		"prefix": "scanf",
+		"body": "scanf(\"${1:%s}\\\\n\", $2);$3",
+		"description": "scanf"
+	},
+	"Struct": {
+		"prefix": "st",
+		"body": "struct ${1:name_t} {\n\t${2:/* data */}\n};",
+		"description": "Struct"
+	},
+	"void": {
+		"prefix": "void",
+		"body": "void ${1:name}(${2:/* arguments */}) {\n\t${3:/* code */}\n}",
+		"description": "void"
+	},
+	"any function": {
+		"prefix": "func",
+		"body": "${1:int} ${2:name}(${3:/* arguments */}) {\n\t${5:/* code */}\n\treturn ${4:0};\n}",
+		"description": "any function"
+	},
+	"write file": {
+		"prefix": "wf",
+		"body": "FILE *${1:fp};\n${1:fp} = fopen (\"${2:filename.txt}\",\"w\");\nif (${1:fp}!=NULL)\n{\n\tfprintf(${1:fp},\"${3:Some String\\\\n}\");\n\tfclose (${1:fp});\n}",
+		"description": "write file"
+	},
+	"read file": {
+		"prefix": "rf",
+		"body": "FILE *${1:fp};\n${1:fp} = fopen (\"${2:filename.txt}\",\"r\");\nif (${1:fp}!=NULL)\n{\n\tfscanf(${1:fp},\"${3:Some String\\\\n}\", ${3:&var});\n\tfclose (${1:fp});\n}",
+		"description": "read file"
+	}
+} 
