@@ -1,4 +1,3 @@
--- Setup nvim-cmp.
 local status, cmp = pcall(require, 'cmp')
 if (not status) then return end
 
@@ -60,7 +59,7 @@ sources = cmp.config.sources({
     { name = "treesitter" },
     { name = 'nvim_lua' },
     { name = 'calc' },
-    { name = 'tabnine' },
+    { name = 'cmp_tabnine' },
     { name = 'emoji' },
     { name = 'look', keyword_length=2, option={convert_case=true, loud=true} },
   }),
@@ -89,8 +88,8 @@ if status_lspkind then
             calc = "[Calc]",
             emoji = "[Emoji]",
             neorg = "[Neorg]",
+            cmp_tabnine = "[Tabnine]",
             -- cmp_openai_codex = "[Codex]",
-            -- cmp_tabnine = "[TabNine]",
           },
         })
     }
@@ -137,6 +136,6 @@ if status_lspkind then
         max_num_results = 5;
         sort = true;
         run_on_every_keystroke = true;
-        snippet_placeholder = '..';
+	      snippet_placeholder = '..';
       })
   end
