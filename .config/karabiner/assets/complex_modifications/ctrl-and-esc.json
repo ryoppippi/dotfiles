@@ -1,0 +1,33 @@
+{
+    "title": "Ctrl and ESC",
+    "rules": [{
+        "description": "Ctrl空打ちはESC",
+        "manipulators": [{
+            "type": "basic",
+            "from": {
+                "key_code": "left_control",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [{
+                "key_code": "left_control",
+                "lazy": true
+            }],
+            "to_if_alone": [{
+                "key_code": "escape"
+            }],
+             "conditions": [{
+                "type": "device_unless",
+                "identifiers": [
+                    {
+                        "vendor_id": 22854,
+                        "product_id": 1
+                    }
+                ]
+            }]
+        }]
+    }]
+}

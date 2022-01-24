@@ -1,0 +1,209 @@
+/*
+	// Place your snippets for C++ here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+// include\n//------------------------------------------\n//#include <vector>\n//#include <list>\n//#include <map>\n//#include <set>\n//#include <deque>\n//#include <stack>\n//#include <bitset>\n//#include <algorithm>\n//#include <functional>\n//#include <numeric>\n//#include <utility>\n//#include <sstream>\n//#include <iostream>\n//#include <iomanip>\n//#include <cstdio>\n//#include <cmath>\n//#include <cstdlib>\n//#include <cctype>\n//#include <string>\n//#include <cstring>\n//#include <ctime>\n//#include <complex>\n//if it can you can use\n
+{
+	"C++ Comp": {
+		"prefix": "cpcomp",
+		"body": "#include <bits/stdc++.h>\nusing namespace std;d\n#define FOR(i,a,b) for (auto i=(a);i<(b);i++)\n#define RFOR(i,a,b) for (auto i=(b)-1;i>=(a);i--)\n#define REP(i,n) for (auto i=0;i<(n);i++)\n#define RREP(i,n) for (auto i=(n)-1;i>=0;i--)\n#define EACH(i,v) for(auto i : v)\nclass range {private: struct I{int x;int operator*(){return x;}bool operator!=(I& lhs){return x<lhs.x;}void operator++(){++x;}};I i,n;\npublic:range(int n):i({0}),n({n}){}range(int i,int n):i({i}),n({n}){}I& begin(){return i;}I& end(){return n;}};\n#define inf INT_MAX/3\n#define INF INT_MAX/3\n#define eps 1e-15\n#define EPS 1e-15\n#define TEN9 1000000000\n#define pb push_back\n#define mp make_pair\n#define mt make_tuple\n#define ALL(a) (a).begin(),(a).end()\n#define RALL(a) (a).rbegin(), (a).rend()\n#define SET(a,c) memset(a,c,sizeof a)\n#define CLR(a) memset(a,0,sizeof a)\n#define pii pair<int,int>\n#define pcc pair<char,char>\n#define pic pair<int,char>\n#define pci pair<char,int>\n#define mii map<int,int>\n#define msd map<string,double>\n#define msi map<string,int>\n#define ti3 tuple<int,int,int>\n#define VS vector<string>\n#define VI vector<int>\n#define VLI vector<long long int>\n#define VPI vector<pii>\n#define VD vector<double>\n#define debug(x) cout<<#x<<\": \"<<x<<endl\n#define DEBUG(x) cout<<#x<<\": \"<<x<<endl\n#define pi 2*acos(0.0)\n#define INFILE() freopen(\"in0.txt\",\"r\",stdin)\n#define OUTFILE() freopen(\"out0.txt\",\"w\",stdout)\n#define SZ(x) ((int)(x).size())\n#define LL long long\n#define ll long long\n#define ULL unsigned long long\n#define ull unsigned long long\n#define FST first\n#define SEC second\n#define SORT(v) sort(ALL(v));\n#define VVI(v,n1,n2) vector<vector<int> > v(n1, vector<int>(n2, 0));\n#define int(x) int x; scanf(\"%d\",&x);\n#define lint(x) long long x; scanf(\"%lld\",&x);\n#define vint(v,n) vector<int> v(n); REP(i,n) scanf(\"%d\", &v[i]);\n#define vvint(v,n1,n2) vector<vector<int> > v(n1, vector<int>(n2, 0)) ; REP(i,n1) REP(j,n1) scanf(\"%d\", &v[i][j]);\n#define vpint(v,n) VPI v(n) ; REP(i) scanf(\"%d\", &v[i].first); scanf(\"%d\", &v[i].second);\n#define vlint(v,n) vector<ll int> v(n); REP(i,n) scanf(\"%lld\", &v[i]);\n#define vvlint(v,n1,n2) vector<vector<ll int> > v(n1, vector<ll int>(n2, 0)); REP(i,n1) REP(j,n1) scanf(\"%lld\", &v[i][j]);\n#define double(x) double x; scanf(\"%lf\",&x);\n#define vdouble(v,n) vector<double> v(n); REP(i,n) scanf(\"%lf\", &v[i]);\n#define vvdoube(v,n1,n2) vector<vector<double> > v(n1, vector<double>(n2, 0)); REP(i,n1) REP(j,n1) scanf(\"%lf\", &v[i][j]);\n#define vpdouble(v,n) vector<pair<double, double> v(n) ; REP(i) scanf(\"%d\", &v[i].first); scanf(\"%d\", &v[i].second);\n#define char(x) char x; scanf(\"%c\",&x);\n#define vchar(v,n) vector<char> v(n); REP(i,n) scanf(\"%c\", &v[i]);\n#define vvchar(v,n1,n2) vector<vector<char> > v(n1, vector<char>(n2, 0)); REP(i,n1) REP(j,n1) scanf(\"%c\", &v[i][j]);\n#define string(x) string x; cin >> x;\n#define vstring(v,n) vector<string> v(n); REP(i,n) cin >> v(i);\n#define ARRAY_LENGTH(array) (sizeof(array) / sizeof(array[0]));\n// const int dy4[]={0, 0, 1, -1};\n// const int dx4[]={1, -1, 0, 0};\n// const int dx8[] = {1, 1, 1, 0, 0, -1, -1, -1};\nint gcd(int a,int b){return b?gcd(b,a%b):a;}\nint qp(int a,ll b){int ans=1;do{if(b&1)ans=1ll*ans*a%mo;a=1ll*a*a%mo;}while(b>>=1);return ans;}\nint qp(int a,ll b,int mo){int ans=1;do{if(b&1)ans=1ll*ans*a%mo;a=1ll*a*a%mo;}while(b>>=1);return ans;}\nll int combi(ll int n, ll int k){uint64_t r = 1;for (uint64_t d = 1; d <= k; ++d) {r *= n--;r= d;}return r;}\n\nint main(int argc, char const *argv[]) {\n    ${1:/*code*/}\n    return 0;\n}",
+		"description": "C++ Comp"
+	},
+	"#ifndef … #define … #endif": {
+		"prefix": "def",
+		"body": "#ifndef ${1:SYMBOL}\n#define $1 ${2:value}\n#endif",
+		"description": "#ifndef … #define … #endif"
+	},
+	"#include <>": {
+		"prefix": "Inc",
+		"body": "#include <${1:.h}>",
+		"description": "#include <>"
+	},
+	"#include \"\"": {
+		"prefix": "inc",
+		"body": "#include \"${1:.h}\"",
+		"description": "#include \"\""
+	},
+	"#pragma mark": {
+		"prefix": "mark",
+		"body": "#if 0\n${1:#pragma mark -\n}#pragma mark $2\n#endif\n\n$0",
+		"description": "#pragma mark"
+	},
+	"main()": {
+		"prefix": "main",
+		"body": "int main(int argc, char const *argv[]) {\n\t${1:/* code */}\n\treturn 0;\n}",
+		"description": "main()"
+	},
+	"For Loop": {
+		"prefix": "for",
+		"body": "for (size_t ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}${3:++}) {\n\t${4:/* code */}\n}",
+		"description": "For Loop"
+	},
+	"Header Include-Guard": {
+		"prefix": "once",
+		"body": "#ifndef ${1:SYMBOL}\n#define $1\n\n${2}\n\n#endif /* end of include guard: $1 */\n",
+		"description": "Header Include-Guard"
+	},
+	"Shared Pointer": {
+		"prefix": "sp",
+		"body": "typedef std::shared_ptr<${2:${1:my_type}_t}> ${3:${4:my_type}_ptr};",
+		"description": "Shared Pointer"
+	},
+	"Typedef": {
+		"prefix": "td",
+		"body": "typedef ${1:int} ${2:MyCustomType};",
+		"description": "Typedef"
+	},
+	"Do While Loop": {
+		"prefix": "do",
+		"body": "do {\n\t${0:/* code */}\n} while(${1:/* condition */});",
+		"description": "Do While Loop"
+	},
+	"While Loop": {
+		"prefix": "while",
+		"body": "while (${1:/* condition */}) {\n\t${2:/* code */}\n}",
+		"description": "While Loop"
+	},
+	"fprintf": {
+		"prefix": "fprintf",
+		"body": "fprintf(${1:stderr}, \"${2:%s}\\\\n\", $3);$4",
+		"description": "fprintf"
+	},
+	"If Condition": {
+		"prefix": "if",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n}",
+		"description": "If Condition"
+	},
+	"If Else": {
+		"prefix": "ife",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else {\n\t${3:/* code */}\n}",
+		"description": "If Else"
+	},
+	"If ElseIf": {
+		"prefix": "iff",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else if (${3:/* condition */}) {\n\t${4:/* code */}\n}",
+		"description": "If ElseIf"
+	},
+	"If ElseIf Else": {
+		"prefix": "iffe",
+		"body": "if (${1:/* condition */}) {\n\t${2:/* code */}\n} else if (${3:/* condition */}) {\n\t${4:/* code */}\n} else {\n\t${5:/* code */}\n}",
+		"description": "If ElseIf Else"
+	},
+	"Switch Statement": {
+		"prefix": "switch",
+		"body": "switch (${1:/* expression */}) {\n\tcase ${2:/* value */}:\n}",
+		"description": "Switch Statement"
+	},
+	"case": {
+		"prefix": "cs",
+		"body": "case ${1:/* value */}:$0",
+		"description": "case"
+	},
+	"printf": {
+		"prefix": "printf",
+		"body": "printf(\"${1:%s}\\\\n\", $2);$3",
+		"description": "printf"
+	},
+	"scanf": {
+		"prefix": "scanf",
+		"body": "scanf(\"${1:%s}\\\\n\", $2);$3",
+		"description": "scanf"
+	},
+	"Struct": {
+		"prefix": "st",
+		"body": "struct ${1:name_t} {\n\t${2:/* data */}\n};",
+		"description": "Struct"
+	},
+	"void": {
+		"prefix": "void",
+		"body": "void ${1:name}(${2:/* arguments */}) {\n\t${3:/* code */}\n}",
+		"description": "void"
+	},
+	"any function": {
+		"prefix": "func",
+		"body": "${1:int} ${2:name}(${3:/* arguments */}) {\n\t${5:/* code */}\n\treturn ${4:0};\n}",
+		"description": "any function"
+	},
+	"write file": {
+		"prefix": "wf",
+		"body": "FILE *${1:fp};\n${1:fp} = fopen (\"${2:filename.txt}\",\"w\");\nif (${1:fp}!=NULL)\n{\n\tfprintf(${1:fp},\"${3:Some String\\\\n}\");\n\tfclose (${1:fp});\n}",
+		"description": "write file"
+	},
+	"read file": {
+		"prefix": "rf",
+		"body": "FILE *${1:fp};\n${1:fp} = fopen (\"${2:filename.txt}\",\"r\");\nif (${1:fp}!=NULL)\n{\n\tfscanf(${1:fp},\"${3:Some String\\\\n}\", ${3:&var});\n\tfclose (${1:fp});\n}",
+		"description": "read file"
+	},
+	"Enumeration": {
+		"prefix": "enum",
+		"body": "enum ${1:name} { $0 };",
+		"description": "Enumeration"
+	},
+	"Class": {
+		"prefix": "cl",
+		"body": "class ${1:name_t} {\nprivate:\n\t${0:/* data */}\n\npublic:\n\t${1:name_t} (${2:arguments});\n\tvirtual ~${1:name_t} ();\n};",
+		"description": "Class"
+	},
+	"Namespace": {
+		"prefix": "ns",
+		"body": "namespace ${1:name} {\n\t$2\n} /* $1 */",
+		"description": "Namespace"
+	},
+	"cout": {
+		"prefix": "cout",
+		"body": "std::cout << \"${1:/* message */}\" << '\\\\n';",
+		"description": "cout"
+	},
+	"cin": {
+		"prefix": "cin",
+		"body": "std::cin >> ${1:/* variable */};",
+		"description": "cin"
+	},
+	"cerr": {
+		"prefix": "cerr",
+		"body": "std::cerr << \"${1:/* error message */}\" << '\\\\n';",
+		"description": "cerr"
+	},
+	"std::map": {
+		"prefix": "map",
+		"body": "std::map<${1:key}, ${2:value}> map$3;",
+		"description": "std::map"
+	},
+	"std::string": {
+		"prefix": "str",
+		"body": "std::string",
+		"description": "std::string"
+	},
+	"std::vector": {
+		"prefix": "vector",
+		"body": "std::vector<${1:int}> v$2;",
+		"description": "std::vector"
+	},
+	"template <typename>": {
+		"prefix": "tp",
+		"body": "template <typename ${1:T}>",
+		"description": "template <typename>"
+	},
+	"output file": {
+		"prefix": "outf",
+		"body": "std::ofstream ${1:afile}(\"${2:filename.txt}\", std::ios::out);\nif (${1:afile}.is_open()) {\n\t${1:afile} << \"${3:This is a line.}\\\\n\";\n\t${1:afile}.close();\n}",
+		"description": "output file"
+	},
+	"input file": {
+		"prefix": "inf",
+		"body": "std::ifstream ${1:afile}(\"${2:filename.txt}\", std::ios::in);\nif (${1:afile}.is_open()) {\n\tstd::string line;\n\twhile (std::getline(${1:afile}, line)) {\n\t\tstd::cout << line << '\\\\n';\n\t}\n\t${1:afile}.close();\n}\nelse {\n\tstd::cerr << \"Unable to open file\\\\n\";\n}",
+		"description": "input file"
+	}
+}
+
