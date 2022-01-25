@@ -1,21 +1,21 @@
-local status, nulls = pcall(require, "null")
+local status, nulls = pcall(require, "null-ls")
 if (not status) then return end
 
 nulls.setup {
     sources = {
         -- web
-        nullls.builtins.formatting.prettier.with({
+        nulls.builtins.formatting.prettier.with({
                 extra_filetypes = {
                     "svelte",
                 },
             }),
         -- nulls.builtins.formatting.prettier_d_slim,
         nulls.builtins.diagnostics.tsc,
-        nulls.builtins.diagnostics.eslint_d.with({
-                extra_filetypes = {
-                    "svelte",
-                },
-            }),
+        -- nulls.builtins.diagnostics.eslint_d.with({
+        --         extra_filetypes = {
+        --             "svelte",
+        --         },
+        --     }),
         -- python
         nulls.builtins.formatting.black,
         nulls.builtins.formatting.isort,
