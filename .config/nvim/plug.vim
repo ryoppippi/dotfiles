@@ -59,6 +59,7 @@ Plug 'cohama/lexima.vim'
 
 " fern
 if !exists('vscode')
+  Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-git-status.vim'
   Plug 'lambdalisue/nerdfont.vim'
