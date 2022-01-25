@@ -37,6 +37,8 @@ local on_attach = function(client, bufnr)
   -- formatting
   if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
+  elseif client.name == "eslint" then
+    client.resolved_capabilities.document_formatting = true
   end
 
   -- if client.resolved_capabilities.document_formatting then
@@ -85,6 +87,10 @@ local server_opts = {
     },
     ["eslint"] = {
       root_dir = lspconfig.util.root_pattern("package.json"),
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" },
+      setting = {
+        format = { enable = true },
+      }
     },
     ["denols"] = {
       root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts"),
