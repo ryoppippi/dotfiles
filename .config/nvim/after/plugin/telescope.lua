@@ -3,7 +3,7 @@ if (not status) then return end
 local actions = require('telescope.actions')
 
 local key_opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', '<Leader>o', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], key_opts)
+vim.api.nvim_set_keymap('n', '<Leader>o', [[<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]], key_opts)
 vim.api.nvim_set_keymap('n', '<Leader>f', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], key_opts)
 vim.api.nvim_set_keymap('n', '\\', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], key_opts)
 vim.api.nvim_set_keymap('n', '<Leader>h', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], key_opts)
@@ -13,7 +13,8 @@ telescope.setup{
   defaults = {
     mappings = {
       n = {
-        ["<esc>"] = actions.close
+        ["<ESC>"] = actions.close,
+        ["q"] = actions.close
       },
     }
   },
