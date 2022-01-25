@@ -19,6 +19,7 @@ nnoremap <silent> gj :Lspsaga preview_definition<CR>
 nnoremap <silent> gs :Lspsaga signature_help<CR>
 nnoremap <silent> gf <cmd>Lspsaga lsp_finder<CR>
 
-nnoremap <silent> <leader>a <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
-tnoremap <silent> <C-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+nnoremap <silent> <leader>lg <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
+nnoremap <silent> <leader>lt <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
+tnoremap <silent> <ESC> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
