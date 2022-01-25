@@ -41,6 +41,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
 Plug 'karb94/neoscroll.nvim'
 Plug 'monaqa/dps-dial.vim'
+Plug 'folke/which-key.nvim'
 
 
 " text objects
