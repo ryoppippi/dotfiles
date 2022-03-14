@@ -50,3 +50,5 @@ lualine.setup {
   },
   extensions = {'fugitive'}
 }
+
+vim.cmd([[set noshowmode]])

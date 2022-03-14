@@ -4,9 +4,6 @@ endif
 
 let g:lexima_enable_endwise_rules = 0
 
-function! SetupLexima() abort
-      call <SID>setup_lexima_insert()
-endfunction
 
 let s:rules = []
 
@@ -76,11 +73,11 @@ let s:rules += [
                   \ ]
 
 "" TSX with nvim-ts-autotag
-if dein#tap('nvim-ts-autotag')
-      let s:rules += [
-                        \ { 'filetype': ['typescriptreact'], 'char': '>', 'at': '<[a-zA-Z.]\+\(\s\)\?.*\%#', 'input': '><Esc>:lua require(''nvim-ts-autotag.internal'').close_tag()<CR>a', },
-                        \ ]
-endif
+" if dein#tap('nvim-ts-autotag')
+"       let s:rules += [
+"                         \ { 'filetype': ['typescriptreact'], 'char': '>', 'at': '<[a-zA-Z.]\+\(\s\)\?.*\%#', 'input': '><Esc>:lua require(''nvim-ts-autotag.internal'').close_tag()<CR>a', },
+"                         \ ]
+" endif
 
 "" ruby
 let s:rules += [

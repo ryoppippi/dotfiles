@@ -3,8 +3,9 @@ if (not status) then return end
 
 autosave.setup(
     {
-        enabled = true,
+        enabled = false,
         execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+        -- events = {"BufLeave", "FocusLost", "WinLeave", "TextChanged", "QuitPre"},
         events = {"InsertLeave", "TextChanged"},
         conditions = {
             exists = true,
@@ -15,7 +16,7 @@ autosave.setup(
         write_all_buffers = false,
         on_off_commands = true,
         clean_command_line_interval = 0,
-        debounce_delay = 135
+        debounce_delay = 135,
     }
 )
 

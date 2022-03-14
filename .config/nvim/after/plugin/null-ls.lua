@@ -3,13 +3,11 @@ if (not status) then return end
 
 nulls.setup {
     sources = {
-        -- web
-        nulls.builtins.formatting.prettier.with({
-                extra_filetypes = {
-                    "svelte",
-                },
-            }),
-        -- nulls.builtins.formatting.prettier_d_slim,
+        -- nulls.builtins.formatting.prettier.with({
+        --         extra_filetypes = {
+        --             "svelte",
+        --         },
+        --     }),
         nulls.builtins.diagnostics.tsc,
         -- nulls.builtins.diagnostics.eslint_d.with({
         --         extra_filetypes = {
@@ -23,5 +21,7 @@ nulls.setup {
         nulls.builtins.diagnostics.flake8,
         -- others
         nulls.builtins.formatting.fish_indent,
+
+         -- nulls.builtins.diagnostics.cspell,
     }
 }

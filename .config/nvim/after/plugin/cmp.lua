@@ -16,44 +16,54 @@ local setup_opt = {
     end,
   },
   mapping = {
-    ["<C-l>"] = cmp.mapping.abort(),
+    ["<C-l>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<CR>'] =
     function(fallback)
-      if cmp.visible() then
-        cmp.confirm({ select = true })
+      if cmp.visible() and cmp.get_selected_entry() ~= nil then
+        cmp.confirm({ select = false })
       else
         fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
         end
       end,
+    -- ['<Space>'] =
+    -- function(fallback)
+    --   if cmp.visible() then
+    --     cmp.abort()
+    --   else
+    --     fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
+    --     end
+    --   end,
       ['<Tab>'] = cmp.mapping(function(fallback)
-        if vim.call('vsnip#jumpable', 1) ~= 0 then
-          vim.fn.feedkeys(replace_keys('<Plug>(vsnip-jump-next)'), '')
-        elseif cmp.visible() then
+        if cmp.visible() then
           cmp.select_next_item()
-        -- elseif vim.b._copilot_suggestion ~= nil  then
-          --   vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')
+        elseif vim.call('vsnip#jumpable', 1) ~= 0 then
+          vim.fn.feedkeys(replace_keys('<Plug>(vsnip-jump-next)'), '')
         else
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-%>', true, true, true), '')
-          -- fallback()
+          fallback()
         end
       end, { 'i', 's' }),
 
     ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if vim.call('vsnip#jumpable', -1) ~= 0 then
-        vim.fn.feedkeys(replace_keys('<Plug>(vsnip-jump-prev)'), '')
-      elseif cmp.visible() then
+      if cmp.visible() then
         cmp.select_prev_item()
+      elseif vim.call('vsnip#jumpable', -1) ~= 0 then
+        vim.fn.feedkeys(replace_keys('<Plug>(vsnip-jump-prev)'), '')
       else
-        fallback()
+        vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](replace_keys('<Tab>')), 'n', true)
+        -- fallback()
       end
     end, { 'i', 's' }),
-},
+  },
 sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp'},
+    { name = 'path' },
     { name = 'buffer' },
     { name = 'vsnip' },
     { name = "treesitter" },
@@ -62,9 +72,14 @@ sources = cmp.config.sources({
     { name = 'cmp_tabnine' },
     { name = 'emoji' },
     { name = 'look', keyword_length=2, option={convert_case=true, loud=true} },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'copilot' },
   }),
 completion = {
-  completeopt = 'menu,menuone,noinsert'
+  completeopt = 'menu,menuone,noinsert, noselect',
+},
+experimental = {
+  ghost_text = false -- this feature conflict to the copilot.vim's preview.
 },
 }
 
@@ -89,6 +104,8 @@ if status_lspkind then
             emoji = "[Emoji]",
             neorg = "[Neorg]",
             cmp_tabnine = "[Tabnine]",
+            nvim_lsp_signature_help = "[Signature]",
+            copilot = "[Copilot]",  
             -- cmp_openai_codex = "[Codex]",
           },
         })
@@ -102,7 +119,7 @@ if status_lspkind then
         { name = 'buffer' }
       },
       completion = {
-        completeopt = 'menuone,noinsert,noselect'
+        completeopt = 'menu,menuone,noselect'
       }
     })
 
