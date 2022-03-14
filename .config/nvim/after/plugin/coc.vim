@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
       \'coc-git', 
       \'coc-gist',
       \'coc-highlight',
+      \'coc-import-cost',
       \'coc-java', 
       \'coc-jedi', 
       \'coc-json', 
@@ -31,6 +32,7 @@ let g:coc_global_extensions = [
       \'coc-tslint-plugin', 
       \'coc-tsserver', 
       \'coc-tabnine',
+      \'coc-tailwindcss',
       \'coc-ultisnips', 
       \'coc-ultisnips-select',
       \'coc-webview',
@@ -57,6 +59,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+vnoremap <expr> <TAB> <Plug>(coc-snippets-select)
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -77,6 +81,12 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -182,16 +192,4 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-""" <Tab>で候補をナビゲート
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-""" <Tab>で次、<S+Tab>で前
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

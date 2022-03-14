@@ -35,8 +35,8 @@ nnoremap k gk
 " inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 " inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
-inoremap <silent> jj <ESC>:<C-u>w<CR>
+inoremap <silent> jj <ESC>
 
-nnoremap x "_x
+noremap x "_x
 nnoremap D "_D
 

@@ -1,27 +1,19 @@
-if !exists('g:loaded_copilot') | finish | endif
+function! s:load_plug(timer)
 
-" https://github.com/LunarVim/LunarVim/discussions/1947
-if g:enable_cmp
+if g:enable_cmp || g:enable_ddc
+  imap <expr> <Plug>(vimrc:copilot-dummy-map) copilot#Accept("\<Tab>")
+  imap <expr> <C-h> copilot#Accept("\<CR>")
   let g:copilot_no_tab_map=v:true
   let g:copilot_assume_mapped=v:true
   let g:copilot_tab_fallback=""
+
+  imap <silent><script><nowait><expr> <C-l> copilot#Dismiss()
 endif
 
-if g:enable_ddc
-  let g:copilot_no_tab_map=v:true
-  let g:copilot_assume_mapped=v:true
-  let g:copilot_tab_fallback=""
-endif
+call plug#load(
+            \ 'copilot',
+            \ )
+endfunction
 
-if g:enable_cmp
-  let g:copilot_no_tab_map=v:true
-  let g:copilot_assume_mapped=v:true
-  let g:copilot_tab_fallback=""
-  imap <script> <nowait> <expr> <C-%> copilot#Accept("\<TAB>")
-endif
+call timer_start(20, function("s:load_plug"))
 
-let g:copilot_filetypes = {
-  \'*':v:true,
-  \ }
-
-imap <silent><script><nowait><expr> <C-l> copilot#Dismiss()

@@ -1,4 +1,22 @@
 " setting
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_indent_on             = 1
+let g:did_load_filetypes        = 1
+" let g:did_load_ftplugin         = 1
+let g:loaded_2html_plugin       = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
+let g:loaded_matchit            = 1
+let g:loaded_matchparen         = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_remote_plugins     = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_zipPlugin          = 1
+let g:skip_loading_mswin        = 1
 "文字コードをUFT-8に設定
 set fenc=utf-8
 "" バックアップ作成
@@ -16,7 +34,7 @@ set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
 
-set relativenumber
+" set relativenumber
 
 " mouse
 set mouse=a
@@ -43,15 +61,17 @@ set laststatus=2
 " コマンドラインの補完
 set wildmode=list:longest
 
+set termguicolors
+
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=4
+set tabstop=2
 " 行頭でのTab文字の表示幅
-set shiftwidth=4
+set shiftwidth=2
 
 
 " 検索系
@@ -66,7 +86,7 @@ set wrapscan
 " 検索語をハイライト表示
 set hlsearch
 " ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+" nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 
 
