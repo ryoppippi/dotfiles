@@ -1,4 +1,6 @@
 local status, csvtools = pcall(require, "csvtools")
+if (not status) then return end
+
 
 require("csvtools").setup({
 	before = 10,

@@ -26,6 +26,7 @@ nnoremap <silent> <leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 
 nnoremap <silent> <leader>ag <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
 nnoremap <silent> <leader>aa <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
+nnoremap <silent> <leader>ac <cmd>lua require('lspsaga.floaterm').close_float_terminal()<CR>
 tnoremap <silent> <ESC> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
 " augroup lspsaga_filetypes

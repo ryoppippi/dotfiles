@@ -51,11 +51,13 @@ Plug 'monaqa/dps-dial.vim'
 Plug 'folke/which-key.nvim'
 Plug 'echasnovski/mini.nvim', { 'branch': 'stable', 'on':[]}
 Plug 'terryma/vim-expand-region'
+Plug 'bennypowers/nvim-regexplainer'
 
 
 " text objects
 Plug 'phaazon/hop.nvim'
 " Plug 'skanehira/jumpcursor.vim'
+Plug 'unblevable/quick-scope'
 Plug 'hrsh7th/vim-searchx'
 Plug 'machakann/vim-sandwich'
 Plug 'alvan/vim-closetag'
@@ -66,21 +68,25 @@ Plug 'thinca/vim-textobj-between'
 Plug 'tpope/vim-repeat'
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace'
-Plug 'cohama/lexima.vim'
+" Plug 'cohama/lexima.vim'
+Plug 'windwp/nvim-autopairs'
 Plug 'chen244/csv-tools.lua'
 Plug 'yuki-yano/deindent-yank.vim'
+Plug 'numToStr/Comment.nvim'
 
-" fern
+" file explorer
 if !exists('vscode')
+  Plug 'nathom/filetype.nvim'
+  " Plug 'lambdalisue/fern.vim'
+  " Plug 'lambdalisue/fern-git-status.vim'
+  " Plug 'lambdalisue/nerdfont.vim'
+  " Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+  " Plug 'lambdalisue/glyph-palette.vim'
+  " Plug 'lambdalisue/fern-hijack.vim'
+  " Plug 'yuki-yano/fern-preview.vim'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'lambdalisue/fern.vim'
-  Plug 'lambdalisue/fern-git-status.vim'
-  Plug 'lambdalisue/nerdfont.vim'
-  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-  Plug 'lambdalisue/glyph-palette.vim'
-  Plug 'lambdalisue/fern-hijack.vim'
-  Plug 'yuki-yano/fern-preview.vim'
   Plug 'jghauser/mkdir.nvim'
+  Plug 'nvim-neo-tree/neo-tree.nvim'
 endif
 
 " telescope
@@ -100,28 +106,25 @@ if !exists('vscode')
 endif
 
 
-" commentout
-" Plug 'tpope/vim-commentary'
-Plug 'numToStr/Comment.nvim'
-
 if !exists('g:vscode') && g:enable_copilot
   Plug 'github/copilot.vim', { 'as': 'copilot', 'on': [] }
 endif
 
 
-" session, file management
+" session management
 if !exists('g:vscode')
-  Plug 'nathom/filetype.nvim'
   Plug 'simeji/winresizer'
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
   " Plug 'Pocco81/AutoSave.nvim'
   Plug 'rmagatti/auto-session'
 endif
 
 " visualize
 if !exists('g:vscode')
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'MunifTanjim/nui.nvim'
   Plug 'navarasu/onedark.nvim'
+  " Plug 'marko-cerovac/material.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'hoob3rt/lualine.nvim'
@@ -133,12 +136,11 @@ Plug 'evanleck/vim-svelte'
 " Plug 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'andymass/vim-matchup'
 Plug 'yioneko/nvim-yati'
 Plug 'arthurxavierx/vim-caser'
-
-" Plug 'yardnsm/vim-import-cost', { 'do': 'npm install --production' }
 
 
 if g:enable_coc 
@@ -161,12 +163,12 @@ endif
 
 if g:enable_cmp
   " cmp
+  Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/nvim-cmp'
   Plug 'lukas-reineke/cmp-rg'
   Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   Plug 'ray-x/cmp-treesitter'

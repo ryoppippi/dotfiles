@@ -1,11 +1,14 @@
-if !exists('g:loaded:lexima')
+if !exists('g:loaded_lexima')
       finish
 endif
+"
+let g:lexima_enable_endwise_rules = 1
+let g:lexima_enable_newline_rules = 1
 
-let g:lexima_enable_endwise_rules = 0
+" call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'html'})
 
-
-let s:rules = []
+let s:rules = []  
+"" Don't add pairs if the next char is alphanumeric
 
 "" Parenthesis
 let s:rules += [
@@ -25,7 +28,7 @@ let s:rules += [
                   \ { 'char': '<BS>',  'at': '\[\%#\]', 'input': '<BS><Del>', },
                   \ ]
 
-"" Sinble Quote
+"" Single Quote
 let s:rules += [
                   \ { 'char': '<C-h>', 'at': "'\\%#'", 'input': '<BS><Del>', },
                   \ { 'char': '<BS>',  'at': "'\\%#'", 'input': '<BS><Del>', },
@@ -72,11 +75,11 @@ let s:rules += [
                   \ { 'filetype': ['typescript', 'typescriptreact', 'javascript', 'svelte'], 'char': '>', 'at': '[a-zA-Z<>]\+(([a-zA-Z, ]*>\%#))', 'delete': ')', 'input': '<BS>) => {', 'input_after': '}' },
                   \ ]
 
-"" TSX with nvim-ts-autotag
+" TSX with nvim-ts-autotag
 " if dein#tap('nvim-ts-autotag')
-"       let s:rules += [
-"                         \ { 'filetype': ['typescriptreact'], 'char': '>', 'at': '<[a-zA-Z.]\+\(\s\)\?.*\%#', 'input': '><Esc>:lua require(''nvim-ts-autotag.internal'').close_tag()<CR>a', },
-"                         \ ]
+      let s:rules += [
+                        \ { 'filetype': ['typescriptreact'], 'char': '>', 'at': '<[a-zA-Z.]\+\(\s\)\?.*\%#', 'input': '><Esc>:lua require(''nvim-ts-autotag.internal'').close_tag()<CR>a', },
+                        \ ]
 " endif
 
 "" ruby
@@ -150,4 +153,5 @@ let s:rules += [
 for s:rule in s:rules
       call lexima#add_rule(s:rule)
 endfor
+
 

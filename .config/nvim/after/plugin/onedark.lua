@@ -26,3 +26,4 @@ onedark.setup  {
     },
 }
 onedark.load()
+vim.cmd 'colorscheme onedark'

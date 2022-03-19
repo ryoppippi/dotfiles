@@ -86,7 +86,7 @@ set wrapscan
 " 検索語をハイライト表示
 set hlsearch
 " ESC連打でハイライト解除
-" nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nmap <C-l> :nohlsearch<CR><Esc>
 
 
 
@@ -127,4 +127,5 @@ let _curfile=expand("%:r")
 if _curfile == 'Makefile'
   set noexpandtab
 endif
+
 

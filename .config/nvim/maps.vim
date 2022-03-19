@@ -20,11 +20,13 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Switch tab
-nmap <Tab> ;tabnext<Return>
-nmap <S-Tab> ;tabprev<Return>
-
-nmap <leader>t ;tabe .<Return>
-nmap <leader>s ;w
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit . <CR>
+nnoremap <leader>t :tabedit . <CR>
+nnoremap tq  :tabclose<CR>
 
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj

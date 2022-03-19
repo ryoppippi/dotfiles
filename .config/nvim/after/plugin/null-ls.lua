@@ -22,6 +22,6 @@ nulls.setup {
         -- others
         nulls.builtins.formatting.fish_indent,
 
-         -- nulls.builtins.diagnostics.cspell,
+         nulls.builtins.diagnostics.cspell,
     }
 }
