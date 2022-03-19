@@ -27,4 +27,7 @@ require'nvim-treesitter.configs'.setup {
   yati = { 
       enable = true,
   },
+  autotag = {
+    enable = true,
+  },
 }

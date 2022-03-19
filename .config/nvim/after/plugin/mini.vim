@@ -27,7 +27,6 @@ function! s:load_plug(timer)
     -- a very big number (like 10^7) to virtually disable highlighting.
     highlight_delay = 250,
   })
-
 EOF
 
 endfunction

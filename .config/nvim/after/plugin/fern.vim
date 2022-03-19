@@ -1,7 +1,6 @@
 if !exists('g:loaded_fern') | finish | endif
 
-nnoremap <silent> <Leader>e :Fern . -reveal=%<CR>
-nnoremap <silent> <Leader>E :Fern %:h -reveal=%<CR>
+nnoremap <silent> <Leader>, :Fern . -reveal=%<CR>
 
 let g:fern#default_hidden = v:true
 " let g:fern_auto_preview = v:true
