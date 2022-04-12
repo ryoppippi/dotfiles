@@ -24,17 +24,16 @@ set backup
 set backupdir=$HOME/.vim_backup
 set writebackup  " 上書き前にバックアップ作成
 
-" スワップファイルを作成する
-set swapfile
-set directory=$HOME/.vim_backup
+" " スワップファイルを作成する
+" set swapfile
+" set directory=$HOME/.vim_backup
+set noswapfile
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
-" set relativenumber
 
 " mouse
 set mouse=a
@@ -85,7 +84,6 @@ set incsearch
 set wrapscan
 " 検索語をハイライト表示
 set hlsearch
-" ESC連打でハイライト解除
 nmap <C-l> :nohlsearch<CR><Esc>
 
 
@@ -99,7 +97,7 @@ if has('nvim')
   tnoremap <ESC> <C-\><C-n>
 endif
 
-" カーソル位置を記憶
+" " カーソル位置を記憶
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
@@ -116,11 +114,6 @@ if has("unix")
   endif
 endif
 
-" vim-expand-region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-map _ <Plug>(operator-replace)
 
 
 let _curfile=expand("%:r")

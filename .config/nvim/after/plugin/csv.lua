@@ -1,6 +1,7 @@
 local status, csvtools = pcall(require, "csvtools")
-if (not status) then return end
-
+if not status then
+	return
+end
 
 require("csvtools").setup({
 	before = 10,
@@ -11,5 +12,4 @@ require("csvtools").setup({
 	-- this will provide a overflow show
 	titelflow = true,
 	-- add an alone title
-
 })

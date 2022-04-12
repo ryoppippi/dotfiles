@@ -1,10 +1,13 @@
 local status, neotree = pcall(require, "neo-tree")
-if (not status) then return end
+if not status then
+	return
+end
 
 vim.cmd([[
         hi link NeoTreeDirectoryName Directory
         hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
       ]])
+
 
 neotree.setup({
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
@@ -31,7 +34,7 @@ neotree.setup({
 			use_git_status_colors = true,
 		},
 		git_status = {
-			highlight = "NeoTreeDimText", -- if you remove this the status will be colorful
+			-- highlight = "NeoTreeDimText", -- if you remove this the status will be colorful
 		},
 	},
 	event_handlers = {
@@ -53,8 +56,9 @@ neotree.setup({
 		filters = { --These filters are applied to both browsing and searching
 			show_hidden = true,
 			respect_gitignore = true,
+      hide_dotfiles = false,
 		},
-		follow_current_file = false, -- This will find and focus the file in the active buffer every
+		follow_current_file = true, -- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
 		use_libuv_file_watcher = false, -- This will use the OS level file watchers
 		-- to detect changes instead of relying on nvim autocmd events.
@@ -78,9 +82,9 @@ neotree.setup({
 				["H"] = "toggle_hidden",
 				["I"] = "toggle_gitignore",
 				["R"] = "refresh",
-				-- ["/"] = "fuzzy_finder",
+				["/"] = "fuzzy_finder",
 				--["/"] = "filter_as_you_type", -- this was the default until v1.28
-				["/"] = "none", -- Assigning a key to "none" will remove the default mapping
+				-- ["/"] = "none", -- Assigning a key to "none" will remove the default mapping
 				["f"] = "filter_on_submit",
 				["<c-x>"] = "clear_filter",
 				["a"] = "add",
@@ -144,7 +148,6 @@ neotree.setup({
 	},
 })
 
-
 vim.api.nvim_set_keymap("n", "<leader>E", "<Cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>e", "<Cmd>NeoTreeFloatToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>e", "<Cmd>NeoTreeFloat<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
