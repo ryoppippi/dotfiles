@@ -1,15 +1,17 @@
 if !exists('g:loaded_lspsaga') | finish | endif
 
+
 lua << EOF
 local saga = require 'lspsaga'
 
-saga.init_lsp_saga {
-  error_sign = '',
-  warn_sign = '',
-  hint_sign = '',
-  infor_sign = '',
+saga.setup( {
+  use_saga_diagnostic_sign = true,
+  error_sign = " ",
+  warn_sign = " ",
+  infor_sign = " ",
+  hint_sign = "",
   border_style = "round",
-}
+})
 
 EOF
 
@@ -19,19 +21,17 @@ nnoremap <silent> gh :Lspsaga hover_doc<CR>
 nnoremap <silent> gk :Lspsaga signature_help<CR>
 nnoremap <silent> gK :Lspsaga lsp_finder<CR>
 
-" nnoremap <silent> <leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
-" nnoremap <silent> <leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
-nnoremap <silent> gj <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+nnoremap <silent> gj :Lspsaga show_line_diagnostics<CR>
 nnoremap <silent> - :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> _ :Lspsaga diagnostic_jump_prev<CR>
 
 nnoremap <silent> cW <cmd>lua require'lspsaga.rename'.rename()<CR>
 
 
-nnoremap <silent> <leader>ag <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
-nnoremap <silent> <leader>aa <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
-nnoremap <silent> <leader>ac <cmd>lua require('lspsaga.floaterm').close_float_terminal()<CR>
-tnoremap <silent> <ESC> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+nnoremap <silent> <leader>ag :Lspsaga open_floaterm lazygit<CR>
+nnoremap <silent> <leader>aa :Lspsaga open_floaterm <CR>
+nnoremap <silent> <leader>ac :Lspsaga close_floaterm<CR>
+tnoremap <silent> <ESC> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 " augroup lspsaga_filetypes
 "   autocmd!
