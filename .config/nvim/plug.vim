@@ -206,13 +206,14 @@ if g:enable_cmp
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'lukas-reineke/cmp-rg'
-  Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+  " Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   Plug 'ray-x/cmp-treesitter'
   Plug 'hrsh7th/cmp-emoji'
   " Plug 'octaltree/cmp-look'
   Plug 'hrsh7th/cmp-calc'
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+  Plug 'hrsh7th/cmp-copilot'
   " Plug 'zbirenbaum/copilot-cmp'
 endif
 
@@ -229,7 +230,7 @@ if g:enable_ddc
   Plug 'Shougo/ddc-converter_remove_overlap'
   Plug 'matsui54/denops-popup-preview.vim'
   " Plug 'matsui54/denops-signature_help'
-  Plug 'LumaKernel/ddc-tabnine'
+  " Plug 'LumaKernel/ddc-tabnine'
   Plug 'LumaKernel/ddc-file'
   Plug 'Shougo/ddc-rg'
   Plug 'Shougo/ddc-cmdline'
