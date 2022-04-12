@@ -42,3 +42,5 @@ inoremap <silent> jj <ESC>
 noremap x "_x
 nnoremap D "_D
 
+nnoremap s <Nop>
+nnoremap <leader>cc :cclose<CR>

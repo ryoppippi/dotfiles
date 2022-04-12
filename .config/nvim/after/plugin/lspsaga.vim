@@ -15,13 +15,17 @@ EOF
 
 nnoremap <silent> <C-j> :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> gh :Lspsaga hover_doc<CR>
-nnoremap <silent> gj :Lspsaga preview_definition<CR>
-nnoremap <silent> gs :Lspsaga signature_help<CR>
-nnoremap <silent> gf <cmd>Lspsaga lsp_finder<CR>
+" nnoremap <silent> gj :Lspsaga preview_definition<CR>
+nnoremap <silent> gk :Lspsaga signature_help<CR>
+nnoremap <silent> gK :Lspsaga lsp_finder<CR>
 
-nnoremap <silent> <leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
-nnoremap <silent> <leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+" nnoremap <silent> <leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+" nnoremap <silent> <leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+nnoremap <silent> gj <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+nnoremap <silent> - :Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> _ :Lspsaga diagnostic_jump_prev<CR>
+
+nnoremap <silent> cW <cmd>lua require'lspsaga.rename'.rename()<CR>
 
 
 nnoremap <silent> <leader>ag <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>

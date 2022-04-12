@@ -3,7 +3,7 @@ function! s:load_plug(timer)
   \ 'mini.nvim',
   \ )
 
-  lua << EOF
+lua << EOF
   local statusC, cursorword = pcall(require, 'mini.cursorword')
   if (not statusC) then return end
   cursorword.setup()

@@ -1,4 +1,6 @@
 local status, neoscroll = pcall(require, "neoscroll")
-if (not status) then return end
+if not status then
+	return
+end
 
 neoscroll.setup()

@@ -1,11 +1,11 @@
 if !exists('g:loaded_fern') | finish | endif
 
-nnoremap <silent> <Leader>, :Fern . -reveal=%<CR>
+nnoremap <silent> <Leader>e :Fern . -reveal=%<CR>
 
 let g:fern#default_hidden = v:true
 " let g:fern_auto_preview = v:true
 
-" nnoremap <silent> <Leader>e :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <silent> <Leader>E :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
