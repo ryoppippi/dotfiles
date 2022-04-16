@@ -53,10 +53,15 @@ local on_attach = function(client, bufnr)
   end
 
   -- if client.resolved_capabilities.document_formatting then
-  vim.api.nvim_command([[augroup Format]])
-  vim.api.nvim_command([[autocmd! * <buffer>]])
-  vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
-  vim.api.nvim_command([[augroup END]])
+  local FormatAugroup = vim.api.nvim_create_augroup("Format", { clear = true })
+  vim.api.nvim_create_autocmd(
+    "BufWritePre",
+    {
+      command = "lua vim.lsp.buf.formatting_seq_sync()",
+      buffer = 0,
+      group = FormatAugroup,
+    }
+  )
   -- end
 
   --protocol.SymbolKind = { }
