@@ -8,7 +8,6 @@ vim.cmd([[
         hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
       ]])
 
-
 neotree.setup({
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
@@ -56,7 +55,7 @@ neotree.setup({
 		filters = { --These filters are applied to both browsing and searching
 			show_hidden = true,
 			respect_gitignore = true,
-      hide_dotfiles = false,
+			hide_dotfiles = false,
 		},
 		follow_current_file = true, -- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
