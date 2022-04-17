@@ -1,6 +1,6 @@
 local status, hclipboard = pcall(require, "hclipboard")
 if not status then
-  return
+	return
 end
 
 hclipboard.start()

@@ -1,5 +1,5 @@
 local status, trevj = pcall(require, "trevj")
 if not status then
-  return
+	return
 end
 trevj.setup()

@@ -1,6 +1,11 @@
 local status, replacer = pcall(require, "replacer")
 if not status then
-  return
+	return
 end
 
-vim.api.nvim_set_keymap('n', '<Leader>h', ':lua require("replacer").run()<cr>', { nowait = true, noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>h",
+	':lua require("replacer").run()<cr>',
+	{ nowait = true, noremap = true, silent = true }
+)
