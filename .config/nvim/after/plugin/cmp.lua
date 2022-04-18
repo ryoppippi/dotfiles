@@ -92,7 +92,7 @@ local status_lspkind, lspkind = pcall(require, "lspkind")
 if status_lspkind then
 	setup_opt.formatting = {
 		format = lspkind.cmp_format({
-			with_text = false, -- do not show text alongside icons
+			mode = "symbol",
 			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 			menu = {
 				nvim_lsp = "[LSP]",
