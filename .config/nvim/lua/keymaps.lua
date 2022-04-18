@@ -10,11 +10,11 @@ vim.keymap.set({ "n", "v" }, ":", ";", { noremap = true })
 
 -- split window
 if not is_vscode then
-	vim.keymap.set("n", "ss", "<cmd>split<cr>")
-	vim.keymap.set("n", "sv", "<cmd>vsplit<cr>")
+  vim.keymap.set("n", "ss", "<cmd>split<cr>")
+  vim.keymap.set("n", "sv", "<cmd>vsplit<cr>")
 else
-	vim.keymap.set("n", "ss", "<cmd>split<cr><C-w>w")
-	vim.keymap.set("n", "sv", "<cmd>vsplit<cr><C-w>w")
+  vim.keymap.set("n", "ss", "<cmd>split<cr><C-w>w")
+  vim.keymap.set("n", "sv", "<cmd>vsplit<cr><C-w>w")
 end
 
 -- move window
