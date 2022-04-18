@@ -66,17 +66,18 @@ local setup_opt = {
 	sources = cmp.config.sources({
 		{ name = "copilot" },
 		{ name = "nvim_lsp" },
+		{ name = "path" },
+		{ name = "rg" },
+		{ name = "buffer" },
 		{ name = "vsnip" },
 		{ name = "nvim_lsp_document_symbol" },
-		{ name = "path" },
-		{ name = "buffer" },
-		{ name = "rg" },
 		{ name = "treesitter" },
 		{ name = "nvim_lua" },
 		{ name = "calc" },
 		{ name = "emoji" },
 		{ name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
 		{ name = "nvim_lsp_signature_help" },
+	}, {
 		-- { name = "cmp_tabnine" },
 	}),
 	completion = {
@@ -119,6 +120,7 @@ end
 cmp.setup(setup_opt)
 
 cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
 	},
@@ -128,6 +130,7 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
