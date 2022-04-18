@@ -2,6 +2,7 @@ local t = require("utils").t
 local is_vscode = require("utils").is_vscode
 
 vim.g.mapleader = t("<Space>")
+vim.g.completion_trigger_character = "."
 
 vim.keymap.set("n", "<C-l>", ":nphlsearch<CR><Esc>", { noremap = true })
 
@@ -24,7 +25,7 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
-vim.keymap.set("n", "tt", "<cmd>tabe<cr>", { noremap = true })
+vim.keymap.set("n", "tt", "<cmd>tabe .<cr>", { noremap = true })
 vim.keymap.set("n", "tk", "<cmd>tabnext<cr>", { noremap = true })
 vim.keymap.set("n", "tj", "<cmd>tabprevious<cr>", { noremap = true })
 vim.keymap.set("n", "th", "<cmd>tabfirst<cr>", { noremap = true })
