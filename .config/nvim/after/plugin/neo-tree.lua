@@ -52,16 +52,16 @@ neotree.setup({
 		},
 	},
 	filesystem = {
-		filters = { --These filters are applied to both browsing and searching
-			show_hidden = true,
-			respect_gitignore = true,
+		filtered_items = { --These filters are applied to both browsing and searching
+			hide_dotfiles = false,
+			hide_gitignored = false,
 			hide_dotfiles = false,
 		},
 		follow_current_file = true, -- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
 		use_libuv_file_watcher = false, -- This will use the OS level file watchers
 		-- to detect changes instead of relying on nvim autocmd events.
-		hijack_netrw_behavior = "open_split", -- netrw disabled, opening a directory opens neo-tree
+		hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
 		-- in whatever position is specified in window.position
 		-- "open_split",  -- netrw disabled, opening a directory opens within the
 		-- window like netrw would, regardless of window.position
