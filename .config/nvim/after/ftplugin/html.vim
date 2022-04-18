@@ -1,7 +1,0 @@
-setlocal isk+=-
-setlocal isk+=.
-setlocal isk+=:
-setlocal isk+=!
-setlocal isk+=@
-let g:user_emmet_leader_key=','
-

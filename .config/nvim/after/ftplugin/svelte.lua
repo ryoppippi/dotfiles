@@ -1,0 +1,16 @@
+-- setlocal isk+=-
+-- setlocal isk+=:
+--
+-- setlocal expandtab
+-- setlocal tabstop=2
+-- setlocal shiftwidth=2
+--
+-- let g:user_emmet_leader_key=','
+
+vim.bo.isk:append("-")
+vim.bo.isk:append(":")
+
+local tabwidth = 2
+vim.bo.expandtab = true
+vim.bo.tabstop = tabwidth
+vim.bo.shiftwidth = tabwidth
