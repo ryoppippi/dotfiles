@@ -1,4 +1,4 @@
-" if !exists('g:loaded_lexima')
+ " if !exists('g:loaded_lexima')
 "       finish
 " endif
 " "

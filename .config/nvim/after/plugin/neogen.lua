@@ -1,5 +1,10 @@
-local status, neogen = pcall(require, "neogen")
-if not status then
+local plugin_name = "neogen"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
-neogen.setup()
+
+local function loading()
+	require(plugin_name).setup()
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

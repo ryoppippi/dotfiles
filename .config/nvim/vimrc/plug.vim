@@ -56,6 +56,8 @@ Plug 'echasnovski/mini.nvim', { 'branch': 'stable', 'on':[]}
 Plug 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
 Plug 'bennypowers/nvim-regexplainer'
 
+Plug 'pianocomposer321/yabs.nvim'
+
 Plug 'yutkat/auto-paste-mode.vim'
 
 Plug 'segeljakt/vim-silicon', { 'on': 'Silicon' }
@@ -94,7 +96,7 @@ Plug 'AndrewRadev/linediff.vim'
 
 " file explorer
 if !exists('vscode')
-  Plug 'nathom/filetype.nvim'
+  " Plug 'nathom/filetype.nvim'
   " Plug 'lambdalisue/fern.vim'
   " Plug 'lambdalisue/fern-git-status.vim'
   " Plug 'lambdalisue/nerdfont.vim'
@@ -126,11 +128,13 @@ if !exists('vscode')
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'rhysd/git-messenger.vim'
   Plug 'akinsho/git-conflict.nvim'
+  Plug 'tanvirtin/vgit.nvim'
 endif
 
 
 if !exists('g:vscode') && g:enable_copilot
-  Plug 'github/copilot.vim', { 'as': 'copilot', 'on': [] }
+  " Plug 'github/copilot.vim', { 'as': 'copilot', 'on': [] }
+  Plug 'github/copilot.vim'
   " Plug  "zbirenbaum/copilot.lua"
 endif
 
@@ -213,8 +217,10 @@ if g:enable_cmp
   Plug 'hrsh7th/cmp-calc'
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-  Plug 'hrsh7th/cmp-copilot'
+  if g:enable_copilot
+    Plug 'hrsh7th/cmp-copilot'
   " Plug 'zbirenbaum/copilot-cmp'
+  endif
 endif
 
 if g:enable_ddc
@@ -275,12 +281,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 "
 
 if !exists('g:vscode')
-  let g:rainbow_active = 1
   let g:completion_trigger_character = ['.']
-  let g:did_load_filetypes = 1
-
-  let g:minimap_width = 10
-  let g:minimap_auto_start = 1
-  let g:minimap_auto_start_win_enter = 1
 endif
 

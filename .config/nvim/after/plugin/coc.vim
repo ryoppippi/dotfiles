@@ -1,6 +1,4 @@
-if !exists('g:coc')
-  finish
-endif
+if !plugin#is_exists('coc') | finish | endif
 
 let g:coc_global_extensions = [
       \'coc-actions',

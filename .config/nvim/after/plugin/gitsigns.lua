@@ -1,20 +1,24 @@
-local status, gitsigns = pcall(require, "gitsigns")
-if not status then
-	return
+local plugin_name = "gitsigns"
+if not require("utils.plugin").is_exists(plugin_name) then
+  return
 end
 
-gitsigns.setup({
-	signs = {
-		add = { text = "+" },
-		change = { text = "~" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~_" },
-	},
-	current_line_blame = true,
-	on_attach = function(buffer)
-		vim.api.nvim_set_keymap("n", "<leader>xh", ":Gitsigns preview_hunk<CR>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "<leader>xd", ":Gitsigns diffthis<CR>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "<leader>xb", ":Gitsigns toggle_deleted<CR>", { silent = true, noremap = true })
-	end,
-})
+local function loading()
+  require(plugin_name).setup({
+    signs = {
+      add = { text = "+" },
+      change = { text = "~" },
+      delete = { text = "_" },
+      topdelete = { text = "‾" },
+      changedelete = { text = "~_" },
+    },
+    current_line_blame = true,
+    on_attach = function(buffer)
+      vim.keymap.set("n", "<leader>xh", "<cmd>Gitsigns preview_hunk<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>xd", "<cmd>Gitsigns diffthis<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>xb", "<cmd>Gitsigns toggle_deleted<cr>", { silent = true, noremap = true })
+    end,
+  })
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

@@ -1,6 +1,10 @@
-local status, hclipboard = pcall(require, "hclipboard")
-if not status then
+local plugin_name = "hclipboard"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
-hclipboard.start()
+local function loading()
+	require(plugin_name).start()
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)
