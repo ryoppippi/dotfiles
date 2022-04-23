@@ -1,6 +1,10 @@
-local status, which_key = pcall(require, "which-key")
-if not status then
+local plugin_name = "which-key"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
-which_key.setup({})
+local function loading()
+	require(plugin_name).setup({})
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

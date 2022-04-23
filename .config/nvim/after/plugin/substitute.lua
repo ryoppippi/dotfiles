@@ -1,11 +1,10 @@
-local plugin_name = "colorizer"
+local plugin_name = 'substitute'
 if not require("utils.plugin").is_exists(plugin_name) then
-	return
+  return
 end
 
 local function loading()
-	require(plugin_name).setup()
-	vim.cmd([[ColorizerToggle]])
+  require(plugin_name).setup()
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

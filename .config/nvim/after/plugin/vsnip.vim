@@ -1,5 +1,4 @@
-
-if !exists('g:loaded_vsnip') | finish | endif
+" if !exists('g:loaded_vsnip') | finish | endif
 
 let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
 

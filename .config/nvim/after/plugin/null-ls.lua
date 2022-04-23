@@ -1,32 +1,63 @@
-local status, nulls = pcall(require, "null-ls")
-if not status then
+local plugin_name = "null-ls"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
-nulls.setup({
-	sources = {
-		-- nulls.builtins.formatting.prettier.with({
-		--         extra_filetypes = {
-		--             "svelte",
-		--         },
-		--     }),
-		nulls.builtins.diagnostics.tsc,
-		-- nulls.builtins.diagnostics.eslint_d.with({
-		--         extra_filetypes = {
-		--             "svelte",
-		--         },
-		--     }),
-		-- python
-		nulls.builtins.formatting.isort,
-		nulls.builtins.formatting.black,
-		nulls.builtins.diagnostics.mypy,
-		nulls.builtins.diagnostics.flake8,
+local function loading()
+	local null_ls = require("null-ls")
+	local diagnostics_format = "[#{c}] #{m} (#{s})"
+	local formatting = null_ls.builtins.formatting
+	local diagnostics = null_ls.builtins.diagnostics
+	local code_actions = null_ls.builtins.code_actions
 
-		-- lua
-		nulls.builtins.formatting.stylua,
-		-- others
-		nulls.builtins.formatting.fish_indent,
+	null_ls.setup({
+		sources = {
+			-- nulls.builtins.formatting.prettier.with({
+			--         extra_filetypes = {
+			--             "svelte",
+			--         },
+			--     }),
+			diagnostics.tsc.with({
+				diagnostics_format = diagnostics_format,
+			}),
+			-- nulls.builtins.diagnostics.eslint_d.with({
+			--         extra_filetypes = {
+			--             "svelte",
+			--         },
+			--     }),
+			-- python
+			formatting.isort.with({
+				diagnostics_format = diagnostics_format,
+				prefer_local = ".venv/bin",
+				extra_args = { "--profile", "black" },
+			}),
+			diagnostics.flake8.with({
+				diagnostics_format = diagnostics_format,
+				prefer_local = ".venv/bin",
+				-- Ignore some errors that are always fixed by black
+				extra_args = { "--extend-ignore", "E1,E2,E3,F821,E731,R504,SIM106" },
+			}),
+			formatting.black.with({
+				diagnostics_format = diagnostics_format,
+				prefer_local = ".venv/bin",
+				extra_args = { "--fast", "-W", "6" },
+			}),
+			diagnostics.mypy.with({
+				diagnostics_format = diagnostics_format,
+				prefer_local = ".venv/bin",
+			}),
 
-		-- nulls.builtins.diagnostics.cspell,
-	},
-})
+			-- format
+			-- lua
+			formatting.stylua.with({
+				diagnostics_format = diagnostics_format,
+			}),
+			-- others
+			formatting.fish_indent,
+
+			-- nulls.builtins.diagnostics.cspell,
+		},
+	})
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

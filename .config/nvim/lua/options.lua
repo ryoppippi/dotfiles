@@ -54,3 +54,5 @@ vim.opt.wrapscan = true
 
 vim.opt.laststatus = 3
 vim.opt.wildmode = "list:longest"
+
+vim.api.nvim_exec([[hi MatchParen ctermfg=LightGreen ctermbg=blue]], false)

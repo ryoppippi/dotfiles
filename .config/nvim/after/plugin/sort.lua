@@ -1,6 +1,10 @@
-local status, sort = pcall(require, "sort")
-if not status then
+local plugin_name = "sort"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
-sort.setup()
+local function loading()
+	require(plugin_name).setup()
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

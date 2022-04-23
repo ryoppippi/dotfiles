@@ -1,14 +1,22 @@
-local status, hop = pcall(require, "hop")
-if not status then
+local plugin_name = "hop"
+if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
-hop.setup()
+local function loading()
+	local hop = require(plugin_name)
+	hop.setup()
 
-local opt = { silent = true, noremap = true }
-vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>lua require'hop'.hint_words()<CR>", opt)
-vim.api.nvim_set_keymap("v", "<Leader>j", "<cmd>lua require'hop'.hint_words()<CR>", opt)
-vim.api.nvim_set_keymap("v", "<Leader>k", "<cmd>lua require'hop'.hint_char1()<CR>", opt)
-vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>lua require'hop'.hint_char1()<CR>", opt)
-vim.api.nvim_set_keymap("v", "<Leader>l", "<cmd>lua require'hop'.hint_lines()<CR>", opt)
-vim.api.nvim_set_keymap("n", "<Leader>l", "<cmd>lua require'hop'.hint_lines()<CR>", opt)
+	local opt = { silent = true, noremap = true }
+	vim.keymap.set({ "n", "v" }, "<Leader>j", function()
+		hop.hint_words()
+	end, opt)
+	vim.keymap.set({ "n", "v" }, "<Leader>k", function()
+		hop.hint_char1()
+	end, opt)
+	vim.keymap.set({ "n", "v" }, "<Leader>l", function()
+		hop.hint_lines()
+	end, opt)
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)
