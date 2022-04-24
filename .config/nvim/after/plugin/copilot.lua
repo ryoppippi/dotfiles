@@ -18,4 +18,4 @@ local function loading()
 	end
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").pre_load(plugin_name, loading)
