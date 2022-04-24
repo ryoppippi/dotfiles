@@ -192,7 +192,7 @@ if g:enable_nvim_lsp
   Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on':'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
-  Jetpack 'hrsh7th/vim-vsnip', {'on': 'VimEnter'}
+  Jetpack 'hrsh7th/vim-vsnip',  {'on': 'VimEnter'}
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
   " Jetpack 'ray-x/lsp_signature.nvim'
@@ -201,7 +201,7 @@ endif
 if g:enable_cmp
   " cmp
   Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp'}
-  Jetpack 'hrsh7th/cmp-vsnip', {'on': 'BufEnter'}
+  Jetpack 'hrsh7th/cmp-vsnip'
   Jetpack 'hrsh7th/cmp-nvim-lsp', 
   Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol', 
   Jetpack 'hrsh7th/cmp-buffer', 
