@@ -1,2 +1,2 @@
 -- set noexpandtab
-vim.bo.expandtab = false
+vim.opt_local.expandtab = false
