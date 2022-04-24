@@ -28,11 +28,11 @@ if has('nvim')
   endfunction
 end
 
-" packadd vim-jetpack
+packadd vim-jetpack
 let g:jetpack#optimization = 1
 
 call jetpack#begin()
-" Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+Jetpack 'tani/vim-jetpack', { 'opt': 1 }
 Jetpack 'vim-denops/denops.vim'
 Jetpack 'haya14busa/vim-asterisk'
 Jetpack 'thinca/vim-quickrun'
@@ -47,7 +47,7 @@ Jetpack 'deris/vim-rengbang'
 Jetpack 'folke/which-key.nvim',{'on':'VimEnter','as':'which-key'}
 Jetpack 'echasnovski/mini.nvim', { 'branch': 'stable'}
 Jetpack 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
-Jetpack 'bennypowers/nvim-regexplainer', { 'on':'VimEnter', 'as':'regexplainer' }
+Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
 
 Jetpack 'pianocomposer321/yabs.nvim'
 
