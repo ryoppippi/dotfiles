@@ -1,5 +1,5 @@
-" Description: My custom tabline settings
-
+vim.api.nvim_exec(
+	[[
 function MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
@@ -45,3 +45,6 @@ function MyTabLabel(n)
 endfunction
 
 set tabline=%!MyTabLine()
+]],
+	false
+)
