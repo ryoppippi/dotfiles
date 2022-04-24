@@ -3,7 +3,7 @@
 -- setlocal shiftwidth=4
 -- setlocal shiftwidth=4
 local tabwidth = 4
-vim.bo.expandtab = true
-vim.bo.tabstop = tabwidth
-vim.bo.softtabstop = tabwidth
-vim.bo.shiftwidth = tabwidth
+vim.opt_local.expandtab = true
+vim.opt_local.tabstop = tabwidth
+vim.opt_local.softtabstop = tabwidth
+vim.opt_local.shiftwidth = tabwidth
