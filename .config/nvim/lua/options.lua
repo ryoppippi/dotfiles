@@ -35,7 +35,9 @@ vim.opt.virtualedit = "onemore"
 vim.opt.visualbell = true
 vim.opt.showmatch = true
 vim.opt.showcmd = true
-vim.opt.termguicolors = true
+if vim.g.termguicolors then
+	vim.opt.termguicolors = true
+end
 
 vim.opt.fenc = "utf-8"
 local tabwidth = 2

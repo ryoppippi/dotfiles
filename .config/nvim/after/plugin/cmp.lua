@@ -162,7 +162,7 @@ local function loading()
 	end
 
 	-- Setup autopairs
-	local status_autopairs = require("utils.plugin").force_require("autopairs")
+	local status_autopairs = require("utils.plugin").force_require("nvim-autopairs")
 	if status_autopairs then
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
