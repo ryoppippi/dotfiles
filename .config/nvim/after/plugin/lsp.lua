@@ -27,7 +27,7 @@ local function loading()
 		buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 		-- Mappings.
-		local opts = { noremap = true, silent = true }
+		local opts = { noremap = true, silent = true, buffer = bufnr }
 
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		-- vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)

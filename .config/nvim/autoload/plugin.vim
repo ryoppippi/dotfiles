@@ -14,4 +14,3 @@ endfunction
 
 
 autocmd VimEnter * call CheckJetPackList()
-

@@ -80,7 +80,7 @@ Jetpack 'tpope/vim-repeat'
 " Jetpack 'kana/vim-operator-user'
 " Jetpack 'kana/vim-operator-replace'
 " Jetpack 'cohama/lexima.vim'
-Jetpack 'windwp/nvim-autopairs', { 'on': 'InsertEnter' }
+Jetpack 'windwp/nvim-autopairs', { 'on': ['InsertEnter','CursorHold']}
 Jetpack 'chen244/csv-tools.lua', { 'for': 'csv' }
 Jetpack 'yuki-yano/deindent-yank.vim'
 Jetpack 'numToStr/Comment.nvim', { 'as' : 'Comment' }
@@ -103,8 +103,8 @@ if !exists('vscode')
   endif
   Jetpack 'MunifTanjim/nui.nvim'
   Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
-  Jetpack 'obaland/vfiler.vim', { 'on': 'VimEnter', 'as': 'vfiler' }
-  Jetpack 'obaland/vfiler-column-devicons', { 'on': 'VimEnter'}
+  " Jetpack 'obaland/vfiler.vim', { 'on': 'VimEnter', 'as': 'vfiler' }
+  " Jetpack 'obaland/vfiler-column-devicons', { 'on': 'VimEnter'}
   Jetpack 'antoinemadec/FixCursorHold.nvim'
   Jetpack 'jghauser/mkdir.nvim'
   Jetpack 'wsdjeg/vim-fetch'
@@ -123,15 +123,15 @@ endif
 " git
 if !exists('vscode')
   " Jetpack 'lambdalisue/gina.vim'
-  Jetpack 'lewis6991/gitsigns.nvim',{'on':'VimEnter','as':'gitsigns'}
+  Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
   Jetpack 'rhysd/git-messenger.vim'
-  Jetpack 'akinsho/git-conflict.nvim',{'on':'VimEnter','as':'git-conflict'}
+  Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
   Jetpack 'tanvirtin/vgit.nvim'
 endif
 
 
 if !exists('g:vscode') && g:enable_copilot
-  Jetpack 'github/copilot.vim', {'on':'VimEnter'}
+  Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter' ]}
   " Jetpack  "zbirenbaum/copilot.lua"
 endif
 
@@ -149,20 +149,22 @@ if !exists('g:vscode')
   Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
   Jetpack 'kyazdani42/nvim-web-devicons'
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
-  Jetpack 'navarasu/onedark.nvim',{ 'as': 'onedark', 'on': [ 'VimEnter', 'BufEnter' ]}
+  " Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
+  " Jetpack 'tribela/vim-transparent'
   " Jetpack 'marko-cerovac/material.nvim'
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
-  Jetpack 'kdheepak/tabline.nvim', { 'as': 'tabline'}
-  Jetpack 'mvllow/modes.nvim', { 'on': 'VimEnter', 'as': 'modes'}
+  " Jetpack 'kdheepak/tabline.nvim', { 'as': 'tabline', 'on': 'VimEnter'}
+  Jetpack 'sainnhe/gruvbox-material'
+  Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
 " Jetpack 'karb94/ceoscroll.nvim'
-  Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
+  " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
   Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
 endif
 
 " language support 
 " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
-Jetpack 'nvim-treesitter/nvim-treesitter', { 'do':':TSUpdate all'}
+Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate all'}
 Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
 Jetpack 'RRethy/nvim-treesitter-textsubjects'
 Jetpack 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -187,10 +189,10 @@ endif
 if g:enable_nvim_lsp
   Jetpack 'neovim/nvim-lspconfig',{'on': 'VimEnter', 'as': 'lspconfig'}
   Jetpack 'williamboman/nvim-lsp-installer'
-  Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga'}
+  Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
   Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
   Jetpack 'HallerPatrick/py_lsp.nvim'
-  Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on':'VimEnter'}
+  Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
   Jetpack 'hrsh7th/vim-vsnip',  {'on': 'VimEnter'}
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
