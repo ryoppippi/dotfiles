@@ -139,7 +139,7 @@ endif
 " session management
 if !exists('g:vscode')
   Jetpack 'simeji/winresizer'
-  Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as':'chowcho'}
+  Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
   " Jetpack 'Pocco81/AutoSave.nvim'
   Jetpack 'rmagatti/auto-session'
 endif
@@ -206,7 +206,7 @@ if g:enable_cmp
   Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol', 
   Jetpack 'hrsh7th/cmp-buffer', 
   Jetpack 'hrsh7th/cmp-path', 
-  Jetpack 'hrsh7th/cmp-cmdline', 
+  Jetpack 'hrsh7th/cmp-cmdline',
   Jetpack 'lukas-reineke/cmp-rg', 
   " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   Jetpack 'ray-x/cmp-treesitter', 
@@ -267,5 +267,4 @@ Jetpack 'kat0h/bufpreview.vim'
 
 call jetpack#end()
 
-" packadd vim-matchup
 
