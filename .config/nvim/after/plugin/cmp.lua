@@ -4,8 +4,13 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function loading()
+	vim.o.completeopt = "menuone,noinsert,noselect"
+
 	local cmp = require(plugin_name)
-	local t = require("utils").t
+	local utils = require("utils")
+	local t = utils.t
+	local toboolean = utils.toboolean
+	local vsnip_jumpable = vim.fn["vsnip#jumpable"]
 
 	local setup_opt = {
 		snippet = {
@@ -43,7 +48,7 @@ local function loading()
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
-				elseif vim.call("vsnip#jumpable", 1) ~= 0 then
+				elseif toboolean(vsnip_jumpable(1)) then
 					vim.fn.feedkeys(t("<Plug>(vsnip-jump-next)"), "")
 				else
 					fallback()
@@ -53,7 +58,7 @@ local function loading()
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item()
-				elseif vim.call("vsnip#jumpable", -1) ~= 0 then
+				elseif toboolean(vsnip_jumpable(-1)) then
 					vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
 				else
 					vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
@@ -138,8 +143,6 @@ local function loading()
 			completeopt = "menu,menuone,noselect",
 		},
 	})
-
-	vim.o.completeopt = "menuone,noinsert,noselect"
 
 	vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 
