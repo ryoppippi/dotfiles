@@ -16,7 +16,8 @@ local function loading()
 	lualine.setup({
 		options = {
 			icons_enabled = true,
-			theme = "auto",
+			-- theme = "auto",
+			theme = "gruvbox-material",
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "", right = "" },
 			disabled_filetypes = {},
@@ -66,4 +67,3 @@ local function loading()
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
-

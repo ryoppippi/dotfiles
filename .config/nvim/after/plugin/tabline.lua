@@ -17,11 +17,11 @@ function MyTabLine()
     let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
 
     if i + 1 == tabpagenr()
-      let s .= '%#TabLineSep#'
+      let s .= '%#TabLineSep#'
     elseif i + 2 == tabpagenr()
-      let s .= '%#TabLineSep2#'
+      let s .= '%#TabLineSep2#'
     else
-      let s .= ''
+      let s .= ''
     endif
   endfor
 

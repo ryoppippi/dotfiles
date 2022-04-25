@@ -92,6 +92,7 @@ local function loading()
 					["m"] = "move", -- takes text input for destination
 					["q"] = "close_window",
 					["<esc>"] = "close_window",
+					["t"] = "none",
 				},
 			},
 		},

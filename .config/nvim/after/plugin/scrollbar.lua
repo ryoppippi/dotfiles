@@ -6,9 +6,9 @@ end
 local function loading()
 	require("scrollbar.handlers.search").setup()
 	require(plugin_name).setup({
-		handle = {
-			color = "#63768A",
-		},
+		-- handle = {
+		-- 	color = "#63768A",
+		-- },
 	})
 end
 

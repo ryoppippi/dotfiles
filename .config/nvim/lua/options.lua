@@ -35,9 +35,6 @@ vim.opt.virtualedit = "onemore"
 vim.opt.visualbell = true
 vim.opt.showmatch = true
 vim.opt.showcmd = true
-if vim.g.termguicolors then
-	vim.opt.termguicolors = true
-end
 
 vim.opt.fenc = "utf-8"
 local tabwidth = 2
@@ -57,4 +54,19 @@ vim.opt.wrapscan = true
 vim.opt.laststatus = 3
 vim.opt.wildmode = "list:longest"
 
-vim.api.nvim_exec([[hi MatchParen ctermfg=LightGreen ctermbg=blue]], false)
+vim.g.colorterm = os.getenv("COLORTERM")
+if
+	vim.g.colorterm == "truecolor"
+	or vim.g.colorterm == "24bit"
+	or vim.g.colorterm == "rxvt"
+	or vim.g.colorterm == ""
+then
+	if vim.fn.exists("+termguicolors") then
+		vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+		vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+		vim.o.termguicolors = true
+	end
+end
+if vim.g.termguicolors then
+	vim.opt.termguicolors = true
+end
