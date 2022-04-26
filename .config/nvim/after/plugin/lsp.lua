@@ -52,8 +52,8 @@ local function loading()
 		if client.name == "tsserver" then
 			client.resolved_capabilities.document_formatting = false
 		elseif client.name == "python" then
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
+			-- client.resolved_capabilities.document_formatting = false
+			-- client.resolved_capabilities.document_range_formatting = false
 		elseif client.name == "svelte" then
 			client.resolved_capabilities.document_formatting = true
 		elseif client.name == "eslint" then
