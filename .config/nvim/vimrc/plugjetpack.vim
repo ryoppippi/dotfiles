@@ -71,7 +71,7 @@ Jetpack 'phaazon/hop.nvim', { 'on': 'BufReadPost','as':'hop'}
 Jetpack 'bkad/CamelCaseMotion'
 Jetpack 'unblevable/quick-scope'
 Jetpack 'hrsh7th/vim-searchx'
-Jetpack 'kevinhwang91/nvim-hlslens'
+Jetpack 'kevinhwang91/nvim-hlslens', {'as': 'hlslens'}
 Jetpack 'machakann/vim-sandwich'
 Jetpack 'machakann/vim-swap'
 " Jetpack 'tpope/vim-unimpaired'
@@ -194,7 +194,7 @@ if g:enable_nvim_lsp
   Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
-  Jetpack 'hrsh7th/vim-vsnip',  {'on': 'VimEnter'}
+  Jetpack 'hrsh7th/vim-vsnip'
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
   " Jetpack 'ray-x/lsp_signature.nvim'
