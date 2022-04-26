@@ -16,21 +16,9 @@ local function loading()
     let g:gruvbox_material_enable_italic = 1
     let g:gruvbox_material_enable_bold = 1
     let g:gruvbox_material_disable_italic_comment = 0
-    
-    function! s:cs(timer)
-      silent colorscheme gruvbox-material
-    endfunction
-
-    if !exists('g:gruvbox_set')
-      let g:gruvbox_set = 1
-      call timer_start(1, function('s:cs'))
-    endif
   ]],
 		false
 	)
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = plugin_name,
-	callback = loading,
-})
+loading()

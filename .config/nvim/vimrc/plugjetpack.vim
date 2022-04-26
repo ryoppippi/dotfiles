@@ -33,6 +33,7 @@ let g:jetpack#optimization = 1
 
 call jetpack#begin()
 Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
 Jetpack 'vim-denops/denops.vim'
 Jetpack 'haya14busa/vim-asterisk'
 Jetpack 'thinca/vim-quickrun'
@@ -65,7 +66,7 @@ Jetpack 'zdcthomas/medit'
 Jetpack 'mattn/vim-sonictemplate'
 
 " text objects
-Jetpack 'phaazon/hop.nvim', { 'on': 'BufEnter','as':'hop'}
+Jetpack 'phaazon/hop.nvim', { 'on': 'BufReadPost','as':'hop'}
 " Jetpack 'skanehira/jumpcursor.vim'
 Jetpack 'bkad/CamelCaseMotion'
 Jetpack 'unblevable/quick-scope'
@@ -117,7 +118,7 @@ if !exists('vscode')
   Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter'}
   Jetpack 'nvim-telescope/telescope-file-browser.nvim'
   Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufEnter'}
+  Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
 endif
 
 " git
@@ -148,18 +149,17 @@ endif
 if !exists('g:vscode')
   Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
   Jetpack 'kyazdani42/nvim-web-devicons'
-  Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
-  " Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
-  " Jetpack 'tribela/vim-transparent'
-  " Jetpack 'marko-cerovac/material.nvim'
-  Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
-  " Jetpack 'kdheepak/tabline.nvim', { 'as': 'tabline', 'on': 'VimEnter'}
-  Jetpack 'sainnhe/gruvbox-material'
-  Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
-" Jetpack 'karb94/ceoscroll.nvim'
-  " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
+  Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
   Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
+  Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
+  Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
+
+  Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
+  Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
+  " Jetpack 'marko-cerovac/material.nvim'
+  Jetpack 'sainnhe/gruvbox-material'
+  " Jetpack 'tribela/vim-transparent'
 endif
 
 " language support 
