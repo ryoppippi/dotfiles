@@ -59,10 +59,13 @@ vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
 -- disable s because s = cl
 vim.keymap.set("n", "s", "<Nop>", { noremap = true })
 
+-- terminal
+vim.keymap.set("t", [[<ESC>]], [[<C-\><C-n>]], { noremap = true })
+
 -- tips
 vim.keymap.set("n", "Y", "y$", { noremap = true })
 vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
 vim.keymap.set({ "n", "v" }, "X", '"_d$', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>", { noremap = true })
-vim.keymap.set("t", "<C-l>", ":nohlsearch<CR><Esc>", { noremap = true })
+vim.keymap.set("n", "<C-l>", ":nohlsearch<CR><Esc>", { noremap = true })
 vim.keymap.set("n", "<leader>p", "o<esc>p<esc>", { noremap = true })
