@@ -28,10 +28,16 @@ local function loading()
 			background = true, -- use background color for virtual text
 		},
 	})
-	require(plugin_name).load()
+	vim.api.nvim_exec(
+		[[
+    hi MatchParen ctermbg=black guibg=black
+    augroup matchup_matchparen_highlight
+      autocmd!
+      autocmd ColorScheme onedark hi MatchParen ctermbg=black guibg=black
+    augroup END
+		]],
+		false
+	)
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = "onedark",
-	callback = loading,
-})
+loading()
