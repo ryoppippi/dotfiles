@@ -127,7 +127,8 @@ if !exists('vscode')
   Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
   Jetpack 'rhysd/git-messenger.vim'
   Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
-  Jetpack 'tanvirtin/vgit.nvim'
+  Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
+  Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
 endif
 
 
@@ -154,6 +155,7 @@ if !exists('g:vscode')
   Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
+  " Jetpack 'VonHeikemen/fine-cmdline.nvim'
 
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
   Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
@@ -191,7 +193,7 @@ if g:enable_nvim_lsp
   Jetpack 'williamboman/nvim-lsp-installer'
   Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
   Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
-  Jetpack 'HallerPatrick/py_lsp.nvim'
+  " Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
   Jetpack 'hrsh7th/vim-vsnip'
