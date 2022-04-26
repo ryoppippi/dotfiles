@@ -5,7 +5,7 @@ end
 
 local function loading()
 	require("utils.plugin").load(plugin_name)
-	require(plugin_name).setup({
+	vim.g.onedark_config = {
 		style = "darker",
 		transparent = true,
 		term_colors = true,
@@ -27,7 +27,7 @@ local function loading()
 			undercurl = true, -- use undercurl instead of underline for diagnostics
 			background = true, -- use background color for virtual text
 		},
-	})
+	}
 	vim.api.nvim_exec(
 		[[
     hi MatchParen ctermbg=black guibg=black
