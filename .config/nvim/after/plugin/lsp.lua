@@ -49,15 +49,22 @@ local function loading()
 		vim.keymap.set("n", "<leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 		-- formatting
+		-- js html
 		if client.name == "tsserver" then
 			client.resolved_capabilities.document_formatting = false
-		elseif client.name == "python" then
-			-- client.resolved_capabilities.document_formatting = false
-			-- client.resolved_capabilities.document_range_formatting = false
 		elseif client.name == "svelte" then
 			client.resolved_capabilities.document_formatting = true
 		elseif client.name == "eslint" then
 			client.resolved_capabilities.document_formatting = true
+
+			-- lua
+			-- elseif client.name == "sumneko_lua" then
+			-- 	client.resolved_capabilities.document_formatting = true
+
+			-- python
+		elseif client.name == "python" then
+			-- client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
 		end
 
 		-- if client.resolved_capabilities.document_formatting then

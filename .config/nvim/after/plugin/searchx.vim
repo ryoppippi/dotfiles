@@ -12,12 +12,12 @@ nnoremap N <Cmd>call searchx#prev_dir()<CR>
 nnoremap n <Cmd>call searchx#next_dir()<CR>
 xnoremap N <Cmd>call searchx#prev_dir()<CR>
 xnoremap n <Cmd>call searchx#next_dir()<CR>
-nnoremap <C-k> <Cmd>call searchx#prev()<CR>
-nnoremap <C-j> <Cmd>call searchx#next()<CR>
-xnoremap <C-k> <Cmd>call searchx#prev()<CR>
-xnoremap <C-j> <Cmd>call searchx#next()<CR>
-cnoremap <C-k> <Cmd>call searchx#prev()<CR>
-cnoremap <C-j> <Cmd>call searchx#next()<CR>
+" nnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" nnoremap <C-j> <Cmd>call searchx#next()<CR>
+" xnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" xnoremap <C-j> <Cmd>call searchx#next()<CR>
+" cnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" cnoremap <C-j> <Cmd>call searchx#next()<CR>
 
 let g:searchx = {}
 

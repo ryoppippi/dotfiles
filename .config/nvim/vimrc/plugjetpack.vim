@@ -30,6 +30,7 @@ end
 
 packadd vim-jetpack
 let g:jetpack#optimization = 1
+let g:jetpack#copy_method = 'symlink'
 
 call jetpack#begin()
 Jetpack 'tani/vim-jetpack', { 'opt': 1 }
@@ -38,9 +39,9 @@ Jetpack 'vim-denops/denops.vim'
 Jetpack 'haya14busa/vim-asterisk'
 Jetpack 'thinca/vim-quickrun'
 Jetpack 'thinca/vim-qfreplace'
-Jetpack 'tyru/open-browser.vim',{'on':'VimEnter'}
-Jetpack 'tyru/open-browser-github.vim',{'on':'VimEnter'}
-Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme' }
+Jetpack 'tyru/open-browser.vim',{'on': 'VimEnter'}
+Jetpack 'tyru/open-browser-github.vim', {'on': 'VimEnter'}
+Jetpack '4513ECHO/vim-readme-viewer', { 'on': [ 'JetpackReadme', 'CursorHold'] }
 Jetpack 'monaqa/dps-dial.vim',{'on':'VimEnter', 'as':'dial'}
 " Jetpack 'mopp/vim-operator-convert-case'
 Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
@@ -52,9 +53,7 @@ Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer
 
 Jetpack 'pianocomposer321/yabs.nvim'
 
-Jetpack 'yutkat/auto-paste-mode.vim'
-
-Jetpack 'segeljakt/vim-silicon', { 'on': 'Silicon' }
+Jetpack 'segeljakt/vim-silicon'
 
 Jetpack 'gabrielpoca/replacer.nvim'
 
@@ -64,6 +63,8 @@ Jetpack 'sQVe/sort.nvim', {'on':'VimEnter', 'as': 'sort'}
 Jetpack 'zdcthomas/medit'
 
 Jetpack 'mattn/vim-sonictemplate'
+
+Jetpack 'tversteeg/registers.nvim', { 'branch': 'main' }
 
 " text objects
 Jetpack 'phaazon/hop.nvim', { 'on': 'BufReadPost','as':'hop'}
@@ -82,7 +83,7 @@ Jetpack 'tpope/vim-repeat'
 " Jetpack 'kana/vim-operator-replace'
 " Jetpack 'cohama/lexima.vim'
 Jetpack 'windwp/nvim-autopairs', { 'on': ['InsertEnter','CursorHold']}
-Jetpack 'chen244/csv-tools.lua', { 'for': 'csv' }
+Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
 Jetpack 'yuki-yano/deindent-yank.vim'
 Jetpack 'numToStr/Comment.nvim', { 'as' : 'Comment' }
 Jetpack 'LudoPinelli/comment-box.nvim'
@@ -115,7 +116,7 @@ endif
 " telescope
 if !exists('vscode')
   Jetpack 'nvim-lua/plenary.nvim'
-  Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter'}
+  Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a'}
   Jetpack 'nvim-telescope/telescope-file-browser.nvim'
   Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
@@ -133,7 +134,7 @@ endif
 
 
 if !exists('g:vscode') && g:enable_copilot
-  Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter' ]}
+  Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter']}
   " Jetpack  "zbirenbaum/copilot.lua"
 endif
 
@@ -196,7 +197,7 @@ if g:enable_nvim_lsp
   " Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
-  Jetpack 'hrsh7th/vim-vsnip'
+  Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
   " Jetpack 'ray-x/lsp_signature.nvim'
@@ -211,15 +212,19 @@ if g:enable_cmp
   Jetpack 'hrsh7th/cmp-buffer', 
   Jetpack 'hrsh7th/cmp-path', 
   Jetpack 'hrsh7th/cmp-cmdline',
-  Jetpack 'lukas-reineke/cmp-rg', 
+  Jetpack 'lukas-reineke/cmp-rg',
   " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   Jetpack 'ray-x/cmp-treesitter', 
   Jetpack 'hrsh7th/cmp-emoji', 
   " Jetpack 'octaltree/cmp-look', 
   Jetpack 'hrsh7th/cmp-calc', 
+  Jetpack 'petertriho/cmp-git', {'as': 'cmp_git'}
   Jetpack 'hrsh7th/cmp-nvim-lua', 
   Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help', 
-  Jetpack 'hrsh7th/cmp-copilot', 
+  if g:enable_copilot
+    " Jetpack 'hrsh7th/cmp-copilot', 
+    Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter'}
+  endif
   " Jetpack 'zbirenbaum/copilot-cmp', 
 endif
 

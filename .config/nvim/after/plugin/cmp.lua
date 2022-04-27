@@ -61,8 +61,11 @@ local function loading()
 				elseif toboolean(vsnip_jumpable(-1)) then
 					vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
 				else
-					vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
-					-- fallback()
+					if vim.g.loaded_copilot then
+						vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
+					else
+						fallback()
+					end
 				end
 			end, { "i", "s" }),
 		},
@@ -70,9 +73,10 @@ local function loading()
 			{ name = "copilot" },
 			{ name = "nvim_lsp" },
 			{ name = "path" },
-			{ name = "rg" },
 			{ name = "buffer" },
+			{ name = "rg" },
 			{ name = "vsnip" },
+			{ name = "git" },
 			{ name = "nvim_lsp_document_symbol" },
 			{ name = "treesitter" },
 			{ name = "nvim_lua" },
@@ -153,7 +157,7 @@ local function loading()
 	end
 
 	-- Setup tabnine
-	local status_tn = require("utils.plugin").force_require("cmp-tabnine")
+	local status_tn, _ = require("utils.plugin").force_require("cmp-tabnine")
 	if status_tn then
 		require("cmp_tabnine.config"):setup({
 			max_lines = 1000,
@@ -165,11 +169,16 @@ local function loading()
 	end
 
 	-- Setup autopairs
-	local status_autopairs = require("utils.plugin").force_require("nvim-autopairs")
+	local status_autopairs, _ = require("utils.plugin").force_require("nvim-autopairs")
 	if status_autopairs then
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 		cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+	end
+
+	local status_git, cmp_git = require("utils.plugin").force_require("cmp_git")
+	if status_git then
+		cmp_git.setup()
 	end
 end
 
