@@ -51,3 +51,4 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.wrapscan = true
 vim.opt.wildmode = "list:longest"
+vim.api.nvim_exec([[set list listchars=tab:▸-]],false)
