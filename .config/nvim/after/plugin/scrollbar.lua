@@ -17,6 +17,3 @@ local function loading()
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = loading,
-})

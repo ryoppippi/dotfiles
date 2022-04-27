@@ -9,16 +9,17 @@ local function loading()
 
 	telescope.setup({
 		defaults = {
-			aaa = {
+			mappings = {
 				n = {
 					["<ESC>"] = actions.close,
 					["q"] = actions.close,
 				},
 			},
+			initial_mode = "insert",
 			prompt_prefix = "🔍",
-			cache_picker = {
-				num_pickers = -1,
-			},
+			-- cache_picker = {
+			-- 	num_pickers = -1,
+			-- },
 			vimgrep_arguments = {
 				"rg",
 				"--color=never",
@@ -47,6 +48,9 @@ local function loading()
 				theme = "dropdown",
 				initial_mode = "normal",
 			},
+			grep_string = {
+				initial_mode = "normal",
+			},
 		},
 		extensions = {
 			fzf = {
@@ -60,9 +64,6 @@ local function loading()
 			file_browser = {
 				initial_mode = "normal",
 			},
-			grep_string = {
-				initial_mode = "normal",
-			},
 		},
 	})
 	telescope.load_extension("fzf")
@@ -71,25 +72,29 @@ end
 
 local function keymap()
 	local key_opts = { noremap = true, silent = true }
+	vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
+	vim.keymap.set("n", "[TeLeader]", "<Nop>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", { noremap = true })
 
-	local find_files_cmd = [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>]]
+	local find_files_cmd = [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]]
 	local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]
-	vim.keymap.set("n", ",f", find_files_cmd, key_opts)
-	vim.keymap.set("n", ",<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
-	vim.keymap.set("n", ",,", [[<cmd>Telescope<cr>]], { noremap = true })
-	vim.keymap.set("n", ",z", [[<cmd>Telescope file_browser<cr>]], key_opts)
-	vim.keymap.set("n", ",s", [[<cmd>Telescope grep_string<cr>]], key_opts)
-	vim.keymap.set("n", ",t", [[<cmd>TodoTelescope<cr>]], key_opts)
-	vim.keymap.set("n", ",r", [[<cmd>Telescope resume<cr>]], key_opts)
-	vim.keymap.set("n", ",b", [[<cmd>Telescope buffers<cr>]], key_opts)
-	vim.keymap.set("n", ",h", [[<cmd>Telescope help_tags<cr>]], key_opts)
-	vim.keymap.set("n", ",j", [[<cmd>Telescope jumplist<cr>]], key_opts)
-	vim.keymap.set("n", ",o", [[<cmd>Telescope oldfiles<cr>]], key_opts)
-	vim.keymap.set("n", ",g", [[<cmd>Telescope git_files<cr>]], key_opts)
-	vim.keymap.set("n", ",q", [[<cmd>Telescope quickfix<cr>]], key_opts)
-	vim.keymap.set("n", ",p", [[<cmd>Telescope pickers<cr>]], key_opts)
-	vim.keymap.set("n", ",m", [[<cmd>Telescope marks<cr>]], key_opts)
-	vim.keymap.set("n", ",d", current_buffer_fuzzy_find, keyopts)
+
+	vim.keymap.set("n", "[TeLeader]f", find_files_cmd, key_opts)
+	vim.keymap.set("n", "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope<cr>]], { noremap = true })
+	vim.keymap.set("n", "[TeLeader]z", [[<cmd>Telescope file_browser<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]t", [[<cmd>TodoTelescope<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]r", [[<cmd>Telescope resume<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]b", [[<cmd>Telescope buffers<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]h", [[<cmd>Telescope help_tags<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]j", [[<cmd>Telescope jumplist<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]o", [[<cmd>Telescope oldfiles<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]g", [[<cmd>Telescope git_files<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]q", [[<cmd>Telescope quickfix<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]p", [[<cmd>Telescope pickers<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]m", [[<cmd>Telescope marks<cr>]], key_opts)
+	vim.keymap.set("n", "[TeLeader]d", current_buffer_fuzzy_find, key_opts)
 
 	vim.keymap.set("n", "gd", [[<cmd>Telescope lsp_definitions<cr>]], key_opts)
 	vim.keymap.set("n", "gJ", [[<cmd>Telescope diagnostics<cr>]], key_opts)

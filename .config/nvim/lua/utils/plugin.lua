@@ -30,8 +30,7 @@ local function create_event_table(opt, callback)
 end
 
 function M.load(plugin_name)
-	local load_command = "packadd " .. plugin_name
-	vim.api.nvim_command(load_command)
+	vim.cmd("packadd " .. plugin_name)
 end
 
 function M.is_exists(plugin_name)

@@ -4,7 +4,7 @@ vim.g.did_load_filetypes = 0
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu = 1
 vim.g.did_indent_on = 1
--- vim.g.did_load_ftplugin         = 1
+vim.g.did_load_ftplugin = 1
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_man = 1
@@ -50,23 +50,4 @@ vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.wrapscan = true
-
-vim.opt.laststatus = 3
 vim.opt.wildmode = "list:longest"
-
-vim.g.colorterm = os.getenv("COLORTERM")
-if
-	vim.g.colorterm == "truecolor"
-	or vim.g.colorterm == "24bit"
-	or vim.g.colorterm == "rxvt"
-	or vim.g.colorterm == ""
-then
-	if vim.fn.exists("+termguicolors") then
-		vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
-		vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
-		vim.o.termguicolors = true
-	end
-end
-if vim.g.termguicolors then
-	vim.opt.termguicolors = true
-end
