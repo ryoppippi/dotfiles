@@ -33,7 +33,8 @@ let g:jetpack#optimization = 1
 let g:jetpack#copy_method = 'symlink'
 
 call jetpack#begin()
-Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+" Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1 , 'branch': 'dev/use-dictionary' }
 Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
 Jetpack 'vim-denops/denops.vim'
 Jetpack 'haya14busa/vim-asterisk'
@@ -116,7 +117,7 @@ endif
 " telescope
 if !exists('vscode')
   Jetpack 'nvim-lua/plenary.nvim'
-  Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a'}
+  Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a', 'branch': 'master' }
   Jetpack 'nvim-telescope/telescope-file-browser.nvim'
   Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
@@ -157,6 +158,7 @@ if !exists('g:vscode')
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
   " Jetpack 'VonHeikemen/fine-cmdline.nvim'
+  Jetpack 'lukas-reineke/indent-blankline.nvim', {'as': 'indent_blankline', 'on': 'VimEnter'}
 
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
   Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }

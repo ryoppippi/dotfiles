@@ -1,13 +1,15 @@
-local plugin_name = "which-key"
+local plugin_name = "indent_blankline"
 if not require("utils.plugin").is_exists(plugin_name) then
 	return
 end
 
 local function loading()
+	vim.opt.termguicolors = true
+
 	require(plugin_name).setup({
-		plugins = {
-			registers = false,
-		},
+		-- show_end_of_line = true,
+		show_current_context = true,
+		show_current_context_start = true,
 	})
 end
 
