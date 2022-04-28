@@ -3,7 +3,7 @@ let g:enable_ddc = v:false
 let g:enable_cmp = v:true
 let g:enable_coc = v:false
 let g:enable_copilot = v:true
-let g:enable_fern = v:false
+let g:enable_fern = v:true
 
 
 if exists('g:vscode')
@@ -68,7 +68,7 @@ Jetpack 'mattn/vim-sonictemplate'
 Jetpack 'tversteeg/registers.nvim', { 'branch': 'main' }
 
 " text objects
-Jetpack 'phaazon/hop.nvim', { 'on': 'BufReadPost','as':'hop'}
+Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
 " Jetpack 'skanehira/jumpcursor.vim'
 Jetpack 'bkad/CamelCaseMotion'
 Jetpack 'unblevable/quick-scope'
@@ -103,9 +103,10 @@ if !exists('vscode')
     Jetpack 'lambdalisue/glyph-palette.vim'
     Jetpack 'lambdalisue/fern-hijack.vim'
     Jetpack 'yuki-yano/fern-preview.vim'
+    " Jetpack 'LumaKernel/fern-mapping-fzf.vim'
   endif
   Jetpack 'MunifTanjim/nui.nvim'
-  Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
+  " Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
   " Jetpack 'obaland/vfiler.vim', { 'on': 'VimEnter', 'as': 'vfiler' }
   " Jetpack 'obaland/vfiler-column-devicons', { 'on': 'VimEnter'}
   Jetpack 'antoinemadec/FixCursorHold.nvim'
@@ -158,7 +159,6 @@ if !exists('g:vscode')
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
   " Jetpack 'VonHeikemen/fine-cmdline.nvim'
-  Jetpack 'lukas-reineke/indent-blankline.nvim', {'as': 'indent_blankline', 'on': 'VimEnter'}
 
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
   Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
