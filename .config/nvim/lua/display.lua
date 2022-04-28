@@ -23,7 +23,6 @@ local function setting()
 	vim.opt.list = true
 	vim.opt.laststatus = 3
 	vim.opt.listchars:append("space:⋅")
-	-- vim.opt.listchars:append("eol:↴")
 end
 
 vim.api.nvim_create_autocmd("VimEnter", {
