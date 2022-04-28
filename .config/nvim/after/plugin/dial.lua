@@ -1,11 +1,11 @@
 local plugin_name = "dial"
 if not require("utils.plugin").is_exists(plugin_name) then
-	return
+  return
 end
 
 local function setup()
-	vim.api.nvim_exec(
-		[[
+  vim.api.nvim_exec(
+    [[
   nmap  <C-a>  <Plug>(dps-dial-increment)
   nmap  <C-x>  <Plug>(dps-dial-decrement)
   xmap  <C-a>  <Plug>(dps-dial-increment)
@@ -48,8 +48,8 @@ local function setup()
       autocmd FileType markdown vmap <buffer> <Space>x "h<Plug>(dps-dial-decrement)
     augroup END
     ]],
-		true
-	)
+    true
+  )
 end
 
 require("utils.plugin").load_denops_plugin(plugin_name, setup)

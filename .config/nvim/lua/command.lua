@@ -11,7 +11,7 @@ vim.api.nvim_create_user_command("EncodingReload", "execute 'e ++enc=<args>'", {
 
 -- count word
 vim.api.nvim_create_user_command("CountWord", function()
-	local input = vim.fn.input("", "':%s/\\<<C-r><C-w>\\>/&/gn'")
-	vim.cmd(input)
-	vim.fn.histadd("cmd", input)
+  local input = vim.fn.input("", "':%s/\\<<C-r><C-w>\\>/&/gn'")
+  vim.cmd(input)
+  vim.fn.histadd("cmd", input)
 end, { force = true })
