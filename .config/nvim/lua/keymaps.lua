@@ -8,10 +8,10 @@ vim.keymap.set("n", ":", ";", { noremap = true })
 
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
-	return vim.v.count > 0 and "j" or "gj"
+  return vim.v.count > 0 and "j" or "gj"
 end, { noremap = true, expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
-	return vim.v.count > 0 and "k" or "gk"
+  return vim.v.count > 0 and "k" or "gk"
 end, { noremap = true, expr = true })
 
 vim.keymap.set("n", "H", "<Nop>", { noremap = true })
@@ -59,7 +59,7 @@ vim.keymap.set("t", [[<ESC>]], [[<C-\><C-n>]], { noremap = true })
 --- Emacs style from yutkat
 vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true, silent = false })
 if not vim.g.vscode then
-	vim.keymap.set("c", "<C-e>", "<End>", { noremap = true, silent = false })
+  vim.keymap.set("c", "<C-e>", "<End>", { noremap = true, silent = false })
 end
 vim.keymap.set("c", "<C-f>", "<right>", { noremap = true, silent = false })
 vim.keymap.set("c", "<C-b>", "<left>", { noremap = true, silent = false })
@@ -75,15 +75,15 @@ vim.keymap.set("n", "<leader>p", "o<esc>p<esc>", { noremap = true })
 
 -- toggle 0, ^ made by ycino
 for _, key in ipairs({ "^", "0" }) do
-	vim.keymap.set("n", key, function()
-		return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
-	end, { noremap = true, expr = true, silent = true })
+  vim.keymap.set("n", key, function()
+    return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
+  end, { noremap = true, expr = true, silent = true })
 end
 
 -- Automatically indent with i and A made by ycino
 vim.keymap.set("n", "i", function()
-	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "i" or '"_cc'
+  return vim.fn.len(vim.fn.getline(".")) ~= 0 and "i" or '"_cc'
 end, { noremap = true, expr = true, silent = true })
 vim.keymap.set("n", "A", function()
-	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
+  return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
 end, { noremap = true, expr = true, silent = true })

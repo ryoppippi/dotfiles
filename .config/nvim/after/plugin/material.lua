@@ -1,6 +1,6 @@
 local status, material = pcall(require, "material")
 if not status then
-	return
+  return
 end
 
 material.setup()

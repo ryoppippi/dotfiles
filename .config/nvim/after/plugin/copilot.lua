@@ -1,21 +1,21 @@
 local plugin_name = "copilot.vim"
 if not require("utils.plugin").is_exists(plugin_name) then
-	return
+  return
 end
 
 local function loading()
-	if vim.g.enable_cmp or vim.g.enable_ddc then
-		-- vim.api.nvim_command('imap <expr> <Plug>(copilot-dummy-map) copilot#Accept("<Tab>")')
-		-- vim.api.nvim_command("imap <silent><script><nowait><expr> <C-l> copilot#Dismiss()")
-		-- vim.api.nvim_command('imap <expr> <C-h> copilot#Accept("<CR>")')
-		vim.keymap.set("i", "<Plug>(copilot-dummy-map)", [[copilot#Accept"]("<Tab>")]], { expr = true })
-		vim.keymap.set("i", "<C-h>", [[copilot#Accept("<CR>")]], { expr = true })
-		vim.keymap.set("i", "<C-l>", [[copilot#Dismiss()]], { script = true, nowait = true, expr = true })
+  if vim.g.enable_cmp or vim.g.enable_ddc then
+    -- vim.api.nvim_command('imap <expr> <Plug>(copilot-dummy-map) copilot#Accept("<Tab>")')
+    -- vim.api.nvim_command("imap <silent><script><nowait><expr> <C-l> copilot#Dismiss()")
+    -- vim.api.nvim_command('imap <expr> <C-h> copilot#Accept("<CR>")')
+    vim.keymap.set("i", "<Plug>(copilot-dummy-map)", [[copilot#Accept"]("<Tab>")]], { expr = true })
+    vim.keymap.set("i", "<C-h>", [[copilot#Accept("<CR>")]], { expr = true })
+    vim.keymap.set("i", "<C-l>", [[copilot#Dismiss()]], { script = true, nowait = true, expr = true })
 
-		vim.g.copilot_no_tab_map = true
-		vim.g.copilot_assume_mapped = true
-		vim.g.copilot_tab_fallback = ""
-	end
+    vim.g.copilot_no_tab_map = true
+    vim.g.copilot_assume_mapped = true
+    vim.g.copilot_tab_fallback = ""
+  end
 end
 
 require("utils.plugin").pre_load(plugin_name, loading)

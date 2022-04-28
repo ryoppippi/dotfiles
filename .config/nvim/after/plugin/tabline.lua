@@ -1,5 +1,5 @@
 vim.api.nvim_exec(
-	[[
+  [[
 function MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
@@ -46,5 +46,5 @@ endfunction
 
 set tabline=%!MyTabLine()
 ]],
-	false
+  false
 )
