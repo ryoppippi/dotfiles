@@ -1,6 +1,7 @@
-if !exists('g:loaded_fern') | finish | endif
+if !plugin#is_exists('fern.vim') | finish | end
 
 nnoremap <silent> <Leader>e :Fern . -reveal=%<CR>
+nnoremap <silent> <Leader>E :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 let g:fern#default_hidden = v:true
 " let g:fern#keepjumps_on_edit = 1
@@ -9,7 +10,6 @@ let g:fern#drawer_keep =1
 " let g:fern_auto_preview = v:true
 let g:fern#renderer = 'nerdfont'
 
-nnoremap <silent> <Leader>E :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
@@ -22,7 +22,6 @@ function! s:fern_settings() abort
   nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
 endfunction
 
-
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
@@ -31,5 +30,5 @@ augroup END
 
 augroup fern-custom
   autocmd! *
-  autocmd FileType fern call s:init_fern()
+  autocmd FileType fern call s:fern_settings()
 augroup END

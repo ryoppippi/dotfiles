@@ -5,11 +5,11 @@ function load()
   end
   cursorword.setup()
 
-  -- local status, indent = pcall(require, "mini.indentscope")
-  -- if not status then
-  -- 	return
-  -- end
-  -- indent.setup()
+  local status, indent = pcall(require, "mini.indentscope")
+  if not status then
+    return
+  end
+  indent.setup()
 
   local statusJ, jump = pcall(require, "mini.jump")
   if not statusJ then
