@@ -3,9 +3,9 @@ if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
-local function loading()
-  vim.o.completeopt = "menuone,noinsert,noselect"
+vim.o.completeopt = "menuone,noinsert,noselect"
 
+local function loading()
   local cmp = require(plugin_name)
   local utils = require("utils")
   local t = utils.t
@@ -142,18 +142,12 @@ local function loading()
       { name = "cmdline" },
       -- { name = "path" },
     }),
-    -- completion = {
-    --   completeopt = "menu,menuone,noselect",
-    -- },
+    completion = {
+      completeopt = "menu,menuone,noselect",
+    },
   })
 
   vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
-
-  -- Setup lspconfig.
-  local status_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_lsp then
-    local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  end
 
   -- Setup tabnine
   local status_tn, _ = require("utils.plugin").force_require("cmp-tabnine")
@@ -172,7 +166,7 @@ local function loading()
   if status_autopairs then
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-    cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+    -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
   end
 
   local status_git, cmp_git = require("utils.plugin").force_require("cmp_git")
