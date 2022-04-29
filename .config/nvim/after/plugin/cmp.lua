@@ -21,7 +21,7 @@ local function loading()
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
       end,
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       ["<C-l>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
@@ -68,7 +68,7 @@ local function loading()
           end
         end
       end, { "i", "s" }),
-    },
+    }),
     sources = cmp.config.sources({
       { name = "copilot" },
       { name = "nvim_lsp" },
@@ -126,26 +126,25 @@ local function loading()
 
   cmp.setup(setup_opt)
 
-  cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = "buffer" },
-    },
-    completion = {
-      completeopt = "menu,menuone,noselect",
-    },
-  })
+  -- cmp.setup.cmdline("/", {
+  --   mapping = cmp.mapping.preset.cmdline(),
+  --   sources = {
+  --     { name = "buffer" },
+  --   },
+  --   completion = {
+  --     completeopt = "menu,menuone,noselect",
+  --   },
+  -- })
 
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = "path" },
-    }, {
       { name = "cmdline" },
+      -- { name = "path" },
     }),
-    completion = {
-      completeopt = "menu,menuone,noselect",
-    },
+    -- completion = {
+    --   completeopt = "menu,menuone,noselect",
+    -- },
   })
 
   vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])

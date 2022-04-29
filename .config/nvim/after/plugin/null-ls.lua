@@ -47,6 +47,8 @@ local function loading()
         prefer_local = ".venv/bin",
       }),
 
+      -- Docker
+      diagnostics.hadolint,
       -- format
       -- lua
       formatting.stylua.with({

@@ -41,7 +41,7 @@ local function setup()
 
     augroup dps-dial
       autocmd FileType markdown let b:dps_dial_augends_register_h = [ {"kind": "user", "opts": {"find": s:id_find, "add": s:id_add}} ]
-      autocmd FileType python let b:dps_dial#augends = ['decimal', {'kind': 'constant', 'opts': {'elements': ['True', 'False']}}]
+      autocmd FileType python let b:dps_dial_augends = ['decimal', {'kind': 'constant', 'opts': {'elements': ['True', 'False']}}]
       autocmd FileType markdown nmap <buffer> <Space>a "h<Plug>(dps-dial-increment)
       autocmd FileType markdown nmap <buffer> <Space>x "h<Plug>(dps-dial-decrement)
       autocmd FileType markdown vmap <buffer> <Space>a "h<Plug>(dps-dial-increment)
