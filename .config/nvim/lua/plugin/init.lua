@@ -1,10 +1,3 @@
-local is_vscode = require("utils").is_vscode()
-local mt = require('utils').merge_tables
-local r = function(name)
-  return require('plugin/'.. name)
-end
-local pl = {}
-
 vim.g.enable_copilot = true
 vim.g.enable_nvim_lsp = true
 vim.g.enable_cmp = true
@@ -84,6 +77,9 @@ Jetpack 'AndrewRadev/linediff.vim'
 
 Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
 
+Jetpack 'rmagatti/auto-session'
+
+
 " file explorer
 if !exists('vscode')
   if g:enable_fern
@@ -132,14 +128,6 @@ if !exists('g:vscode') && g:enable_copilot
 endif
 
 
-" session management
-if !exists('g:vscode')
-  Jetpack 'simeji/winresizer'
-  Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
-  " Jetpack 'Pocco81/AutoSave.nvim'
-  Jetpack 'rmagatti/auto-session'
-endif
-
 " visualize
 if !exists('g:vscode')
   Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
@@ -151,6 +139,8 @@ if !exists('g:vscode')
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
   " Jetpack 'VonHeikemen/fine-cmdline.nvim'
+  Jetpack 'simeji/winresizer'
+  Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
 
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
   Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
@@ -191,7 +181,6 @@ if g:enable_nvim_lsp
   " Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
   Jetpack 'rafamadriz/friendly-snippets'
-  Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
   Jetpack 'RRethy/vim-illuminate'
@@ -202,7 +191,7 @@ if g:enable_cmp
   " cmp
   Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp'}
   Jetpack 'hrsh7th/cmp-vsnip'
-  Jetpack 'hrsh7th/cmp-nvim-lsp', 
+  Jetpack 'hrsh7th/cmp-nvim-lsp', { 'as': 'cmp_nvim_lsp'}
   Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol', 
   Jetpack 'hrsh7th/cmp-buffer', 
   Jetpack 'hrsh7th/cmp-path', 
@@ -251,6 +240,8 @@ if g:enable_ddc
   " Jetpack 'gelguy/wilder.nvim', { 'do': function('UpdateRemoteJetpackins'),'as': 'wilder' }
 endif
 
+Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
+" Jetpack 'smjonas/snippet-converter.nvim'
 " web
 Jetpack 'fivethree-team/vscode-svelte-snippets'
 Jetpack 'stordahl/sveltekit-snippets'
@@ -272,4 +263,3 @@ call jetpack#end()
 ]],
   true
 )
-
