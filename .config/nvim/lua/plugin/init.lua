@@ -1,37 +1,28 @@
-let g:enable_nvim_lsp = v:true
-let g:enable_ddc = v:false
-let g:enable_cmp = v:true
-let g:enable_coc = v:false
-let g:enable_copilot = v:true
-let g:enable_fern = v:true
+local is_vscode = require("utils").is_vscode()
+local mt = require('utils').merge_tables
+local r = function(name)
+  return require('plugin/'.. name)
+end
+local pl = {}
 
+vim.g.enable_copilot = true
+vim.g.enable_nvim_lsp = true
+vim.g.enable_cmp = true
+vim.g.enable_ddc = false
+vim.g.enable_coc = false
+vim.g.enable_fern = false
 
-if exists('g:vscode')
-  let g:enable_cmp = v:false
-  let g:enable_coc = v:false
-  let g:enable_nvim_lsp = v:false
-  let g:enable_ddc = v:false
-  let g:enable_copilot = v:false
-endif
-
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/jetpack.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/jetpack.vim --create-dirs  https://raw.githubusercontent.com/tani/vim-jetpack/master/autoload/jetpack.vim'
-  autocmd VimEnter * JetpackSync | source $MYVIMRC
-endif
-
-if has('nvim')
-  function! UpdateRemotePlugins(...)
-    " Needed to refresh runtime files
-    let &rtp=&rtp
-    UpdateRemotePlugins
-  endfunction
+if is_vscode then
+  vim.g.enable_copilot = false
+  vim.g.enable_nvim_lsp = false
+  vim.g.enable_cmp = false
+  vim.g.enable_ddc = false
+  vim.g.enable_coc = false
+  vim.g.enable_fern = false
 end
 
-packadd vim-jetpack
-let g:jetpack#optimization = 1
-let g:jetpack#copy_method = 'symlink'
-
+vim.api.nvim_exec(
+  [[
 call jetpack#begin()
 " Jetpack 'tani/vim-jetpack', { 'opt': 1 }
 Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1 , 'branch': 'dev/use-dictionary' }
@@ -106,7 +97,7 @@ if !exists('vscode')
     " Jetpack 'LumaKernel/fern-mapping-fzf.vim'
   endif
   Jetpack 'MunifTanjim/nui.nvim'
-  " Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
+  Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
   " Jetpack 'obaland/vfiler.vim', { 'on': 'VimEnter', 'as': 'vfiler' }
   " Jetpack 'obaland/vfiler-column-devicons', { 'on': 'VimEnter'}
   Jetpack 'antoinemadec/FixCursorHold.nvim'
@@ -151,6 +142,7 @@ endif
 
 " visualize
 if !exists('g:vscode')
+  Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
   Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
   Jetpack 'kyazdani42/nvim-web-devicons'
   Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
@@ -181,7 +173,7 @@ Jetpack 'm-demare/hlargs.nvim'
 Jetpack 'David-Kunz/treesitter-unit'
 Jetpack 'p00f/nvim-ts-rainbow'
 " Jetpack 'mizlan/iswap.nvim'
-Jetpack 'yioneko/nvim-yati'
+Jetpack 'yioneko/nvim-yati', {'on': 'VimEnter', 'as': 'yati'}
 Jetpack 'arthurxavierx/vim-caser'
 Jetpack 'danymat/neogen', {'on': 'VimEnter'}
 
@@ -202,6 +194,7 @@ if g:enable_nvim_lsp
   Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
+  Jetpack 'RRethy/vim-illuminate'
   " Jetpack 'ray-x/lsp_signature.nvim'
 endif
 
@@ -275,7 +268,8 @@ Jetpack 'cstrap/python-snippets'
 Jetpack 'vim-denops/denops.vim'
 Jetpack 'kat0h/bufpreview.vim'
 
-
 call jetpack#end()
-
+]],
+  true
+)
 

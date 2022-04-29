@@ -68,11 +68,12 @@ local function loading()
   })
   telescope.load_extension("fzf")
   telescope.load_extension("file_browser")
+  telescope.load_extension("notify")
 end
 
 local function keymap()
   local key_opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap("n", "<leader>f", "[TeLeader]", {})
+  vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
   vim.keymap.set("n", "[TeLeader]", "<Nop>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", { noremap = true })
 
@@ -80,8 +81,10 @@ local function keymap()
   local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]
 
   vim.keymap.set("n", "[TeLeader]f", find_files_cmd, key_opts)
-  vim.keymap.set("n", "[TeLeader]l", [[<cmd>Telescope live_grep<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader];", [[<cmd>Telescope<cr>]], key_opts)
+  -- vim.keymap.set("n", "[TeLeader]l", [[<cmd>Telescope live_grep<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
+  -- vim.keymap.set("n", "[TeLeader];", [[<cmd>Telescope<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]z", [[<cmd>Telescope file_browser<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]t", [[<cmd>TodoTelescope<cr>]], key_opts)

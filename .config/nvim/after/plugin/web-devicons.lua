@@ -1,16 +1,17 @@
 -- local plugin_name = "nvim-web-devicons"
 -- if not require("utils.plugin").is_exists(plugin_name) then
--- 	return
+--   return
 -- end
 --
 -- local function loading()
--- 	require(plugin_name).setup({
--- 		-- your personnal icons can go here (to override)
--- 		-- DevIcon will be appended to `name`
--- 		override = {},
--- 		-- globally enable default icons (default to false)
--- 		-- will get overriden by `get_icons` option
--- 		default = true,
--- 	})
+--   require(plugin_name).setup({
+--     -- your personnal icons can go here (to override)
+--     -- DevIcon will be appended to `name`
+--     override = {},
+--     -- globally enable default icons (default to false)
+--     -- will get overriden by `get_icons` option
+--     default = true,
+--   })
 -- end
 --
+-- loading()

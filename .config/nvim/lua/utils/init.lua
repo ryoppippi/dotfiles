@@ -21,11 +21,24 @@ function M.toboolean(value)
     return value ~= 0
   elseif type(value) == "string" then
     return string.lower(value) == "true"
+  else
+    return false
   end
 end
 
 function M.is_event_available(event)
   return M.toboolean(vim.fn.exists(("##" .. event)))
+end
+
+function M.merge_tables(t1, t2)
+  for k, v in pairs(t2) do
+    if (type(v) == "table") and (type(t1[k] or false) == "table") then
+      M.merge_tables(t1[k], t2[k])
+    else
+      t1[k] = v
+    end
+  end
+  return t1
 end
 
 return M

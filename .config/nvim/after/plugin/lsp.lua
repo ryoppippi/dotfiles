@@ -46,7 +46,8 @@ local function loading()
     -- vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
     -- vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     -- vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    vim.keymap.set("n", "<leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    vim.keymap.set("n", "<leader>zz", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
 
     -- formatting
     -- js html
@@ -63,12 +64,21 @@ local function loading()
     end
 
     -- if client.resolved_capabilities.document_formatting then
-    local FormatAugroup = vim.api.nvim_create_augroup("Format", { clear = true })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      command = "lua vim.lsp.buf.formatting_seq_sync()",
-      buffer = 0,
+    -- vim.api.nvim_command([[augroup Format
+    --                        autocmd! * <buffer>
+    --                        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+    --                        augroup END]])
+    local FormatAugroup = vim.api.nvim_create_augroup("Format", { clear = false })
+    vim.api.nvim_clear_autocmds({
+      buffer = bufnr,
       group = FormatAugroup,
     })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      callback = vim.lsp.buf.formatting_seq_sync,
+      buffer = bufnr,
+      group = FormatAugroup,
+    })
+
     -- end
 
     --protocol.SymbolKind = { }
@@ -99,6 +109,10 @@ local function loading()
       "ﬦ", -- Operator
       "", -- TypeParameter
     }
+    local ill_status, ill_client = pcall(require, "illuminate")
+    if ill_status then
+      ill_client.on_attach(client)
+    end
   end
 
   local runtime_path = vim.split(package.path, ";")
