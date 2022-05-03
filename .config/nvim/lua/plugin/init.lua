@@ -5,7 +5,7 @@ vim.g.enable_ddc = false
 vim.g.enable_coc = false
 vim.g.enable_fern = false
 
-if is_vscode then
+if require("utils").is_vscode() then
   vim.g.enable_copilot = false
   vim.g.enable_nvim_lsp = false
   vim.g.enable_cmp = false
@@ -14,6 +14,8 @@ if is_vscode then
   vim.g.enable_fern = false
 end
 
+pcall(vim.cmd, "packadd jetpack")
+
 vim.api.nvim_exec(
   [[
 call jetpack#begin()
@@ -21,7 +23,7 @@ call jetpack#begin()
 Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1 , 'branch': 'dev/use-dictionary' }
 Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
 Jetpack 'vim-denops/denops.vim'
-Jetpack 'haya14busa/vim-asterisk'
+Jetpack 'haya14busa/vim-asterisk',{'as': 'asterisk', 'on': '<Plug>(asterisk-'}
 Jetpack 'thinca/vim-quickrun'
 Jetpack 'thinca/vim-qfreplace'
 Jetpack 'tyru/open-browser.vim',{'on': 'VimEnter'}
@@ -35,6 +37,9 @@ Jetpack 'folke/which-key.nvim',{'on':'VimEnter','as':'which-key'}
 Jetpack 'echasnovski/mini.nvim', { 'branch': 'stable'}
 Jetpack 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
 Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
+
+Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f'}
+Jetpack 'deton/jasegment.vim'
 
 Jetpack 'pianocomposer321/yabs.nvim'
 
@@ -56,16 +61,13 @@ Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
 " Jetpack 'skanehira/jumpcursor.vim'
 Jetpack 'bkad/CamelCaseMotion'
 Jetpack 'unblevable/quick-scope'
-Jetpack 'hrsh7th/vim-searchx'
+Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx' }
 Jetpack 'kevinhwang91/nvim-hlslens', {'as': 'hlslens'}
 Jetpack 'machakann/vim-sandwich'
 Jetpack 'machakann/vim-swap'
 " Jetpack 'tpope/vim-unimpaired'
-" Jetpack 'kana/vim-textobj-user'
 " Jetpack 'osyo-manga/vim-textobj-blockwise'
 Jetpack 'tpope/vim-repeat'
-" Jetpack 'kana/vim-operator-user'
-" Jetpack 'kana/vim-operator-replace'
 " Jetpack 'cohama/lexima.vim'
 Jetpack 'windwp/nvim-autopairs', { 'on': ['InsertEnter','CursorHold']}
 Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
@@ -131,10 +133,10 @@ endif
 " visualize
 if !exists('g:vscode')
   Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
-  Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
+  " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
   Jetpack 'kyazdani42/nvim-web-devicons'
   Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
-  Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
+  " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
   Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
   Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
   Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
@@ -147,9 +149,10 @@ if !exists('g:vscode')
   " Jetpack 'marko-cerovac/material.nvim'
   Jetpack 'sainnhe/gruvbox-material'
   " Jetpack 'tribela/vim-transparent'
+  Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
 endif
 
-" language support 
+" language support
 " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
 Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate all'}
 Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -167,20 +170,19 @@ Jetpack 'yioneko/nvim-yati', {'on': 'VimEnter', 'as': 'yati'}
 Jetpack 'arthurxavierx/vim-caser'
 Jetpack 'danymat/neogen', {'on': 'VimEnter'}
 
-if g:enable_coc 
+if g:enable_coc
   Jetpack 'neoclide/coc.nvim', {'branch': 'release', 'as': 'coc'}
   Jetpack 'honza/vim-snippets'
   Jetpack 'gelguy/wilder.nvim', { 'do': function('UpdateRemoteJetpackins'), 'as': 'wilder' }
 endif
 
 if g:enable_nvim_lsp
-  Jetpack 'neovim/nvim-lspconfig',{'on': 'VimEnter', 'as': 'lspconfig'}
-  Jetpack 'williamboman/nvim-lsp-installer'
+  Jetpack 'neovim/nvim-lspconfig', { 'opt': v:true,  'as': 'lspconfig'}
+  Jetpack 'williamboman/nvim-lsp-installer', { 'opt': v:true }
   Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
   Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
   " Jetpack 'HallerPatrick/py_lsp.nvim'
   Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
-  Jetpack 'rafamadriz/friendly-snippets'
   Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
   Jetpack 'folke/lsp-colors.nvim'
   Jetpack 'RRethy/vim-illuminate'
@@ -189,27 +191,31 @@ endif
 
 if g:enable_cmp
   " cmp
-  Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp'}
-  Jetpack 'hrsh7th/cmp-vsnip'
+  Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp' }
+  Jetpack 'hrsh7th/cmp-buffer',
+  Jetpack 'hrsh7th/cmp-path',
   Jetpack 'hrsh7th/cmp-nvim-lsp', { 'as': 'cmp_nvim_lsp'}
-  Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol', 
-  Jetpack 'hrsh7th/cmp-buffer', 
-  Jetpack 'hrsh7th/cmp-path', 
+  Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol',
+  Jetpack 'hrsh7th/cmp-nvim-lua',
+  Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help',
+  Jetpack 'tzachar/fuzzy.nvim'
+  Jetpack 'tzachar/cmp-fuzzy-buffer'
+  Jetpack 'tzachar/cmp-fuzzy-path'
   Jetpack 'hrsh7th/cmp-cmdline',
   Jetpack 'lukas-reineke/cmp-rg',
   " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   Jetpack 'ray-x/cmp-treesitter', 
-  Jetpack 'hrsh7th/cmp-emoji', 
-  " Jetpack 'octaltree/cmp-look', 
-  Jetpack 'hrsh7th/cmp-calc', 
+  Jetpack 'hrsh7th/cmp-emoji',
+  " Jetpack 'octaltree/cmp-look',
+  Jetpack 'hrsh7th/cmp-calc',
   Jetpack 'petertriho/cmp-git', {'as': 'cmp_git'}
-  Jetpack 'hrsh7th/cmp-nvim-lua', 
-  Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help', 
   if g:enable_copilot
-    " Jetpack 'hrsh7th/cmp-copilot', 
+    " Jetpack 'hrsh7th/cmp-copilot',
     Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter'}
+  " Jetpack 'zbirenbaum/copilot-cmp',
   endif
-  " Jetpack 'zbirenbaum/copilot-cmp', 
+  " Jetpack 'hrsh7th/cmp-vsnip'
+  Jetpack 'saadparwaiz1/cmp_luasnip'
 endif
 
 if g:enable_ddc
@@ -230,7 +236,7 @@ if g:enable_ddc
   Jetpack 'Shougo/ddc-rg'
   Jetpack 'Shougo/ddc-cmdline'
   Jetpack 'Shougo/ddc-cmdline-history'
-  Jetpack 'hrsh7th/vim-vsnip-integ'
+  " Jetpack 'hrsh7th/vim-vsnip-integ'
   Jetpack 'Shougo/neco-vim'
   Jetpack 'matsui54/ddc-dictionary'
   Jetpack 'Shougo/ddc-omni'
@@ -240,24 +246,28 @@ if g:enable_ddc
   " Jetpack 'gelguy/wilder.nvim', { 'do': function('UpdateRemoteJetpackins'),'as': 'wilder' }
 endif
 
-Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
+" snippets
+" library
+" Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
+Jetpack 'L3MON4D3/LuaSnip', { 'as': 'luasnip'}
+
+Jetpack 'rafamadriz/friendly-snippets'
+Jetpack 'honza/vim-snippets'
 " Jetpack 'smjonas/snippet-converter.nvim'
 " web
 Jetpack 'fivethree-team/vscode-svelte-snippets'
 Jetpack 'stordahl/sveltekit-snippets'
 Jetpack 'xabikos/vscode-javascript'
-Jetpack 'craigmac/vim-vsnip-snippets'
-
+" Jetpack 'craigmac/vim-vsnip-snippets'
 " go
 Jetpack 'golang/vscode-go'
-
 " python
 Jetpack 'cstrap/flask-snippets'
 Jetpack 'cstrap/python-snippets'
 
 " markdown
-Jetpack 'vim-denops/denops.vim'
-Jetpack 'kat0h/bufpreview.vim'
+Jetpack 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
 
 call jetpack#end()
 ]],

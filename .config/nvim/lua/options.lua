@@ -44,6 +44,7 @@ vim.opt.shiftwidth = tabwidth
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.backspace = "indent,eol,start"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -51,3 +52,6 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.wrapscan = true
 vim.opt.wildmode = "list:longest"
+
+vim.opt.errorbells = false
+vim.opt.visualbell = false
