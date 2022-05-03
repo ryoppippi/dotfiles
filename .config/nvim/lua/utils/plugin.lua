@@ -1,5 +1,6 @@
 local M = {}
-local toboolean = require("utils").toboolean
+local u = require("utils")
+local toboolean = u.toboolean
 
 function M.get_jetpack_plugin_event_name(plugin_name)
   local R = {}
@@ -69,13 +70,7 @@ function M.load_denops_plugin(plugin_name, callback)
 end
 
 function M.force_load_on_event(name, loading_callback)
-  local pkg = require("utils.plugin").get(name)
-  if not pkg then
-    return nil
-  end
-  local event = pkg.on
-  -- if type(event) == "string" and require("utils").is_event_available(event) then
-  if true then
+  local function ce(event)
     vim.api.nvim_create_autocmd(event, {
       callback = function()
         M.load(name)
@@ -84,6 +79,19 @@ function M.force_load_on_event(name, loading_callback)
       once = true,
       nested = true,
     })
+  end
+
+  local pkg = require("utils.plugin").get(name)
+  if not pkg then
+    return nil
+  end
+  local event = pkg.on
+  if type(event) == "string" and u.is_event_available(event) then
+    ce(event)
+  elseif type(event) == "table" then
+    ce(event)
+  elseif event == nil then
+    loading_callback()
   end
 end
 

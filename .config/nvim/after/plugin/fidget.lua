@@ -1,10 +1,10 @@
-local plugin_name = "{{_name_}}"
+local plugin_name = "fidget"
 if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
 local function loading()
-  require(plugin_name).setup(){{_cursor_}}
+  require(plugin_name).setup()
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

@@ -6,6 +6,9 @@ vim.g.completion_trigger_character = "."
 vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", ":", ";", { noremap = true })
 
+-- disable some keys
+vim.keymap.set("n", "r", "<Nop>", { noremap = true })
+
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
   return vim.v.count > 0 and "j" or "gj"
@@ -70,8 +73,9 @@ vim.keymap.set("n", "Y", "y$", { noremap = true })
 vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
 vim.keymap.set({ "n", "v" }, "X", '"_d$', { noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>", { noremap = true })
-vim.keymap.set("n", "<C-l>", ":nohlsearch<CR><Esc>", { noremap = true })
-vim.keymap.set("n", "<leader>p", "o<esc>p<esc>", { noremap = true })
+vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>", { noremap = true })
+vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>", { noremap = true })
+vim.keymap.set("n", "<leader>p", 'o<esc>^"_d$p<esc>', { noremap = true })
 
 -- toggle 0, ^ made by ycino
 for _, key in ipairs({ "^", "0" }) do

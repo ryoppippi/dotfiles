@@ -1,5 +1,6 @@
-local util_plug = require("utils.plugin")
-local force_require = util_plug.force_require
+local utils_plug = require("utils.plugin")
+local utils = require("utils")
+local force_require = utils_plug.force_require
 
 local _, lsp_installer = force_require("nvim-lsp-installer")
 local _, lspconfig = force_require("lspconfig")
@@ -8,32 +9,29 @@ if not lsp_installer or not lspconfig then
 end
 
 local lsp_util = lspconfig.util
+local protocol = vim.lsp.protocol
 
 local function generate_capabilities()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  local completionItem = capabilities.textDocument.completion.completionItem
-  completionItem.snippetSupport = true
-  completionItem.preselectSupport = true
-  completionItem.insertReplaceSupport = true
-  completionItem.labelDetailsSupport = true
-  completionItem.deprecatedSupport = true
-  completionItem.commitCharactersSupport = true
-  completionItem.tagSupport = { valueSet = { 1 } }
-  completionItem.resolveSupport = {
+  local capabilities = protocol.make_client_capabilities()
+  local CI = capabilities.textDocument.completion.completionItem
+  CI.snippetSupport = true
+  CI.preselectSupport = true
+  CI.insertReplaceSupport = true
+  CI.labelDetailsSupport = true
+  CI.deprecatedSupport = true
+  CI.commitCharactersSupport = true
+  CI.tagSupport = { valueSet = { 1 } }
+  CI.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
   }
-  capabilities.textDocument.completion.completionItem = completionItem
+  capabilities.textDocument.completion.completionItem = CI
 
-  local _, cmp_nvim_lsp = require("utils.plugin").force_require("cmp_nvim_lsp")
+  local _, cmp_nvim_lsp = utils_plug.force_require("cmp_nvim_lsp")
   if cmp_nvim_lsp ~= nil then
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
   end
   return capabilities
 end
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
 
 local server_opts = {
   ["emmet_ls"] = {
@@ -69,7 +67,7 @@ local server_opts = {
       Lua = {
         runtime = {
           version = "LuaJIT",
-          path = runtime_path,
+          path = vim.tbl_extend("force", vim.split(package.path, ";"), { "lua/?.lua", "lua/?/init.lua" }),
         },
         diagnostics = {
           globals = { "vim" },
@@ -157,7 +155,7 @@ local on_attach = function(client, bufnr)
     group = FormatAugroup,
   })
   --protocol.SymbolKind = { }
-  require("vim.lsp.protocol").CompletionItemKind = {
+  protocol.CompletionItemKind = {
     "", -- Text
     "", -- Method
     "", -- Function
@@ -195,7 +193,7 @@ local on_attach = function(client, bufnr)
 end
 
 local function loading()
-  lsp_installer.settings({
+  lsp_installer.setup({
     ui = {
       icons = {
         server_installed = "✓",
@@ -204,7 +202,6 @@ local function loading()
       },
     },
   })
-  lsp_installer.setup({})
 
   local servers = require("nvim-lsp-installer").get_installed_servers()
   for _, server in ipairs(servers) do
@@ -216,7 +213,7 @@ local function loading()
   end
 end
 
-vim.api.nvim_create_autocmd("BufReadPre", {
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   callback = loading,
   once = true,
 })

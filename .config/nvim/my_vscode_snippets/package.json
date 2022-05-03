@@ -1,0 +1,19 @@
+{
+  "name": "my_vscode_snippets",
+  "author": "ryoppippi",
+    "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "c",
+        "path": "./snippets/c.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./snippets/cpp.json"
+      }
+    ]
+  }
+}

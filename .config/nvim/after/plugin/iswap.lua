@@ -1,5 +1,10 @@
-local status, iswap = pcall(require, "iswap")
-if not status then
+local plugin_name = "iswap"
+if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
-iswap.setup({})
+
+local function loading()
+  require(plugin_name).setup()
+end
+
+loading()

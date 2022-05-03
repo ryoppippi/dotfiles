@@ -1,9 +1,16 @@
 local plugin_name = "cmp"
+-- local snippet_library = 'vsnip'
+local snippet_library = "luasnip"
 if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
 vim.o.completeopt = "menuone,noinsert,noselect"
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 local function loading()
   local cmp = require(plugin_name)
@@ -11,14 +18,18 @@ local function loading()
   local t = utils.t
   local toboolean = utils.toboolean
   local vsnip_jumpable = vim.fn["vsnip#jumpable"]
+  local _, luasnip = pcall(require, "luasnip")
+  local snl = snippet_library
 
   local setup_opt = {
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        if snl == "vsnip" then
+          vim.fn["vsnip#anonymous"](args.body)
+        elseif snl == "luasnip" then
+          luasnip.lsp_expand(args.body)
+        end
       end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -37,19 +48,23 @@ local function loading()
           fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
         end
       end,
-      -- ['<Space>'] =
-      -- function(fallback)
+      -- ["<Space>"] = function(fallback)
       --   if cmp.visible() then
       --     cmp.abort()
       --   else
       --     fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
-      --     end
-      --   end,
+      --   end
+      -- end,
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif toboolean(vsnip_jumpable(1)) then
+        elseif snl == "vsnip" and toboolean(vsnip_jumpable(1)) then
           vim.fn.feedkeys(t("<Plug>(vsnip-jump-next)"), "")
+        elseif snl == "luasnip" and luasnip.jumpable(1) then
+          -- luasnip.jump(1)
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
         else
           fallback()
         end
@@ -58,8 +73,10 @@ local function loading()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif toboolean(vsnip_jumpable(-1)) then
+        elseif snl == "vsnip" and toboolean(vsnip_jumpable(-1)) then
           vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
+        elseif snl == "luasnip" and luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           if vim.g.loaded_copilot then
             vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
@@ -73,9 +90,10 @@ local function loading()
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "path" },
-      { name = "buffer" },
+      -- { name = "fuzzy_path" },
       { name = "rg" },
-      { name = "vsnip" },
+      -- { name = "vsnip" },
+      { name = "luasnip" },
       { name = "git" },
       { name = "nvim_lsp_document_symbol" },
       { name = "treesitter" },
@@ -85,6 +103,8 @@ local function loading()
       { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
       { name = "nvim_lsp_signature_help" },
     }, {
+      { name = "buffer" },
+      -- { name = "fuzzy_buffer" },
       -- { name = "cmp_tabnine" },
     }),
     completion = {
@@ -104,12 +124,15 @@ local function loading()
         menu = {
           nvim_lsp = "[LSP]",
           buffer = "[Buffer]",
+          fuzzy_buffer = "[FBuffer]",
+          path = "[Path]",
+          fuzzy_path = "[FPath]",
           nvim_lua = "[Lua]",
           ultisnips = "[UltiSnips]",
           vsnip = "[vSnip]",
+          luasnip = "[LuaSnip]",
           treesitter = "[treesitter]",
           look = "[Look]",
-          path = "[Path]",
           spell = "[Spell]",
           calc = "[Calc]",
           emoji = "[Emoji]",
@@ -141,6 +164,7 @@ local function loading()
     sources = cmp.config.sources({
       { name = "cmdline" },
       -- { name = "path" },
+      { name = "fuzzy_path" },
     }),
     completion = {
       completeopt = "menu,menuone,noselect",
