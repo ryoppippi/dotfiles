@@ -17,8 +17,8 @@ local function loading()
     auto_session_enabled = true,
     auto_session_create_enabled = true,
     auto_save_enabled = true,
-    auto_save_restore_enabled = true,
-    -- pre_save_cmds = { "{vim_cmd_1}", pre_save, "{vim_cmd_2}" },
+    auto_save_restore_enabled = false,
+    -- pre_save_cmds = { pre_save },
   }
   require(plugin_name).setup(opts)
 end

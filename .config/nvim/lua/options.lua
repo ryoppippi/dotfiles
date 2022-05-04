@@ -19,6 +19,8 @@ vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.skip_loading_mswin = 1
 
+vim.g.load_black = 1
+
 vim.opt.backup = true
 vim.opt.backupdir = os.getenv("HOME") .. "/.vim_backup"
 vim.opt.swapfile = false

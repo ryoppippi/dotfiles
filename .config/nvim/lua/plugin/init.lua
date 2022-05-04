@@ -14,6 +14,17 @@ if require("utils").is_vscode() then
   vim.g.enable_fern = false
 end
 
+if vim.fn.empty(vim.fn.glob(vim.fn.stdpath("data") .. "/site/autoload/jetpack.vim")) == 1 then
+  vim.api.nvim_exec(
+    [[
+    let jetpack = stdpath('data') . '/site/autoload/jetpack.vim'
+    autocmd VimEnter * JetpackSync | source $MYVIMRC
+    silent execute '!curl -fLo '.jetpack.' --create-dirs  https://raw.githubusercontent.com/tani/vim-jetpack/master/autoload/jetpack.vim'
+  ]],
+    false
+  )
+end
+
 pcall(vim.cmd, "packadd jetpack")
 
 vim.api.nvim_exec(
@@ -132,7 +143,7 @@ endif
 
 " visualize
 if !exists('g:vscode')
-  Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
+  " Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
   " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
   Jetpack 'kyazdani42/nvim-web-devicons'
   Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
@@ -154,7 +165,7 @@ endif
 
 " language support
 " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
-Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate all'}
+Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}
 Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
 Jetpack 'RRethy/nvim-treesitter-textsubjects'
 Jetpack 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -191,7 +202,7 @@ endif
 
 if g:enable_cmp
   " cmp
-  Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp' }
+  Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp', 'commit': 'bba6fb67fdafc0af7c5454058dfbabc2182741f4'}
   Jetpack 'hrsh7th/cmp-buffer',
   Jetpack 'hrsh7th/cmp-path',
   Jetpack 'hrsh7th/cmp-nvim-lsp', { 'as': 'cmp_nvim_lsp'}
@@ -268,8 +279,21 @@ Jetpack 'cstrap/python-snippets'
 " markdown
 Jetpack 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-
+Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
 call jetpack#end()
+
+function! CheckJetPackList()
+for name in jetpack#names()
+  if !jetpack#tap(name)
+    call jetpack#sync()
+    source $MYVIMRC
+    break
+  endif
+endfor
+endfunction
+
+autocmd VimEnter * call CheckJetPackList()
+
 ]],
   true
 )

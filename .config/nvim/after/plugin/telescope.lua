@@ -66,9 +66,10 @@ local function loading()
       },
     },
   })
-  telescope.load_extension("fzf")
-  telescope.load_extension("file_browser")
-  telescope.load_extension("notify")
+  local le = telescope.load_extension
+  pcall(le, "fzf")
+  pcall(le, "file_browser")
+  pcall(le, "notify")
 end
 
 local function keymap()

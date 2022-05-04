@@ -144,7 +144,7 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_range_formatting = drfv
   end
 
-  local FormatAugroup = vim.api.nvim_create_augroup("Format", { clear = false })
+  local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
   vim.api.nvim_clear_autocmds({
     buffer = bufnr,
     group = FormatAugroup,
