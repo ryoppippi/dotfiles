@@ -1,4 +1,5 @@
 local t = require("utils").t
+local tb = require("utils").toboolean
 
 vim.g.mapleader = t("<Space>")
 vim.g.completion_trigger_character = "."
@@ -11,10 +12,16 @@ vim.keymap.set("n", "r", "<Nop>", { noremap = true })
 
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
-  return vim.v.count > 0 and "j" or "gj"
+  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+    return "j"
+  end
+  return "gj"
 end, { noremap = true, expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
-  return vim.v.count > 0 and "k" or "gk"
+  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+    return "k"
+  end
+  return "gk"
 end, { noremap = true, expr = true })
 
 vim.keymap.set("n", "H", "<Nop>", { noremap = true })
