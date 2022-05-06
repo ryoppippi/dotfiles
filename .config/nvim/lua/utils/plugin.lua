@@ -2,6 +2,8 @@ local M = {}
 local u = require("utils")
 local toboolean = u.toboolean
 
+local plugin_list = {}
+
 function M.get_jetpack_plugin_event_name(plugin_name)
   local R = {}
   local camelPluginName = vim.fn.substitute(

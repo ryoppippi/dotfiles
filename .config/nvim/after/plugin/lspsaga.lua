@@ -3,7 +3,7 @@ if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
-local opt = { silent = true, nowait = true, buffer = true }
+local opt = { silent = true, nowait = true, buffer = 0 }
 local loading = function()
   require(plugin_name).setup({
     use_saga_diagnostic_sign = true,

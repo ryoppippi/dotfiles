@@ -6,7 +6,7 @@ end
 local function loading()
   require("utils.plugin").load(plugin_name)
   vim.g.onedark_config = {
-    style = "darker",
+    style = "cool",
     transparent = true,
     term_colors = true,
     ending_tildes = true,

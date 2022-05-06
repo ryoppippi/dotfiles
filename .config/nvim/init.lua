@@ -9,9 +9,6 @@ require("keymaps_vscode")
 require("display")
 require("plugin")
 
--- vim.cmd("runtime ./vimrc/plug.vim")
--- vim.cmd("runtime ./vimrc/plugjetpack.vim")
-
 if require("utils").is_macos() then
   require("macos")
 end

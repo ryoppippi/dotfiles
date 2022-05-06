@@ -10,6 +10,7 @@ end
 
 local lsp_util = lspconfig.util
 local protocol = vim.lsp.protocol
+local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
 local function generate_capabilities()
   local capabilities = protocol.make_client_capabilities()
@@ -83,13 +84,9 @@ local server_opts = {
   },
   ["pyrignt"] = {
     before_init = function(_, config)
-      local p
-      if vim.env.VIRTUAL_ENV then
-        p = lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-      else
-        p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
-      end
-      config.settings.python.pythonPath = p
+      config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
+          and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+        or utils.find_cmd("python3", ".venv/bin", config.root_dir)
     end,
     settings = {
       disableOrganizeImports = true,
@@ -113,8 +110,8 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  --vim.keymap.set('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  vim.keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   vim.keymap.set("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   vim.keymap.set("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
   -- vim.keymap.set('n', '<space>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -144,16 +141,17 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_range_formatting = drfv
   end
 
-  local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
-  vim.api.nvim_clear_autocmds({
-    buffer = bufnr,
-    group = FormatAugroup,
-  })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = vim.lsp.buf.formatting_seq_sync,
-    buffer = bufnr,
-    group = FormatAugroup,
-  })
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({
+      buffer = bufnr,
+      group = FormatAugroup,
+    })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      callback = vim.lsp.buf.formatting_seq_sync,
+      buffer = bufnr,
+      group = FormatAugroup,
+    })
+  end
   --protocol.SymbolKind = { }
   protocol.CompletionItemKind = {
     "", -- Text

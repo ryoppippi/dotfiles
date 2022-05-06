@@ -51,6 +51,9 @@ local function loading()
       grep_string = {
         initial_mode = "normal",
       },
+      oldfiles = {
+        initial_mode = "normal",
+      },
     },
     extensions = {
       fzf = {
@@ -64,12 +67,18 @@ local function loading()
       file_browser = {
         initial_mode = "normal",
       },
+      frecency = {
+        initial_mode = "normal",
+        show_scores = true,
+      },
     },
   })
   local le = telescope.load_extension
   pcall(le, "fzf")
   pcall(le, "file_browser")
   pcall(le, "notify")
+  pcall(le, "media_files")
+  pcall(le, "frecency")
 end
 
 local function keymap()
@@ -82,10 +91,9 @@ local function keymap()
   local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]
 
   vim.keymap.set("n", "[TeLeader]f", find_files_cmd, key_opts)
-  -- vim.keymap.set("n", "[TeLeader]l", [[<cmd>Telescope live_grep<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
-  -- vim.keymap.set("n", "[TeLeader];", [[<cmd>Telescope<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader].", [[<cmd>Telescope<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope oldfiles<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]z", [[<cmd>Telescope file_browser<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]t", [[<cmd>TodoTelescope<cr>]], key_opts)
