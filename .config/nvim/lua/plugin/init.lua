@@ -14,18 +14,20 @@ if require("utils").is_vscode() then
   vim.g.enable_fern = false
 end
 
-if vim.fn.empty(vim.fn.glob(vim.fn.stdpath("data") .. "/site/autoload/jetpack.vim")) == 1 then
+local status, _ = pcall(vim.cmd, "packadd vim-jetpack")
+if not status then
   vim.api.nvim_exec(
     [[
-    let jetpack = stdpath('data') . '/site/autoload/jetpack.vim'
-    autocmd VimEnter * JetpackSync | source $MYVIMRC
-    silent execute '!curl -fLo '.jetpack.' --create-dirs  https://raw.githubusercontent.com/tani/vim-jetpack/master/autoload/jetpack.vim'
+      let dir = expand('$VIMHOME/pack/jetpack/opt/vim-jetpack')
+      if !isdirectory(dir)
+        let url = 'https://github.com/tani/vim-jetpack'
+        silent execute printf('!git clone --depth 1 %s %s', url, dir)
+      endif
+      packadd vim-jetpack
   ]],
     false
   )
 end
-
-pcall(vim.cmd, "packadd jetpack")
 
 vim.api.nvim_exec(
   [[
@@ -79,7 +81,7 @@ Jetpack 'machakann/vim-swap'
 " Jetpack 'tpope/vim-unimpaired'
 " Jetpack 'osyo-manga/vim-textobj-blockwise'
 Jetpack 'tpope/vim-repeat'
-" Jetpack 'cohama/lexima.vim'
+" Jetpack 'cohama/lexima.vim', { 'as': 'lexima' }
 Jetpack 'windwp/nvim-autopairs', { 'on': ['InsertEnter','CursorHold']}
 Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
 Jetpack 'yuki-yano/deindent-yank.vim'
@@ -90,13 +92,13 @@ Jetpack 'AndrewRadev/linediff.vim'
 
 Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
 
-Jetpack 'rmagatti/auto-session'
+" Jetpack 'rmagatti/auto-session'
 
 
 " file explorer
 if !exists('vscode')
   if g:enable_fern
-    Jetpack 'lambdalisue/fern.vim'
+    Jetpack 'lambdalisue/fern.vim', { 'as': 'fern'}
     Jetpack 'lambdalisue/fern-git-status.vim'
     Jetpack 'lambdalisue/nerdfont.vim'
     Jetpack 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -120,7 +122,10 @@ if !exists('vscode')
   Jetpack 'nvim-lua/plenary.nvim'
   Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a', 'branch': 'master' }
   Jetpack 'nvim-telescope/telescope-file-browser.nvim'
+  Jetpack 'nvim-telescope/telescope-frecency.nvim'
+    Jetpack 'tami5/sqlite.lua'
   Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Jetpack 'nvim-telescope/telescope-media-files.nvim'
   Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
 endif
 
@@ -136,7 +141,7 @@ endif
 
 
 if !exists('g:vscode') && g:enable_copilot
-  Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter']}
+  Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter'], 'as': 'copilot'}
   " Jetpack  "zbirenbaum/copilot.lua"
 endif
 
@@ -157,6 +162,7 @@ if !exists('g:vscode')
 
   Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
   Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark' }
+  Jetpack 'ray-x/starry.nvim', {'as': 'starry'}
   " Jetpack 'marko-cerovac/material.nvim'
   Jetpack 'sainnhe/gruvbox-material'
   " Jetpack 'tribela/vim-transparent'
@@ -277,19 +283,19 @@ Jetpack 'cstrap/flask-snippets'
 Jetpack 'cstrap/python-snippets'
 
 " markdown
-Jetpack 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Jetpack 'previm/previm'
 
 Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
 call jetpack#end()
 
 function! CheckJetPackList()
-for name in jetpack#names()
-  if !jetpack#tap(name)
-    call jetpack#sync()
-    source $MYVIMRC
-    break
-  endif
-endfor
+  for name in jetpack#names()
+    if !jetpack#tap(name)
+      call jetpack#sync()
+      source $MYVIMRC
+      break
+    endif
+  endfor
 endfunction
 
 autocmd VimEnter * call CheckJetPackList()

@@ -12,4 +12,4 @@ local function loading()
   -- local ts_conds = require("nvim-autopairs.ts-conds")
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+loading()
