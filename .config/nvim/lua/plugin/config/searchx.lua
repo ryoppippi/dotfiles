@@ -12,8 +12,8 @@ local function keymap()
     vim.fn["searchx#start"]({ dir = 1 })
   end, opt)
   vim.keymap.set("c", ";", vim.fn["searchx#select"], opt)
-  vim.keymap.set({ "n", "x" }, "N", vim.fn["searchx#prev_dir"], opt)
-  vim.keymap.set({ "n", "x" }, "n", vim.fn["searchx#prev_dir"], opt)
+  vim.keymap.set({ "n", "x" }, "N", vim.fn["searchx#prev"], opt)
+  vim.keymap.set({ "n", "x" }, "n", vim.fn["searchx#next"], opt)
 end
 
 local function loading()

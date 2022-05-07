@@ -4,7 +4,6 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function loading()
-  vim.cmd(string.format("packadd %s", plugin_name))
   require(plugin_name).setup({
     check_ts = true,
     enable_check_bracket_line = false,
