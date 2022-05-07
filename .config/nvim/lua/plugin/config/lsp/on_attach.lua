@@ -1,100 +1,9 @@
-local utils_plug = require("utils.plugin")
-local utils = require("utils")
-local force_require = utils_plug.force_require
-
-local _, lsp_installer = force_require("nvim-lsp-installer")
-local _, lspconfig = force_require("lspconfig")
-if not lsp_installer or not lspconfig then
-  return
-end
-
-local lsp_util = lspconfig.util
-local protocol = vim.lsp.protocol
-local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
-
-local function generate_capabilities()
-  local capabilities = protocol.make_client_capabilities()
-  local CI = capabilities.textDocument.completion.completionItem
-  CI.snippetSupport = true
-  CI.preselectSupport = true
-  CI.insertReplaceSupport = true
-  CI.labelDetailsSupport = true
-  CI.deprecatedSupport = true
-  CI.commitCharactersSupport = true
-  CI.tagSupport = { valueSet = { 1 } }
-  CI.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" },
-  }
-  capabilities.textDocument.completion.completionItem = CI
-
-  local _, cmp_nvim_lsp = utils_plug.force_require("cmp_nvim_lsp")
-  if cmp_nvim_lsp ~= nil then
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-  end
-  return capabilities
-end
-
-local server_opts = {
-  ["emmet_ls"] = {
-    filetypes = { "html", "css", "svelte" },
-  },
-  ["tsserver"] = {
-    root_dir = lsp_util.root_pattern("package.json"),
-  },
-  ["svelte"] = {
-    root_dir = lsp_util.root_pattern("package.json"),
-  },
-  ["eslint"] = {
-    root_dir = lsp_util.root_pattern("package.json"),
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-      "vue",
-      "svelte",
-    },
-    settings = {
-      format = { enable = true },
-    },
-  },
-  ["denols"] = {
-    init_options = { lint = true, unstable = true },
-  },
-  ["sumneko_lua"] = {
-    settings = {
-      Lua = {
-        runtime = {
-          version = "LuaJIT",
-          path = vim.tbl_extend("force", vim.split(package.path, ";"), { "lua/?.lua", "lua/?/init.lua" }),
-        },
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        telemetry = {
-          enable = false,
-        },
-      },
-    },
-  },
-  ["pyrignt"] = {
-    before_init = function(_, config)
-      config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-          and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-        or utils.find_cmd("python3", ".venv/bin", config.root_dir)
-    end,
-    settings = {
-      disableOrganizeImports = true,
-    },
-  },
-}
-
 local on_attach = function(client, bufnr)
+  local force_require = require("utils.plugin").force_require
+  local _, lspconfig = force_require("lspconfig")
+  local lsp_util = lspconfig.util
+  local protocol = vim.lsp.protocol
+
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
@@ -190,28 +99,4 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local function loading()
-  lsp_installer.setup({
-    ui = {
-      icons = {
-        server_installed = "✓",
-        server_pending = "➜",
-        server_uninstalled = "✗",
-      },
-    },
-  })
-
-  local servers = require("nvim-lsp-installer").get_installed_servers()
-  for _, server in ipairs(servers) do
-    local opts = server_opts[server.name] or {}
-    opts.on_attach = on_attach
-    opts.capabilities = generate_capabilities()
-    lspconfig[server.name].setup(opts)
-    vim.cmd([[ do User LspAttachBuffers ]])
-  end
-end
-
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-  callback = loading,
-  once = true,
-})
+return on_attach

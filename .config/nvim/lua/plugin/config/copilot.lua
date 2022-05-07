@@ -1,4 +1,4 @@
-local plugin_name = "copilot.vim"
+local plugin_name = "copilot"
 if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
