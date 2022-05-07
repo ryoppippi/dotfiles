@@ -1,7 +1,9 @@
 local plugin_name = "cmp"
+local utils_plug = require("utils.plugin")
+
 -- local snippet_library = 'vsnip'
 local snippet_library = "luasnip"
-if not require("utils.plugin").is_exists(plugin_name) then
+if not utils_plug.is_exists(plugin_name) then
   return
 end
 
@@ -20,6 +22,18 @@ local function loading()
   local vsnip_jumpable = vim.fn["vsnip#jumpable"]
   local _, luasnip = pcall(require, "luasnip")
   local snl = snippet_library
+
+  for _, name in ipairs(utils_plug.names()) do
+    if string.find(name, "cmp") then
+      pcall(vim.cmd, string.format("packadd %s", name))
+      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
+      if vim.fn.isdirectory(after_plugin_path) then
+        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*{.lua,.vim}", 1, 1, 1)) do
+          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
+        end
+      end
+    end
+  end
 
   local setup_opt = {
     snippet = {
@@ -194,13 +208,9 @@ local function loading()
   end
 
   local status_git, cmp_git = require("utils.plugin").force_require("cmp_git")
-  if status_git then
+  if status_git and cmp_git then
     cmp_git.setup()
   end
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    loading()
-  end,
-})
+require("utils.plugin").force_load_on_event(plugin_name, loading)

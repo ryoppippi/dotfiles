@@ -4,7 +4,6 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function loading()
-  require("utils.plugin").load(plugin_name)
   vim.g.onedark_config = {
     style = "cool",
     transparent = true,

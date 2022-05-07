@@ -3,23 +3,8 @@ if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local on_attach = function(client, bufnr)
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      -- on 0.8, you should use vim.lsp.buf.format instead
-      callback = vim.lsp.buf.formatting_seq_sync,
-    })
-  end
-  local _, ill_client = require("utils.plugin").force_require("illuminate")
-  if ill_client ~= nil then
-    ill_client.on_attach(client)
-  end
-end
+local gen_capabilities = require("plugin.config.lsp.capabilities")
+local on_attach = require("plugin.config.lsp.on_attach")
 
 local sources = function()
   local null_ls = require(plugin_name)
@@ -83,6 +68,7 @@ end
 local function loading()
   require(plugin_name).setup({
     on_attach = on_attach,
+    capabilities = gen_capabilities(),
     sources = sources(),
   })
 end
