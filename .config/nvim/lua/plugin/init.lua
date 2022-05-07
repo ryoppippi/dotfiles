@@ -7,15 +7,6 @@ local function init()
   vim.g.enable_coc = false
   vim.g.enable_fern = false
 
-  if require("utils").is_vscode() then
-    vim.g.enable_copilot = false
-    vim.g.enable_nvim_lsp = false
-    vim.g.enable_cmp = false
-    vim.g.enable_ddc = false
-    vim.g.enable_coc = false
-    vim.g.enable_fern = false
-  end
-
   vim.g["jetpack#copy_method"] = "symlink"
   vim.g["jetpack#optimization"] = 1
 end
@@ -37,7 +28,7 @@ local function ensure_jetpack()
   end
 end
 
-local function load_plugins()
+local function load_plugin_list()
   ensure_jetpack()
   vim.api.nvim_exec(
     [[
@@ -46,11 +37,11 @@ local function load_plugins()
   Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
   Jetpack 'vim-denops/denops.vim'
   Jetpack 'haya14busa/vim-asterisk',{'as': 'asterisk', 'on': '<Plug>(asterisk-'}
-  Jetpack 'thinca/vim-quickrun'
+  Jetpack 'thinca/vim-quickrun',
   Jetpack 'thinca/vim-qfreplace'
-  Jetpack 'tyru/open-browser.vim',{'on': 'VimEnter'}
-  Jetpack 'tyru/open-browser-github.vim', {'on': 'VimEnter'}
-  Jetpack '4513ECHO/vim-readme-viewer', { 'on': [ 'JetpackReadme', 'CursorHold'] }
+  Jetpack 'tyru/open-browser.vim'
+  Jetpack 'tyru/open-browser-github.vim'
+  Jetpack '4513ECHO/vim-readme-viewer'
   Jetpack 'monaqa/dps-dial.vim',{'on':'VimEnter', 'as':'dial'}
   " Jetpack 'mopp/vim-operator-convert-case'
   Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
@@ -91,7 +82,7 @@ local function load_plugins()
   " Jetpack 'osyo-manga/vim-textobj-blockwise'
   Jetpack 'tpope/vim-repeat'
   " Jetpack 'cohama/lexima.vim', { 'as': 'lexima' }
-  Jetpack 'windwp/nvim-autopairs', { 'on': ['InsertEnter','CursorHold']}
+  Jetpack 'windwp/nvim-autopairs',
   Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
   Jetpack 'yuki-yano/deindent-yank.vim'
   Jetpack 'numToStr/Comment.nvim', { 'as' : 'Comment' }
@@ -105,7 +96,6 @@ local function load_plugins()
 
 
   " file explorer
-  if !exists('vscode')
     if g:enable_fern
       Jetpack 'lambdalisue/fern.vim', { 'as': 'fern'}
       Jetpack 'lambdalisue/fern-git-status.vim'
@@ -124,10 +114,8 @@ local function load_plugins()
     Jetpack 'jghauser/mkdir.nvim'
     Jetpack 'wsdjeg/vim-fetch'
     Jetpack 'kevinhwang91/nvim-bqf'
-  endif
 
   " telescope
-  if !exists('vscode')
     Jetpack 'nvim-lua/plenary.nvim'
     Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a', 'branch': 'master' }
     Jetpack 'nvim-telescope/telescope-file-browser.nvim'
@@ -136,27 +124,23 @@ local function load_plugins()
     Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Jetpack 'nvim-telescope/telescope-media-files.nvim'
     Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
-  endif
 
   " git
-  if !exists('vscode')
     " Jetpack 'lambdalisue/gina.vim'
     Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
     Jetpack 'rhysd/git-messenger.vim'
     Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
     Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
     Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
-  endif
 
 
-  if !exists('g:vscode') && g:enable_copilot
+  if  g:enable_copilot
     Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter'], 'as': 'copilot'}
     " Jetpack  "zbirenbaum/copilot.lua"
   endif
 
 
   " visualize
-  if !exists('g:vscode')
     " Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
     " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
     Jetpack 'kyazdani42/nvim-web-devicons'
@@ -176,7 +160,6 @@ local function load_plugins()
     Jetpack 'sainnhe/gruvbox-material'
     " Jetpack 'tribela/vim-transparent'
     Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
-  endif
 
   " language support
   " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
@@ -310,16 +293,21 @@ local function check_installed()
   end
 end
 
-local function load_lua_config()
+local function load_lua_configs()
   for _, path in ipairs(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugin/config/*.lua", 1, 1, 1)) do
     vim.cmd(string.format("luafile %s", vim.fn.fnameescape(path)))
   end
 end
 
-init()
-load_plugins()
-load_lua_config()
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = check_installed,
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "lua/plugin/init.lua",
+  callback = function()
+    init()
+    load_plugin_list()
+    check_installed()
+  end,
 })
+
+init()
+load_plugin_list()
+load_lua_configs()
