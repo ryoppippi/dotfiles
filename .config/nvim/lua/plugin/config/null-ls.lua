@@ -3,9 +3,6 @@ if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
-local gen_capabilities = require("plugin.config.lsp.capabilities")
-local on_attach = require("plugin.config.lsp.on_attach")
-
 local sources = function()
   local null_ls = require(plugin_name)
   local diagnostics_format = "[#{c}] #{m} (#{s})"
@@ -66,9 +63,11 @@ local sources = function()
 end
 
 local function loading()
+  local capabilities = require("plugin.config.lsp.handler").capabilities
+  local on_attach = require("plugin.config.lsp.handler").on_attach
   require(plugin_name).setup({
     on_attach = on_attach,
-    capabilities = gen_capabilities(),
+    capabilities = capabilities,
     sources = sources(),
   })
 end

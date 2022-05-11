@@ -1,7 +1,14 @@
-local vimInit = vim.api.nvim_create_augroup("vimrcEx", { clear = true })
+local restoreCursor = vim.api.nvim_create_augroup("restoreCursor", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
   command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]],
-  group = vimInit,
+  group = restoreCursor,
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  command = [[
+  if empty(&buftype) && line('.') > winheight(0) / 3 * 2|   execute 'normal! zz' .. repeat("\<C-y>", winheight(0) / 6)| endif
+  ]],
+  group = restoreCursor,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {

@@ -82,6 +82,21 @@ local function loading()
         ["i;"] = "textsubjects-container-inner",
       },
     },
+    refactor = {
+      -- highlight_definitions = {
+      --   enable = true,
+      --   -- Set to false if you have an `updatetime` of ~100.
+      --   clear_on_cursor_move = true,
+      -- },
+      -- highlight_current_scope = { enable = true },
+      -- smart_rename = {
+      --   enable = true,
+      --   keymaps = {
+      --     smart_rename = "cW",
+      --   },
+      -- },
+    },
+    tree_docs = { enable = true },
   })
 
   local status_context, ts_context = pcall(require, "treesitter-context")
@@ -118,25 +133,6 @@ local function loading()
         -- rust = true,
       },
     })
-  end
-
-  local vt_status, nvim_context_vt = pcall(require, "nvim_context_vt")
-  if vt_status then
-    nvim_context_vt.setup({
-      enabled = true,
-      disable_virtual_lines_ft = {
-        "yaml",
-        "python",
-      },
-    })
-  end
-
-  local status_unit, ts_unit = pcall(require, "treesitter-unit")
-  if status_unit then
-    vim.keymap.set("x", "iu", [[<cmd>lua require"treesitter-unit".select()<CR>]], { noremap = true })
-    vim.keymap.set("x", "au", [[<cmd>lua require"treesitter-unit".select(true)<CR>]], { noremap = true })
-    vim.keymap.set("o", "iu", [[<cmd><c-u>lua require"treesitter-unit".select()<CR>]], { noremap = true })
-    vim.keymap.set("o", "au", [[<cmd><c-u>lua require"treesitter-unit".select(true)<CR>]], { noremap = true })
   end
 end
 

@@ -40,16 +40,14 @@ local loading = function()
 end
 
 local function keymap()
-  vim.keymap.set("n", "gh", [[<cmd>Lspsaga hover_doc<cr>]], opt)
+  -- vim.keymap.set("n", "gh", [[<cmd>Lspsaga hover_doc<cr>]], opt)
   -- vim.keymap.set('n', 'gj', [[<cmd>Lspsaga preview_definition<cr>]], opt)
-  vim.keymap.set("n", "gk", [[<cmd>Lspsaga signature_help<cr>]], opt)
   vim.keymap.set("n", "gK", [[<cmd>Lspsaga lsp_finder<cr>]], opt)
 
-  vim.keymap.set("n", "gj", [[<cmd>Lspsaga show_line_diagnostics<cr>]], opt)
-  vim.keymap.set("n", "-", [[<cmd>Lspsaga diagnostic_jump_next<cr>]], opt)
-  vim.keymap.set("n", "_", [[<cmd>Lspsaga diagnostic_jump_prev<cr>]], opt)
+  -- vim.keymap.set("n", "-", [[<cmd>Lspsaga diagnostic_jump_next<cr>]], opt)
+  -- vim.keymap.set("n", "_", [[<cmd>Lspsaga diagnostic_jump_prev<cr>]], opt)
 
-  vim.keymap.set("n", "cW", [[<cmd>Lspsaga rename<cr>]], opt)
+  -- vim.keymap.set("n", "cW", [[<cmd>Lspsaga rename<cr>]], opt)
 
   vim.keymap.set("n", "<leader>ag", [[<cmd>Lspsaga open_floaterm lazygit<cr>]], opt)
   vim.keymap.set("n", "<leader>aa", [[<cmd>Lspsaga open_floaterm<cr>]], opt)

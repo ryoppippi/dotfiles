@@ -22,7 +22,7 @@ vim.g.skip_loading_mswin = 1
 vim.g.load_black = 1
 
 vim.opt.backup = true
-vim.opt.backupdir = os.getenv("HOME") .. "/.vim_backup"
+vim.opt.backupdir = vim.fn.expand(os.getenv("HOME") .. "/.vim_backup")
 vim.opt.swapfile = false
 vim.opt.writebackup = true
 vim.opt.autoread = true
@@ -46,14 +46,15 @@ vim.opt.shiftwidth = tabwidth
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.backspace = "indent,eol,start"
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.nrformats:remove({ "unsigned", "octal" })
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.wrapscan = true
-vim.opt.wildmode = "list:longest"
+vim.opt.wildmode = { list = "longest" }
 
 vim.opt.errorbells = false
 vim.opt.visualbell = false

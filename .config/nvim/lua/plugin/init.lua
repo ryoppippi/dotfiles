@@ -16,11 +16,13 @@ local function ensure_jetpack()
   if not status then
     vim.api.nvim_exec(
       [[
-        let dir = expand(stdpath('data') ..'/pack/jetpack/opt/vim-jetpack')
+        let dir = expand(stdpath('data') ..'/site/pack/jetpack/src/vim-jetpack')
         if !isdirectory(dir)
+          autocmd VimEnter * JetpackSync | source $MYVIMRC
           let url = 'https://github.com/tani/vim-jetpack'
           silent execute printf('!git clone --depth 1 %s %s', url, dir)
         endif
+        silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
         packadd vim-jetpack
       ]],
       false
@@ -33,7 +35,8 @@ local function load_plugin_list()
   vim.api.nvim_exec(
     [[
   call jetpack#begin()
-  Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+  " Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+  Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1, 'branch': 'dev/add-dummy-command' }
   Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
   Jetpack 'vim-denops/denops.vim'
   Jetpack 'haya14busa/vim-asterisk',{'as': 'asterisk', 'on': '<Plug>(asterisk-'}
@@ -41,7 +44,7 @@ local function load_plugin_list()
   Jetpack 'thinca/vim-qfreplace'
   Jetpack 'tyru/open-browser.vim'
   Jetpack 'tyru/open-browser-github.vim'
-  Jetpack '4513ECHO/vim-readme-viewer'
+  Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
   Jetpack 'monaqa/dps-dial.vim',{'on':'VimEnter', 'as':'dial'}
   " Jetpack 'mopp/vim-operator-convert-case'
   Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
@@ -56,7 +59,7 @@ local function load_plugin_list()
 
   Jetpack 'pianocomposer321/yabs.nvim'
 
-  Jetpack 'segeljakt/vim-silicon'
+  Jetpack 'segeljakt/vim-silicon', {'on': 'VimEnter'}
 
   Jetpack 'gabrielpoca/replacer.nvim'
 
@@ -71,7 +74,6 @@ local function load_plugin_list()
 
   " text objects
   Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
-  " Jetpack 'skanehira/jumpcursor.vim'
   " Jetpack 'bkad/CamelCaseMotion'
   Jetpack 'unblevable/quick-scope'
   Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx' }
@@ -93,6 +95,8 @@ local function load_plugin_list()
   Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
 
   " Jetpack 'rmagatti/auto-session'
+
+  Jetpack 'akinsho/toggleterm.nvim', {'as': 'toggleterm', 'on': 'VimEnter'}
 
 
   " file explorer
@@ -117,22 +121,23 @@ local function load_plugin_list()
 
   " telescope
     Jetpack 'nvim-lua/plenary.nvim'
-    Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter', 'commit': '6a54433038ce6d37e506ff9102ad7fcca121d58a', 'branch': 'master' }
+    Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter' }
     Jetpack 'nvim-telescope/telescope-file-browser.nvim'
     Jetpack 'nvim-telescope/telescope-frecency.nvim'
       Jetpack 'tami5/sqlite.lua'
     Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Jetpack 'nvim-telescope/telescope-media-files.nvim'
+    Jetpack 'crispgm/telescope-heading.nvim'
+    Jetpack 'LinArcX/telescope-changes.nvim'
+    Jetpack 'nvim-telescope/telescope-ui-select.nvim'
     Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
 
   " git
-    " Jetpack 'lambdalisue/gina.vim'
     Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
     Jetpack 'rhysd/git-messenger.vim'
     Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
     Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
     Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
-
 
   if  g:enable_copilot
     Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter'], 'as': 'copilot'}
@@ -159,22 +164,25 @@ local function load_plugin_list()
     " Jetpack 'marko-cerovac/material.nvim'
     Jetpack 'sainnhe/gruvbox-material'
     " Jetpack 'tribela/vim-transparent'
-    Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
 
   " language support
   " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
   Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}
   Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
+  Jetpack 'vigoux/architext.nvim'
   Jetpack 'RRethy/nvim-treesitter-textsubjects'
+  " Jetpack 'nvim-treesitter/nvim-treesitter-refactor'
+  Jetpack 'mfussenegger/nvim-ts-hint-textobject'
+  Jetpack 'David-Kunz/treesitter-unit'
   Jetpack 'JoosepAlviste/nvim-ts-context-commentstring'
   Jetpack 'romgrk/nvim-treesitter-context'
   Jetpack 'haringsrob/nvim_context_vt'
   Jetpack 'windwp/nvim-ts-autotag'
   Jetpack 'andymass/vim-matchup'
+  Jetpack 'nvim-treesitter/nvim-tree-docs'
   Jetpack 'm-demare/hlargs.nvim'
-  Jetpack 'David-Kunz/treesitter-unit'
   Jetpack 'p00f/nvim-ts-rainbow'
-  " Jetpack 'mizlan/iswap.nvim'
+  Jetpack 'mizlan/iswap.nvim', { 'on': ['ISwap', 'ISwapWith'], 'as': 'iswap' }
   Jetpack 'yioneko/nvim-yati', {'on': 'VimEnter', 'as': 'yati'}
   " Jetpack 'arthurxavierx/vim-caser'
   Jetpack 'danymat/neogen', {'on': 'VimEnter'}
@@ -188,14 +196,16 @@ local function load_plugin_list()
   if g:enable_nvim_lsp
     Jetpack 'neovim/nvim-lspconfig', { 'opt': v:true,  'as': 'lspconfig'}
     Jetpack 'williamboman/nvim-lsp-installer', { 'opt': v:true }
-    Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
+    " Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
     Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
     " Jetpack 'HallerPatrick/py_lsp.nvim'
     Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
     Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
-    Jetpack 'folke/lsp-colors.nvim'
-    Jetpack 'RRethy/vim-illuminate'
+    Jetpack 'folke/lsp-colors.nvim', { 'as': 'lsp-colors'}
+    Jetpack 'RRethy/vim-illuminate', { 'opt': v:true, 'as': 'illuminate' }
     " Jetpack 'ray-x/lsp_signature.nvim'
+    Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
+
   endif
 
   if g:enable_cmp
@@ -299,11 +309,8 @@ local function load_lua_configs()
   end
 end
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "lua/plugin/init.lua",
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    init()
-    load_plugin_list()
     check_installed()
   end,
 })
