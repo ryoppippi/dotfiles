@@ -3,15 +3,14 @@ local utils = require("utils")
 local force_require = utils_plug.force_require
 
 local function loading()
-  local _, lspconfig = force_require("lspconfig")
-  if not lspconfig then
+  local status, lspconfig = force_require("lspconfig")
+  if not status or not lspconfig then
     return
   end
 
   local lsp_util = lspconfig.util
-
-  local capabilities = require("plugin.config.lsp.capabilities")()
-  local on_attach = require("plugin.config.lsp.on_attach")
+  local capabilities = require("plugin.config.lsp.handler").capabilities
+  local on_attach = require("plugin.config.lsp.handler").on_attach
 
   local server_opts = {
     ["emmet_ls"] = {

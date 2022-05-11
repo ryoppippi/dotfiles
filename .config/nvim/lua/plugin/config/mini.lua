@@ -1,14 +1,14 @@
 function load()
+  local status, indent = pcall(require, "mini.indentscope")
+  if status then
+    indent.setup()
+  end
+
   -- local statusC, cursorword = pcall(require, "mini.cursorword")
   -- if not statusC then
   --   return
   -- end
   -- cursorword.setup()
-
-  local status, indent = pcall(require, "mini.indentscope")
-  if status then
-    indent.setup()
-  end
 
   -- local statusJ, jump = pcall(require, "mini.jump")
   -- if statusJ then

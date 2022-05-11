@@ -8,7 +8,7 @@ local function loading()
   local actions = require(plugin_name .. ".actions")
 
   telescope.setup({
-    defaults = {
+    defaults = require("telescope.themes").get_dropdown({
       mappings = {
         n = {
           ["<ESC>"] = actions.close,
@@ -32,27 +32,22 @@ local function loading()
       },
       file_ignore_patterns = {
         ".git/",
-        ".cache",
-        "%.o",
-        "%.a",
-        "%.out",
-        "%.class",
-        "%.pdf",
-        "%.mkv",
-        "%.mp4",
-        "%.zip",
+        "node_modules/*",
       },
-    },
+      color_devicons = true,
+      use_less = true,
+      scroll_strategy = "cycle",
+      set_env = { ["COLORTERM"] = "truecolor" },
+    }),
     pickers = {
       diagnostics = {
-        theme = "dropdown",
         initial_mode = "normal",
       },
       grep_string = {
         initial_mode = "normal",
       },
       oldfiles = {
-        initial_mode = "normal",
+        -- initial_mode = "normal",
       },
     },
     extensions = {
@@ -65,11 +60,21 @@ local function loading()
         -- the default case_mode is "smart_case"
       },
       file_browser = {
+        -- initial_mode = "normal",
+      },
+      heading = {
+        theme = "dropdown",
         initial_mode = "normal",
+        treesitter = true,
       },
       frecency = {
         initial_mode = "normal",
         show_scores = true,
+      },
+      ["ui-select"] = {
+        require("telescope.themes").get_cursor({
+          initial_mode = "normal",
+        }),
       },
     },
   })
@@ -78,7 +83,10 @@ local function loading()
   pcall(le, "file_browser")
   pcall(le, "notify")
   pcall(le, "media_files")
+  pcall(le, "ui-select")
   pcall(le, "frecency")
+  pcall(le, "heading")
+  pcall(le, "changes")
 end
 
 local function keymap()
@@ -100,6 +108,7 @@ local function keymap()
   vim.keymap.set("n", "[TeLeader]r", [[<cmd>Telescope resume<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]b", [[<cmd>Telescope buffers<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]h", [[<cmd>Telescope help_tags<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]H", [[<cmd>Telescope heading<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]j", [[<cmd>Telescope jumplist<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]o", [[<cmd>Telescope oldfiles<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]g", [[<cmd>Telescope git_files<cr>]], key_opts)
@@ -107,14 +116,8 @@ local function keymap()
   vim.keymap.set("n", "[TeLeader]p", [[<cmd>Telescope pickers<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]m", [[<cmd>Telescope marks<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]d", current_buffer_fuzzy_find, key_opts)
-
-  vim.keymap.set("n", "gd", [[<cmd>Telescope lsp_definitions<cr>]], key_opts)
-  vim.keymap.set("n", "gJ", [[<cmd>Telescope diagnostics<cr>]], key_opts)
-  vim.keymap.set("n", "gt", [[<cmd>Telescope lsp_type_definitions<cr>]], key_opts)
-  vim.keymap.set("n", "gI", [[<cmd>Telescope lsp_implementations<cr>]], key_opts)
-  vim.keymap.set("n", "gr", [[<cmd>Telescope lsp_references<cr>]], key_opts)
-  vim.keymap.set("n", "<leader>ca", [[<cmd>Telescope lsp_code_actions<cr>]], key_opts)
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").force_load_on_event(plugin_name, keymap)
 require("utils.plugin").force_load_on_event(plugin_name, keymap)

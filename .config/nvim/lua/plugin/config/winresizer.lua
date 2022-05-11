@@ -5,7 +5,7 @@ end
 
 local function loading()
   vim.g.winresizer_enable = 1
-  vim.keymap.set('n', '<leader>ww', '<cmd>WinResizerStartResize<cr>', { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>ww", "<cmd>WinResizerStartResize<cr>", { noremap = true, silent = true })
 end
 
 loading()

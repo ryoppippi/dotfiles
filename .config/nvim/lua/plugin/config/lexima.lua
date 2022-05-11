@@ -1,4 +1,5 @@
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
  " if !exists('g:loaded_lexima')
 "       finish
 " endif
@@ -156,4 +157,6 @@ vim.api.nvim_exec([[
 " endfor
 "
 "
-]], false)
+]],
+  false
+)
