@@ -4,7 +4,8 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function loading()
-  require(plugin_name).setup()({ { _cursor_ } })
+-- stylua: ignore
+  require(plugin_name).setup(){{_cursor_}}
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
