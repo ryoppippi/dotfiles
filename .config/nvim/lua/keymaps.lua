@@ -7,9 +7,6 @@ vim.g.completion_trigger_character = "."
 vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", ":", ";", { noremap = true })
 
--- disable some keys
-vim.keymap.set("n", "r", "<Nop>", { noremap = true })
-
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
   if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
@@ -84,12 +81,10 @@ vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>", { noremap = true })
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>", { noremap = true })
 vim.keymap.set("n", "<leader>p", 'o<esc>^"_d$p<esc>', { noremap = true })
 
--- toggle 0, ^ made by ycino
-for _, key in ipairs({ "^", "0" }) do
-  vim.keymap.set("n", key, function()
-    return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
-  end, { noremap = true, expr = true, silent = true })
-end
+-- toggle 0 made by ycino
+vim.keymap.set("n", "0", function()
+  return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
+end, { noremap = true, expr = true, silent = true })
 
 -- Automatically indent with i and A made by ycino
 vim.keymap.set("n", "i", function()
