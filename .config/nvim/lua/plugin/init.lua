@@ -30,11 +30,13 @@ local function ensure_jetpack()
   end
 end
 
+local plugin_list = {}
+
 local function load_plugin_list()
   ensure_jetpack()
+  vim.fn["jetpack#begin"]()
   vim.api.nvim_exec(
     [[
-  call jetpack#begin()
   " Jetpack 'tani/vim-jetpack', { 'opt': 1 }
   Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1, 'branch': 'dev/add-dummy-command' }
   Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
@@ -93,10 +95,13 @@ local function load_plugin_list()
   Jetpack 'AndrewRadev/linediff.vim'
 
   Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
+  Jetpack 'Rasukarusan/nvim-block-paste'
 
   " Jetpack 'rmagatti/auto-session'
 
   Jetpack 'akinsho/toggleterm.nvim', {'as': 'toggleterm', 'on': 'VimEnter'}
+
+  Jetpack 'skanehira/denops-docker.vim', {'on': 'VimEnter'}
 
 
   " file explorer
@@ -150,6 +155,7 @@ local function load_plugin_list()
     " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
     Jetpack 'kyazdani42/nvim-web-devicons'
     Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
+    " Jetpack 'nanozuki/tabby.nvim', {'as': 'tabby' }
     " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
     Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
     Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
@@ -287,10 +293,10 @@ local function load_plugin_list()
   Jetpack 'previm/previm'
 
   Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
-  call jetpack#end()
   ]],
     false
   )
+  vim.fn["jetpack#end"]()
 end
 
 local function check_installed()
