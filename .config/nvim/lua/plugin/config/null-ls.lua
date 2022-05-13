@@ -8,7 +8,7 @@ local sources = function()
   local diagnostics_format = "[#{c}] #{m} (#{s})"
   local formatting = null_ls.builtins.formatting
   local diagnostics = null_ls.builtins.diagnostics
-  -- local code_actions = null_ls.builtins.code_actions
+  local code_actions = null_ls.builtins.code_actions
   return {
     -- nulls.builtins.formatting.prettier.with({
     --         extra_filetypes = {
@@ -59,6 +59,8 @@ local sources = function()
     }),
     -- others
     formatting.fish_indent,
+
+    code_actions.gitsigns,
   }
 end
 
