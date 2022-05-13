@@ -155,7 +155,7 @@ end
 local function keymap()
   vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
   vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloat<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
+  -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
