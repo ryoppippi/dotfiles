@@ -7,16 +7,15 @@ local function loading()
   local hop = require(plugin_name)
   hop.setup()
 
-  local opt = { silent = true, noremap = true }
   vim.keymap.set({ "n", "v" }, "<Leader>j", function()
     hop.hint_words()
-  end, opt)
+  end, { silent = true, noremap = true, desc = "hop: hint_words" })
   vim.keymap.set({ "n", "v" }, "<Leader>k", function()
     hop.hint_char1()
-  end, opt)
+  end, { silent = true, noremap = true, desc = "hop: hint_char1" })
   vim.keymap.set({ "n", "v" }, "<Leader>l", function()
     hop.hint_lines()
-  end, opt)
+  end, { silent = true, noremap = true, desc = "hop: hint_lines" })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
