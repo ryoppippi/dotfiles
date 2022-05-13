@@ -14,9 +14,8 @@ local function loading()
     },
     current_line_blame = true,
     on_attach = function(buffer)
-      vim.keymap.set("n", "<leader>xh", "<cmd>Gitsigns preview_hunk<cr>", { silent = true, noremap = true })
-      vim.keymap.set("n", "<leader>xd", "<cmd>Gitsigns diffthis<cr>", { silent = true, noremap = true })
-      vim.keymap.set("n", "<leader>xb", "<cmd>Gitsigns toggle_deleted<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", { silent = true, noremap = true })
     end,
   })
 end
