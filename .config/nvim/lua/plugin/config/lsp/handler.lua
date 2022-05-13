@@ -1,19 +1,7 @@
 local M = {}
-local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+local force_require = require("utils.plugin").force_require
 
-local function set_au(client, bufnr)
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({
-      buffer = bufnr,
-      group = FormatAugroup,
-    })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = vim.lsp.buf.formatting_seq_sync,
-      buffer = bufnr,
-      group = FormatAugroup,
-    })
-  end
-end
+local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
 local function set_keymap(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -81,20 +69,34 @@ local function set_options(client, bufnr)
 end
 
 local function set_formatting(client, bufnr)
-  local df = {
-    ["tsserver"] = false,
-    ["svelte"] = true,
-    ["eslint"] = true,
-    -- ["python"] = true
-  }
-  local drf = {}
-  local dfv = df[client.name]
-  if dfv ~= nil then
-    client.resolved_capabilities.document_formatting = dfv
+  local name = client.name
+
+  local document_formatting_disable_list = { "tsserver" }
+  local document_range_formatting_disable_list = { "tsserver" }
+
+  for _, v in ipairs(document_formatting_disable_list) do
+    if v == name then
+      print(v)
+      client.resolved_capabilities.document_formatting = false
+    end
   end
-  local drfv = drf[client.name]
-  if drfv ~= nil then
-    client.resolved_capabilities.document_range_formatting = drfv
+  for _, v in ipairs(document_range_formatting_disable_list) do
+    if v == name then
+      client.resolved_capabilities.document_range_formatting = false
+    end
+  end
+
+  -- auto formatting
+  if client.supports_method("textDocument/formatting") and client.resolved_capabilities.document_formatting then
+    vim.api.nvim_clear_autocmds({
+      buffer = bufnr,
+      group = FormatAugroup,
+    })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      callback = vim.lsp.buf.formatting_seq_sync,
+      buffer = bufnr,
+      group = FormatAugroup,
+    })
   end
 end
 
@@ -132,7 +134,6 @@ local function set_protocol(client, bufnr)
 end
 
 local function set_aditional_plugins(client, bufnr)
-  local force_require = require("utils.plugin").force_require
   local ill_status, ill_client = force_require("illuminate")
   if ill_status and ill_client ~= nil then
     ill_client.on_attach(client)
@@ -141,23 +142,10 @@ end
 
 local gen_capabilities = function()
   local protocol = vim.lsp.protocol
-  local utils_plug = require("utils.plugin")
   local capabilities = protocol.make_client_capabilities()
-  local CI = capabilities.textDocument.completion.completionItem
-  CI.snippetSupport = true
-  CI.preselectSupport = true
-  CI.insertReplaceSupport = true
-  CI.labelDetailsSupport = true
-  CI.deprecatedSupport = true
-  CI.commitCharactersSupport = true
-  CI.tagSupport = { valueSet = { 1 } }
-  CI.resolveSupport = {
-    properties = { "documentation", "detail", "additionalTextEdits" },
-  }
-  capabilities.textDocument.completion.completionItem = CI
 
-  local _, cmp_nvim_lsp = utils_plug.force_require("cmp_nvim_lsp")
-  if cmp_nvim_lsp ~= nil then
+  local status, cmp_nvim_lsp = force_require("cmp_nvim_lsp")
+  if status and cmp_nvim_lsp ~= nil then
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
   end
   return capabilities
@@ -166,7 +154,6 @@ end
 M.on_attach = function(client, bufnr)
   set_keymap(client, bufnr)
   set_options(client, bufnr)
-  set_au(client, bufnr)
   set_sign(client, bufnr)
   set_formatting(client, bufnr)
   set_protocol(client, bufnr)
