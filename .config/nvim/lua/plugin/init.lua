@@ -157,7 +157,7 @@ local function load_plugin_list()
     Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
     " Jetpack 'nanozuki/tabby.nvim', {'as': 'tabby' }
     " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
-    Jetpack 'chentau/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
+    Jetpack 'chentoast/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
     Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
     Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
     " Jetpack 'VonHeikemen/fine-cmdline.nvim'
