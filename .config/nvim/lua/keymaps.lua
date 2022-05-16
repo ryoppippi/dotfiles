@@ -46,12 +46,12 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
-vim.keymap.set("n", "tt", "<cmd>tabe .<cr>", { noremap = true })
-vim.keymap.set("n", "tk", "<cmd>tabnext<cr>", { noremap = true })
-vim.keymap.set("n", "tj", "<cmd>tabprevious<cr>", { noremap = true })
-vim.keymap.set("n", "th", "<cmd>tabfirst<cr>", { noremap = true })
-vim.keymap.set("n", "tl", "<cmd>tablast<cr>", { noremap = true })
-vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>tj", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tk", "<cmd>tabnext<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>th", "<cmd>tabfirst<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tl", "<cmd>tablast<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>tabe .<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<cr>", { noremap = true, silent = true })
 
 -- jj -> <ESC>
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
