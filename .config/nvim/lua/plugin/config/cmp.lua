@@ -16,7 +16,9 @@ end
 
 local function loading()
   local cmp = require(plugin_name)
+  local types = require("cmp.types")
   local utils = require("utils")
+  local force_require = require("utils.plugin").force_require
   local t = utils.t
   local toboolean = utils.toboolean
   local vsnip_jumpable = vim.fn["vsnip#jumpable"]
@@ -46,6 +48,7 @@ local function loading()
         end
       end,
     },
+
     mapping = cmp.mapping.preset.insert({
       ["<C-l>"] = cmp.mapping({
         i = cmp.mapping.abort(),
@@ -62,13 +65,6 @@ local function loading()
           fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
         end
       end,
-      -- ["<Space>"] = function(fallback)
-      --   if cmp.visible() then
-      --     cmp.abort()
-      --   else
-      --     fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
-      --   end
-      -- end,
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -100,15 +96,46 @@ local function loading()
         end
       end, { "i", "s" }),
     }),
+
+    sorting = {
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        require("cmp-under-comparator").under,
+        function(entry1, entry2)
+          local kind1 = entry1:get_kind()
+          kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
+          local kind2 = entry2:get_kind()
+          kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
+          if kind1 ~= kind2 then
+            if kind1 == types.lsp.CompletionItemKind.Snippet then
+              return false
+            end
+            if kind2 == types.lsp.CompletionItemKind.Snippet then
+              return true
+            end
+            local diff = kind1 - kind2
+            if diff < 0 then
+              return true
+            elseif diff > 0 then
+              return false
+            end
+          end
+        end,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
+    },
+
     sources = cmp.config.sources({
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "path" },
-      -- { name = "fuzzy_path" },
       { name = "rg" },
       -- { name = "vsnip" },
       { name = "luasnip" },
-      { name = "git" },
       { name = "nvim_lsp_document_symbol" },
       { name = "treesitter" },
       { name = "nvim_lua" },
@@ -118,11 +145,10 @@ local function loading()
       { name = "nvim_lsp_signature_help" },
     }, {
       { name = "buffer" },
-      -- { name = "fuzzy_buffer" },
       -- { name = "cmp_tabnine" },
     }),
     completion = {
-      completeopt = "menu,menuone,noinsert, noselect",
+      completeopt = "menu,menuone,noinsert,noselect",
     },
     experimental = {
       ghost_text = false, -- this feature conflict to the copilot.vim's preview.
@@ -138,9 +164,7 @@ local function loading()
         menu = {
           nvim_lsp = "[LSP]",
           buffer = "[Buffer]",
-          fuzzy_buffer = "[FBuffer]",
           path = "[Path]",
-          fuzzy_path = "[FPath]",
           nvim_lua = "[Lua]",
           ultisnips = "[UltiSnips]",
           vsnip = "[vSnip]",
@@ -155,6 +179,7 @@ local function loading()
           cmp_tabnine = "[Tabnine]",
           nvim_lsp_signature_help = "[Signature]",
           copilot = "[Copilot]",
+          cmdline_history = "[History]",
           -- cmp_openai_codex = "[Codex]",
         },
       }),
@@ -163,23 +188,23 @@ local function loading()
 
   cmp.setup(setup_opt)
 
-  -- cmp.setup.cmdline("/", {
-  --   mapping = cmp.mapping.preset.cmdline(),
-  --   sources = {
-  --     { name = "buffer" },
-  --   },
-  --   completion = {
-  --     completeopt = "menu,menuone,noselect",
-  --   },
-  -- })
+  cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "nvim_lsp_document_symbol" },
+      { name = "cmdline_history" },
+      { name = "cmdline" },
+    }, {
+      { name = "buffer" },
+    }),
+    completion = {
+      completeopt = "menu,menuone,noselect",
+    },
+  })
 
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "cmdline" },
-      -- { name = "path" },
-      { name = "fuzzy_path" },
-    }),
+    sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" }, { { name = "cmdline_history" } } }),
     completion = {
       completeopt = "menu,menuone,noselect",
     },
@@ -188,7 +213,7 @@ local function loading()
   vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 
   -- Setup tabnine
-  local status_tn, _ = require("utils.plugin").force_require("cmp-tabnine")
+  local status_tn, _ = force_require("cmp-tabnine")
   if status_tn then
     require("cmp_tabnine.config"):setup({
       max_lines = 1000,
@@ -200,16 +225,11 @@ local function loading()
   end
 
   -- Setup autopairs
-  local status_autopairs, _ = require("utils.plugin").force_require("nvim-autopairs")
+  local status_autopairs, _ = force_require("nvim-autopairs")
   if status_autopairs then
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
     -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
-  end
-
-  local status_git, cmp_git = require("utils.plugin").force_require("cmp_git")
-  if status_git and cmp_git then
-    cmp_git.setup()
   end
 end
 
