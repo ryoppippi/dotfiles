@@ -421,6 +421,7 @@ local function loading()
     components = components,
     force_inactive = force_inactive,
   })
+  vim.cmd([[set noshowmode]])
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
