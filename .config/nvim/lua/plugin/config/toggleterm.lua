@@ -7,6 +7,8 @@ local function loading()
   local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new({
     cmd = "lazygit",
+    hidden = true,
+    close_on_exit = true,
     dir = "git_dir",
     direction = "float",
     float_opts = {
@@ -15,11 +17,8 @@ local function loading()
     -- function to run on opening the terminal
     on_open = function(term)
       vim.cmd("startinsert!")
-      vim.keymap.set("n", "q", "<cmd>close<CR>", { noremap = true, silent = true, buffer = term.bufnr })
-    end,
-    -- function to run on closing the terminal
-    on_close = function(term)
-      vim.cmd("Closing terminal")
+      vim.keymap.set("n", "q", "<cmd>close<cr>", { noremap = true, silent = true, buffer = term.bufnr })
+      vim.keymap.set("t", "<esc>", "<esc>", { noremap = true, silent = true, buffer = term.bufnr })
     end,
   })
 
