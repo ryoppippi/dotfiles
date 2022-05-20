@@ -46,15 +46,18 @@ local function load_plugin_list()
   Jetpack 'tyru/open-browser-github.vim'
   Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
   Jetpack 'monaqa/dps-dial.vim',{'on':'VimEnter', 'as':'dial'}
+  Jetpack 'deris/vim-rengbang', {'on':'VimEnter'}
   " Jetpack 'mopp/vim-operator-convert-case'
   Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
-  Jetpack 'deris/vim-rengbang'
   Jetpack 'folke/which-key.nvim',{'on':'VimEnter','as':'which-key'}
+  Jetpack 'thinca/vim-ref',{'on':'VimEnter'}
   Jetpack 'echasnovski/mini.nvim', { 'branch': 'stable', 'as': 'mini' }
   Jetpack 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
   Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
+  Jetpack 'kana/vim-niceblock', { 'on': 'VimEnter'}
 
   Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f'}
+  Jetpack 'terryma/vim-multiple-cursors', {'on': 'VimEnter' }
   Jetpack 'deton/jasegment.vim'
 
   Jetpack 'pianocomposer321/yabs.nvim'
@@ -67,6 +70,10 @@ local function load_plugin_list()
   Jetpack 'sQVe/sort.nvim', {'on':'VimEnter', 'as': 'sort'}
 
   Jetpack 'zdcthomas/medit'
+      
+  Jetpack 'thinca/vim-partedit', {'on': 'VimEnter'}
+
+  Jetpack 'yutkat/wb-only-current-line.nvim', {'on': 'VimEnter'}
 
   Jetpack 'mattn/vim-sonictemplate'
 
@@ -96,10 +103,19 @@ local function load_plugin_list()
   Jetpack 'Rasukarusan/nvim-block-paste'
 
   " Jetpack 'rmagatti/auto-session'
+  " Jetpack 'rbtnn/vim-ambiwidth'
+
+  Jetpack 'wsdjeg/vim-fetch'
 
   Jetpack 'akinsho/toggleterm.nvim', {'as': 'toggleterm', 'on': 'VimEnter'}
+  Jetpack 'stevearc/stickybuf.nvim', {'as': 'stickybuf', 'on': 'VimEnter'}
+
+  Jetpack 'lambdalisue/readablefold.vim'
 
   Jetpack 'skanehira/denops-docker.vim', {'on': 'VimEnter'}
+
+  " Jetpack 'zsugabubus/crazy8.nvim'
+  Jetpack 'lfilho/cosco.vim', {'on': 'VimEnter'}
 
 
   " file explorer
@@ -139,8 +155,11 @@ local function load_plugin_list()
     Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
     Jetpack 'rhysd/git-messenger.vim'
     Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
-    Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
+    Jetpack 'sindrets/diffview.nvim', { 'on': 'VimEnter', 'as': 'diffview' }
+    " Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
+    Jetpack 'TimUntersberger/neogit', { 'on': 'Neogit', 'as': 'neogit' }
     Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
+    Jetpack 'hotwatermorning/auto-git-diff', { 'on': 'VimEnter' }
 
   if  g:enable_copilot
     Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter']}
@@ -149,12 +168,11 @@ local function load_plugin_list()
 
 
   " visualize
-    " Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
+    Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
     " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
     Jetpack 'kyazdani42/nvim-web-devicons'
-    " Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
-    Jetpack 'feline-nvim/feline.nvim', { 'on': 'VimEnter', 'as': 'feline' }
-    " Jetpack 'nanozuki/tabby.nvim', {'as': 'tabby' }
+    Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
+    " Jetpack 'feline-nvim/feline.nvim', { 'on': 'VimEnter', 'as': 'feline' }
     " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
     Jetpack 'chentoast/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
     Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
@@ -237,7 +255,7 @@ local function load_plugin_list()
       Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter', 'opt': v:true}
       " Jetpack 'zbirenbaum/copilot-cmp',{'opt': v:true}
     endif
-    " Jetpack 'hrsh7th/cmp-vsnip'
+    " Jetpack 'hrsh7th/cmp-vsnip', {'opt': v:true}
     Jetpack 'saadparwaiz1/cmp_luasnip', {'opt': v:true}
   endif
 
@@ -276,19 +294,36 @@ local function load_plugin_list()
   Jetpack 'rafamadriz/friendly-snippets'
   Jetpack 'honza/vim-snippets'
   " Jetpack 'smjonas/snippet-converter.nvim'
+
+  Jetpack 'wadackel/nvim-syntax-info', { 'on': 'VimEnter' }
   " web
   Jetpack 'fivethree-team/vscode-svelte-snippets'
   Jetpack 'stordahl/sveltekit-snippets'
   Jetpack 'xabikos/vscode-javascript'
-  " Jetpack 'craigmac/vim-vsnip-snippets'
+  Jetpack 'craigmac/vim-vsnip-snippets'
   " go
   Jetpack 'golang/vscode-go'
   " python
   Jetpack 'cstrap/flask-snippets'
   Jetpack 'cstrap/python-snippets'
 
+  " js
+  Jetpack 'vuki656/package-info.nvim', { 'on': 'PackageInfo', 'as': 'package-info' }
+
   " markdown
   Jetpack 'previm/previm'
+  Jetpack 'dhruvasagar/vim-table-mode'
+
+  " sql
+  Jetpack 'jsborjesson/vim-uppercase-sql'
+
+  " log
+  Jetpack 'mtdl9/vim-log-highlighting'
+
+  "debug
+  Jetpack 'sentriz/vim-print-debug'
+
+  Jetpack 'hkupty/iron.nvim', { 'as': 'iron', 'on': 'VimEnter'}
 
   Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
   ]],

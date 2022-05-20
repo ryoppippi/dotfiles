@@ -1,7 +1,7 @@
 local plugin_name = "cmp"
 local utils_plug = require("utils.plugin")
 
--- local snippet_library = 'vsnip'
+-- local snippet_library = "vsnip"
 local snippet_library = "luasnip"
 if not utils_plug.is_exists(plugin_name) then
   return
@@ -71,7 +71,6 @@ local function loading()
         elseif snl == "vsnip" and toboolean(vsnip_jumpable(1)) then
           vim.fn.feedkeys(t("<Plug>(vsnip-jump-next)"), "")
         elseif snl == "luasnip" and luasnip.jumpable(1) then
-          -- luasnip.jump(1)
           luasnip.expand_or_jump()
         elseif has_words_before() then
           cmp.complete()
@@ -87,12 +86,10 @@ local function loading()
           vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
         elseif snl == "luasnip" and luasnip.jumpable(-1) then
           luasnip.jump(-1)
+        elseif vim.g.loaded_copilot then
+          vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
         else
-          if vim.g.loaded_copilot then
-            vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
-          else
-            fallback()
-          end
+          fallback()
         end
       end, { "i", "s" }),
     }),
@@ -134,7 +131,7 @@ local function loading()
       { name = "nvim_lsp" },
       { name = "path" },
       { name = "rg" },
-      -- { name = "vsnip" },
+      { name = "vsnip" },
       { name = "luasnip" },
       { name = "nvim_lsp_document_symbol" },
       { name = "treesitter" },
@@ -229,7 +226,7 @@ local function loading()
   if status_autopairs then
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-    -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+    cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
   end
 end
 

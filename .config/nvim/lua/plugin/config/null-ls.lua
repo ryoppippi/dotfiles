@@ -59,7 +59,7 @@ local sources = function()
     }),
     -- others
     formatting.fish_indent,
-
+    -- diagnostics.cspell,
     code_actions.gitsigns,
   }
 end

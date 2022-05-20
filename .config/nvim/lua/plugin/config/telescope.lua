@@ -115,6 +115,7 @@ local function keymap()
   vim.keymap.set("n", "[TeLeader]q", [[<cmd>Telescope quickfix<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]p", [[<cmd>Telescope pickers<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]m", [[<cmd>Telescope marks<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]c", [[<cmd>Telescope colorscheme<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]d", current_buffer_fuzzy_find, key_opts)
 end
 
