@@ -65,7 +65,7 @@ local function loading()
     return false
   end
 
-  local get_file_icon = function()
+  local get_file_format_icon = function()
     local os = vim.bo.fileformat:upper()
     local icon
     if os == "UNIX" then
@@ -131,6 +131,7 @@ local function loading()
       },
       icon = "",
       priority = -20,
+      left_sep = " ",
     },
 
     nvim_gps = {
@@ -157,7 +158,6 @@ local function loading()
       truncate_hide = true,
     },
 
-    --mid
     -- gitBranch
     git_branch = {
       provider = "git_branch",
@@ -199,6 +199,7 @@ local function loading()
         style = "bold",
       },
     },
+
     -- diagnosticErrors
     lsp_diagnostic_errors = {
       provider = "diagnostic_errors",
@@ -208,6 +209,9 @@ local function loading()
       hl = {
         fg = "red",
         style = "bold",
+      },
+      icon = {
+        str = " ",
       },
     },
     -- diagnosticWarn
@@ -220,6 +224,9 @@ local function loading()
         fg = "yellow",
         style = "bold",
       },
+      icon = {
+        str = " ",
+      },
     },
     -- diagnosticHint
     lsp_diagnostic_hints = {
@@ -230,6 +237,9 @@ local function loading()
       hl = {
         fg = "cyan",
         style = "bold",
+      },
+      icon = {
+        str = " ",
       },
     },
 
@@ -243,9 +253,10 @@ local function loading()
         fg = "skyblue",
         style = "bold",
       },
+      icon = {
+        str = " ",
+      },
     },
-
-    -- RIGHT
 
     -- fileIcon
     file_icon = {
@@ -272,8 +283,10 @@ local function loading()
         val.style = "bold"
         return val
       end,
+      left_sep = " ",
       right_sep = " ",
     },
+
     -- fileType
     file_type = {
       provider = "file_type",
@@ -293,6 +306,7 @@ local function loading()
       end,
       right_sep = " ",
       truncate_hide = true,
+      priority = -100,
     },
 
     -- fileSize
@@ -313,11 +327,7 @@ local function loading()
     -- fileFormat
     file_format = {
       provider = function()
-        local icon, os = get_file_icon()
-        return icon .. os
-      end,
-      short_provider = function()
-        local icon, _ = get_file_icon()
+        local icon, _ = get_file_format_icon()
         return icon
       end,
       hl = {
@@ -325,8 +335,6 @@ local function loading()
         bg = "bg",
         style = "bold",
       },
-      right_sep = " ",
-      priority = -20,
       truncate_hide = true,
     },
 
@@ -345,14 +353,18 @@ local function loading()
 
     -- lineInfo
     line_info = {
-      provider = "position",
+      provider = {
+        name = "position",
+        opts = {
+          padding = true,
+        },
+      },
       hl = {
         fg = "white",
         bg = "bg",
         style = "bold",
       },
       right_sep = " ",
-      padding = true,
       truncate_hide = true,
     },
 
@@ -364,7 +376,6 @@ local function loading()
         bg = "bg",
         style = "bold",
       },
-      right_sep = " ",
     },
 
     -- scrollBar
@@ -399,22 +410,21 @@ local function loading()
       -- left
       {
         comps.vi_mode,
-        comps.file_name,
-        comps.nvim_gps,
-      },
-      -- middle
-      {
         comps.git_branch,
         comps.git_diff_added,
         comps.git_diff_changed,
         comps.git_diff_removed,
+        comps.file_name,
+        comps.nvim_gps,
+      },
+      -- middle
+      {},
+      -- right
+      {
         comps.lsp_diagnostic_errors,
         comps.lsp_diagnostic_warnings,
         comps.lsp_diagnostic_hints,
         comps.lsp_diagnostic_info,
-      },
-      -- right
-      {
         comps.lsp_client_name,
         comps.file_icon,
         comps.file_type,
@@ -422,7 +432,7 @@ local function loading()
         comps.file_format,
         comps.file_encode,
         comps.line_info,
-        comps.scroll_bar,
+        comps.line_percent,
       },
     },
     inactive = { {}, {}, {} },
@@ -430,9 +440,9 @@ local function loading()
 
   require("feline").setup({
     theme = colors,
+    vi_mode_colors = vi_mode_colors,
     default_bg = colors.bg,
     default_fg = colors.fg,
-    vi_mode_colors = vi_mode_colors,
     components = components,
     force_inactive = force_inactive,
   })

@@ -21,10 +21,10 @@ vim.keymap.set({ "n", "x" }, "k", function()
   return "gk"
 end, { noremap = true, expr = true })
 
-vim.keymap.set("n", "H", "<Nop>", { noremap = true })
-vim.keymap.set("n", "J", "<Nop>", { noremap = true })
-vim.keymap.set("n", "K", "<Nop>", { noremap = true })
-vim.keymap.set("n", "L", "<Nop>", { noremap = true })
+-- vim.keymap.set("n", "H", "<Nop>", { noremap = true })
+-- vim.keymap.set("n", "J", "<Nop>", { noremap = true })
+-- vim.keymap.set("n", "K", "<Nop>", { noremap = true })
+-- vim.keymap.set("n", "L", "<Nop>", { noremap = true })
 vim.keymap.set("n", "gh", "<Nop>", { noremap = true })
 vim.keymap.set("n", "gj", "<Nop>", { noremap = true })
 vim.keymap.set("n", "gk", "<Nop>", { noremap = true })
@@ -46,12 +46,10 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
-vim.keymap.set("n", "<leader>tj", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tk", "<cmd>tabnext<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>th", "<cmd>tabfirst<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tl", "<cmd>tablast<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tt", "<cmd>tabe .<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabe .<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tq", "<cmd>tabclose<cr>", { noremap = true, silent = true })
 
 -- jj -> <ESC>
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true })

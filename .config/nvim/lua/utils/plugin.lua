@@ -7,10 +7,10 @@ local plugin_list = {}
 function M.get_jetpack_plugin_event_name(plugin_name)
   local R = {}
   local camelPluginName = vim.fn.substitute(
-    vim.fn.substitute(plugin_name, "\\W\\+", "_", "g"),
-    "\\(^\\|_\\)\\(.\\)",
-    "\\u\\2",
-    "g"
+    vim.fn.substitute(plugin_name, [[\W\+]], [[_]], [[g]]),
+    [[\(^\|_\)\(.\)]],
+    [[\u\2]],
+    [[g]]
   )
   R.pre = "Jetpack" .. camelPluginName .. "Pre"
   R.post = "Jetpack" .. camelPluginName .. "Post"

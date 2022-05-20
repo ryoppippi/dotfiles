@@ -76,7 +76,6 @@ local function set_formatting(client, bufnr)
 
   for _, v in ipairs(document_formatting_disable_list) do
     if v == name then
-      print(v)
       client.resolved_capabilities.document_formatting = false
     end
   end

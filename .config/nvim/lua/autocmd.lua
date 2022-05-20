@@ -16,6 +16,19 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "startinsert",
 })
 
+vim.api.nvim_create_autocmd("BufReadPre", {
+  pattern = "*",
+  callback = function()
+    local max_file_size = 500 * 1000
+    local fsize = vim.api.nvim_eval("getfsize(expand(@%))")
+    local line_num = vim.fn.line("$")
+    if fsize > max_file_size then
+      vim.api.nvim_command("set syntax=off")
+      vim.fn.interrupt()
+    end
+  end,
+})
+
 vim.api.nvim_exec(
   [[
   augroup vimrc_syntax
@@ -39,6 +52,6 @@ vim.api.nvim_exec(
   autocmd VimEnter,WinEnter,BufRead *
         \ call matchadd('ExtraWhitespace', "[\u2000-\u200B\u3000]")
 augroup END
-]],
+]] ,
   true
 )
