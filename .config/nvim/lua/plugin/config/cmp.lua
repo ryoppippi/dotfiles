@@ -142,6 +142,7 @@ local function loading()
       { name = "nvim_lsp_signature_help" },
     }, {
       { name = "buffer" },
+      { name = "omni" },
       -- { name = "cmp_tabnine" },
     }),
     completion = {
@@ -173,6 +174,7 @@ local function loading()
           emoji = "[Emoji]",
           neorg = "[Neorg]",
           rg = "[rg]",
+          omni = "[Omni]",
           cmp_tabnine = "[Tabnine]",
           nvim_lsp_signature_help = "[Signature]",
           copilot = "[Copilot]",

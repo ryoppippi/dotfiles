@@ -250,6 +250,7 @@ local function load_plugin_list()
     " Jetpack 'octaltree/cmp-look',{'opt': v:true}
     Jetpack 'hrsh7th/cmp-calc',{'opt': v:true}
     Jetpack 'petertriho/cmp-git', {'as': 'cmp_git', 'opt': v:true}
+    Jetpack 'hrsh7th/cmp-omni', {'opt': v:true}
     if g:enable_copilot
       " Jetpack 'hrsh7th/cmp-copilot', {'opt': v:true}
       Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter', 'opt': v:true}
@@ -326,7 +327,7 @@ local function load_plugin_list()
   Jetpack 'hkupty/iron.nvim', { 'as': 'iron', 'on': 'VimEnter'}
 
   Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
-  ]],
+  ]] ,
     false
   )
   vim.fn["jetpack#end"]()
