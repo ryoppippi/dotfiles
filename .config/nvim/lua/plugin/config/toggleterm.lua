@@ -33,6 +33,7 @@ local create_cli = function(cmd)
 end
 
 local function loading()
+  require("toggleterm").setup()
   local lazygit_toggle = create_cli("lazygit")
   local lazydocker_toggle = create_cli("lazydocker")
   local nyancat = create_cli("nyancat")
