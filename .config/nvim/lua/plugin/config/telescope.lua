@@ -32,7 +32,6 @@ local function loading()
       },
       file_ignore_patterns = {
         ".git/",
-        "node_modules/*",
       },
       color_devicons = true,
       use_less = true,
