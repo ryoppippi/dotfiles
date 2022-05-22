@@ -71,8 +71,8 @@ end
 local function set_formatting(client, bufnr)
   local name = client.name
 
-  local document_formatting_disable_list = { "tsserver" }
-  local document_range_formatting_disable_list = { "tsserver" }
+  local document_formatting_disable_list = { "tsserver", "svelte" }
+  local document_range_formatting_disable_list = { "tsserver", "svelte" }
 
   for _, v in ipairs(document_formatting_disable_list) do
     if v == name then

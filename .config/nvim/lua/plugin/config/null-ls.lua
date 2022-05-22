@@ -10,11 +10,11 @@ local sources = function()
   local diagnostics = null_ls.builtins.diagnostics
   local code_actions = null_ls.builtins.code_actions
   return {
-    -- nulls.builtins.formatting.prettier.with({
-    --         extra_filetypes = {
-    --             "svelte",
-    --         },
-    --     }),
+    formatting.prettierd.with({
+      extra_filetypes = {
+        "svelte",
+      },
+    }),
     diagnostics.tsc.with({
       diagnostics_format = diagnostics_format,
     }),
