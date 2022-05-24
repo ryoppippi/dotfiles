@@ -71,7 +71,7 @@ local function loading()
         elseif snl == "vsnip" and toboolean(vsnip_jumpable(1)) then
           vim.fn.feedkeys(t("<Plug>(vsnip-jump-next)"), "")
         elseif snl == "luasnip" and luasnip.jumpable(1) then
-          luasnip.expand_or_jump()
+          luasnip.jump(1)
         elseif has_words_before() then
           cmp.complete()
         else
