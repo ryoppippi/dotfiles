@@ -8,4 +8,4 @@ local function loading()
   vim.keymap.set("n", "<leader>ww", "<cmd>WinResizerStartResize<cr>", { noremap = true, silent = true })
 end
 
-loading()
+require("utils.plugin").post_load(plugin_name, loading)

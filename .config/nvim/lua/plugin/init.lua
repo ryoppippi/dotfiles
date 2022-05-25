@@ -56,9 +56,9 @@ local function load_plugin_list()
   Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
   Jetpack 'kana/vim-niceblock', { 'on': 'VimEnter'}
 
-  Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f'}
+  Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f', 'on': 'VimEnter'}
   Jetpack 'terryma/vim-multiple-cursors', {'on': 'VimEnter' }
-  Jetpack 'deton/jasegment.vim'
+  Jetpack 'deton/jasegment.vim', {'as': 'jasegment', 'on': 'VimEnter'}
 
   Jetpack 'pianocomposer321/yabs.nvim'
 
@@ -83,10 +83,10 @@ local function load_plugin_list()
   Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
   " Jetpack 'bkad/CamelCaseMotion'
   Jetpack 'unblevable/quick-scope'
-  Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx' }
+  Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx'}
   Jetpack 'kevinhwang91/nvim-hlslens', {'as': 'hlslens'}
-  Jetpack 'machakann/vim-sandwich'
-  Jetpack 'machakann/vim-swap'
+  Jetpack 'machakann/vim-sandwich', {'on': 'VimEnter'}
+  Jetpack 'machakann/vim-swap', {'on': 'VimEnter'}
   " Jetpack 'tpope/vim-unimpaired'
   " Jetpack 'osyo-manga/vim-textobj-blockwise'
   Jetpack 'tpope/vim-repeat'
@@ -178,14 +178,15 @@ local function load_plugin_list()
     Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
     Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
     " Jetpack 'VonHeikemen/fine-cmdline.nvim'
-    Jetpack 'simeji/winresizer'
+    Jetpack 'simeji/winresizer', {'on': 'VimEnter'}
     Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
 
-    Jetpack 'ulwlu/elly.vim', { 'opt': v:true }
+    Jetpack 'ulwlu/elly.vim'
     Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark'}
     Jetpack 'ray-x/starry.nvim', {'as': 'starry'}
+    Jetpack 'rebelot/kanagawa.nvim', {'as': 'kanagawa'}
     " Jetpack 'marko-cerovac/material.nvim'
-    Jetpack 'sainnhe/gruvbox-material'
+    Jetpack 'sainnhe/gruvbox-material', {'opt': v:true}
     " Jetpack 'tribela/vim-transparent'
 
   " language support
@@ -243,7 +244,8 @@ local function load_plugin_list()
     Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help',{'opt': v:true}
     Jetpack 'hrsh7th/cmp-cmdline',{'opt': v:true}
     Jetpack 'lukas-reineke/cmp-rg',{'opt': v:true}
-    Jetpack 'lukas-reineke/cmp-under-comparator',{'opt': v:true}
+    Jetpack 'lukas-reineke/cmp-under-comparator', {'opt': v:true}
+    Jetpack 'f3fora/cmp-spell', {'opt': v:true}
     " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     Jetpack 'ray-x/cmp-treesitter',{'opt': v:true}
     Jetpack 'hrsh7th/cmp-emoji',{'opt': v:true}
@@ -313,7 +315,7 @@ local function load_plugin_list()
 
   " markdown
   Jetpack 'previm/previm'
-  Jetpack 'dhruvasagar/vim-table-mode'
+  Jetpack 'dhruvasagar/vim-table-mode', {'on': 'VimEnter'}
 
   " sql
   Jetpack 'jsborjesson/vim-uppercase-sql'
@@ -326,8 +328,8 @@ local function load_plugin_list()
 
   Jetpack 'hkupty/iron.nvim', { 'as': 'iron', 'on': 'VimEnter'}
 
-  Jetpack 'ryoppippi/bad-apple.vim',{'branch':'main'}
-  ]] ,
+  Jetpack 'ryoppippi/bad-apple.vim', {'branch':'main'}
+  ]],
     false
   )
   vim.fn["jetpack#end"]()

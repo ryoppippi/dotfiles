@@ -1,8 +1,6 @@
 local function setting()
   vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-  -- vim.cmd([[silent colorscheme onedark]])
-  -- vim.cmd([[silent colorscheme moonlight]])
-  vim.cmd([[silent colorscheme gruvbox-material]])
+  vim.cmd([[silent colorscheme kanagawa]])
 
   vim.g.colorterm = os.getenv("COLORTERM")
   if
