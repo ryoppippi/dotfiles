@@ -17,10 +17,10 @@ local function loading()
     let g:gruvbox_material_enable_bold = 1
     let g:gruvbox_material_disable_italic_comment = 0
     autocmd ColorScheme gruvbox-material hi DiagnosticWarn guifg=#ffb86c
-
-  ]] ,
+    packadd gruvbox-material
+  ]],
     false
   )
 end
 
-loading()
+require("utils.plugin").pre_load(plugin_name, loading)

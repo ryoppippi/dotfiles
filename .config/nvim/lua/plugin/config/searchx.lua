@@ -1,6 +1,14 @@
 local plugin_name = "searchx"
-if not require("utils.plugin").is_exists(plugin_name) then
+local plug_utils = require("utils.plugin")
+if not plug_utils.is_exists(plugin_name) then
   return
+end
+
+local function hl_start()
+  local hlslens_status, hlslens = plug_utils.force_require("hlslens")
+  if hlslens_status and hlslens ~= nil then
+    hlslens.start()
+  end
 end
 
 local function keymap()
@@ -12,8 +20,14 @@ local function keymap()
     vim.fn["searchx#start"]({ dir = 1 })
   end, opt)
   vim.keymap.set("c", ";", vim.fn["searchx#select"], opt)
-  vim.keymap.set({ "n", "x" }, "N", vim.fn["searchx#prev"], opt)
-  vim.keymap.set({ "n", "x" }, "n", vim.fn["searchx#next"], opt)
+  vim.keymap.set({ "n", "x" }, "N", function()
+    vim.fn["searchx#prev"]()
+    hl_start()
+  end, opt)
+  vim.keymap.set({ "n", "x" }, "n", function()
+    vim.fn["searchx#next"]()
+    hl_start()
+  end, opt)
 end
 
 local function loading()
@@ -47,7 +61,15 @@ local function loading()
   ]],
     true
   )
+  vim.api.nvim_create_autocmd("User", {
+    pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
+    callback = hl_start,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = { "SearchxLeave", "SearchxCancel" },
+    command = "nohlsearch",
+  })
 end
 
-loading()
 keymap()
+plug_utils.force_load_on_event(plugin_name, loading)

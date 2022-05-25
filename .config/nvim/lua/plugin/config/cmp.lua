@@ -137,6 +137,7 @@ local function loading()
       { name = "treesitter" },
       { name = "nvim_lua" },
       { name = "calc" },
+      { name = "spell" },
       { name = "emoji" },
       { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
       { name = "nvim_lsp_signature_help" },
@@ -191,7 +192,7 @@ local function loading()
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = "nvim_lsp_document_symbol" },
-      { name = "cmdline_history" },
+      -- { name = "cmdline_history" },
       { name = "cmdline" },
     }, {
       { name = "buffer" },
