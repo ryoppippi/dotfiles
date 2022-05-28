@@ -1,5 +1,6 @@
 -- open config
 vim.api.nvim_create_user_command("Config", "execute 'e' . fnamemodify($MYVIMRC, ':h')", { nargs = "*" })
+vim.keymap.set("n", "<leader>.", "<cmd>Config<cr>", { noremap = true, silent = true })
 
 -- custom terminal command
 vim.api.nvim_create_user_command("T", "tabe | terminal <args>", { nargs = "*" })
