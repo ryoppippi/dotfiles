@@ -1,7 +1,7 @@
 local M = {}
 local force_require = require("utils.plugin").force_require
 
-local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+-- local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
 local function set_keymap(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -87,15 +87,22 @@ local function set_formatting(client, bufnr)
 
   -- auto formatting
   if client.supports_method("textDocument/formatting") and client.resolved_capabilities.document_formatting then
-    vim.api.nvim_clear_autocmds({
-      buffer = bufnr,
-      group = FormatAugroup,
-    })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = vim.lsp.buf.formatting_seq_sync,
-      buffer = bufnr,
-      group = FormatAugroup,
-    })
+    -- vim.api.nvim_clear_autocmds({
+    --   buffer = bufnr,
+    --   group = FormatAugroup,
+    -- })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   callback = vim.lsp.buf.formatting_seq_sync,
+    --   buffer = bufnr,
+    --   group = FormatAugroup,
+    -- })
+    local lsp_format_status, lsp_format = force_require("lsp-format")
+    if lsp_format_status and lsp_format ~= nil then
+      lsp_format.setup({})
+      lsp_format.on_attach(client)
+      vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
+      vim.cmd([[cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q]])
+    end
   end
 end
 
@@ -132,13 +139,6 @@ local function set_protocol(client, bufnr)
   }
 end
 
-local function set_aditional_plugins(client, bufnr)
-  local ill_status, ill_client = force_require("illuminate")
-  if ill_status and ill_client ~= nil then
-    ill_client.on_attach(client)
-  end
-end
-
 local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
@@ -150,15 +150,82 @@ local gen_capabilities = function()
   return capabilities
 end
 
+local gen_server_opts = function()
+  local _, lspconfig = force_require("lspconfig")
+  local lsp_util = lspconfig.util
+  local utils = require("utils")
+  return {
+    ["emmet_ls"] = {
+      filetypes = { "html", "css", "svelte" },
+    },
+    ["tsserver"] = {
+      root_dir = lsp_util.root_pattern("package.json"),
+    },
+    ["svelte"] = {
+      root_dir = lsp_util.root_pattern("package.json"),
+    },
+    ["eslint"] = {
+      root_dir = lsp_util.root_pattern("package.json"),
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+        "vue",
+        "svelte",
+      },
+      settings = {
+        format = { enable = true },
+      },
+    },
+    ["denols"] = {
+      init_options = { lint = true, unstable = true },
+    },
+    ["sumneko_lua"] = {
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+            path = vim.tbl_extend("force", vim.split(package.path, ";"), { "lua/?.lua", "lua/?/init.lua" }),
+          },
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    },
+    ["pyrignt"] = {
+      before_init = function(_, config)
+        config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
+            and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+          or utils.find_cmd("python3", ".venv/bin", config.root_dir)
+      end,
+      settings = {
+        disableOrganizeImports = true,
+      },
+    },
+  }
+end
+
 M.on_attach = function(client, bufnr)
   set_keymap(client, bufnr)
   set_options(client, bufnr)
   set_sign(client, bufnr)
-  set_formatting(client, bufnr)
   set_protocol(client, bufnr)
-  set_aditional_plugins(client, bufnr)
+  set_formatting(client, bufnr)
+  require("illuminate").on_attach(client)
 end
 
 M.capabilities = gen_capabilities()
+
+M.server_opts = gen_server_opts()
 
 return M

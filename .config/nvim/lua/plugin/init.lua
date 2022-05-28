@@ -219,18 +219,18 @@ local function load_plugin_list()
   endif
 
   if g:enable_nvim_lsp
-    Jetpack 'neovim/nvim-lspconfig', { 'opt': v:true,  'as': 'lspconfig'}
+    Jetpack 'neovim/nvim-lspconfig', { 'as': 'lspconfig', 'opt': v:true }
+    Jetpack 'lukas-reineke/lsp-format.nvim', { 'as': 'lsp-format' }
     Jetpack 'williamboman/nvim-lsp-installer', { 'opt': v:true }
-    " Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
-    Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
-    " Jetpack 'HallerPatrick/py_lsp.nvim'
     Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
-    Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
+    Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
     Jetpack 'folke/lsp-colors.nvim', { 'as': 'lsp-colors'}
-    Jetpack 'RRethy/vim-illuminate', { 'opt': v:true, 'as': 'illuminate' }
-    " Jetpack 'ray-x/lsp_signature.nvim'
+    Jetpack 'RRethy/vim-illuminate', { 'as': 'illuminate' }
     Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
-
+    Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
+    " Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
+    " Jetpack 'HallerPatrick/py_lsp.nvim'
+    " Jetpack 'ray-x/lsp_signature.nvim'
   endif
 
   if g:enable_cmp
