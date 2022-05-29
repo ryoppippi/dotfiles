@@ -1,0 +1,19 @@
+add_newline = true
+
+[username]
+disabled = false
+show_always = true
+
+[git_status]
+conflicted = '⚔️'
+ahead = '🏎 💨'
+behind = '😰'
+diverged = '😵'
+untracked = '❓❓ <200d>'
+modified = '📝'
+renamed = ''
+deleted = '🗑 '
+staged = '[++\($count\)](green)'
+
+[battery]
+disabled = true
