@@ -11,6 +11,14 @@ local function AS()
   end
 end
 
+local function AF()
+  if vim.g.autosave_state then
+    return "AS"
+  else
+    return ""
+  end
+end
+
 local chech_width = function()
   return vim.go.columns > 120
 end

@@ -22,6 +22,7 @@ local function loading()
       -- },
       vimgrep_arguments = {
         "rg",
+        -- "ug",
         "--color=never",
         "--no-heading",
         "--with-filename",
@@ -86,6 +87,7 @@ local function loading()
   pcall(le, "frecency")
   pcall(le, "heading")
   pcall(le, "changes")
+  pcall(le, "env")
 end
 
 local function keymap()

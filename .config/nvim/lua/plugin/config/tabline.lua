@@ -1,3 +1,15 @@
+function _G.get_icon(filename, extension)
+  local status, wdi = pcall(require, "nvim-web-devicons")
+  if status then
+    local icon = wdi.get_icon(filename, extension)
+    if icon == nil then
+      icon = ""
+    end
+    return icon .. " "
+  end
+  return ""
+end
+
 vim.api.nvim_exec(
   [[
     function! MyTabLine()
@@ -41,7 +53,9 @@ vim.api.nvim_exec(
       let winnr = tabpagewinnr(a:n)
       let name = bufname(buflist[winnr - 1])
       let label = fnamemodify(name, ':t')
-      return len(label) == 0 ? '[No Name]' : label
+      let extension = fnamemodify(label, ":e")
+      let icon = v:lua.get_icon(label, extension)
+      return len(label) == 0 ? '[No Name]' : printf('%s%s', icon, label)
     endfunction
 
     set tabline=%!MyTabLine()
