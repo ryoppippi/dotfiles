@@ -78,6 +78,7 @@ vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>", { noremap = true }
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>", { noremap = true })
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>", { noremap = true })
 vim.keymap.set("n", "<leader>p", 'o<esc>^"_d$p<esc>', { noremap = true })
+vim.keymap.set({ "n", "v" }, "sf", "%", { noremap = true })
 
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
