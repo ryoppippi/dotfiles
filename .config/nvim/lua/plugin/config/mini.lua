@@ -1,30 +1,29 @@
-function load()
-  local status, indent = pcall(require, "mini.indentscope")
+local function setup(pluin_name, options)
+  local status, req = pcall(require, pluin_name)
   if status then
-    indent.setup()
+    req.setup(options)
   end
+end
 
-  -- local statusC, cursorword = pcall(require, "mini.cursorword")
-  -- if not statusC then
-  --   return
-  -- end
-  -- cursorword.setup()
-
-  -- local statusJ, jump = pcall(require, "mini.jump")
-  -- if statusJ then
-  --   jump.setup({
-  --     mappings = {
-  --       forward = "f",
-  --       backward = "F",
-  --       -- forward_till = "t",
-  --       forward_till = "",
-  --       -- backward_till = "T",
-  --       backward_till = "",
-  --       repeat_jump = "",
-  --     },
-  --     highlight_delay = 100,
-  --   })
-  -- end
+local function load()
+  setup("mini.indentscope", {})
+  -- setup('mini.cursorword',{})
+  setup("mini.jump", {
+    mappings = {
+      forward = "f",
+      backward = "F",
+      -- forward_till = "t",
+      forward_till = "",
+      -- backward_till = "T",
+      backward_till = "",
+      repeat_jump = "",
+    },
+    delay = {
+      highlight = 10,
+    },
+  })
+  setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
+  setup("mini.trailspace", {})
 end
 
 vim.api.nvim_create_autocmd("VimEnter", {

@@ -3,53 +3,83 @@ if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
 
-local function setup()
-  vim.api.nvim_exec(
-    [[
-  nmap  <C-a>  <Plug>(dps-dial-increment)
-  nmap  <C-x>  <Plug>(dps-dial-decrement)
-  xmap  <C-a>  <Plug>(dps-dial-increment)
-  xmap  <C-x>  <Plug>(dps-dial-decrement)
-  xmap g<C-a> g<Plug>(dps-dial-increment)
-  xmap g<C-x> g<Plug>(dps-dial-decrement)
+local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
 
-  let g:dps_dial#augends = [
-  \   'decimal',
-  \   'date-slash',
-  \   {'kind': 'constant', 'opts': {'elements': ['true', 'false']}},
-  \   {'kind': 'case', 'opts': {'cases': ['camelCase', 'snake_case'], 'cyclic': v:true}},
-  \ ]
-
-  function! MarkdownHeaderFind(line, cursor)
-  let match = matchstr(a:line, '^#\+')
-  if match !=# ''
-    return {"from": 0, "to": strlen(match)}
-    endif
-    return v:null
-    endfunction
-
-    function! MarkdownHeaderAdd(text, addend, cursor)
-    let n_header = strlen(a:text)
-    let n_header = min([6, max([1, n_header + a:addend])])
-    let text = repeat('#', n_header)
-    let cursor = 1
-    return {'text': text, 'cursor': cursor}
-    endfunction
-
-    let s:id_find = dps_dial#register_callback(function("MarkdownHeaderFind"))
-      let s:id_add = dps_dial#register_callback(function("MarkdownHeaderAdd"))
-
-    augroup dps-dial
-      autocmd FileType markdown let b:dps_dial_augends_register_h = [ {"kind": "user", "opts": {"find": s:id_find, "add": s:id_add}} ]
-      autocmd FileType python let b:dps_dial_augends = ['decimal', {'kind': 'constant', 'opts': {'elements': ['True', 'False']}}]
-      autocmd FileType markdown nmap <buffer> <Space>a "h<Plug>(dps-dial-increment)
-      autocmd FileType markdown nmap <buffer> <Space>x "h<Plug>(dps-dial-decrement)
-      autocmd FileType markdown vmap <buffer> <Space>a "h<Plug>(dps-dial-increment)
-      autocmd FileType markdown vmap <buffer> <Space>x "h<Plug>(dps-dial-decrement)
-    augroup END
-    ]],
-    true
-  )
+local function keymap(group_name)
+  vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(group_name), { noremap = true })
+  vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(group_name), { noremap = true })
+  vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(group_name), { noremap = true })
+  vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(group_name), { noremap = true })
+  vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(group_name), { noremap = true })
+  vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), { noremap = true })
 end
 
-require("utils.plugin").load_denops_plugin(plugin_name, setup)
+local function set_filetype_autocmd(filetype)
+  vim.api.nvim_create_autocmd("Filetype", {
+    pattern = filetype,
+    callback = function()
+      keymap(filetype)
+    end,
+    group = au_dial,
+  })
+end
+
+local function loading()
+  keymap()
+
+  local augend = require("dial.augend")
+  require("dial.config").augends:register_group({
+    default = {
+      augend.integer.alias.decimal,
+      augend.integer.alias.hex,
+      augend.integer.alias.binary,
+      augend.date.alias["%Y/%m/%d"],
+      augend.date.alias["%Y-%m-%d"],
+      augend.date.alias["%Y年%-m月%-d日(%ja)"],
+      augend.date.alias["%H:%M:%S"],
+      augend.date.alias["%-m/%-d"],
+      augend.constant.alias.ja_weekday,
+      augend.constant.alias.ja_weekday_full,
+      augend.hexcolor.new({ case = "lower" }),
+      augend.semver.alias.semver,
+      augend.constant.new({ elements = { "true", "false" }, cyclic = true }),
+    },
+    markdown = {
+      augend.integer.alias.decimal,
+      augend.integer.alias.hex,
+      augend.integer.alias.binary,
+      augend.date.alias["%Y/%m/%d"],
+      augend.date.alias["%Y-%m-%d"],
+      augend.date.alias["%Y年%-m月%-d日(%ja)"],
+      augend.date.alias["%H:%M:%S"],
+      augend.date.alias["%-m/%-d"],
+      augend.constant.alias.ja_weekday,
+      augend.constant.alias.ja_weekday_full,
+      augend.hexcolor.new({ case = "lower" }),
+      augend.semver.alias.semver,
+      augend.constant.new({ elements = { "true", "false" }, cyclic = true }),
+      augend.misc.alias.markdown_header,
+    },
+    python = {
+      augend.integer.alias.decimal,
+      augend.integer.alias.hex,
+      augend.integer.alias.binary,
+      augend.date.alias["%Y/%m/%d"],
+      augend.date.alias["%Y-%m-%d"],
+      augend.date.alias["%Y年%-m月%-d日(%ja)"],
+      augend.date.alias["%H:%M:%S"],
+      augend.date.alias["%-m/%-d"],
+      augend.constant.alias.ja_weekday,
+      augend.constant.alias.ja_weekday_full,
+      augend.hexcolor.new({ case = "lower" }),
+      augend.semver.alias.semver,
+      augend.constant.new({ elements = { "True", "False" }, cyclic = true }),
+    },
+  })
+
+  set_filetype_autocmd("markdown")
+  set_filetype_autocmd("python")
+  require("utils").redetect_filetype()
+end
+
+require("utils.plugin").force_load_on_event(plugin_name, loading)

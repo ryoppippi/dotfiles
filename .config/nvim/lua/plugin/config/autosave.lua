@@ -24,4 +24,4 @@ local function loading()
   vim.api.nvim_set_keymap("n", "<Leader>s", ":ASToggle<CR>", { noremap = true, silent = true })
 end
 
-loading()
+require("utils.plugin").force_load_on_event(plugin_name, loading)
