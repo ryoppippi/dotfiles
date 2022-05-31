@@ -35,17 +35,18 @@ local function load_plugin_list()
   vim.fn["jetpack#begin"]()
   vim.api.nvim_exec(
     [[
-  " Jetpack 'tani/vim-jetpack', { 'opt': 1 }
-  Jetpack 'ryoppippi/vim-jetpack', { 'opt': 1, 'branch': 'dev/add-dummy-command' }
+  Jetpack 'tani/vim-jetpack', { 'opt': 1 }
   Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
   Jetpack 'vim-denops/denops.vim'
+  Jetpack 'spywhere/detect-language.nvim', {'as': 'detect-language', 'on': 'VimEnter'}
   Jetpack 'haya14busa/vim-asterisk',{'as': 'asterisk', 'on': '<Plug>(asterisk-'}
   Jetpack 'thinca/vim-quickrun',
   Jetpack 'thinca/vim-qfreplace'
   Jetpack 'tyru/open-browser.vim'
   Jetpack 'tyru/open-browser-github.vim'
   Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
-  Jetpack 'monaqa/dps-dial.vim',{'on':'VimEnter', 'as':'dial'}
+  " Jetpack 'monaqa/dial.nvim',{'on':'VimEnter', 'as':'dial'}
+  Jetpack 'monaqa/dps-dial.vim',{'on': 'VimEnter', 'as':'dps-dial'}
   Jetpack 'deris/vim-rengbang', {'on':'VimEnter'}
   " Jetpack 'mopp/vim-operator-convert-case'
   Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
@@ -56,7 +57,9 @@ local function load_plugin_list()
   Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
   Jetpack 'kana/vim-niceblock', { 'on': 'VimEnter'}
 
-  Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f', 'on': 'VimEnter'}
+  " Jetpack 'lambdalisue/mr.vim'
+
+  " Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f', 'on': 'VimEnter'}
   Jetpack 'terryma/vim-multiple-cursors', {'on': 'VimEnter' }
   Jetpack 'deton/jasegment.vim', {'as': 'jasegment', 'on': 'VimEnter'}
 
@@ -67,11 +70,11 @@ local function load_plugin_list()
   Jetpack 'gabrielpoca/replacer.nvim'
 
   Jetpack 'tyru/capture.vim'
-  Jetpack 'sQVe/sort.nvim', {'on':'VimEnter', 'as': 'sort'}
+  Jetpack 'sQVe/sort.nvim', { 'as': 'sort'}
 
   Jetpack 'zdcthomas/medit'
       
-  Jetpack 'thinca/vim-partedit', {'on': 'VimEnter'}
+  Jetpack 'thinca/vim-partedit'
 
   Jetpack 'yutkat/wb-only-current-line.nvim', {'on': 'VimEnter'}
 
@@ -79,8 +82,10 @@ local function load_plugin_list()
 
   Jetpack 'tversteeg/registers.nvim', { 'branch': 'main' }
 
+  Jetpack 'Pocco81/AutoSave.nvim', { 'on': 'VimEnter', 'as': 'autosave' }
+
   " text objects
-  Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
+  " Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
   " Jetpack 'bkad/CamelCaseMotion'
   Jetpack 'unblevable/quick-scope'
   Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx'}
@@ -113,8 +118,9 @@ local function load_plugin_list()
   Jetpack 'lambdalisue/readablefold.vim'
 
   Jetpack 'skanehira/denops-docker.vim', {'on': 'VimEnter'}
+  Jetpack 'skanehira/denops-gh.vim', {'on': 'VimEnter'}
 
-  " Jetpack 'zsugabubus/crazy8.nvim'
+  Jetpack 'zsugabubus/crazy8.nvim'
   Jetpack 'lfilho/cosco.vim', {'on': 'VimEnter'}
 
 
@@ -146,6 +152,7 @@ local function load_plugin_list()
       Jetpack 'tami5/sqlite.lua'
     Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Jetpack 'nvim-telescope/telescope-media-files.nvim'
+    Jetpack 'LinArcX/telescope-env.nvim'
     Jetpack 'crispgm/telescope-heading.nvim'
     Jetpack 'LinArcX/telescope-changes.nvim'
     Jetpack 'nvim-telescope/telescope-ui-select.nvim'
@@ -156,6 +163,7 @@ local function load_plugin_list()
     Jetpack 'rhysd/git-messenger.vim'
     Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
     Jetpack 'sindrets/diffview.nvim', { 'on': 'VimEnter', 'as': 'diffview' }
+    Jetpack 'pwntester/octo.nvim', { 'on': 'VimEnter', 'as': 'octo' }
     " Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
     Jetpack 'TimUntersberger/neogit', { 'on': 'Neogit', 'as': 'neogit' }
     Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
@@ -177,9 +185,9 @@ local function load_plugin_list()
     Jetpack 'chentoast/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
     Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
     Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
-    " Jetpack 'VonHeikemen/fine-cmdline.nvim'
     Jetpack 'simeji/winresizer', {'on': 'VimEnter'}
     Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
+    Jetpack 'rainbowhxch/beacon.nvim', { 'on': 'VimEnter', 'as': 'beacon' }
 
     Jetpack 'ulwlu/elly.vim'
     Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark'}
@@ -195,6 +203,7 @@ local function load_plugin_list()
   Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
   Jetpack 'vigoux/architext.nvim'
   Jetpack 'RRethy/nvim-treesitter-textsubjects'
+  Jetpack 'nvim-treesitter/playground'
   " Jetpack 'nvim-treesitter/nvim-treesitter-refactor'
   Jetpack 'mfussenegger/nvim-ts-hint-textobject'
   Jetpack 'David-Kunz/treesitter-unit'
@@ -319,6 +328,9 @@ local function load_plugin_list()
 
   " sql
   Jetpack 'jsborjesson/vim-uppercase-sql'
+
+  " lua
+  Jetpack 'milisims/nvim-luaref'
 
   " log
   Jetpack 'mtdl9/vim-log-highlighting'
