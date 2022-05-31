@@ -151,4 +151,8 @@ function M.get_current_ufn()
   return M.get_unique_filename(current_name, names)
 end
 
+function M.redetect_filetype()
+  vim.api.nvim_exec([[execute printf('set %s=%s','filetype',&filetype)]], false)
+end
+
 return M
