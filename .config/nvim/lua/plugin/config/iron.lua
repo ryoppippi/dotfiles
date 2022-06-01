@@ -7,14 +7,17 @@ local function loading()
   require("iron.core").setup({
     config = {},
     keymaps = {
-      send_motion = "<space>sc",
-      visual_send = "<space>sc",
-      send_line = "<space>sl",
-      repeat_cmd = "<space>s.",
-      cr = "<space>s<cr>",
-      interrupt = "<space>s<space>",
-      exit = "<space>sq",
-      clear = "<space>cl",
+      send_motion = "<leader>sc",
+      visual_send = "<leader>sc",
+      send_line = "<leader>sl",
+      send_mark = "<leader>sm",
+      mark_motion = "<leader>mc",
+      mark_visual = "<leader>mc",
+      remove_mark = "<leader>md>",
+      cr = "<leader>s<cr>",
+      interrupt = "<leader>s<space>",
+      exit = "<leader>sq",
+      clear = "<leader>cl",
     },
   })
 end
