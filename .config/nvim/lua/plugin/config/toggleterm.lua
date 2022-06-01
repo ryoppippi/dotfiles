@@ -33,12 +33,16 @@ local create_cli = function(cmd)
 end
 
 local function loading()
-  require("toggleterm").setup()
+  require("toggleterm").setup({
+    start_in_insert = true,
+    shade_terminals = false,
+  })
   local lazygit_toggle = create_cli("lazygit")
   local lazydocker_toggle = create_cli("lazydocker")
   local nyancat = create_cli("nyancat")
 
   vim.keymap.set("n", "<leader>gg", lazygit_toggle, { noremap = true, silent = true, desc = "toggle lazygit" })
+  vim.keymap.set("n", "<leader>,", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
