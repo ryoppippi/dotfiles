@@ -8,18 +8,18 @@ vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", ":", ";", { noremap = true })
 
 -- hjkl
-vim.keymap.set({ "n", "x" }, "j", function()
-  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-    return "j"
-  end
-  return "gj"
-end, { noremap = true, expr = true })
-vim.keymap.set({ "n", "x" }, "k", function()
-  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-    return "k"
-  end
-  return "gk"
-end, { noremap = true, expr = true })
+-- vim.keymap.set({ "n", "x" }, "j", function()
+--   if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+--     return "j"
+--   end
+--   return "gj"
+-- end, { noremap = true, expr = true })
+-- vim.keymap.set({ "n", "x" }, "k", function()
+--   if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+--     return "k"
+--   end
+--   return "gk"
+-- end, { noremap = true, expr = true })
 
 -- vim.keymap.set("n", "H", "<Nop>", { noremap = true })
 -- vim.keymap.set("n", "J", "<Nop>", { noremap = true })
@@ -69,6 +69,9 @@ end
 vim.keymap.set("c", "<C-f>", "<right>", { noremap = true, silent = false })
 vim.keymap.set("c", "<C-b>", "<left>", { noremap = true, silent = false })
 vim.keymap.set("c", "<C-d>", "<DEL>", { noremap = true, silent = false })
+
+-- regexp
+vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>', { noremap = true })
 
 -- tips
 vim.keymap.set("n", "Y", "y$", { noremap = true })
