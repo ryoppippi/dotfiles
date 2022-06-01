@@ -35,16 +35,20 @@ local function load_plugin_list()
   vim.fn["jetpack#begin"]()
   vim.api.nvim_exec(
     [[
+  " essential
   Jetpack 'tani/vim-jetpack', { 'opt': 1 }
   Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
   Jetpack 'vim-denops/denops.vim'
-  Jetpack 'spywhere/detect-language.nvim', {'as': 'detect-language', 'on': 'VimEnter'}
-  Jetpack 'haya14busa/vim-asterisk',{'as': 'asterisk', 'on': '<Plug>(asterisk-'}
-  Jetpack 'thinca/vim-quickrun',
+  Jetpack 'tpope/vim-repeat'
+
+  Jetpack 'spywhere/detect-language.nvim', {'as': 'detect-language', 'on': 'VimEnter' }
+  Jetpack 'haya14busa/vim-asterisk', {'as': 'asterisk', 'on': '<Plug>(asterisk-' }
+  Jetpack 'thinca/vim-quickrun'
   Jetpack 'thinca/vim-qfreplace'
   Jetpack 'tyru/open-browser.vim'
   Jetpack 'tyru/open-browser-github.vim'
   Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
+
   " Jetpack 'monaqa/dial.nvim',{'on':'VimEnter', 'as':'dial'}
   Jetpack 'monaqa/dps-dial.vim',{'on': 'VimEnter', 'as':'dps-dial'}
   Jetpack 'deris/vim-rengbang', {'on':'VimEnter'}
@@ -64,6 +68,7 @@ local function load_plugin_list()
   Jetpack 'deton/jasegment.vim', {'as': 'jasegment', 'on': 'VimEnter'}
 
   Jetpack 'pianocomposer321/yabs.nvim'
+  Jetpack 'skywind3000/asyncrun.vim', {'on': 'VimEnter'}
 
   Jetpack 'segeljakt/vim-silicon', {'on': 'VimEnter'}
 
@@ -73,7 +78,7 @@ local function load_plugin_list()
   Jetpack 'sQVe/sort.nvim', { 'as': 'sort'}
 
   Jetpack 'zdcthomas/medit'
-      
+
   Jetpack 'thinca/vim-partedit'
 
   Jetpack 'yutkat/wb-only-current-line.nvim', {'on': 'VimEnter'}
@@ -92,9 +97,7 @@ local function load_plugin_list()
   Jetpack 'kevinhwang91/nvim-hlslens', {'as': 'hlslens'}
   Jetpack 'machakann/vim-sandwich', {'on': 'VimEnter'}
   Jetpack 'machakann/vim-swap', {'on': 'VimEnter'}
-  " Jetpack 'tpope/vim-unimpaired'
   " Jetpack 'osyo-manga/vim-textobj-blockwise'
-  Jetpack 'tpope/vim-repeat'
   " Jetpack 'cohama/lexima.vim', { 'as': 'lexima' }
   Jetpack 'windwp/nvim-autopairs',
   Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
@@ -105,6 +108,10 @@ local function load_plugin_list()
   Jetpack 'AndrewRadev/linediff.vim'
 
   Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
+  Jetpack 'gbprod/yanky.nvim', { 'on': 'VimEnter', 'as': 'yanky' }
+  " Jetpack 'hrsh7th/nvim-pasta', { 'on': 'VimEnter'}
+
+
   Jetpack 'Rasukarusan/nvim-block-paste'
 
   " Jetpack 'rmagatti/auto-session'
@@ -156,6 +163,8 @@ local function load_plugin_list()
     Jetpack 'crispgm/telescope-heading.nvim'
     Jetpack 'LinArcX/telescope-changes.nvim'
     Jetpack 'nvim-telescope/telescope-ui-select.nvim'
+    Jetpack 'tknightz/telescope-termfinder.nvim'
+    Jetpack 'benfowler/telescope-luasnip.nvim'
     Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
 
   " git
@@ -196,6 +205,7 @@ local function load_plugin_list()
     " Jetpack 'marko-cerovac/material.nvim'
     Jetpack 'sainnhe/gruvbox-material', {'opt': v:true}
     " Jetpack 'tribela/vim-transparent'
+    Jetpack 'max397574/colortils.nvim', {'as': 'colortils', 'on': 'VimEnter'}
 
   " language support
   " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
@@ -220,6 +230,7 @@ local function load_plugin_list()
   Jetpack 'yioneko/nvim-yati', {'on': 'VimEnter', 'as': 'yati'}
   " Jetpack 'arthurxavierx/vim-caser'
   Jetpack 'danymat/neogen', {'on': 'VimEnter'}
+  " Jetpack 'shurizzle/inlay-hints.nvim', {'on': 'VimEnter', 'as': 'inlay-hints'}
 
   if g:enable_coc
     Jetpack 'neoclide/coc.nvim', {'branch': 'release', 'as': 'coc'}
