@@ -71,8 +71,10 @@ local function loading()
           ["<cr>"] = "open",
           ["l"] = "open",
           ["h"] = "close_node",
-          -- ["S"] = "open_split",
-          -- ["s"] = "open_vsplit",
+          ["s"] = "none",
+          ["S"] = "none",
+          ["V"] = "open_split",
+          ["v"] = "open_vsplit",
           ["<bs>"] = "navigate_up",
           ["."] = "set_root",
           ["H"] = "toggle_hidden",
@@ -153,7 +155,7 @@ local function loading()
 end
 
 local function keymap()
-  vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealToggle<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealInSplit<CR>", { noremap = true, silent = true })
   vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloat<CR>", { noremap = true, silent = true })
   -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
 end
