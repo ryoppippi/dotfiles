@@ -13,6 +13,12 @@ local function loading()
         n = {
           ["<ESC>"] = actions.close,
           ["q"] = actions.close,
+          ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+          ["<C-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
+        },
+        i = {
+          ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+          ["<C-s>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
         },
       },
       initial_mode = "insert",
@@ -88,6 +94,8 @@ local function loading()
   pcall(le, "heading")
   pcall(le, "changes")
   pcall(le, "env")
+  pcall(le, "termfinder")
+  pcall(le, "luasnip")
 end
 
 local function keymap()
