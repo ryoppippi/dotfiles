@@ -6,6 +6,22 @@ end
 local function loading()
   local telescope = require(plugin_name)
   local actions = require(plugin_name .. ".actions")
+  local previewers = require(plugin_name .. ".previewers")
+
+  local new_maker = function(filepath, bufnr, opts)
+    opts = opts or {}
+    filepath = vim.fn.expand(filepath)
+    vim.loop.fs_stat(filepath, function(_, stat)
+      if not stat then
+        return
+      end
+      if stat.size > 100000 then
+        return
+      else
+        previewers.buffer_previewer_maker(filepath, bufnr, opts)
+      end
+    end)
+  end
 
   telescope.setup({
     defaults = require("telescope.themes").get_dropdown({
@@ -44,6 +60,7 @@ local function loading()
       use_less = true,
       scroll_strategy = "cycle",
       set_env = { ["COLORTERM"] = "truecolor" },
+      buffer_previewer_maker = new_maker,
     }),
     pickers = {
       diagnostics = {
@@ -66,7 +83,7 @@ local function loading()
         -- the default case_mode is "smart_case"
       },
       file_browser = {
-        -- initial_mode = "normal",
+        initial_mode = "normal",
       },
       heading = {
         theme = "dropdown",
@@ -96,6 +113,7 @@ local function loading()
   pcall(le, "env")
   pcall(le, "termfinder")
   pcall(le, "luasnip")
+  pcall(le, "ghq")
 end
 
 local function keymap()
@@ -129,5 +147,4 @@ local function keymap()
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
-require("utils.plugin").force_load_on_event(plugin_name, keymap)
 require("utils.plugin").force_load_on_event(plugin_name, keymap)
