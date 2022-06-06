@@ -14,7 +14,10 @@ local function loading()
   keymap()
   require(plugin_name).setup({
     on_substitute = function(event)
-      require("yanky").init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
+      local s, y = require("utils.plugin").force_require("yanky")
+      if s then
+        y.init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
+      end
     end,
   })
 end
