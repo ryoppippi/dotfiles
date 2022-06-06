@@ -58,3 +58,15 @@ vim.opt.wildmode = { list = "longest" }
 
 vim.opt.errorbells = false
 vim.opt.visualbell = false
+
+-- vim.g["denops#debug"] = true
+
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+  callback = function()
+    local tb = require("utils").toboolean
+    if tb(vim.fn.executable("ugrep")) then
+      vim.opt.grepprg = "ugrep -RInk -j -u --tabs=1 --ignore-files"
+      vim.opt.grepformat = "%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m"
+    end
+  end,
+})
