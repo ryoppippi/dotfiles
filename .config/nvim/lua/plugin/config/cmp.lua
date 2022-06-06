@@ -1,8 +1,8 @@
 local plugin_name = "cmp"
 local utils_plug = require("utils.plugin")
 
--- local snippet_library = "vsnip"
-local snippet_library = "luasnip"
+local snippet_library = "vsnip"
+-- local snippet_library = "luasnip"
 if not utils_plug.is_exists(plugin_name) then
   return
 end
@@ -24,18 +24,6 @@ local function loading()
   local vsnip_jumpable = vim.fn["vsnip#jumpable"]
   local _, luasnip = pcall(require, "luasnip")
   local snl = snippet_library
-
-  for _, name in ipairs(utils_plug.names()) do
-    if string.find(name, "cmp") then
-      pcall(vim.cmd, string.format("packadd %s", name))
-      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
-      if vim.fn.isdirectory(after_plugin_path) then
-        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*{.lua,.vim}", 1, 1, 1)) do
-          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
-        end
-      end
-    end
-  end
 
   local setup_opt = {
     snippet = {
@@ -230,6 +218,19 @@ local function loading()
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
     cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+  end
+
+  -- Setup dependencies
+  for _, name in ipairs(utils_plug.names()) do
+    if string.find(name, "cmp") then
+      utils_plug.load(name)
+      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
+      if vim.fn.isdirectory(after_plugin_path) then
+        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*[.lua,.vim]", 1, 1, 1)) do
+          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
+        end
+      end
+    end
   end
 end
 
