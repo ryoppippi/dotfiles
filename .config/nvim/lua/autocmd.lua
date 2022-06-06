@@ -52,6 +52,6 @@ vim.api.nvim_exec(
   autocmd VimEnter,WinEnter,BufRead *
         \ call matchadd('ExtraWhitespace', "[\u2000-\u200B\u3000]")
 augroup END
-]] ,
+]],
   true
 )
