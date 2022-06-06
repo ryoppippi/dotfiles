@@ -6,6 +6,8 @@ local function init()
   vim.g.enable_ddc = false
   vim.g.enable_coc = false
   vim.g.enable_fern = false
+  vim.g.enabled_snippet = "vsnip"
+  -- vim.g.enabled_snippet = "luasnip"
 
   vim.g["jetpack#copy_method"] = "symlink"
   vim.g["jetpack#optimization"] = 1
@@ -108,8 +110,8 @@ local function load_plugin_list()
   Jetpack 'AndrewRadev/linediff.vim'
 
   Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
-  Jetpack 'gbprod/yanky.nvim', { 'on': 'VimEnter', 'as': 'yanky' }
-  " Jetpack 'hrsh7th/nvim-pasta', { 'on': 'VimEnter'}
+  " Jetpack 'gbprod/yanky.nvim', { 'on': 'VimEnter', 'as': 'yanky' }
+  Jetpack 'hrsh7th/nvim-pasta', { 'on': 'VimEnter'}
 
 
   Jetpack 'Rasukarusan/nvim-block-paste'
@@ -154,15 +156,17 @@ local function load_plugin_list()
   " telescope
     Jetpack 'nvim-lua/plenary.nvim'
     Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter' }
+    Jetpack 'nvim-telescope/telescope-ui-select.nvim'
     Jetpack 'nvim-telescope/telescope-file-browser.nvim'
     Jetpack 'nvim-telescope/telescope-frecency.nvim'
-      Jetpack 'tami5/sqlite.lua'
+    Jetpack 'tami5/sqlite.lua'
     Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Jetpack 'nvim-telescope/telescope-media-files.nvim'
+    Jetpack 'nvim-telescope/telescope-symbols.nvim'
+    Jetpack 'nvim-telescope/telescope-ghq.nvim'
     Jetpack 'LinArcX/telescope-env.nvim'
     Jetpack 'crispgm/telescope-heading.nvim'
     Jetpack 'LinArcX/telescope-changes.nvim'
-    Jetpack 'nvim-telescope/telescope-ui-select.nvim'
     Jetpack 'tknightz/telescope-termfinder.nvim'
     Jetpack 'benfowler/telescope-luasnip.nvim'
     Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
@@ -278,8 +282,11 @@ local function load_plugin_list()
       Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter', 'opt': v:true}
       " Jetpack 'zbirenbaum/copilot-cmp',{'opt': v:true}
     endif
-    " Jetpack 'hrsh7th/cmp-vsnip', {'opt': v:true}
-    Jetpack 'saadparwaiz1/cmp_luasnip', {'opt': v:true}
+    if g:enabled_snippet == "vsnip"
+      Jetpack 'hrsh7th/cmp-vsnip', {'opt': v:true}
+    elseif g:enabled_snippet == "luasnip"
+      Jetpack 'saadparwaiz1/cmp_luasnip', {'opt': v:true}
+    endif
   endif
 
   if g:enable_ddc
@@ -300,19 +307,23 @@ local function load_plugin_list()
     Jetpack 'Shougo/ddc-rg'
     Jetpack 'Shougo/ddc-cmdline'
     Jetpack 'Shougo/ddc-cmdline-history'
-    " Jetpack 'hrsh7th/vim-vsnip-integ'
     Jetpack 'Shougo/neco-vim'
     Jetpack 'matsui54/ddc-dictionary'
     Jetpack 'Shougo/ddc-omni'
     Jetpack 'gamoutatsumi/ddc-emoji'
     Jetpack 'delphinus/ddc-treesitter'
-    " Jetpack 'gelguy/wilder.nvim', { 'do': function('UpdateRemoteJetpackins'),'as': 'wilder' }
+    if g:enabled_snippet == "vsnip"
+      Jetpack 'hrsh7th/vim-vsnip-integ'
+    endif
   endif
 
   " snippets
   " library
-  " Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
-  Jetpack 'L3MON4D3/LuaSnip', { 'as': 'luasnip'}
+  if g:enabled_snippet == "vsnip"
+    Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
+  elseif g:enabled_snippet == "luasnip"
+    Jetpack 'L3MON4D3/LuaSnip', { 'as': 'luasnip'}
+  endif
 
   Jetpack 'rafamadriz/friendly-snippets'
   Jetpack 'honza/vim-snippets'
