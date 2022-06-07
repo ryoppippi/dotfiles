@@ -164,6 +164,7 @@ local function load_plugin_list()
     Jetpack 'nvim-telescope/telescope-media-files.nvim'
     Jetpack 'nvim-telescope/telescope-symbols.nvim'
     Jetpack 'nvim-telescope/telescope-ghq.nvim'
+    Jetpack 'nvim-telescope/telescope-github.nvim'
     Jetpack 'LinArcX/telescope-env.nvim'
     Jetpack 'crispgm/telescope-heading.nvim'
     Jetpack 'LinArcX/telescope-changes.nvim'
@@ -212,7 +213,6 @@ local function load_plugin_list()
     Jetpack 'max397574/colortils.nvim', {'as': 'colortils', 'on': 'VimEnter'}
 
   " language support
-  " Jetpack 'mattn/emmet-vim', { 'for': ['html', 'svelte', 'tsx', 'jsx'] }
   Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}
   Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
   Jetpack 'vigoux/architext.nvim'
@@ -267,16 +267,18 @@ local function load_plugin_list()
     Jetpack 'hrsh7th/cmp-nvim-lua',{'opt': v:true}
     Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help',{'opt': v:true}
     Jetpack 'hrsh7th/cmp-cmdline',{'opt': v:true}
+    Jetpack 'hrsh7th/cmp-calc',{'opt': v:true}
+    Jetpack 'hrsh7th/cmp-omni', {'opt': v:true}
+    Jetpack 'hrsh7th/cmp-emoji',{'opt': v:true}
     Jetpack 'lukas-reineke/cmp-rg',{'opt': v:true}
     Jetpack 'lukas-reineke/cmp-under-comparator', {'opt': v:true}
     Jetpack 'f3fora/cmp-spell', {'opt': v:true}
-    " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     Jetpack 'ray-x/cmp-treesitter',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-emoji',{'opt': v:true}
+    Jetpack 'yutkat/cmp-mocword',{'opt': v:true}
+    Jetpack 'petertriho/cmp-git',{'opt': v:true}
+    " Jetpack 'uga-rosa/cmp-dictionary',{'opt': v:true}
+    " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     " Jetpack 'octaltree/cmp-look',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-calc',{'opt': v:true}
-    Jetpack 'petertriho/cmp-git', {'as': 'cmp_git', 'opt': v:true}
-    Jetpack 'hrsh7th/cmp-omni', {'opt': v:true}
     if g:enable_copilot
       " Jetpack 'hrsh7th/cmp-copilot', {'opt': v:true}
       Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter', 'opt': v:true}
