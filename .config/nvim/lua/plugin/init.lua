@@ -47,6 +47,7 @@ local function load_plugin_list()
   Jetpack 'haya14busa/vim-asterisk', {'as': 'asterisk', 'on': '<Plug>(asterisk-' }
   Jetpack 'thinca/vim-quickrun'
   Jetpack 'thinca/vim-qfreplace'
+  Jetpack 'itchyny/vim-qfedit'
   Jetpack 'tyru/open-browser.vim'
   Jetpack 'tyru/open-browser-github.vim'
   Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
@@ -62,6 +63,8 @@ local function load_plugin_list()
   Jetpack 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
   Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
   Jetpack 'kana/vim-niceblock', { 'on': 'VimEnter'}
+
+  Jetpack 'mbbill/undotree', { 'on': 'VimEnter' }
 
   " Jetpack 'lambdalisue/mr.vim'
 
