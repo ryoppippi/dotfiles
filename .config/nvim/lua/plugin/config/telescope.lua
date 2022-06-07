@@ -30,7 +30,7 @@ local function loading()
           ["<ESC>"] = actions.close,
           ["q"] = actions.close,
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
-          ["<C-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
+          ["<C-s>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
         },
         i = {
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
@@ -101,19 +101,22 @@ local function loading()
       },
     },
   })
-  local le = telescope.load_extension
-  pcall(le, "fzf")
-  pcall(le, "file_browser")
-  pcall(le, "notify")
-  pcall(le, "media_files")
-  pcall(le, "ui-select")
-  pcall(le, "frecency")
-  pcall(le, "heading")
-  pcall(le, "changes")
-  pcall(le, "env")
-  pcall(le, "termfinder")
-  pcall(le, "luasnip")
-  pcall(le, "ghq")
+  local le = function(name)
+    pcall(telescope.load_extension, name)
+  end
+  le("fzf")
+  le("file_browser")
+  le("notify")
+  le("media_files")
+  le("ui-select")
+  le("frecency")
+  le("heading")
+  le("changes")
+  le("env")
+  le("termfinder")
+  le("luasnip")
+  le("ghq")
+  le("gh")
 end
 
 local function keymap()
