@@ -185,7 +185,6 @@ local plugin_list = {
   -- Heiglighting {{
   { "norcalli/nvim-colorizer.lua", as = "colorizer", on = "VimEnter" },
   { "folke/todo-comments.nvim", as = "todo-comments", on = "BufReadPost" },
-  { "mvllow/modes.nvim", as = "modes", on = "ModeChanged" },
   { "m-demare/hlargs.nvim" },
   { "RRethy/vim-illuminate", as = "illuminate" },
   -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
@@ -201,6 +200,8 @@ local plugin_list = {
 
   -- Other UI Components {{
   { "jeffkreeftmeijer/vim-numbertoggle" },
+  { "mvllow/modes.nvim", as = "modes", on = "ModeChanged" },
+  -- mini.indentscope
 
   -- { "sidebar-nvim/sidebar.nvim", as = "sidebar", on = "VimEnter" },
   { "petertriho/nvim-scrollbar", as = "scrollbar", on = "VimEnter" },
@@ -265,7 +266,7 @@ local plugin_list = {
 
   -- textobj
   { "kana/vim-textobj-user" },
-  { "osyo-manga/vim-textobj-blockwise" },
+  { "osyo-manga/vim-textobj-blockwise", on = "VimEnter" },
 
   -- edit and insert
   { "thinca/vim-partedit" },
