@@ -222,6 +222,8 @@ M.on_attach = function(client, bufnr)
   set_protocol(client, bufnr)
   set_formatting(client, bufnr)
   require("illuminate").on_attach(client)
+  require("aerial").setup({})
+  require("aerial").on_attach(client, bufnr)
 end
 
 M.capabilities = gen_capabilities()

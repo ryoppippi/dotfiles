@@ -1,7 +1,7 @@
 local tb = require("utils").toboolean
 
-vim.g.enabled_snippet = "vsnip"
--- vim.g.enabled_snippet = "luasnip"
+-- vim.g.enabled_snippet = "vsnip"
+vim.g.enabled_snippet = "luasnip"
 vim.g["jetpack#copy_method"] = "symlink"
 vim.g["jetpack#optimization"] = 1
 
@@ -170,6 +170,7 @@ local plugin_list = {
   -- UI
   { "haringsrob/nvim_context_vt" },
   { "romgrk/nvim-treesitter-context" },
+  { "stevearc/aerial.nvim", as = "aerial" },
   -- }}
 
   -- ColorScheme {{
@@ -458,7 +459,7 @@ local plugin_list = {
   { "cstrap/python-snippets" },
   -- web
   { "fivethree-team/vscode-svelte-snippets" },
-  { "stordahl/sveltekit-snippets" },
+  -- { "stordahl/sveltekit-snippets" },
   { "xabikos/vscode-javascript" },
   -- }}
   -- }}
@@ -490,7 +491,7 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim", as = "taskrun", on = "VimEnter" },
-  { "michaelb/sniprun", run = "bash ./install.sh", on = "CmdlineEnter" },
+  -- { "michaelb/sniprun", run = "bash ./install.sh", on = "CmdlineEnter" },
   -- }}
 
   -- Neovim
