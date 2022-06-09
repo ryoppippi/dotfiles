@@ -9,6 +9,21 @@ local snippet_library = "vsnip"
 
 vim.o.completeopt = "menuone,noinsert,noselect"
 
+local function setup_dependencies()
+  -- Setup dependencies
+  for _, name in ipairs(utils_plug.names()) do
+    if string.find(name, "cmp") then
+      utils_plug.load(name)
+      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
+      if vim.fn.isdirectory(after_plugin_path) then
+        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*[.lua,.vim]", 1, 1, 1)) do
+          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
+        end
+      end
+    end
+  end
+end
+
 local function loading()
   local utils = require("utils")
   local force_require = require("utils.plugin").force_require
@@ -16,29 +31,17 @@ local function loading()
   local types = require("cmp.types")
   local t = utils.t
   local tb = utils.toboolean
-  local vsnip_jumpable = vim.fn["vsnip#jumpable"]
-  local _, luasnip = pcall(require, "luasnip")
+  local _, luasnip = force_require("luasnip")
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
-  local is_emmet_active = function()
-    local clients = vim.lsp.buf_get_clients()
-
-    for _, client in pairs(clients) do
-      if client.name == "emmet_ls" then
-        return true
-      end
-    end
-    return false
-  end
-
   local snippet_jumpable = function(dir)
     if snippet_library == "vsnip" then
-      return tb(vsnip_jumpable(dir))
-    elseif snippet_library == "luasnip" then
+      return tb(vim.fn["vsnip#jumpable"](dir))
+    elseif snippet_library == "luasnip" and luasnip ~= nil then
       return tb(luasnip.jumpable(dir))
     end
     return false
@@ -51,10 +54,12 @@ local function loading()
       elseif dir == -1 then
         vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
       end
-    elseif snippet_library == "luasnip" then
+    elseif snippet_library == "luasnip" and luasnip ~= nil then
       luasnip.jump(dir)
     end
   end
+
+  setup_dependencies()
 
   local setup_opt = {
     snippet = {
@@ -62,7 +67,7 @@ local function loading()
       expand = function(args)
         if snippet_library == "vsnip" then
           vim.fn["vsnip#anonymous"](args.body)
-        elseif snippet_library == "luasnip" then
+        elseif snippet_library == "luasnip" and luasnip ~= nil then
           luasnip.lsp_expand(args.body)
         end
       end,
@@ -180,7 +185,7 @@ local function loading()
     },
   }
 
-  local status_lspkind, lspkind = pcall(require, "lspkind")
+  local status_lspkind, lspkind = force_require("lspkind")
   if status_lspkind then
     setup_opt.formatting = {
       format = lspkind.cmp_format({
@@ -276,7 +281,7 @@ local function loading()
   end
 
   -- Setup git
-  local status_git, _ = force_require("cmp-git")
+  local status_git, _ = force_require("cmp_git")
   if status_git then
     require("cmp_git").setup()
   end
@@ -287,19 +292,6 @@ local function loading()
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
     cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
-  end
-
-  -- Setup dependencies
-  for _, name in ipairs(utils_plug.names()) do
-    if string.find(name, "cmp") then
-      utils_plug.load(name)
-      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
-      if vim.fn.isdirectory(after_plugin_path) then
-        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*[.lua,.vim]", 1, 1, 1)) do
-          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
-        end
-      end
-    end
   end
 end
 

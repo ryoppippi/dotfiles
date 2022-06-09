@@ -1,17 +1,9 @@
 local tb = require("utils").toboolean
-local function init()
-  vim.g.enable_copilot = true
-  vim.g.enable_nvim_lsp = true
-  vim.g.enable_cmp = true
-  vim.g.enable_ddc = false
-  vim.g.enable_coc = false
-  vim.g.enable_fern = false
-  vim.g.enabled_snippet = "vsnip"
-  -- vim.g.enabled_snippet = "luasnip"
 
-  vim.g["jetpack#copy_method"] = "symlink"
-  vim.g["jetpack#optimization"] = 1
-end
+vim.g.enabled_snippet = "vsnip"
+-- vim.g.enabled_snippet = "luasnip"
+vim.g["jetpack#copy_method"] = "symlink"
+vim.g["jetpack#optimization"] = 1
 
 local function ensure_jetpack()
   local status, _ = pcall(vim.cmd, "packadd vim-jetpack")
@@ -20,7 +12,7 @@ local function ensure_jetpack()
       [[
         let dir = expand(stdpath('data') ..'/site/pack/jetpack/src/vim-jetpack')
         if !isdirectory(dir)
-          autocmd VimEnter * JetpackSync | source $MYVIMRC
+          autocmd VimEnter * Sync | source $MYVIMRC
           let url = 'https://github.com/tani/vim-jetpack'
           silent execute printf('!git clone --depth 1 %s %s', url, dir)
         endif
@@ -32,353 +24,22 @@ local function ensure_jetpack()
   end
 end
 
-local function load_plugin_list()
-  ensure_jetpack()
-  vim.fn["jetpack#begin"]()
-  vim.api.nvim_exec(
-    [[
-  " essential
-  Jetpack 'tani/vim-jetpack', { 'opt': 1 }
-  Jetpack 'lewis6991/impatient.nvim', { 'as': 'impatient', 'opt': 1}
-  Jetpack 'vim-denops/denops.vim'
-  Jetpack 'tpope/vim-repeat'
-
-  Jetpack 'spywhere/detect-language.nvim', {'as': 'detect-language', 'on': 'VimEnter' }
-  Jetpack 'haya14busa/vim-asterisk', {'as': 'asterisk', 'on': '<Plug>(asterisk-' }
-  Jetpack 'thinca/vim-quickrun'
-  Jetpack 'thinca/vim-qfreplace'
-  Jetpack 'itchyny/vim-qfedit'
-  Jetpack 'tyru/open-browser.vim'
-  Jetpack 'tyru/open-browser-github.vim'
-  Jetpack '4513ECHO/vim-readme-viewer', { 'on': 'JetpackReadme'}
-
-  " Jetpack 'monaqa/dial.nvim',{'on':'VimEnter', 'as':'dial'}
-  Jetpack 'monaqa/dps-dial.vim',{'on': 'VimEnter', 'as':'dps-dial'}
-  Jetpack 'deris/vim-rengbang', {'on':'VimEnter'}
-  " Jetpack 'mopp/vim-operator-convert-case'
-  Jetpack 'AckslD/nvim-trevJ.lua', {'as':'trevj', 'on':'VimEnter'}
-  Jetpack 'folke/which-key.nvim',{'on':'VimEnter','as':'which-key'}
-  Jetpack 'thinca/vim-ref',{'on':'VimEnter'}
-  Jetpack 'echasnovski/mini.nvim', { 'branch': 'stable', 'as': 'mini' }
-  Jetpack 'terryma/vim-expand-region',  { 'on': '<Plug>(expand_region_' }
-  Jetpack 'bennypowers/nvim-regexplainer' , { 'on': 'VimEnter' ,'as':'regexplainer' }
-  Jetpack 'kana/vim-niceblock', { 'on': 'VimEnter'}
-
-  Jetpack 'mbbill/undotree', { 'on': 'VimEnter' }
-
-  " Jetpack 'lambdalisue/mr.vim'
-
-  " Jetpack 'rhysd/clever-f.vim', {'as': 'clever-f', 'on': 'VimEnter'}
-  Jetpack 'terryma/vim-multiple-cursors', {'on': 'VimEnter' }
-  Jetpack 'deton/jasegment.vim', {'as': 'jasegment', 'on': 'VimEnter'}
-
-  Jetpack 'pianocomposer321/yabs.nvim'
-  Jetpack 'skywind3000/asyncrun.vim', {'on': 'VimEnter'}
-
-  Jetpack 'segeljakt/vim-silicon', {'on': 'VimEnter'}
-
-  Jetpack 'gabrielpoca/replacer.nvim'
-
-  Jetpack 'tyru/capture.vim'
-  Jetpack 'sQVe/sort.nvim', { 'as': 'sort'}
-
-  Jetpack 'zdcthomas/medit'
-
-  Jetpack 'thinca/vim-partedit'
-
-  Jetpack 'yutkat/wb-only-current-line.nvim', {'on': 'VimEnter'}
-
-  Jetpack 'mattn/vim-sonictemplate'
-
-  Jetpack 'tversteeg/registers.nvim', { 'branch': 'main' }
-
-  Jetpack 'Pocco81/AutoSave.nvim', { 'on': 'VimEnter', 'as': 'autosave' }
-
-  " text objects
-  " Jetpack 'phaazon/hop.nvim', { 'on': 'VimEnter', 'as':'hop'}
-  " Jetpack 'bkad/CamelCaseMotion'
-  Jetpack 'unblevable/quick-scope'
-  Jetpack 'hrsh7th/vim-searchx', { 'as': 'searchx'}
-  Jetpack 'kevinhwang91/nvim-hlslens', {'as': 'hlslens'}
-  Jetpack 'machakann/vim-sandwich', {'on': 'VimEnter'}
-  Jetpack 'machakann/vim-swap', {'on': 'VimEnter'}
-  " Jetpack 'osyo-manga/vim-textobj-blockwise'
-  " Jetpack 'cohama/lexima.vim', { 'as': 'lexima' }
-  Jetpack 'windwp/nvim-autopairs',
-  Jetpack 'chen244/csv-tools.lua', { 'as': 'csvtools' }
-  Jetpack 'yuki-yano/deindent-yank.vim'
-  Jetpack 'numToStr/Comment.nvim', { 'as' : 'Comment' }
-  Jetpack 'LudoPinelli/comment-box.nvim'
-
-  Jetpack 'AndrewRadev/linediff.vim'
-
-  Jetpack 'gbprod/substitute.nvim', { 'on': 'VimEnter', 'as': 'substitute' }
-  " Jetpack 'gbprod/yanky.nvim', { 'on': 'VimEnter', 'as': 'yanky' }
-  Jetpack 'hrsh7th/nvim-pasta', { 'on': 'VimEnter'}
-
-
-  Jetpack 'Rasukarusan/nvim-block-paste'
-
-  " Jetpack 'rmagatti/auto-session'
-  " Jetpack 'rbtnn/vim-ambiwidth'
-
-  Jetpack 'wsdjeg/vim-fetch'
-
-  Jetpack 'akinsho/toggleterm.nvim', {'as': 'toggleterm', 'on': 'VimEnter'}
-  Jetpack 'stevearc/stickybuf.nvim', {'as': 'stickybuf', 'on': 'VimEnter'}
-
-  Jetpack 'lambdalisue/readablefold.vim'
-
-  Jetpack 'skanehira/denops-docker.vim', {'on': 'VimEnter'}
-  Jetpack 'skanehira/denops-gh.vim', {'on': 'VimEnter'}
-
-  Jetpack 'zsugabubus/crazy8.nvim'
-  Jetpack 'lfilho/cosco.vim', {'on': 'VimEnter'}
-
-
-  " file explorer
-    if g:enable_fern
-      Jetpack 'lambdalisue/fern.vim', { 'as': 'fern'}
-      Jetpack 'lambdalisue/fern-git-status.vim'
-      Jetpack 'lambdalisue/nerdfont.vim'
-      Jetpack 'lambdalisue/fern-renderer-nerdfont.vim'
-      Jetpack 'lambdalisue/glyph-palette.vim'
-      Jetpack 'lambdalisue/fern-hijack.vim'
-      Jetpack 'yuki-yano/fern-preview.vim'
-      " Jetpack 'LumaKernel/fern-mapping-fzf.vim'
-    endif
-    Jetpack 'MunifTanjim/nui.nvim'
-    Jetpack 'nvim-neo-tree/neo-tree.nvim', { 'as': 'neo-tree', 'branch': 'v2.x', 'on': 'VimEnter'}
-    " Jetpack 'obaland/vfiler.vim', { 'on': 'VimEnter', 'as': 'vfiler' }
-    " Jetpack 'obaland/vfiler-column-devicons', { 'on': 'VimEnter'}
-    Jetpack 'antoinemadec/FixCursorHold.nvim'
-    Jetpack 'jghauser/mkdir.nvim'
-    Jetpack 'wsdjeg/vim-fetch'
-    Jetpack 'kevinhwang91/nvim-bqf'
-
-  " telescope
-    Jetpack 'nvim-lua/plenary.nvim'
-    Jetpack 'nvim-telescope/telescope.nvim', { 'as': 'telescope', 'on': 'VimEnter' }
-    Jetpack 'nvim-telescope/telescope-ui-select.nvim'
-    Jetpack 'nvim-telescope/telescope-file-browser.nvim'
-    Jetpack 'nvim-telescope/telescope-frecency.nvim'
-    Jetpack 'tami5/sqlite.lua'
-    Jetpack 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-    Jetpack 'nvim-telescope/telescope-media-files.nvim'
-    Jetpack 'nvim-telescope/telescope-symbols.nvim'
-    Jetpack 'nvim-telescope/telescope-ghq.nvim'
-    Jetpack 'nvim-telescope/telescope-github.nvim'
-    Jetpack 'LinArcX/telescope-env.nvim'
-    Jetpack 'crispgm/telescope-heading.nvim'
-    Jetpack 'LinArcX/telescope-changes.nvim'
-    Jetpack 'tknightz/telescope-termfinder.nvim'
-    Jetpack 'benfowler/telescope-luasnip.nvim'
-    Jetpack 'folke/todo-comments.nvim', {'as':'todo-comments', 'on':'BufReadPost'}
-
-  " git
-    Jetpack 'lewis6991/gitsigns.nvim',{ 'on': 'VimEnter', 'as': 'gitsigns'}
-    Jetpack 'rhysd/git-messenger.vim'
-    Jetpack 'akinsho/git-conflict.nvim',{ 'on': 'VimEnter', 'as': 'git-conflict'}
-    Jetpack 'sindrets/diffview.nvim', { 'on': 'VimEnter', 'as': 'diffview' }
-    Jetpack 'pwntester/octo.nvim', { 'on': 'VimEnter', 'as': 'octo' }
-    " Jetpack 'tanvirtin/vgit.nvim', { 'on': 'VimEnter', 'as': 'vgit' }
-    Jetpack 'TimUntersberger/neogit', { 'on': 'Neogit', 'as': 'neogit' }
-    Jetpack 'lambdalisue/gin.vim', { 'on': 'VimEnter', 'as': 'gin' }
-    Jetpack 'hotwatermorning/auto-git-diff', { 'on': 'VimEnter' }
-
-  if  g:enable_copilot
-    Jetpack 'github/copilot.vim', { 'on': [ 'CursorHold', 'InsertEnter']}
-    " Jetpack  'zbirenbaum/copilot.lua'
-  endif
-
-
-  " visualize
-    Jetpack 'rcarriga/nvim-notify', {'as': 'notify', 'on': 'VimEnter'}
-    " Jetpack 'jeffkreeftmeijer/vim-numbertoggle'
-    Jetpack 'kyazdani42/nvim-web-devicons'
-    Jetpack 'hoob3rt/lualine.nvim', { 'as': 'lualine', 'on': 'VimEnter' }
-    " Jetpack 'feline-nvim/feline.nvim', { 'on': 'VimEnter', 'as': 'feline' }
-    " Jetpack 'petertriho/nvim-scrollbar',{ 'on': 'VimEnter', 'as': 'scrollbar'}
-    Jetpack 'chentoast/marks.nvim', { 'on': 'VimEnter', 'as': 'marks'}
-    Jetpack 'norcalli/nvim-colorizer.lua', { 'on': 'VimEnter', 'as': 'colorizer'}
-    Jetpack 'mvllow/modes.nvim', { 'on': 'ModeChanged', 'as': 'modes'}
-    Jetpack 'simeji/winresizer', {'on': 'VimEnter'}
-    Jetpack 'tkmpypy/chowcho.nvim', { 'on': 'VimEnter', 'as': 'chowcho' }
-    Jetpack 'rainbowhxch/beacon.nvim', { 'on': 'VimEnter', 'as': 'beacon' }
-
-    Jetpack 'ulwlu/elly.vim'
-    Jetpack 'navarasu/onedark.nvim', { 'as': 'onedark'}
-    Jetpack 'ray-x/starry.nvim', {'as': 'starry'}
-    Jetpack 'rebelot/kanagawa.nvim', {'as': 'kanagawa'}
-    " Jetpack 'marko-cerovac/material.nvim'
-    Jetpack 'sainnhe/gruvbox-material', {'opt': v:true}
-    " Jetpack 'tribela/vim-transparent'
-    Jetpack 'max397574/colortils.nvim', {'as': 'colortils', 'on': 'VimEnter'}
-
-  " language support
-  Jetpack 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}
-  Jetpack 'nvim-treesitter/nvim-treesitter-textobjects'
-  Jetpack 'vigoux/architext.nvim'
-  Jetpack 'RRethy/nvim-treesitter-textsubjects'
-  Jetpack 'nvim-treesitter/playground'
-  " Jetpack 'nvim-treesitter/nvim-treesitter-refactor'
-  Jetpack 'mfussenegger/nvim-ts-hint-textobject'
-  Jetpack 'David-Kunz/treesitter-unit'
-  Jetpack 'JoosepAlviste/nvim-ts-context-commentstring'
-  Jetpack 'SmiteshP/nvim-gps'
-  Jetpack 'romgrk/nvim-treesitter-context'
-  Jetpack 'haringsrob/nvim_context_vt'
-  Jetpack 'windwp/nvim-ts-autotag'
-  Jetpack 'andymass/vim-matchup'
-  Jetpack 'nvim-treesitter/nvim-tree-docs'
-  Jetpack 'm-demare/hlargs.nvim'
-  Jetpack 'p00f/nvim-ts-rainbow'
-  Jetpack 'mizlan/iswap.nvim', { 'on': ['ISwap', 'ISwapWith'], 'as': 'iswap' }
-  Jetpack 'yioneko/nvim-yati', {'on': 'VimEnter', 'as': 'yati'}
-  " Jetpack 'arthurxavierx/vim-caser'
-  Jetpack 'danymat/neogen', {'on': 'VimEnter'}
-  " Jetpack 'shurizzle/inlay-hints.nvim', {'on': 'VimEnter', 'as': 'inlay-hints'}
-
-  if g:enable_coc
-    Jetpack 'neoclide/coc.nvim', {'branch': 'release', 'as': 'coc'}
-    Jetpack 'honza/vim-snippets'
-    Jetpack 'gelguy/wilder.nvim', { 'do': function('UpdateRemoteJetpackins'), 'as': 'wilder' }
-  endif
-
-  if g:enable_nvim_lsp
-    Jetpack 'neovim/nvim-lspconfig', { 'as': 'lspconfig', 'opt': v:true }
-    Jetpack 'lukas-reineke/lsp-format.nvim', { 'as': 'lsp-format' }
-    Jetpack 'williamboman/nvim-lsp-installer', { 'opt': v:true }
-    Jetpack 'jose-elias-alvarez/null-ls.nvim', {'as': 'null-ls', 'on': 'VimEnter'}
-    Jetpack 'onsails/lspkind.nvim' , { 'as': 'lspkind' }
-    Jetpack 'folke/lsp-colors.nvim', { 'as': 'lsp-colors'}
-    Jetpack 'RRethy/vim-illuminate', { 'as': 'illuminate' }
-    Jetpack 'j-hui/fidget.nvim', {'as': 'fidget', 'on': 'VimEnter'}
-    Jetpack 'kevinhwang91/nvim-hclipboard', {'on': 'VimEnter', 'as': 'hclipboard'}
-    " Jetpack 'tami5/lspsaga.nvim', {'on': 'VimEnter', 'as': 'lspsaga' }
-    " Jetpack 'HallerPatrick/py_lsp.nvim'
-    " Jetpack 'ray-x/lsp_signature.nvim'
-  endif
-
-  if g:enable_cmp
-    " cmp
-    Jetpack 'hrsh7th/nvim-cmp', {'as': 'cmp', 'on': 'VimEnter'}
-    Jetpack 'hrsh7th/cmp-buffer', {'opt': v:true }
-    Jetpack 'hrsh7th/cmp-path', {'opt': v:true }
-    Jetpack 'hrsh7th/cmp-nvim-lsp', { 'as': 'cmp_nvim_lsp', 'opt': v:true }
-    Jetpack 'hrsh7th/cmp-nvim-lsp-document-symbol',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-nvim-lua',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-nvim-lsp-signature-help',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-cmdline',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-calc',{'opt': v:true}
-    Jetpack 'hrsh7th/cmp-omni', {'opt': v:true}
-    Jetpack 'hrsh7th/cmp-emoji',{'opt': v:true}
-    Jetpack 'lukas-reineke/cmp-rg',{'opt': v:true}
-    Jetpack 'lukas-reineke/cmp-under-comparator', {'opt': v:true}
-    Jetpack 'f3fora/cmp-spell', {'opt': v:true}
-    Jetpack 'ray-x/cmp-treesitter',{'opt': v:true}
-    Jetpack 'yutkat/cmp-mocword',{'opt': v:true}
-    Jetpack 'petertriho/cmp-git',{'opt': v:true}
-    " Jetpack 'uga-rosa/cmp-dictionary',{'opt': v:true}
-    " Jetpack 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-    " Jetpack 'octaltree/cmp-look',{'opt': v:true}
-    if g:enable_copilot
-      " Jetpack 'hrsh7th/cmp-copilot', {'opt': v:true}
-      Jetpack 'ryoppippi/cmp-copilot', {'branch': 'dev/add-copilot-loaded-detecter', 'opt': v:true}
-      " Jetpack 'zbirenbaum/copilot-cmp',{'opt': v:true}
-    endif
-    if g:enabled_snippet == "vsnip"
-      Jetpack 'hrsh7th/cmp-vsnip', {'opt': v:true}
-    elseif g:enabled_snippet == "luasnip"
-      Jetpack 'saadparwaiz1/cmp_luasnip', {'opt': v:true}
-    endif
-  endif
-
-  if g:enable_ddc
-    Jetpack 'Shougo/ddc.vim', {'as': 'ddc'}
-    Jetpack 'vim-denops/denops.vim'
-    Jetpack 'Shougo/pum.vim'
-    Jetpack 'Shougo/ddc-around'
-    Jetpack 'Shougo/ddc-nvim-lsp'
-    Jetpack 'Shougo/ddc-matcher_head'
-    Jetpack 'Shougo/ddc-sorter_rank'
-    Jetpack 'tani/ddc-fuzzy'
-    Jetpack 'matsui54/ddc-converter_truncate'
-    Jetpack 'Shougo/ddc-converter_remove_overlap'
-    Jetpack 'matsui54/denops-popup-preview.vim'
-    " Jetpack 'matsui54/denops-signature_help'
-    " Jetpack 'LumaKernel/ddc-tabnine'
-    Jetpack 'LumaKernel/ddc-file'
-    Jetpack 'Shougo/ddc-rg'
-    Jetpack 'Shougo/ddc-cmdline'
-    Jetpack 'Shougo/ddc-cmdline-history'
-    Jetpack 'Shougo/neco-vim'
-    Jetpack 'matsui54/ddc-dictionary'
-    Jetpack 'Shougo/ddc-omni'
-    Jetpack 'gamoutatsumi/ddc-emoji'
-    Jetpack 'delphinus/ddc-treesitter'
-    if g:enabled_snippet == "vsnip"
-      Jetpack 'hrsh7th/vim-vsnip-integ'
-    endif
-  endif
-
-  " snippets
-  " library
-  if g:enabled_snippet == "vsnip"
-    Jetpack 'hrsh7th/vim-vsnip', { 'on': 'VimEnter'}
-  elseif g:enabled_snippet == "luasnip"
-    Jetpack 'L3MON4D3/LuaSnip', { 'as': 'luasnip'}
-  endif
-
-  Jetpack 'rafamadriz/friendly-snippets'
-  Jetpack 'honza/vim-snippets'
-  " Jetpack 'smjonas/snippet-converter.nvim'
-
-  Jetpack 'wadackel/nvim-syntax-info', { 'on': 'VimEnter' }
-  " web
-  Jetpack 'fivethree-team/vscode-svelte-snippets'
-  Jetpack 'stordahl/sveltekit-snippets'
-  Jetpack 'xabikos/vscode-javascript'
-  Jetpack 'craigmac/vim-vsnip-snippets'
-  " go
-  Jetpack 'golang/vscode-go'
-  " python
-  Jetpack 'cstrap/flask-snippets'
-  Jetpack 'cstrap/python-snippets'
-
-  " js
-  Jetpack 'vuki656/package-info.nvim', { 'on': 'PackageInfo', 'as': 'package-info' }
-
-  " markdown
-  Jetpack 'previm/previm'
-  Jetpack 'dhruvasagar/vim-table-mode', {'on': 'VimEnter'}
-
-  " sql
-  Jetpack 'jsborjesson/vim-uppercase-sql'
-
-  " lua
-  Jetpack 'milisims/nvim-luaref'
-
-  " log
-  Jetpack 'mtdl9/vim-log-highlighting'
-
-  "debug
-  Jetpack 'sentriz/vim-print-debug'
-
-  Jetpack 'hkupty/iron.nvim', { 'as': 'iron', 'on': 'VimEnter'}
-
-  Jetpack 'ryoppippi/bad-apple.vim', {'branch':'main'}
-  ]],
-    false
-  )
-  vim.fn["jetpack#end"]()
+local function load_plugins(plugin_list)
+  require("jetpack").startup(function(use)
+    for _, plugin in ipairs(plugin_list) do
+      local enabled = plugin.enabled
+      if enabled ~= false then
+        use(plugin)
+      end
+    end
+  end)
 end
 
 local function check_installed()
   for _, name in ipairs(vim.fn["jetpack#names"]()) do
     if not tb(vim.fn["jetpack#tap"](name)) then
       vim.fn["jetpack#sync"]()
-      vim.api.nvim_exec([[source $MYVIMRC]])
+      vim.cmd("source $MYVIMRC")
       break
     end
   end
@@ -390,12 +51,463 @@ local function load_lua_configs()
   end
 end
 
+local plugin_list = {
+  -- Plugin management {{
+  { "tani/vim-jetpack", opt = 1 },
+  { "lewis6991/impatient.nvim", as = "impatient", opt = 1 },
+  { "4513ECHO/vim-readme-viewer", on = "VimEnter" },
+  -- }}
+
+  -- Essential libraries {{
+  { "nvim-lua/plenary.nvim" },
+  { "tami5/sqlite.lua" },
+  { "tpope/vim-repeat" },
+  { "antoinemadec/FixCursorHold.nvim" },
+  { "MunifTanjim/nui.nvim" }, -- UI Framework
+  { "kyazdani42/nvim-web-devicons" },
+  { "nvim-lua/popup.nvim" },
+  { "vim-denops/denops.vim" },
+  { "rcarriga/nvim-notify", as = "notify", on = "VimEnter" },
+  { "echasnovski/mini.nvim", branch = "stable", as = "mini" },
+  -- }}
+
+  -- Nvim-LSP {{
+  { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
+  { "williamboman/nvim-lsp-installer", opt = true },
+  { "jose-elias-alvarez/null-ls.nvim", as = "null-ls", on = "VimEnter" },
+  -- { "tamago324/nlsp-settings.nvim" },
+  -- { "weilbith/nvim-lsp-smag" },
+  { "lukas-reineke/lsp-format.nvim", as = "lsp-format" },
+
+  -- UI
+  { "onsails/lspkind.nvim", as = "lspkind" },
+  { "folke/lsp-colors.nvim", as = "lsp-colors" },
+  { "j-hui/fidget.nvim", as = "fidget", on = "VimEnter" },
+  -- { "tami5/lspsaga.nvim", as = "lspsaga", on = "VimEnter" },
+  -- { "folke/trouble.nvim", as = "trouble", on = "VimEnter" },
+  -- { "EthanJWright/toolwindow.nvim", as = "toolwindow", on = "VimEnter" },
+  -- { "ray-x/lsp_signature.nvim" },
+  -- }}
+
+  -- specific language support
+  -- { "HallerPatrick/py_lsp.nvim" },
+  -- { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
+
+  -- }}
+
+  -- Nvim-cmp {{
+  { "hrsh7th/nvim-cmp", as = "cmp", on = "VimEnter" },
+  { "hrsh7th/cmp-nvim-lsp", as = "cmp_nvim_lsp", opt = true },
+  { "hrsh7th/cmp-nvim-lsp-document-symbol", opt = true },
+  { "hrsh7th/cmp-nvim-lua", opt = true },
+  { "hrsh7th/cmp-nvim-lsp-signature-help", opt = true },
+  { "hrsh7th/cmp-buffer", opt = true },
+  { "hrsh7th/cmp-path", opt = true },
+  { "hrsh7th/cmp-cmdline", opt = true },
+  { "hrsh7th/cmp-calc", opt = true },
+  { "hrsh7th/cmp-omni", opt = true },
+  { "hrsh7th/cmp-emoji", opt = true },
+  { "lukas-reineke/cmp-rg", opt = true },
+  { "lukas-reineke/cmp-under-comparator", opt = true },
+  { "f3fora/cmp-spell", opt = true },
+  { "ray-x/cmp-treesitter", opt = true },
+  { "yutkat/cmp-mocword", opt = true },
+  { "petertriho/cmp-git", as = "cmp_git", opt = true },
+  -- { "uga-rosa/cmp-dictionary", opt = true },
+  -- { "tzachar/cmp-tabnine", run = "./install.sh" },
+  -- { "octaltree/cmp-look", opt = true },
+  -- { "hrsh7th/cmp-copilot", opt = true },
+  { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
+  { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
+  { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
+  -- }}
+
+  -- ddc {{
+  -- { "Shougo/ddc.vim",  as = "ddc"  },
+  -- { "vim-denops/denops.vim" },
+  -- { "Shougo/pum.vim" },
+  -- { "Shougo/ddc-around" },
+  -- { "Shougo/ddc-nvim-lsp" },
+  -- { "Shougo/ddc-matcher_head" },
+  -- { "Shougo/ddc-sorter_rank" },
+  -- { "Shougo/ddc-converter_remove_overlap" },
+  -- { "Shougo/ddc-rg" },
+  -- { "Shougo/ddc-cmdline" },
+  -- { "Shougo/ddc-cmdline-history" },
+  -- { "Shougo/neco-vim" },
+  -- { "tani/ddc-fuzzy" },
+  -- { "matsui54/ddc-converter_truncate" },
+  -- { "matsui54/denops-popup-preview.vim" },
+  -- { "matsui54/denops-signature_help" },
+  -- { "LumaKernel/ddc-tabnine" },
+  -- { "LumaKernel/ddc-file" },
+  -- { "matsui54/ddc-dictionary" },
+  -- { "Shougo/ddc-omni" },
+  -- { "gamoutatsumi/ddc-emoji" },
+  -- { "delphinus/ddc-treesitter" },
+  -- { "hrsh7th/vim-vsnip-integ" },
+  -- }}
+
+  -- AI {{
+  { "github/copilot.vim", on = { "CursorHold", "InsertEnter" } },
+  -- }}
+
+  -- Nvim-treesitter {{
+  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  { "nvim-treesitter/playground" },
+  { "nvim-treesitter/nvim-tree-docs" },
+  { "nvim-treesitter/nvim-treesitter-refactor" },
+  { "yioneko/nvim-yati", as = "yati", on = "VimEnter" },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
+  { "vigoux/architext.nvim" },
+
+  -- textobj
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "RRethy/nvim-treesitter-textsubjects" },
+  { "David-Kunz/treesitter-unit" },
+  -- { "mfussenegger/nvim-treehopper" },
+
+  -- UI
+  { "haringsrob/nvim_context_vt" },
+  { "romgrk/nvim-treesitter-context" },
+  -- }}
+
+  -- ColorScheme {{
+  { "ulwlu/elly.vim" },
+  { "navarasu/onedark.nvim", as = "onedark" },
+  { "ray-x/starry.nvim", as = "starry" },
+  { "rebelot/kanagawa.nvim", as = "kanagawa" },
+  { "sainnhe/gruvbox-material", opt = true },
+  -- { "marko-cerovac/material.nvim" },
+  -- { "tribela/vim-transparent" },
+  -- }}
+
+  -- Heiglighting {{
+  { "norcalli/nvim-colorizer.lua", as = "colorizer", on = "VimEnter" },
+  { "folke/todo-comments.nvim", as = "todo-comments", on = "BufReadPost" },
+  { "mvllow/modes.nvim", as = "modes", on = "ModeChanged" },
+  { "m-demare/hlargs.nvim" },
+  { "RRethy/vim-illuminate", as = "illuminate" },
+  -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
+  -- { "Pocco81/HighStr.nvim" }, -- highlight strings
+  { "p00f/nvim-ts-rainbow" },
+  -- }}
+
+  -- StatusLine {{
+  { "hoob3rt/lualine.nvim", as = "lualine", on = "VimEnter" },
+  { "SmiteshP/nvim-gps" },
+  -- { "feline-nvim/feline.nvim", on = "VimEnter", as = "feline" },
+  -- }}
+
+  -- Other UI Components {{
+  { "jeffkreeftmeijer/vim-numbertoggle" },
+
+  -- { "sidebar-nvim/sidebar.nvim", as = "sidebar", on = "VimEnter" },
+  { "petertriho/nvim-scrollbar", as = "scrollbar", on = "VimEnter" },
+  { "rainbowhxch/beacon.nvim", as = "beacon", on = "VimEnter" },
+  -- }}
+
+  -- Moving Cursor {{
+  { "unblevable/quick-scope" },
+  -- mini.jump
+  -- mini.jump2d
+  -- { "phaazon/hop.nvim", on = "VimEnter", as = "hop" },
+  -- { "rhysd/clever-f.vim", { as = "clever-f", on = "VimEnter" } },
+  { "yutkat/wb-only-current-line.nvim", on = "VimEnter" },
+  { "deton/jasegment.vim", as = "jasegment", on = "VimEnter" }, -- Japanese word moving
+  -- { "bkad/CamelCaseMotion" },
+  -- }}
+
+  -- File Management {{
+
+  -- filer {{
+  -- neo-tree
+  { "nvim-neo-tree/neo-tree.nvim", as = "neo-tree", branch = "v2.x", on = "VimEnter" },
+
+  -- fern {{
+  -- { "lambdalisue/fern.vim", as = "fern" },
+  -- { "lambdalisue/fern-git-status.vim" },
+  -- { "lambdalisue/nerdfont.vim" },
+  -- { "lambdalisue/fern-renderer-nerdfont.vim" },
+  -- { "lambdalisue/glyph-palette.vim" },
+  -- { "lambdalisue/fern-hijack.vim" },
+  -- { "yuki-yano/fern-preview.vim" },
+  -- { "LumaKernel/fern-mapping-fzf.vim" },
+  -- }}
+
+  -- vfiler {{
+  -- { "obaland/vfiler.vim", on = "VimEnter", as = "vfiler" },
+  -- { "obaland/vfiler-column-devicons", on = "VimEnter" },
+  -- }}
+
+  -- }}
+
+  -- window
+  { "tkmpypy/chowcho.nvim", as = "chowcho", on = "VimEnter" },
+  { "kwkarlwang/bufresize.nvim", as = "bufresize", on = "VimEnter" },
+  { "simeji/winresizer", on = "VimEnter" },
+
+  -- buffer
+  { "wsdjeg/vim-fetch" },
+  { "stevearc/stickybuf.nvim", as = "stickybuf", on = "VimEnter" },
+
+  -- file format settings
+  { "spywhere/detect-language.nvim", as = "detect-language", on = "VimEnter" },
+  { "zsugabubus/crazy8.nvim" },
+  { "lfilho/cosco.vim", on = "VimEnter" },
+
+  -- MRU
+  { "lambdalisue/mr.vim" },
+
+  -- }}
+
+  -- Editing {{
+
+  -- textobj
+  { "kana/vim-textobj-user" },
+  { "osyo-manga/vim-textobj-blockwise" },
+
+  -- edit and insert
+  { "thinca/vim-partedit" },
+
+  -- brackets
+  { "machakann/vim-sandwich", on = "VimEnter" },
+  { "windwp/nvim-autopairs" },
+  { "windwp/nvim-ts-autotag" },
+  { "andymass/vim-matchup" },
+  -- { "cohama/lexima.vim", as = "lexima" },
+
+  -- comment
+  -- commentout
+  { "numToStr/Comment.nvim", as = "Comment" },
+  -- comment generation
+  { "s1n7ax/nvim-comment-frame" },
+  { "LudoPinelli/comment-box.nvim" },
+  { "danymat/neogen" },
+
+  -- yank and paste
+  { "gbprod/substitute.nvim", as = "substitute", on = "VimEnter" },
+  -- { "gbprod/yanky.nvim", as = "yanky", on = "VimEnter" },
+  { "hrsh7th/nvim-pasta", on = "VimEnter" },
+  { "Rasukarusan/nvim-block-paste" },
+  { "yuki-yano/deindent-yank.vim" },
+
+  -- Select
+  { "terryma/vim-expand-region", on = "<Plug>(expand_region_" },
+  { "terryma/vim-multiple-cursors", on = "VimEnter" },
+  { "kana/vim-niceblock", on = "VimEnter" },
+
+  -- Swap Arguments
+  { "mizlan/iswap.nvim", as = "iswap", on = { "ISwap", "ISwapWith" } },
+  { "machakann/vim-swap", on = "VimEnter" },
+
+  -- Join
+  { "AckslD/nvim-trevJ.lua", as = "trevj", on = "VimEnter" },
+
+  -- Adding,subtracting,change cases
+  { "monaqa/dial.nvim", on = "VimEnter", as = "dial" },
+  -- {'monaqa/dps-dial.vim',on= 'VimEnter', as='dps-dial'},
+  { "deris/vim-rengbang", on = "VimEnter" },
+  -- { "mopp/vim-operator-convert-case" },
+
+  -- }}
+
+  -- Builtin Enhancements {{
+  -- Quickfix
+  { "thinca/vim-quickrun" },
+  { "thinca/vim-qfreplace" },
+  { "itchyny/vim-qfedit" },
+  { "kevinhwang91/nvim-bqf" },
+  { "gabrielpoca/replacer.nvim" },
+
+  -- Undo
+  { "simnalamburt/vim-mundo" },
+
+  -- Diff
+  { "AndrewRadev/linediff.vim" },
+
+  -- Macro
+  { "zdcthomas/medit" },
+
+  -- Register
+  { "tversteeg/registers.nvim", branch = "main" },
+
+  -- Mark
+  { "chentoast/marks.nvim", as = "marks", on = "VimEnter" },
+
+  -- Fold
+  { "lambdalisue/readablefold.vim" },
+
+  -- Manual
+  { "thinca/vim-ref", on = "VimEnter" },
+  { "folke/which-key.nvim", as = "which-key", on = "VimEnter" },
+
+  -- Session
+  -- {'rmagatti/auto-session'},
+
+  -- Save
+  { "Pocco81/AutoSave.nvim", on = "VimEnter", as = "autosave" },
+
+  -- SpellCorrect
+  -- { "Pocco81/AbbrevMan.nvim" },
+
+  -- Command
+  { "jghauser/mkdir.nvim" },
+  { "sQVe/sort.nvim", as = "sort" },
+  { "tyru/capture.vim" },
+
+  -- Terminal
+  { "akinsho/toggleterm.nvim", as = "toggleterm", on = "VimEnter" },
+
+  -- Job running
+  { "skywind3000/asyncrun.vim", on = "VimEnter" },
+
+  -- }}
+
+  -- New Features {{
+
+  -- Browser
+  { "tyru/open-browser.vim" },
+  { "tyru/open-browser-github.vim" },
+
+  -- Screenshot
+  { "segeljakt/vim-silicon", on = "VimEnter" },
+
+  -- Template
+  { "mattn/vim-sonictemplate" },
+
+  -- Color Management
+  { "max397574/colortils.nvim", as = "colortils", on = "VimEnter" },
+
+  -- Git support{{
+  -- client
+  { "TimUntersberger/neogit", as = "neogit", on = "Neogit" },
+  { "lambdalisue/gin.vim", as = "gin", on = "VimEnter" },
+  -- { "tanvirtin/vgit.nvim", as = "vgit", on = "VimEnter" },
+
+  -- git command assistant
+  { "rhysd/committia.vim" },
+  { "hotwatermorning/auto-git-diff", on = "VimEnter" },
+
+  -- show messages
+  { "lewis6991/gitsigns.nvim", as = "gitsigns", on = "VimEnter" },
+  { "rhysd/git-messenger.vim" },
+
+  { "akinsho/git-conflict.nvim", as = "git-conflict", on = "VimEnter" },
+  { "sindrets/diffview.nvim", as = "diffview", on = "VimEnter" },
+  { "yutkat/convert-git-url.nvim", as = "convert-git-url", on = "ConvertGitUrl" },
+
+  -- github
+  { "pwntester/octo.nvim", as = "octo", on = "VimEnter" },
+  { "skanehira/denops-gh.vim", on = "VimEnter" },
+
+  -- }}
+
+  -- Docker {{
+  { "skanehira/denops-docker.vim", on = "VimEnter" },
+  -- }}
+
+  -- }}
+
+  -- Search {{
+  { "haya14busa/vim-asterisk", as = "asterisk", on = "<Plug>(asterisk-" },
+  { "hrsh7th/vim-searchx", as = "searchx" },
+  { "monaqa/modesearch.vim", as = "modesearch", on = "VimEnter" },
+  { "kevinhwang91/nvim-hlslens", as = "hlslens" },
+  -- }}
+
+  -- Fuzzy Finder {{
+  -- Telescope {{
+  { "nvim-telescope/telescope.nvim", as = "telescope", on = "VimEnter" },
+  { "nvim-telescope/telescope-ui-select.nvim" },
+  { "nvim-telescope/telescope-file-browser.nvim" },
+  { "nvim-telescope/telescope-frecency.nvim" },
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+  { "nvim-telescope/telescope-media-files.nvim" },
+  { "nvim-telescope/telescope-symbols.nvim" },
+  { "nvim-telescope/telescope-ghq.nvim" },
+  { "nvim-telescope/telescope-github.nvim" },
+  { "LinArcX/telescope-env.nvim" },
+  { "crispgm/telescope-heading.nvim" },
+  { "LinArcX/telescope-changes.nvim" },
+  { "tknightz/telescope-termfinder.nvim" },
+  { "benfowler/telescope-luasnip.nvim", enabled = vim.g.enabled_snippet == "luasnip" },
+  -- }}
+  -- }}
+
+  -- Snippets {{
+  { "hrsh7th/vim-vsnip", on = "VimEnter", enabled = (vim.g.enabled_snippet == "vsnip") },
+  { "L3MON4D3/LuaSnip", as = "luasnip", enabled = (vim.g.enabled_snippet == "luasnip") },
+
+  -- utils
+  { "kevinhwang91/nvim-hclipboard", as = "hclipboard", on = "VimEnter" }, -- prevent polluting clipboard
+  -- { "smjonas/snippet-converter.nvim" },
+
+  -- snippets collection {{
+  { "craigmac/vim-vsnip-snippets" },
+  { "honza/vim-snippets" },
+  { "rafamadriz/friendly-snippets" },
+  -- }}
+
+  -- language specific snippets {{
+  -- go
+  { "golang/vscode-go" },
+  -- python
+  { "cstrap/flask-snippets" },
+  { "cstrap/python-snippets" },
+  -- web
+  { "fivethree-team/vscode-svelte-snippets" },
+  { "stordahl/sveltekit-snippets" },
+  { "xabikos/vscode-javascript" },
+  -- }}
+  -- }}
+
+  -- Language specific plugins {{
+  -- javascript
+  { "vuki656/package-info.nvim", as = "package-info", on = "PackageInfo" },
+  { "bennypowers/nvim-regexplainer", as = "regexplainer", on = "VimEnter" },
+  -- markdown
+  { "previm/previm" },
+  { "dhruvasagar/vim-table-mode", on = "VimEnter" },
+  -- sql
+  { "jsborjesson/vim-uppercase-sql" },
+  -- lua
+  { "milisims/nvim-luaref" },
+  -- log
+  { "mtdl9/vim-log-highlighting" },
+  -- csv
+  { "chen244/csv-tools.lua", as = "csvtools" },
+  -- rust
+  { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
+  -- go
+  { "ray-x/go.nvim", as = "go" },
+  -- }}
+
+  -- Debug {{
+  { "sentriz/vim-print-debug" },
+  -- }}
+
+  -- Task Runner{{
+  { "yutkat/taskrun.nvim", as = "taskrun", on = "VimEnter" },
+  { "michaelb/sniprun", run = "bash ./install.sh" },
+  -- }}
+
+  -- Neovim
+  { "wadackel/nvim-syntax-info", on = "VimEnter" },
+  { "hkupty/iron.nvim", as = "iron", on = "VimEnter" },
+  -- }}
+
+  -- Something fun {{
+  { "ryoppippi/bad-apple.vim", branch = "main" },
+  -- }}
+}
+
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     check_installed()
   end,
 })
 
-init()
-load_plugin_list()
+ensure_jetpack()
+load_plugins(plugin_list)
 load_lua_configs()
