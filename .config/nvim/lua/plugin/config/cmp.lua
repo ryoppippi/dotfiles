@@ -4,8 +4,7 @@ if not utils_plug.is_exists(plugin_name) then
   return
 end
 
-local snippet_library = "vsnip"
--- local snippet_library = "luasnip"
+local snippet_library = vim.g.enabled_snippet
 
 vim.o.completeopt = "menuone,noinsert,noselect"
 
