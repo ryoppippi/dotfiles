@@ -194,7 +194,8 @@ local gen_server_opts = function()
             globals = { "vim" },
           },
           workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
+           -- library = vim.api.nvim_get_runtime_file("", true),
+            preloadFileSize = 500,
           },
           telemetry = {
             enable = false,
