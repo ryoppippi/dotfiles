@@ -21,10 +21,14 @@ vim.keymap.set({ "n", "x" }, "k", function()
   return "gk"
 end, { noremap = true, expr = true })
 
+-- disable keys
 -- vim.keymap.set("n", "H", "<Nop>", { noremap = true })
 -- vim.keymap.set("n", "J", "<Nop>", { noremap = true })
 -- vim.keymap.set("n", "K", "<Nop>", { noremap = true })
 -- vim.keymap.set("n", "L", "<Nop>", { noremap = true })
+vim.keymap.set({ "n", "v" }, "s", "<Nop>", { noremap = true })
+vim.keymap.set({ "n", "v" }, "S", "<Nop>", { noremap = true })
+
 vim.keymap.set("n", "gh", "<Nop>", { noremap = true })
 vim.keymap.set("n", "gj", "<Nop>", { noremap = true })
 vim.keymap.set("n", "gk", "<Nop>", { noremap = true })
