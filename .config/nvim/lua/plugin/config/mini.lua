@@ -12,10 +12,8 @@ local function load()
     mappings = {
       forward = "f",
       backward = "F",
-      -- forward_till = "t",
-      forward_till = "",
-      -- backward_till = "T",
-      backward_till = "",
+      forward_till = "t",
+      backward_till = "T",
       repeat_jump = "",
     },
     delay = {
