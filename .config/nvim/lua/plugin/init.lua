@@ -81,7 +81,7 @@ local plugin_list = {
 
   -- UI
   { "onsails/lspkind.nvim", as = "lspkind" },
-  { "folke/lsp-colors.nvim", as = "lsp-colors" },
+  { "folke/lsp-colors.nvim", as = "lsp-colors", on = "VimEnter" },
   { "j-hui/fidget.nvim", as = "fidget", on = "VimEnter" },
   -- { "tami5/lspsaga.nvim", as = "lspsaga", on = "VimEnter" },
   -- { "folke/trouble.nvim", as = "trouble", on = "VimEnter" },
@@ -249,7 +249,6 @@ local plugin_list = {
   { "simeji/winresizer", on = "VimEnter" },
 
   -- buffer
-  { "wsdjeg/vim-fetch" },
   { "stevearc/stickybuf.nvim", as = "stickybuf", on = "VimEnter" },
 
   -- file format settings
@@ -258,7 +257,7 @@ local plugin_list = {
   { "lfilho/cosco.vim", on = "VimEnter" },
 
   -- MRU
-  { "lambdalisue/mr.vim" },
+  -- { "lambdalisue/mr.vim" },
 
   -- }}
 
@@ -353,6 +352,7 @@ local plugin_list = {
   -- { "Pocco81/AbbrevMan.nvim" },
 
   -- Command
+  { "wsdjeg/vim-fetch" },
   { "jghauser/mkdir.nvim" },
   { "sQVe/sort.nvim", as = "sort" },
   { "tyru/capture.vim" },
@@ -368,14 +368,14 @@ local plugin_list = {
   -- New Features {{
 
   -- Browser
-  { "tyru/open-browser.vim" },
-  { "tyru/open-browser-github.vim" },
+  { "tyru/open-browser.vim", on = "CmdlineEnter" },
+  { "tyru/open-browser-github.vim", on = "CmdlineEnter" },
 
   -- Screenshot
   { "segeljakt/vim-silicon", on = "VimEnter" },
 
   -- Template
-  { "mattn/vim-sonictemplate" },
+  { "mattn/vim-sonictemplate", on = "CmdlineEnter" },
 
   -- Color Management
   { "max397574/colortils.nvim", as = "colortils", on = "VimEnter" },
@@ -490,7 +490,7 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim", as = "taskrun", on = "VimEnter" },
-  { "michaelb/sniprun", run = "bash ./install.sh" },
+  { "michaelb/sniprun", run = "bash ./install.sh", on = "CmdlineEnter" },
   -- }}
 
   -- Neovim
