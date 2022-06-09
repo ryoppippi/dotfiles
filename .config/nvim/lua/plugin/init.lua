@@ -322,13 +322,13 @@ local plugin_list = {
   { "gabrielpoca/replacer.nvim" },
 
   -- Undo
-  { "simnalamburt/vim-mundo" },
+  { "simnalamburt/vim-mundo", on = "MundoShow" },
 
   -- Diff
   { "AndrewRadev/linediff.vim" },
 
   -- Macro
-  { "zdcthomas/medit" },
+  { "zdcthomas/medit", on = "<Plug>MEdit" },
 
   -- Register
   { "tversteeg/registers.nvim", branch = "main" },
