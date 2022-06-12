@@ -311,6 +311,7 @@ local plugin_list = {
   { "monaqa/dial.nvim", on = "VimEnter", as = "dial" },
   -- {'monaqa/dps-dial.vim',on= 'VimEnter', as='dps-dial'},
   { "deris/vim-rengbang", on = "VimEnter" },
+  { "johmsalas/text-case.nvim", as = "textcase", on = "VimEnter" },
   -- { "mopp/vim-operator-convert-case" },
 
   -- }}
