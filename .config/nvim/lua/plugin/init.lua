@@ -372,8 +372,9 @@ local plugin_list = {
   -- New Features {{
 
   -- Browser
-  { "tyru/open-browser.vim", on = "CmdlineEnter" },
-  { "tyru/open-browser-github.vim", on = "CmdlineEnter" },
+  { "tyru/open-browser.vim" },
+  { "tyru/open-browser-github.vim" },
+  { "tyru/open-browser-unicode.vim" },
 
   -- Screenshot
   { "segeljakt/vim-silicon", on = "VimEnter" },
