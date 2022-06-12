@@ -417,6 +417,12 @@ local plugin_list = {
   { "NTBBloodbath/rest.nvim", as = "rest-nvim", on = "VimEnter" },
   -- }}
 
+  -- GraphAPI {{
+  { "skanehira/denops-graphql.vim", as = "denops-graphql", on = "VimEnter" },
+  -- }}
+
+  -- }}
+
   -- Search {{
   { "haya14busa/vim-asterisk", as = "asterisk", on = "<Plug>(asterisk-" },
   { "hrsh7th/vim-searchx", as = "searchx" },
