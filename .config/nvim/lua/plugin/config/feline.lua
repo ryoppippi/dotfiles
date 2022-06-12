@@ -2,11 +2,12 @@ local plugin_name = "feline"
 if not require("utils.plugin").is_exists(plugin_name) then
   return
 end
+local force_require = require("utils.plugin").force_require
 
 local function loading()
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
-  local _, gps = require("utils.plugin").force_require("nvim-gps")
+  local _, navic = force_require("nvim-navic")
 
   local force_inactive = {
     filetypes = {},
@@ -134,12 +135,12 @@ local function loading()
       left_sep = " ",
     },
 
-    nvim_gps = {
+    nvim_navic = {
       provider = function()
-        return gps.get_location({ depth = 0 })
+        return navic.get_location()
       end,
       enabled = function()
-        return gps ~= nil and gps.is_available()
+        return navic ~= nil and navic.is_available()
       end,
       hl = {
         fg = "white",
@@ -415,7 +416,8 @@ local function loading()
         comps.git_diff_changed,
         comps.git_diff_removed,
         comps.file_name,
-        comps.nvim_gps,
+        -- comps.nvim_gps,
+        comps.nvim_navic,
       },
       -- middle
       {},
