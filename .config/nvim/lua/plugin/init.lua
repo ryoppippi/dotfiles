@@ -413,6 +413,8 @@ local plugin_list = {
   { "skanehira/denops-docker.vim", on = "VimEnter" },
   -- }}
 
+  -- REST {{
+  { "NTBBloodbath/rest.nvim", as = "rest-nvim", on = "VimEnter" },
   -- }}
 
   -- Search {{
