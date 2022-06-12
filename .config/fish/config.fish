@@ -10,7 +10,7 @@ starship init fish | source
 set -x theme_nerd_fonts yes
 set -x BAT_THEME TwoDark
 
-set -x CONFIG "$HOME/.config"
+set -x CONFIG $XDG_CONFIG_HOME
 set -x theme_nerd_fonts yes
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
