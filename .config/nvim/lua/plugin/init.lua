@@ -224,8 +224,9 @@ local plugin_list = {
   -- File Management {{
 
   -- filer {{
-  -- neo-tree
+  -- neo-tree {{
   { "nvim-neo-tree/neo-tree.nvim", as = "neo-tree", branch = "v2.x", on = "VimEnter" },
+  -- }}
 
   -- fern {{
   -- { "lambdalisue/fern.vim", as = "fern" },
@@ -238,9 +239,9 @@ local plugin_list = {
   -- { "LumaKernel/fern-mapping-fzf.vim" },
   -- }}
 
-  -- vfiler {{
-  -- { "obaland/vfiler.vim", on = "VimEnter", as = "vfiler" },
-  -- { "obaland/vfiler-column-devicons", on = "VimEnter" },
+  -- lir {{
+  -- { "tamago324/lir.nvim", as = "lir" },
+  -- { "tamago324/lir-git-status.nvim" },
   -- }}
 
   -- }}
