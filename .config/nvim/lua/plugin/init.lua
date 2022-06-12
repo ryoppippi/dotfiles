@@ -501,6 +501,10 @@ local plugin_list = {
   { "sentriz/vim-print-debug" },
   -- }}
 
+  -- Test {{
+  { "nvim-neotest/neotest", on = "VimEnter" },
+  -- }}
+
   -- Task Runner{{
   { "yutkat/taskrun.nvim", as = "taskrun", on = "VimEnter" },
   -- { "michaelb/sniprun", run = "bash ./install.sh", on = "CmdlineEnter" },
