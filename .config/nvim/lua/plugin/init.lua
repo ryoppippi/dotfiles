@@ -194,9 +194,10 @@ local plugin_list = {
   -- }}
 
   -- StatusLine {{
-  { "hoob3rt/lualine.nvim", as = "lualine", on = "VimEnter" },
-  { "SmiteshP/nvim-gps" },
-  -- { "feline-nvim/feline.nvim", on = "VimEnter", as = "feline" },
+  { "SmiteshP/nvim-navic" },
+  -- { "SmiteshP/nvim-gps" },
+  { "feline-nvim/feline.nvim", on = "VimEnter", as = "feline" },
+  -- { "hoob3rt/lualine.nvim", as = "lualine", on = "VimEnter" },
   -- }}
 
   -- Other UI Components {{

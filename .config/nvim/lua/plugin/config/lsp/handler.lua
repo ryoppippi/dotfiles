@@ -106,7 +106,7 @@ local function set_formatting(client, bufnr)
   end
 end
 
-local function set_protocol(client, bufnr)
+local function set_kind(client, bufnr)
   local protocol = vim.lsp.protocol
 
   --protocol.SymbolKind = { }
@@ -137,6 +137,25 @@ local function set_protocol(client, bufnr)
     "ﬦ", -- Operator
     "", -- TypeParameter
   }
+end
+
+local function set_plugins(client, bufnr)
+  local illuminate_status, illuminate = force_require("illuminate")
+  if illuminate_status and illuminate ~= nil then
+    illuminate.on_attach(client)
+  end
+
+  local aerial_status, aerial = force_require("aerial")
+  if aerial_status and aerial ~= nil then
+    aerial.setup({})
+    aerial.on_attach(client, bufnr)
+  end
+
+  local navic_status, navic = force_require("nvim-navic")
+  if navic_status and navic ~= nil then
+    navic.setup({})
+    navic.attach(client, bufnr)
+  end
 end
 
 local gen_capabilities = function()
@@ -194,7 +213,7 @@ local gen_server_opts = function()
             globals = { "vim" },
           },
           workspace = {
-           -- library = vim.api.nvim_get_runtime_file("", true),
+            -- library = vim.api.nvim_get_runtime_file("", true),
             preloadFileSize = 500,
           },
           telemetry = {
@@ -220,11 +239,9 @@ M.on_attach = function(client, bufnr)
   set_keymap(client, bufnr)
   set_options(client, bufnr)
   set_sign(client, bufnr)
-  set_protocol(client, bufnr)
+  set_kind(client, bufnr)
   set_formatting(client, bufnr)
-  require("illuminate").on_attach(client)
-  require("aerial").setup({})
-  require("aerial").on_attach(client, bufnr)
+  set_plugins(client, bufnr)
 end
 
 M.capabilities = gen_capabilities()
