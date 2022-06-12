@@ -3,23 +3,37 @@ if status --is-login
 end
 if status --is-interactive
     bass source ~/.bash_profile
-    set_color -b brblack
-    uname -m
+    source (anyenv init -|psub)
 end
-set -x EDITOR nvim
 zoxide init fish | source
 starship init fish | source
 set -x theme_nerd_fonts yes
 set -x BAT_THEME TwoDark
 
-set -x CONFIG ~/.confing
+set -x CONFIG "$HOME/.config"
 set -x theme_nerd_fonts yes
-set -x PIP_REQUIRE_VIRTUALENV true
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
-set -x ENHANCD_DIR "$HOME/.config/fish/functions/enhancd"
-set -x ENHANCD_ROOT "$HOME/.config/fish/functions/enhancd"
-source ~/.config/fish/functions/fzf.fish
+# fzf config
+set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --no-messages --glob "!/^[^\/]+\/.git/\/?(?:[^\/]+\/?)*" '
+set -x FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
+set -x FZF_DEFAULT_OPTS '--extended --cycle --select-1 --height 40% --reverse --border'
+set -x FZF_FIND_FILE_OPTS '--preview "bat --color=always --style=header,grid --line-range :100 {}"'
+set -x FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+# set -x GHQ_SELECTOR_OPTS "--preview 'head {}/README.*'"
+set -x FZF_LEGACY_KEYBINDINGS 0
+set -x FZF_COMPLETION_TRIGGER '**'
+
+# ghq config
+set -x GHQ_SELECTOR_OPTS ""
+set -x GHQ_SELECTOR fzf
+
+# enhancd config
+set -x ENHANCED_FILTER fzf
+set -x ENHANCD_HOOK_AFTER_CD 'exa -hlF'
+set -x ENHANCD_DIR "$CONFIG/fish/functions/enhancd"
+set -x ENHANCD_ROOT "$CONFIG/fish/functions/enhancd"
+
 
 # thefuck --alias | source
 
@@ -94,7 +108,7 @@ abbr -a dcub "docker-compose up --build"
 abbr -a dcd "docker-compose down"
 abbr -a dcr "docker-compose restart"
 abbr -a gg googler
-abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
+# abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
 
 # if test (uname -m) = arm64
 #     eval conda "shell.fish" hook $argv | source
