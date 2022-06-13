@@ -72,128 +72,6 @@ local plugin_list = {
   { "echasnovski/mini.nvim", branch = "stable", as = "mini" },
   -- }}
 
-  -- Nvim-LSP {{
-  { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
-  { "williamboman/nvim-lsp-installer", opt = true },
-  { "jose-elias-alvarez/null-ls.nvim", as = "null-ls", on = "VimEnter" },
-  -- { "tamago324/nlsp-settings.nvim" },
-  -- { "weilbith/nvim-lsp-smag" },
-  { "lukas-reineke/lsp-format.nvim", as = "lsp-format" },
-
-  -- UI
-  { "onsails/lspkind.nvim", as = "lspkind" },
-  { "folke/lsp-colors.nvim", as = "lsp-colors", on = "VimEnter" },
-  { "j-hui/fidget.nvim", as = "fidget", on = "VimEnter" },
-  -- { "tami5/lspsaga.nvim", as = "lspsaga", on = "VimEnter" },
-  -- { "folke/trouble.nvim", as = "trouble", on = "VimEnter" },
-  -- { "EthanJWright/toolwindow.nvim", as = "toolwindow", on = "VimEnter" },
-  -- { "ray-x/lsp_signature.nvim" },
-  -- }}
-
-  -- specific language support
-  -- { "HallerPatrick/py_lsp.nvim" },
-  -- { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
-
-  -- }}
-
-  -- Nvim-cmp {{
-  { "hrsh7th/nvim-cmp", as = "cmp", on = "VimEnter" },
-  { "hrsh7th/cmp-nvim-lsp", as = "cmp_nvim_lsp", opt = true },
-  { "hrsh7th/cmp-nvim-lsp-document-symbol", opt = true },
-  { "hrsh7th/cmp-nvim-lua", opt = true },
-  { "hrsh7th/cmp-nvim-lsp-signature-help", opt = true },
-  { "hrsh7th/cmp-buffer", opt = true },
-  { "hrsh7th/cmp-path", opt = true },
-  { "hrsh7th/cmp-cmdline", opt = true },
-  { "hrsh7th/cmp-calc", opt = true },
-  { "hrsh7th/cmp-omni", opt = true },
-  { "hrsh7th/cmp-emoji", opt = true },
-  { "lukas-reineke/cmp-rg", opt = true },
-  { "lukas-reineke/cmp-under-comparator", opt = true },
-  { "f3fora/cmp-spell", opt = true },
-  { "ray-x/cmp-treesitter", opt = true },
-  { "yutkat/cmp-mocword", opt = true },
-  { "petertriho/cmp-git", as = "cmp_git", opt = true },
-  -- { "uga-rosa/cmp-dictionary", opt = true },
-  -- { "tzachar/cmp-tabnine", run = "./install.sh" },
-  -- { "octaltree/cmp-look", opt = true },
-  -- { "hrsh7th/cmp-copilot", opt = true },
-  { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
-  { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
-  { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
-  -- }}
-
-  -- ddc {{
-  -- { "Shougo/ddc.vim",  as = "ddc"  },
-  -- { "vim-denops/denops.vim" },
-  -- { "Shougo/pum.vim" },
-  -- { "Shougo/ddc-around" },
-  -- { "Shougo/ddc-nvim-lsp" },
-  -- { "Shougo/ddc-matcher_head" },
-  -- { "Shougo/ddc-sorter_rank" },
-  -- { "Shougo/ddc-converter_remove_overlap" },
-  -- { "Shougo/ddc-rg" },
-  -- { "Shougo/ddc-cmdline" },
-  -- { "Shougo/ddc-cmdline-history" },
-  -- { "Shougo/neco-vim" },
-  -- { "tani/ddc-fuzzy" },
-  -- { "matsui54/ddc-converter_truncate" },
-  -- { "matsui54/denops-popup-preview.vim" },
-  -- { "matsui54/denops-signature_help" },
-  -- { "LumaKernel/ddc-tabnine" },
-  -- { "LumaKernel/ddc-file" },
-  -- { "matsui54/ddc-dictionary" },
-  -- { "Shougo/ddc-omni" },
-  -- { "gamoutatsumi/ddc-emoji" },
-  -- { "delphinus/ddc-treesitter" },
-  -- { "hrsh7th/vim-vsnip-integ" },
-  -- }}
-
-  -- AI {{
-  { "github/copilot.vim", on = { "CursorHold", "InsertEnter" } },
-  -- }}
-
-  -- Nvim-treesitter {{
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-  { "nvim-treesitter/playground" },
-  { "nvim-treesitter/nvim-tree-docs" },
-  { "nvim-treesitter/nvim-treesitter-refactor" },
-  { "yioneko/nvim-yati", as = "yati", on = "VimEnter" },
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "vigoux/architext.nvim" },
-
-  -- textobj
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "RRethy/nvim-treesitter-textsubjects" },
-  { "David-Kunz/treesitter-unit" },
-  -- { "mfussenegger/nvim-treehopper" },
-
-  -- UI
-  { "haringsrob/nvim_context_vt" },
-  { "romgrk/nvim-treesitter-context" },
-  { "stevearc/aerial.nvim", as = "aerial" },
-  -- }}
-
-  -- ColorScheme {{
-  { "ulwlu/elly.vim" },
-  { "navarasu/onedark.nvim", as = "onedark" },
-  { "ray-x/starry.nvim", as = "starry" },
-  { "rebelot/kanagawa.nvim", as = "kanagawa" },
-  { "sainnhe/gruvbox-material", opt = true },
-  -- { "marko-cerovac/material.nvim" },
-  -- { "tribela/vim-transparent" },
-  -- }}
-
-  -- Heiglighting {{
-  { "norcalli/nvim-colorizer.lua", as = "colorizer", on = "VimEnter" },
-  { "folke/todo-comments.nvim", as = "todo-comments", on = "BufReadPost" },
-  { "m-demare/hlargs.nvim" },
-  { "RRethy/vim-illuminate", as = "illuminate" },
-  -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
-  -- { "Pocco81/HighStr.nvim" }, -- highlight strings
-  { "p00f/nvim-ts-rainbow" },
-  -- }}
-
   -- StatusLine {{
   { "SmiteshP/nvim-navic" },
   -- { "SmiteshP/nvim-gps" },
@@ -450,6 +328,118 @@ local plugin_list = {
   -- }}
   -- }}
 
+  -- Languages
+  -- Nvim-LSP {{
+  { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
+  { "williamboman/nvim-lsp-installer", opt = true },
+  { "jose-elias-alvarez/null-ls.nvim", as = "null-ls", on = "VimEnter" },
+  { "lukas-reineke/lsp-format.nvim", as = "lsp-format" },
+
+  -- UI
+  { "onsails/lspkind.nvim", as = "lspkind" },
+  { "folke/lsp-colors.nvim", as = "lsp-colors", on = "VimEnter" },
+  { "j-hui/fidget.nvim", as = "fidget", on = "VimEnter" },
+  -- { "tami5/lspsaga.nvim", as = "lspsaga", on = "VimEnter" },
+  -- { "folke/trouble.nvim", as = "trouble", on = "VimEnter" },
+  -- { "EthanJWright/toolwindow.nvim", as = "toolwindow", on = "VimEnter" },
+  -- { "ray-x/lsp_signature.nvim" },
+  -- }}
+  -- }}
+
+  -- Nvim-cmp {{
+  { "hrsh7th/nvim-cmp", as = "cmp", on = "VimEnter" },
+  { "hrsh7th/cmp-nvim-lsp", as = "cmp_nvim_lsp", opt = true },
+  { "hrsh7th/cmp-nvim-lsp-document-symbol", opt = true },
+  { "hrsh7th/cmp-nvim-lua", opt = true },
+  { "hrsh7th/cmp-nvim-lsp-signature-help", opt = true },
+  { "hrsh7th/cmp-buffer", opt = true },
+  { "hrsh7th/cmp-path", opt = true },
+  { "hrsh7th/cmp-cmdline", opt = true },
+  { "hrsh7th/cmp-calc", opt = true },
+  { "hrsh7th/cmp-omni", opt = true },
+  { "hrsh7th/cmp-emoji", opt = true },
+  { "lukas-reineke/cmp-rg", opt = true },
+  { "lukas-reineke/cmp-under-comparator", opt = true },
+  { "f3fora/cmp-spell", opt = true },
+  { "ray-x/cmp-treesitter", opt = true },
+  { "yutkat/cmp-mocword", opt = true },
+  { "petertriho/cmp-git", as = "cmp_git", opt = true },
+  -- { "uga-rosa/cmp-dictionary", opt = true },
+  -- { "tzachar/cmp-tabnine", run = "./install.sh" },
+  -- { "octaltree/cmp-look", opt = true },
+  -- { "hrsh7th/cmp-copilot", opt = true },
+  { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
+  { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
+  { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
+  -- }}
+
+  -- ddc {{
+  -- { "Shougo/ddc.vim",  as = "ddc"  },
+  -- { "vim-denops/denops.vim" },
+  -- { "Shougo/pum.vim" },
+  -- { "Shougo/ddc-around" },
+  -- { "Shougo/ddc-nvim-lsp" },
+  -- { "Shougo/ddc-matcher_head" },
+  -- { "Shougo/ddc-sorter_rank" },
+  -- { "Shougo/ddc-converter_remove_overlap" },
+  -- { "Shougo/ddc-rg" },
+  -- { "Shougo/ddc-cmdline" },
+  -- { "Shougo/ddc-cmdline-history" },
+  -- { "Shougo/neco-vim" },
+  -- { "tani/ddc-fuzzy" },
+  -- { "matsui54/ddc-converter_truncate" },
+  -- { "matsui54/denops-popup-preview.vim" },
+  -- { "matsui54/denops-signature_help" },
+  -- { "LumaKernel/ddc-tabnine" },
+  -- { "LumaKernel/ddc-file" },
+  -- { "matsui54/ddc-dictionary" },
+  -- { "Shougo/ddc-omni" },
+  -- { "gamoutatsumi/ddc-emoji" },
+  -- { "delphinus/ddc-treesitter" },
+  -- { "hrsh7th/vim-vsnip-integ" },
+  -- }}
+
+  -- Nvim-treesitter {{
+  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  { "nvim-treesitter/playground" },
+  { "nvim-treesitter/nvim-tree-docs" },
+  { "nvim-treesitter/nvim-treesitter-refactor" },
+  { "yioneko/nvim-yati", as = "yati", on = "VimEnter" },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
+  { "vigoux/architext.nvim" },
+
+  -- textobj
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "RRethy/nvim-treesitter-textsubjects" },
+  { "David-Kunz/treesitter-unit" },
+  -- { "mfussenegger/nvim-treehopper" },
+
+  -- UI
+  { "haringsrob/nvim_context_vt" },
+  { "romgrk/nvim-treesitter-context" },
+  { "stevearc/aerial.nvim", as = "aerial" },
+  -- }}
+
+  -- ColorScheme {{
+  { "ulwlu/elly.vim" },
+  { "navarasu/onedark.nvim", as = "onedark" },
+  { "ray-x/starry.nvim", as = "starry" },
+  { "rebelot/kanagawa.nvim", as = "kanagawa" },
+  { "sainnhe/gruvbox-material", opt = true },
+  -- { "marko-cerovac/material.nvim" },
+  -- { "tribela/vim-transparent" },
+  -- }}
+
+  -- Heiglighting {{
+  { "norcalli/nvim-colorizer.lua", as = "colorizer", on = "VimEnter" },
+  { "folke/todo-comments.nvim", as = "todo-comments", on = "BufReadPost" },
+  { "m-demare/hlargs.nvim" },
+  { "RRethy/vim-illuminate", as = "illuminate" },
+  -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
+  -- { "Pocco81/HighStr.nvim" }, -- highlight strings
+  { "p00f/nvim-ts-rainbow" },
+  -- }}
+
   -- Snippets {{
   { "hrsh7th/vim-vsnip", on = "VimEnter", enabled = (vim.g.enabled_snippet == "vsnip") },
   { "L3MON4D3/LuaSnip", as = "luasnip", enabled = (vim.g.enabled_snippet == "luasnip") },
@@ -481,6 +471,8 @@ local plugin_list = {
   -- javascript
   { "vuki656/package-info.nvim", as = "package-info", on = "PackageInfo" },
   { "bennypowers/nvim-regexplainer", as = "regexplainer", on = "VimEnter" },
+  -- typescript
+  -- { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
   -- markdown
   { "previm/previm" },
   { "dhruvasagar/vim-table-mode", on = "VimEnter" },
@@ -495,7 +487,13 @@ local plugin_list = {
   -- rust
   { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
   -- go
-  { "ray-x/go.nvim", as = "go" },
+  { "ray-x/go.nvim", as = "go", on = "VimEnter" },
+  -- python
+  { "HallerPatrick/py_lsp.nvim" },
+  -- }}
+
+  -- AI {{
+  { "github/copilot.vim", on = { "CursorHold", "InsertEnter" } },
   -- }}
 
   -- Debug {{
