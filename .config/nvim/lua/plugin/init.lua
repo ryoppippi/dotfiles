@@ -66,6 +66,7 @@ local plugin_list = {
   { "MunifTanjim/nui.nvim" }, -- UI Framework
   { "kyazdani42/nvim-web-devicons" },
   { "nvim-lua/popup.nvim" },
+  { "ray-x/guihua.lua" },
   { "vim-denops/denops.vim" },
   { "rcarriga/nvim-notify", as = "notify", on = "VimEnter" },
   { "echasnovski/mini.nvim", branch = "stable", as = "mini" },
