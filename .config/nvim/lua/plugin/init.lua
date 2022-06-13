@@ -1,7 +1,7 @@
 local tb = require("utils").toboolean
 
--- vim.g.enabled_snippet = "vsnip"
-vim.g.enabled_snippet = "luasnip"
+vim.g.enabled_snippet = "vsnip"
+-- vim.g.enabled_snippet = "luasnip"
 vim.g["jetpack#copy_method"] = "symlink"
 vim.g["jetpack#optimization"] = 1
 
