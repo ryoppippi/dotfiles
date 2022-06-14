@@ -151,7 +151,7 @@ local plugin_list = {
   { "osyo-manga/vim-textobj-blockwise", on = "VimEnter" },
 
   -- edit and insert
-  { "thinca/vim-partedit" },
+  { "thinca/vim-partedit", on = "Partedit" },
 
   -- brackets
   { "machakann/vim-sandwich", on = "VimEnter" },
@@ -188,7 +188,7 @@ local plugin_list = {
   { "AckslD/nvim-trevJ.lua", as = "trevj", on = "VimEnter" },
 
   -- Adding,subtracting,change cases
-  { "monaqa/dial.nvim", on = "VimEnter", as = "dial" },
+  { "monaqa/dial.nvim", as = "dial", on = "VimEnter" },
   -- {'monaqa/dps-dial.vim',on= 'VimEnter', as='dps-dial'},
   { "deris/vim-rengbang", on = "VimEnter" },
   { "johmsalas/text-case.nvim", as = "textcase", on = "VimEnter" },
@@ -230,7 +230,7 @@ local plugin_list = {
   -- {'rmagatti/auto-session'},
 
   -- Save
-  { "Pocco81/AutoSave.nvim", on = "VimEnter", as = "autosave" },
+  { "Pocco81/AutoSave.nvim", as = "autosave", on = "VimEnter" },
 
   -- SpellCorrect
   -- { "Pocco81/AbbrevMan.nvim" },
