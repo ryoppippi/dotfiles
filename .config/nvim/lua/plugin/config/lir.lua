@@ -19,9 +19,10 @@ local function loading()
 
       ["h"] = actions.up,
       ["q"] = actions.quit,
+      ["<esc>"] = actions.quit,
 
-      ["K"] = actions.mkdir,
-      ["N"] = actions.newfile,
+      ["A"] = actions.mkdir,
+      ["a"] = actions.newfile,
       ["R"] = actions.rename,
       ["@"] = actions.cd,
       ["Y"] = actions.yank_path,
@@ -67,11 +68,16 @@ local function loading()
 
       -- echo cwd
       vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+
+      local lir_git_status, lir_git = pcall(require, "lir.git")
+      if lir_git_status then
+        lir_git.setup({ show_ignored = false })
+      end
     end,
   })
 end
 
-function keymap()
+local function keymap()
   vim.keymap.set("n", "<leader>e", function()
     require("lir.float").init()
   end, { noremap = true, silent = true })

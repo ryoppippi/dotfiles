@@ -7,6 +7,10 @@ local function loading()
   require(plugin_name).setup({
     filetype = {
       toggleterm = "filetype",
+      lir = false,
+    },
+    autocmds = {
+      lir = [[au FileType lir UnpinBuffer ]],
     },
   })
 end
