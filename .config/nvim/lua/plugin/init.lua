@@ -5,7 +5,7 @@ vim.g.enabled_snippet = "vsnip"
 vim.g["jetpack#copy_method"] = "symlink"
 vim.g["jetpack#optimization"] = 1
 
-local function ensure_jetpack()
+local function load_jetpack()
   local status, _ = pcall(vim.cmd, "packadd vim-jetpack")
   if not status then
     vim.api.nvim_exec(
@@ -15,12 +15,12 @@ local function ensure_jetpack()
           autocmd VimEnter * Sync | source $MYVIMRC
           let url = 'https://github.com/tani/vim-jetpack'
           silent execute printf('!git clone --depth 1 %s %s', url, dir)
+          silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
         endif
-        silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
-        packadd vim-jetpack
       ]],
       false
     )
+    load_jetpack()
   end
 end
 
@@ -36,9 +36,10 @@ local function load_plugins(plugin_list)
 end
 
 local function check_installed()
-  for _, name in ipairs(vim.fn["jetpack#names"]()) do
-    if not tb(vim.fn["jetpack#tap"](name)) then
-      vim.fn["jetpack#sync"]()
+  local jp = require("jetpack")
+  for _, name in ipairs(jp.names()) do
+    if not tb(jp.tap(name)) then
+      jp.sync()
       vim.cmd("source $MYVIMRC")
       break
     end
