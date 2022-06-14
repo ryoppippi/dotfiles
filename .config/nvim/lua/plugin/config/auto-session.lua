@@ -4,8 +4,8 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function pre_save()
-  local _, notify = require("utils.plugin").force_require("notify")
-  if notify ~= nil then
+  local notify_status, notify = require("utils.plugin").force_require("notify")
+  if notify_status and notify ~= nil then
     notify.dismiss()
   end
 end
