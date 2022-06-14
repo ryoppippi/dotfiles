@@ -106,39 +106,6 @@ local function set_formatting(client, bufnr)
   end
 end
 
-local function set_kind(client, bufnr)
-  local protocol = vim.lsp.protocol
-
-  --protocol.SymbolKind = { }
-  protocol.CompletionItemKind = {
-    "", -- Text
-    "", -- Method
-    "", -- Function
-    "", -- Constructor
-    "", -- Field
-    "", -- Variable
-    "", -- Class
-    "ﰮ", -- Interface
-    "", -- Module
-    "", -- Property
-    "", -- Unit
-    "", -- Value
-    "", -- Enum
-    "", -- Keyword
-    "﬌", -- Snippet
-    "", -- Color
-    "", -- File
-    "", -- Reference
-    "", -- Folder
-    "", -- EnumMember
-    "", -- Constant
-    "", -- Struct
-    "", -- Event
-    "ﬦ", -- Operator
-    "", -- TypeParameter
-  }
-end
-
 local function set_plugins(client, bufnr)
   local illuminate_status, illuminate = force_require("illuminate")
   if illuminate_status and illuminate ~= nil then
@@ -158,6 +125,21 @@ local function set_plugins(client, bufnr)
   end
 end
 
+local function surpress_irrelevant_notification(client, bufnr)
+  local notify = vim.notify
+  vim.notify = function(msg, ...)
+    if msg:match("%[lspconfig%]") then
+      return
+    end
+
+    if msg:match("warning: multiple different client offset_encodings") then
+      return
+    end
+
+    notify(msg, ...)
+  end
+end
+
 local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
@@ -169,11 +151,11 @@ local gen_capabilities = function()
   return capabilities
 end
 
-local gen_server_opts = function()
-  local _, lspconfig = force_require("lspconfig")
+local server_opts = function(server_name, on_attach, capabilities)
+  local lspconfig = require("lspconfig")
   local lsp_util = lspconfig.util
   local utils = require("utils")
-  return {
+  local specific_options = {
     ["emmet_ls"] = {
       filetypes = { "html", "css", "svelte" },
     },
@@ -233,19 +215,23 @@ local gen_server_opts = function()
       },
     },
   }
+  local opts = specific_options[server_name] or {}
+  opts.on_on_attach = on_attach
+  opts.capabilities = capabilities
+  return opts
 end
 
 M.on_attach = function(client, bufnr)
   set_keymap(client, bufnr)
   set_options(client, bufnr)
   set_sign(client, bufnr)
-  set_kind(client, bufnr)
   set_formatting(client, bufnr)
   set_plugins(client, bufnr)
+  surpress_irrelevant_notification(client, bufnr)
 end
 
 M.capabilities = gen_capabilities()
 
-M.server_opts = gen_server_opts()
+M.server_opts = server_opts
 
 return M
