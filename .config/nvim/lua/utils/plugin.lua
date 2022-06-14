@@ -37,7 +37,7 @@ function M.load(plugin_name)
 end
 
 function M.is_exists(plugin_name)
-  return toboolean(vim.fn["jetpack#tap"](plugin_name))
+  return toboolean(require("jetpack").tap(plugin_name))
 end
 
 function M.get(plugin_name)
@@ -45,7 +45,7 @@ function M.get(plugin_name)
 end
 
 function M.names()
-  return vim.fn["jetpack#names"]()
+  return require("jetpack").names()
 end
 
 function M.post_load(plugin_name, callback, opt)
