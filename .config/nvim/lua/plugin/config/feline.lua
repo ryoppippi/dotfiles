@@ -7,7 +7,7 @@ local force_require = require("utils.plugin").force_require
 local function loading()
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
-  local _, navic = force_require("nvim-navic")
+  local navic_status, navic = force_require("nvim-navic")
 
   local force_inactive = {
     filetypes = {},
@@ -137,10 +137,16 @@ local function loading()
 
     nvim_navic = {
       provider = function()
-        return navic.get_location()
+        if navic_status and navic ~= nil then
+          return navic.get_location()
+        end
+        return ""
       end,
       enabled = function()
-        return navic ~= nil and navic.is_available()
+        if navic_status and navic ~= nil then
+          return navic.is_available()
+        end
+        return false
       end,
       hl = {
         fg = "white",
