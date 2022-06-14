@@ -15,9 +15,7 @@ local function loading()
   require("plugin.config.nvim-lsp-installer").config()
   local servers = require("nvim-lsp-installer").get_installed_servers()
   for _, server in ipairs(servers) do
-    local opts = server_opts[server.name] or {}
-    opts.on_attach = on_attach
-    opts.capabilities = capabilities
+    local opts = server_opts(server.name, on_attach, capabilities)
     lspconfig[server.name].setup(opts)
     vim.cmd([[ do User LspAttachBuffers ]])
   end

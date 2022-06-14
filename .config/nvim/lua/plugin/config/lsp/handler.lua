@@ -151,7 +151,7 @@ local gen_capabilities = function()
   return capabilities
 end
 
-local server_opts = function()
+local server_opts = function(server_name, on_attach, capabilities)
   local lspconfig = require("lspconfig")
   local lsp_util = lspconfig.util
   local utils = require("utils")
@@ -232,6 +232,6 @@ end
 
 M.capabilities = gen_capabilities()
 
-M.server_opts = server_opts()
+M.server_opts = server_opts
 
 return M
