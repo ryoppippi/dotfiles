@@ -482,6 +482,7 @@ local plugin_list = {
   { "jsborjesson/vim-uppercase-sql" },
   -- lua
   { "milisims/nvim-luaref" },
+  -- { "folke/lua-dev.nvim" },
   -- log
   { "mtdl9/vim-log-highlighting" },
   -- csv
@@ -490,8 +491,6 @@ local plugin_list = {
   { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
   -- go
   { "ray-x/go.nvim", as = "go", on = "VimEnter" },
-  -- python
-  { "HallerPatrick/py_lsp.nvim" },
   -- }}
 
   -- AI {{
@@ -527,6 +526,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
-ensure_jetpack()
+load_jetpack()
 load_plugins(plugin_list)
 load_lua_configs()
