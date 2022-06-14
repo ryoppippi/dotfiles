@@ -15,9 +15,9 @@ local function loading()
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
-      disable = {
-        "toml",
-      },
+      disable = function(language, bufnr)
+        return vim.api.nvim_buf_line_count(bufnr) > 50000
+      end,
     },
     context_commentstring = {
       enable = true,
