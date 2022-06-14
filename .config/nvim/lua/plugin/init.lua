@@ -475,7 +475,8 @@ local plugin_list = {
   -- typescript
   -- { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
   -- markdown
-  { "previm/previm" },
+  -- { "previm/previm" },
+  { "iamcco/markdown-preview.nvim", ft = { "markdown" }, run = ":call mkdp#util#install()" },
   { "dhruvasagar/vim-table-mode", on = "VimEnter" },
   -- sql
   { "jsborjesson/vim-uppercase-sql" },
