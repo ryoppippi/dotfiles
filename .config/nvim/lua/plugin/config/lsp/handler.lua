@@ -216,7 +216,7 @@ local server_opts = function(server_name, on_attach, capabilities)
     },
   }
   local opts = specific_options[server_name] or {}
-  opts.on_on_attach = on_attach
+  opts.on_attach = on_attach
   opts.capabilities = capabilities
   return opts
 end
