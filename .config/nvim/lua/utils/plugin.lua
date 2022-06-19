@@ -97,15 +97,8 @@ function M.force_load_on_event(name, loading_callback)
 end
 
 function M.force_require(plugin_name)
-  local status, re = pcall(require, plugin_name)
-  if status then
-    return true, re
-  elseif M.is_exists(plugin_name) then
-    M.load(plugin_name)
-    return pcall(require, plugin_name)
-  else
-    return false, nil
-  end
+  M.load(plugin_name)
+  return pcall(require, plugin_name)
 end
 
 return M
