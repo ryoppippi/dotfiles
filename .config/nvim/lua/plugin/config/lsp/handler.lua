@@ -32,7 +32,13 @@ local function set_keymap(client, bufnr)
   -- vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", opts)
 
   -- rename
-  vim.keymap.set("n", "cW", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  -- vim.keymap.set("n", "cW", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  vim.keymap.set("n", "cW", function()
+    if vim.fn.exists(":IncRename") then
+      return ":IncRename " .. vim.fn.expand("<cword>")
+    end
+    return "<cmd>lua vim.lsp.buf.rename()<cr>"
+  end, { expr = true, buffer = bufnr, desc = "rename words" })
 
   -- code actions
   vim.keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
@@ -125,21 +131,6 @@ local function set_plugins(client, bufnr)
   end
 end
 
-local function surpress_irrelevant_notification(client, bufnr)
-  local notify = vim.notify
-  vim.notify = function(msg, ...)
-    if msg:match("%[lspconfig%]") then
-      return
-    end
-
-    if msg:match("warning: multiple different client offset_encodings") then
-      return
-    end
-
-    notify(msg, ...)
-  end
-end
-
 local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
@@ -182,6 +173,7 @@ local server_opts = function(server_name, on_attach, capabilities)
       },
     },
     ["denols"] = {
+      root_dir = lspconfig.util.root_pattern("deno.json"),
       init_options = { lint = true, unstable = true },
     },
     ["sumneko_lua"] = {
@@ -227,7 +219,6 @@ M.on_attach = function(client, bufnr)
   set_sign(client, bufnr)
   set_formatting(client, bufnr)
   set_plugins(client, bufnr)
-  surpress_irrelevant_notification(client, bufnr)
 end
 
 M.capabilities = gen_capabilities()

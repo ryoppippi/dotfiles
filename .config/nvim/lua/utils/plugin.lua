@@ -1,8 +1,7 @@
 local M = {}
 local u = require("utils")
 local toboolean = u.toboolean
-
-local plugin_list = {}
+local jp = require("jetpack")
 
 function M.get_jetpack_plugin_event_name(plugin_name)
   local R = {}
@@ -37,15 +36,15 @@ function M.load(plugin_name)
 end
 
 function M.is_exists(plugin_name)
-  return toboolean(require("jetpack").tap(plugin_name))
+  return toboolean(jp.tap(plugin_name))
 end
 
 function M.get(plugin_name)
-  return vim.fn["jetpack#get"](plugin_name)
+  return jp.get(plugin_name)
 end
 
 function M.names()
-  return require("jetpack").names()
+  return jp.names()
 end
 
 function M.post_load(plugin_name, callback, opt)
@@ -98,11 +97,15 @@ function M.force_load_on_event(name, loading_callback)
 end
 
 function M.force_require(plugin_name)
-  if M.is_exists(plugin_name) then
+  local status, re = pcall(require, plugin_name)
+  if status then
+    return true, re
+  elseif M.is_exists(plugin_name) then
     M.load(plugin_name)
     return pcall(require, plugin_name)
+  else
+    return false, nil
   end
-  return false, nil
 end
 
 return M

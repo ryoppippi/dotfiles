@@ -21,7 +21,7 @@ local function loading()
   end
 end
 
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   callback = loading,
   once = true,
 })

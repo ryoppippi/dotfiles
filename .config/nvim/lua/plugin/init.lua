@@ -2,30 +2,32 @@ local tb = require("utils").toboolean
 
 vim.g.enabled_snippet = "vsnip"
 -- vim.g.enabled_snippet = "luasnip"
-vim.g["jetpack#copy_method"] = "symlink"
-vim.g["jetpack#optimization"] = 1
 
 local function load_jetpack()
-  local status, _ = pcall(vim.cmd, "packadd vim-jetpack")
+  local status, _ = pcall(vim.cmd, [[packadd vim-jetpack]])
   if not status then
     vim.api.nvim_exec(
       [[
-        let dir = expand(stdpath('data') ..'/site/pack/jetpack/src/vim-jetpack')
+        let dir = expand(stdpath('data') ..'/site/pack/jetpack/opt/vim-jetpack')
         if !isdirectory(dir)
-          autocmd VimEnter * Sync | source $MYVIMRC
           let url = 'https://github.com/tani/vim-jetpack'
           silent execute printf('!git clone --depth 1 %s %s', url, dir)
           silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
         endif
       ]],
-      false
+      true
     )
     load_jetpack()
   end
 end
 
 local function load_plugins(plugin_list)
-  require("jetpack").startup(function(use)
+  local jp = require("jetpack")
+  jp.init({
+    copy_method = "symlink",
+    optimization = 1,
+  })
+  jp.startup(function(use)
     for _, plugin in ipairs(plugin_list) do
       local enabled = plugin.enabled
       if enabled ~= false then
@@ -54,8 +56,8 @@ end
 
 local plugin_list = {
   -- Plugin management {{
-  { "tani/vim-jetpack", opt = 1 },
-  { "lewis6991/impatient.nvim", as = "impatient", opt = 1 },
+  { "tani/vim-jetpack", opt = true },
+  { "lewis6991/impatient.nvim", as = "impatient", opt = true },
   { "4513ECHO/vim-readme-viewer", on = "VimEnter" },
   -- }}
 
@@ -199,7 +201,7 @@ local plugin_list = {
   -- Builtin Enhancements {{
   -- Quickfix
   { "thinca/vim-quickrun" },
-  { "thinca/vim-qfreplace" },
+  { "thinca/vim-qfreplace", on = "Qfreplace" },
   { "itchyny/vim-qfedit" },
   { "kevinhwang91/nvim-bqf" },
   { "gabrielpoca/replacer.nvim" },
@@ -481,6 +483,7 @@ local plugin_list = {
   -- markdown
   -- { "previm/previm" },
   { "iamcco/markdown-preview.nvim", ft = { "markdown" }, run = ":call mkdp#util#install()" },
+  -- { "SidOfc/mkdx", ft = { "markdown" } },
   { "dhruvasagar/vim-table-mode", on = "VimEnter" },
   -- sql
   { "jsborjesson/vim-uppercase-sql" },
@@ -490,7 +493,7 @@ local plugin_list = {
   -- log
   { "mtdl9/vim-log-highlighting" },
   -- csv
-  { "chen244/csv-tools.lua", as = "csvtools" },
+  { "chen244/csv-tools.lua" },
   -- rust
   { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
   -- go

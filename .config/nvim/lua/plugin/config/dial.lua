@@ -43,6 +43,10 @@ local function loading()
       augend.hexcolor.new({ case = "lower" }),
       augend.semver.alias.semver,
       augend.constant.new({ elements = { "true", "false" }, cyclic = true }),
+      augend.case.new({
+        types = { "camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE" },
+        cyclic = true,
+      }),
     },
     markdown = {
       augend.integer.alias.decimal,
@@ -58,6 +62,10 @@ local function loading()
       augend.hexcolor.new({ case = "lower" }),
       augend.semver.alias.semver,
       augend.constant.new({ elements = { "true", "false" }, cyclic = true }),
+      augend.case.new({
+        types = { "camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE" },
+        cyclic = true,
+      }),
       augend.misc.alias.markdown_header,
     },
     python = {
@@ -73,6 +81,10 @@ local function loading()
       augend.constant.alias.ja_weekday_full,
       augend.hexcolor.new({ case = "lower" }),
       augend.semver.alias.semver,
+      augend.case.new({
+        types = { "camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE" },
+        cyclic = true,
+      }),
       augend.constant.new({ elements = { "True", "False" }, cyclic = true }),
     },
   })
