@@ -310,6 +310,10 @@ local plugin_list = {
   { "kevinhwang91/nvim-hlslens", as = "hlslens" },
   -- }}
 
+  -- Rename {{
+  { "smjonas/inc-rename.nvim", as = "inc_rename", on = "VimEnter" },
+  -- }}
+
   -- Fuzzy Finder {{
   -- Telescope {{
   { "nvim-telescope/telescope.nvim", as = "telescope", on = "VimEnter" },

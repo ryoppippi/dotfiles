@@ -99,3 +99,6 @@ end, { noremap = true, expr = true, silent = true })
 vim.keymap.set("n", "A", function()
   return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
 end, { noremap = true, expr = true, silent = true })
+
+-- custom
+vim.keymap.set("n", "<leader>ss", "<cmd>ToggleStatusBar<cr>", { noremap = true })

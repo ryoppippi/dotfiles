@@ -16,3 +16,11 @@ vim.api.nvim_create_user_command("CountWord", function()
   vim.cmd(input)
   vim.fn.histadd("cmd", input)
 end, { force = true })
+
+vim.api.nvim_create_user_command("ToggleStatusBar", function()
+  if vim.o.laststatus == 3 then
+    vim.opt.laststatus = 0
+  else
+    vim.opt.laststatus = 3
+  end
+end, { nargs = 0, force = true })

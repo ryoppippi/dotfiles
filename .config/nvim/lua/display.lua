@@ -1,6 +1,7 @@
 local function setting()
+  local tb = require("utils").toboolean
   vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-  vim.cmd([[silent colorscheme kanagawa]])
+  pcall(vim.cmd, [[silent colorscheme kanagawa]])
 
   vim.g.colorterm = os.getenv("COLORTERM")
   if
@@ -21,6 +22,11 @@ local function setting()
 
   vim.opt.list = true
   vim.opt.laststatus = 3
+  if tb(vim.fn.has("nvim-0.8")) then
+    vim.opt.cmdheight = 0
+    -- vim.opt.laststatus = 0
+  end
+
   vim.opt.listchars = {
     -- space = "",
     tab = "▸▹┊",
@@ -29,9 +35,8 @@ local function setting()
     precedes = "❮",
   }
 end
-
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = setting,
-  nested = true,
   once = true,
+  nested = true,
 })
