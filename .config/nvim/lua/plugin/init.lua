@@ -338,7 +338,7 @@ local plugin_list = {
   -- Languages
   -- Nvim-LSP {{
   { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
-  { "williamboman/nvim-lsp-installer", opt = true },
+  { "williamboman/nvim-lsp-installer" },
   { "jose-elias-alvarez/null-ls.nvim", as = "null-ls", on = "VimEnter" },
   { "lukas-reineke/lsp-format.nvim", as = "lsp-format" },
 
