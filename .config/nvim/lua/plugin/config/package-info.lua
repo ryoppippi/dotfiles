@@ -4,11 +4,8 @@ if not require("utils.plugin").is_exists(plugin_name) then
 end
 
 local function loading()
-  pcall(vim.cmd, ("packadd " .. plugin_name))
-  local status, pinfo = pcall(require, plugin_name)
-  if status then
-    require(plugin_name).setup()
-  end
+  local _, pinfo = require("utils.plugin").force_require(plugin_name)
+  pinfo.setup()
 end
 
 vim.api.nvim_create_user_command("PackageInfo", function()

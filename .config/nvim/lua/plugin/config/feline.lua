@@ -5,6 +5,7 @@ end
 local force_require = require("utils.plugin").force_require
 
 local function loading()
+  local feline = require("feline")
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
   local navic_status, navic = force_require("nvim-navic")
@@ -446,7 +447,7 @@ local function loading()
     inactive = { {}, {}, {} },
   }
 
-  require("feline").setup({
+  feline.setup({
     theme = colors,
     vi_mode_colors = vi_mode_colors,
     default_bg = colors.bg,
@@ -454,6 +455,7 @@ local function loading()
     components = components,
     force_inactive = force_inactive,
   })
+
   vim.cmd([[set noshowmode]])
 end
 

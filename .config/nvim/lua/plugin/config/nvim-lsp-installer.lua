@@ -5,8 +5,8 @@ end
 local M = {}
 
 function M.config()
-  vim.cmd(string.format("packadd %s", plugin_name))
-  require(plugin_name).setup({
+  local _, lspinstaller = require("utils.plugin").force_require(plugin_name)
+  lspinstaller.setup({
     ui = {
       icons = {
         server_installed = "✓",
