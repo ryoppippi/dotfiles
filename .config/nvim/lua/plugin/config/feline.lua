@@ -1,8 +1,10 @@
 local plugin_name = "feline"
 local force_require = require("utils.plugin").force_require
+local tb = require("utils").toboolean
 
 local function loading()
   local feline = require("feline")
+  local winbar = feline.winbar
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
   local navic_status, navic = force_require("nvim-navic")
@@ -121,6 +123,23 @@ local function loading()
         name = "file_info",
         opts = {
           type = "relative-short",
+        },
+      },
+      hl = {
+        fg = "white",
+        bg = "bg",
+        style = "bold",
+      },
+      icon = "",
+      priority = -20,
+      left_sep = " ",
+    },
+
+    file_name_short = {
+      provider = {
+        name = "file_info",
+        opts = {
+          type = "base-only",
         },
       },
       hl = {
@@ -420,8 +439,7 @@ local function loading()
         comps.git_diff_changed,
         comps.git_diff_removed,
         comps.file_name,
-        -- comps.nvim_gps,
-        comps.nvim_navic,
+        -- comps.nvim_navic,
       },
       -- middle
       {},
@@ -452,6 +470,24 @@ local function loading()
     components = components,
     force_inactive = force_inactive,
   })
+
+  -- if tb(vim.fn.has("nvim-0.8")) then
+  --   winbar.setup({
+  --     components = {
+  --       active = {
+  --         {
+  --           comps.file_name_short,
+  --           comps.nvim_navic,
+  --         },
+  --       },
+  --       inactive = {
+  --         {
+  --           comps.file_name_short,
+  --         },
+  --       },
+  --     },
+  --   })
+  -- end
 
   vim.cmd([[set noshowmode]])
 end
