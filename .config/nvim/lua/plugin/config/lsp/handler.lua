@@ -53,13 +53,6 @@ local function set_keymap(client, bufnr)
   vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opts)
 end
 
-local function set_sign(client, bufnr)
-  vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-  vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-  vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-  vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-end
-
 local function set_options(client, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
@@ -142,87 +135,13 @@ local gen_capabilities = function()
   return capabilities
 end
 
-local server_opts = function(server_name, on_attach, capabilities)
-  local lspconfig = require("lspconfig")
-  local lsp_util = lspconfig.util
-  local utils = require("utils")
-  local specific_options = {
-    ["emmet_ls"] = {
-      filetypes = { "html", "css", "svelte" },
-    },
-    ["tsserver"] = {
-      root_dir = lsp_util.root_pattern("package.json"),
-    },
-    ["svelte"] = {
-      root_dir = lsp_util.root_pattern("package.json"),
-    },
-    ["eslint"] = {
-      root_dir = lsp_util.root_pattern("package.json"),
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
-        "svelte",
-      },
-      settings = {
-        format = { enable = true },
-      },
-    },
-    ["denols"] = {
-      root_dir = lspconfig.util.root_pattern("deno.json"),
-      init_options = { lint = true, unstable = true },
-    },
-    ["sumneko_lua"] = {
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT",
-            path = vim.tbl_extend("force", vim.split(package.path, ";"), { "lua/?.lua", "lua/?/init.lua" }),
-          },
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            -- library = vim.api.nvim_get_runtime_file("", true),
-            preloadFileSize = 500,
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    },
-    ["pyrignt"] = {
-      before_init = function(_, config)
-        config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-            and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-          or utils.find_cmd("python3", ".venv/bin", config.root_dir)
-      end,
-      settings = {
-        disableOrganizeImports = true,
-      },
-    },
-  }
-  local opts = specific_options[server_name] or {}
-  opts.on_attach = on_attach
-  opts.capabilities = capabilities
-  return opts
-end
-
 M.on_attach = function(client, bufnr)
   set_keymap(client, bufnr)
   set_options(client, bufnr)
-  set_sign(client, bufnr)
   set_formatting(client, bufnr)
   set_plugins(client, bufnr)
 end
 
 M.capabilities = gen_capabilities()
-
-M.server_opts = server_opts
 
 return M
