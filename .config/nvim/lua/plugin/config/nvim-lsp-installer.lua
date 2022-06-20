@@ -1,7 +1,3 @@
-local plugin_name = "nvim-lsp-installer"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 local M = {}
 
 function M.config()

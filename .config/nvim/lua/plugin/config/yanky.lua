@@ -1,7 +1,4 @@
 local plugin_name = "yanky"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function keymap()
   vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", {})

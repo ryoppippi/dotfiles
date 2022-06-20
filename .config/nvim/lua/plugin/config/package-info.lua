@@ -1,7 +1,4 @@
 local plugin_name = "package-info"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local _, pinfo = require("utils.plugin").force_require(plugin_name)

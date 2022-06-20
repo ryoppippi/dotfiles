@@ -1,7 +1,4 @@
 local plugin_name = "auto-session"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function pre_save()
   local notify_status, notify = require("utils.plugin").force_require("notify")

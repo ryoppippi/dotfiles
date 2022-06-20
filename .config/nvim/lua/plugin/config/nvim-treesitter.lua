@@ -1,7 +1,3 @@
-if not require("utils.plugin").is_exists("nvim-treesitter") then
-  return
-end
-
 local function loading()
   local ts = require("nvim-treesitter.configs")
   ts.setup({
@@ -114,6 +110,4 @@ local function loading()
   })
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "VimEnter" }, {
-  callback = loading,
-})
+loading()

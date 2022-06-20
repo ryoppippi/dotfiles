@@ -1,7 +1,4 @@
-local plugin_name = "nvim_navic"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
+local plugin_name = "nvim-navic"
 
 local function loading()
   require(plugin_name).setup({

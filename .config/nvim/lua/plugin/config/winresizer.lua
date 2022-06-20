@@ -1,7 +1,4 @@
 local plugin_name = "winresizer"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   vim.g.winresizer_enable = 1

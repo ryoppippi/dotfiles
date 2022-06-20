@@ -1,7 +1,4 @@
 local plugin_name = "nvim-pasta"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)

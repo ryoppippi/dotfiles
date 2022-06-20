@@ -1,7 +1,4 @@
 local plugin_name = "treesitter-unit"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   vim.api.nvim_set_keymap("x", "iu", ':lua require"treesitter-unit".select()<CR>', { noremap = true })

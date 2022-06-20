@@ -1,8 +1,5 @@
 local plugin_name = "searchx"
 local plug_utils = require("utils.plugin")
-if not plug_utils.is_exists(plugin_name) then
-  return
-end
 
 local function hl_start()
   local hlslens_status, hlslens = plug_utils.force_require("hlslens")

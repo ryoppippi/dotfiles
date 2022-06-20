@@ -1,7 +1,4 @@
 local plugin_name = "nvim-treesitter-context"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local status_context, ts_context = pcall(require, "treesitter-context")

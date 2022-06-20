@@ -49,8 +49,12 @@ local function check_installed()
 end
 
 local function load_lua_configs()
+  local jp = require("jetpack")
   for _, path in ipairs(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugin/config/*.lua", 1, 1, 1)) do
-    vim.cmd(string.format("luafile %s", vim.fn.fnameescape(path)))
+    local plugin_name = vim.fn.fnamemodify(path, ":t:r")
+    if jp.tap(plugin_name) then
+      vim.cmd("luafile " .. path)
+    end
   end
 end
 
@@ -192,7 +196,7 @@ local plugin_list = {
   -- Adding,subtracting,change cases
   { "monaqa/dial.nvim", as = "dial", on = "VimEnter" },
   -- {'monaqa/dps-dial.vim',on= 'VimEnter', as='dps-dial'},
-  { "deris/vim-rengbang", on = "VimEnter" },
+  { "deris/vim-rengbang" },
   { "johmsalas/text-case.nvim", as = "textcase", on = "VimEnter" },
   -- { "mopp/vim-operator-convert-case" },
 
@@ -204,7 +208,7 @@ local plugin_list = {
   { "thinca/vim-qfreplace", on = "Qfreplace" },
   { "itchyny/vim-qfedit" },
   { "kevinhwang91/nvim-bqf" },
-  { "gabrielpoca/replacer.nvim" },
+  -- { "gabrielpoca/replacer.nvim" },
 
   -- Undo
   { "simnalamburt/vim-mundo", on = "MundoShow" },
@@ -440,7 +444,7 @@ local plugin_list = {
   -- Heiglighting {{
   { "norcalli/nvim-colorizer.lua", as = "colorizer", on = "VimEnter" },
   { "folke/todo-comments.nvim", as = "todo-comments", on = "BufReadPost" },
-  { "m-demare/hlargs.nvim" },
+  { "m-demare/hlargs.nvim", as = "hlargs" },
   { "RRethy/vim-illuminate", as = "illuminate" },
   -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
   -- { "Pocco81/HighStr.nvim" }, -- highlight strings
@@ -479,26 +483,29 @@ local plugin_list = {
   { "vuki656/package-info.nvim", as = "package-info", on = "PackageInfo" },
   { "bennypowers/nvim-regexplainer", as = "regexplainer", on = "VimEnter" },
   -- typescript
-  -- { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
-  -- markdown
-  -- { "previm/previm" },
-  { "iamcco/markdown-preview.nvim", ft = { "markdown" }, run = ":call mkdp#util#install()" },
-  -- { "SidOfc/mkdx", ft = { "markdown" } },
+  { "jose-elias-alvarez/typescript.nvim", as = "typescript" },
   { "dhruvasagar/vim-table-mode", on = "VimEnter" },
   -- sql
   { "jsborjesson/vim-uppercase-sql" },
   -- lua
   { "milisims/nvim-luaref" },
-  -- { "folke/lua-dev.nvim" },
+  { "folke/lua-dev.nvim" },
+  -- rust
+  -- { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
+  { "simrat39/rust-tools.nvim", as = "rust-tools", opt = true },
+  -- go
+  { "ray-x/go.nvim", as = "go", opt = true },
+  -- }}
+  -- markdown
+  -- { "previm/previm" },
+  { "iamcco/markdown-preview.nvim", ft = { "markdown" }, run = ":call mkdp#util#install()" },
+  -- { "SidOfc/mkdx", ft = { "markdown" } },
   -- log
   { "mtdl9/vim-log-highlighting" },
   -- csv
   { "chen244/csv-tools.lua" },
-  -- rust
-  { "shurizzle/inlay-hints.nvim", as = "inlay-hints", on = "VimEnter" },
-  -- go
-  { "ray-x/go.nvim", as = "go", on = "VimEnter" },
-  -- }}
+  -- json
+  { "b0o/schemastore.nvim", as = "schemastore" },
 
   -- AI {{
   { "github/copilot.vim", on = { "CursorHold", "InsertEnter" } },

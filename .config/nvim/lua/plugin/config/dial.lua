@@ -1,7 +1,4 @@
 local plugin_name = "dial"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
 

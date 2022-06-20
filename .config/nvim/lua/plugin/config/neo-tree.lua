@@ -1,7 +1,4 @@
 local plugin_name = "neo-tree"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function hijack() end
 

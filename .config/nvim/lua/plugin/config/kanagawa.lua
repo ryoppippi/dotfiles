@@ -1,7 +1,4 @@
 local plugin_name = "kanagawa"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local default_colors = require(plugin_name .. ".colors").setup()

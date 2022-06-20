@@ -1,7 +1,4 @@
 local plugin_name = "dps-dial"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function setup()
   vim.api.nvim_exec(

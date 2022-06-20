@@ -1,7 +1,4 @@
 local plugin_name = "copilot.vim"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   -- vim.api.nvim_command('imap <expr> <Plug>(copilot-dummy-map) copilot#Accept("<Tab>")')
