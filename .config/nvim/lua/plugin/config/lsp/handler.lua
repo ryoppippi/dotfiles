@@ -68,24 +68,16 @@ local function set_options(client, bufnr)
 end
 
 local function set_formatting(client, bufnr)
-  local name = client.name
-
   local document_formatting_disable_list = { "tsserver", "svelte", "sumneko_lua" }
-  local document_range_formatting_disable_list = { "tsserver", "svelte", "sumneko_lua" }
 
   for _, v in ipairs(document_formatting_disable_list) do
-    if v == name then
-      client.resolved_capabilities.document_formatting = false
-    end
-  end
-  for _, v in ipairs(document_range_formatting_disable_list) do
-    if v == name then
-      client.resolved_capabilities.document_range_formatting = false
+    if v == client.name then
+      return
     end
   end
 
   -- auto formatting
-  if client.supports_method("textDocument/formatting") and client.resolved_capabilities.document_formatting then
+  if client.supports_method("textDocument/formatting") then
     -- vim.api.nvim_clear_autocmds({
     --   buffer = bufnr,
     --   group = FormatAugroup,
@@ -97,7 +89,6 @@ local function set_formatting(client, bufnr)
     -- })
     local lsp_format_status, lsp_format = force_require("lsp-format")
     if lsp_format_status and lsp_format ~= nil then
-      lsp_format.setup({})
       lsp_format.on_attach(client)
       vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
       vim.cmd([[cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q]])
@@ -113,13 +104,11 @@ local function set_plugins(client, bufnr)
 
   local aerial_status, aerial = force_require("aerial")
   if aerial_status and aerial ~= nil then
-    aerial.setup({})
     aerial.on_attach(client, bufnr)
   end
 
   local navic_status, navic = force_require("nvim-navic")
   if navic_status and navic ~= nil then
-    navic.setup({})
     navic.attach(client, bufnr)
   end
 end
