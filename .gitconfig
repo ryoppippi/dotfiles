@@ -33,12 +33,11 @@
 	sma = submodule add
 	sms = submodule foreach \"git status\"	
 	sw = switch
+	fsw =!git branch -a | fzf | xargs git switch
 	po = push origin
 	difff = diff --word-diff
 	s = switch
 	cor = "!f() { local -r ref=$(git branch -r | fzf); git checkout -b \"${1:-${ref#*/}}\" $ref; }; f"
-	fb=!git branch -a | fzf | xargs git checkout
-	cof = !git checkout $(git branch | fzf)
 	cob = checkout -b
 	cid = log -n 1 --format=%H
 	clean-local-branches = !"git branch --merged | grep -v \\* | xargs git branch -d"
