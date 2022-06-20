@@ -15,25 +15,28 @@ local sources = function()
   local code_actions = null_ls.builtins.code_actions
   return {
     -- web
-    -- formatting.prettierd.with({
-    --   extra_filetypes = {
-    --     "svelte",
-    --   },
-    --   condition = with_root_file(".prettierrc"),
-    -- }),
-
-    formatting.prettier.with({
+    formatting.prettierd.with({
       extra_filetypes = {
         "svelte",
       },
       condition = with_root_file(".prettierrc"),
     }),
 
+    -- formatting.prettier.with({
+    --   extra_filetypes = {
+    --     "svelte",
+    --   },
+    --   condition = with_root_file(".prettierrc"),
+    -- }),
+
     diagnostics.tsc.with({
       diagnostics_format = diagnostics_format,
+      condition = with_root_file("deno.json", "deno.jsonc"),
     }),
 
-    formatting.deno_fmt,
+    formatting.deno_fmt.with({
+      condition = with_root_file("deno.json", "deno.jsonc"),
+    }),
     -- python
     formatting.isort.with({
       diagnostics_format = diagnostics_format,
