@@ -4,7 +4,7 @@ vim.g.enabled_snippet = "vsnip"
 -- vim.g.enabled_snippet = "luasnip"
 
 local function load_jetpack()
-  local status, _ = pcall(vim.cmd, [[packadd vim-jetpack]])
+  local status, _ = require("utils.plugin").load("vim-jetpack")
   if not status then
     vim.api.nvim_exec(
       [[
@@ -413,8 +413,8 @@ local plugin_list = {
   -- Nvim-treesitter {{
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
   { "nvim-treesitter/playground" },
-  { "nvim-treesitter/nvim-tree-docs" },
   { "nvim-treesitter/nvim-treesitter-refactor" },
+  -- { "nvim-treesitter/nvim-tree-docs" },
   { "yioneko/nvim-yati", as = "yati", on = "VimEnter" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "vigoux/architext.nvim" },
