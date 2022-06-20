@@ -1,7 +1,4 @@
 local plugin_name = "coc"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   vim.api.nvim_exec(

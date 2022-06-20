@@ -1,7 +1,4 @@
 local plugin_name = "feline"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 local force_require = require("utils.plugin").force_require
 
 local function loading()

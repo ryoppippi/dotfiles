@@ -1,7 +1,4 @@
 local plugin_name = "minimap"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   -- let g:minimap_width = 10

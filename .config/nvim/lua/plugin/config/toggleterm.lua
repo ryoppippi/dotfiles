@@ -1,7 +1,4 @@
 local plugin_name = "toggleterm"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local create_cli = function(cmd)
   local Terminal = require("toggleterm.terminal").Terminal

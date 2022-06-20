@@ -1,7 +1,4 @@
 local plugin_name = "asterisk"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 -- map *   <Plug>(asterisk-*)
 -- map #   <Plug>(asterisk-#)

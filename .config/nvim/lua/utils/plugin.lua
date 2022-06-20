@@ -35,9 +35,9 @@ function M.load(plugin_name)
   return pcall(vim.cmd, string.format("packadd %s", plugin_name))
 end
 
-function M.is_exists(plugin_name)
-  return toboolean(jp.tap(plugin_name))
-end
+ function M.is_exists(plugin_name)
+   return toboolean(jp.tap(plugin_name))
+ end
 
 function M.get(plugin_name)
   return jp.get(plugin_name)

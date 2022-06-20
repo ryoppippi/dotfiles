@@ -1,6 +1,10 @@
 local plugin_name = "null-ls"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
+
+local with_root_file = function(...)
+  local files = { ... }
+  return function(utils)
+    return utils.root_has_file(files)
+  end
 end
 
 local sources = function()
@@ -15,22 +19,19 @@ local sources = function()
     --   extra_filetypes = {
     --     "svelte",
     --   },
+    --   condition = with_root_file(".prettierrc"),
     -- }),
 
     formatting.prettier.with({
       extra_filetypes = {
         "svelte",
       },
+      condition = with_root_file(".prettierrc"),
     }),
 
     diagnostics.tsc.with({
       diagnostics_format = diagnostics_format,
     }),
-    -- nulls.builtins.diagnostics.eslint_d.with({
-    --         extra_filetypes = {
-    --             "svelte",
-    --         },
-    --     }),
 
     formatting.deno_fmt,
     -- python
@@ -56,14 +57,14 @@ local sources = function()
     }),
 
     -- Docker
-    diagnostics.hadolint,
+    diagnostics.hadolint.with({
+      diagnostics_format = diagnostics_format,
+    }),
     -- format
     -- lua
     formatting.stylua.with({
       diagnostics_format = diagnostics_format,
-      condition = function(utils)
-        return utils.root_has_file({ "stylua.toml", ".stylua.toml" })
-      end,
+      condition = with_root_file({ "stylua.toml", ".stylua.toml" }),
     }),
 
     -- others

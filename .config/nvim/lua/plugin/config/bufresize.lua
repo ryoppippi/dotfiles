@@ -1,7 +1,4 @@
-local plugin_name = "brfresize"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
+local plugin_name = "bufresize"
 
 local function loading()
   require(plugin_name).setup()

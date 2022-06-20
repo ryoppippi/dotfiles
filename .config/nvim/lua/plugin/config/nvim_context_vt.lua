@@ -1,7 +1,4 @@
 local plugin_name = "nvim_context_vt"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local vt_status, nvim_context_vt = pcall(require, "nvim_context_vt")

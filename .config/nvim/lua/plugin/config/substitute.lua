@@ -1,7 +1,4 @@
 local plugin_name = "substitute"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function keymap()
   vim.keymap.set("n", "cx", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })

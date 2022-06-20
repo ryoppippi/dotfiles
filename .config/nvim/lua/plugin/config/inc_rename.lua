@@ -1,7 +1,4 @@
 local plugin_name = "inc_rename"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local tb = require("utils").toboolean

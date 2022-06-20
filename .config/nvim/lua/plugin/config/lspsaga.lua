@@ -1,7 +1,4 @@
 local plugin_name = "lspsaga"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local opt = { silent = true, nowait = true, buffer = 0 }
 local loading = function()

@@ -1,7 +1,4 @@
 local plugin_name = "lualine"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function AS()
   if vim.g.autosave_state then

@@ -1,7 +1,4 @@
 local plugin_name = "telescope"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   local telescope = require(plugin_name)

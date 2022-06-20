@@ -1,7 +1,4 @@
 local plugin_name = "vim-matchup"
-if not require("utils.plugin").is_exists(plugin_name) then
-  return
-end
 
 local function loading()
   vim.g.matchup_text_obj_enabled = 1

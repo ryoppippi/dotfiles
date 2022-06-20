@@ -1,8 +1,5 @@
 local plugin_name = "cmp"
 local utils_plug = require("utils.plugin")
-if not utils_plug.is_exists(plugin_name) then
-  return
-end
 
 local snippet_library = vim.g.enabled_snippet
 
