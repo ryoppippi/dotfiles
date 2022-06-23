@@ -143,7 +143,7 @@ local plugin_list = {
 
   -- comment
   -- commentout
-  { "numToStr/Comment.nvim", as = "Comment" },
+  { "numToStr/Comment.nvim", as = "Comment", on = "User VimLoaded" },
   -- comment generation
   { "s1n7ax/nvim-comment-frame" },
   { "LudoPinelli/comment-box.nvim" },
