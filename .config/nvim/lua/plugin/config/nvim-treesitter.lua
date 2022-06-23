@@ -31,6 +31,9 @@ local function loading()
     autotag = {
       enable = true,
     },
+    endwise = {
+      enable = true,
+    },
     textobjects = {
       select = {
         enable = true,
@@ -91,20 +94,6 @@ local function loading()
         [";"] = "textsubjects-container-outer",
         ["i;"] = "textsubjects-container-inner",
       },
-    },
-    refactor = {
-      -- highlight_definitions = {
-      --   enable = true,
-      --   -- Set to false if you have an `updatetime` of ~100.
-      --   clear_on_cursor_move = true,
-      -- },
-      -- highlight_current_scope = { enable = true },
-      -- smart_rename = {
-      --   enable = true,
-      --   keymaps = {
-      --     smart_rename = "cW",
-      --   },
-      -- },
     },
     tree_docs = { enable = true },
   })

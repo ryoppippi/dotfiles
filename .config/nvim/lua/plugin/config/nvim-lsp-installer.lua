@@ -32,17 +32,7 @@ local function loading()
     local opts = { capabilities = capabilities, on_attach = on_attach }
     local name = server.name
 
-    if "emmet_ls" == name then
-      opts.filetypes = { "html", "css", "svelte", "javascriptreact", "typescriptreact", "vue" }
-    elseif "angularls" == name then
-      opts.root_dir = lsp_util.root_pattern("angular.json")
-    elseif "tailwindcss" == name then
-      opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
-    elseif "svelte" == name then
-      opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
-    elseif "eslint" == name then
-      opts.root_dir = lsp_util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.json")
-      opts.filetypes = {
+    local web_filetypes= {
         "javascript",
         "javascriptreact",
         "javascript.jsx",
@@ -52,6 +42,18 @@ local function loading()
         "vue",
         "svelte",
       }
+
+    if "emmet_ls" == name then
+      opts.filetypes =web_filetypes
+    elseif "angularls" == name then
+      opts.root_dir = lsp_util.root_pattern("angular.json")
+    elseif "tailwindcss" == name then
+      opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
+    elseif "svelte" == name then
+      opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
+    elseif "eslint" == name then
+      opts.root_dir = lsp_util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json")
+      opts.filetypes = web_filetypes
       opts.settings = {
         format = { enable = true },
       }

@@ -1,12 +1,18 @@
-local plugin_name = "nvim-autopairs"
+local npairs = require("nvim-autopairs")
+local Rule = require("nvim-autopairs.rule")
+local ts_conds = require("nvim-autopairs.ts-conds")
+local conds = require("nvim-autopairs.conds")
+local add_rules = npairs.add_rules
 
-local function loading()
-  require(plugin_name).setup({
-    check_ts = true,
-    enable_check_bracket_line = true,
-    ignored_next_char = "[%w%.]",
-  })
-  -- local ts_conds = require("nvim-autopairs.ts-conds")
-end
+npairs.setup({
+  check_ts = true,
+  enable_check_bracket_line = true,
+  ignored_next_char = "[%w%.]",
+})
 
-loading()
+--rules
+add_rules({
+  Rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
+    :use_regex(true)
+    :set_end_pair_length(2),
+})

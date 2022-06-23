@@ -69,33 +69,57 @@ function M.load_denops_plugin(plugin_name, callback)
   })
 end
 
-function M.force_load_on_event(name, loading_callback)
-  local function ce(event)
+function M.force_load_on_event(plugin_name, loading_callback)
+  local function ce(e)
+    local t = {}
+    local event = nil
+    local pattern = nil
+    for v in string.gmatch(e, "%S+") do
+      table.insert(t, v)
+    end
+    event = t[1]
+    pattern = t[2] or "*"
     vim.api.nvim_create_autocmd(event, {
       callback = function()
-        M.load(name)
+        M.load(plugin_name)
         loading_callback()
       end,
       once = true,
       nested = true,
+      pattern = pattern,
     })
   end
 
-  local pkg = require("utils.plugin").get(name)
+  local pkg = require("utils.plugin").get(plugin_name)
   if not pkg then
     return nil
   end
   local event = pkg.on
-  if type(event) == "string" and u.is_event_available(event) then
-    ce(event)
-  elseif type(event) == "table" then
-    ce(event)
-  elseif event == nil then
+  local event_table = {}
+
+  if event == nil then
     loading_callback()
+    return
+  end
+
+  if type(event) == "string" then
+    event_table = { event }
+  elseif type(event) == "table" then
+    event_table = event
+  end
+
+  for _, e in ipairs(event_table) do
+    if u.is_event_available(e) then
+      ce(e)
+    end
   end
 end
 
 function M.force_require(plugin_name)
+  local status, re = pcall(require, plugin_name)
+  if status then
+    return status, re
+  end
   M.load(plugin_name)
   return pcall(require, plugin_name)
 end

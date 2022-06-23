@@ -22,11 +22,6 @@ local function loading()
       return
     end
 
-    if msg:match("navic") then
-      print(msg)
-      return
-    end
-
     require("notify")(msg, ...)
   end
 end
