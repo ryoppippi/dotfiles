@@ -8,6 +8,7 @@ local function loading()
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
   local navic_status, navic = force_require("nvim-navic")
+  local gps_status, gps = force_require("nvim-gps")
 
   local force_inactive = {
     filetypes = {},
@@ -150,6 +151,36 @@ local function loading()
       icon = "",
       priority = -20,
       left_sep = " ",
+    },
+
+    nvim_gps = {
+      provider = function()
+        if gps_status and gps ~= nil then
+          return gps.get_location()
+        end
+        return ""
+      end,
+      enabled = function()
+        if gps_status and gps ~= nil then
+          return gps.is_available()
+        end
+        return false
+      end,
+      hl = {
+        fg = "white",
+        bg = "bg",
+        style = "bold",
+      },
+      left_sep = {
+        str = " > ",
+        hl = {
+          fg = "white",
+          bg = "bg",
+          style = "bold",
+        },
+      },
+      priority = -50,
+      truncate_hide = true,
     },
 
     nvim_navic = {
@@ -439,7 +470,8 @@ local function loading()
         comps.git_diff_changed,
         comps.git_diff_removed,
         comps.file_name,
-        -- comps.nvim_navic,
+        comps.nvim_navic,
+        -- comps.nvim_gps,
       },
       -- middle
       {},

@@ -114,6 +114,7 @@ local function loading()
   le("luasnip")
   le("ghq")
   le("gh")
+  le("projects")
 end
 
 local function keymap()

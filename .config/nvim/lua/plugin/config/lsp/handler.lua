@@ -70,10 +70,8 @@ end
 local function set_formatting(client, bufnr)
   local document_formatting_disable_list = { "tsserver", "svelte", "sumneko_lua" }
 
-  for _, v in ipairs(document_formatting_disable_list) do
-    if v == client.name then
-      return
-    end
+  if vim.tbl_contains(document_formatting_disable_list, client.name) then
+    return
   end
 
   -- auto formatting

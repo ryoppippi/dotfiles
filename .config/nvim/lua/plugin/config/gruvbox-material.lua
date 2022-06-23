@@ -1,8 +1,5 @@
-local plugin_name = "gruvbox-material"
-
-local function loading()
-  vim.api.nvim_exec(
-    [[
+vim.api.nvim_exec(
+  [[
     if has('termguicolors')
       set termguicolors
     endif
@@ -16,8 +13,7 @@ local function loading()
     autocmd ColorScheme gruvbox-material hi DiagnosticWarn guifg=#ffb86c
     packadd gruvbox-material
   ]],
-    false
-  )
-end
+  false
+)
 
-require("utils.plugin").pre_load(plugin_name, loading)
+-- require("utils.plugin").pre_load("gruvbox-material", loading)

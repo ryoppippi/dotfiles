@@ -1,1 +1,1 @@
-vim.g.Illuminate_delay = 200
+vim.g.Illuminate_delay = 500

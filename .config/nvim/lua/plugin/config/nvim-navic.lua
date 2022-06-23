@@ -12,6 +12,7 @@ local function loading()
     depth_limit = 0,
     depth_limit_indicator = "..",
   })
+  vim.g.navic_silence = true
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

@@ -1,7 +1,5 @@
 local plugin_name = "neo-tree"
 
-local function hijack() end
-
 local function loading()
   vim.cmd([[
         hi link NeoTreeDirectoryName Directory
@@ -153,7 +151,7 @@ end
 
 local function keymap()
   vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealInSplit<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloat<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloatToggle<CR>", { noremap = true, silent = true })
   -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
 end
 
