@@ -5,7 +5,7 @@ local function setup(pluin_name, options)
   end
 end
 
-local function load()
+local function loading()
   setup("mini.indentscope", {})
   -- setup('mini.cursorword',{})
   setup("mini.jump", {
@@ -24,6 +24,4 @@ local function load()
   setup("mini.trailspace", {})
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = load,
-})
+require("utils.plugin").force_load_on_event("mini", loading)
