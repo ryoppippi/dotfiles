@@ -1,5 +1,6 @@
-local t = require("utils").t
-local tb = require("utils").toboolean
+local utils = require("utils")
+local t = utils.t
+local tb = utils.toboolean
 
 vim.g.mapleader = t("<Space>")
 vim.g.completion_trigger_character = "."
@@ -77,15 +78,34 @@ vim.keymap.set("c", "<C-d>", "<DEL>", { noremap = true, silent = false })
 -- regexp
 vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>', { noremap = true })
 
--- tips
-vim.keymap.set("n", "Y", "y$", { noremap = true })
-vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
-vim.keymap.set({ "n", "v" }, "X", '"_d$', { noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>", { noremap = true })
-vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>", { noremap = true })
-vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>", { noremap = true })
-vim.keymap.set("n", "<leader>p", 'o<esc>^"_d$p<esc>', { noremap = true })
-vim.keymap.set({ "n", "v" }, "sf", "%", { noremap = true })
+-- add blank lines
+local function append_new_lines(offset_line)
+  return require("peridot").repeatable_edit(function(ctx)
+    local curpos = vim.fn.line(".")
+    local pos_line = curpos + offset_line
+    local n_lines = ctx.count1
+    local lines = require("utils").repeat_element("", n_lines)
+    vim.fn.append(pos_line, lines)
+  end)
+end
+vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
+vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
+
+-- paste in next lines
+local function paste_in_new_lines(direction)
+  return require("peridot").repeatable_edit(function(ctx)
+    for _ = 1, ctx.count1 do
+      if direction == 0 then
+        vim.api.nvim_command("pu")
+      elseif direction == -1 then
+        vim.api.nvim_command("pu!")
+      end
+    end
+  end)
+end
+vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
+vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
+vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
 
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
@@ -102,3 +122,12 @@ end, { noremap = true, expr = true, silent = true })
 
 -- custom
 vim.keymap.set("n", "<leader>ss", "<cmd>ToggleStatusBar<cr>", { noremap = true })
+
+-- tips
+vim.keymap.set("n", "Y", "y$", { noremap = true })
+vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
+vim.keymap.set({ "n", "v" }, "X", '"_d$', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>", { noremap = true })
+vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>", { noremap = true })
+vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>", { noremap = true })
+vim.keymap.set({ "n", "v" }, "sf", "%", { noremap = true })
