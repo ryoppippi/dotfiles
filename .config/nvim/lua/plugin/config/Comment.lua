@@ -1,6 +1,11 @@
 local plugin_name = "Comment"
+local plug_utils = require("utils.plugin")
 
 local function loading()
+  for _, path in ipairs(vim.fn.glob(vim.fn.expand(plug_utils.get(plugin_name).path .. "/after/plugin/*"), 1, 1, 1)) do
+    vim.cmd("source " .. path)
+  end
+
   require(plugin_name).setup({
     pre_hook = function(ctx)
       -- Only calculate commentstring for tsx filetypes
@@ -26,9 +31,4 @@ local function loading()
     end,
   })
 end
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    loading()
-  end,
-})
+require("utils.plugin").force_load_on_event(plugin_name, loading)
