@@ -1,6 +1,7 @@
 pcall(vim.cmd, "packadd impatient")
 pcall(require, "impatient")
 
+require("base")
 require("options")
 require("keymaps")
 require("keymaps_vscode")
