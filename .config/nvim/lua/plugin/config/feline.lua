@@ -7,8 +7,6 @@ local function loading()
   local winbar = feline.winbar
   local lsp = require("feline.providers.lsp")
   local vi_mode_utils = require("feline.providers.vi_mode")
-  local navic_status, navic = force_require("nvim-navic")
-  local gps_status, gps = force_require("nvim-gps")
 
   local force_inactive = {
     filetypes = {},
@@ -155,16 +153,12 @@ local function loading()
 
     nvim_gps = {
       provider = function()
-        if gps_status and gps ~= nil then
-          return gps.get_location()
-        end
-        return ""
+        local gps = force_require("nvim-gps")
+        return gps and gps.get_location() or ""
       end,
       enabled = function()
-        if gps_status and gps ~= nil then
-          return gps.is_available()
-        end
-        return false
+        local gps = force_require("nvim-gps")
+        return gps and gps.is_available() or false
       end,
       hl = {
         fg = "white",
@@ -185,16 +179,12 @@ local function loading()
 
     nvim_navic = {
       provider = function()
-        if navic_status and navic ~= nil then
-          return navic.get_location()
-        end
-        return ""
+        local navic = force_require("nvim-navic")
+        return navic and navic.get_location() or ""
       end,
       enabled = function()
-        if navic_status and navic ~= nil then
-          return navic.is_available()
-        end
-        return false
+        local navic = force_require("nvim-navic")
+        return navic and navic.is_available() or false
       end,
       hl = {
         fg = "white",

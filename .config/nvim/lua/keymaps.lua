@@ -1,6 +1,7 @@
 local utils = require("utils")
 local t = utils.t
 local tb = utils.toboolean
+local force_require = require("utils.plugin").force_require
 
 vim.g.mapleader = t("<Space>")
 vim.g.completion_trigger_character = "."
@@ -51,8 +52,12 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
-vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>th", "<cmd>tabfirst<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tj", "<cmd>tabprevious<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tk", "<cmd>tabnext<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tl", "<cmd>tablast<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tn", "<cmd>tabe .<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tq", "<cmd>tabclose<cr>", { noremap = true, silent = true })
 
@@ -80,33 +85,36 @@ vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>', { noremap = 
 
 -- add blank lines
 local function append_new_lines(offset_line)
-  return require("peridot").repeatable_edit(function(ctx)
-    local curpos = vim.fn.line(".")
-    local pos_line = curpos + offset_line
-    local n_lines = ctx.count1
-    local lines = require("utils").repeat_element("", n_lines)
-    vim.fn.append(pos_line, lines)
-  end)
+  local peridot = force_require("peridot")
+  return peridot
+    and peridot.repeatable_edit(function(ctx)
+      local curpos = vim.fn.line(".")
+      local pos_line = curpos + offset_line
+      local n_lines = ctx.count1
+      local lines = require("utils").repeat_element("", n_lines)
+      vim.fn.append(pos_line, lines)
+    end)
 end
 vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
 vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
 
 -- paste in next lines
 local function paste_in_new_lines(direction)
-  return require("peridot").repeatable_edit(function(ctx)
-    for _ = 1, ctx.count1 do
-      if direction == 0 then
-        vim.api.nvim_command("pu")
-      elseif direction == -1 then
-        vim.api.nvim_command("pu!")
+  local peridot = force_require("peridot")
+  return peridot
+    and peridot.repeatable_edit(function(ctx)
+      for _ = 1, ctx.count1 do
+        if direction == 0 then
+          vim.api.nvim_command("pu")
+        elseif direction == -1 then
+          vim.api.nvim_command("pu!")
+        end
       end
-    end
-  end)
+    end)
 end
 vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
 vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
 vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
-
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
   return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"

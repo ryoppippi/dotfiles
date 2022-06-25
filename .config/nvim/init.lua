@@ -3,13 +3,11 @@ pcall(require, "impatient")
 
 require("base")
 require("options")
-require("keymaps")
-require("keymaps_vscode")
 require("autocmd")
 require("command")
+require("keymaps")
 require("display")
 require("plugin")
 
-if require("utils").is_macos() then
-  require("macos")
-end
+require("vscode")
+require("macos")

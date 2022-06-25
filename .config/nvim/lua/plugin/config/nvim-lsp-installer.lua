@@ -1,15 +1,14 @@
 local function loading()
   local force_require = require("utils.plugin").force_require
   local utils = require("utils")
-  local utils_plug = require("utils.plugin")
 
-  local status, lspinstaller = force_require("nvim-lsp-installer")
-  if not status then
+  local lspinstaller = force_require("nvim-lsp-installer")
+  if not lspinstaller then
     return
   end
 
-  local lsp_status, lspconfig = force_require("lspconfig")
-  if not lsp_status or not lspconfig then
+  local lspconfig = force_require("lspconfig")
+  if not lspconfig then
     return
   end
   local lsp_util = lspconfig.util
@@ -32,19 +31,15 @@ local function loading()
     local opts = { capabilities = capabilities, on_attach = on_attach }
     local name = server.name
 
-    local web_filetypes= {
-        "javascript",
+    if "emmet_ls" == name then
+      opts.extra_filetypes = {
         "javascriptreact",
         "javascript.jsx",
-        "typescript",
         "typescriptreact",
         "typescript.tsx",
-        "vue",
         "svelte",
+        "vue",
       }
-
-    if "emmet_ls" == name then
-      opts.filetypes =web_filetypes
     elseif "angularls" == name then
       opts.root_dir = lsp_util.root_pattern("angular.json")
     elseif "tailwindcss" == name then
@@ -52,14 +47,13 @@ local function loading()
     elseif "svelte" == name then
       opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
     elseif "eslint" == name then
-      opts.root_dir = lsp_util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json")
-      opts.filetypes = web_filetypes
+      opts.extra_filetypes = { "svelte" }
       opts.settings = {
         format = { enable = true },
       }
     elseif "tsserver" == name then
-      local ts_status, ts = force_require("typescript")
-      if ts_status and ts ~= nil then
+      local ts = force_require("typescript")
+      if ts then
         ts.setup({
           server = opts,
           disable_commands = false,
@@ -79,14 +73,14 @@ local function loading()
         disableOrganizeImports = true,
       }
     elseif "rust_analyzer" == name then
-      local status_rust_tools, rust_tools = force_require("rust-tools")
-      if status_rust_tools then
+      local rust_tools = force_require("rust-tools")
+      if rust_tools then
         rust_tools.setup({ server = opts, on_initialized = on_attach })
         goto continue
       end
     elseif "sumneko_lua" == name then
-      local status_lua_dev, lua_dev = force_require("lua-dev")
-      if status_lua_dev then
+      local lua_dev = force_require("lua-dev")
+      if lua_dev then
         local luadev = lua_dev.setup({
           library = {
             vimruntime = true,
@@ -114,20 +108,30 @@ local function loading()
         goto continue
       end
     elseif "golps" == name then
-      local status_go, go = force_require("go")
-      if status_go then
+      local go = force_require("go")
+      if go then
         go.setup()
         vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
       end
+      goto continue
     elseif "jsonls" == name then
-      local sc_status, sc = force_require("schemastore")
-      if sc_status then
+      local sc = force_require("schemastore")
+      if sc then
         opts.settings = {
           json = {
             schemas = sc.json.schemas(),
           },
         }
       end
+    end
+
+    if opts.extra_filetypes then
+      local new_filetypes = opts.filetypes or lspconfig[name].document_config.default_config.filetypes or {}
+      for _, ft in ipairs(opts.extra_filetypes) do
+        table.insert(new_filetypes, ft)
+      end
+      opts.filetypes = new_filetypes
+      opts.extra_filetypes = nil
     end
 
     lspconfig[name].setup(opts)

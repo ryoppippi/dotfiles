@@ -80,7 +80,7 @@ local function loading()
         -- the default case_mode is "smart_case"
       },
       file_browser = {
-        initial_mode = "normal",
+        initial_mode = "insert",
       },
       heading = {
         theme = "dropdown",
@@ -130,7 +130,7 @@ local function keymap()
   vim.keymap.set("n", "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader].", [[<cmd>Telescope<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope oldfiles<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]z", [[<cmd>Telescope file_browser<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]e", [[<cmd>Telescope file_browser<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]t", [[<cmd>TodoTelescope<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]r", [[<cmd>Telescope resume<cr>]], key_opts)

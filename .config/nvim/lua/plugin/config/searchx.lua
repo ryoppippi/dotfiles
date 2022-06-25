@@ -1,11 +1,9 @@
 local plugin_name = "searchx"
-local plug_utils = require("utils.plugin")
+local utils_plug = require("utils.plugin")
 
 local function hl_start()
-  local hlslens_status, hlslens = plug_utils.force_require("hlslens")
-  if hlslens_status and hlslens ~= nil then
-    hlslens.start()
-  end
+  local hlslens = utils_plug.force_require("hlslens")
+  return hlslens and hlslens.start()
 end
 
 local function keymap()
@@ -69,4 +67,4 @@ local function loading()
 end
 
 keymap()
-plug_utils.force_load_on_event(plugin_name, loading)
+utils_plug.force_load_on_event(plugin_name, loading)

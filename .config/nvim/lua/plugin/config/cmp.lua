@@ -1,5 +1,9 @@
 local plugin_name = "cmp"
 local utils_plug = require("utils.plugin")
+local utils = require("utils")
+local force_require = require("utils.plugin").force_require
+local t = utils.t
+local tb = utils.toboolean
 
 local snippet_library = vim.g.enabled_snippet
 
@@ -10,24 +14,15 @@ local function setup_dependencies()
   for _, name in ipairs(utils_plug.names()) do
     if string.find(name, "cmp") then
       utils_plug.load(name)
-      local after_plugin_path = vim.fn.expand(utils_plug.get(name).path .. "/after/plugin")
-      if vim.fn.isdirectory(after_plugin_path) then
-        for _, path in ipairs(vim.fn.glob(after_plugin_path .. "/*[.lua,.vim]", 1, 1, 1)) do
-          vim.cmd(string.format("source %s", vim.fn.fnameescape(path)))
-        end
-      end
+      utils_plug.load_scripts(name, "/after/**/*[.lua,.vim]")
     end
   end
 end
 
 local function loading()
-  local utils = require("utils")
-  local force_require = require("utils.plugin").force_require
   local cmp = require(plugin_name)
   local types = require("cmp.types")
-  local t = utils.t
-  local tb = utils.toboolean
-  local _, luasnip = force_require("luasnip")
+  local luasnip = force_require("luasnip")
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -37,8 +32,8 @@ local function loading()
   local snippet_jumpable = function(dir)
     if snippet_library == "vsnip" then
       return tb(vim.fn["vsnip#jumpable"](dir))
-    elseif snippet_library == "luasnip" and luasnip ~= nil then
-      return tb(luasnip.jumpable(dir))
+    elseif snippet_library == "luasnip" then
+      return luasnip and tb(luasnip.jumpable(dir))
     end
     return false
   end
@@ -181,8 +176,8 @@ local function loading()
     },
   }
 
-  local status_lspkind, lspkind = force_require("lspkind")
-  if status_lspkind then
+  local lspkind = force_require("lspkind")
+  if lspkind then
     setup_opt.formatting = {
       format = lspkind.cmp_format({
         mode = "symbol",
@@ -265,8 +260,8 @@ local function loading()
   vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 
   -- Setup tabnine
-  local status_tn, _ = force_require("cmp-tabnine")
-  if status_tn then
+  local cmp_tabnine = force_require("cmp-tabnine")
+  if cmp_tabnine then
     require("cmp_tabnine.config"):setup({
       max_lines = 1000,
       max_num_results = 5,
@@ -277,14 +272,14 @@ local function loading()
   end
 
   -- Setup git
-  local status_git, _ = force_require("cmp_git")
-  if status_git then
-    require("cmp_git").setup()
+  local cmp_git = force_require("cmp_git")
+  if cmp_git then
+    cmp_git.setup()
   end
 
   -- Setup autopairs
-  local status_autopairs, _ = force_require("nvim-autopairs")
-  if status_autopairs then
+  local autopairs = force_require("nvim-autopairs")
+  if autopairs then
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
     -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
