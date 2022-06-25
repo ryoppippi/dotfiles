@@ -5,9 +5,10 @@ require("base")
 require("options")
 require("autocmd")
 require("command")
+require("plugin")
 require("keymaps")
 require("display")
-require("plugin")
 
 require("vscode")
 require("macos")
+

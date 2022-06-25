@@ -140,7 +140,7 @@ local function loading()
     },
   })
 
-  vim.keymap.set("n", "<leader>at", "<Cmd>:AerialToggle<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>at", "<Cmd>:AerialToggle<CR>", { silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

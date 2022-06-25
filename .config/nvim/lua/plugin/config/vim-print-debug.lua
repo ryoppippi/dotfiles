@@ -1,7 +1,7 @@
 local plugin_name = "vim-print-debug"
 
 local function loading()
-  vim.keymap.set("n", "sp", "<cmd>call print_debug#print_debug()<cr>", { noremap = true })
+  vim.keymap.set("n", "sp", "<cmd>call print_debug#print_debug()<cr>")
   -- vim.g.print_debug_templates = {
   --   go = 'fmt.Printf("+++ {}\n")',
   --   python = 'print(f"+++ {}")',

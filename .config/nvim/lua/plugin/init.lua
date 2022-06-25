@@ -23,8 +23,8 @@ jp.init({
   copy_method = "symlink",
   optimization = 1,
 })
-vim.g.enabled_snippet = "vsnip"
--- vim.g.enabled_snippet = "luasnip"
+-- vim.g.enabled_snippet = "vsnip"
+vim.g.enabled_snippet = "luasnip"
 
 local plugin_list = {
   -- Plugin management {{
@@ -136,7 +136,7 @@ local plugin_list = {
 
   -- brackets and parentheses
   { "machakann/vim-sandwich", on = "User VimLoaded" },
-  { "andymass/vim-matchup" },
+  { "andymass/vim-matchup", on = "User VimLoaded" },
   { "windwp/nvim-autopairs", on = "User VimLoaded" },
   { "windwp/nvim-ts-autotag", on = "User VimLoaded" },
   { "RRethy/nvim-treesitter-endwise", on = "User VimLoaded" },

@@ -1,10 +1,10 @@
 local plugin_name = "substitute"
 
 local function keymap()
-  vim.keymap.set("n", "cx", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
-  vim.keymap.set("x", "cx", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
-  vim.keymap.set("n", "cxc", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
-  vim.keymap.set("n", "Cx", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
+  vim.keymap.set("n", "cx", "<cmd>lua require('substitute').operator()<cr>", {})
+  vim.keymap.set("x", "cx", "<cmd>lua require('substitute').visual()<cr>", {})
+  vim.keymap.set("n", "cxc", "<cmd>lua require('substitute').line()<cr>", {})
+  vim.keymap.set("n", "Cx", "<cmd>lua require('substitute').eol()<cr>", {})
 end
 
 local function loading()

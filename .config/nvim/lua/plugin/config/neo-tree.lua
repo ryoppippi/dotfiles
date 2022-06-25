@@ -150,9 +150,9 @@ local function loading()
 end
 
 local function keymap()
-  vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealInSplit<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloatToggle<CR>", { noremap = true, silent = true })
-  -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealInSplit<CR>", { silent = true })
+  vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloatToggle<CR>", { silent = true })
+  -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { , silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

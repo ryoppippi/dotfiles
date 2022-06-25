@@ -61,7 +61,7 @@ local function loading()
     on_init = function()
       vim.keymap.set("x", "J", function()
         mark_actions.toggle_mark("v")
-      end, { noremap = true, silent = true, buffer = true })
+      end, { silent = true, buffer = true })
 
       -- echo cwd
       vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
@@ -77,7 +77,7 @@ end
 local function keymap()
   vim.keymap.set("n", "<leader>e", function()
     require("lir.float").init()
-  end, { noremap = true, silent = true })
+  end, { silent = true })
 end
 
 keymap()

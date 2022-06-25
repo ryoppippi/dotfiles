@@ -18,7 +18,7 @@ local function loading()
     debounce_delay = 135,
   })
 
-  vim.api.nvim_set_keymap("n", "<Leader>as", ":ASToggle<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<Leader>as", ":ASToggle<CR>", { silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)
