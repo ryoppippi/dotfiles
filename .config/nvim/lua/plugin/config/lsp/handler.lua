@@ -4,7 +4,7 @@ local force_require = require("utils.plugin").force_require
 -- local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
 local function set_keymap(client, bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
+  local opts = { silent = true, buffer = bufnr }
 
   -- hover doc
   vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)

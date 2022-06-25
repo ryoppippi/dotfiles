@@ -12,7 +12,7 @@ local function loading()
       enable = true,
       additional_vim_regex_highlighting = false,
       disable = function(language, bufnr)
-        return vim.api.nvim_buf_line_count(bufnr) > 50000
+        return bufnr and vim.api.nvim_buf_line_count(bufnr) > 50000
       end,
     },
     context_commentstring = {

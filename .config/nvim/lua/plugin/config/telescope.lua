@@ -118,10 +118,10 @@ local function loading()
 end
 
 local function keymap()
-  local key_opts = { noremap = true, silent = true }
+  local key_opts = { silent = true }
   vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
-  vim.keymap.set("n", "[TeLeader]", "<Nop>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", { noremap = true })
+  vim.keymap.set("n", "[TeLeader]", "<Nop>", {  silent = true })
+  vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", {  })
 
   local find_files_cmd = [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]]
   local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]

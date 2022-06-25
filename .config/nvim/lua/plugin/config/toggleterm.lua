@@ -14,8 +14,8 @@ local create_cli = function(cmd)
     -- function to run on opening the terminal
     on_open = function(term)
       vim.cmd("startinsert!")
-      -- vim.keymap.set("n", "q", "<cmd>close<cr>", { noremap = true, silent = true, buffer = term.bufnr })
-      vim.keymap.set("t", "<esc>", "<esc>", { noremap = true, silent = true, buffer = term.bufnr })
+      -- vim.keymap.set("n", "q", "<cmd>close<cr>", {  silent = true, buffer = term.bufnr })
+      vim.keymap.set("t", "<esc>", "<esc>", { silent = true, buffer = term.bufnr })
     end,
   })
 
@@ -38,8 +38,8 @@ local function loading()
   local lazydocker_toggle = create_cli("lazydocker")
   local nyancat = create_cli("nyancat")
 
-  vim.keymap.set("n", "<leader>gg", lazygit_toggle, { noremap = true, silent = true, desc = "toggle lazygit" })
-  vim.keymap.set("n", "<leader>,", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>gg", lazygit_toggle, { silent = true, desc = "toggle lazygit" })
+  vim.keymap.set("n", "<leader>,", "<cmd>ToggleTerm<cr>", { silent = true })
 end
 
 require("utils.plugin").force_load_on_event(plugin_name, loading)

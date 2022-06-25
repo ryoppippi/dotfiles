@@ -3,12 +3,12 @@ local plugin_name = "dial"
 local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
 
 local function keymap(group_name)
-  vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(group_name), { noremap = true })
-  vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(group_name), { noremap = true })
-  vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(group_name), { noremap = true })
-  vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(group_name), { noremap = true })
-  vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(group_name), { noremap = true })
-  vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), { noremap = true })
+  vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(group_name), {})
+  vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(group_name), {})
+  vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(group_name), {})
+  vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(group_name), {})
+  vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(group_name), {})
+  vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), {})
 end
 
 local function set_filetype_autocmd(filetype)

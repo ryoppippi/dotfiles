@@ -7,22 +7,21 @@ local function hl_start()
 end
 
 local function keymap()
-  local opt = { noremap = true }
   vim.keymap.set({ "n", "x" }, "?", function()
     vim.fn["searchx#start"]({ dir = 0 })
-  end, opt)
+  end)
   vim.keymap.set({ "n", "x" }, "/", function()
     vim.fn["searchx#start"]({ dir = 1 })
-  end, opt)
+  end)
   vim.keymap.set("c", ";", vim.fn["searchx#select"], opt)
   vim.keymap.set({ "n", "x" }, "N", function()
     vim.fn["searchx#prev"]()
     hl_start()
-  end, opt)
+  end)
   vim.keymap.set({ "n", "x" }, "n", function()
     vim.fn["searchx#next"]()
     hl_start()
-  end, opt)
+  end)
 end
 
 local function loading()
