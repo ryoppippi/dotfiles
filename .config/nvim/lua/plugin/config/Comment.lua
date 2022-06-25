@@ -1,10 +1,8 @@
 local plugin_name = "Comment"
-local plug_utils = require("utils.plugin")
+local utils_plug = require("utils.plugin")
 
 local function loading()
-  for _, path in ipairs(vim.fn.glob(vim.fn.expand(plug_utils.get(plugin_name).path .. "/after/plugin/*"), 1, 1, 1)) do
-    vim.cmd("source " .. path)
-  end
+  utils_plug.load_scripts(plugin_name, "/after/**/*[.lua,.vim]")
 
   require(plugin_name).setup({
     pre_hook = function(ctx)
@@ -31,4 +29,5 @@ local function loading()
     end,
   })
 end
+
 require("utils.plugin").force_load_on_event(plugin_name, loading)

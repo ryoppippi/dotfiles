@@ -116,8 +116,9 @@ local plugin_list = {
 
   -- file format settings
   { "spywhere/detect-language.nvim", as = "detect-language", on = "User VimLoaded" },
-  { "zsugabubus/crazy8.nvim" },
+  -- { "zsugabubus/crazy8.nvim" },
   { "lfilho/cosco.vim", on = "User VimLoaded" },
+  { "nmac427/guess-indent.nvim", as = "guess-indent" },
 
   -- MRU
   -- { "lambdalisue/mr.vim" },
@@ -136,9 +137,10 @@ local plugin_list = {
   -- brackets and parentheses
   { "machakann/vim-sandwich", on = "User VimLoaded" },
   { "andymass/vim-matchup" },
+  { "windwp/nvim-autopairs", on = "User VimLoaded" },
   { "windwp/nvim-ts-autotag", on = "User VimLoaded" },
   { "RRethy/nvim-treesitter-endwise", on = "User VimLoaded" },
-  { "windwp/nvim-autopairs", on = "User VimLoaded" },
+
   -- { "cohama/lexima.vim", as = "lexima" },
 
   -- comment
@@ -300,7 +302,7 @@ local plugin_list = {
 
   -- Fuzzy Finder {{
   -- Telescope {{
-  { "nvim-telescope/telescope.nvim", as = "telescope", on = "User VimLoaded" },
+  { "nvim-telescope/telescope.nvim", as = "telescope", on = "VimEnter" },
   { "nvim-telescope/telescope-ui-select.nvim" },
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-frecency.nvim" },
@@ -328,6 +330,7 @@ local plugin_list = {
   { "onsails/lspkind.nvim", as = "lspkind" },
   { "folke/lsp-colors.nvim", as = "lsp-colors", on = "User VimLoaded" },
   { "j-hui/fidget.nvim", as = "fidget", on = "User VimLoaded" },
+  { "folke/trouble.nvim", as = "trouble", on = "User VimLoaded" },
   -- { "tami5/lspsaga.nvim", as = "lspsaga", on = "User VimLoaded" },
   -- { "folke/trouble.nvim", as = "trouble", on = "User VimLoaded" },
   -- { "EthanJWright/toolwindow.nvim", as = "toolwindow", on = "User VimLoaded" },

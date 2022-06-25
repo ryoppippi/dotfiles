@@ -85,28 +85,30 @@ local function set_formatting(client, bufnr)
     --   buffer = bufnr,
     --   group = FormatAugroup,
     -- })
-    local lsp_format_status, lsp_format = force_require("lsp-format")
-    if lsp_format_status and lsp_format ~= nil then
+    local lsp_format = force_require("lsp-format")
+    if lsp_format then
       lsp_format.on_attach(client)
-      vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
-      vim.cmd([[cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q]])
+      vim.cmd([[
+        cabbrev wq execute "Format sync" <bar> wq
+        cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q
+      ]])
     end
   end
 end
 
 local function set_plugins(client, bufnr)
-  local illuminate_status, illuminate = force_require("illuminate")
-  if illuminate_status and illuminate ~= nil then
+  local illuminate = force_require("illuminate")
+  if illuminate then
     illuminate.on_attach(client)
   end
 
-  local aerial_status, aerial = force_require("aerial")
-  if aerial_status and aerial ~= nil then
+  local aerial = force_require("aerial")
+  if aerial then
     aerial.on_attach(client, bufnr)
   end
 
-  local navic_status, navic = force_require("nvim-navic")
-  if navic_status and navic ~= nil then
+  local navic = force_require("nvim-navic")
+  if navic then
     navic.attach(client, bufnr)
   end
 end
@@ -115,8 +117,8 @@ local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
 
-  local status, cmp_nvim_lsp = force_require("cmp_nvim_lsp")
-  if status and cmp_nvim_lsp ~= nil then
+  local cmp_nvim_lsp = force_require("cmp_nvim_lsp")
+  if cmp_nvim_lsp then
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
   end
   return capabilities

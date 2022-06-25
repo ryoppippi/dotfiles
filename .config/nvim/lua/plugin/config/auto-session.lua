@@ -1,8 +1,8 @@
 local plugin_name = "auto-session"
 
 local function pre_save()
-  local notify_status, notify = require("utils.plugin").force_require("notify")
-  if notify_status and notify ~= nil then
+  local notify = require("utils.plugin").force_require("notify")
+  if notify then
     notify.dismiss()
   end
 end

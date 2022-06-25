@@ -116,12 +116,15 @@ function M.force_load_on_event(plugin_name, loading_callback)
 end
 
 function M.force_require(plugin_name)
-  local status, re = pcall(require, plugin_name)
-  if status then
-    return status, re
-  end
   M.load(plugin_name)
-  return pcall(require, plugin_name)
+  local s, r = pcall(require, plugin_name)
+  return s and r or nil
+end
+
+function M.load_scripts(plugin_name, subdirectory)
+  for _, path in ipairs(vim.fn.glob(vim.fn.expand(M.get(plugin_name).path .. subdirectory), 1, 1, 1)) do
+    vim.cmd("source " .. vim.fn.fnameescape(path))
+  end
 end
 
 return M
