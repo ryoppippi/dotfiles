@@ -5,8 +5,8 @@ local force_require = require("utils.plugin").force_require
 
 vim.g.completion_trigger_character = "."
 
-vim.keymap.set({ "n" }, ";", ":")
-vim.keymap.set({ "n" }, ":", ";")
+vim.keymap.set("n", ";", ":")
+vim.keymap.set("n", ":", ";")
 
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
