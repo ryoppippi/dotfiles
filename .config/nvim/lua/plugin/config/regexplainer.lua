@@ -1,7 +1,5 @@
-local plugin_name = "regexplainer"
-
 local function loading()
-  require(plugin_name).setup({
+  require("regexplainer").setup({
     display = "popup",
 
     mappings = {
@@ -15,4 +13,4 @@ local function loading()
   })
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").force_load_on_event("regexplainer", loading)

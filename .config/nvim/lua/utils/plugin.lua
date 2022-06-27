@@ -122,8 +122,19 @@ function M.force_require(plugin_name)
 end
 
 function M.load_scripts(plugin_name, subdirectory)
-  for _, path in ipairs(vim.fn.glob(vim.fn.expand(M.get(plugin_name).path .. subdirectory), 1, 1, 1)) do
-    vim.cmd("source " .. vim.fn.fnameescape(path))
+  local dir = vim.fn.expand(M.get(plugin_name).path .. subdirectory)
+  local fd = vim.loop.fs_scandir(dir)
+  if not fd then
+    return
+  end
+  while true do
+    local file_name, type = vim.loop.fs_scandir_next(fd)
+    if not file_name then
+      break
+    end
+    if type == "file" then
+      vim.cmd("source " .. dir .. "/" .. file_name)
+    end
   end
 end
 

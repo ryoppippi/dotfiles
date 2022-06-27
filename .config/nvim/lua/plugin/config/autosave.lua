@@ -1,7 +1,5 @@
-local plugin_name = "autosave"
-
 local function loading()
-  require(plugin_name).setup({
+  require("autosave").setup({
     enabled = false,
     execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
     -- events = {"BufLeave", "FocusLost", "WinLeave", "TextChanged", "QuitPre"},
@@ -21,4 +19,4 @@ local function loading()
   vim.keymap.set("n", "<Leader>as", ":ASToggle<CR>", { silent = true })
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").force_load_on_event("AutoSave", loading)

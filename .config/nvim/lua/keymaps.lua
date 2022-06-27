@@ -3,7 +3,6 @@ local t = utils.t
 local tb = utils.toboolean
 local force_require = require("utils.plugin").force_require
 
-vim.g.mapleader = t("<Space>")
 vim.g.completion_trigger_character = "."
 
 vim.keymap.set({ "n" }, ";", ":")
@@ -115,6 +114,7 @@ end
 vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
 vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
 vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
+
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
   return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
