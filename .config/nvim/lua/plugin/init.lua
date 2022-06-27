@@ -40,7 +40,7 @@ local plugin_list = {
   { "tpope/vim-repeat" },
   { "monaqa/peridot.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
-  { "MunifTanjim/nui.nvim" }, -- UI Framework
+  { "MunifTanjim/nui.nvim" },
   { "kyazdani42/nvim-web-devicons" },
   { "nvim-lua/popup.nvim" },
   { "ray-x/guihua.lua" },
@@ -51,7 +51,7 @@ local plugin_list = {
 
   -- StatusLine {{
   { "feline-nvim/feline.nvim", on = "VimEnter" },
-  { "SmiteshP/nvim-gps" },
+  -- { "SmiteshP/nvim-gps" },
   { "SmiteshP/nvim-navic" },
   -- { "hoob3rt/lualine.nvim", on="VimEnter" },
   -- }}
@@ -112,7 +112,7 @@ local plugin_list = {
   { "famiu/bufdelete.nvim" },
 
   -- project
-  { "ahmedkhalf/project.nvim", as = "project_nvim" },
+  -- { "ahmedkhalf/project.nvim", as = "project_nvim" },
   -- { "mattn/vim-findroot" },
 
   -- file format settings
@@ -141,6 +141,7 @@ local plugin_list = {
   { "windwp/nvim-autopairs", on = "User VimLoaded" },
   { "windwp/nvim-ts-autotag", on = "User VimLoaded" },
   { "RRethy/nvim-treesitter-endwise", on = "User VimLoaded" },
+  { "abecodes/tabout.nvim" },
 
   -- { "cohama/lexima.vim" },
 
@@ -186,7 +187,7 @@ local plugin_list = {
   { "thinca/vim-quickrun" },
   { "thinca/vim-qfreplace", on = "Qfreplace" },
   { "itchyny/vim-qfedit" },
-  { "kevinhwang91/nvim-bqf" },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
   -- { "gabrielpoca/replacer.nvim" },
 
   -- Undo
@@ -199,7 +200,7 @@ local plugin_list = {
   { "zdcthomas/medit", on = "<Plug>MEdit" },
 
   -- Register
-  { "tversteeg/registers.nvim", branch = "main" },
+  { "tversteeg/registers.nvim", branch = "main", on = "User VimLoaded" },
 
   -- Mark
   { "chentoast/marks.nvim", on = "User VimLoaded" },
@@ -429,9 +430,8 @@ local plugin_list = {
   { "norcalli/nvim-colorizer.lua", on = "User VimLoaded" },
   { "folke/todo-comments.nvim", on = "BufReadPost" },
   { "m-demare/hlargs.nvim" },
-  { "p00f/nvim-ts-rainbow" },
+  { "p00f/nvim-ts-rainbow", on = "User VimLoaded" },
   { "RRethy/vim-illuminate", as = "illuminate" },
-  -- { "t9md/vim-quickhl" }, -- heighlighting words on cursor position
   -- { "Pocco81/HighStr.nvim" }, -- highlight strings
   -- }}
 
@@ -476,13 +476,18 @@ local plugin_list = {
   { "folke/lua-dev.nvim" },
   -- rust
   -- { "shurizzle/inlay-hints.nvim",  on = "User VimLoaded" },
-  { "simrat39/rust-tools.nvim", opt = true },
+  { "simrat39/rust-tools.nvim" },
   -- go
-  { "ray-x/go.nvim", opt = true },
+  { "ray-x/go.nvim" },
   -- }}
   -- markdown
-  { "previm/previm", ft = { "markdown" } },
-  { "iamcco/markdown-preview.nvim", ft = { "markdown" }, run = ":call mkdp#util#install()" },
+  -- { "previm/previm", ft = { "markdown", "pandoc.markdown", "rmd" } },
+  {
+    "iamcco/markdown-preview.nvim",
+    as = "markdown-preview.nvim",
+    run = ":call mkdp#util#install()",
+    ft = { "markdown", "pandoc.markdown", "rmd" },
+  },
   -- { "SidOfc/mkdx", ft = { "markdown" } },
   -- log
   { "mtdl9/vim-log-highlighting" },
@@ -493,7 +498,7 @@ local plugin_list = {
   { "b0o/schemastore.nvim" },
 
   -- AI {{
-  { "github/copilot.vim", on = { "CursorHold", "InsertEnter" } },
+  { "github/copilot.vim", on = "User VimLoaded" },
   -- }}
 
   -- Debug {{
@@ -564,6 +569,7 @@ vim.api.nvim_create_autocmd("User VimLoaded", {
     for _, name in ipairs(jp.names()) do
       if not tb(jp.tap(name)) then
         jp.sync()
+        pcall(vim.api.nvim_command, "LuaCacheClear")
         vim.cmd("source $MYVIMRC")
         break
       end
