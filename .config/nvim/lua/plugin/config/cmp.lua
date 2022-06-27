@@ -14,7 +14,7 @@ local function setup_dependencies()
   for _, name in ipairs(utils_plug.names()) do
     if string.find(name, "cmp") then
       utils_plug.load(name)
-      utils_plug.load_scripts(name, "/after/**/*[.lua,.vim]")
+      utils_plug.load_scripts(name, "/after/plugin")
     end
   end
 end
@@ -79,7 +79,7 @@ local function loading()
         if cmp.visible() and entry ~= nil then
           local confirm_option = {
             select = false,
-            behavior = entry.source.name == "copilot" and cmp.ConfirmBehavior.Insert or cmp.ConfirmBehavior.Replace,
+            -- behavior = entry.source.name == "copilot" and cmp.ConfirmBehavior.Insert or cmp.ConfirmBehavior.Replace,
           }
           cmp.confirm(confirm_option)
         else

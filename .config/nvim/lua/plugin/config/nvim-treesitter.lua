@@ -97,6 +97,9 @@ local function loading()
     },
     tree_docs = { enable = true },
   })
+  vim.opt.foldmethod = "expr"
+  vim.opt.foldlevel = 20
+  vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
 loading()

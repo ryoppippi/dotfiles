@@ -1,9 +1,7 @@
-local plugin_name = "rest-nvim"
-
 local function loading()
   local t = require("utils").t
   local feedkeys = vim.fn.feedkeys
-  require(plugin_name).setup({
+  require("rest-nvim").setup({
     -- Open request results in a horizontal split
     result_split_horizontal = false,
     -- Keep the http file buffer above|left when split horizontal|vertical
@@ -35,4 +33,4 @@ local function loading()
   end, { nargs = "*" })
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").force_load_on_event("rest", loading)

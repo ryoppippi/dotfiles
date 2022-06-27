@@ -1,5 +1,3 @@
-local plugin_name = "notify"
-
 local function loading()
   require("notify").setup({
     -- Icons for the different levels
@@ -26,4 +24,4 @@ local function loading()
   end
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+require("utils.plugin").force_load_on_event("nvim-notify", loading)

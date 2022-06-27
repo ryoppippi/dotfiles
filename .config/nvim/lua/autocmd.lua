@@ -16,6 +16,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "startinsert",
 })
 
+local folding = vim.api.nvim_create_augroup("folding", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
+  pattern = "*",
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd([[normal zR]])
+    end, 0)
+  end,
+  group = folding,
+})
+
 vim.api.nvim_exec(
   [[
   augroup vimrc_syntax
@@ -51,6 +62,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
         pattern = "VimLoaded",
       })
     end
-    vim.defer_fn(dautocmd, 200)
+    vim.defer_fn(dautocmd, 100)
   end,
 })

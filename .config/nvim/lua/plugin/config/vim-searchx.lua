@@ -1,4 +1,3 @@
-local plugin_name = "searchx"
 local utils_plug = require("utils.plugin")
 
 local function hl_start()
@@ -13,7 +12,7 @@ local function keymap()
   vim.keymap.set({ "n", "x" }, "/", function()
     vim.fn["searchx#start"]({ dir = 1 })
   end)
-  vim.keymap.set("c", ";", vim.fn["searchx#select"], opt)
+  vim.keymap.set("c", ";", vim.fn["searchx#select"])
   vim.keymap.set({ "n", "x" }, "N", function()
     vim.fn["searchx#prev"]()
     hl_start()
@@ -66,4 +65,4 @@ local function loading()
 end
 
 keymap()
-utils_plug.force_load_on_event(plugin_name, loading)
+utils_plug.force_load_on_event("vim-searchx", loading)

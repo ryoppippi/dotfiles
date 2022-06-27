@@ -2,7 +2,7 @@ local plugin_name = "Comment"
 local utils_plug = require("utils.plugin")
 
 local function loading()
-  utils_plug.load_scripts(plugin_name, "/after/**/*[.lua,.vim]")
+  utils_plug.load_scripts(plugin_name, "/after/plugin")
 
   require(plugin_name).setup({
     pre_hook = function(ctx)
