@@ -96,11 +96,11 @@ end
 ---------------------------------------------------------------
 -- Write settings you don't want to make public, such as ssh_domains
 local function load_local_config()
-  local ok, _ = pcall(require, "local")
+  local ok, re = pcall(require, "local")
   if not ok then
     return {}
   end
-  return require("local").setup()
+  return re.setup()
 end
 
 local local_config = load_local_config()
@@ -108,9 +108,9 @@ local local_config = load_local_config()
 local config = {
   use_ime = true,
   font = wezterm.font("UDEV Gothic 35LG"),
-  font_size = 16.0,
-  color_scheme = "onedark",
-  color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
+  font_size = 15.0,
+  -- color_scheme = "onedark",
+  -- color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
   hide_tab_bar_if_only_one_tab = true,
   adjust_window_size_when_changing_font_size = false,
   tab_bar_at_bottom = true,
@@ -120,6 +120,7 @@ local config = {
     top = 0,
     bottom = 0,
   },
+  window_background_opacity = 0.97,
   -- disable_default_key_bindings = true,
   keys = keys,
   set_environment_variables = {},
@@ -133,5 +134,8 @@ local config = {
     }
   },
 }
+
+config = utils.merge_tables(config, require("colors.kanagawa"))
+print(require("colors.kanagawa"))
 
 return utils.merge_tables(config, local_config)
