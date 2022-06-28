@@ -61,9 +61,9 @@ local plugin_list = {
   { "mvllow/modes.nvim", on = "ModeChanged" },
   -- mini.indentscope
 
-  -- { "sidebar-nvim/sidebar.nvim", on = "User VimLoaded" },
   { "petertriho/nvim-scrollbar", on = "User VimLoaded" },
-  { "rainbowhxch/beacon.nvim", on = "User VimLoaded" },
+  -- { "sidebar-nvim/sidebar.nvim", on = "User VimLoaded" },
+  -- { "rainbowhxch/beacon.nvim", on = "User VimLoaded" },
   -- }}
 
   -- Moving Cursor {{
@@ -266,8 +266,8 @@ local plugin_list = {
   { "hotwatermorning/auto-git-diff", on = "User VimLoaded" },
 
   -- show messages
-  { "lewis6991/gitsigns.nvim", on = "User VimLoaded" },
-  { "rhysd/git-messenger.vim" },
+  { "lewis6991/gitsigns.nvim" },
+  { "rhysd/git-messenger.vim", on = { "GitMessenger", "GitMessengerClose", "<Plug>(git-messenger" } },
 
   { "akinsho/git-conflict.nvim", on = "User VimLoaded" },
   { "sindrets/diffview.nvim", on = "User VimLoaded" },
