@@ -1,5 +1,3 @@
-local plugin_name = "null-ls"
-
 local with_root_file = function(...)
   local files = { ... }
   return function(utils)
@@ -7,8 +5,26 @@ local with_root_file = function(...)
   end
 end
 
+local with_file = function(...)
+  local files = { ... }
+  return function(utils)
+    return utils.has_file(files)
+  end
+end
+
+local is_executable = function(cmd_name, cond)
+  local u = require("null-ls.utils")
+  return function()
+    local ie = u.is_executable(cmd_name)
+    if cond == false then
+      ie = not ie
+    end
+    return ie
+  end
+end
+
 local sources = function()
-  local null_ls = require(plugin_name)
+  local null_ls = require("null-ls")
   local diagnostics_format = "[#{c}] #{m} (#{s})"
   local formatting = null_ls.builtins.formatting
   local diagnostics = null_ls.builtins.diagnostics
@@ -19,15 +35,15 @@ local sources = function()
       extra_filetypes = {
         "svelte",
       },
-      condition = with_root_file(".prettierrc"),
+      condition = is_executable("prettierd"),
     }),
 
-    -- formatting.prettier.with({
-    --   extra_filetypes = {
-    --     "svelte",
-    --   },
-    --   condition = with_root_file(".prettierrc"),
-    -- }),
+    formatting.prettier.with({
+      extra_filetypes = {
+        "svelte",
+      },
+      condition = is_executable("prettierd", false),
+    }),
 
     diagnostics.tsc.with({
       diagnostics_format = diagnostics_format,
@@ -77,14 +93,10 @@ local sources = function()
   }
 end
 
-local function loading()
-  local capabilities = require("plugin.config.lsp.handler").capabilities
-  local on_attach = require("plugin.config.lsp.handler").on_attach
-  require(plugin_name).setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    sources = sources(),
-  })
-end
-
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+local capabilities = require("plugin.config.lsp.handler").capabilities
+local on_attach = require("plugin.config.lsp.handler").on_attach
+require("null-ls").setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  sources = sources(),
+})

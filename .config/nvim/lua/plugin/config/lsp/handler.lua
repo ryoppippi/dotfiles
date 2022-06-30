@@ -102,10 +102,10 @@ local function set_plugins(client, bufnr)
     illuminate.on_attach(client)
   end
 
-  local aerial = force_require("aerial")
-  if aerial then
-    aerial.on_attach(client, bufnr)
-  end
+  -- local aerial = force_require("aerial")
+  -- if aerial then
+  --   aerial.on_attach(client, bufnr)
+  -- end
 
   local navic = force_require("nvim-navic")
   if navic then

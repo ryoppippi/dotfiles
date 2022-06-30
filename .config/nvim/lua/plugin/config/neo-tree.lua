@@ -1,12 +1,10 @@
-local plugin_name = "neo-tree"
-
 local function loading()
   vim.cmd([[
         hi link NeoTreeDirectoryName Directory
         hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
       ]])
 
-  local neo_tree = require(plugin_name)
+  local neo_tree = require("neo-tree")
   neo_tree.setup({
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
@@ -46,7 +44,7 @@ local function loading()
       {
         event = "file_added",
         handler = function(file_path)
-          require(plugin_name .. "utils").open_file({}, file_path)
+          require("neo-tree.utils").open_file({}, file_path)
         end,
       },
     },
@@ -155,5 +153,5 @@ local function keymap()
   -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { , silent = true })
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
-require("utils.plugin").force_load_on_event(plugin_name, keymap)
+loading()
+keymap()

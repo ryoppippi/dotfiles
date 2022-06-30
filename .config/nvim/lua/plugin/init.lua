@@ -23,15 +23,16 @@ jp.init({
   copy_method = "symlink",
   optimization = 1,
 })
-vim.g.enabled_snippet = "vsnip"
--- vim.g.enabled_snippet = "luasnip"
+-- vim.g.jetpack.copy_method = "symlink"
+-- vim.g.jetpack.optimization = 1
+-- vim.g.enabled_snippet = "vsnip"
+vim.g.enabled_snippet = "luasnip"
 
 local plugin_list = {
   -- Plugin management {{
   { "tani/vim-jetpack", opt = true },
   { "lewis6991/impatient.nvim", opt = true },
-  { "4513ECHO/vim-readme-viewer", on = "User VimLoaded" },
-  { "tweekmonster/startuptime.vim", on = "User VimLoaded" },
+  { "tweekmonster/startuptime.vim" },
   -- }}
 
   -- Essential libraries {{
@@ -45,35 +46,35 @@ local plugin_list = {
   { "nvim-lua/popup.nvim" },
   { "ray-x/guihua.lua" },
   { "vim-denops/denops.vim" },
-  { "rcarriga/nvim-notify", on = "User VimLoaded" },
+  { "rcarriga/nvim-notify" },
   { "echasnovski/mini.nvim", branch = "stable" },
   -- }}
 
   -- StatusLine {{
-  { "feline-nvim/feline.nvim", on = "VimEnter" },
-  -- { "SmiteshP/nvim-gps" },
+  { "feline-nvim/feline.nvim" },
+  { "SmiteshP/nvim-gps" },
   { "SmiteshP/nvim-navic" },
-  -- { "hoob3rt/lualine.nvim", on="VimEnter" },
+  -- { "hoob3rt/lualine.nvim", },
   -- }}
 
   -- Other UI Components {{
   { "jeffkreeftmeijer/vim-numbertoggle" },
-  { "mvllow/modes.nvim", on = "ModeChanged" },
+  { "mvllow/modes.nvim" },
   -- mini.indentscope
 
-  { "petertriho/nvim-scrollbar", on = "User VimLoaded" },
-  -- { "sidebar-nvim/sidebar.nvim", on = "User VimLoaded" },
-  -- { "rainbowhxch/beacon.nvim", on = "User VimLoaded" },
+  { "petertriho/nvim-scrollbar" },
+  -- { "sidebar-nvim/sidebar.nvim" },
+  -- { "rainbowhxch/beacon.nvim" },
   -- }}
 
   -- Moving Cursor {{
   { "unblevable/quick-scope" },
   -- mini.jump
   -- mini.jump2d
-  -- { "phaazon/hop.nvim", on = "User VimLoaded"},
-  -- { "rhysd/clever-f.vim", { on = "User VimLoaded" } },
-  { "yutkat/wb-only-current-line.nvim", on = "User VimLoaded" },
-  { "deton/jasegment.vim", on = "User VimLoaded" }, -- Japanese word moving
+  -- { "phaazon/hop.nvim", },
+  -- { "rhysd/clever-f.vim" },
+  { "yutkat/wb-only-current-line.nvim" },
+  { "deton/jasegment.vim" }, -- Japanese word moving
   -- { "bkad/CamelCaseMotion" },
   -- }}
 
@@ -81,7 +82,7 @@ local plugin_list = {
 
   -- filer {{
   -- neo-tree {{
-  { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x", on = "User VimLoaded" },
+  { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
   -- }}
 
   -- fern {{
@@ -103,12 +104,12 @@ local plugin_list = {
   -- }}
 
   -- window
-  { "tkmpypy/chowcho.nvim", on = "User VimLoaded" },
-  { "kwkarlwang/bufresize.nvim", on = "User VimLoaded" },
-  { "simeji/winresizer", on = "User VimLoaded" },
+  { "tkmpypy/chowcho.nvim" },
+  { "kwkarlwang/bufresize.nvim" },
+  { "simeji/winresizer" },
 
   -- buffer
-  { "stevearc/stickybuf.nvim", on = "User VimLoaded" },
+  { "stevearc/stickybuf.nvim" },
   { "famiu/bufdelete.nvim" },
 
   -- project
@@ -116,9 +117,9 @@ local plugin_list = {
   -- { "mattn/vim-findroot" },
 
   -- file format settings
-  { "spywhere/detect-language.nvim", on = "User VimLoaded" },
+  { "spywhere/detect-language.nvim" },
   -- { "zsugabubus/crazy8.nvim" },
-  { "lfilho/cosco.vim", on = "User VimLoaded" },
+  { "lfilho/cosco.vim" },
   { "nmac427/guess-indent.nvim" },
 
   -- MRU
@@ -130,54 +131,56 @@ local plugin_list = {
 
   -- textobj
   { "kana/vim-textobj-user" },
-  { "osyo-manga/vim-textobj-blockwise", on = "User VimLoaded" },
+  { "osyo-manga/vim-textobj-blockwise" },
 
   -- edit and insert
-  { "thinca/vim-partedit", on = "Partedit" },
+  { "thinca/vim-partedit" },
 
   -- brackets and parentheses
-  { "machakann/vim-sandwich", on = "User VimLoaded" },
+  { "machakann/vim-sandwich" },
   { "andymass/vim-matchup" },
-  { "windwp/nvim-autopairs", on = "User VimLoaded" },
-  { "windwp/nvim-ts-autotag", on = "User VimLoaded" },
-  { "RRethy/nvim-treesitter-endwise", on = "User VimLoaded" },
-  { "abecodes/tabout.nvim" },
-
+  { "windwp/nvim-autopairs" },
+  { "windwp/nvim-ts-autotag" },
+  { "RRethy/nvim-treesitter-endwise" },
+  -- { "abecodes/tabout.nvim" },
   -- { "cohama/lexima.vim" },
 
   -- comment
   -- commentout
-  { "numToStr/Comment.nvim", on = "User VimLoaded" },
+  { "numToStr/Comment.nvim" },
   -- comment generation
   { "s1n7ax/nvim-comment-frame" },
   { "LudoPinelli/comment-box.nvim" },
   { "danymat/neogen" },
 
   -- yank and paste
-  { "gbprod/substitute.nvim", on = "User VimLoaded" },
-  -- { "gbprod/yanky.nvim", on = "User VimLoaded" },
-  { "hrsh7th/nvim-pasta", on = "User VimLoaded" },
+  { "gbprod/substitute.nvim" },
+  -- { "gbprod/yanky.nvim" },
+  { "hrsh7th/nvim-pasta" },
   { "Rasukarusan/nvim-block-paste" },
   { "yuki-yano/deindent-yank.vim" },
-  -- { "AckslD/nvim-anywise-reg.lua", on = "User VimLoaded" },
+  -- { "AckslD/nvim-anywise-reg.lua" },
 
   -- Select
-  { "terryma/vim-expand-region", on = "<Plug>(expand_region_" },
-  { "terryma/vim-multiple-cursors", on = "User VimLoaded" },
-  { "kana/vim-niceblock", on = "User VimLoaded" },
+  { "terryma/vim-expand-region" },
+  { "terryma/vim-multiple-cursors" },
+  { "kana/vim-niceblock" },
 
   -- Swap Arguments
-  { "mizlan/iswap.nvim", on = { "ISwap", "ISwapWith" } },
-  { "machakann/vim-swap", on = "User VimLoaded" },
+  { "mizlan/iswap.nvim" },
+  { "machakann/vim-swap" },
 
   -- Join
-  { "AckslD/nvim-trevJ.lua", on = "User VimLoaded" },
+  { "AckslD/nvim-trevJ.lua" },
+
+  -- Formatting
+  -- { "junegunn/vim-easy-align" },
 
   -- Adding,subtracting,change cases
-  { "monaqa/dial.nvim", on = "User VimLoaded" },
-  -- {'monaqa/dps-dial.vim',on= 'User VimLoaded' },
+  { "monaqa/dial.nvim" },
+  -- {'monaqa/dps-dial.vim' },
   { "deris/vim-rengbang" },
-  -- { "johmsalas/text-case.nvim", on = "User VimLoaded" },
+  -- { "johmsalas/text-case.nvim" },
   -- { "mopp/vim-operator-convert-case" },
 
   -- }}
@@ -185,45 +188,45 @@ local plugin_list = {
   -- Builtin Enhancements {{
   -- Quickfix
   { "thinca/vim-quickrun" },
-  { "thinca/vim-qfreplace", on = "Qfreplace" },
+  { "thinca/vim-qfreplace" },
   { "itchyny/vim-qfedit" },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   -- { "gabrielpoca/replacer.nvim" },
 
   -- Undo
-  { "simnalamburt/vim-mundo", on = "MundoShow" },
+  { "simnalamburt/vim-mundo" },
 
   -- Diff
   { "AndrewRadev/linediff.vim" },
 
   -- Macro
-  { "zdcthomas/medit", on = "<Plug>MEdit" },
+  { "zdcthomas/medit" },
 
   -- Register
-  { "tversteeg/registers.nvim", branch = "main", on = "User VimLoaded" },
+  { "tversteeg/registers.nvim", branch = "main" },
 
   -- Mark
-  { "chentoast/marks.nvim", on = "User VimLoaded" },
+  { "chentoast/marks.nvim" },
 
   -- Fold
   -- { "lambdalisue/readablefold.vim" },
   { "monaqa/pretty-fold.nvim", branch = "for_stable_neovim" },
-  -- { "monaqa/pretty-fold.nvim", branch = "for_stable_neovim" },
 
-  -- Manual
-  { "thinca/vim-ref", on = "User VimLoaded" },
-  { "folke/which-key.nvim", on = "User VimLoaded" },
-  { "michaelb/vim-tips", on = "User VimLoaded" },
+  -- Docs
+  { "thinca/vim-ref" },
+  { "folke/which-key.nvim" },
+  { "nanotee/luv-vimdocs" },
+  { "4513ECHO/vim-readme-viewer" },
 
   -- Session
   -- {'rmagatti/auto-session'},
 
   -- Save
-  -- { "Pocco81/AutoSave.nvim", as = "autosave", on = "User VimLoaded" },
+  -- { "Pocco81/AutoSave.nvim", as = "autosave" },
 
   -- SpellCorrect
   -- { "Pocco81/AbbrevMan.nvim" },
-  { "lewis6991/spellsitter.nvim", on = "User VimLoaded" },
+  { "lewis6991/spellsitter.nvim" },
 
   -- Command
   { "wsdjeg/vim-fetch" },
@@ -232,81 +235,80 @@ local plugin_list = {
   { "tyru/capture.vim" },
 
   -- Terminal
-  { "akinsho/toggleterm.nvim", on = "User VimLoaded" },
+  { "akinsho/toggleterm.nvim" },
 
   -- Job running
-  { "skywind3000/asyncrun.vim", on = "User VimLoaded" },
 
   -- }}
 
   -- New Features {{
 
   -- Browser
-  { "tyru/open-browser.vim", on = "User VimLoaded" },
-  { "tyru/open-browser-github.vim", on = "User VimLoaded" },
-  { "tyru/open-browser-unicode.vim", on = "User VimLoaded" },
+  { "tyru/open-browser.vim" },
+  { "tyru/open-browser-github.vim" },
+  { "tyru/open-browser-unicode.vim" },
 
   -- Screenshot
-  { "segeljakt/vim-silicon", on = "User VimLoaded" },
+  { "segeljakt/vim-silicon" },
 
   -- Template
-  { "mattn/vim-sonictemplate", on = "CmdlineEnter" },
+  { "mattn/vim-sonictemplate" },
 
   -- Color Management
-  { "max397574/colortils.nvim", on = "User VimLoaded" },
+  { "max397574/colortils.nvim" },
 
   -- Git support{{
   -- client
-  { "TimUntersberger/neogit", on = "Neogit" },
-  { "lambdalisue/gin.vim", on = "User VimLoaded" },
-  -- { "tanvirtin/vgit.nvim", on = "User VimLoaded" },
+  { "TimUntersberger/neogit" },
+  { "lambdalisue/gin.vim" },
+  -- { "tanvirtin/vgit.nvim" },
 
   -- git command assistant
   { "rhysd/committia.vim" },
-  { "hotwatermorning/auto-git-diff", on = "User VimLoaded" },
+  { "hotwatermorning/auto-git-diff" },
 
   -- show messages
   { "lewis6991/gitsigns.nvim" },
-  { "rhysd/git-messenger.vim", on = { "GitMessenger", "GitMessengerClose", "<Plug>(git-messenger" } },
+  { "rhysd/git-messenger.vim" },
 
-  { "akinsho/git-conflict.nvim", on = "User VimLoaded" },
-  { "sindrets/diffview.nvim", on = "User VimLoaded" },
-  { "yutkat/convert-git-url.nvim", on = "ConvertGitUrl" },
+  { "akinsho/git-conflict.nvim" },
+  { "sindrets/diffview.nvim" },
+  { "yutkat/convert-git-url.nvim" },
 
   -- Github
-  { "pwntester/octo.nvim", on = "User VimLoaded" },
-  { "skanehira/denops-gh.vim", on = "User VimLoaded" },
+  { "pwntester/octo.nvim" },
+  { "skanehira/denops-gh.vim" },
 
   -- }}
 
   -- Docker {{
-  { "skanehira/denops-docker.vim", on = "User VimLoaded" },
+  { "skanehira/denops-docker.vim" },
   -- }}
 
   -- REST {{
-  { "NTBBloodbath/rest.nvim", on = "User VimLoaded" },
+  { "NTBBloodbath/rest.nvim" },
   -- }}
 
   -- GraphAPI {{
-  { "skanehira/denops-graphql.vim", on = "User VimLoaded" },
+  { "skanehira/denops-graphql.vim" },
   -- }}
 
   -- }}
 
   -- Search {{
-  { "haya14busa/vim-asterisk", on = "<Plug>(asterisk-" },
+  { "haya14busa/vim-asterisk" },
   { "hrsh7th/vim-searchx" },
-  { "monaqa/modesearch.vim", on = "User VimLoaded" },
+  { "monaqa/modesearch.vim" },
   { "kevinhwang91/nvim-hlslens", as = "hlslens" },
   -- }}
 
   -- Rename {{
-  { "smjonas/inc-rename.nvim", as = "inc_rename", on = "User VimLoaded" },
+  { "smjonas/inc-rename.nvim", as = "inc_rename" },
   -- }}
 
   -- Fuzzy Finder {{
   -- Telescope {{
-  { "nvim-telescope/telescope.nvim", on = "VimEnter" },
+  { "nvim-telescope/telescope.nvim" },
   { "nvim-telescope/telescope-ui-select.nvim" },
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-frecency.nvim" },
@@ -326,24 +328,24 @@ local plugin_list = {
   -- Languages
   -- Nvim-LSP {{
   { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
-  { "williamboman/nvim-lsp-installer", opt = true },
-  { "jose-elias-alvarez/null-ls.nvim", on = "User VimLoaded" },
+  { "williamboman/nvim-lsp-installer" },
+  { "jose-elias-alvarez/null-ls.nvim" },
   { "lukas-reineke/lsp-format.nvim" },
 
   -- UI
   { "onsails/lspkind.nvim" },
-  { "folke/lsp-colors.nvim", on = "User VimLoaded" },
-  { "j-hui/fidget.nvim", on = "User VimLoaded" },
-  { "folke/trouble.nvim", on = "User VimLoaded" },
-  -- { "tami5/lspsaga.nvim", on = "User VimLoaded" },
-  -- { "folke/trouble.nvim", on = "User VimLoaded" },
-  -- { "EthanJWright/toolwindow.nvim", on = "User VimLoaded" },
+  { "folke/lsp-colors.nvim" },
+  { "j-hui/fidget.nvim" },
+  { "folke/trouble.nvim" },
+  -- { "tami5/lspsaga.nvim" },
+  -- { "folke/trouble.nvim" },
+  -- { "EthanJWright/toolwindow.nvim", },
   -- { "ray-x/lsp_signature.nvim" },
   -- }}
   -- }}
 
   -- Nvim-cmp {{
-  { "hrsh7th/nvim-cmp", as = "cmp", on = "User VimLoaded" },
+  { "hrsh7th/nvim-cmp", as = "cmp", opt = true },
   { "hrsh7th/cmp-nvim-lsp", as = "cmp_nvim_lsp", opt = true },
   { "hrsh7th/cmp-nvim-lsp-document-symbol", opt = true },
   { "hrsh7th/cmp-nvim-lua", opt = true },
@@ -397,8 +399,8 @@ local plugin_list = {
 
   -- Nvim-treesitter {{
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-  { "yioneko/nvim-yati", on = "User VimLoaded" },
-  { "JoosepAlviste/nvim-ts-context-commentstring", on = "User VimLoaded" },
+  { "yioneko/nvim-yati" },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
   -- { "nvim-treesitter/nvim-tree-docs" },
   -- { "vigoux/architext.nvim" },
   -- { "nvim-treesitter/nvim-treesitter-refactor" },
@@ -410,10 +412,10 @@ local plugin_list = {
   -- { "mfussenegger/nvim-treehopper" },
 
   -- UI
-  { "haringsrob/nvim_context_vt", on = "User VimLoaded" },
-  { "romgrk/nvim-treesitter-context", on = "User VimLoaded" },
-  -- { "nvim-treesitter/playground", on = "User VimLoaded" },
-  -- { "stevearc/aerial.nvim", on = "User VimLoaded" },
+  { "haringsrob/nvim_context_vt" },
+  { "romgrk/nvim-treesitter-context" },
+  -- { "nvim-treesitter/playground" },
+  -- { "stevearc/aerial.nvim" },
   -- }}
 
   -- ColorScheme {{
@@ -427,20 +429,20 @@ local plugin_list = {
   -- }}
 
   -- Heiglighting {{
-  { "norcalli/nvim-colorizer.lua", on = "User VimLoaded" },
-  { "folke/todo-comments.nvim", on = "BufReadPost" },
+  { "norcalli/nvim-colorizer.lua" },
+  { "folke/todo-comments.nvim" },
   { "m-demare/hlargs.nvim" },
-  { "p00f/nvim-ts-rainbow", on = "User VimLoaded" },
+  { "p00f/nvim-ts-rainbow" },
   { "RRethy/vim-illuminate", as = "illuminate" },
   -- { "Pocco81/HighStr.nvim" }, -- highlight strings
   -- }}
 
   -- Snippets {{
-  { "hrsh7th/vim-vsnip", on = "User VimLoaded", enabled = (vim.g.enabled_snippet == "vsnip") },
+  { "hrsh7th/vim-vsnip", enabled = (vim.g.enabled_snippet == "vsnip") },
   { "L3MON4D3/LuaSnip", as = "luasnip", enabled = (vim.g.enabled_snippet == "luasnip") },
 
   -- utils
-  { "kevinhwang91/nvim-hclipboard", as = "hclipboard", on = "User VimLoaded" }, -- prevent polluting clipboard
+  { "kevinhwang91/nvim-hclipboard", as = "hclipboard" }, -- prevent polluting clipboard
   -- { "smjonas/snippet-converter.nvim" },
 
   -- snippets collection {{
@@ -464,18 +466,18 @@ local plugin_list = {
 
   -- Language specific plugins {{
   -- javascript
-  { "vuki656/package-info.nvim", on = "PackageInfo" },
-  { "bennypowers/nvim-regexplainer", as = "regexplainer", on = "User VimLoaded" },
+  { "vuki656/package-info.nvim" },
+  { "bennypowers/nvim-regexplainer", as = "regexplainer" },
   -- typescript
   { "jose-elias-alvarez/typescript.nvim" },
-  { "dhruvasagar/vim-table-mode", on = "User VimLoaded" },
+  { "dhruvasagar/vim-table-mode" },
   -- sql
   { "jsborjesson/vim-uppercase-sql" },
   -- lua
   { "milisims/nvim-luaref" },
   { "folke/lua-dev.nvim" },
   -- rust
-  -- { "shurizzle/inlay-hints.nvim",  on = "User VimLoaded" },
+  -- { "shurizzle/inlay-hints.nvim" },
   { "simrat39/rust-tools.nvim" },
   -- go
   { "ray-x/go.nvim" },
@@ -498,7 +500,7 @@ local plugin_list = {
   { "b0o/schemastore.nvim" },
 
   -- AI {{
-  { "github/copilot.vim", on = "User VimLoaded" },
+  { "github/copilot.vim" },
   -- }}
 
   -- Debug {{
@@ -506,21 +508,21 @@ local plugin_list = {
   -- }}
 
   -- REPL {{
-  { "hkupty/iron.nvim", on = "User VimLoaded" },
+  { "hkupty/iron.nvim" },
   -- }}
 
   -- Test {{
-  { "nvim-neotest/neotest", on = "User VimLoaded" },
+  { "nvim-neotest/neotest" },
   -- }}
 
   -- Task Runner{{
-  { "yutkat/taskrun.nvim", on = "User VimLoaded" },
-  -- { "michaelb/sniprun", run = "bash ./install.sh", on = "CmdlineEnter" },
+  { "yutkat/taskrun.nvim" },
+  -- { "michaelb/sniprun", run = "bash ./install.sh" },
   -- }}
 
   -- Neovim
-  { "wadackel/nvim-syntax-info", on = "User VimLoaded" },
-  { "bfredl/nvim-luadev", on = "User VimLoaded" },
+  { "wadackel/nvim-syntax-info" },
+  { "bfredl/nvim-luadev" },
   -- }}
 
   -- Something fun {{
@@ -531,6 +533,13 @@ local plugin_list = {
 for i, v in ipairs(plugin_list) do
   plugin_list[i].as = v.as or vim.fn.fnamemodify(v[1], ":t:r")
 end
+
+local startup_list = {
+  "feline",
+  "copilot",
+  "nvim-lsp-installer",
+  "vim-print-debug",
+}
 
 -- load plugins
 jp.startup(function(use)
@@ -551,15 +560,24 @@ if fd then
     if not file_name then
       break
     end
-    if type ~= "file" then
-      goto continue
+    if type == "file" then
+      local plugin_name = file_name:gsub("%.lua$", "")
+      local file_path = config_dir .. file_name
+      -- local plugin_name = vim.fn.fnamemodify(file_name, ":t:r")
+      if jp.tap(plugin_name) then
+        if vim.tbl_contains(startup_list, plugin_name) then
+          vim.api.nvim_create_autocmd("VimEnter", {
+            callback = function()
+              vim.cmd("luafile " .. file_path)
+            end,
+          })
+        else
+          vim.defer_fn(function()
+            vim.cmd("luafile " .. file_path)
+          end, 0)
+        end
+      end
     end
-    local plugin_name = file_name:gsub("%.lua$", "")
-    -- local plugin_name = vim.fn.fnamemodify(file_name, ":t:r")
-    if jp.tap(plugin_name) then
-      vim.cmd("luafile " .. config_dir .. file_name)
-    end
-    ::continue::
   end
 end
 

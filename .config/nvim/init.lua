@@ -13,6 +13,3 @@ vim.defer_fn(function()
   require("vscode")
   require("macos")
 end, 50)
-
-vim.cmd([[set runtimepath^=~/.ghq/github.com/ryoppippi/luapack.nvim]])
--- require("sqltest")

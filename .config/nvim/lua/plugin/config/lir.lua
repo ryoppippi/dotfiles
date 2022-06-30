@@ -1,5 +1,3 @@
-local plugin_name = "lir"
-
 local function loading()
   local actions = require("lir.actions")
   local mark_actions = require("lir.mark.actions")
@@ -81,5 +79,4 @@ local function keymap()
 end
 
 keymap()
-
-require("utils.plugin").force_load_on_event(plugin_name, loading)
+loading()

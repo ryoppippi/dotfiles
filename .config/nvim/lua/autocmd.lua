@@ -53,15 +53,3 @@ augroup END
 ]],
   true
 )
-
--- execute timer and dautocmd
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    local function dautocmd()
-      vim.api.nvim_exec_autocmds("User", {
-        pattern = "VimLoaded",
-      })
-    end
-    vim.defer_fn(dautocmd, 100)
-  end,
-})
