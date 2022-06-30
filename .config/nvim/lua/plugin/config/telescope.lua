@@ -120,8 +120,8 @@ end
 local function keymap()
   local key_opts = { silent = true }
   vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
-  vim.keymap.set("n", "[TeLeader]", "<Nop>", {  silent = true })
-  vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", {  })
+  vim.keymap.set("n", "[TeLeader]", "<Nop>", { silent = true })
+  vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", {})
 
   local find_files_cmd = [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]]
   local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]
@@ -147,5 +147,5 @@ local function keymap()
   vim.keymap.set("n", "[TeLeader]d", current_buffer_fuzzy_find, key_opts)
 end
 
-require("utils.plugin").force_load_on_event(plugin_name, loading)
-require("utils.plugin").force_load_on_event(plugin_name, keymap)
+loading()
+keymap()

@@ -1,13 +1,10 @@
-local plugin_name = "kanagawa"
-
-local function loading()
-  local default_colors = require(plugin_name .. ".colors").setup()
-  require(plugin_name).setup({
-    overrides = {
-      rainbowcol1 = { fg = default_colors.br },
-    },
-    globalStatus = true,
-  })
+local default_colors = require("kanagawa" .. ".colors").setup()
+require("kanagawa").setup({
+  overrides = {
+    rainbowcol1 = { fg = default_colors.br },
+  },
+  globalStatus = true,
+})
+if vim.g.colors_name == "kanagawa" then
+  vim.cmd([[colorscheme kanagawa]])
 end
-
-require("utils.plugin").force_load_on_event(plugin_name, loading)

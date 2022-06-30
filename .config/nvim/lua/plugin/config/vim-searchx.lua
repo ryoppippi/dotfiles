@@ -65,4 +65,4 @@ local function loading()
 end
 
 keymap()
-utils_plug.force_load_on_event("vim-searchx", loading)
+loading()
