@@ -14,6 +14,7 @@ if not cmp then
   vim.api.nvim_echo("cmp is not installed", true, {})
   return
 end
+
 for _, name in ipairs(utils_plug.names()) do
   if string.find(name, "cmp") then
     utils_plug.load(name)
@@ -161,9 +162,9 @@ local setup_opt = {
     { name = "calc" },
     { name = "spell" },
     { name = "treesitter" },
-    { name = "git" },
     { name = "dictionary", keyword_length = 2 },
     { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
+    { name = "git" },
     -- { name = "cmp_tabnine" },
   }),
   completion = {
@@ -257,6 +258,25 @@ cmp.setup.cmdline(":", {
 
 vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 
+-- Setup autopairs
+local autopairs = force_require("nvim-autopairs")
+if autopairs then
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+  -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+end
+
+-- local cmp_nvim_lsp = force_require("cmp_nvim_lsp")
+-- if cmp_nvim_lsp then
+--   cmp_nvim_lsp._on_insert_enter()
+-- end
+
+-- Setup git
+-- local cmp_git = force_require("cmp_git")
+-- if cmp_git then
+--   cmp_git.setup()
+-- end
+
 -- Setup tabnine
 -- local cmp_tabnine = force_require("cmp-tabnine")
 -- if cmp_tabnine then
@@ -268,17 +288,3 @@ vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 --     snippet_placeholder = "..",
 --   })
 -- end
-
--- Setup git
-local cmp_git = force_require("cmp_git")
-if cmp_git then
-  cmp_git.setup()
-end
-
--- Setup autopairs
-local autopairs = force_require("nvim-autopairs")
-if autopairs then
-  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-  -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
-end

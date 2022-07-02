@@ -118,9 +118,9 @@ end
 function M.force_require(plugin_name)
   M.load(plugin_name)
   local s, r = pcall(require, plugin_name)
-  if not s then
-    vim.api.nvim_echo({ { r, "Error" } }, true, {})
-  end
+  -- if not s then
+  --   vim.api.nvim_echo({ { r, "Error" } }, true, {})
+  -- end
   return s and r or nil
 end
 
