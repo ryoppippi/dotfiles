@@ -109,6 +109,9 @@ abbr -a dcub "docker-compose up --build"
 abbr -a dcd "docker-compose down"
 abbr -a dcr "docker-compose restart"
 abbr -a gg googler
+
+abbr -a cpf "pbcopy < cat"
+abbr -a paf "pbpaste >"
 # abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
 
 # if test (uname -m) = arm64
