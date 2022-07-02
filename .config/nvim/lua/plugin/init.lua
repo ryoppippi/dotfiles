@@ -302,7 +302,7 @@ local plugin_list = {
   { "f3fora/cmp-spell", opt = true },
   { "ray-x/cmp-treesitter", opt = true },
   { "yutkat/cmp-mocword", opt = true },
-  { "petertriho/cmp-git", as = "cmp_git", opt = true },
+  -- { "petertriho/cmp-git", as = "cmp_git", opt = true },
   { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
   { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
   { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
@@ -405,7 +405,7 @@ local plugin_list = {
   -- }}
 
   -- AI {{
-  { "github/copilot.vim" },
+  { "github/copilot.vim", on = { "InsertEnter" } },
   -- }}
 
   -- Debug {{
@@ -422,9 +422,9 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim" },
-  { "michaelb/sniprun", run = "bash ./install.sh" },
-  -- { "thinca/vim-quickrun" },
-  -- { "lambdalisue/vim-quickrun-neovim-job" },
+  { "michaelb/sniprun", run = "bash ./install.sh", opt = true },
+  { "thinca/vim-quickrun" },
+  { "lambdalisue/vim-quickrun-neovim-job" },
   -- }}
 
   -- Neovim

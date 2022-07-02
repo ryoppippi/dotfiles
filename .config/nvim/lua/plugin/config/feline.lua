@@ -1,4 +1,5 @@
 local force_require = require("utils.plugin").force_require
+local tb = require("utils").toboolean
 
 vim.cmd([[set termguicolors]])
 local feline = require("feline")
@@ -492,21 +493,21 @@ feline.setup({
 })
 
 -- if tb(vim.fn.has("nvim-0.8")) then
---   winbar.setup({
---     components = {
---       active = {
---         {
---           comps.file_name_short,
---           comps.nvim_navic,
---         },
---       },
---       inactive = {
---         {
---           comps.file_name_short,
---         },
+-- winbar.setup({
+--   components = {
+--     active = {
+--       {
+--         comps.file_name,
+--         comps.nvim_navic,
 --       },
 --     },
---   })
+--     inactive = {
+--       {
+--         comps.file_name_short,
+--       },
+--     },
+--   },
+-- })
 -- end
 
 vim.cmd([[set noshowmode]])

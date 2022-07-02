@@ -23,7 +23,7 @@ local function setting()
   vim.opt.list = true
   vim.opt.laststatus = 3
   if tb(vim.fn.has("nvim-0.8")) then
-    -- vim.opt.cmdheight = 0
+    vim.opt.cmdheight = 0
     -- vim.opt.laststatus = 0
   end
 
@@ -35,6 +35,7 @@ local function setting()
     precedes = "❮",
   }
 end
+
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = setting,
   once = true,

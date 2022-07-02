@@ -1,1 +1,5 @@
-require("fidget").setup()
+require("fidget").setup({
+  text = {
+    spinner = "zip",
+  },
+})
