@@ -17,6 +17,7 @@ local function loading()
     },
     context_commentstring = {
       enable = true,
+      enable_autocmd = false,
     },
     rainbow = {
       enable = true,
