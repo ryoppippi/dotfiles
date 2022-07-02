@@ -1,6 +1,3 @@
-if status --is-login
-    echo login
-end
 if status --is-interactive
     bass source ~/.bash_profile
     source (anyenv init -|psub)
@@ -34,6 +31,10 @@ set -x ENHANCD_HOOK_AFTER_CD 'exa -hlF'
 set -x ENHANCD_DIR "$CONFIG/fish/functions/enhancd"
 set -x ENHANCD_ROOT "$CONFIG/fish/functions/enhancd"
 
+# set man
+if type -q nvim
+    set -x MANPAGER "nvim -c MANPAGER -"
+end
 
 # thefuck --alias | source
 
@@ -55,7 +56,7 @@ abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.
 abbr -a GHCI 'stack ghci'
 abbr -a sed gsed
 abbr -a dact deactivate
-abbr -a cat ccat
+# abbr -a cat ccat
 abbr -a b brew
 abbr -a t tmux
 abbr -a tt tmuximum
