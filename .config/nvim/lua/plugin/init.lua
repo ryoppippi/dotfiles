@@ -13,7 +13,7 @@ if not status then
         let dir = expand(stdpath('data') ..'/site/pack/jetpack/opt/vim-jetpack')
         if !isdirectory(dir)
           let url = 'https://github.com/tani/vim-jetpack'
-          silent execute printf('!git clone -b %s %s', url, dir)
+          silent execute printf('!git clone %s %s', url, dir)
           silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
         endif
         packadd vim-jetpack
