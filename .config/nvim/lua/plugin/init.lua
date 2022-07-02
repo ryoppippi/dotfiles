@@ -1,4 +1,9 @@
 local tb = require("utils").toboolean
+vim.g.jetpack_copy_method = "symlink"
+vim.g.jetpack_optimization = 1
+vim.g.jetpack_njobs = 16
+-- vim.g.enabled_snippet = "vsnip"
+vim.g.enabled_snippet = "luasnip"
 
 -- check if jetpack is installed
 local status, _ = require("utils.plugin").load("vim-jetpack")
@@ -8,7 +13,7 @@ if not status then
         let dir = expand(stdpath('data') ..'/site/pack/jetpack/opt/vim-jetpack')
         if !isdirectory(dir)
           let url = 'https://github.com/tani/vim-jetpack'
-          silent execute printf('!git clone --depth 1 %s %s', url, dir)
+          silent execute printf('!git clone -b %s %s', url, dir)
           silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
         endif
         packadd vim-jetpack
@@ -16,17 +21,7 @@ if not status then
     true
   )
 end
-
--- init jetpack
 local jp = require("jetpack")
-jp.init({
-  copy_method = "symlink",
-  optimization = 1,
-})
--- vim.g.jetpack.copy_method = "symlink"
--- vim.g.jetpack.optimization = 1
--- vim.g.enabled_snippet = "vsnip"
-vim.g.enabled_snippet = "luasnip"
 
 local plugin_list = {
   -- Plugin management {{
@@ -54,53 +49,24 @@ local plugin_list = {
   { "feline-nvim/feline.nvim" },
   { "SmiteshP/nvim-gps" },
   { "SmiteshP/nvim-navic" },
-  -- { "hoob3rt/lualine.nvim", },
   -- }}
 
   -- Other UI Components {{
   { "jeffkreeftmeijer/vim-numbertoggle" },
   { "mvllow/modes.nvim" },
-  -- mini.indentscope
-
   { "petertriho/nvim-scrollbar" },
-  -- { "sidebar-nvim/sidebar.nvim" },
-  -- { "rainbowhxch/beacon.nvim" },
   -- }}
 
   -- Moving Cursor {{
   { "unblevable/quick-scope" },
-  -- mini.jump
-  -- mini.jump2d
-  -- { "phaazon/hop.nvim", },
-  -- { "rhysd/clever-f.vim" },
   { "yutkat/wb-only-current-line.nvim" },
   { "deton/jasegment.vim" }, -- Japanese word moving
-  -- { "bkad/CamelCaseMotion" },
   -- }}
 
   -- File Management {{
 
   -- filer {{
-  -- neo-tree {{
   { "nvim-neo-tree/neo-tree.nvim", branch = "v2.x" },
-  -- }}
-
-  -- fern {{
-  -- { "lambdalisue/fern.vim" },
-  -- { "lambdalisue/fern-git-status.vim" },
-  -- { "lambdalisue/nerdfont.vim" },
-  -- { "lambdalisue/fern-renderer-nerdfont.vim" },
-  -- { "lambdalisue/glyph-palette.vim" },
-  -- { "lambdalisue/fern-hijack.vim" },
-  -- { "yuki-yano/fern-preview.vim" },
-  -- { "LumaKernel/fern-mapping-fzf.vim" },
-  -- }}
-
-  -- lir {{
-  -- { "tamago324/lir.nvim" },
-  -- { "tamago324/lir-git-status.nvim" },
-  -- }}
-
   -- }}
 
   -- window
@@ -112,18 +78,15 @@ local plugin_list = {
   { "stevearc/stickybuf.nvim" },
   { "famiu/bufdelete.nvim" },
 
-  -- project
-  -- { "ahmedkhalf/project.nvim", as = "project_nvim" },
-  -- { "mattn/vim-findroot" },
+  -- buffer move
+  { "Bakudankun/BackAndForward.vim" },
 
   -- file format settings
   { "spywhere/detect-language.nvim" },
-  -- { "zsugabubus/crazy8.nvim" },
+  { "Shougo/context_filetype.vim" },
   { "lfilho/cosco.vim" },
   { "nmac427/guess-indent.nvim" },
-
-  -- MRU
-  -- { "lambdalisue/mr.vim" },
+  -- { "zsugabubus/crazy8.nvim" },
 
   -- }}
 
@@ -155,10 +118,10 @@ local plugin_list = {
 
   -- yank and paste
   { "gbprod/substitute.nvim" },
-  -- { "gbprod/yanky.nvim" },
   { "hrsh7th/nvim-pasta" },
   { "Rasukarusan/nvim-block-paste" },
   { "yuki-yano/deindent-yank.vim" },
+  -- { "gbprod/yanky.nvim" },
   -- { "AckslD/nvim-anywise-reg.lua" },
 
   -- Select
@@ -173,25 +136,17 @@ local plugin_list = {
   -- Join
   { "AckslD/nvim-trevJ.lua" },
 
-  -- Formatting
-  -- { "junegunn/vim-easy-align" },
-
   -- Adding,subtracting,change cases
   { "monaqa/dial.nvim" },
-  -- {'monaqa/dps-dial.vim' },
   { "deris/vim-rengbang" },
-  -- { "johmsalas/text-case.nvim" },
-  -- { "mopp/vim-operator-convert-case" },
-
   -- }}
 
   -- Builtin Enhancements {{
   -- Quickfix
-  { "thinca/vim-quickrun" },
   { "thinca/vim-qfreplace" },
   { "itchyny/vim-qfedit" },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
-  -- { "gabrielpoca/replacer.nvim" },
+  { "gabrielpoca/replacer.nvim" },
 
   -- Undo
   { "simnalamburt/vim-mundo" },
@@ -218,14 +173,7 @@ local plugin_list = {
   { "nanotee/luv-vimdocs" },
   { "4513ECHO/vim-readme-viewer" },
 
-  -- Session
-  -- {'rmagatti/auto-session'},
-
-  -- Save
-  -- { "Pocco81/AutoSave.nvim", as = "autosave" },
-
   -- SpellCorrect
-  -- { "Pocco81/AbbrevMan.nvim" },
   { "lewis6991/spellsitter.nvim" },
 
   -- Command
@@ -236,8 +184,6 @@ local plugin_list = {
 
   -- Terminal
   { "akinsho/toggleterm.nvim" },
-
-  -- Job running
 
   -- }}
 
@@ -260,20 +206,18 @@ local plugin_list = {
   -- Git support{{
   -- client
   { "TimUntersberger/neogit" },
-  { "lambdalisue/gin.vim" },
-  -- { "tanvirtin/vgit.nvim" },
+  -- { "lambdalisue/gin.vim" },
 
   -- git command assistant
   { "rhysd/committia.vim" },
   { "hotwatermorning/auto-git-diff" },
+  { "akinsho/git-conflict.nvim" },
+  { "sindrets/diffview.nvim" },
+  { "yutkat/convert-git-url.nvim" },
 
   -- show messages
   { "lewis6991/gitsigns.nvim" },
   { "rhysd/git-messenger.vim" },
-
-  { "akinsho/git-conflict.nvim" },
-  { "sindrets/diffview.nvim" },
-  { "yutkat/convert-git-url.nvim" },
 
   -- Github
   { "pwntester/octo.nvim" },
@@ -291,6 +235,10 @@ local plugin_list = {
 
   -- GraphAPI {{
   { "skanehira/denops-graphql.vim" },
+  -- }}
+
+  -- Shell {{
+  { "lambdalisue/vim-manpager" },
   -- }}
 
   -- }}
@@ -337,10 +285,6 @@ local plugin_list = {
   { "folke/lsp-colors.nvim" },
   { "j-hui/fidget.nvim" },
   { "folke/trouble.nvim" },
-  -- { "tami5/lspsaga.nvim" },
-  -- { "folke/trouble.nvim" },
-  -- { "EthanJWright/toolwindow.nvim", },
-  -- { "ray-x/lsp_signature.nvim" },
   -- }}
   -- }}
 
@@ -362,70 +306,34 @@ local plugin_list = {
   { "ray-x/cmp-treesitter", opt = true },
   { "yutkat/cmp-mocword", opt = true },
   { "petertriho/cmp-git", as = "cmp_git", opt = true },
+  { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
+  { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
+  { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
+  -- { "hrsh7th/cmp-copilot", opt = true },
   -- { "uga-rosa/cmp-dictionary", opt = true },
   -- { "tzachar/cmp-tabnine", run = "./install.sh" },
   -- { "octaltree/cmp-look", opt = true },
-  -- { "hrsh7th/cmp-copilot", opt = true },
-  { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
-  { "hrsh7th/cmp-vsnip", opt = true, enabled = vim.g.enabled_snippet == "vsnip" },
-  { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
-  -- }}
-
-  -- ddc {{
-  -- { "Shougo/ddc.vim" },
-  -- { "vim-denops/denops.vim" },
-  -- { "Shougo/pum.vim" },
-  -- { "Shougo/ddc-around" },
-  -- { "Shougo/ddc-nvim-lsp" },
-  -- { "Shougo/ddc-matcher_head" },
-  -- { "Shougo/ddc-sorter_rank" },
-  -- { "Shougo/ddc-converter_remove_overlap" },
-  -- { "Shougo/ddc-rg" },
-  -- { "Shougo/ddc-cmdline" },
-  -- { "Shougo/ddc-cmdline-history" },
-  -- { "Shougo/neco-vim" },
-  -- { "tani/ddc-fuzzy" },
-  -- { "matsui54/ddc-converter_truncate" },
-  -- { "matsui54/denops-popup-preview.vim" },
-  -- { "matsui54/denops-signature_help" },
-  -- { "LumaKernel/ddc-tabnine" },
-  -- { "LumaKernel/ddc-file" },
-  -- { "matsui54/ddc-dictionary" },
-  -- { "Shougo/ddc-omni" },
-  -- { "gamoutatsumi/ddc-emoji" },
-  -- { "delphinus/ddc-treesitter" },
-  -- { "hrsh7th/vim-vsnip-integ" },
   -- }}
 
   -- Nvim-treesitter {{
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
   { "yioneko/nvim-yati" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
-  -- { "nvim-treesitter/nvim-tree-docs" },
-  -- { "vigoux/architext.nvim" },
-  -- { "nvim-treesitter/nvim-treesitter-refactor" },
 
   -- textobj
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "RRethy/nvim-treesitter-textsubjects" },
   { "David-Kunz/treesitter-unit" },
-  -- { "mfussenegger/nvim-treehopper" },
 
   -- UI
   { "haringsrob/nvim_context_vt" },
   { "romgrk/nvim-treesitter-context" },
-  -- { "nvim-treesitter/playground" },
-  -- { "stevearc/aerial.nvim" },
   -- }}
 
   -- ColorScheme {{
-  { "ulwlu/elly.vim" },
   { "navarasu/onedark.nvim" },
   { "ray-x/starry.nvim" },
   { "rebelot/kanagawa.nvim" },
-  { "sainnhe/gruvbox-material", opt = true },
-  -- { "marko-cerovac/material.nvim" },
-  -- { "tribela/vim-transparent" },
   -- }}
 
   -- Heiglighting {{
@@ -434,7 +342,6 @@ local plugin_list = {
   { "m-demare/hlargs.nvim" },
   { "p00f/nvim-ts-rainbow" },
   { "RRethy/vim-illuminate", as = "illuminate" },
-  -- { "Pocco81/HighStr.nvim" }, -- highlight strings
   -- }}
 
   -- Snippets {{
@@ -459,9 +366,9 @@ local plugin_list = {
   { "cstrap/python-snippets" },
   -- web
   { "fivethree-team/vscode-svelte-snippets" },
-  -- { "stordahl/sveltekit-snippets" },
   { "xabikos/vscode-javascript" },
   -- }}
+
   -- }}
 
   -- Language specific plugins {{
@@ -477,11 +384,9 @@ local plugin_list = {
   { "milisims/nvim-luaref" },
   { "folke/lua-dev.nvim" },
   -- rust
-  -- { "shurizzle/inlay-hints.nvim" },
   { "simrat39/rust-tools.nvim" },
   -- go
   { "ray-x/go.nvim" },
-  -- }}
   -- markdown
   -- { "previm/previm", ft = { "markdown", "pandoc.markdown", "rmd" } },
   {
@@ -498,6 +403,9 @@ local plugin_list = {
   { "mechatroner/rainbow_csv", ft = { "csv" } },
   -- json
   { "b0o/schemastore.nvim" },
+  -- swift
+  -- { "tami5/xbase", run = "make install" },
+  -- }}
 
   -- AI {{
   { "github/copilot.vim" },
@@ -517,6 +425,8 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim" },
+  -- { "thinca/vim-quickrun" },
+  -- { "lambdalisue/vim-quickrun-neovim-job" },
   -- { "michaelb/sniprun", run = "bash ./install.sh" },
   -- }}
 
@@ -539,6 +449,7 @@ local startup_list = {
   "copilot",
   "nvim-lsp-installer",
   "vim-print-debug",
+  "xbase",
 }
 
 -- load plugins

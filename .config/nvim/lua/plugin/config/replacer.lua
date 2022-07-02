@@ -1,3 +1,3 @@
-vim.keymap.set("n", "<Leader>h", function()
+vim.api.nvim_create_user_command("Replacer", function()
   require("replacer").run()
-end, { nowait = true, silent = true, desc = "replacer" })
+end, { nargs = 0 })
