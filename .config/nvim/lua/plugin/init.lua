@@ -8,18 +8,14 @@ vim.g.enabled_snippet = "luasnip"
 -- check if jetpack is installed
 local status, _ = require("utils.plugin").load("vim-jetpack")
 if not status then
-  vim.api.nvim_exec(
-    [[
+  vim.cmd([[
         let dir = expand(stdpath('data') ..'/site/pack/jetpack/opt/vim-jetpack')
         if !isdirectory(dir)
           let url = 'https://github.com/tani/vim-jetpack'
-          silent execute printf('!git clone %s %s', url, dir)
-          silent execute 'ln -sf ~/.local/share/nvim/site/pack/jetpack/{src,opt}/vim-jetpack'
+          execute printf('!git clone %s %s', url, dir)
         endif
         packadd vim-jetpack
-      ]],
-    true
-  )
+      ]])
 end
 local jp = require("jetpack")
 
@@ -271,6 +267,7 @@ local plugin_list = {
   { "tknightz/telescope-termfinder.nvim" },
   { "benfowler/telescope-luasnip.nvim", enabled = vim.g.enabled_snippet == "luasnip" },
   -- }}
+
   -- }}
 
   -- Languages
@@ -425,9 +422,9 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim" },
+  { "michaelb/sniprun", run = "bash ./install.sh" },
   -- { "thinca/vim-quickrun" },
   -- { "lambdalisue/vim-quickrun-neovim-job" },
-  -- { "michaelb/sniprun", run = "bash ./install.sh" },
   -- }}
 
   -- Neovim
