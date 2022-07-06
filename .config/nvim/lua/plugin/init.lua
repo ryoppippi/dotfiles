@@ -168,7 +168,6 @@ local plugin_list = {
   { "thinca/vim-ref" },
   { "folke/which-key.nvim" },
   { "nanotee/luv-vimdocs" },
-  { "4513ECHO/vim-readme-viewer" },
 
   -- SpellCorrect
   { "lewis6991/spellsitter.nvim" },
@@ -511,11 +510,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_user_command("JetpackOpenURL", function(tbl)
-  local url = require("jetpack").get(tbl.args).url
+  local url = jp.get(tbl.args).url
   vim.api.nvim_exec("!open " .. url, true)
 end, {
   nargs = 1,
   complete = function()
-    return require("jetpack").names()
+    return jp.names()
+  end,
+})
+
+vim.api.nvim_create_user_command("JetpackReadme", function(tbl)
+  local path = jp.get(tbl.args).path .. "/readme.md"
+  vim.api.nvim_exec("e " .. path, true)
+end, {
+  nargs = 1,
+  complete = function()
+    return jp.names()
   end,
 })
