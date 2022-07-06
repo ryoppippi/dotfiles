@@ -72,3 +72,6 @@
 -- { "tribela/vim-transparent" },
 -- { "sainnhe/gruvbox-material", opt = true },
 -- { "ulwlu/elly.vim" },
+
+-- Swap Arguments
+-- { "mizlan/iswap.nvim" },

@@ -1,3 +1,4 @@
+require("utils.plugin").load("dial")
 local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
 
 local function keymap(group_name)
