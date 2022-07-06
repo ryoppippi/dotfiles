@@ -1,14 +1,15 @@
 pcall(vim.cmd, [[silent packadd! impatient"]])
 pcall(require, "impatient")
 
+require("global")
 require("base")
-require("display")
 require("options")
+require("display")
 require("plugin")
 require("autocmd")
+require("keymaps")
 
 vim.defer_fn(function()
-  require("keymaps")
   require("command")
   require("vscode")
   require("macos")

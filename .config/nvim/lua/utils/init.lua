@@ -5,7 +5,7 @@ M.t = function(str)
 end
 
 M.is_vscode = function()
-  return M.toboolean(vim.g.vscode)
+  return tb(vim.g.vscode)
 end
 
 M.is_macos = function()
@@ -155,12 +155,12 @@ function M.redetect_filetype()
   vim.api.nvim_exec([[execute printf('set %s=%s','filetype',&filetype)]], false)
 end
 
-function M.repeat_element(x,n)
+function M.repeat_element(x, n)
   local tbl = {}
-    for _ = 1, n, 1 do
-        table.insert(tbl, x)
-    end
-    return tbl
+  for _ = 1, n, 1 do
+    table.insert(tbl, x)
+  end
+  return tbl
 end
 
 return M

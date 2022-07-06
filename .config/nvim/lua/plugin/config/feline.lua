@@ -1,7 +1,6 @@
 local force_require = require("utils.plugin").force_require
 local tb = require("utils").toboolean
 
-vim.cmd([[set termguicolors]])
 local feline = require("feline")
 local winbar = feline.winbar
 local lsp = require("feline.providers.lsp")

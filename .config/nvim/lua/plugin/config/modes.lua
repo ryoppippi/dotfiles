@@ -1,2 +1,1 @@
-require("modes").setup()
-vim.opt.cursorline = true
+require("modes").setup({})

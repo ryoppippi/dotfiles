@@ -52,7 +52,11 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
     opts.settings = {
       format = { enable = true },
     }
+  elseif "denols" == name then
+    opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+    opts.init_options = { lint = true, unstable = true }
   elseif "tsserver" == name then
+    opts.root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc")
     local ts = force_require("typescript")
     if ts then
       ts.setup({
@@ -61,9 +65,6 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
       })
       goto continue
     end
-  elseif "denols" == name then
-    opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
-    opts.init_options = { lint = true, unstable = true }
   elseif "pyright" == name then
     opts.before_init = function(_, config)
       config.settings.python.pythonPath = vim.env.VIRTUAL_ENV

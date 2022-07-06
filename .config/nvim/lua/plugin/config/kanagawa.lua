@@ -1,4 +1,4 @@
-local default_colors = require("kanagawa" .. ".colors").setup()
+local default_colors = require("kanagawa.colors").setup()
 require("kanagawa").setup({
   overrides = {
     rainbowcol1 = { fg = default_colors.br },

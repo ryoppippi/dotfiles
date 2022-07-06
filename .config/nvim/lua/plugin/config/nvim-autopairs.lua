@@ -10,9 +10,9 @@ npairs.setup({
   ignored_next_char = "[%w%.]",
 })
 
---rules
-add_rules({
-  Rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
-    :use_regex(true)
-    :set_end_pair_length(2),
-})
+-- rules
+-- add_rules({
+--   Rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
+--     :use_regex(true)
+--     :set_end_pair_length(2),
+-- })
