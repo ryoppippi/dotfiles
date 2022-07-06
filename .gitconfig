@@ -5,10 +5,14 @@
 	autocrlf = input
 	excludesfile = /Users/ryoppippi/.gitignore_global
 	editor = nvim
-[alias]
+	pager = delta
+[interactive]
+  diffFilter = delta --color-only
 
+[alias]
 	a = add 
 	aa = add -a
+	fa = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta \" | xargs -0 -o -t git add -p"
 	cm = commit -m
   cma = commit --amend -m 
   fixit = commit --amend --no-edit
@@ -17,7 +21,6 @@
 	br = browse
 	cl = clone
 	cp = cherry-pick
-	d = "!f() { args=$@; [ -z \"$args\" ] && args=HEAD; ([ \"$args\" = \"HEAD\" ] && git status --short || git diff --name-status $args | sed 's/\t/  /') | fzf --preview \"echo {} | cut -c 4- | xargs git diff --color=always $args --\" --multi --height 90% | cut -c 4-; }; f"
 	f = fetch
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	p = push
@@ -75,3 +78,12 @@
 	pushInsteadOf = https://github.com/
 [commit]
 	gpgSign = true
+
+[delta]
+  diff-so-fancy=true
+	keep-plus-minus-markers=true
+	; side-by-side = true
+  minus-emph-style="bold 94 89"
+  plus-emph-style="bold 29 29"
+  hunk-header-style="omit"
+  line-numbers=true
