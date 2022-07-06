@@ -509,3 +509,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+vim.api.nvim_create_user_command("JetpackOpenURL", function(tbl)
+  local url = require("jetpack").get(tbl.args).url
+  vim.api.nvim_exec("!open " .. url, true)
+end, {
+  nargs = 1,
+  complete = function()
+    return require("jetpack").names()
+  end,
+})
