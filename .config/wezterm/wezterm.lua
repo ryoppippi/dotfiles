@@ -109,11 +109,56 @@ local config = {
   use_ime = true,
   font = wezterm.font("UDEV Gothic 35LG"),
   font_size = 15.0,
-  -- color_scheme = "onedark",
-  -- color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
+  color_scheme = "onedark",
+  color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
+  colors = {
+    tab_bar = {
+      background = "#1b1f2f",
+
+      active_tab = {
+        bg_color = "#444b71",
+        fg_color = "#c6c8d1",
+        intensity = "Normal",
+        underline = "None",
+        italic = false,
+        strikethrough = false,
+      },
+
+      inactive_tab = {
+        bg_color = "#282d3e",
+        fg_color = "#c6c8d1",
+        intensity = "Normal",
+        underline = "None",
+        italic = false,
+        strikethrough = false,
+      },
+
+      inactive_tab_hover = {
+        bg_color = "#1b1f2f",
+        fg_color = "#c6c8d1",
+        intensity = "Normal",
+        underline = "None",
+        italic = true,
+        strikethrough = false,
+      },
+
+      new_tab = {
+        bg_color = "#1b1f2f",
+        fg_color = "#c6c8d1",
+        italic = false,
+      },
+
+      new_tab_hover = {
+        bg_color = "#444b71",
+        fg_color = "#c6c8d1",
+        italic = false,
+      },
+    },
+  },
+  tab_bar_at_bottom = false,
+  use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   adjust_window_size_when_changing_font_size = false,
-  tab_bar_at_bottom = true,
   window_padding = {
     left = 5,
     right = 5,
@@ -130,12 +175,11 @@ local config = {
 
   unix_domains = {
     {
+
       name = "unix",
-    }
+    },
   },
 }
-
-config = utils.merge_tables(config, require("colors.kanagawa"))
-print(require("colors.kanagawa"))
+-- config = utils.merge_tables(config, require("colors.kanagawa"))
 
 return utils.merge_tables(config, local_config)
