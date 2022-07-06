@@ -128,14 +128,13 @@ local plugin_list = {
   { "kana/vim-niceblock" },
 
   -- Swap Arguments
-  { "mizlan/iswap.nvim" },
   { "machakann/vim-swap" },
 
   -- Join
   { "AckslD/nvim-trevJ.lua" },
 
   -- Adding,subtracting,change cases
-  { "monaqa/dial.nvim" },
+  { "monaqa/dial.nvim", opt = true },
   { "deris/vim-rengbang" },
   -- }}
 
@@ -182,6 +181,7 @@ local plugin_list = {
 
   -- Terminal
   { "akinsho/toggleterm.nvim" },
+  { "lambdalisue/guise.vim" },
 
   -- }}
 
@@ -204,7 +204,6 @@ local plugin_list = {
   -- Git support{{
   -- client
   { "TimUntersberger/neogit" },
-  -- { "lambdalisue/gin.vim" },
 
   -- git command assistant
   { "rhysd/committia.vim" },
@@ -345,7 +344,7 @@ local plugin_list = {
 
   -- Snippets {{
   { "hrsh7th/vim-vsnip", enabled = (vim.g.enabled_snippet == "vsnip") },
-  { "L3MON4D3/LuaSnip", as = "luasnip", enabled = (vim.g.enabled_snippet == "luasnip") },
+  { "L3MON4D3/LuaSnip", as = "luasnip", enabled = (vim.g.enabled_snippet == "luasnip"), opt = true },
 
   -- utils
   { "kevinhwang91/nvim-hclipboard", as = "hclipboard" }, -- prevent polluting clipboard
