@@ -1,6 +1,5 @@
 local M = {}
 local u = require("utils")
-local toboolean = u.toboolean
 
 function M.get_jetpack_plugin_event_name(plugin_name)
   local R = {}
@@ -35,7 +34,7 @@ function M.load(plugin_name)
 end
 
 function M.is_exists(plugin_name)
-  return toboolean(require("jetpack").tap(plugin_name))
+  return tb(require("jetpack").tap(plugin_name))
 end
 
 function M.get(plugin_name)

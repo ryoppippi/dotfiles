@@ -2,7 +2,6 @@ local utils_plug = require("utils.plugin")
 local utils = require("utils")
 local force_require = require("utils.plugin").force_require
 local t = utils.t
-local tb = utils.toboolean
 
 local snippet_library = vim.g.enabled_snippet
 
@@ -264,6 +263,14 @@ if autopairs then
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
   -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+
+  -- cmp.event:on("menu_opened", function(window)
+  --   print(vim.inspect(window))
+  --   npairs.disable()
+  -- end)
+  -- cmp.event:on("menu_closed", function()
+  --   npairs.enable()
+  -- end)
 end
 
 -- local cmp_nvim_lsp = force_require("cmp_nvim_lsp")

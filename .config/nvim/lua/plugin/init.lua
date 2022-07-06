@@ -1,4 +1,3 @@
-local tb = require("utils").toboolean
 vim.g.jetpack_copy_method = "symlink"
 vim.g.jetpack_optimization = 1
 vim.g.jetpack_njobs = 16
@@ -21,7 +20,7 @@ local jp = require("jetpack")
 
 local plugin_list = {
   -- Plugin management {{
-  { "tani/vim-jetpack", opt = true },
+  { "tani/vim-jetpack", opt = true, frozen = true },
   { "lewis6991/impatient.nvim", opt = true },
   { "tweekmonster/startuptime.vim" },
   -- }}
@@ -83,6 +82,9 @@ local plugin_list = {
   { "lfilho/cosco.vim" },
   { "nmac427/guess-indent.nvim" },
   -- { "zsugabubus/crazy8.nvim" },
+
+  -- root dir
+  { "ahmedkhalf/project.nvim" },
 
   -- }}
 
@@ -422,7 +424,7 @@ local plugin_list = {
 
   -- Task Runner{{
   { "yutkat/taskrun.nvim" },
-  { "michaelb/sniprun", run = "bash ./install.sh", opt = true },
+  -- { "michaelb/sniprun", run = "bash ./install.sh", opt = true },
   { "thinca/vim-quickrun" },
   { "lambdalisue/vim-quickrun-neovim-job" },
   -- }}
@@ -442,11 +444,17 @@ for i, v in ipairs(plugin_list) do
 end
 
 local startup_list = {
-  "feline",
+  -- preload for vimscript plugins
   "copilot",
-  "nvim-lsp-installer",
   "vim-print-debug",
+  -- should be loaded on startup
+  "telescope",
+  "todo-comments",
+  "nvim-treesitter",
+  "feline",
   "xbase",
+  -- idk but defer_fn doesn't work for this plugin
+  "nvim-lsp-installer",
 }
 
 -- load plugins
@@ -490,7 +498,7 @@ if fd then
 end
 
 -- check if all plugins are istalled
-vim.api.nvim_create_autocmd("User VimLoaded", {
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     for _, name in ipairs(jp.names()) do
       if not tb(jp.tap(name)) then
