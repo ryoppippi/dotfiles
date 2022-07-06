@@ -1,6 +1,7 @@
 export LC_ALL='en_US.UTF-8'
 ##export LANG=ja_JP.UTF-8
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export EDITOR=nvim
 
 # PATH
@@ -26,7 +27,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 #export CXX="/usr/local/bin/g++"
 
 PATH=${HOMEBREW_ARM_BIN}:${HOMEBREW_X86_64_BIN}:${LOCALBIN}:/usr/bin:/bin:/opt/local/sbin:${PATH}
-PATH=${VOLTA_BIN}:${NODEBREWBIN}:${GOBIN}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${DENOBIN}:${CARGOBIN}:${NIMBLEBIN}:${GNUBIN}:${XCODEBIN}:${PATH}
+PATH=${VOLTA_BIN}:${NODEBREWBIN}:${GOBIN}:${GOPATH}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${DENOBIN}:${CARGOBIN}:${NIMBLEBIN}:${GNUBIN}:${PATH}:${XCODEBIN}
 
 # langugaes
 # c++
@@ -54,19 +55,9 @@ alias npm="env CXX=/usr/bin/g++ npm"
 export PIP_REQUIRE_VIRTUALENV=true
 export BETTER_EXCEPTIONS=1
 
-
-
-# pyenv
-alias pyenv="env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
-export PYENV_ROOT="$HOME/.pyenv/shims"
-
-
 # pipenv
 #eval "$(pipenv --completion)"
 export PIPENV_VENV_IN_PROJECT=true
-
-# iterm
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # brew
 export BREW_PREFIX=$(brew --prefix)
@@ -79,11 +70,20 @@ fi
 # hub
 eval "$(hub alias -s)"
 
+# zoxide
+eval "$(zoxide init bash)"
+
 # direnv
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"
 
-source ~/.bash_secret
+# bat
+export BAT_THEME="TwoDark"
+
+# man pager
+if command -v nvim &> /dev/null; then
+    export MANPAGER="nvim -c MANPAGER -"
+fi
 
 if [[ -t 0 ]]; then
   stty stop undef
@@ -92,22 +92,9 @@ fi
 
 # Added by Krypton
 export GPG_TTY=$(tty)
-export EDITOR=vim
-export PATH=${PATH}
-export TO_FISH_PATH=$PATH
 
-# alias
-# cdls ()
-# {
-#    \cd "$@" && ls
-# }
-# alias cd="cdls"
-alias cat="ccat"
-alias ls="exa -hlF"
-alias rm="rm -i"
-
-case $- in
-    *i*) exec fish;;
-      *) return;;
-esac
+# case $- in
+#     *i*) exec fish;;
+#       *) return;;
+# esac
 

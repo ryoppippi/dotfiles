@@ -1,15 +1,12 @@
 if status --is-interactive
     bass source ~/.bash_profile
-    source (anyenv init -|psub)
 end
-zoxide init fish | source
-starship init fish | source
-set -x theme_nerd_fonts yes
-set -x BAT_THEME TwoDark
 
-set -x CONFIG $XDG_CONFIG_HOME
-set -x theme_nerd_fonts yes
-set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+starship init fish | source
+
+set -g theme_nerd_fonts yes
+
+set -l FISH_CONFIG $XDG_CONFIG_HOME/fish
 
 # fzf config
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --no-messages --glob "!/^[^\/]+\/.git/\/?(?:[^\/]+\/?)*" '
@@ -17,28 +14,23 @@ set -x FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
 set -x FZF_DEFAULT_OPTS '--extended --cycle --select-1 --height 40% --reverse --border'
 set -x FZF_FIND_FILE_OPTS '--preview "bat --color=always --style=header,grid --line-range :100 {}"'
 set -x FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-# set -x GHQ_SELECTOR_OPTS "--preview 'head {}/README.*'"
 set -x FZF_LEGACY_KEYBINDINGS 0
 set -x FZF_COMPLETION_TRIGGER '**'
 
 # ghq config
 set -x GHQ_SELECTOR_OPTS ""
+# set -x GHQ_SELECTOR_OPTS "--preview 'head {}/README.*'"
 set -x GHQ_SELECTOR fzf
 
 # enhancd config
 set -x ENHANCED_FILTER fzf
 set -x ENHANCD_HOOK_AFTER_CD 'exa -hlF'
-set -x ENHANCD_DIR "$CONFIG/fish/functions/enhancd"
-set -x ENHANCD_ROOT "$CONFIG/fish/functions/enhancd"
+set -x ENHANCD_DIR $FISH_CONFIG/functions/enhancd
+set -x ENHANCD_ROOT $FISH_CONFIG/functions/enhancd
 
-# set man
-if type -q nvim
-    set -x MANPAGER "nvim -c MANPAGER -"
-end
+# python
+set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
-# thefuck --alias | source
-
-# set pipenv_fish_fancy yes
 alias rm trash
 alias vim nvim
 alias git hub
@@ -112,7 +104,9 @@ abbr -a gg googler
 
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
+
 # abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
+abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
 
 # if test (uname -m) = arm64
 #     eval conda "shell.fish" hook $argv | source
