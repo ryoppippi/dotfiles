@@ -45,9 +45,6 @@ export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openblas/include -I/usr/local/opt/la
 export USE_CCACHE=1
 export CCACHE_DIR="$HOME/.ccache"
 
-# Go
-export CGO_ENABLED=0
-
 # node
 alias npm="env CXX=/usr/bin/g++ npm"
 
