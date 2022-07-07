@@ -27,7 +27,7 @@ local plugin_list = {
 
   -- Essential libraries {{
   { "nvim-lua/plenary.nvim" },
-  { "tami5/sqlite.lua" },
+  { "kkharji/sqlite.lua" },
   { "tpope/vim-repeat" },
   { "monaqa/peridot.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
@@ -402,7 +402,7 @@ local plugin_list = {
   -- json
   { "b0o/schemastore.nvim" },
   -- swift
-  -- { "tami5/xbase", run = "make install" },
+  -- { "xbase-lab/xbase", run = "make install" },
   -- }}
 
   -- AI {{
