@@ -1,8 +1,4 @@
-local plugin_name = "fern"
-
-local function loading()
-  vim.api.nvim_exec(
-    [[
+vim.cmd([[
   nnoremap <silent> <Leader>e :Fern . -reveal=%<CR>
   nnoremap <silent> <Leader>E :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
@@ -35,9 +31,4 @@ local function loading()
     autocmd! *
     autocmd FileType fern call s:fern_settings()
   augroup END
-]],
-    false
-  )
-end
-
-loading()
+]])
