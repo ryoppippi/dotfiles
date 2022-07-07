@@ -16,6 +16,7 @@ if not status then
         packadd vim-jetpack
       ]])
 end
+
 local jp = require("jetpack")
 
 local plugin_list = {
@@ -65,7 +66,6 @@ local plugin_list = {
   -- }}
 
   -- window
-  { "tkmpypy/chowcho.nvim" },
   { "kwkarlwang/bufresize.nvim" },
   { "simeji/winresizer" },
 
