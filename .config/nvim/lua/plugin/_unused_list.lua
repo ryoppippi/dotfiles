@@ -75,3 +75,6 @@
 
 -- Swap Arguments
 -- { "mizlan/iswap.nvim" },
+
+-- Window
+-- { "tkmpypy/chowcho.nvim" },
