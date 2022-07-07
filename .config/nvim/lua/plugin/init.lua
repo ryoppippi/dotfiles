@@ -282,6 +282,7 @@ local plugin_list = {
   { "folke/lsp-colors.nvim" },
   { "j-hui/fidget.nvim" },
   { "folke/trouble.nvim" },
+  { "rmagatti/goto-preview" },
   -- }}
   -- }}
 
