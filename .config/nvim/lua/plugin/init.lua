@@ -183,7 +183,7 @@ local plugin_list = {
   { "lambdalisue/guise.vim" },
 
   -- Session
-  { "rmagatti/auto-session" },
+  -- { "rmagatti/auto-session" },
 
   -- }}
 
