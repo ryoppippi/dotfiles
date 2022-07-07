@@ -25,7 +25,7 @@ vim.opt.listchars = {
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     if vim.o.termguicolors then
-      vim.cmd([[silent colorscheme kanagawa]])
+      pcall(vim.cmd, [[silent colorscheme kanagawa]])
     end
   end,
   once = true,

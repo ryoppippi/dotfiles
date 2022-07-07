@@ -516,7 +516,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.api.nvim_create_user_command("JetpackOpenURL", function(tbl)
   local url = jp.get(tbl.args).url
-  vim.api.nvim_exec("!open " .. url, true)
+  vim.api.nvim_command("!open " .. url)
 end, {
   nargs = 1,
   complete = function()
@@ -526,7 +526,7 @@ end, {
 
 vim.api.nvim_create_user_command("JetpackReadme", function(tbl)
   local path = jp.get(tbl.args).path .. "/readme.md"
-  vim.api.nvim_exec("e " .. path, true)
+  vim.api.nvim_command("e " .. path)
 end, {
   nargs = 1,
   complete = function()
