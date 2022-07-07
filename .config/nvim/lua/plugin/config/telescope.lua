@@ -1,9 +1,7 @@
-local plugin_name = "telescope"
-
 local function loading()
-  local telescope = require(plugin_name)
-  local actions = require(plugin_name .. ".actions")
-  local previewers = require(plugin_name .. ".previewers")
+  local telescope = require("telescope")
+  local actions = require("telescope.actions")
+  local previewers = require("telescope.previewers")
 
   local new_maker = function(filepath, bufnr, opts)
     opts = opts or {}
