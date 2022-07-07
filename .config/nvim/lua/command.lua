@@ -1,5 +1,7 @@
 -- open config
-vim.api.nvim_create_user_command("Config", "execute 'e' . fnamemodify($MYVIMRC, ':h')", { nargs = 0 })
+vim.api.nvim_create_user_command("Config", function()
+  vim.api.nvim_command("e " .. vim.fn.stdpath("config"))
+end, { nargs = 0 })
 vim.keymap.set("n", "<leader>.", "<cmd>Config<cr>")
 
 -- custom terminal command
