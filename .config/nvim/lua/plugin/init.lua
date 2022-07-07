@@ -182,6 +182,9 @@ local plugin_list = {
   { "akinsho/toggleterm.nvim" },
   { "lambdalisue/guise.vim" },
 
+  -- Session
+  { "rmagatti/auto-session" },
+
   -- }}
 
   -- New Features {{
@@ -446,6 +449,7 @@ local startup_list = {
   -- preload for vimscript plugins
   "copilot",
   "vim-print-debug",
+  "auto-session",
   -- should be loaded on startup
   "telescope",
   "todo-comments",
