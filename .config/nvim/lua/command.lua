@@ -26,3 +26,38 @@ vim.api.nvim_create_user_command("ToggleStatusBar", function()
     vim.opt.laststatus = 3
   end
 end, { nargs = 0, force = true })
+
+vim.api.nvim_create_user_command("H", function(tbl)
+  local args = tbl.args
+  local ok, Popup = pcall(require, "nui.popup")
+  if not ok then
+    vim.api.nvim_command("tabnew")
+    vim.api.nvim_command("setlocal buftype=help")
+    vim.api.nvim_command("help " .. args)
+  end
+  local popup = Popup({
+    enter = true,
+    focusable = true,
+    border = {
+      style = "rounded",
+    },
+    position = "50%",
+    size = {
+      width = "80%",
+      height = "80%",
+    },
+    buf_options = {
+      modifiable = false,
+      readonly = true,
+      buftype = "help",
+    },
+  })
+  popup:mount()
+  vim.api.nvim_command("help " .. args)
+  popup:on("BufLeave", function()
+    popup:unmount()
+  end)
+  popup:map("n", "<esc>", function()
+    popup:unmount()
+  end, { noremap = true })
+end, { nargs = "?", complete = "help", force = true })
