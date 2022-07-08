@@ -19,7 +19,6 @@ vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_man = 1
 
-vim.g.load_black = 1
 vim.g.loaded_fzf = 1
 vim.g.loaded_gtags = 1
 vim.g.loaded_gtags_cscope = 1
@@ -29,6 +28,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_python_provider = 0
 vim.g.loaded_pythonx_provider = 0
+vim.g.load_black = 1
 
 vim.g.loaded_ruby_provider = 0
 vim.g.do_filetype_lua = 1
