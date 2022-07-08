@@ -29,15 +29,15 @@ local plugin_list = {
   -- Essential libraries {{
   { "nvim-lua/plenary.nvim" },
   { "kkharji/sqlite.lua" },
+  { "ray-x/guihua.lua" },
+  { "MunifTanjim/nui.nvim" },
+  { "nvim-lua/popup.nvim" },
+  { "rcarriga/nvim-notify" },
+  { "kyazdani42/nvim-web-devicons" },
   { "tpope/vim-repeat" },
   { "monaqa/peridot.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
-  { "MunifTanjim/nui.nvim" },
-  { "kyazdani42/nvim-web-devicons" },
-  { "nvim-lua/popup.nvim" },
-  { "ray-x/guihua.lua" },
   { "vim-denops/denops.vim" },
-  { "rcarriga/nvim-notify" },
   { "echasnovski/mini.nvim", branch = "stable" },
   -- }}
 
@@ -70,7 +70,7 @@ local plugin_list = {
   { "simeji/winresizer" },
 
   -- buffer
-  { "stevearc/stickybuf.nvim" },
+  -- { "stevearc/stickybuf.nvim" },
   { "famiu/bufdelete.nvim" },
 
   -- buffer move
@@ -526,7 +526,36 @@ end, {
 
 vim.api.nvim_create_user_command("JetpackReadme", function(tbl)
   local path = jp.get(tbl.args).path .. "/readme.md"
-  vim.api.nvim_command("e " .. path)
+  local bufnr = vim.fn.bufadd(path)
+  local ok, Popup = pcall(require, "nui.popup")
+  if not ok then
+    vim.api.nvim_command("e " .. path)
+    return
+  end
+  local popup = Popup({
+    enter = true,
+    focusable = true,
+    border = {
+      style = "rounded",
+    },
+    position = "50%",
+    size = {
+      width = "80%",
+      height = "80%",
+    },
+    bufnr = bufnr,
+    buf_options = {
+      modifiable = false,
+      readonly = true,
+    },
+  })
+  popup:mount()
+  popup:on("BufLeave", function()
+    popup:unmount()
+  end)
+  popup:map("n", "<esc>", function()
+    popup:unmount()
+  end, { noremap = true })
 end, {
   nargs = 1,
   complete = function()
