@@ -550,6 +550,7 @@ vim.api.nvim_create_user_command("JetpackReadme", function(tbl)
     },
   })
   popup:mount()
+  vim.api.nvim_set_current_buf(bufnr)
   popup:on("BufLeave", function()
     popup:unmount()
   end)
