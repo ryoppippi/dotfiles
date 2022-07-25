@@ -4,9 +4,6 @@ vim.api.nvim_create_user_command("Config", function()
 end, { nargs = 0 })
 vim.keymap.set("n", "<leader>.", "<cmd>Config<cr>")
 
--- custom terminal command
-vim.api.nvim_create_user_command("T", "tabe | terminal <args>", { nargs = "*" })
-
 -- indent change
 vim.api.nvim_create_user_command("IndentChange", "set tabstop=<args> shiftwidth=<args>", { force = true, nargs = 1 })
 
@@ -27,13 +24,15 @@ vim.api.nvim_create_user_command("ToggleStatusBar", function()
   end
 end, { nargs = 0, force = true })
 
+-- help
 vim.api.nvim_create_user_command("H", function(tbl)
   local args = tbl.args
-  local ok, Popup = pcall(require, "nui.popup")
-  if not ok then
+  local Popup = require("utils.plugin").force_require("nui.popup")
+  if not Popup then
     vim.api.nvim_command("tabnew")
     vim.api.nvim_command("setlocal buftype=help")
     vim.api.nvim_command("help " .. args)
+    return
   end
   local popup = Popup({
     enter = true,
@@ -41,6 +40,7 @@ vim.api.nvim_create_user_command("H", function(tbl)
     border = {
       style = "rounded",
     },
+    relative = "editor",
     position = "50%",
     size = {
       width = "80%",
@@ -61,3 +61,10 @@ vim.api.nvim_create_user_command("H", function(tbl)
     popup:unmount()
   end, { noremap = true })
 end, { nargs = "?", complete = "help", force = true })
+
+-- terminal
+vim.api.nvim_create_user_command("T", function(tbl)
+  local args = tbl.args
+  vim.cmd("tabe")
+  vim.cmd("terminal " .. args)
+end, { nargs = "*" })
