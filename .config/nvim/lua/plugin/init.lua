@@ -500,6 +500,7 @@ if fd then
   end
 end
 
+
 -- check if all plugins are istalled
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
@@ -511,55 +512,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
         break
       end
     end
-  end,
-})
-
-vim.api.nvim_create_user_command("JetpackOpenURL", function(tbl)
-  local url = jp.get(tbl.args).url
-  vim.api.nvim_command("!open " .. url)
-end, {
-  nargs = 1,
-  complete = function()
-    return jp.names()
-  end,
-})
-
-vim.api.nvim_create_user_command("JetpackReadme", function(tbl)
-  local path = jp.get(tbl.args).path .. "/readme.md"
-  local bufnr = vim.fn.bufadd(path)
-  local ok, Popup = pcall(require, "nui.popup")
-  if not ok then
-    vim.api.nvim_command("e " .. path)
-    return
-  end
-  local popup = Popup({
-    enter = true,
-    focusable = true,
-    border = {
-      style = "rounded",
-    },
-    position = "50%",
-    size = {
-      width = "80%",
-      height = "80%",
-    },
-    bufnr = bufnr,
-    buf_options = {
-      modifiable = false,
-      readonly = true,
-    },
-  })
-  popup:mount()
-  vim.api.nvim_set_current_buf(bufnr)
-  popup:on("BufLeave", function()
-    popup:unmount()
-  end)
-  popup:map("n", "<esc>", function()
-    popup:unmount()
-  end, { noremap = true })
-end, {
-  nargs = 1,
-  complete = function()
-    return jp.names()
   end,
 })
