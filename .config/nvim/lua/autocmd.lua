@@ -53,3 +53,21 @@ augroup END
 ]],
   true
 )
+
+local restore_terminal_mode = vim.api.nvim_create_augroup("restore_terminal_mode", { clear = true })
+vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave" }, {
+  pattern = "term://*",
+  callback = function()
+    vim.b.term_mode = vim.fn.mode()
+  end,
+  group = restore_terminal_mode,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "term://*",
+  callback = function()
+    if vim.b.term_mode == "t" then
+      vim.cmd([[startinsert!]])
+    end
+  end,
+  group = restore_terminal_mode,
+})
