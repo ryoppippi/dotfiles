@@ -12,22 +12,8 @@ M.is_macos = function()
   return vim.loop.os_uname().sysname == "Darwin"
 end
 
-M.toboolean = function(value)
-  if value == nil then
-    return false
-  elseif type(value) == "boolean" then
-    return value
-  elseif type(value) == "number" then
-    return value ~= 0
-  elseif type(value) == "string" then
-    return string.lower(value) == "true"
-  else
-    return false
-  end
-end
-
 M.is_event_available = function(event)
-  return M.toboolean(vim.fn.exists(("##" .. event)))
+  return tb(vim.fn.exists(("##" .. event)))
 end
 
 M.merge_tables = function(t1, t2)
