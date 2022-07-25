@@ -276,7 +276,8 @@ local plugin_list = {
   -- Languages
   -- Nvim-LSP {{
   { "neovim/nvim-lspconfig", as = "lspconfig", opt = true },
-  { "williamboman/nvim-lsp-installer" },
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
   { "jose-elias-alvarez/null-ls.nvim" },
   { "lukas-reineke/lsp-format.nvim" },
 
@@ -457,7 +458,8 @@ local startup_list = {
   "feline",
   "xbase",
   -- idk but defer_fn doesn't work for this plugin
-  "nvim-lsp-installer",
+  "mason",
+  "mason-lspconfig",
 }
 
 -- load plugins
