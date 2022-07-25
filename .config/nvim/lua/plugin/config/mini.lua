@@ -19,5 +19,5 @@ setup("mini.jump", {
     highlight = 10,
   },
 })
-setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
+-- setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
 setup("mini.trailspace", {})

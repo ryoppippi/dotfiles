@@ -60,9 +60,9 @@ local function loading()
         position = "left",
         width = 30,
         mappings = {
-          ["<cr>"] = "none",
           ["<2-LeftMouse>"] = "open",
           ["o"] = "open",
+          ["<cr>"] = "open",
           ["l"] = "open",
           ["h"] = "close_node",
           ["s"] = "none",

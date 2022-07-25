@@ -1,34 +1,75 @@
-vim.cmd([[
-  nnoremap <silent> <Leader>e :Fern . -reveal=%<CR>
-  nnoremap <silent> <Leader>E :Fern . -reveal=% -drawer -toggle -width=40<CR>
+vim.g["fern#default_hidden"] = true
+vim.g["fern#drawer_keep"] = true
+vim.g["fern#renderer"] = "nerdfont"
+-- vim.g["fern_auto_preview"] = true
+-- vim.g["fern#keepjumps_on_edit"] = true
+-- vim.g["fern#keepalt_on_edit"] = true
 
-  let g:fern#default_hidden = v:true
-  " let g:fern#keepjumps_on_edit = 1
-  " let g:fern#keepalt_on_edit = 1
-  let g:fern#drawer_keep =1
-  " let g:fern_auto_preview = v:true
-  let g:fern#renderer = 'nerdfont'
+local my_glyph_palette = vim.api.nvim_create_augroup("my-glyph-palette", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "fern", "nerdtree", "startify" },
+  group = my_glyph_palette,
+  command = "call glyph_palette#apply()",
+})
 
+local fern_custon = vim.api.nvim_create_augroup("fern-custom", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "fern",
+  group = fern_custon,
+  callback = function()
+    local opts = { buffer = true, silent = true, remap = true }
+    vim.keymap.set("n", "p", "<Plug>(fern-action-preview:toggle)", opts)
+    vim.keymap.set("n", "<C-p>", "<Plug>(fern-action-preview:auto:toggle)", opts)
+    vim.keymap.set("n", "T", "<Plug>(fern-action-open:edit-or-tabedit)", opts)
+    vim.keymap.set("n", "t", "<Nop>", opts)
+    vim.keymap.set("n", "<C-d>", "<Plug>(fern-action-preview:scroll:down:half)", opts)
+    vim.keymap.set("n", "<C-f>", "<Plug>(fern-action-preview:scroll:up:half)", opts)
+    -- vim.keymap.set("n", "q", "<Plug>(fern-quit-or-close-preview)", opts)
+    vim.cmd(
+      [[nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>]]
+    )
+  end,
+})
 
-  function! s:fern_settings() abort
-    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-    nmap <silent> <buffer> T <Plug>(fern-action-open:edit-or-tabedit)
-    nmap <silent> <buffer> t <Nop>
-    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-    nmap <silent> <buffer> <C-f> <Plug>(fern-action-preview:scroll:up:half)
-    nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
-    nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
-  endfunction
+local fern_bufnr = nil
+local function popup_fern()
+  local function open_fern()
+    vim.cmd([[Fern . -reveal=%]])
+  end
 
-  augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
-    autocmd FileType nerdtree,startify call glyph_palette#apply()
-  augroup END
+  open_fern()
+  -- if not fern_bufnr then
+  --   open_fern()
+  --   fern_bufnr = vim.api.nvim_get_current_buf()
+  --   vim.cmd([[Back]])
+  -- end
+  -- local Popup = require("utils.plugin").force_require("nui.popup")
+  -- if not Popup then
+  --   return
+  -- end
+  -- local popup = Popup({
+  --   enter = true,
+  --   focusable = true,
+  --   border = {
+  --     style = "rounded",
+  --   },
+  --   relative = "editor",
+  --   position = "50%",
+  --   size = {
+  --     width = "80%",
+  --     height = "80%",
+  --   },
+  --   bufnr = fern_bufnr,
+  --   buf_options = {},
+  -- })
+  -- popup:mount()
+  -- popup:on("BufLeave", function()
+  --   popup:unmount()
+  -- end)
+  -- popup:map("n", "<esc>", function()
+  --   popup:unmount()
+  -- end, { noremap = true })
+end
 
-  augroup fern-custom
-    autocmd! *
-    autocmd FileType fern call s:fern_settings()
-  augroup END
-]])
+vim.keymap.set("n", "<leader>e", popup_fern, { remap = true, silent = true })
+vim.keymap.set("n", "<leader>E", "<cmd>Fern . -reveal=% -drawer -toggle -width=40<cr>", { remap = true })

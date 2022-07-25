@@ -57,6 +57,7 @@ local plugin_list = {
   { "unblevable/quick-scope" },
   { "yutkat/wb-only-current-line.nvim" },
   { "deton/jasegment.vim" }, -- Japanese word moving
+  { "yuki-yano/fuzzy-motion.vim" },
   -- }}
 
   -- File Management {{
@@ -68,6 +69,7 @@ local plugin_list = {
   -- window
   { "kwkarlwang/bufresize.nvim" },
   { "simeji/winresizer" },
+  { "camspiers/lens.vim" },
 
   -- buffer
   -- { "stevearc/stickybuf.nvim" },
@@ -81,6 +83,8 @@ local plugin_list = {
   { "Shougo/context_filetype.vim" },
   { "lfilho/cosco.vim" },
   { "nmac427/guess-indent.nvim" },
+  { "thinca/vim-prettyprint" },
+  { "RRethy/nvim-align" },
   -- { "zsugabubus/crazy8.nvim" },
 
   -- root dir
@@ -196,6 +200,7 @@ local plugin_list = {
 
   -- Screenshot
   { "segeljakt/vim-silicon" },
+  { "kristijanhusak/vim-carbon-now-sh" },
 
   -- Template
   { "mattn/vim-sonictemplate" },
@@ -220,7 +225,7 @@ local plugin_list = {
 
   -- Github
   { "pwntester/octo.nvim" },
-  { "skanehira/denops-gh.vim" },
+  -- { "skanehira/denops-gh.vim" },
 
   -- }}
 
@@ -366,6 +371,8 @@ local plugin_list = {
   -- python
   { "cstrap/flask-snippets" },
   { "cstrap/python-snippets" },
+  -- zig
+  { "Metalymph/zig-snippets" },
   -- web
   { "fivethree-team/vscode-svelte-snippets" },
   { "xabikos/vscode-javascript" },
@@ -426,7 +433,6 @@ local plugin_list = {
   -- }}
 
   -- Task Runner{{
-  { "yutkat/taskrun.nvim" },
   -- { "michaelb/sniprun", run = "bash ./install.sh", opt = true },
   { "thinca/vim-quickrun" },
   { "lambdalisue/vim-quickrun-neovim-job" },
@@ -502,6 +508,8 @@ if fd then
   end
 end
 
+-- my plugin
+vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/lua/plugin/config/tabline.lua")
 
 -- check if all plugins are istalled
 vim.api.nvim_create_autocmd("VimEnter", {
