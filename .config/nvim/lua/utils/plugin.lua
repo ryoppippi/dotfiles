@@ -33,10 +33,6 @@ function M.load(plugin_name)
   return pcall(vim.cmd, string.format("packadd %s", plugin_name))
 end
 
-function M.is_exists(plugin_name)
-  return tb(require("jetpack").tap(plugin_name))
-end
-
 function M.get(plugin_name)
   return require("jetpack").get(plugin_name)
 end
