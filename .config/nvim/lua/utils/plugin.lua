@@ -30,7 +30,7 @@ local function create_event_table(opt, callback)
 end
 
 function M.load(plugin_name)
-  return pcall(vim.cmd, string.format("packadd %s", plugin_name))
+  return pcall(vim.cmd.packadd, plugin_name)
 end
 
 function M.get(plugin_name)
@@ -131,7 +131,7 @@ function M.load_scripts(plugin_name, subdirectory)
       break
     end
     if type == "file" then
-      vim.cmd("source " .. dir .. "/" .. file_name)
+      vim.cmd.source(dir .. "/" .. file_name)
     end
   end
 end

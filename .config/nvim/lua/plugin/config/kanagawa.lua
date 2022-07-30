@@ -6,5 +6,5 @@ require("kanagawa").setup({
   globalStatus = true,
 })
 if vim.g.colors_name == "kanagawa" then
-  vim.cmd([[colorscheme kanagawa]])
+  vim.cmd.colorscheme("kanagawa")
 end

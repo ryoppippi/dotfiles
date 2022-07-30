@@ -138,7 +138,12 @@ mason_lspconfig.setup_handlers({
       local go = force_require("go")
       if go then
         go.setup()
-        vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          pattern = "*.go",
+          callback = function()
+            require("go.format").gofmt()
+          end,
+        })
       end
       goto continue
     elseif "jsonls" == server then
@@ -166,4 +171,3 @@ mason_lspconfig.setup_handlers({
     vim.cmd([[ do User LspAttachBuffers ]])
   end,
 })
--- end

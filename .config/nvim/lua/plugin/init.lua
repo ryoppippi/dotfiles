@@ -1,3 +1,5 @@
+local load = require("utils.plugin").load
+
 vim.g.jetpack_copy_method = "symlink"
 vim.g.jetpack_optimization = 1
 vim.g.jetpack_njobs = 16
@@ -5,16 +7,14 @@ vim.g.jetpack_njobs = 16
 vim.g.enabled_snippet = "luasnip"
 
 -- check if jetpack is installed
-local status, _ = require("utils.plugin").load("vim-jetpack")
-if not status then
-  vim.cmd([[
-        let dir = expand(stdpath('data') ..'/site/pack/jetpack/opt/vim-jetpack')
-        if !isdirectory(dir)
-          let url = 'https://github.com/tani/vim-jetpack'
-          execute printf('!git clone %s %s', url, dir)
-        endif
-        packadd vim-jetpack
-      ]])
+local status, _ = load("vim-jetpack")
+if not tb(status) then
+  local dir = vim.fn.expand(vim.fn.stdpath("data") .. "/site/pack/jetpack/opt/vim-jetpack")
+  if not tb(vim.fn.isdirectory(dir)) then
+    local url = "https://github.com/tani/vim-jetpack"
+    vim.cmd(string.format("!git clone %s %s", url, dir))
+  end
+  load("vim-jetpack")
 end
 
 local jp = require("jetpack")
@@ -466,6 +466,10 @@ local startup_list = {
   "mason-lspconfig",
 }
 
+local my_plugin_list = {
+  "tabline",
+}
+
 -- load plugins
 jp.startup(function(use)
   for _, plugin in ipairs(plugin_list) do
@@ -488,26 +492,27 @@ if fd then
     if type == "file" then
       local plugin_name = file_name:gsub("%.lua$", "")
       local file_path = config_dir .. file_name
-      -- local plugin_name = vim.fn.fnamemodify(file_name, ":t:r")
       if jp.tap(plugin_name) then
         if vim.tbl_contains(startup_list, plugin_name) then
           vim.api.nvim_create_autocmd("VimEnter", {
             callback = function()
-              vim.cmd("luafile " .. file_path)
+              vim.cmd.luafile(file_path)
             end,
           })
         else
           vim.defer_fn(function()
-            vim.cmd("luafile " .. file_path)
+            vim.cmd.luafile(file_path)
           end, 0)
         end
+      end
+      if vim.tbl_contains(my_plugin_list, plugin_name) then
+        vim.defer_fn(function()
+          vim.cmd.luafile(file_path)
+        end, 0)
       end
     end
   end
 end
-
--- my plugin
-vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/lua/plugin/config/tabline.lua")
 
 -- check if all plugins are istalled
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -515,8 +520,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
     for _, name in ipairs(jp.names()) do
       if not tb(jp.tap(name)) then
         jp.sync()
-        pcall(vim.api.nvim_command, "LuaCacheClear")
-        vim.cmd("source $MYVIMRC")
+        pcall(vim.cmd.LuaCacheClear, "")
+        vim.cmd.source(os.getenv("MYVIMRC"))
         break
       end
     end

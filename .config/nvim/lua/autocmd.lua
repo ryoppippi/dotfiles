@@ -1,13 +1,17 @@
 local restoreCursor = vim.api.nvim_create_augroup("restoreCursor", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
-  command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]],
+  callback = function()
+    local ml = vim.fn.line([['"]])
+    local eol = vim.fn.line("$")
+    if 1 < ml and ml <= eol then
+      vim.cmd.normal([[g`"]])
+    end
+  end,
   group = restoreCursor,
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  command = [[
-  if empty(&buftype) && line('.') > winheight(0) / 3 * 2|   execute 'normal! zz' .. repeat("\<C-y>", winheight(0) / 6)| endif
-  ]],
+  command = [[if empty(&buftype) && line('.') > winheight(0) / 3 * 2|   execute 'normal! zz' .. repeat("\<C-y>", winheight(0) / 6)| endif ]],
   group = restoreCursor,
 })
 
@@ -21,7 +25,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
   pattern = "*",
   callback = function()
     vim.defer_fn(function()
-      vim.cmd([[normal zR]])
+      vim.cmd.normal("zR")
     end, 0)
   end,
   group = folding,
@@ -66,7 +70,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "term://*",
   callback = function()
     if vim.b.term_mode == "t" then
-      vim.cmd([[startinsert!]])
+      vim.cmd.startinsert()
     end
   end,
   group = restore_terminal_mode,
