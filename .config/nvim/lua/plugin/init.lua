@@ -181,6 +181,7 @@ local plugin_list = {
   { "jghauser/mkdir.nvim" },
   { "sQVe/sort.nvim" },
   { "tyru/capture.vim" },
+  { "smjonas/live-command.nvim" },
 
   -- Terminal
   { "akinsho/toggleterm.nvim" },
@@ -290,7 +291,6 @@ local plugin_list = {
   { "onsails/lspkind.nvim" },
   { "folke/lsp-colors.nvim" },
   { "j-hui/fidget.nvim" },
-  { "folke/trouble.nvim" },
   { "rmagatti/goto-preview" },
   -- }}
   -- }}
@@ -366,8 +366,6 @@ local plugin_list = {
   -- }}
 
   -- language specific snippets {{
-  -- go
-  { "golang/vscode-go" },
   -- python
   { "cstrap/flask-snippets" },
   { "cstrap/python-snippets" },
@@ -463,7 +461,7 @@ local startup_list = {
   "nvim-treesitter",
   "feline",
   "xbase",
-  -- idk but defer_fn doesn't work for this plugin
+
   "mason",
   "mason-lspconfig",
 }
