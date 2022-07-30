@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "vimrc_neogit",
   pattern = { "NeogitCommitMessage" },
   callback = function()
-    vim.cmd([[startinsert]])
+    vim.cmd.startinsert()
   end,
   once = false,
 })

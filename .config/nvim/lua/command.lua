@@ -53,7 +53,7 @@ vim.api.nvim_create_user_command("H", function(tbl)
     },
   })
   popup:mount()
-  vim.api.nvim_command("help " .. args)
+  vim.cmd.help(args)
   popup:on("BufLeave", function()
     popup:unmount()
   end)
@@ -65,6 +65,11 @@ end, { nargs = "?", complete = "help", force = true })
 -- terminal
 vim.api.nvim_create_user_command("T", function(tbl)
   local args = tbl.args
-  vim.cmd("tabe")
-  vim.cmd("terminal " .. args)
+  local tf = vim.cmd.terminal
+  vim.cmd.tabe()
+  if args == "" then
+    tf()
+  else
+    tf(args)
+  end
 end, { nargs = "*" })

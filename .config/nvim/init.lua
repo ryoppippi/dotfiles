@@ -1,4 +1,4 @@
-pcall(vim.cmd, [[silent packadd! impatient"]])
+pcall(vim.cmd.packadd, "impatient")
 pcall(require, "impatient")
 
 require("global")

@@ -66,6 +66,7 @@
 -- UI
 -- { "nvim-treesitter/playground" },
 -- { "stevearc/aerial.nvim" },
+-- { "folke/trouble.nvim" },
 
 -- ColorScheme
 -- { "marko-cerovac/material.nvim" },
