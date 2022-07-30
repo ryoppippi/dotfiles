@@ -26,7 +26,8 @@ local function set_keymap(client, bufnr)
 
   -- diagnostics
   vim.keymap.set("n", "gj", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-  vim.keymap.set("n", "gJ", [[<cmd>Telescope diagnostics<cr>]], opts)
+  -- vim.keymap.set("n", "gJ", [[<cmd>Telescope diagnostics<cr>]], opts)
+  vim.keymap.set("n", "gJ", [[<cmd> lua vim.lsp.diagnostic.set_loclist()<cr>]], opts)
   vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
   vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
   -- vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", opts)
