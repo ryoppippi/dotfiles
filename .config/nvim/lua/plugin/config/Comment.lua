@@ -1,7 +1,3 @@
-local utils_plug = require("utils.plugin")
-
-utils_plug.load_scripts("Comment", "/after/plugin")
-
 require("Comment").setup({
   pre_hook = function(ctx)
     -- Only calculate commentstring for tsx filetypes
