@@ -2,7 +2,7 @@
 vim.api.nvim_create_user_command("Config", function()
   vim.api.nvim_command("e " .. vim.fn.stdpath("config"))
 end, { nargs = 0 })
-vim.keymap.set("n", "<leader>.", "<cmd>Config<cr>")
+vim.keymap.set("n", "<leader>.", vim.cmd.Config)
 
 -- indent change
 vim.api.nvim_create_user_command("IndentChange", "set tabstop=<args> shiftwidth=<args>", { force = true, nargs = 1 })
