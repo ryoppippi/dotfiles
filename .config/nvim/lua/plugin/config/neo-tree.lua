@@ -149,8 +149,8 @@ local function loading()
 end
 
 local function keymap()
-  vim.keymap.set("n", "<leader>E", vim.cmd.NeoTreeShowInSplit, { silent = true, desc = "Nwotree show in split" })
-  vim.keymap.set("n", "<leader>e", vim.cmd.NeoTreeFloatToggle, { silent = true, desc = "Nwotree float toggle" })
+  vim.keymap.set("n", "<leader>E", vim.cmd.NeoTreeShowInSplit, { silent = true, desc = "Neotree show in split" })
+  vim.keymap.set("n", "<leader>e", vim.cmd.NeoTreeFloatToggle, { silent = true, desc = "Neotree float toggle" })
 end
 
 loading()
