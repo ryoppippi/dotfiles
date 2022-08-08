@@ -6,7 +6,6 @@ local function setup(pluin_name, options)
 end
 
 setup("mini.indentscope", {})
--- setup('mini.cursorword',{})
 setup("mini.jump", {
   mappings = {
     forward = "f",
@@ -19,5 +18,6 @@ setup("mini.jump", {
     highlight = 10,
   },
 })
--- setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
 setup("mini.trailspace", {})
+-- setup('mini.cursorword',{})
+-- setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
