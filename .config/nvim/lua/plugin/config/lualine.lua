@@ -106,4 +106,4 @@ lualine.setup({
   },
   tabline = {},
 })
-vim.cmd.set("noshowmode")
+vim.opt.showmode = false
