@@ -186,6 +186,7 @@ local plugin_list = {
   -- Terminal
   { "akinsho/toggleterm.nvim" },
   { "lambdalisue/guise.vim" },
+  { "lambdalisue/askpass.vim" },
 
   -- Session
   -- { "rmagatti/auto-session" },
