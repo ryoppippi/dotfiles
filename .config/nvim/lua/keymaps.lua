@@ -126,13 +126,13 @@ vim.keymap.set("n", "A", function()
 end, { expr = true, silent = true })
 
 -- custom
-vim.keymap.set("n", "<leader>ss", "<cmd>ToggleStatusBar<cr>")
+vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
 -- tips
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set({ "n", "v" }, "x", '"_x')
 vim.keymap.set({ "n", "v" }, "X", '"_d$')
-vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>cclose<cr>")
+vim.keymap.set({ "n", "v" }, "<leader>cc", vim.cmd.cclose)
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set({ "n", "v" }, "sf", "%", { remap = true })
