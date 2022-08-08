@@ -1,7 +1,5 @@
 local utils_plug = require("utils.plugin")
-local utils = require("utils")
 local force_require = require("utils.plugin").force_require
-local t = utils.t
 
 local snippet_library = vim.g.enabled_snippet
 

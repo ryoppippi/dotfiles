@@ -1,8 +1,5 @@
 local M = {}
 
-M.t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
 
 M.is_vscode = function()
   return tb(vim.g.vscode)
