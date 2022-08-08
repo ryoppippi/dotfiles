@@ -29,9 +29,9 @@ vim.api.nvim_create_user_command("H", function(tbl)
   local args = tbl.args
   local Popup = require("utils.plugin").force_require("nui.popup")
   if not Popup then
-    vim.api.nvim_command("tabnew")
-    vim.api.nvim_command("setlocal buftype=help")
-    vim.api.nvim_command("help " .. args)
+    vim.cmd.tabnew()
+    vim.bo.buftype = "help"
+    vim.cmd.help(args)
     return
   end
   local popup = Popup({

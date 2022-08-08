@@ -24,8 +24,7 @@ local function keymap()
 end
 
 local function loading()
-  vim.api.nvim_exec(
-    [[
+  vim.cmd([[
     let g:searchx = {}
 
     " Auto jump if the recent input matches to any marker.
@@ -51,9 +50,7 @@ local function loading()
       endif
       return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
     endfunction
-  ]],
-    true
-  )
+  ]])
   vim.api.nvim_create_autocmd("User", {
     pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
     callback = hl_start,
