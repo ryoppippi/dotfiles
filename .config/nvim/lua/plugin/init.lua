@@ -431,9 +431,9 @@ local plugin_list = {
   -- }}
 
   -- Task Runner{{
-  -- { "michaelb/sniprun", run = "bash ./install.sh", opt = true },
   { "thinca/vim-quickrun" },
   { "lambdalisue/vim-quickrun-neovim-job" },
+  { "stevearc/overseer.nvim" },
   -- }}
 
   -- Neovim
