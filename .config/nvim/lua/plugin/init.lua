@@ -453,17 +453,19 @@ for i, v in ipairs(plugin_list) do
 end
 
 local startup_list = {
-  -- preload for vimscript plugins
+  "auto-session",
   "copilot",
   "vim-print-debug",
-  "auto-session",
-  -- should be loaded on startup
+  "vim-sonictemplate",
+  "vim-searchx",
+}
+
+local vim_enter_list = {
   "telescope",
   "todo-comments",
   "nvim-treesitter",
   "feline",
   "xbase",
-
   "mason",
   "mason-lspconfig",
 }
@@ -496,6 +498,8 @@ if fd then
       local file_path = config_dir .. file_name
       if jp.tap(plugin_name) then
         if vim.tbl_contains(startup_list, plugin_name) then
+          vim.cmd.luafile(file_path)
+        elseif vim.tbl_contains(vim_enter_list, plugin_name) then
           vim.api.nvim_create_autocmd("VimEnter", {
             callback = function()
               vim.cmd.luafile(file_path)
