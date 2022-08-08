@@ -118,31 +118,30 @@ end
 local function keymap()
   local key_opts = { silent = true }
   vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
-  vim.keymap.set("n", "[TeLeader]", "<Nop>", { silent = true })
-  vim.api.nvim_set_keymap("n", "[TeLeader]<cr>", "<cmd>WhichKey [TeLeader]<cr>", {})
 
-  local find_files_cmd = [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]]
-  local current_buffer_fuzzy_find = [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]]
-
-  vim.keymap.set("n", "[TeLeader]f", find_files_cmd, key_opts)
+  -- stylua: ignore start
+  vim.keymap.set("n", "[TeLeader]",        [[<Nop>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]<cr>",    [[<cmd>WhichKey [TeLeader]<cr>]], key_opts)
   vim.keymap.set("n", "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader].", [[<cmd>Telescope<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader],", [[<cmd>Telescope oldfiles<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]e", [[<cmd>Telescope file_browser<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]t", [[<cmd>TodoTelescope<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]r", [[<cmd>Telescope resume<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]b", [[<cmd>Telescope buffers<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]h", [[<cmd>Telescope help_tags<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]H", [[<cmd>Telescope heading<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]j", [[<cmd>Telescope jumplist<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]o", [[<cmd>Telescope oldfiles<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]g", [[<cmd>Telescope git_files<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]q", [[<cmd>Telescope quickfix<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]p", [[<cmd>Telescope pickers<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]m", [[<cmd>Telescope marks<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]c", [[<cmd>Telescope colorscheme<cr>]], key_opts)
-  vim.keymap.set("n", "[TeLeader]d", current_buffer_fuzzy_find, key_opts)
+  vim.keymap.set("n", "[TeLeader]f",       [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]d",       [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader].",       [[<cmd>Telescope<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader],",       [[<cmd>Telescope oldfiles<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]e",       [[<cmd>Telescope file_browser<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]s",       [[<cmd>Telescope grep_string<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]t",       [[<cmd>TodoTelescope<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]r",       [[<cmd>Telescope resume<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]b",       [[<cmd>Telescope buffers<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]h",       [[<cmd>Telescope help_tags<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]H",       [[<cmd>Telescope heading<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]j",       [[<cmd>Telescope jumplist<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]o",       [[<cmd>Telescope oldfiles<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]g",       [[<cmd>Telescope git_files<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]q",       [[<cmd>Telescope quickfix<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]p",       [[<cmd>Telescope pickers<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]m",       [[<cmd>Telescope marks<cr>]], key_opts)
+  vim.keymap.set("n", "[TeLeader]c",       [[<cmd>Telescope colorscheme<cr>]], key_opts)
+  -- stylua: ignore end
 end
 
 loading()
