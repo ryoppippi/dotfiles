@@ -140,18 +140,17 @@ local function loading()
       },
     },
   })
-
   -- hijack at lazy loading
-  vim.api.nvim_exec(
-    [[if isdirectory(expand('%:p')) | exe 'cd %:p:h' | exe 'bd!'| exe 'NeoTreeShowInSplit' | endif]],
-    false
-  )
+  if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
+    vim.cmd.cd(vim.fn.expand("%:p:h"))
+    vim.cmd.bd()
+    vim.cmd.NeoTreeShowInSplit()
+  end
 end
 
 local function keymap()
-  vim.keymap.set("n", "<leader>E", "<Cmd>NeoTreeRevealInSplit<CR>", { silent = true })
-  vim.keymap.set("n", "<leader>e", "<Cmd>NeoTreeFloatToggle<CR>", { silent = true })
-  -- vim.keymap.set("n", "<leader>gg", "<Cmd>NeoTreeFloatToggle git_status<CR>", { , silent = true })
+  vim.keymap.set("n", "<leader>E", vim.cmd.NeoTreeShowInSplit, { silent = true, desc = "Nwotree show in split" })
+  vim.keymap.set("n", "<leader>e", vim.cmd.NeoTreeFloatToggle, { silent = true, desc = "Nwotree float toggle" })
 end
 
 loading()
