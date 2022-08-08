@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.is_vscode = function()
   return tb(vim.g.vscode)
 end
@@ -135,7 +134,7 @@ function M.get_current_ufn()
 end
 
 function M.redetect_filetype()
-  vim.api.nvim_exec([[execute printf('set %s=%s','filetype',&filetype)]], false)
+  vim.bo.filetype = vim.bo.filetype
 end
 
 function M.repeat_element(x, n)
