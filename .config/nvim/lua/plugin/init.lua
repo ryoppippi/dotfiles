@@ -402,6 +402,7 @@ local plugin_list = {
     run = ":call mkdp#util#install()",
     ft = { "markdown", "pandoc.markdown", "rmd" },
   },
+  { "AckslD/nvim-FeMaco.lua" },
   -- { "SidOfc/mkdx", ft = { "markdown" } },
   -- log
   { "mtdl9/vim-log-highlighting" },
