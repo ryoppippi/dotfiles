@@ -1,5 +1,3 @@
-local utils = require("utils")
-local t = utils.t
 local force_require = require("utils.plugin").force_require
 
 vim.g.completion_trigger_character = "."

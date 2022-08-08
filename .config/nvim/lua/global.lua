@@ -11,3 +11,7 @@ _G.tb = function(value)
     return false
   end
 end
+
+_G.t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end

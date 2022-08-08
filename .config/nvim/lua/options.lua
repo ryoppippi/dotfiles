@@ -1,6 +1,4 @@
 -- setting
-local t = require("utils").t
-
 vim.g.mapleader = t("<Space>")
 
 vim.opt.backup = true
