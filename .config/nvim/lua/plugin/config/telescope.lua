@@ -26,10 +26,12 @@ local function loading()
           ["q"] = actions.close,
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
           ["<C-s>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
+          ["<C-l>"] = require("telescope.actions").send_to_loclist + require("telescope.actions").open_loclist,
         },
         i = {
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
           ["<C-s>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
+          ["<C-l>"] = require("telescope.actions").send_to_loclist + require("telescope.actions").open_loclist,
         },
       },
       initial_mode = "insert",
