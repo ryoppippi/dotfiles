@@ -209,8 +209,9 @@ end
 
 cmp.setup(setup_opt)
 
-cmp.setup.filetype({ "gitcommit", "markdown" }, {
+cmp.setup.filetype({ "gitcommit", "octo", "markdown" }, {
   sources = cmp.config.sources({
+    { name = "git" },
     { name = "copilot" },
     -- { name = "rg" },
     { name = "vsnip" },
@@ -224,7 +225,6 @@ cmp.setup.filetype({ "gitcommit", "markdown" }, {
     { name = "spell" },
     { name = "calc" },
     { name = "treesitter" },
-    { name = "git" },
     { name = "mocword" },
     { name = "dictionary", keyword_length = 2 },
     { name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
@@ -235,7 +235,6 @@ cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = "nvim_lsp_document_symbol" },
-    -- { name = "cmdline_history" },
     { name = "cmdline" },
   }, {
     { name = "buffer" },
@@ -271,16 +270,11 @@ if autopairs then
   -- end)
 end
 
--- local cmp_nvim_lsp = force_require("cmp_nvim_lsp")
--- if cmp_nvim_lsp then
---   cmp_nvim_lsp._on_insert_enter()
--- end
-
 -- Setup git
--- local cmp_git = force_require("cmp_git")
--- if cmp_git then
---   cmp_git.setup()
--- end
+local cmp_git = force_require("cmp_git")
+if cmp_git then
+  cmp_git.setup({})
+end
 
 -- Setup tabnine
 -- local cmp_tabnine = force_require("cmp-tabnine")
