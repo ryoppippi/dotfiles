@@ -35,7 +35,7 @@ local sources = function()
       extra_filetypes = {
         "svelte",
       },
-      condition = is_executable("prettierd"),
+      condition = is_executable("prettierd") and with_root_file(".prettierd"),
     }),
 
     formatting.prettier.with({
