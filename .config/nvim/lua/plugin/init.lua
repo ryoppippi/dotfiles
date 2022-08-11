@@ -147,7 +147,6 @@ local plugin_list = {
   { "thinca/vim-qfreplace" },
   { "itchyny/vim-qfedit" },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
-  { "gabrielpoca/replacer.nvim" },
 
   -- Undo
   { "simnalamburt/vim-mundo" },
@@ -211,8 +210,6 @@ local plugin_list = {
   { "max397574/colortils.nvim" },
 
   -- Git support{{
-  -- client
-  { "TimUntersberger/neogit" },
 
   -- git command assistant
   { "rhysd/committia.vim" },

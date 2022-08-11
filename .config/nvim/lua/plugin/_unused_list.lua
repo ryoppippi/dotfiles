@@ -79,3 +79,7 @@
 
 -- Window
 -- { "tkmpypy/chowcho.nvim" },
+-- { "gabrielpoca/replacer.nvim" },
+
+-- Git
+-- { "TimUntersberger/neogit" },
