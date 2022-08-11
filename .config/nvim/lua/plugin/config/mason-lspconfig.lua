@@ -46,10 +46,10 @@ local capabilities = handler.capabilities
 local on_attach = handler.on_attach
 
 mason_lspconfig.setup_handlers({
-  function(server)
+  function(server_name)
     local opts = { capabilities = capabilities, on_attach = on_attach }
 
-    if "emmet_ls" == server then
+    if "emmet_ls" == server_name then
       opts.extra_filetypes = {
         "javascriptreact",
         "javascript.jsx",
@@ -58,22 +58,36 @@ mason_lspconfig.setup_handlers({
         "svelte",
         "vue",
       }
-    elseif "angularls" == server then
+    elseif "angularls" == server_name then
       opts.root_dir = lsp_util.root_pattern("angular.json")
-    elseif "tailwindcss" == server then
+    elseif "tailwindcss" == server_name then
       opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
-    elseif "svelte" == server then
+    elseif "svelte" == server_name then
       opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
-    elseif "eslint" == server then
+    elseif "eslint" == server_name then
       opts.extra_filetypes = { "svelte" }
+      opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
       opts.settings = {
         format = { enable = true },
       }
-    elseif "denols" == server then
-      opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
-      opts.init_options = { lint = true, unstable = true }
-    elseif "tsserver" == server then
-      opts.root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc")
+    elseif "denols" == server_name then
+      opts.single_file_support = false
+      opts.root_dir = lsp_util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+      opts.init_options = {
+        lint = true,
+        unstable = true,
+        suggest = {
+          imports = {
+            hosts = {
+              ["https://deno.land"] = true,
+              ["https://cdn.nest.land"] = true,
+              ["https://crux.land"] = true,
+            },
+          },
+        },
+      }
+    elseif "tsserver" == server_name then
+      opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
       local ts = force_require("typescript")
       if ts then
         ts.setup({
@@ -82,7 +96,7 @@ mason_lspconfig.setup_handlers({
         })
         goto continue
       end
-    elseif "pyright" == server then
+    elseif "pyright" == server_name then
       opts.before_init = function(_, config)
         config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
             and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
@@ -91,13 +105,13 @@ mason_lspconfig.setup_handlers({
       opts.settings = {
         disableOrganizeImports = true,
       }
-    elseif "rust_analyzer" == server then
+    elseif "rust_analyzer" == server_name then
       local rust_tools = force_require("rust-tools")
       if rust_tools then
         rust_tools.setup({ server = opts, on_initialized = on_attach })
         goto continue
       end
-    elseif "sumneko_lua" == server then
+    elseif "sumneko_lua" == server_name then
       local lua_dev = force_require("lua-dev")
       if lua_dev then
         local luadev = lua_dev.setup({
@@ -123,7 +137,7 @@ mason_lspconfig.setup_handlers({
             },
           },
         })
-        lspconfig[server].setup(luadev)
+        lspconfig[server_name].setup(luadev)
         goto continue
       else
         opts.settings = {
@@ -134,7 +148,7 @@ mason_lspconfig.setup_handlers({
           },
         }
       end
-    elseif "golps" == server then
+    elseif "golps" == server_name then
       local go = force_require("go")
       if go then
         go.setup()
@@ -146,7 +160,7 @@ mason_lspconfig.setup_handlers({
         })
       end
       goto continue
-    elseif "jsonls" == server then
+    elseif "jsonls" == server_name then
       local sc = force_require("schemastore")
       if sc then
         opts.settings = {
@@ -158,7 +172,7 @@ mason_lspconfig.setup_handlers({
     end
 
     if opts.extra_filetypes then
-      local new_filetypes = opts.filetypes or lspconfig[server].document_config.default_config.filetypes or {}
+      local new_filetypes = opts.filetypes or lspconfig[server_name].document_config.default_config.filetypes or {}
       for _, ft in ipairs(opts.extra_filetypes) do
         table.insert(new_filetypes, ft)
       end
@@ -166,7 +180,7 @@ mason_lspconfig.setup_handlers({
       opts.extra_filetypes = nil
     end
 
-    lspconfig[server].setup(opts)
+    lspconfig[server_name].setup(opts)
     ::continue::
     vim.cmd([[ do User LspAttachBuffers ]])
   end,
