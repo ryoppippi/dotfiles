@@ -24,9 +24,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   group = restoreCursor,
 })
 
-vim.api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd("Filetype", {
   pattern = "*",
-  command = "startinsert",
+  callback = function()
+    vim.cmd.set("fo-=c fo-=r fo-=o")
+  end,
+  desc = "disable comment in newline",
 })
 
 local folding = vim.api.nvim_create_augroup("folding", { clear = true })
@@ -38,6 +41,11 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
     end, 0)
   end,
   group = folding,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  command = "startinsert",
 })
 
 local restore_terminal_mode = vim.api.nvim_create_augroup("restore_terminal_mode", { clear = true })
