@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "*",
   callback = function()
-    vim.cmd.set("fo-=c fo-=r fo-=o")
+    vim.opt.fo:remove({ "c", "r", "o" })
   end,
   desc = "disable comment in newline",
 })
