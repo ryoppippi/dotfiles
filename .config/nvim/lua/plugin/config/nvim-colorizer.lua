@@ -1,8 +1,6 @@
 if vim.o.termguicolors then
   require("colorizer").setup()
-  local enable_colorizer = function()
-    vim.api.nvim_command([[ColorizerAttachToBuffer]])
-  end
+  local enable_colorizer = vim.cmd.ColorizerAttachToBuffer
   vim.api.nvim_create_autocmd({ "ColorScheme", "BufReadPost" }, {
     pattern = "*",
     callback = enable_colorizer,
