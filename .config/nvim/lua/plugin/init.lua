@@ -48,7 +48,6 @@ local plugin_list = {
   -- }}
 
   -- Other UI Components {{
-  { "jeffkreeftmeijer/vim-numbertoggle" },
   { "mvllow/modes.nvim" },
   { "petertriho/nvim-scrollbar" },
   -- }}
@@ -70,6 +69,7 @@ local plugin_list = {
   { "kwkarlwang/bufresize.nvim" },
   { "simeji/winresizer" },
   { "camspiers/lens.vim" },
+  { "tkmpypy/chowcho.nvim" },
 
   -- buffer
   -- { "stevearc/stickybuf.nvim" },
