@@ -24,6 +24,28 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   group = restoreCursor,
 })
 
+local augroup = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
+  pattern = "*",
+  group = augroup,
+  callback = function()
+    if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
+      vim.opt.relativenumber = true
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
+  pattern = "*",
+  group = augroup,
+  callback = function()
+    if vim.o.nu then
+      vim.opt.relativenumber = false
+      vim.cmd("redraw")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "*",
   callback = function()
@@ -45,7 +67,9 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
-  command = "startinsert",
+  callback = function()
+    vim.cmd.startinsert()
+  end,
 })
 
 local restore_terminal_mode = vim.api.nvim_create_augroup("restore_terminal_mode", { clear = true })
