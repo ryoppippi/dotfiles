@@ -67,6 +67,7 @@
 -- { "nvim-treesitter/playground" },
 -- { "stevearc/aerial.nvim" },
 -- { "folke/trouble.nvim" },
+-- { "jeffkreeftmeijer/vim-numbertoggle" },
 
 -- ColorScheme
 -- { "marko-cerovac/material.nvim" },
@@ -78,7 +79,6 @@
 -- { "mizlan/iswap.nvim" },
 
 -- Window
--- { "tkmpypy/chowcho.nvim" },
 -- { "gabrielpoca/replacer.nvim" },
 
 -- Git
