@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "*",
   callback = function()
-    vim.opt.fo:remove({ "c", "r", "o" })
+    vim.opt_local.fo:remove({ "c", "r", "o" })
   end,
   desc = "disable comment in newline",
 })
