@@ -35,6 +35,7 @@ local plugin_list = {
   { "rcarriga/nvim-notify" },
   { "kyazdani42/nvim-web-devicons" },
   { "tpope/vim-repeat" },
+  -- { "delphinus/cellwidths.nvim" },
   { "monaqa/peridot.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "vim-denops/denops.vim" },
