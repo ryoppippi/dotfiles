@@ -284,6 +284,7 @@ local plugin_list = {
   { "williamboman/mason-lspconfig.nvim" },
   { "jose-elias-alvarez/null-ls.nvim" },
   { "lukas-reineke/lsp-format.nvim" },
+  { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
   -- UI
   { "onsails/lspkind.nvim" },
