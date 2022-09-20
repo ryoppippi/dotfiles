@@ -19,5 +19,6 @@ setup("mini.jump", {
   },
 })
 setup("mini.trailspace", {})
+vim.api.nvim_create_user_command("TrimSpace", MiniTrailspace.trim, {})
 -- setup('mini.cursorword',{})
 -- setup("mini.jump2d", { mappings = { start_jumping = "<cr>" } })
