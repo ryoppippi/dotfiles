@@ -30,7 +30,7 @@ mason_lspconfig.setup({
     "pyright",
     "r_language_server",
     "rust_analyzer",
-    "zls",
+    -- "zls",
     "sumneko_lua",
     "golps",
     "sqls",
@@ -169,6 +169,8 @@ mason_lspconfig.setup_handlers({
           },
         }
       end
+    elseif "zigls" == server_name then
+      opts.cmd = { "/Users/ryoppippi/.ghq/github.com/zigtools/zls/zig-out/bin/zls" }
     end
 
     if opts.extra_filetypes then
@@ -184,4 +186,10 @@ mason_lspconfig.setup_handlers({
     ::continue::
     vim.cmd([[ do User LspAttachBuffers ]])
   end,
+})
+
+require("lspconfig").zls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { os.getenv("HOME") .. "/zls/zig-out/bin/zls" },
 })
