@@ -289,6 +289,7 @@ local plugin_list = {
   -- UI
   { "onsails/lspkind.nvim" },
   { "folke/lsp-colors.nvim" },
+  { "mrshmllow/document-color.nvim" },
   { "j-hui/fidget.nvim" },
   { "rmagatti/goto-preview" },
   -- }}

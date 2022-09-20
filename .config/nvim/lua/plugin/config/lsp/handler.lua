@@ -101,14 +101,14 @@ local function set_plugins(client, bufnr)
     illuminate.on_attach(client)
   end
 
-  -- local aerial = force_require("aerial")
-  -- if aerial then
-  --   aerial.on_attach(client, bufnr)
-  -- end
-
   local navic = force_require("nvim-navic")
   if navic then
     navic.attach(client, bufnr)
+  end
+
+  local document_color = force_require("document-color")
+  if document_color and client.server_capabilities.colorProvider then
+    document_color.buf_attach(bufnr, { mode = "background" })
   end
 end
 
