@@ -39,6 +39,8 @@ vim.opt.wildmode = { list = "longest" }
 vim.opt.errorbells = false
 vim.opt.visualbell = false
 
+vim.o.undolevels = 10000
+
 -- vim.g["denops#debug"] = true
 
 vim.api.nvim_create_autocmd("CmdlineEnter", {
