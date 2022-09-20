@@ -4,6 +4,7 @@ require("kanagawa").setup({
     rainbowcol1 = { fg = default_colors.br },
   },
   globalStatus = true,
+  transparent = true,
 })
 if vim.g.colors_name == "kanagawa" then
   vim.cmd.colorscheme("kanagawa")
