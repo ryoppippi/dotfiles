@@ -207,7 +207,7 @@ local plugin_list = {
   { "mattn/vim-sonictemplate" },
 
   -- Color Management
-  { "max397574/colortils.nvim" },
+  { "uga-rosa/ccc.nvim" },
 
   -- Git support{{
 
@@ -342,7 +342,6 @@ local plugin_list = {
   -- }}
 
   -- Heiglighting {{
-  { "norcalli/nvim-colorizer.lua" },
   { "folke/todo-comments.nvim" },
   { "m-demare/hlargs.nvim" },
   { "p00f/nvim-ts-rainbow" },
