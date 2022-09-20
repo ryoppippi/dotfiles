@@ -188,9 +188,6 @@ local plugin_list = {
   { "lambdalisue/guise.vim" },
   { "lambdalisue/askpass.vim" },
 
-  -- Session
-  -- { "rmagatti/auto-session" },
-
   -- }}
 
   -- New Features {{
@@ -419,12 +416,8 @@ local plugin_list = {
   { "github/copilot.vim", on = { "InsertEnter" } },
   -- }}
 
-  -- Debug {{
-  { "sentriz/vim-print-debug" },
-  -- }}
-
   -- REPL {{
-  { "hkupty/iron.nvim" },
+  -- { "hkupty/iron.nvim" },
   -- }}
 
   -- Test {{
@@ -438,7 +431,6 @@ local plugin_list = {
   -- }}
 
   -- Neovim
-  { "wadackel/nvim-syntax-info" },
   { "bfredl/nvim-luadev" },
   -- }}
 
@@ -464,9 +456,9 @@ local vim_enter_list = {
   "todo-comments",
   "nvim-treesitter",
   "feline",
-  "xbase",
   "mason",
   "mason-lspconfig",
+  -- "xbase",
 }
 
 local my_plugin_list = {
