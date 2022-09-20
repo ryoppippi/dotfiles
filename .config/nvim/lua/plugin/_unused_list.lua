@@ -83,3 +83,5 @@
 
 -- Git
 -- { "TimUntersberger/neogit" },
+-- { "max397574/colortils.nvim" },
+-- { "norcalli/nvim-colorizer.lua" },
