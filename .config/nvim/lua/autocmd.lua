@@ -46,6 +46,16 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "CursorHold", "CursorHoldI", "WinEnter" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd.checktime()
+    end
+  end,
+  desc = "check if file is modified",
+})
+
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "*",
   callback = function()
