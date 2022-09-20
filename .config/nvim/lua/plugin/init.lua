@@ -90,6 +90,7 @@ local plugin_list = {
 
   -- root dir
   { "ahmedkhalf/project.nvim" },
+  { "yyk/find-git-root.nvim" },
 
   -- }}
 
