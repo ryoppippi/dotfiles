@@ -83,5 +83,16 @@
 
 -- Git
 -- { "TimUntersberger/neogit" },
+
+-- Session
+-- { "rmagatti/auto-session" },
+-- Debug {{
+-- { "sentriz/vim-print-debug" },
+
+-- Neovim
+-- { "wadackel/nvim-syntax-info" },
+-- }}
+-- }}
+
 -- { "max397574/colortils.nvim" },
 -- { "norcalli/nvim-colorizer.lua" },
