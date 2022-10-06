@@ -35,7 +35,7 @@ local sources = function()
       extra_filetypes = {
         "svelte",
       },
-      condition = is_executable("prettierd") and with_root_file(".prettierd"),
+      -- condition = is_executable("prettierd") and (with_root_file(".prettierd") or with_root_file(".prettierrc")),
     }),
 
     formatting.prettier.with({
@@ -59,12 +59,12 @@ local sources = function()
       prefer_local = ".venv/bin",
       extra_args = { "--profile", "black" },
     }),
-    diagnostics.flake8.with({
-      diagnostics_format = diagnostics_format,
-      prefer_local = ".venv/bin",
-      -- Ignore some errors that are always fixed by black
-      extra_args = { "--extend-ignore", "E1,E2,E3,F821,E731,R504,SIM106" },
-    }),
+    -- diagnostics.flake8.with({
+    --   diagnostics_format = diagnostics_format,
+    --   prefer_local = ".venv/bin",
+    --   -- Ignore some errors that are always fixed by black
+    --   extra_args = { "--extend-ignore", "E1,E2,E3,F821,E731,R504,SIM106" },
+    -- }),
     formatting.black.with({
       diagnostics_format = diagnostics_format,
       prefer_local = ".venv/bin",

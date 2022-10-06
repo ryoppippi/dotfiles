@@ -41,6 +41,7 @@ local function set_keymap(client, bufnr)
 
   -- code actions
   vim.keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  -- vim.keymap.set({ "n", "v" }, "ga", require("actions-preview").code_actions, opts)
 
   -- workspace
   vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)

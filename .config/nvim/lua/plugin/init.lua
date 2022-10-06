@@ -33,6 +33,7 @@ local plugin_list = {
   { "MunifTanjim/nui.nvim" },
   { "nvim-lua/popup.nvim" },
   { "rcarriga/nvim-notify" },
+  { "folke/noice.nvim" },
   { "kyazdani42/nvim-web-devicons" },
   { "tpope/vim-repeat" },
   -- { "delphinus/cellwidths.nvim" },
@@ -247,7 +248,7 @@ local plugin_list = {
 
   -- Search {{
   { "haya14busa/vim-asterisk" },
-  { "hrsh7th/vim-searchx" },
+  -- { "hrsh7th/vim-searchx" },
   { "monaqa/modesearch.vim" },
   { "kevinhwang91/nvim-hlslens", as = "hlslens" },
   -- }}
@@ -291,6 +292,8 @@ local plugin_list = {
   { "mrshmllow/document-color.nvim" },
   { "j-hui/fidget.nvim" },
   { "rmagatti/goto-preview" },
+  { "kosayoda/nvim-lightbulb" },
+  { "aznhe21/actions-preview.nvim" },
   -- }}
   -- }}
 
@@ -450,6 +453,7 @@ local startup_list = {
   "vim-print-debug",
   "vim-sonictemplate",
   "vim-searchx",
+  "noice",
 }
 
 local vim_enter_list = {

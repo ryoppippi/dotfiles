@@ -10,10 +10,7 @@ end
 
 vim.opt.list = true
 vim.opt.laststatus = 3
-if tb(vim.fn.has("nvim-0.8")) then
-  -- vim.opt.cmdheight = 0
-  -- vim.opt.laststatus = 0
-end
+vim.opt.cmdheight = 1
 
 vim.opt.listchars = {
   tab = "▸▹┊",
