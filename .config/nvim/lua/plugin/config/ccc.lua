@@ -3,7 +3,9 @@ local mapping = ccc.mapping
 if vim.o.termguicolors then
   ccc.setup({})
   local enable_colorizer = function()
-    vim.cmd([[CccHighlighterEnable]])
+    vim.defer_fn(function()
+      vim.cmd([[CccHighlighterEnable]])
+    end, 500)
   end
   vim.api.nvim_create_autocmd({ "ColorScheme", "BufReadPost" }, {
     pattern = "*",
