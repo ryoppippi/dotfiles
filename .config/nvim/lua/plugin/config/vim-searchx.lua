@@ -2,7 +2,7 @@ local utils_plug = require("utils.plugin")
 
 local function hl_start()
   local hlslens = utils_plug.force_require("hlslens")
-  return hlslens and hlslens.start()
+  return hlslens and hlslens.setup()
 end
 
 local function keymap()

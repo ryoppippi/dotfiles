@@ -260,14 +260,6 @@ if autopairs then
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
   -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
-
-  -- cmp.event:on("menu_opened", function(window)
-  --   print(vim.inspect(window))
-  --   npairs.disable()
-  -- end)
-  -- cmp.event:on("menu_closed", function()
-  --   npairs.enable()
-  -- end)
 end
 
 -- Setup git
@@ -275,15 +267,3 @@ local cmp_git = force_require("cmp_git")
 if cmp_git then
   cmp_git.setup({})
 end
-
--- Setup tabnine
--- local cmp_tabnine = force_require("cmp-tabnine")
--- if cmp_tabnine then
---   require("cmp_tabnine.config"):setup({
---     max_lines = 1000,
---     max_num_results = 5,
---     sort = true,
---     run_on_every_keystroke = true,
---     snippet_placeholder = "..",
---   })
--- end

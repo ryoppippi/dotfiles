@@ -10,7 +10,7 @@ end
 
 vim.opt.list = true
 vim.opt.laststatus = 3
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 vim.opt.listchars = {
   tab = "▸▹┊",
@@ -19,11 +19,6 @@ vim.opt.listchars = {
   precedes = "❮",
 }
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.o.termguicolors then
-      pcall(vim.cmd.colorscheme, "kanagawa")
-    end
-  end,
-  once = true,
-})
+if vim.o.termguicolors then
+  vim.g.colors_name = "kanagawa"
+end

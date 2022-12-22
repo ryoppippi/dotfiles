@@ -115,6 +115,7 @@ local function loading()
   le("ghq")
   le("gh")
   le("projects")
+  le("noice")
 end
 
 local function keymap()

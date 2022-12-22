@@ -6,6 +6,7 @@ require("kanagawa").setup({
   globalStatus = true,
   transparent = true,
 })
+
 if vim.g.colors_name == "kanagawa" then
   vim.cmd.colorscheme("kanagawa")
 end

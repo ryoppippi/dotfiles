@@ -49,8 +49,8 @@ local function set_keymap(client, bufnr)
   vim.keymap.set("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
 
   -- formatting
-  vim.keymap.set("n", "<leader>zz", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
-  vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opts)
+  vim.keymap.set("n", "<leader>zz", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", opts)
+  -- vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_format()<cr>", opts)
 end
 
 local function set_options(client, bufnr)
@@ -61,10 +61,10 @@ local function set_options(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- signature help
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    silent = true,
-    focusable = false,
-  })
+  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  --   silent = true,
+  --   focusable = false,
+  -- })
 end
 
 local function set_formatting(client, bufnr)
@@ -73,18 +73,12 @@ local function set_formatting(client, bufnr)
   if vim.tbl_contains(document_formatting_disable_list, client.name) then
     return
   end
+  if not client.server_capabilities.documentFormattingProvider then
+    return
+  end
 
   -- auto formatting
   if client.supports_method("textDocument/formatting") then
-    -- vim.api.nvim_clear_autocmds({
-    --   buffer = bufnr,
-    --   group = FormatAugroup,
-    -- })
-    -- vim.api.nvim_create_autocmd("BufWritePre", {
-    --   callback = vim.lsp.buf.formatting_seq_sync,
-    --   buffer = bufnr,
-    --   group = FormatAugroup,
-    -- })
     local lsp_format = force_require("lsp-format")
     if lsp_format then
       lsp_format.on_attach(client)
@@ -119,7 +113,7 @@ local gen_capabilities = function()
 
   local cmp_nvim_lsp = force_require("cmp_nvim_lsp")
   if cmp_nvim_lsp then
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
   end
   return capabilities
 end
