@@ -148,32 +148,6 @@ local comps = {
     left_sep = " ",
   },
 
-  nvim_gps = {
-    provider = function()
-      local gps = force_require("nvim-gps")
-      return gps and gps.get_location() or ""
-    end,
-    enabled = function()
-      local gps = force_require("nvim-gps")
-      return gps and gps.is_available() or false
-    end,
-    hl = {
-      fg = "white",
-      bg = "bg",
-      style = "bold",
-    },
-    left_sep = {
-      str = " > ",
-      hl = {
-        fg = "white",
-        bg = "bg",
-        style = "bold",
-      },
-    },
-    priority = -50,
-    truncate_hide = true,
-  },
-
   nvim_navic = {
     provider = function()
       local navic = force_require("nvim-navic")
@@ -458,7 +432,6 @@ local components = {
       comps.git_diff_removed,
       comps.file_name,
       comps.nvim_navic,
-      -- comps.nvim_gps,
     },
     -- middle
     {},

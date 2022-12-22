@@ -16,27 +16,26 @@ end
 
 mason_lspconfig.setup({
   ensure_installed = {
-    -- LSP
     "emmet_ls",
     "tailwindcss",
-    "stylelint",
+    "stylelint_lsp",
+    "tsserver",
     "eslint",
     "denols",
     "svelte",
-    "vue-language-server",
     "angularls",
-    "tsserver",
+    "vuels",
+    "astro",
     "prismals",
     "pyright",
     "r_language_server",
     "rust_analyzer",
     -- "zls",
     "sumneko_lua",
-    "golps",
+    "gopls",
     "sqls",
     "jsonls",
     "yamlls",
-    "vint",
   },
 })
 
@@ -60,10 +59,10 @@ mason_lspconfig.setup_handlers({
       }
     elseif "angularls" == server_name then
       opts.root_dir = lsp_util.root_pattern("angular.json")
-    elseif "tailwindcss" == server_name then
-      opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
-    elseif "svelte" == server_name then
-      opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
+    -- elseif "tailwindcss" == server_name then
+    --   opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
+    -- elseif "svelte" == server_name then
+    --   opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
     elseif "eslint" == server_name then
       opts.extra_filetypes = { "svelte" }
       opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
@@ -112,9 +111,9 @@ mason_lspconfig.setup_handlers({
         goto continue
       end
     elseif "sumneko_lua" == server_name then
-      local lua_dev = force_require("lua-dev")
-      if lua_dev then
-        local luadev = lua_dev.setup({
+      local neodev = force_require("neodev")
+      if neodev then
+        neodev.setup({
           library = {
             vimruntime = true,
             types = true,
@@ -122,32 +121,18 @@ mason_lspconfig.setup_handlers({
             -- plugins = { "nvim-treesitter", "plenary.nvim" },
           },
           runtime_path = false,
-          lspconfig = {
-            on_attach = on_attach,
-            flags = {
-              debounce_text_changes = 150,
-            },
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" },
-                },
-              },
-            },
-          },
         })
-        lspconfig[server_name].setup(luadev)
-        goto continue
-      else
-        opts.settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
-          },
-        }
       end
+      opts.flags = {
+        debounce_text_changes = 150,
+      }
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      }
     elseif "golps" == server_name then
       local go = force_require("go")
       if go then
@@ -158,8 +143,8 @@ mason_lspconfig.setup_handlers({
             require("go.format").gofmt()
           end,
         })
+        goto continue
       end
-      goto continue
     elseif "jsonls" == server_name then
       local sc = force_require("schemastore")
       if sc then
@@ -170,7 +155,10 @@ mason_lspconfig.setup_handlers({
         }
       end
     elseif "zigls" == server_name then
-      opts.cmd = { "/Users/ryoppippi/.ghq/github.com/zigtools/zls/zig-out/bin/zls" }
+      local zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
+      if os.execute(zls_path .. " " .. "--version") == 0 then
+        opts.cmd = { zls_path }
+      end
     end
 
     if opts.extra_filetypes then

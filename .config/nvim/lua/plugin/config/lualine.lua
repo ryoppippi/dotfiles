@@ -27,9 +27,8 @@ local function lsp_client_names()
   return #clients > 0 and " " .. table.concat(clients, " ") or ""
 end
 
-local _, gps = pcall(require, "nvim-gps")
-
 local lualine = require("lualine")
+local _, navic = pcall(require, "nvim-navic")
 lualine.setup({
   options = {
     icons_enabled = true,
@@ -64,10 +63,10 @@ lualine.setup({
 
       {
         function()
-          return gps.get_location({ depth = 3 })
+          return navic.get_location({ depth = 3 })
         end,
         cond = function()
-          return gps ~= nil and gps.is_available() and chech_width()
+          return navic ~= nil and navic.is_available() and chech_width()
         end,
       },
     },

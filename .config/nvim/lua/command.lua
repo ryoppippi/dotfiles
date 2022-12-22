@@ -24,6 +24,9 @@ vim.api.nvim_create_user_command("ToggleStatusBar", function()
   end
 end, { nargs = 0, force = true })
 
+-- sort startuptime
+vim.api.nvim_create_user_command("SortStartupTime", "%!sort -k2nr", { force = true })
+
 -- help
 vim.api.nvim_create_user_command("H", function(tbl)
   local args = tbl.args

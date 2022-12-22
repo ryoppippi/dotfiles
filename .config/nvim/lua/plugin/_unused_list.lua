@@ -1,3 +1,4 @@
+-- { "delphinus/cellwidths.nvim" },
 -- Moving Cursor {{
 -- { "bkad/CamelCaseMotion" },
 -- { "phaazon/hop.nvim", },
@@ -96,3 +97,6 @@
 
 -- { "max397574/colortils.nvim" },
 -- { "norcalli/nvim-colorizer.lua" },
+
+-- lsp
+-- { "j-hui/fidget.nvim" },

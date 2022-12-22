@@ -18,12 +18,13 @@ if not tb(status) then
 end
 
 local jp = require("jetpack")
+local jp_packer = require("jetpack.packer")
 
 local plugin_list = {
   -- Plugin management {{
-  { "tani/vim-jetpack", opt = true, frozen = true },
+  { "tani/vim-jetpack", opt = true },
   { "lewis6991/impatient.nvim", opt = true },
-  { "tweekmonster/startuptime.vim" },
+  { "tweekmonster/startuptime.vim", cmd = "StartupTime" },
   -- }}
 
   -- Essential libraries {{
@@ -36,7 +37,6 @@ local plugin_list = {
   { "folke/noice.nvim" },
   { "kyazdani42/nvim-web-devicons" },
   { "tpope/vim-repeat" },
-  -- { "delphinus/cellwidths.nvim" },
   { "monaqa/peridot.vim" },
   { "antoinemadec/FixCursorHold.nvim" },
   { "vim-denops/denops.vim" },
@@ -45,13 +45,17 @@ local plugin_list = {
 
   -- StatusLine {{
   { "feline-nvim/feline.nvim" },
-  { "SmiteshP/nvim-gps" },
   { "SmiteshP/nvim-navic" },
+  -- }}
+
+  -- Bufferline {{
+  { "akinsho/bufferline.nvim" },
   -- }}
 
   -- Other UI Components {{
   { "mvllow/modes.nvim" },
   { "petertriho/nvim-scrollbar" },
+  { "levouh/tint.nvim" },
   -- }}
 
   -- Moving Cursor {{
@@ -78,7 +82,8 @@ local plugin_list = {
   { "famiu/bufdelete.nvim" },
 
   -- buffer move
-  { "Bakudankun/BackAndForward.vim" },
+  { "cbochs/portal.nvim" },
+  -- { "Bakudankun/BackAndForward.vim" },
 
   -- file format settings
   { "spywhere/detect-language.nvim" },
@@ -106,10 +111,11 @@ local plugin_list = {
 
   -- brackets and parentheses
   { "machakann/vim-sandwich" },
-  { "andymass/vim-matchup" },
   { "windwp/nvim-autopairs" },
   { "windwp/nvim-ts-autotag" },
   { "RRethy/nvim-treesitter-endwise" },
+  { "andymass/vim-matchup" },
+  -- { "kylechui/nvim-surround" },
   -- { "abecodes/tabout.nvim" },
   -- { "cohama/lexima.vim" },
 
@@ -183,7 +189,7 @@ local plugin_list = {
   { "jghauser/mkdir.nvim" },
   { "sQVe/sort.nvim" },
   { "tyru/capture.vim" },
-  { "smjonas/live-command.nvim" },
+  { "smjonas/live-command.nvim", commit = "b690dbd62f64526a9350ab1c88da6a1e9ba58051" },
 
   -- Terminal
   { "akinsho/toggleterm.nvim" },
@@ -223,7 +229,7 @@ local plugin_list = {
   { "rhysd/git-messenger.vim" },
 
   -- Github
-  { "pwntester/octo.nvim" },
+  { "pwntester/octo.nvim", command = "Octo" },
   -- { "skanehira/denops-gh.vim" },
 
   -- }}
@@ -248,7 +254,7 @@ local plugin_list = {
 
   -- Search {{
   { "haya14busa/vim-asterisk" },
-  -- { "hrsh7th/vim-searchx" },
+  { "hrsh7th/vim-searchx" },
   { "monaqa/modesearch.vim" },
   { "kevinhwang91/nvim-hlslens", as = "hlslens" },
   -- }}
@@ -261,7 +267,6 @@ local plugin_list = {
   -- Telescope {{
   { "nvim-telescope/telescope.nvim" },
   { "nvim-telescope/telescope-ui-select.nvim" },
-  { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-frecency.nvim" },
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   { "nvim-telescope/telescope-media-files.nvim" },
@@ -273,6 +278,7 @@ local plugin_list = {
   { "LinArcX/telescope-changes.nvim" },
   { "tknightz/telescope-termfinder.nvim" },
   { "benfowler/telescope-luasnip.nvim", enabled = vim.g.enabled_snippet == "luasnip" },
+  -- { "nvim-telescope/telescope-file-browser.nvim" },
   -- }}
 
   -- }}
@@ -290,10 +296,10 @@ local plugin_list = {
   { "onsails/lspkind.nvim" },
   { "folke/lsp-colors.nvim" },
   { "mrshmllow/document-color.nvim" },
-  { "j-hui/fidget.nvim" },
   { "rmagatti/goto-preview" },
   { "kosayoda/nvim-lightbulb" },
   { "aznhe21/actions-preview.nvim" },
+  { "hrsh7th/nvim-gtd" },
   -- }}
   -- }}
 
@@ -307,7 +313,6 @@ local plugin_list = {
   { "hrsh7th/cmp-path", opt = true },
   { "hrsh7th/cmp-cmdline", opt = true },
   { "hrsh7th/cmp-calc", opt = true },
-  { "hrsh7th/cmp-omni", opt = true },
   { "hrsh7th/cmp-emoji", opt = true },
   { "lukas-reineke/cmp-rg", opt = true },
   { "lukas-reineke/cmp-under-comparator", opt = true },
@@ -318,6 +323,7 @@ local plugin_list = {
   { "saadparwaiz1/cmp_luasnip", opt = true, enabled = vim.g.enabled_snippet == "luasnip" },
   { "ryoppippi/cmp-copilot", branch = "dev/add-copilot-loaded-detecter", opt = true },
   { "petertriho/cmp-git", as = "cmp_git", opt = true },
+  -- { "hrsh7th/cmp-omni", opt = true },
   -- { "hrsh7th/cmp-copilot", opt = true },
   -- { "uga-rosa/cmp-dictionary", opt = true },
   -- { "tzachar/cmp-tabnine", run = "./install.sh" },
@@ -325,7 +331,7 @@ local plugin_list = {
   -- }}
 
   -- Nvim-treesitter {{
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate all" },
   { "yioneko/nvim-yati" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
 
@@ -358,6 +364,7 @@ local plugin_list = {
 
   -- utils
   { "kevinhwang91/nvim-hclipboard", as = "hclipboard" }, -- prevent polluting clipboard
+  { "diegoulloao/nvim-file-location" },
   -- { "smjonas/snippet-converter.nvim" },
 
   -- snippets collection {{
@@ -390,7 +397,7 @@ local plugin_list = {
   { "jsborjesson/vim-uppercase-sql" },
   -- lua
   { "milisims/nvim-luaref" },
-  { "folke/lua-dev.nvim" },
+  { "folke/neodev.nvim" },
   -- rust
   { "simrat39/rust-tools.nvim" },
   -- go
@@ -413,7 +420,7 @@ local plugin_list = {
   -- json
   { "b0o/schemastore.nvim" },
   -- swift
-  -- { "xbase-lab/xbase", run = "make install" },
+  -- { "xbase-lab/xbase", run = "make install", dir = vim.fn.stdpath("data") .. "/xbase" },
   -- }}
 
   -- AI {{
@@ -434,6 +441,10 @@ local plugin_list = {
   { "stevearc/overseer.nvim" },
   -- }}
 
+  -- Debug {{
+  { "PatschD/zippy.nvim" },
+  -- }}
+
   -- Neovim
   { "bfredl/nvim-luadev" },
   -- }}
@@ -450,28 +461,27 @@ end
 local startup_list = {
   "auto-session",
   "copilot",
-  "vim-print-debug",
   "vim-sonictemplate",
   "vim-searchx",
+  "nvim-treesitter",
+  "telescope",
+  "todo-comments",
+  "feline",
+  "bufferline",
+  "mason",
+  "mason-lspconfig",
   "noice",
+  "kanagawa",
 }
 
 local vim_enter_list = {
-  "telescope",
-  "todo-comments",
-  "nvim-treesitter",
-  "feline",
-  "mason",
-  "mason-lspconfig",
   -- "xbase",
 }
 
-local my_plugin_list = {
-  "tabline",
-}
+local my_plugin_list = {}
 
 -- load plugins
-jp.startup(function(use)
+jp_packer.startup(function(use)
   for _, plugin in ipairs(plugin_list) do
     local enabled = plugin.enabled
     if enabled ~= false then
@@ -492,10 +502,10 @@ if fd then
     if type == "file" then
       local plugin_name = file_name:gsub("%.lua$", "")
       local file_path = config_dir .. file_name
-      if jp.tap(plugin_name) then
-        if vim.tbl_contains(startup_list, plugin_name) then
+      if tb(jp.tap(plugin_name)) or tb(vim.tbl_contains(my_plugin_list, plugin_name)) then
+        if tb(vim.tbl_contains(startup_list, plugin_name)) then
           vim.cmd.luafile(file_path)
-        elseif vim.tbl_contains(vim_enter_list, plugin_name) then
+        elseif tb(vim.tbl_contains(vim_enter_list, plugin_name)) then
           vim.api.nvim_create_autocmd("VimEnter", {
             callback = function()
               vim.cmd.luafile(file_path)
@@ -506,11 +516,6 @@ if fd then
             vim.cmd.luafile(file_path)
           end, 0)
         end
-      end
-      if vim.tbl_contains(my_plugin_list, plugin_name) then
-        vim.defer_fn(function()
-          vim.cmd.luafile(file_path)
-        end, 0)
       end
     end
   end

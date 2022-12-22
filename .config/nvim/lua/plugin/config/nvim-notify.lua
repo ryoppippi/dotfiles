@@ -9,6 +9,7 @@ require("notify").setup({
   },
   timeout = 1000,
   render = "minimal",
+  background_colour = "#000000",
 })
 vim.notify = function(msg, ...)
   if msg:match("%[lspconfig%]") then
