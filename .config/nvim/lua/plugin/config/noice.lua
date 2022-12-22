@@ -11,4 +11,7 @@ require("noice").setup({
       opts = { skip = true },
     },
   },
+  presets = {
+    inc_rename = true,
+  },
 })
