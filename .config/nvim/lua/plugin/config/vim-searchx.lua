@@ -1,30 +1,64 @@
-local utils_plug = require("utils.plugin")
-
 local function hl_start()
-  local hlslens = utils_plug.force_require("hlslens")
-  return hlslens and hlslens.setup()
+  require("hlslens").start()
 end
 
-local function keymap()
-  vim.keymap.set({ "n", "x" }, "?", function()
-    vim.fn["searchx#start"]({ dir = 0 })
-  end)
-  vim.keymap.set({ "n", "x" }, "/", function()
-    vim.fn["searchx#start"]({ dir = 1 })
-  end)
-  vim.keymap.set("c", ";", vim.fn["searchx#select"])
-  vim.keymap.set({ "n", "x" }, "N", function()
-    vim.fn["searchx#prev"]()
-    hl_start()
-  end)
-  vim.keymap.set({ "n", "x" }, "n", function()
-    vim.fn["searchx#next"]()
-    hl_start()
-  end)
-end
-
-local function loading()
-  vim.cmd([[
+return {
+  "hrsh7th/vim-searchx",
+  -- lazy = false,
+  event = "VeryLazy",
+  dependencies = { "kevinhwang91/nvim-hlslens" },
+  keys = {
+    {
+      "?",
+      function()
+        hl_start()
+        vim.fn["searchx#start"]({ dir = 0 })
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "/",
+      function()
+        hl_start()
+        vim.fn["searchx#start"]({ dir = 1 })
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      ";",
+      function()
+        hl_start()
+        vim.fn["searchx#start"]({ dir = 0 })
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "?",
+      function()
+        hl_start()
+        vim.fn["searchx#select"]()
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "n",
+      function()
+        hl_start()
+        vim.fn["searchx#prev"]()
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "N",
+      function()
+        hl_start()
+        vim.fn["searchx#next"]()
+      end,
+      mode = { "n", "x" },
+    },
+  },
+  config = function()
+    vim.cmd([[
     let g:searchx = {}
 
     " Auto jump if the recent input matches to any marker.
@@ -51,15 +85,14 @@ local function loading()
       return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
     endfunction
   ]])
-  vim.api.nvim_create_autocmd("User", {
-    pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
-    callback = hl_start,
-  })
-  vim.api.nvim_create_autocmd("User", {
-    pattern = { "SearchxLeave", "SearchxCancel" },
-    command = "nohlsearch",
-  })
-end
 
-keymap()
-loading()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
+      callback = hl_start,
+    })
+    vim.api.nvim_create_autocmd("User", {
+      pattern = { "SearchxLeave", "SearchxCancel" },
+      command = "nohlsearch",
+    })
+  end,
+}

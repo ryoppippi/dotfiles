@@ -1,24 +1,30 @@
-require("notify").setup({
-  -- Icons for the different levels
-  icons = {
-    ERROR = "",
-    WARN = "",
-    INFO = "",
-    DEBUG = "",
-    TRACE = "✎",
-  },
-  timeout = 1000,
-  render = "minimal",
-  background_colour = "#000000",
-})
-vim.notify = function(msg, ...)
-  if msg:match("%[lspconfig%]") then
-    return
-  end
+return {
+  "rcarriga/nvim-notify",
+  config = function()
+    require("notify").setup({
+      -- Icons for the different levels
+      icons = {
+        ERROR = "",
+        WARN = "",
+        INFO = "",
+        DEBUG = "",
+        TRACE = "✎",
+      },
+      timeout = 1000,
+      render = "minimal",
+      background_colour = "#000000",
+    })
 
-  if msg:match("warning: multiple different client offset_encodings") then
-    return
-  end
+    vim.notify = function(msg, ...)
+      if msg:match("%[lspconfig%]") then
+        return
+      end
 
-  require("notify")(msg, ...)
-end
+      if msg:match("warning: multiple different client offset_encodings") then
+        return
+      end
+
+      require("notify")(msg, ...)
+    end
+  end,
+}

@@ -1,1 +1,0 @@
-require("tint").setup()
