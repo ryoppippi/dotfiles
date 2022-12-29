@@ -1,11 +1,20 @@
-vim.keymap.set("n", "cx", "<cmd>lua require('substitute').operator()<cr>", {})
-vim.keymap.set("x", "cx", "<cmd>lua require('substitute').visual()<cr>", {})
-vim.keymap.set("n", "cxc", "<cmd>lua require('substitute').line()<cr>", {})
-vim.keymap.set("n", "Cx", "<cmd>lua require('substitute').eol()<cr>", {})
-
-require("substitute").setup({
-  on_substitute = function(event)
-    local y = require("utils.plugin").force_require("yanky")
-    return y and y.init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
+return {
+  "gbprod/substitute.nvim",
+  dependencies = {
+    -- { "gbprod/yanky.nvim" },
+  },
+  keys = {
+    { "cx", "<cmd>lua require('substitute').operator()<cr>", mode = "n" },
+    { "cx", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
+    { "cxc", "<cmd>lua require('substitute').line()<cr>", mode = "n" },
+    { "Cx", "<cmd>lua require('substitute').eol()<cr>", mode = "n" },
+  },
+  config = function()
+    require("substitute").setup({
+      -- on_substitute = function(event)
+      --   local y = require("yanky")
+      --   return y.init_ring("p", event.register, event.count, event.vmode:match("[vV�]"))
+      -- end,
+    })
   end,
-})
+}

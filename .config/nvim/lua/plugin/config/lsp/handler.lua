@@ -31,9 +31,10 @@ local function set_keymap(client, bufnr)
   vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 
   -- rename
-  -- vim.keymap.set("n", "cW", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
   vim.keymap.set("n", "cW", function()
-    if vim.fn.exists(":IncRename") then
+    local ir = force_require("inc_rename")
+    if false then
+      -- if ir then
       return ":IncRename " .. vim.fn.expand("<cword>")
     end
     return "<cmd>lua vim.lsp.buf.rename()<cr>"

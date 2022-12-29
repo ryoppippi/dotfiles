@@ -1,2 +1,7 @@
-vim.keymap.set("n", "<leader>;", "<Plug>(cosco-commaOrSemiColon)")
-vim.keymap.set("i", ";;", "<c-o><Plug>(cosco-commaOrSemiColon)")
+return {
+  "lfilho/cosco.vim",
+  keys = {
+    { "<leader>;", "<Plug>(cosco-commaOrSemiColon)", mode = { "n" } },
+    { ";;", "<c-o><Plug>(cosco-commaOrSemiColon)", mode = { "i" } },
+  },
+}
