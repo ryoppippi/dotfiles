@@ -1,17 +1,25 @@
-require("noice").setup({
-  popupmenu = {
-    enabled = false,
+return {
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  dependencies= {
+ "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
   },
-  notify = {
-    enabled = false,
-  },
-  routes = {
-    {
-      filter = { event = "msg_show", kind = "search_count" },
-      opts = { skip = true },
-    },
-  },
-  presets = {
-    inc_rename = true,
-  },
-})
+  config = function()
+    require("noice").setup({
+      popupmenu = {
+        enabled = true,
+        -- backend = "cmp",
+      },
+      notify = {
+        enabled = true,
+      },
+      messages = {
+        view_search = false,
+      },
+      presets = {
+        inc_rename = true,
+      },
+    })
+  end,
+}

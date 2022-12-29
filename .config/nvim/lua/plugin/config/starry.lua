@@ -1,1 +1,1 @@
-vim.g.starry_borders = false
+return { "ray-x/starry.nvim" }

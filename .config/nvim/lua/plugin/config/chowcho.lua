@@ -1,1 +1,6 @@
-vim.keymap.set("n", "<Leader>wq", "<CMD>Chowcho<CR>", { silent = true })
+return {
+  "tkmpypy/chowcho.nvim",
+  keys = {
+    { "<Leader>wq", "<CMD>Chowcho<CR>" },
+  },
+}

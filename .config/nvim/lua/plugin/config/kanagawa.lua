@@ -1,12 +1,18 @@
-local default_colors = require("kanagawa.colors").setup()
-require("kanagawa").setup({
-  overrides = {
-    rainbowcol1 = { fg = default_colors.br },
-  },
-  globalStatus = true,
-  transparent = true,
-})
+return {
+  "rebelot/kanagawa.nvim",
+  lazy = false,
+  config = function()
+    local default_colors = require("kanagawa.colors").setup()
+    require("kanagawa").setup({
+      overrides = {
+        rainbowcol1 = { fg = default_colors.br },
+      },
+      globalStatus = true,
+      transparent = true,
+    })
 
-if vim.g.colors_name == "kanagawa" then
-  vim.cmd.colorscheme("kanagawa")
-end
+    if vim.g.colors_name == "kanagawa" then
+      vim.cmd.colorscheme("kanagawa")
+    end
+  end,
+}

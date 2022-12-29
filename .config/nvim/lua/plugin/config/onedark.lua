@@ -1,4 +1,7 @@
-vim.g.onedark_config = {
+return {
+   "navarasu/onedark.nvim" ,
+config = function()
+  vim.g.onedark_config = {
   style = "cool",
   transparent = true,
   term_colors = true,
@@ -25,3 +28,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "onedark",
   command = [[hi MatchParen ctermbg=black guibg=black]],
 })
+end,
+}
