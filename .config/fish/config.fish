@@ -37,6 +37,7 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 alias rm trash
 alias vim nvim
 alias git hub
+alias pwb 'git browse'
 alias bash 'bash --norc'
 alias flush 'vim -c "sleep 1m" -c q'
 alias gip 'curl -s http://ipecho.net/plain; echo'
@@ -62,17 +63,6 @@ abbr -a rf 'rm -rf'
 abbr -a mkdir 'mkdir -p'
 abbr -a src source
 abbr -a cdd __fzf_cd
-abbr -a g git
-abbr -a ga 'git add'
-abbr -a ga. 'git add .'
-abbr -a gaa 'git add --all'
-abbr -a gco 'git checkout'
-abbr -a gcm 'git commit -m "'
-abbr -a gca 'git commit --amend -m "'
-abbr -a gp 'git push'
-abbr -a gpo 'git push origin'
-abbr -a gpf 'git pushf'
-abbr -a gpfo 'git pushf origin'
 abbr -a o open
 abbr -a v nvim
 abbr -a nv nvim
@@ -92,7 +82,6 @@ abbr -a jl 'jupyter lab'
 abbr -a py python
 abbr -a ppv pipenv
 abbr -a ppx pipx
-abbr -a ptry poetry
 abbr -a d docker
 abbr -a dp "docker ps"
 abbr -a db "docker build"
@@ -111,6 +100,25 @@ abbr -a paf "pbpaste > "
 # abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
 abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
 
+# git configs
+abbr -a g git
+abbr -a ga 'git add'
+abbr -a ga. 'git add .'
+abbr -a gaa 'git add --all'
+abbr -a gco 'git checkout'
+abbr -a gcm 'git commit -m "'
+abbr -a gcam 'git commit --amend -m "'
+abbr -a gcz 'git cz'
+abbr -a gcza 'git cza'
+abbr -a gp 'git push'
+abbr -a gpo 'git push origin'
+abbr -a gpf 'git pushf'
+abbr -a gpfo 'git pushf origin'
+abbr -a gpl 'git pull'
+abbr -a gf 'git fetch'
+
+
+
 # if test (uname -m) = arm64
 #     eval conda "shell.fish" hook $argv | source
 #     conda deactivate
@@ -122,3 +130,16 @@ abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
 #         bash -c "tmuximum"
 #     end
 # end
+
+# Bun
+set -Ux BUN_INSTALL "/Users/ryoppippi/.bun"
+set -px --path PATH "/Users/ryoppippi/.bun/bin"
+
+# Wasmer
+export WASMER_DIR="/Users/ryoppippi/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# pnpm
+set -gx PNPM_HOME /Users/ryoppippi/Library/pnpm
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
