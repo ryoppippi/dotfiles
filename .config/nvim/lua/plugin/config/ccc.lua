@@ -4,13 +4,15 @@ local M = {
   enabaled = vim.o.termguicolors,
 }
 
-M.config = function()
-  require("ccc").setup({})
+M.enable_ccc=function()
+    require("ccc").setup({})
   vim.cmd([[CccHighlighterDisable]])
   vim.cmd([[CccHighlighterEnable]])
+end
+M.config = function()
   vim.api.nvim_create_autocmd({ "ColorScheme", "BufReadPost" }, {
     pattern = "*",
-    callback = M.config,
+    callback = M.enable_ccc,
   })
 end
 
