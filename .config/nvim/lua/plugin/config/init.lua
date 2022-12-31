@@ -53,7 +53,6 @@ local plugin_list = {
       vim.g["lens#disabled_filetypes"] = { "neo-tree", "quickfix" }
     end,
   },
-  { "tkmpypy/chowcho.nvim" },
 
   { "stevearc/stickybuf.nvim", event = "VimEnter", config = true },
   { "famiu/bufdelete.nvim", event = "VeryLazy" },
@@ -79,6 +78,16 @@ local plugin_list = {
   },
   { "yyk/find-git-root.nvim" },
 
+  {
+    "princejoogie/chafa.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "m00qek/baleia.nvim",
+    },
+    event = "VeryLazy",
+    config = {},
+  },
+
   -- }}
 
   -- Editing {{
@@ -94,7 +103,6 @@ local plugin_list = {
   { "machakann/vim-sandwich", event = "VeryLazy" },
   { "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   { "RRethy/nvim-treesitter-endwise", dependencies = { "nvim-treesitter/nvim-treesitter" }, event = "BufReadPost" },
-  { "andymass/vim-matchup", event = "BufReadPost" },
   -- { "kylechui/nvim-surround" },
   -- { "abecodes/tabout.nvim" },
   -- { "cohama/lexima.vim" },
@@ -152,8 +160,8 @@ local plugin_list = {
 
   -- Fold
   -- { "lambdalisue/readablefold.vim" },
-  { "anuvyklack/pretty-fold.nvim", event = "BufReadPost", config = true },
-  { "anuvyklack/fold-preview.nvim", event = "BufReadPost", config = true },
+  -- { "anuvyklack/pretty-fold.nvim", event = "BufReadPost", config = true },
+  -- { "anuvyklack/fold-preview.nvim", event = "BufReadPost", config = true },
 
   -- Docs
   { "thinca/vim-ref" },
@@ -169,7 +177,6 @@ local plugin_list = {
   { "tyru/capture.vim", cmd = { "Capture" } },
 
   -- Terminal
-  { "akinsho/toggleterm.nvim", event = "VeryLazy" },
   { "lambdalisue/guise.vim", lazy = false },
   { "lambdalisue/askpass.vim", lazy = false },
 
@@ -188,8 +195,6 @@ local plugin_list = {
     end,
   },
   { "kristijanhusak/vim-carbon-now-sh" },
-
-  -- Template
 
   -- Git support{{
 
@@ -214,9 +219,6 @@ local plugin_list = {
   { "skanehira/denops-docker.vim" },
   -- }}
 
-  -- REST {{
-  -- }}
-
   -- GraphAPI {{
   { "skanehira/denops-graphql.vim", lazy = false },
   -- }}
@@ -228,7 +230,6 @@ local plugin_list = {
   -- }}
 
   -- Search {{
-  { "haya14busa/vim-asterisk", event = "VeryLazy" },
   { "monaqa/modesearch.vim", event = "BufReadPre" },
   { "kevinhwang91/nvim-hlslens", config = true },
   -- }}
@@ -264,9 +265,9 @@ local plugin_list = {
   { "vuki656/package-info.nvim", ft = { "json" } },
   -- typescript
   { "jose-elias-alvarez/typescript.nvim" },
-  { "dhruvasagar/vim-table-mode" },
+  { "dhruvasagar/vim-table-mode", ft = { "markdown" } },
   -- sql
-  { "jsborjesson/vim-uppercase-sql" },
+  { "jsborjesson/vim-uppercase-sql", ft = { "sql" } },
   -- lua
   { "milisims/nvim-luaref" },
   -- rust
@@ -277,7 +278,6 @@ local plugin_list = {
   -- { "previm/previm", ft = { "markdown", "pandoc.markdown", "rmd" } },
   {
     "iamcco/markdown-preview.nvim",
-    as = "markdown-preview.nvim",
     build = ":call mkdp#util#install()",
     ft = { "markdown", "pandoc.markdown", "rmd" },
   },

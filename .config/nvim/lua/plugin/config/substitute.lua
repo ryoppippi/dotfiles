@@ -7,7 +7,7 @@ return {
     { "cx", "<cmd>lua require('substitute').operator()<cr>", mode = "n" },
     { "cx", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
     { "cxc", "<cmd>lua require('substitute').line()<cr>", mode = "n" },
-    { "Cx", "<cmd>lua require('substitute').eol()<cr>", mode = "n" },
+    { "cX", "<cmd>lua require('substitute').eol()<cr>", mode = "n" },
   },
   config = function()
     require("substitute").setup({
