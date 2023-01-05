@@ -44,7 +44,7 @@ return {
       "n",
       function()
         hl_start()
-        vim.fn["searchx#prev"]()
+        vim.fn["searchx#next"]()
       end,
       mode = { "n", "x" },
     },
@@ -52,7 +52,7 @@ return {
       "N",
       function()
         hl_start()
-        vim.fn["searchx#next"]()
+        vim.fn["searchx#prev"]()
       end,
       mode = { "n", "x" },
     },

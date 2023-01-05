@@ -1,5 +1,3 @@
-local force_require = require("utils.plugin").force_require
-
 vim.g.completion_trigger_character = "."
 
 vim.keymap.set("n", ";", ":")
@@ -48,8 +46,20 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
--- vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", {  silent = true })
--- vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", {  silent = true })
+-- require("which-key").register({
+--   ["<tab>"] = {
+--     name = "+tab",
+--     ["<tab>"] = { "<cmd>tabe .<cr>", "new tab" },
+--     h = { "<cmd>tabfirst<cr>", "first tab" },
+--     j = { "<cmd>tabnext<cr>", "next tab" },
+--     k = { "<cmd>tabprevious<cr>", "previous tab" },
+--     l = { "<cmd>tablast<cr>", "last tab" },
+--     q = { "<cmd>tabclose<cr>", "close tab" },
+--   },
+-- })
+
+vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { silent = true })
+vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { silent = true })
 vim.keymap.set("n", "th", "<cmd>tabfirst<cr>", { silent = true })
 vim.keymap.set("n", "tj", "<cmd>tabprevious<cr>", { silent = true })
 vim.keymap.set("n", "tk", "<cmd>tabnext<cr>", { silent = true })
@@ -81,7 +91,7 @@ vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
 
 -- add blank lines
 local function append_new_lines(offset_line)
-  local peridot = force_require("peridot")
+  local peridot = require("peridot")
   return peridot
     and peridot.repeatable_edit(function(ctx)
       local curpos = vim.fn.line(".")
@@ -96,7 +106,7 @@ vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
 
 -- paste in next lines
 local function paste_in_new_lines(direction)
-  local peridot = force_require("peridot")
+  local peridot = require("peridot")
   return peridot
       and peridot.repeatable_edit(function(ctx)
         for _ = 1, ctx.count1 do
@@ -137,3 +147,5 @@ vim.keymap.set({ "n", "v" }, "<leader>cc", vim.cmd.cclose)
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set({ "n", "v" }, "sf", "%", { remap = true })
+
+vim.keymap.set("", "<c-i>", "<c-i>")

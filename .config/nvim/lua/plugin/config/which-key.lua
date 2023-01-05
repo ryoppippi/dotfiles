@@ -6,6 +6,7 @@ return {
       plugins = {
         registers = false,
       },
+      operators = { gc = "Comments" },
     })
   end,
 }

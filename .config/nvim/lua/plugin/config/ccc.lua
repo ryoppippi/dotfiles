@@ -4,8 +4,8 @@ local M = {
   enabaled = vim.o.termguicolors,
 }
 
-M.enable_ccc=function()
-    require("ccc").setup({})
+M.enable_ccc = function()
+  require("ccc").setup({})
   vim.cmd([[CccHighlighterDisable]])
   vim.cmd([[CccHighlighterEnable]])
 end

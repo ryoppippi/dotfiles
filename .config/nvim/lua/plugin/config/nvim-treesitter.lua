@@ -17,6 +17,7 @@ return {
 
     { "p00f/nvim-ts-rainbow" },
   },
+
   config = function()
     require("nvim-treesitter.configs").setup({
       ignore_install = { "phpdoc" },

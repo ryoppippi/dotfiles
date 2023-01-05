@@ -30,7 +30,7 @@ vim.api.nvim_create_user_command("SortStartupTime", "%!sort -k2nr", { force = tr
 -- help
 vim.api.nvim_create_user_command("H", function(tbl)
   local args = tbl.args
-  local Popup = require("utils.plugin").force_require("nui.popup")
+  local Popup = require("nui.popup")
   if not Popup then
     vim.cmd.tabnew()
     vim.bo.buftype = "help"
