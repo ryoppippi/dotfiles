@@ -1,5 +1,4 @@
 local M = {}
-local force_require = require("utils.plugin").force_require
 
 -- local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
@@ -26,13 +25,13 @@ local function set_keymap(client, bufnr)
 
   -- diagnostics
   vim.keymap.set("n", "gL", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-  vim.keymap.set("n", "gl", [[<cmd>Telescope diagnostics <cr>]], opts)
+  vim.keymap.set("n", "gl", [[<cmd>Telescope diagnostics<cr>]], opts)
   vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
   vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 
   -- rename
   vim.keymap.set("n", "cW", function()
-    local ir = force_require("inc_rename")
+    require("inc_rename")
     if false then
       -- if ir then
       return ":IncRename " .. vim.fn.expand("<cword>")
@@ -80,7 +79,7 @@ local function set_formatting(client, bufnr)
 
   -- auto formatting
   if client.supports_method("textDocument/formatting") then
-    local lsp_format = force_require("lsp-format")
+    local lsp_format = require("lsp-format")
     if lsp_format then
       lsp_format.on_attach(client)
       vim.cmd([[
@@ -92,17 +91,17 @@ local function set_formatting(client, bufnr)
 end
 
 local function set_plugins(client, bufnr)
-  local illuminate = force_require("illuminate")
+  local illuminate = require("illuminate")
   if illuminate then
     illuminate.on_attach(client)
   end
 
-  local navic = force_require("nvim-navic")
+  local navic = require("nvim-navic")
   if navic then
     navic.attach(client, bufnr)
   end
 
-  local document_color = force_require("document-color")
+  local document_color = require("document-color")
   if document_color and client.server_capabilities.colorProvider then
     document_color.buf_attach(bufnr, { mode = "background" })
   end
@@ -112,7 +111,7 @@ local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
 
-  local cmp_nvim_lsp = force_require("cmp_nvim_lsp")
+  local cmp_nvim_lsp = require("cmp_nvim_lsp")
   if cmp_nvim_lsp then
     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
   end

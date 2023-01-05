@@ -1,6 +1,6 @@
 return {
   "m-demare/hlargs.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
   config = function()
     local hla = require("hlargs")
     hla.setup()

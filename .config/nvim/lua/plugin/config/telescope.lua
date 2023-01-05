@@ -18,47 +18,51 @@ return {
     { "LinArcX/telescope-env.nvim", config = le("env") },
     { "crispgm/telescope-heading.nvim", config = le("heading") },
     { "LinArcX/telescope-changes.nvim", config = le("changes") },
-    { "tknightz/telescope-termfinder.nvim" },
+    { "tknightz/telescope-termfinder.nvim", config = le("termfinder") },
     { "benfowler/telescope-luasnip.nvim", dependencies = { "L3MON4D3/LuaSnip" } },
-    -- { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
+    { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
+    { "tsakirist/telescope-lazy.nvim", config = le("lazy") },
   },
 
   init = function()
-    vim.api.nvim_set_keymap("n", ",", "[TeLeader]", {})
+    require("which-key").register({
+      [","] = {
+        name = "+Telescope",
+        ["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
+        ["f"] = {
+          [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
+          "Find File",
+        },
+        ["d"] = {
+          [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
+          "current_buffer_fuzzy_find",
+        },
+        ["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
+        [","] = { [[<cmd>Telescope oldfiles<cr>]], "oldfiles" },
+        ["e"] = { [[<cmd>Telescope file_browser<cr>]], "file_browser" },
+        ["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string" },
+        ["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
+        ["r"] = { [[<cmd>Telescope resume<cr>]], "resume" },
+        ["b"] = { [[<cmd>Telescope buffers<cr>]], "buffers" },
+        ["h"] = { [[<cmd>Telescope help_tags<cr>]], "help tags" },
+        ["H"] = { [[<cmd>Telescope heading<cr>]], "heading" },
+        ["j"] = { [[<cmd>Telescope jumplist<cr>]], "jumplist" },
+        ["g"] = { [[<cmd>Telescope git_files<cr>]], "git files" },
+        ["q"] = { [[<cmd>Telescope quickfix<cr>]], "quickfix" },
+        ["p"] = { [[<cmd>Telescope pickers<cr>]], "pickers" },
+        ["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
+        ["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
+      },
+    })
   end,
 
   cmd = { "Telescope" },
-
-  keys = {
-    -- stylua: ignore start
-    { "[TeLeader]", [[<Nop>]] },
-    { "[TeLeader]<cr>", [[<cmd>WhichKey [TeLeader]<cr>]] },
-    { "[TeLeader]<space>", [[<cmd>Telescope live_grep<cr>]] },
-    { "[TeLeader]f", [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]] },
-    { "[TeLeader]d", [[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]] },
-    { "[TeLeader].", [[<cmd>Telescope<cr>]] },
-    { "[TeLeader],", [[<cmd>Telescope oldfiles<cr>]] },
-    { "[TeLeader]e", [[<cmd>Telescope file_browser<cr>]] },
-    { "[TeLeader]s", [[<cmd>Telescope grep_string<cr>]] },
-    { "[TeLeader]t", [[<cmd>TodoTelescope<cr>]] },
-    { "[TeLeader]r", [[<cmd>Telescope resume<cr>]] },
-    { "[TeLeader]b", [[<cmd>Telescope buffers<cr>]] },
-    { "[TeLeader]h", [[<cmd>Telescope help_tags<cr>]] },
-    { "[TeLeader]H", [[<cmd>Telescope heading<cr>]] },
-    { "[TeLeader]j", [[<cmd>Telescope jumplist<cr>]] },
-    { "[TeLeader]o", [[<cmd>Telescope oldfiles<cr>]] },
-    { "[TeLeader]g", [[<cmd>Telescope git_files<cr>]] },
-    { "[TeLeader]q", [[<cmd>Telescope quickfix<cr>]] },
-    { "[TeLeader]p", [[<cmd>Telescope pickers<cr>]] },
-    { "[TeLeader]m", [[<cmd>Telescope marks<cr>]] },
-    { "[TeLeader]c", [[<cmd>Telescope colorscheme<cr>]] },
-    -- stylua: ignore end
-  },
 
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local previewers = require("telescope.previewers")
+    local themes = require("telescope.themes")
 
     local new_maker = function(filepath, bufnr, opts)
       opts = opts or {}
@@ -76,7 +80,7 @@ return {
     end
 
     telescope.setup({
-      defaults = require("telescope.themes").get_dropdown({
+      defaults = themes.get_dropdown({
         mappings = {
           n = {
             ["<ESC>"] = actions.close,
@@ -148,6 +152,14 @@ return {
           initial_mode = "normal",
           show_scores = true,
         },
+        lazy = {
+          mappings = {
+            open_in_browser = "<C-o>",
+            open_in_find_files = "<C-f>",
+            open_in_live_grep = "<C-g>",
+            open_plugins_picker = "<C-b>",
+          },
+        },
         ["ui-select"] = {
           require("telescope.themes").get_cursor({
             initial_mode = "normal",
@@ -155,9 +167,8 @@ return {
         },
       },
     })
-    -- le("termfinder")
-    -- le("luasnip")
-    -- le("projects")
-    -- le("noice")
+
+    le("noice")
+    le("projects")
   end,
 }

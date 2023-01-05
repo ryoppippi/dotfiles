@@ -1,5 +1,3 @@
-local force_require = require("utils.plugin").force_require
-
 return {
   "hrsh7th/nvim-cmp",
   name = "cmp",

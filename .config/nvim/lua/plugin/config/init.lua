@@ -1,6 +1,8 @@
 -- vim.g.enabled_snippet = "vsnip"
 vim.g.enabled_snippet = "luasnip"
 
+local load_denops = require("utils.plugin").load_denops_on_lazy
+
 local plugin_list = {
   -- Plugin management {{
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
@@ -30,15 +32,16 @@ local plugin_list = {
   -- }}
 
   -- Moving Cursor {{
-  { "unblevable/quick-scope", event = "BufReadPost" },
-  { "yutkat/wb-only-current-line.nvim", event = "BufReadPost" },
-  { "deton/jasegment.vim", event = "BufReadPost" }, -- Japanese word moving
+  { "unblevable/quick-scope", event = "VeryLazy" },
+  { "yutkat/wb-only-current-line.nvim", event = "VeryLazy" },
+  { "deton/jasegment.vim", event = "VeryLazy" }, -- Japanese word moving
   {
     "yuki-yano/fuzzy-motion.vim",
-    lazy = false,
-    init = function()
-      vim.keymap.set({ "n", "v" }, "<CR>", "<CMD>FuzzyMotion<CR>")
-    end,
+    keys = {
+      { "<CR>", "<CMD>FuzzyMotion<CR>", { "n", "v" } },
+    },
+    dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("fuzzy-motion.vim"),
   },
   -- }}
 
@@ -71,7 +74,7 @@ local plugin_list = {
   -- root dir
   {
     "ahmedkhalf/project.nvim",
-    lazy = false,
+    event = "BufWinEnter",
     config = function()
       require("project_nvim").setup({})
     end,
@@ -120,15 +123,14 @@ local plugin_list = {
   -- { "AckslD/nvim-anywise-reg.lua" },
 
   -- Select
-  { "terryma/vim-expand-region", event = "ModeChanged" },
-  { "terryma/vim-multiple-cursors", event = "VeryLazy" },
+  { "mg979/vim-visual-multi", event = "VeryLazy" },
   { "kana/vim-niceblock" },
 
   -- Swap Arguments
   { "machakann/vim-swap", keys = { "g>", "g<", "gs" } },
 
   -- Adding,subtracting,change cases
-  { "deris/vim-rengbang", lazy = false },
+  { "deris/vim-rengbang", event = "VeryLazy" },
   -- }}
 
   -- Builtin Enhancements {{
@@ -148,9 +150,6 @@ local plugin_list = {
 
   -- Diff
   { "AndrewRadev/linediff.vim" },
-
-  -- Mcro
-  { "zdcthomas/medit", event = "VeryLazy" },
 
   -- Register
   { "tversteeg/registers.nvim", brnch = "main" },
@@ -177,8 +176,18 @@ local plugin_list = {
   { "tyru/capture.vim", cmd = { "Capture" } },
 
   -- Terminal
-  { "lambdalisue/guise.vim", lazy = false },
-  { "lambdalisue/askpass.vim", lazy = false },
+  {
+    "lambdalisue/guise.vim",
+    event = { "CmdlineEnter", "CursorHold", "FocusLost" },
+    dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("guise.vim"),
+  },
+  {
+    "lambdalisue/askpass.vim",
+    event = { "CmdlineEnter", "CursorHold", "FocusLost" },
+    dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("askpass.vim"),
+  },
 
   -- }}
 
@@ -206,8 +215,6 @@ local plugin_list = {
   { "yutkat/convert-git-url.nvim" },
 
   -- show messages
-  { "lewis6991/gitsigns.nvim", event = "BufReadPre" },
-  { "rhysd/git-messenger.vim", event = "BufReadPre" },
 
   -- Github
   { "pwntester/octo.nvim", cmd = "Octo" },
@@ -216,11 +223,19 @@ local plugin_list = {
   -- }}
 
   -- Docker {{
-  { "skanehira/denops-docker.vim" },
+  {
+    "skanehira/denops-docker.vim",
+    dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("denops-docker.vim"),
+  },
   -- }}
 
   -- GraphAPI {{
-  { "skanehira/denops-graphql.vim", lazy = false },
+  {
+    "skanehira/denops-graphql.vim",
+    dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("denops-graphql.vim"),
+  },
   -- }}
 
   -- Shell {{
@@ -230,7 +245,6 @@ local plugin_list = {
   -- }}
 
   -- Search {{
-  { "monaqa/modesearch.vim", event = "BufReadPre" },
   { "kevinhwang91/nvim-hlslens", config = true },
   -- }}
 
@@ -239,7 +253,7 @@ local plugin_list = {
   -- Languages
   -- Nvim-LSP {{
   { "lukas-reineke/lsp-format.nvim", config = true },
-  { "folke/lsp-colors.nvim" },
+  { "folke/lsp-colors.nvim", event = "ColorSchemePre", config = true },
   -- UI
   { "mrshmllow/document-color.nvim" },
   { "kosayoda/nvim-lightbulb" },
@@ -318,8 +332,9 @@ local plugin_list = {
   {
     "ryoppippi/bad-apple.vim",
     branch = "main",
-    lazy = false,
+    cmd = "BadApple",
     dependencies = { "vim-denops/denops.vim" },
+    config = load_denops("bad-apple.vim"),
   },
   -- }}
 }
