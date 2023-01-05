@@ -1,10 +1,9 @@
-local status, cmp = pcall(require, "cmp")
-if status then
-  local sources = cmp.get_config().sources
-  for i = #sources, 1, -1 do
-    if sources[i].name == "treesitter" then
-      table.remove(sources, i)
-    end
+require("lazy").load({ plugins = { "cmp" } })
+local cmp = require("cmp")
+local sources = cmp.get_config().sources
+for i = #sources, 1, -1 do
+  if sources[i].name == "treesitter" then
+    table.remove(sources, i)
   end
-  cmp.setup.buffer({ sources = sources })
 end
+cmp.setup.buffer({ sources = sources })
