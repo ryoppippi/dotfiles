@@ -36,7 +36,6 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
 alias rm trash
 alias vim nvim
-alias git hub
 alias pwb 'git browse'
 alias bash 'bash --norc'
 alias flush 'vim -c "sleep 1m" -c q'
