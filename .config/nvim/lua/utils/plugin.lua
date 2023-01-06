@@ -1,9 +1,5 @@
 local M = {}
 
-function M.load(plugin_name)
-  return pcall(vim.cmd.packadd, plugin_name)
-end
-
 function M.load_denops_on_lazy(plugin_name)
   return function()
     require("lazy").load({ plugins = { "denops.vim" } })
