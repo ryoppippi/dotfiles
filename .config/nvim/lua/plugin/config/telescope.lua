@@ -52,6 +52,7 @@ return {
         ["p"] = { [[<cmd>Telescope pickers<cr>]], "pickers" },
         ["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
         ["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
+        ["l"] = { [[<cmd>Telescope lazy<cr>]], "colorscheme" },
       },
     })
   end,

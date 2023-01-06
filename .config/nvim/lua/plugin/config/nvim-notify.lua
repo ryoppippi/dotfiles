@@ -10,18 +10,22 @@ return {
         DEBUG = "",
         TRACE = "✎",
       },
-      timeout = 1000,
+      timeout = 500,
       render = "minimal",
       background_colour = "#000000",
     })
 
-    vim.notify = function(msg, ...)
-      if msg:match("%[lspconfig%]") then
-        return
-      end
+    local ignore_messages = {
+      "%[lspconfig%]",
+      "warning: multiple different client offset_encodings",
+      "written",
+    }
 
-      if msg:match("warning: multiple different client offset_encodings") then
-        return
+    vim.notify = function(msg, ...)
+      for m in pairs(ignore_messages) do
+        if msg:match(m) then
+          return
+        end
       end
 
       require("notify")(msg, ...)
