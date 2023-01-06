@@ -9,12 +9,9 @@ local plugin_list = {
   -- }}
 
   -- Essential libraries {{
-  { "nvim-lua/plenary.nvim" },
-  { "ray-x/guihua.lua" },
-  { "MunifTanjim/nui.nvim" },
   { "nvim-lua/popup.nvim" },
-  { "kyazdani42/nvim-web-devicons", config = {} },
-  { "tpope/vim-repeat" },
+  { "MunifTanjim/nui.nvim" },
+  { "tpope/vim-repeat", lazy = false },
   { "monaqa/peridot.vim" },
   { "vim-denops/denops.vim", event = { "CursorHold", "FocusLost" } },
   -- }}
@@ -24,9 +21,7 @@ local plugin_list = {
   {
     "petertriho/nvim-scrollbar",
     event = { "BufReadPre" },
-    dependencies = {
-      "kevinhwang91/nvim-hlslens",
-    },
+    dependencies = { "kevinhwang91/nvim-hlslens" },
   },
   { "levouh/tint.nvim", event = "VeryLazy", config = true },
   -- }}
@@ -38,7 +33,7 @@ local plugin_list = {
   {
     "yuki-yano/fuzzy-motion.vim",
     keys = {
-      { "<CR>", "<CMD>FuzzyMotion<CR>", { "n", "v" } },
+      { "<CR>", "<CMD>FuzzyMotion<CR>", { "n", "v", "x" } },
     },
     dependencies = { "vim-denops/denops.vim" },
     config = load_denops("fuzzy-motion.vim"),
@@ -114,7 +109,7 @@ local plugin_list = {
   -- commentout
   -- comment generation
   { "s1n7ax/nvim-comment-frame", config = true },
-  { "LudoPinelli/comment-box.nvim" },
+  { "LudoPinelli/comment-box.nvim", event = "CmdlineEnter" },
   { "danymat/neogen", config = true },
 
   -- yank and paste
@@ -144,12 +139,13 @@ local plugin_list = {
       require("bqf").enable()
     end,
   },
+  { "delphinus/qfheight.nvim", ft = "qf", config = true },
 
   -- Undo
   { "simnalamburt/vim-mundo" },
 
   -- Diff
-  { "AndrewRadev/linediff.vim" },
+  { "AndrewRadev/linediff.vim", event = "VeryLazy" },
 
   -- Register
   { "tversteeg/registers.nvim", brnch = "main" },
@@ -172,7 +168,7 @@ local plugin_list = {
   -- Command
   { "wsdjeg/vim-fetch", lazy = false },
   { "jghauser/mkdir.nvim", lazy = false },
-  { "sQVe/sort.nvim", cmd = { "Sort" } },
+  { "sQVe/sort.nvim", cmd = { "Sort" }, config = true },
   { "tyru/capture.vim", cmd = { "Capture" } },
 
   -- Terminal
@@ -210,7 +206,7 @@ local plugin_list = {
   -- git command assistant
   { "rhysd/committia.vim", ft = { "git" } },
   { "hotwatermorning/auto-git-diff", event = "VeryLazy" },
-  { "akinsho/git-conflict.nvim", ft = { "git" } },
+  { "akinsho/git-conflict.nvim", ft = { "git" }, config = true },
   { "sindrets/diffview.nvim", ft = { "git" } },
   { "yutkat/convert-git-url.nvim" },
 
@@ -246,6 +242,11 @@ local plugin_list = {
 
   -- Search {{
   { "kevinhwang91/nvim-hlslens", config = true },
+  -- }}
+
+  -- Rename {{
+  { "smjonas/inc-rename.nvim", cmd = "IncRename", config = true },
+
   -- }}
 
   -- }}
@@ -300,7 +301,6 @@ local plugin_list = {
   -- log
   { "mtdl9/vim-log-highlighting", ft = { "log" } },
   -- csv
-  -- { "chen244/csv-tools.lua" },
   { "mechatroner/rainbow_csv", ft = { "csv" } },
   -- json
   { "b0o/schemastore.nvim" },
