@@ -15,7 +15,7 @@ return {
     { "haringsrob/nvim_context_vt" },
     { "romgrk/nvim-treesitter-context" },
 
-    { "p00f/nvim-ts-rainbow" },
+    { "mrjones2014/nvim-ts-rainbow" },
   },
 
   config = function()
