@@ -180,6 +180,7 @@ local plugin_list = {
   },
   {
     "lambdalisue/askpass.vim",
+    enabled = false,
     event = { "CmdlineEnter", "CursorHold", "FocusLost" },
     dependencies = { "vim-denops/denops.vim" },
     config = load_denops("askpass.vim"),
@@ -278,6 +279,31 @@ local plugin_list = {
   -- Language specific plugins {{
   -- javascript
   { "vuki656/package-info.nvim", ft = { "json" } },
+  {
+    -- "barrett-ruth/import-cost.nvim",
+    dir = "/Users/ryoppippi/ghq/github.com/ryoppippi/import-cost.nvim",
+    build = "sh install.sh yarn",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "svelte",
+    },
+    config = function()
+      require("import-cost").setup({
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte",
+        },
+      })
+    end,
+  },
   -- typescript
   { "jose-elias-alvarez/typescript.nvim" },
   { "dhruvasagar/vim-table-mode", ft = { "markdown" } },
