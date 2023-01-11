@@ -15,5 +15,8 @@ renamed = ''
 deleted = '🗑 '
 staged = '[++\($count\)](green)'
 
+[c]
+format = "[$symbol]($style)"
+
 [battery]
 disabled = true
