@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre" },
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
+    { "j-hui/fidget.nvim" ,config=true},
   },
   config = function()
     local signs = { Error = "", Warn = "", Hint = "", Info = "" }
