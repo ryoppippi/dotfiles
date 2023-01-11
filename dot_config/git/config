@@ -10,7 +10,7 @@
   diffFilter = delta --color-only
 
 [alias]
-  a = add
+  a = add 
   aa = add -a
   fa = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta \" | xargs -0 -o -t git add -p"
   cm = commit -m
@@ -62,13 +62,13 @@
 
 [credential]
   helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [ghq]
   root = ~/.go/src
   root = ~/ghq
 [color]
   ui = auto
-[gpg]
-  program = /usr/local/bin/krgpg
 [tag]
   forceSignAnnotated = true
 [filter "lfs"]
@@ -78,11 +78,10 @@
   required = true
 [push]
   default = current
-[url "git@github.com:"]
-  pushInsteadOf = https://github.com/
+; [url "git@github.com:"]
+  ; pushInsteadOf = https://github.com/
 [commit]
-  gpgSign = true
-
+  ; gpgSign = true
 [delta]
   diff-so-fancy=true
   keep-plus-minus-markers=true
@@ -91,3 +90,5 @@
   plus-emph-style="bold 29 29"
   hunk-header-style="omit"
   line-numbers=true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
