@@ -1,0 +1,31 @@
+# set key 'P'
+bind generic P      ?git push -u %(remote) %(repo:head)
+
+# set key 'U'
+bind generic U      ?git pull %(remote)
+
+# set key 'F'
+bind generic F      ?git fetch %(remote)
+bind main    F      ?git fetch %(remote)
+
+# Branch Operation
+bind refs    M      ?git merge %(branch)
+bind refs    P      ?git push origin %(branch)
+bind refs    L      ?git pull origin %(branch)
+
+##### Move #####
+# set key 'g' / goto file top
+bind generic g      move-first-line
+
+# set key 'G' / goto file bottom
+bind generic G      move-last-line
+bind main    G      move-last-line
+
+# set key 'E'
+bind generic E      view-grep
+
+set mouse = true
+
+set ignore-case = true
+
+
