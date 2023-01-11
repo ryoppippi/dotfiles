@@ -3,19 +3,19 @@ window:
 
 font:
     normal:
-        family: JetBrainsMono Nerd Font
+        family: UDEV Gothic 35LG
         style: Regular
   
     # The bold font face
     bold:
-        family: JetBrainsMono Nerd Font
+        family: UDEV Gothic 35LG
         style: Bold
  
     # The italic font face
     italic:
-        family: JetBrainsMono Nerd Font
+        family: UDEV Gothic 35LG
         style: Italic
-    size: 15
+    size: 17
 
 colors:
   # Default colors
