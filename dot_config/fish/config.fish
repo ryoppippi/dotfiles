@@ -116,6 +116,9 @@ abbr -a gpfo 'git pushf origin'
 abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 
+abbr -a cm chezmoi
+abbr -a cme chezmoi edit --apply
+
 
 
 # if test (uname -m) = arm64
