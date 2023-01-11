@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Menu Key Bindings</key>
+	<dict>
+		<key>Key Bindings</key>
+		<array>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.LanguageTranslator.LanguageTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.LanguageTranslator.LanguageTranslatorExtension.SourceEditorCommand.Translate.PrimaryToSecondary</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Language</string>
+				<key>Title</key>
+				<string>Into Secondary Language</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.LanguageTranslator.LanguageTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.LanguageTranslator.LanguageTranslatorExtension.SourceEditorCommand.Translate.SecondaryToPrimary</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Language</string>
+				<key>Title</key>
+				<string>Into Primary Language</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension.SourceEditorCommand.Translate.ToCamelCase</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Naming</string>
+				<key>Title</key>
+				<string>To camelCase</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension.SourceEditorCommand.Translate.ToNormalSentence</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Naming</string>
+				<key>Title</key>
+				<string>To normal sentence</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension.SourceEditorCommand.Translate.ToPascalCase</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Naming</string>
+				<key>Title</key>
+				<string>To PascalCase</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.NamingTranslator.NamingTranslatorExtension.SourceEditorCommand.Translate.ToSnakeCase</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Translate Naming</string>
+				<key>Title</key>
+				<string>To snake_case</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.TabifyIndents.TabifyIndentsExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.TabifyIndents.TabifyIndentsExtension.SourceEditorCommand.Tabify</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Tabify and Untabify</string>
+				<key>Title</key>
+				<string>Tabify Indents</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>_invokeSourceEditorExtensionCommand:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>IDESourceEditorExtension:net.homeunix.hio.app.TabifyIndents.TabifyIndentsExtension,IDESourceEditorExtensionCommand:net.homeunix.hio.app.TabifyIndents.TabifyIndentsExtension.SourceEditorCommand.Untabify</string>
+				<key>Group</key>
+				<string>Editor Menu for Source Code</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEPegasusSourceEditor.MenuDefinition.Editor</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Parent Title</key>
+				<string>Tabify and Untabify</string>
+				<key>Title</key>
+				<string>Untabify Indents</string>
+			</dict>
+		</array>
+		<key>Version</key>
+		<integer>3</integer>
+	</dict>
+</dict>
+</plist>
