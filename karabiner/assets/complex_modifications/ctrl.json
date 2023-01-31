@@ -1,0 +1,81 @@
+{
+    "title": "Ctrl",
+    "rules": [
+        {
+            "description": "Tap Ctrl -> TAB",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_control",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_control",
+                            "lazy": true
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "tab"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_unless",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 22854,
+                                    "product_id": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Tap Ctrl -> ESC",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_control",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_control",
+                            "lazy": true
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_unless",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 22854,
+                                    "product_id": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
