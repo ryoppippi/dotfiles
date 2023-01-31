@@ -2,6 +2,7 @@
   "Comment.nvim": { "branch": "master", "commit": "eab2c83a0207369900e92783f56990808082eac2" },
   "LuaSnip": { "branch": "master", "commit": "94f192cf5f0a1931b3035c2d8affdebec460968c" },
   "actions-preview.nvim": { "branch": "master", "commit": "203675135b8bd94237379ecb9d6faaf3782d02ab" },
+  "askpass.vim": { "branch": "main", "commit": "aa977b0093424073bd4b4064a90440dec1e4f066" },
   "auto-git-diff": { "branch": "master", "commit": "8d5ba425218912db0d960ba0bd0a1b39d14082b7" },
   "bad-apple.vim": { "branch": "main", "commit": "111fd6caf12d2824a4889999b32c2f70cec3872d" },
   "baleia.nvim": { "branch": "main", "commit": "8ba437c2da2c917529e1c3952412a2780cecf6c6" },

@@ -11,11 +11,8 @@ local plugin_list = {
   { "MunifTanjim/nui.nvim" },
   { "tpope/vim-repeat", lazy = false },
   { "monaqa/peridot.vim" },
-  { "vim-denops/denops.vim", dependencies = { "yuki-yano/denops-lazy.nvim" } },
-  {
-    "yuki-yano/denops-lazy.nvim",
-    opts = { wait_load = false },
-  },
+  { "vim-denops/denops.vim", dependencies = { "yuki-yano/denops-lazy.nvim" }, event = { "VeryLazy" } },
+  { "yuki-yano/denops-lazy.nvim", opts = { wait_load = false } },
   {
     "lambdalisue/kensaku.vim",
     dependencies = { "vim-denops/denops.vim" },
@@ -218,7 +215,7 @@ local plugin_list = {
   {
     "lambdalisue/guise.vim",
     dependencies = { "vim-denops/denops.vim" },
-    event = { "VeryLazy" },
+    event = { "User DenopsReady" },
     config = function()
       require("denops-lazy").load("guise.vim")
       vim.cmd([[
@@ -231,9 +228,7 @@ local plugin_list = {
   },
   {
     "lambdalisue/askpass.vim",
-    enabled = false,
-    event = { "CmdlineEnter", "CursorHold", "FocusLost" },
-    dependencies = { "vim-denops/denops.vim" },
+    event = { "User DenopsReady" },
     config = function()
       require("denops-lazy").load("askpass.vim")
     end,
