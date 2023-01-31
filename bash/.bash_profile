@@ -100,9 +100,6 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-# Added by Krypton
-export GPG_TTY=$(tty)
-
 # case $- in
 #     *i*) exec fish;;
 #       *) return;;
