@@ -188,7 +188,7 @@ local plugin_list = {
   { "AndrewRadev/linediff.vim", event = "VeryLazy" },
 
   -- Register
-  { "tversteeg/registers.nvim", brnch = "main" },
+  { "tversteeg/registers.nvim", branch = "main", event = { "VeryLazy" }, config = true },
 
   -- Mark
   { "chentoast/marks.nvim", event = "VeryLazy" },
