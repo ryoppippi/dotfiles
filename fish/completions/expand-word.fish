@@ -1,0 +1,8 @@
+complete -A -f -c expand-word -s c -d 'Function whose return value determines when the expansion should be run'
+complete -A -f -c expand-word -l condition -d 'Function whose return value determines when the expansion should be run'
+complete -A -f -c expand-word -s e -d 'Function or string to expand the matching word with'
+complete -A -f -c expand-word -l expander -d 'Function or string to expand the matching word with'
+complete -A -f -c expand-word -s h -d 'Show a help message'
+complete -A -f -c expand-word -l help -d 'Show a help message'
+complete -A -f -c expand-word -s p -d 'A regular expression condition the word must match'
+complete -A -f -c expand-word -l pattern -d 'A regular expression condition the word must match'
