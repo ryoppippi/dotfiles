@@ -8,7 +8,7 @@ set -g theme_nerd_fonts yes
 
 set -l FISH_CONFIG $XDG_CONFIG_HOME/fish
 
-set -x fish_function_path $FISH_CONFIG/user_functions $fish_function_path
+set -gp fish_function_path $FISH_CONFIG/user_functions $fish_function_path
 
 
 # fzf config
