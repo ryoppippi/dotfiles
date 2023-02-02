@@ -18,9 +18,12 @@ return {
     { "hrsh7th/cmp-nvim-lua" },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
-      config = {
-        color_square_width = 2,
-      },
+      enabled = false,
+      config = function()
+        require("tailwindcss-colorizer-cmp").setup({
+          color_square_width = 2,
+        })
+      end,
     },
     { "f3fora/cmp-spell" },
     { "yutkat/cmp-mocword" },
@@ -28,13 +31,13 @@ return {
     { "saadparwaiz1/cmp_luasnip", enabled = vim.g.enabled_snippet == "luasnip" },
     {
       "ryoppippi/cmp-copilot",
-      enabled = false,
+      enabled = true,
       branch = "dev/add-copilot-loaded-detecter",
       dependencies = { "github/copilot.vim" },
     },
     {
       "zbirenbaum/copilot-cmp",
-      enabled = true,
+      enabled = false,
       config = function()
         require("copilot_cmp").setup()
       end,
@@ -242,7 +245,7 @@ return {
           git = "[Git]",
           -- cmp_openai_codex = "[Codex]",
         },
-        before = require("tailwindcss-colorizer-cmp").formatter,
+        -- before = require("tailwindcss-colorizer-cmp").formatter,
       }),
     }
 

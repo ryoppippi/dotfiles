@@ -7,56 +7,52 @@ return {
   -- lazy = false,
   event = "VeryLazy",
   dependencies = { "kevinhwang91/nvim-hlslens" },
-  keys = {
-    {
-      "?",
-      function()
-        hl_start()
-        vim.fn["searchx#start"]({ dir = 0 })
-      end,
-      mode = { "n", "x" },
-    },
-    {
-      "/",
-      function()
-        hl_start()
-        vim.fn["searchx#start"]({ dir = 1 })
-      end,
-      mode = { "n", "x" },
-    },
-    {
-      ";",
-      function()
-        hl_start()
-        vim.fn["searchx#start"]({ dir = 0 })
-      end,
-      mode = { "n", "x" },
-    },
-    {
-      "?",
-      function()
-        hl_start()
-        vim.fn["searchx#select"]()
-      end,
-      mode = { "n", "x" },
-    },
-    {
-      "n",
-      function()
-        hl_start()
-        vim.fn["searchx#next"]()
-      end,
-      mode = { "n", "x" },
-    },
-    {
-      "N",
-      function()
-        hl_start()
-        vim.fn["searchx#prev"]()
-      end,
-      mode = { "n", "x" },
-    },
-  },
+  keys = function()
+    local vimx = require("artemis")
+    local searchx = vimx.fn.searchx
+    return {
+      {
+        "?",
+        function()
+          hl_start()
+          searchx.start({ dir = 0 })
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "/",
+        function()
+          hl_start()
+          searchx.start({ dir = 1 })
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        ":",
+        function()
+          hl_start()
+          searchx.select()
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "n",
+        function()
+          hl_start()
+          searchx.next()
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "N",
+        function()
+          hl_start()
+          searchx.prev()
+        end,
+        mode = { "n", "x" },
+      },
+    }
+  end,
   config = function()
     vim.cmd([[
     let g:searchx = {}

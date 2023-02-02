@@ -72,6 +72,7 @@ return {
       }),
 
       -- others
+      diagnostics.fish,
       formatting.fish_indent,
       -- diagnostics.cspell,
       code_actions.gitsigns,

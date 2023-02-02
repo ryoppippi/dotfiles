@@ -5,7 +5,7 @@ return {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
   },
-  config = {
+  opts = {
     popupmenu = {
       enabled = true,
       backend = "cmp",
@@ -16,6 +16,7 @@ return {
     },
     messages = {
       view_search = false,
+      view = "mini",
     },
     presets = {
       inc_rename = true,

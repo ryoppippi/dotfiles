@@ -2,7 +2,7 @@ return {
   {
     "github/copilot.vim",
     event = { "InsertEnter" },
-    enabled = false,
+    enabled = true,
     init = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
@@ -11,15 +11,45 @@ return {
       -- vim.g.copilot_ignore_node_version = true
       -- vim.g.copilot_node_command = "bun"
     end,
-    keys = {
-      { "<Plug>(copilot-dummy-map)", [[copilot#Accept"]("<Tab>")]], mode = "i", expr = true },
-      { "<C-h>", [[copilot#Accept("<CR>")]], mode = "i", expr = true },
-      { "<C-l>", [[copilot#Dismiss()]], mode = "i", script = true, nowait = true, expr = true },
-    },
+    keys = function()
+      local vimx = require("artemis")
+      local copilot = vimx.fn.copilot
+      return {
+        {
+          "<Plug>(copilot-dummy-map)",
+          function()
+            copilot.Accept("<Tab>")
+          end,
+          mode = "i",
+          expr = true,
+          desc = "copilot accept",
+        },
+        {
+          "<C-h>",
+          function()
+            copilot.Accept("<CR>")
+          end,
+          mode = "i",
+          expr = true,
+          desc = "copilot accept",
+        },
+        {
+          "<C-l>",
+          function()
+            copilot.Dismiss()
+          end,
+          mode = "i",
+          script = true,
+          nowait = true,
+          expr = true,
+          desc = "copilot dismiss",
+        },
+      }
+    end,
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     cmd = { "Copilot" },
     event = "InsertEnter",
     config = function()

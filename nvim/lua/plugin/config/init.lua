@@ -10,6 +10,7 @@ local plugin_list = {
   { "nvim-lua/popup.nvim" },
   { "MunifTanjim/nui.nvim" },
   { "tpope/vim-repeat", lazy = false },
+  { "tani/vim-artemis" },
   { "monaqa/peridot.vim" },
   { "vim-denops/denops.vim", dependencies = { "yuki-yano/denops-lazy.nvim" }, event = { "VeryLazy" } },
   { "yuki-yano/denops-lazy.nvim", opts = { wait_load = false } },
@@ -140,7 +141,7 @@ local plugin_list = {
       require("mini.surround").setup(opts)
     end,
   },
-  { "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+  -- { "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   -- { "RRethy/nvim-treesitter-endwise", dependencies = { "nvim-treesitter/nvim-treesitter" }, event = "BufReadPost" },
   -- { "abecodes/tabout.nvim" },
   -- { "cohama/lexima.vim" },
