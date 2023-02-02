@@ -41,12 +41,6 @@ export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.conf
 
 # langugaes
 # c++
-#export CC="/usr/local/bin/gcc"
-#export CXX="/usr/local/bin/g++"
-alias clang-omp='/usr/local/opt/llvm/bin/clang -fopenmp -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib'
-alias clang-omp++='/usr/local/opt/llvm/bin/clang++ -fopenmp -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib'
-export OMP_NUM_THREADS='4'
-
 export CPPFLAGS=-I/opt/X11/include
 export LDFLAGS="$LDFLAGS -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/binutils/lib -L/opt/homebrew/lib"
 export CFLAGS="-I/usr/local/opt/zlib/include -I$(xcrun --show-sdk-path) $CFLAGS"
@@ -99,9 +93,4 @@ if [[ -t 0 ]]; then
   stty stop undef
   stty start undef
 fi
-
-# case $- in
-#     *i*) exec fish;;
-#       *) return;;
-# esac
 

@@ -10,26 +10,9 @@ set -l FISH_CONFIG $XDG_CONFIG_HOME/fish
 
 set -gp fish_function_path $FISH_CONFIG/user_functions $fish_function_path
 
-
-# fzf config
-set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --no-messages --glob "!/^[^\/]+\/.git/\/?(?:[^\/]+\/?)*" '
-set -x FZF_FIND_FILE_COMMAND $FZF_DEFAULT_COMMAND
-set -x FZF_DEFAULT_OPTS '--extended --cycle --select-1 --height 40% --reverse --border'
-set -x FZF_FIND_FILE_OPTS '--preview "bat --color=always --style=header,grid --line-range :100 {}"'
-set -x FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-set -x FZF_LEGACY_KEYBINDINGS 0
-set -x FZF_COMPLETION_TRIGGER '**'
-
-# ghq config
-set -x GHQ_SELECTOR_OPTS ""
-# set -x GHQ_SELECTOR_OPTS "--preview 'head {}/README.*'"
-set -x GHQ_SELECTOR fzf
-
-# enhancd config
-set -x ENHANCED_FILTER fzf
-set -x ENHANCD_HOOK_AFTER_CD 'exa -hlF'
-set -x ENHANCD_DIR $FISH_CONFIG/functions/enhancd
-set -x ENHANCD_ROOT $FISH_CONFIG/functions/enhancd
+source $FISH_CONFIG/config/fzf.fish
+source $FISH_CONFIG/config/ghq.fish
+source $FISH_CONFIG/config/enhanced.fish
 
 # zoxide
 zoxide init fish | source
@@ -37,13 +20,12 @@ zoxide init fish | source
 # python
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
-alias rm trash
+if type -q trash
+    alias rm trash
+end
+
 alias vim nvim
-alias pwb 'git browse'
 alias bash 'bash --norc'
-alias flush 'vim -c "sleep 1m" -c q'
-alias gip 'curl -s http://ipecho.net/plain; echo'
-alias lip 'ipconfig getifaddr en0'
 alias ls 'exa --icons -hlF'
 alias la 'ls -a'
 alias lt 'ls --tree'
@@ -53,8 +35,6 @@ alias nvbench 'hyperfine "nvim --headless +qa" --warmup 4 --prepare "nvim --head
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a GHCI 'stack ghci'
 abbr -a sed gsed
-abbr -a dact deactivate
-# abbr -a cat ccat
 abbr -a b brew
 abbr -a t tmux
 abbr -a tt tmuximum
@@ -68,7 +48,6 @@ abbr -a cdd __fzf_cd
 abbr -a o open
 abbr -a v nvim
 abbr -a nv nvim
-# abbr -a c 'code'
 abbr -a y yarn
 abbr -a ya 'yarn add -D'
 abbr -a cda conda
@@ -98,7 +77,6 @@ abbr -a dcr "docker-compose restart"
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
 
-# abbr -a pyenv "env CC=/usr/bin/gcc CXX=/usr/bin/g++  PYTHON_CONFIGURE_OPTS='--enable-framework --enable-toolbox-glue --enable-big-digits --enable-unicode --with-threads' pyenv"
 abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
 
 # git configs
@@ -117,13 +95,6 @@ abbr -a gpf 'git pushf'
 abbr -a gpfo 'git pushf origin'
 abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
-
-
-# if test (uname -m) = arm64
-#     eval conda "shell.fish" hook $argv | source
-#     conda deactivate
-# end
-
 
 # if test -z $TMUX && test -z $VIRTUAL_ENV
 #     if not status --is-login && status --is-interactive && test "$TERM_PROGRAM" != "vscode"
