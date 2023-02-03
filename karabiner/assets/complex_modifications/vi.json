@@ -1,5 +1,5 @@
 {
-  "title": "Vi Style Arrows",
+  "title": "Vi",
   "rules": [
     {
       "description": "Change Control + h/j/k/l to Arrows",
@@ -320,6 +320,25 @@
           "to": [
             {
               "key_code": "right_arrow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "esc + japanese_eisuu",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "escape"
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            },
+            {
+              "key_code": "japanese_eisuu"
             }
           ]
         }

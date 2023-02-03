@@ -76,6 +76,47 @@
                     ]
                 }
             ]
+        },
+        {
+            "description": "Tap Ctrl -> ESC + japanese_eisuu",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_control",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_control",
+                            "lazy": true
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "escape"
+                        },
+                        {
+                            "key_code": "japanese_eisuu"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_unless",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 22854,
+                                    "product_id": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
