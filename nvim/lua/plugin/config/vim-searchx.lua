@@ -33,7 +33,15 @@ return {
           hl_start()
           searchx.select()
         end,
-        mode = { "n", "x" },
+        mode = { "n" },
+      },
+      {
+        ";",
+        function()
+          hl_start()
+          searchx.select()
+        end,
+        mode = { "x" },
       },
       {
         "n",
