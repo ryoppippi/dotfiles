@@ -54,3 +54,4 @@ packages:
 - name: projectdiscovery/httpx@v1.2.6
 - name: dandavison/delta@0.15.1
 - name: rhysd/dotfiles@v0.2.2
+- name: Aloxaf/silicon@v0.5.1
