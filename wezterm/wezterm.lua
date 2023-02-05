@@ -106,7 +106,6 @@ end
 local local_config = load_local_config()
 
 local config = {
-  use_ime = true,
   font = wezterm.font("UDEV Gothic 35LG"),
   font_size = 15.0,
   color_scheme = "onedark",
@@ -167,6 +166,9 @@ local config = {
   },
   window_background_opacity = 0.97,
   -- disable_default_key_bindings = true,
+  use_ime = true,
+  send_composed_key_when_left_alt_is_pressed = true,
+  send_composed_key_when_right_alt_is_pressed = false,
   keys = keys,
   set_environment_variables = {},
   -- keys = create_keybinds(),

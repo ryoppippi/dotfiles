@@ -14,19 +14,10 @@ function end-of-line-or-execute
 end
 
 function fish_user_key_bindings
-    fzf_key_bindings
-    for mode in insert default visual
-        fish_default_key_bindings -M $mode
-    end
-    fish_vi_key_bindings --no-erase
     bind \cx\ck fkill
 
-    bind -M insert -e \ce
-    bind -M visual -e \ce
-    bind -M default -e \ce
-    bind -M insert \ce end-of-line-or-execute
-    bind -M insert -e \cf
     ### fzf ###
+    fzf_key_bindings
     set -q FZF_LEGACY_KEYBINDINGS
     or set -l FZF_LEGACY_KEYBINDINGS 1
     if test "$FZF_LEGACY_KEYBINDINGS" -eq 1
