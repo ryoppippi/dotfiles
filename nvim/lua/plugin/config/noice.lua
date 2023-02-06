@@ -14,6 +14,9 @@ return {
       enabled = true,
       view = "mini",
     },
+    cmdline = {
+      enabled = true,
+    },
     messages = {
       view_search = false,
       view = "mini",

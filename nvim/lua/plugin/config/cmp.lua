@@ -18,7 +18,7 @@ return {
     { "hrsh7th/cmp-nvim-lua" },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
-      enabled = false,
+      enabled = true,
       config = function()
         require("tailwindcss-colorizer-cmp").setup({
           color_square_width = 2,
@@ -31,7 +31,7 @@ return {
     { "saadparwaiz1/cmp_luasnip", enabled = vim.g.enabled_snippet == "luasnip" },
     {
       "ryoppippi/cmp-copilot",
-      enabled = true,
+      enabled = false,
       branch = "dev/add-copilot-loaded-detecter",
       dependencies = { "github/copilot.vim" },
     },

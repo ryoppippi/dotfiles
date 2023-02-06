@@ -10,7 +10,13 @@ local plugin_list = {
   { "nvim-lua/popup.nvim" },
   { "MunifTanjim/nui.nvim" },
   { "tpope/vim-repeat", lazy = false },
-  { "tani/vim-artemis" },
+  {
+    "tani/vim-artemis",
+    lazy = false,
+    config = function()
+      _G.vimx = require("artemis")
+    end,
+  },
   { "monaqa/peridot.vim" },
   { "vim-denops/denops.vim", dependencies = { "yuki-yano/denops-lazy.nvim" }, event = { "VeryLazy" } },
   { "yuki-yano/denops-lazy.nvim", opts = { wait_load = false } },
@@ -29,6 +35,10 @@ local plugin_list = {
     "petertriho/nvim-scrollbar",
     event = { "BufReadPre" },
     dependencies = { "kevinhwang91/nvim-hlslens" },
+    config = function()
+      require("scrollbar").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
   },
   -- { "levouh/tint.nvim", event = "VeryLazy", config = true },
   -- }}
@@ -43,8 +53,8 @@ local plugin_list = {
       { "<CR>", "<CMD>FuzzyMotion<CR>", mode = { "n", "v", "x" } },
     },
     dependencies = {
-      { "vim-denops/denops.vim" },
-      { "lambdalisue/kensaku.vim" },
+      "vim-denops/denops.vim",
+      "lambdalisue/kensaku.vim",
     },
     init = function()
       vim.g.fuzzy_motion_matchers = { "fzf", "kensaku" }
@@ -59,14 +69,6 @@ local plugin_list = {
 
   -- window
   { "kwkarlwang/bufresize.nvim", event = "BufEnter", config = true },
-  {
-    "camspiers/lens.vim",
-    event = "VeryLazy",
-    init = function()
-      vim.g["lens#disabled_filetypes"] = { "neo-tree", "quickfix" }
-    end,
-  },
-
   { "stevearc/stickybuf.nvim", event = "VimEnter", config = true },
   { "famiu/bufdelete.nvim", event = "VeryLazy" },
 
@@ -117,11 +119,42 @@ local plugin_list = {
   { "thinca/vim-partedit", event = "VeryLazy" },
 
   -- rackets and parentheses
-  -- { "machakann/vim-sandwich", event = "VeryLazy" },
+  {
+    "machakann/vim-sandwich",
+    event = "VeryLazy",
+    enabled = true,
+    config = function()
+      local _, status = pcall(require, "noice")
+      if not status then
+        return
+      end
+      vim.api.nvim_create_autocmd("User", {
+        pattern = {
+          "OperatorSandwichAddPre",
+          "OperatorSandwichDeletePre",
+          "OperatorSandwichReplacePre",
+        },
+        callback = function()
+          vim.cmd("Noice disable")
+        end,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = {
+          "OperatorSandwichAddPost",
+          "OperatorSandwichDeletePost",
+          "OperatorSandwichReplacePost",
+        },
+        callback = function()
+          vim.cmd("Noice enable")
+        end,
+      })
+    end,
+  },
   {
     "echasnovski/mini.surround",
     version = "*",
     event = "VeryLazy",
+    enabled = false,
     opts = {
       mappings = {
         add = "sa", -- Add surrounding in Normal and Visual modes
@@ -295,7 +328,13 @@ local plugin_list = {
   -- }}
 
   -- Search {{
-  { "kevinhwang91/nvim-hlslens", config = true },
+  {
+    "kevinhwang91/nvim-hlslens",
+    dependencies = { "petertriho/nvim-scrollbar" },
+    config = function(_, opts)
+      require("scrollbar.handlers.search").setup(opts)
+    end,
+  },
   -- }}
 
   -- Rename {{

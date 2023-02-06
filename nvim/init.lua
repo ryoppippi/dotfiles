@@ -1,7 +1,7 @@
 require("global")
 require("base")
 require("options")
-require("plugin/lazy")
+require("pack")
 require("autocmd")
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

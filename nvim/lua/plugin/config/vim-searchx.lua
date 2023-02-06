@@ -4,18 +4,15 @@ end
 
 return {
   "hrsh7th/vim-searchx",
-  -- lazy = false,
   event = "VeryLazy",
-  dependencies = { "kevinhwang91/nvim-hlslens" },
+  dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis" },
   keys = function()
-    local vimx = require("artemis")
-    local searchx = vimx.fn.searchx
     return {
       {
         "?",
         function()
           hl_start()
-          searchx.start({ dir = 0 })
+          vimx.fn.searchx.start({ dir = 0 })
         end,
         mode = { "n", "x" },
       },
@@ -23,7 +20,7 @@ return {
         "/",
         function()
           hl_start()
-          searchx.start({ dir = 1 })
+          vimx.fn.searchx.start({ dir = 1 })
         end,
         mode = { "n", "x" },
       },
@@ -31,7 +28,7 @@ return {
         ":",
         function()
           hl_start()
-          searchx.select()
+          vimx.fn.searchx.select()
         end,
         mode = { "n" },
       },
@@ -39,7 +36,7 @@ return {
         ";",
         function()
           hl_start()
-          searchx.select()
+          vimx.fn.searchx.select()
         end,
         mode = { "x" },
       },
@@ -47,7 +44,7 @@ return {
         "n",
         function()
           hl_start()
-          searchx.next()
+          vimx.fn.searchx.next()
         end,
         mode = { "n", "x" },
       },
@@ -55,7 +52,7 @@ return {
         "N",
         function()
           hl_start()
-          searchx.prev()
+          vimx.fn.searchx.prev()
         end,
         mode = { "n", "x" },
       },

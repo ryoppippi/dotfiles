@@ -2,23 +2,20 @@ return {
   {
     "github/copilot.vim",
     event = { "InsertEnter" },
-    enabled = true,
+    enabled = false,
+    dependencies = { "tani/vim-artemis" },
     init = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
       vim.g.copilot_tab_fallback = ""
       vim.g.copilot_filetypes = { ["*"] = true }
-      -- vim.g.copilot_ignore_node_version = true
-      -- vim.g.copilot_node_command = "bun"
     end,
     keys = function()
-      local vimx = require("artemis")
-      local copilot = vimx.fn.copilot
       return {
         {
           "<Plug>(copilot-dummy-map)",
           function()
-            copilot.Accept("<Tab>")
+            vimx.fn.copilot.Accept("<Tab>")
           end,
           mode = "i",
           expr = true,
@@ -27,7 +24,7 @@ return {
         {
           "<C-h>",
           function()
-            copilot.Accept("<CR>")
+            vimx.fn.copilot.Accept("<CR>")
           end,
           mode = "i",
           expr = true,
@@ -36,7 +33,7 @@ return {
         {
           "<C-l>",
           function()
-            copilot.Dismiss()
+            vimx.fn.copilot.Dismiss()
           end,
           mode = "i",
           script = true,
@@ -49,9 +46,9 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = { "Copilot" },
-    event = "InsertEnter",
+    event = { "InsertEnter", "CursorHold", "FocusLost" },
     config = function()
       vim.defer_fn(function()
         require("copilot").setup({
