@@ -2,7 +2,7 @@ if status --is-interactive
     bass source ~/.bash_profile
 end
 
-test -d "$HOME/.tea" && "$HOME/.tea/tea.xyz/v*/bin/tea" --magic=fish --silent | source
+#test -d "$HOME/.tea" && "$HOME/.tea/tea.xyz/v*/bin/tea" --magic=fish --silent | source
 
 starship init fish | source
 
