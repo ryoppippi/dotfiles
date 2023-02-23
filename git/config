@@ -47,6 +47,7 @@
   cob = checkout -b
   cid = log -n 1 --format=%H
   clean-local-branches = !"git branch --merged | grep -v \\* | xargs git branch -d"
+  clb = clean-local-branches
   isv = !gh issue list| fzf-tmux --prompt \"issue preview>\" --preview \"echo {} | awk '{print \\$1}' | xargs gh issue view -p\" | xargs gh issue view
   prv = !gh pr list| fzf-tmux --prompt \"pr preview>\" --preview \"echo {} | awk '{print \\$1}' | xargs gh pr view -p\" | xargs gh pr view
   id = show -s --format=%H
