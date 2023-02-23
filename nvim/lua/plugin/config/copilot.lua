@@ -2,7 +2,7 @@ return {
   {
     "github/copilot.vim",
     event = { "InsertEnter" },
-    enabled = false,
+    enabled = true,
     dependencies = { "tani/vim-artemis" },
     init = function()
       vim.g.copilot_no_tab_map = true
@@ -46,20 +46,21 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     cmd = { "Copilot" },
     event = { "InsertEnter", "CursorHold", "FocusLost" },
     config = function()
       vim.defer_fn(function()
         require("copilot").setup({
           suggestion = {
+            enabled = false,
             auto_trigger = true,
             keymap = {
               accept = "<Tab>",
               accept_word = false,
               accept_line = false,
-              next = "<C-S-n>",
-              prev = "<C-S-p>",
+              -- next = "<C-S-n>",
+              -- prev = "<C-S-p>",
               dismiss = "<C-l>",
             },
           },

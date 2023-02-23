@@ -3,6 +3,7 @@ return {
   name = "cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
+    { "tani/vim-artemis" },
     { "onsails/lspkind.nvim" },
     { "hrsh7th/cmp-nvim-lsp", dependencies = { "neovim/nvim-lspconfig" } },
     { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = { "neovim/nvim-lspconfig" } },
@@ -27,27 +28,27 @@ return {
     },
     { "f3fora/cmp-spell" },
     { "yutkat/cmp-mocword" },
-    { "hrsh7th/cmp-vsnip", enabled = vim.g.enabled_snippet == "vsnip" },
-    { "saadparwaiz1/cmp_luasnip", enabled = vim.g.enabled_snippet == "luasnip" },
+    { "hrsh7th/cmp-vsnip", cond = vim.g.enabled_snippet == "vsnip" },
+    { "saadparwaiz1/cmp_luasnip", cond = vim.g.enabled_snippet == "luasnip" },
     {
       "ryoppippi/cmp-copilot",
-      enabled = false,
+      cond = function()
+        return require("core.plugin").has("copilot.vim")
+      end,
       branch = "dev/add-copilot-loaded-detecter",
       dependencies = { "github/copilot.vim" },
     },
     {
       "zbirenbaum/copilot-cmp",
-      enabled = false,
-      config = function()
-        require("copilot_cmp").setup()
+      cond = function()
+        return require("core.plugin").has("copilot.lua")
       end,
+      config = true,
     },
     {
       "petertriho/cmp-git",
       name = "cmp_git",
-      config = function()
-        require("cmp_git").setup({})
-      end,
+      config = true,
     },
     -- { "hrsh7th/cmp-omni" },
     -- { "hrsh7th/cmp-copilot", dependencies = { "github/copilot.vim" } },
@@ -96,6 +97,7 @@ return {
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
+          print(snippet_library)
           if snippet_library == "vsnip" then
             vim.fn["vsnip#anonymous"](args.body)
           elseif snippet_library == "luasnip" then
@@ -133,10 +135,8 @@ return {
             snippet_jump(1)
           elseif has_words_before() then
             cmp.complete()
-            -- elseif tb(vim.g.loaded_copilot) then
-            --   vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
-            -- elseif is_emmet_active() then
-            --   cmp.complete()
+          elseif tb(vim.g.loaded_copilot) then
+            vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
           else
             fallback()
           end
@@ -148,7 +148,7 @@ return {
           elseif snippet_jumpable(-1) then
             snippet_jump(-1)
           elseif tb(vim.g.loaded_copilot) then
-            vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](t("<Tab>")), "n", true)
+            vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
           else
             fallback()
           end
@@ -295,14 +295,6 @@ return {
     })
 
     vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
-
-    cmp.event:on("menu_opened", function()
-      vim.b.copilot_suggestion_hidden = true
-    end)
-
-    cmp.event:on("menu_closed", function()
-      vim.b.copilot_suggestion_hidden = false
-    end)
 
     -- Setup autopairs
     -- local autopairs = require("nvim-autopairs")

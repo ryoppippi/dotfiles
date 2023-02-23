@@ -6,4 +6,7 @@ return {
       Norm = { cmd = "norm" },
     },
   },
+  config = function(_, opt)
+    require("live-command").setup(opt)
+  end,
 }

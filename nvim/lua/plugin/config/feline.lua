@@ -1,5 +1,5 @@
 return {
-  "feline-nvim/feline.nvim",
+  "freddiehaddad/feline.nvim",
   enabled = true,
   event = { "VimEnter" },
   dependencies = {

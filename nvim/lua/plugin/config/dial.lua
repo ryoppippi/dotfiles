@@ -89,6 +89,6 @@ return {
 
     set_filetype_autocmd("markdown")
     set_filetype_autocmd("python")
-    require("utils").redetect_filetype()
+    require("core.utils").redetect_filetype()
   end,
 }

@@ -83,6 +83,15 @@ return {
             -- ["oF"] = "@frame.outer",
           },
         },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["g>"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["g<"] = "@parameter.inner",
+          },
+        },
         move = {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist

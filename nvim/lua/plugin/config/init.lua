@@ -1,6 +1,3 @@
--- vim.g.enabled_snippet = "vsnip"
-vim.g.enabled_snippet = "luasnip"
-
 local plugin_list = {
   -- Plugin management {{
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
@@ -123,31 +120,27 @@ local plugin_list = {
     "machakann/vim-sandwich",
     event = "VeryLazy",
     enabled = true,
-    config = function()
-      local _, status = pcall(require, "noice")
-      if not status then
-        return
-      end
-      vim.api.nvim_create_autocmd("User", {
-        pattern = {
-          "OperatorSandwichAddPre",
-          "OperatorSandwichDeletePre",
-          "OperatorSandwichReplacePre",
-        },
-        callback = function()
-          vim.cmd("Noice disable")
-        end,
-      })
-      vim.api.nvim_create_autocmd("User", {
-        pattern = {
-          "OperatorSandwichAddPost",
-          "OperatorSandwichDeletePost",
-          "OperatorSandwichReplacePost",
-        },
-        callback = function()
-          vim.cmd("Noice enable")
-        end,
-      })
+    init = function()
+      -- vim.api.nvim_create_autocmd("User", {
+      --   pattern = {
+      --     "OperatorSandwichAddPre",
+      --     "OperatorSandwichDeletePre",
+      --     "OperatorSandwichReplacePre",
+      --   },
+      --   callback = function()
+      --     pcall(vim.cmd, "NoiceDisable")
+      --   end,
+      -- })
+      -- vim.api.nvim_create_autocmd("User", {
+      --   pattern = {
+      --     "OperatorSandwichAddPost",
+      --     "OperatorSandwichDeletePost",
+      --     "OperatorSandwichReplacePost",
+      --   },
+      --   callback = function()
+      --     pcall(vim.cmd, "NoiceEnable")
+      --   end,
+      -- })
     end,
   },
   {
@@ -174,7 +167,7 @@ local plugin_list = {
       require("mini.surround").setup(opts)
     end,
   },
-  -- { "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+  { "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" }, event = "BufReadPost" },
   -- { "RRethy/nvim-treesitter-endwise", dependencies = { "nvim-treesitter/nvim-treesitter" }, event = "BufReadPost" },
   -- { "abecodes/tabout.nvim" },
   -- { "cohama/lexima.vim" },
@@ -196,7 +189,7 @@ local plugin_list = {
   { "kana/vim-niceblock" },
 
   -- Swap Arguments
-  { "machakann/vim-swap", keys = { "g>", "g<", "gs" } },
+  { "machakann/vim-swap", keys = { "g>", "g<", "gs" }, enabled = false },
 
   -- Adding,subtracting,change cases
   { "deris/vim-rengbang", event = "VeryLazy" },
@@ -409,6 +402,7 @@ local plugin_list = {
   { "ray-x/go.nvim" },
   -- markdown
   -- { "previm/previm", ft = { "markdown", "pandoc.markdown", "rmd" } },
+  { "dkarter/bullets.vim", ft = { "markdown", "pandoc.markdown", "rmd" } },
   {
     "iamcco/markdown-preview.nvim",
     build = ":call mkdp#util#install()",

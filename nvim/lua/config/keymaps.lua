@@ -46,17 +46,6 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
--- require("which-key").register({
---   ["<tab>"] = {
---     name = "+tab",
---     ["<tab>"] = { "<cmd>tabe .<cr>", "new tab" },
---     h = { "<cmd>tabfirst<cr>", "first tab" },
---     j = { "<cmd>tabnext<cr>", "next tab" },
---     k = { "<cmd>tabprevious<cr>", "previous tab" },
---     l = { "<cmd>tablast<cr>", "last tab" },
---     q = { "<cmd>tabclose<cr>", "close tab" },
---   },
--- })
 
 vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { silent = true })
 vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { silent = true })
@@ -97,7 +86,7 @@ local function append_new_lines(offset_line)
       local curpos = vim.fn.line(".")
       local pos_line = curpos + offset_line
       local n_lines = ctx.count1
-      local lines = require("utils").repeat_element("", n_lines)
+      local lines = require("core.utils").repeat_element("", n_lines)
       vim.fn.append(pos_line, lines)
     end)
 end

@@ -1,5 +1,7 @@
 return {
   "navarasu/onedark.nvim",
+  priority = vim.env.NVIM_COLORSCHEME == "onedark" and 1000 or 50,
+  lazy = vim.env.NVIM_COLORSCHEME ~= "onedark",
   config = function()
     vim.g.onedark_config = {
       style = "cool",
