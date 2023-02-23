@@ -1,4 +1,5 @@
-vim.opt_local.iskeyword:append({ "-", ":" })
+vim.opt_local.iskeyword:append({ "-" })
+-- vim.opt_local.iskeyword:append({ "-", ":" })
 -- setlocal expandtab
 -- setlocal tabstop=2
 -- setlocal shiftwidth=2

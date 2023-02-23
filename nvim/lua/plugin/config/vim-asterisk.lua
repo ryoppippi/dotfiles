@@ -1,13 +1,12 @@
 return {
   "haya14busa/vim-asterisk",
+  dependencies = {
+    { "tani/vim-artemis" },
+  },
   keys = {
-    { "*", "<Plug>(asterisk-*)" },
-    { "#", "<Plug>(asterisk-#)" },
-    { "g*", "<Plug>(asterisk-g*)" },
-    { "g#", "<Plug>(asterisk-g#)" },
-    { "z*", "<Plug>(asterisk-z*)" },
-    { "gz*", "<Plug>(asterisk-gz*)" },
-    { "z#", "<Plug>(asterisk-z#)" },
-    { "gz#", "<Plug>(asterisk-gz#)" },
+    { "*", "<Plug>(asterisk-z*)" },
+    { "#", "<Plug>(asterisk-z#)" },
+    { "g*", "<Plug>(asterisk-zg*)" },
+    { "g#", "<Plug>(asterisk-zg#)" },
   },
 }

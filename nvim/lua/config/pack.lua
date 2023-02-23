@@ -1,18 +1,13 @@
--- check if lazy.nvim is installed
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
-end
-vim.opt.runtimepath:prepend(lazypath)
-
+require("core.plugin").init()
 local lazy = require("lazy")
+
+if vim.env.NVIM_COLORSCHEME == nil then
+  vim.env.NVIM_COLORSCHEME = "kanagawa"
+end
+
+-- vim.g.enabled_snippet = "vsnip"
+vim.g.enabled_snippet = "luasnip"
+
 -- load plugins
 lazy.setup("plugin.config", {
   defaults = { lazy = true },

@@ -1,6 +1,7 @@
 return {
   "rebelot/kanagawa.nvim",
-  lazy = false,
+  priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
+  lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
   opts = function()
     local default_colors = require("kanagawa.colors").setup()
     return {

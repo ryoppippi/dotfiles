@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave" }, {
   end,
   group = restore_terminal_mode,
 })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "term://*",
   callback = function()

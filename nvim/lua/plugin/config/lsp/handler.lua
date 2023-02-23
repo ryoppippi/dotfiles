@@ -53,6 +53,10 @@ local function set_keymap(client, bufnr)
   -- vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_format()<cr>", opts)
 end
 
+function M.diagnostic_formatter(diagnostic)
+  return string.format("[%s] %s (%s)", diagnostic.message, diagnostic.source, diagnostic.code)
+end
+
 local function set_options(client, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
@@ -65,6 +69,12 @@ local function set_options(client, bufnr)
   --   silent = true,
   --   focusable = false,
   -- })
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = false,
+    virtual_text = { format = M.diagnostic_formatter },
+    float = { sformat = M.diagnostic_formatter },
+  })
 end
 
 local function set_formatting(client, bufnr)
