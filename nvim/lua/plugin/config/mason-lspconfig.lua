@@ -30,7 +30,7 @@ return {
         "r_language_server",
         "rust_analyzer",
         -- "zls",
-        "sumneko_lua",
+        "lua_ls",
         "gopls",
         "sqls",
         "jsonls",
@@ -109,7 +109,7 @@ return {
           local rust_tools = require("rust-tools")
           rust_tools.setup({ server = opts, on_initialized = on_attach })
           goto continue
-        elseif "sumneko_lua" == server_name then
+        elseif "lua_ls" == server_name then
           opts.flags = {
             debounce_text_changes = 150,
           }
