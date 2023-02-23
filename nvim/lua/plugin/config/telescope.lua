@@ -22,13 +22,15 @@ return {
     { "benfowler/telescope-luasnip.nvim", dependencies = { "L3MON4D3/LuaSnip" } },
     { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
     { "tsakirist/telescope-lazy.nvim", config = le("lazy") },
+    { "Allianaab2m/telescope-kensaku.nvim", dependencies = { "lambdalisue/kensaku.vim" }, config = le("kensaku") },
   },
 
   init = function()
     require("which-key").register({
       [","] = {
         name = "+Telescope",
-        ["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
+        ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
+        -- ["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
         ["f"] = {
           [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
           "Find File",
@@ -40,7 +42,7 @@ return {
         ["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
         [","] = { [[<cmd>Telescope oldfiles<cr>]], "oldfiles" },
         ["e"] = { [[<cmd>Telescope file_browser<cr>]], "file_browser" },
-        ["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string" },
+        ["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string", mode = { "n", "x" } },
         ["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
         ["r"] = { [[<cmd>Telescope resume<cr>]], "resume" },
         ["b"] = { [[<cmd>Telescope buffers<cr>]], "buffers" },
@@ -52,7 +54,7 @@ return {
         ["p"] = { [[<cmd>Telescope pickers<cr>]], "pickers" },
         ["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
         ["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
-        ["l"] = { [[<cmd>Telescope lazy<cr>]], "colorscheme" },
+        ["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
       },
     })
   end,

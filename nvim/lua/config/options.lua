@@ -1,4 +1,3 @@
--- setting
 vim.g.mapleader = t("<Space>")
 
 vim.opt.backup = true
@@ -17,6 +16,9 @@ vim.opt.virtualedit = "onemore"
 vim.opt.visualbell = true
 vim.opt.showmatch = true
 vim.opt.showcmd = true
+
+-- vim.opt.splitright = true
+-- vim.opt.splitbelow = true
 
 vim.opt.fenc = "utf-8"
 local tabwidth = 2

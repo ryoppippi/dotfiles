@@ -74,6 +74,7 @@ local function openTerm(args)
     tf(args)
   end
 end
+
 vim.api.nvim_create_user_command("T", function(tbl)
   local args = tbl.args
   vim.cmd.tabe()
