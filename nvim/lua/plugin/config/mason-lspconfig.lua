@@ -5,13 +5,38 @@ return {
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
   },
+  init = function()
+    require("core.plugin").on_attach(function(client, buffer)
+      local lsp_util = require("lspconfig").util
+      local node_root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
+      local buf_name = vim.api.nvim_buf_get_name(buffer)
+      local is_node_repo = node_root_dir(buf_name) ~= nil
+
+      local node_servers = {
+        "angularls",
+        "vuels",
+        "svelte",
+        "astro",
+        "tsserver",
+        "eslint",
+      }
+
+      if vim.tbl_contains(node_servers, client.name) and not is_node_repo then
+        vim.lsp.stop_client(client.id)
+      end
+      if "denols" == client.name and is_node_repo then
+        vim.lsp.stop_client(client.id)
+      end
+    end)
+  end,
+
   config = function()
     require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
     local lspconfig = require("lspconfig")
     local lsp_util = lspconfig.util
-    local utils = require("utils")
+    local utils = require("core.utils")
 
     mason_lspconfig.setup({
       ensure_installed = {
@@ -62,16 +87,24 @@ return {
           }
         elseif "angularls" == server_name then
           opts.root_dir = lsp_util.root_pattern("angular.json")
-          -- elseif "tailwindcss" == server_name then
-          --   opts.root_dir = lsp_util.root_pattern("tailwind.config.js", "tailwind.config.cjs")
-          -- elseif "svelte" == server_name then
-          --   opts.root_dir = lsp_util.root_pattern("svelte.config.js", "svelte.config.cjs")
+        elseif "tailwindcss" == server_name then
+          goto continue
+        elseif "svelte" == server_name then
+          goto continue
         elseif "eslint" == server_name then
           opts.extra_filetypes = { "svelte" }
           opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
           opts.settings = {
             format = { enable = true },
           }
+        elseif "tsserver" == server_name then
+          opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
+          local ts = require("typescript")
+          ts.setup({
+            server = opts,
+            disable_commands = false,
+          })
+          goto continue
         elseif "denols" == server_name then
           opts.single_file_support = false
           opts.root_dir = lsp_util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
@@ -88,14 +121,6 @@ return {
               },
             },
           }
-        elseif "tsserver" == server_name then
-          opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
-          local ts = require("typescript")
-          ts.setup({
-            server = opts,
-            disable_commands = false,
-          })
-          goto continue
         elseif "pyright" == server_name then
           opts.before_init = function(_, config)
             config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
