@@ -25,9 +25,9 @@ return {
       -- web
 
       formatting.prettier.with({
-        extra_filetypes = {
-          "svelte",
-        },
+        extra_filetypes = { "svelte" },
+        extra_args = { "--write" },
+        generator_opts = { to_stdin = false },
       }),
 
       diagnostics.tsc.with({
