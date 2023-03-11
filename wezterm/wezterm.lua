@@ -107,7 +107,7 @@ local local_config = load_local_config()
 
 local config = {
   font = wezterm.font("UDEV Gothic 35LG"),
-  font_size = 15.0,
+  font_size = 13.0,
   color_scheme = "onedark",
   color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
   colors = {
