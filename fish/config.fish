@@ -9,12 +9,11 @@ starship init fish | source
 set -g theme_nerd_fonts yes
 
 set -l FISH_CONFIG $XDG_CONFIG_HOME/fish
+source $FISH_CONFIG/config/*.fish
 
-set -gp fish_function_path $FISH_CONFIG/user_functions $fish_function_path
+set -l FISH_USER_FUNCTIONS $FISH_CONFIG/user_functions
+set -gp fish_function_path $FISH_USER_FUNCTIONS $fish_function_path
 
-source $FISH_CONFIG/config/fzf.fish
-source $FISH_CONFIG/config/ghq.fish
-source $FISH_CONFIG/config/enhanced.fish
 
 # zoxide
 zoxide init fish | source
@@ -70,11 +69,11 @@ abbr -a dp "docker ps"
 abbr -a db "docker build"
 abbr -a dr "docker run --rm"
 abbr -a dx "docker exec -it"
-abbr -a dc docker-compose
-abbr -a dcu "docker-compose up"
-abbr -a dcub "docker-compose up --build"
-abbr -a dcd "docker-compose down"
-abbr -a dcr "docker-compose restart"
+abbr -a dc docker compose
+abbr -a dcu "docker compose up"
+abbr -a dcub "docker compose up --build"
+abbr -a dcd "docker compose down"
+abbr -a dcr "docker compose restart"
 
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
