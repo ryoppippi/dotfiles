@@ -59,6 +59,10 @@ vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 -- jj -> <ESC>
 vim.keymap.set("i", "jj", "<Esc>")
 
+-- arrow key prevent stopping undo block
+-- vim.keymap.set("i", "<Left>", "<C-g>u<Left>")
+-- vim.keymap.set("i", "<Right>", "<C-g>u<Right>")
+
 -- disable s because s = cl
 vim.keymap.set("n", "s", "<Nop>")
 
@@ -90,6 +94,7 @@ local function append_new_lines(offset_line)
       vim.fn.append(pos_line, lines)
     end)
 end
+
 vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
 vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
 
@@ -108,6 +113,7 @@ local function paste_in_new_lines(direction)
       end)
     or ""
 end
+
 vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
 vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
 vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })

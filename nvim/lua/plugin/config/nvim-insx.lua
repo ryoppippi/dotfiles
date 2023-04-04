@@ -1,6 +1,7 @@
 return {
   "hrsh7th/nvim-insx",
   event = "InsertEnter",
+  enabled = false,
   config = function()
     -- require("insx.preset.standard").setup({ cmdline = { enabled = true } })
     -- require("insx.preset.standard").setup_cmdline_mode({ cmdline = { enabled = true } })

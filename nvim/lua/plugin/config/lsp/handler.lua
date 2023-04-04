@@ -1,122 +1,5 @@
 local M = {}
 
--- local FormatAugroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
-
-local function set_keymap(client, bufnr)
-  local opts = { silent = true, buffer = bufnr }
-
-  -- hover doc
-  vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-
-  -- jump to
-  -- vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  -- vim.keymap.set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-  -- vim.keymap.set("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  -- vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  vim.keymap.set("n", "gd", [[<cmd>Telescope lsp_definitions<cr>]], opts)
-  vim.keymap.set("n", "gt", [[<cmd>Telescope lsp_type_definitions<cr>]], opts)
-  vim.keymap.set("n", "gI", [[<cmd>Telescope lsp_implementations<cr>]], opts)
-  vim.keymap.set("n", "gr", [[<cmd>Telescope lsp_references<cr>]], opts)
-
-  -- signature_help
-  vim.keymap.set("i", "<C-k>", "<cmd>vim.lsp.buf.signature_help()<cr>", opts)
-  vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-
-  -- diagnostics
-  vim.keymap.set("n", "gL", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-  vim.keymap.set("n", "gl", [[<cmd>Telescope diagnostics<cr>]], opts)
-  vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
-  vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
-
-  -- rename
-  vim.keymap.set("n", "cW", function()
-    require("inc_rename")
-    if false then
-      -- if ir then
-      return ":IncRename " .. vim.fn.expand("<cword>")
-    end
-    return "<cmd>lua vim.lsp.buf.rename()<cr>"
-  end, { expr = true, buffer = bufnr, desc = "rename words" })
-
-  -- code actions
-  vim.keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  -- vim.keymap.set({ "n", "v" }, "ga", require("actions-preview").code_actions, opts)
-
-  -- workspace
-  vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
-  vim.keymap.set("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
-  vim.keymap.set("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
-
-  -- formatting
-  vim.keymap.set("n", "<leader>zz", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", opts)
-  -- vim.keymap.set("n", "<leader>zx", "<cmd>lua vim.lsp.buf.range_format()<cr>", opts)
-end
-
-function M.diagnostic_formatter(diagnostic)
-  return string.format("[%s] %s (%s)", diagnostic.message, diagnostic.source, diagnostic.code)
-end
-
-local function set_options(client, bufnr)
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  -- signature help
-  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  --   silent = true,
-  --   focusable = false,
-  -- })
-
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    update_in_insert = false,
-    virtual_text = { format = M.diagnostic_formatter },
-    float = { sformat = M.diagnostic_formatter },
-  })
-end
-
-local function set_formatting(client, bufnr)
-  local document_formatting_disable_list = { "tsserver", "svelte", "sumneko_lua" }
-
-  if vim.tbl_contains(document_formatting_disable_list, client.name) then
-    return
-  end
-  if not client.server_capabilities.documentFormattingProvider then
-    return
-  end
-
-  -- auto formatting
-  if client.supports_method("textDocument/formatting") then
-    local lsp_format = require("lsp-format")
-    if lsp_format then
-      lsp_format.on_attach(client)
-      vim.cmd([[
-        cabbrev wq execute "Format sync" <bar> wq
-        cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q
-      ]])
-    end
-  end
-end
-
-local function set_plugins(client, bufnr)
-  local illuminate = require("illuminate")
-  if illuminate then
-    illuminate.on_attach(client)
-  end
-
-  local navic = require("nvim-navic")
-  if navic then
-    navic.attach(client, bufnr)
-  end
-
-  local document_color = require("document-color")
-  if document_color and client.server_capabilities.colorProvider then
-    document_color.buf_attach(bufnr, { mode = "background" })
-  end
-end
-
 local gen_capabilities = function()
   local protocol = vim.lsp.protocol
   local capabilities = protocol.make_client_capabilities()
@@ -129,10 +12,7 @@ local gen_capabilities = function()
 end
 
 M.on_attach = function(client, bufnr)
-  set_keymap(client, bufnr)
-  set_options(client, bufnr)
-  set_formatting(client, bufnr)
-  set_plugins(client, bufnr)
+  --
 end
 
 M.capabilities = gen_capabilities()
