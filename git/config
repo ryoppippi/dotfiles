@@ -17,6 +17,7 @@
   cma = commit --amend -m 
   fixit = commit --amend --no-edit
   b = branch
+  bm = branch -m
   bn = rev-parse --abbrev-ref HEAD
   browse = !gh repo view --web
   br = browse
