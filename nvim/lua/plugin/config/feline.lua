@@ -1,9 +1,9 @@
 return {
   "freddiehaddad/feline.nvim",
-  enabled = true,
+  enabled = false,
   event = { "VimEnter" },
   dependencies = {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     -- "SmiteshP/nvim-navic",
   },
   cond = vim.o.termguicolors,
@@ -106,7 +106,6 @@ return {
         end,
         right_sep = " ",
       },
-
       file_name = {
         provider = {
           name = "file_info",
@@ -129,7 +128,6 @@ return {
         priority = -20,
         left_sep = " ",
       },
-
       file_name_short = {
         provider = {
           name = "file_info",
@@ -146,7 +144,6 @@ return {
         priority = -20,
         left_sep = " ",
       },
-
       nvim_navic = {
         provider = function()
           return require("nvim-navic").get_location() or ""
@@ -171,7 +168,6 @@ return {
         priority = -50,
         truncate_hide = true,
       },
-
       -- gitBranch
       git_branch = {
         provider = "git_branch",
@@ -213,7 +209,6 @@ return {
           style = "bold",
         },
       },
-
       -- diagnosticErrors
       lsp_diagnostic_errors = {
         provider = "diagnostic_errors",
@@ -256,7 +251,6 @@ return {
           str = " ",
         },
       },
-
       -- diagnosticInfo
       lsp_diagnostic_info = {
         provider = "diagnostic_info",
@@ -271,7 +265,6 @@ return {
           str = " ",
         },
       },
-
       -- fileIcon
       file_icon = {
         provider = function()
@@ -300,7 +293,6 @@ return {
         left_sep = " ",
         right_sep = " ",
       },
-
       -- fileType
       file_type = {
         provider = "file_type",
@@ -322,7 +314,6 @@ return {
         truncate_hide = true,
         priority = -100,
       },
-
       -- fileSize
       file_size = {
         provider = "file_size",
@@ -337,7 +328,6 @@ return {
         right_sep = " ",
         truncate_hide = true,
       },
-
       -- fileFormat
       file_format = {
         provider = function()
@@ -351,7 +341,6 @@ return {
         },
         truncate_hide = true,
       },
-
       -- fileEncode
       file_encode = {
         provider = "file_encoding",
@@ -364,7 +353,6 @@ return {
         priority = -10,
         truncate_hide = true,
       },
-
       -- lineInfo
       line_info = {
         provider = {
@@ -381,7 +369,6 @@ return {
         right_sep = " ",
         truncate_hide = true,
       },
-
       -- linePercent
       line_percent = {
         provider = "line_percentage",
@@ -391,7 +378,6 @@ return {
           style = "bold",
         },
       },
-
       -- scrollBar
       scroll_bar = {
         provider = "scroll_bar",
@@ -402,7 +388,6 @@ return {
         priority = -10,
         truncate_hide = true,
       },
-
       -- LspName
       lsp_client_name = {
         provider = "lsp_client_names",
@@ -452,7 +437,9 @@ return {
       inactive = { {}, {}, {} },
     }
 
-    vim.cmd([[set noshowmode]])
+    vim.opt.laststatus = 3
+    vim.opt.cmdheight = 0
+    vim.opt.showmode = false
 
     return {
       theme = colors,

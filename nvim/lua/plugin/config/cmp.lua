@@ -6,7 +6,7 @@ return {
     { "tani/vim-artemis" },
     { "onsails/lspkind.nvim" },
     { "hrsh7th/cmp-nvim-lsp", dependencies = { "neovim/nvim-lspconfig" } },
-    { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = { "neovim/nvim-lspconfig" } },
+    -- { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = { "neovim/nvim-lspconfig" } },
     { "hrsh7th/cmp-nvim-lsp-document-symbol", dependencies = { "neovim/nvim-lspconfig" } },
     { "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
     { "hrsh7th/cmp-buffer" },
@@ -105,7 +105,6 @@ return {
           end
         end,
       },
-
       mapping = cmp.mapping.preset.insert({
         ["<C-l>"] = cmp.mapping({
           i = cmp.mapping.abort(),
@@ -141,7 +140,6 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -154,7 +152,6 @@ return {
           end
         end, { "i", "s" }),
       }),
-
       sorting = {
         comparators = {
           cmp.config.compare.offset,
@@ -186,7 +183,6 @@ return {
           cmp.config.compare.order,
         },
       },
-
       sources = cmp.config.sources({
         { name = "copilot" },
         -- { name = "rg" },

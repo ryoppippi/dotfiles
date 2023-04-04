@@ -15,16 +15,13 @@ return {
     { "haringsrob/nvim_context_vt" },
     { "romgrk/nvim-treesitter-context" },
 
-    { "mrjones2014/nvim-ts-rainbow" },
+    { "HiPhish/nvim-ts-rainbow2" },
   },
-
   config = function()
     require("nvim-treesitter.configs").setup({
       ignore_install = { "phpdoc" },
-
       auto_install = true,
       sync_install = false,
-
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -55,10 +52,8 @@ return {
       textobjects = {
         select = {
           enable = true,
-
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
-
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
             ["af"] = "@function.outer",

@@ -13,7 +13,7 @@ lazy.setup("plugin.config", {
   defaults = { lazy = true },
   install = { missing = true, colorscheme = { "kanagawa" } },
   checker = { enabled = false },
-  concurrency = 16,
+  concurrency = 64,
   performance = {
     cache = {
       enabled = true,

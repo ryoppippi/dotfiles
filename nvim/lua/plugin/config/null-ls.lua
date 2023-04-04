@@ -24,10 +24,16 @@ return {
     local sources = {
       -- web
 
-      formatting.prettier.with({
+      -- formatting.prettier.with({
+      --   extra_filetypes = { "svelte" },
+      --   -- extra_args = { "--write" },
+      --   -- generator_opts = { to_stdin = false },
+      -- }),
+
+      formatting.prettierd.with({
         extra_filetypes = { "svelte" },
-        extra_args = { "--write" },
-        generator_opts = { to_stdin = false },
+        -- extra_args = { "--write" },
+        -- generator_opts = { to_stdin = false },
       }),
 
       diagnostics.tsc.with({
