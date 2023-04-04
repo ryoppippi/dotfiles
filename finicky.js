@@ -27,7 +27,7 @@ module.exports = {
       match: finicky.matchHostnames([
         "colab.research.google.com",
       ]),
-      browser: "Microsoft Edge Dev"
+      browser: "Microsoft Edge"
     },
 //     {
 //       match: finicky.matchHostnames([
@@ -42,7 +42,7 @@ module.exports = {
         "circleci.com",
         /.*\.circleci.com$/ 
       ]),
-      browser: "Microsoft Edge Dev"
+      browser: "Microsoft Edge"
     },
 //     {
 //       match: finicky.matchHostnames([
@@ -56,7 +56,7 @@ module.exports = {
         "google.com",
         /.*\.google.com$/ 
       ]),
-      browser: "Microsoft Edge Dev"
+      browser: "Microsoft Edge"
     },
   ]
 };
