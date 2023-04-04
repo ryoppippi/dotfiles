@@ -69,6 +69,7 @@ return {
 
     require("neoconf")
 
+
     mason_lspconfig.setup_handlers({
       function(server_name)
         local opts = {
@@ -87,10 +88,6 @@ return {
           }
         elseif "angularls" == server_name then
           opts.root_dir = lsp_util.root_pattern("angular.json")
-        elseif "tailwindcss" == server_name then
-          goto continue
-        elseif "svelte" == server_name then
-          goto continue
         elseif "eslint" == server_name then
           opts.extra_filetypes = { "svelte" }
           opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
@@ -125,7 +122,7 @@ return {
           opts.before_init = function(_, config)
             config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
                 and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-              or utils.find_cmd("python3", ".venv/bin", config.root_dir)
+                or utils.find_cmd("python3", ".venv/bin", config.root_dir)
           end
           opts.settings = {
             disableOrganizeImports = true,

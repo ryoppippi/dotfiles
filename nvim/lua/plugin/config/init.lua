@@ -1,6 +1,8 @@
+local on_attach = require("core.plugin").on_attach
 local plugin_list = {
   -- Plugin management {{
   { "dstein64/vim-startuptime", cmd = "StartupTime" },
+  { "uga-rosa/utf8.nvim" },
   -- }}
 
   -- Essential libraries {{
@@ -19,6 +21,7 @@ local plugin_list = {
   { "yuki-yano/denops-lazy.nvim", opts = { wait_load = false } },
   {
     "lambdalisue/kensaku.vim",
+    event = { "User DenopsReady" },
     dependencies = { "vim-denops/denops.vim" },
     config = function()
       require("denops-lazy").load("kensaku.vim")
@@ -27,13 +30,13 @@ local plugin_list = {
   -- }}
 
   -- Other UI Components {{
-  { "mvllow/modes.nvim", event = "ModeChanged" },
+  { "mvllow/modes.nvim", event = "ModeChanged", config = true },
   {
     "petertriho/nvim-scrollbar",
     event = { "BufReadPre" },
     dependencies = { "kevinhwang91/nvim-hlslens" },
-    config = function()
-      require("scrollbar").setup()
+    config = function(_, opts)
+      require("scrollbar").setup(opts)
       require("scrollbar.handlers.gitsigns").setup()
     end,
   },
@@ -42,10 +45,11 @@ local plugin_list = {
 
   -- Moving Cursor {{
   { "unblevable/quick-scope", event = "VeryLazy" },
-  { "yutkat/wb-only-current-line.nvim", event = "VeryLazy" },
-  { "deton/jasegment.vim", event = "VeryLazy" }, -- Japanese word moving
+  -- { "yutkat/wb-only-current-line.nvim", event = "VeryLazy" },
+  -- { "deton/jasegment.vim", event = "VeryLazy" }, -- Japanese word moving
   {
     "yuki-yano/fuzzy-motion.vim",
+    cmd = { "FuzzyMotion" },
     keys = {
       { "<CR>", "<CMD>FuzzyMotion<CR>", mode = { "n", "v", "x" } },
     },
@@ -119,35 +123,13 @@ local plugin_list = {
   {
     "machakann/vim-sandwich",
     event = "VeryLazy",
-    enabled = true,
-    init = function()
-      -- vim.api.nvim_create_autocmd("User", {
-      --   pattern = {
-      --     "OperatorSandwichAddPre",
-      --     "OperatorSandwichDeletePre",
-      --     "OperatorSandwichReplacePre",
-      --   },
-      --   callback = function()
-      --     pcall(vim.cmd, "NoiceDisable")
-      --   end,
-      -- })
-      -- vim.api.nvim_create_autocmd("User", {
-      --   pattern = {
-      --     "OperatorSandwichAddPost",
-      --     "OperatorSandwichDeletePost",
-      --     "OperatorSandwichReplacePost",
-      --   },
-      --   callback = function()
-      --     pcall(vim.cmd, "NoiceEnable")
-      --   end,
-      -- })
-    end,
+    enabled = false,
   },
   {
     "echasnovski/mini.surround",
     version = "*",
     event = "VeryLazy",
-    enabled = false,
+    enabled = true,
     opts = {
       mappings = {
         add = "sa", -- Add surrounding in Normal and Visual modes
@@ -157,7 +139,6 @@ local plugin_list = {
         highlight = "", -- Highlight surrounding
         replace = "sr", -- Replace surrounding
         update_n_lines = "sn", -- Update `n_lines`
-
         suffix_last = "l", -- Suffix to search with "prev" method
         suffix_next = "n", -- Suffix to search with "next" method
       },
@@ -181,7 +162,7 @@ local plugin_list = {
 
   -- yank and paste
   { "Rasukarusan/nvim-block-paste", event = "VeryLazy" },
-  { "yuki-yano/deindent-yank.vim", event = "VeryLazy" },
+  -- { "yuki-yano/deindent-yank.vim", event = "VeryLazy" },
   -- { "AckslD/nvim-anywise-reg.lua" },
 
   -- Select
@@ -243,6 +224,7 @@ local plugin_list = {
     "lambdalisue/guise.vim",
     dependencies = { "vim-denops/denops.vim" },
     event = { "User DenopsReady" },
+    enabled = false,
     config = function()
       require("denops-lazy").load("guise.vim")
       vim.cmd([[
@@ -252,6 +234,12 @@ local plugin_list = {
         endif
       ]])
     end,
+  },
+  {
+    "willothy/flatten.nvim",
+    config = true,
+    lazy = false,
+    priority = 1001,
   },
   {
     "lambdalisue/askpass.vim",
@@ -291,6 +279,14 @@ local plugin_list = {
   -- Github
   { "pwntester/octo.nvim", cmd = "Octo" },
   -- { "skanehira/denops-gh.vim" },
+
+  {
+    "wintermute-cell/gitignore.nvim",
+    cmd = { "Gitignore" },
+    requires = {
+      "nvim-telescope/telescope.nvim",
+    },
+  },
 
   -- }}
 
@@ -339,10 +335,24 @@ local plugin_list = {
 
   -- Languages
   -- Nvim-LSP {{
-  { "lukas-reineke/lsp-format.nvim", config = true },
+  {
+    "lukas-reineke/lsp-format.nvim",
+    opts = { sync = true },
+    enabled = true,
+    init = function()
+      on_attach(function(client, bufnr)
+        if client.server_capabilities.documentFormattingProvider then
+          require("lsp-format").on_attach(client)
+          vim.cmd([[
+                cabbrev wq execute "Format sync" <bar> wq
+                cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q
+              ]])
+        end
+      end)
+    end,
+  },
   { "folke/lsp-colors.nvim", event = "LspAttach", config = true },
   -- UI
-  { "mrshmllow/document-color.nvim", event = "LspAttach" },
   { "kosayoda/nvim-lightbulb", event = "LspAttach" },
   { "zbirenbaum/neodim", event = "LspAttach", config = true },
   -- { "hrsh7th/nvim-gtd" },
@@ -353,6 +363,9 @@ local plugin_list = {
     "RRethy/vim-illuminate",
     init = function()
       vim.g.Illuminate_delay = 500
+      on_attach(function(client, bufnr)
+        require("illuminate").on_attach(client)
+      end)
     end,
   },
   -- }}

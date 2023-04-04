@@ -5,7 +5,8 @@ end
 return {
   "hrsh7th/vim-searchx",
   event = "VeryLazy",
-  dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis" },
+  enabled = true,
+  dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/kensaku.vim" },
   keys = function()
     return {
       {
@@ -83,7 +84,9 @@ return {
       if a:input !~# '\k'
         return '\V' .. a:input
       endif
-      return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
+      " return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
+      return kensaku#query(a:input)
+      " return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
     endfunction
   ]])
 

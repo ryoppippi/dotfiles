@@ -3,7 +3,7 @@ return {
   keys = { "<leader>L" },
   opts = {
     keymap = "<leader>L",
-    mode = "workdir", -- options: workdir | absolute
+    mode = "absolute", -- options: workdir | absolute
     add_line = true,
     add_column = false,
   },

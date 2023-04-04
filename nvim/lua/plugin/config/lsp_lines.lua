@@ -8,9 +8,6 @@ return {
       "<Leader>l",
       function()
         local state = require("lsp_lines").toggle()
-        vim.diagnostic.config({
-          virtual_text = not state,
-        })
       end,
       mode = { "n", "v" },
       desc = "Toggle lsp_lines",
@@ -18,8 +15,6 @@ return {
   },
   config = function(_, opts)
     require("lsp_lines").setup(opts)
-    vim.diagnostic.config({
-      virtual_text = false,
-    })
+    -- vim.diagnostic.config({ virtual_text = false })
   end,
 }

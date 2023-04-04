@@ -32,9 +32,10 @@ export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 export SCRIPTS_PATH="$HOME/.scripts"
 export SCRIPTS_BIN_PATH="$HOME/.scripts/bin"
 export ZIG_PATH="$HOME/zig"
+export CODONBIN="$HOME/.codon/bin"
 
 PATH=${HOMEBREW_ARM_BIN}:${HOMEBREW_X86_64_BIN}:${LOCALBIN}:/usr/bin:/bin:/opt/local/sbin:${PATH}
-PATH=${SCRIPTS_PATH}:${AQUA_BIN_PATH}:${VOLTA_BIN}:${ZIG_PATH}:${BUNBIN}:${NODEBREWBIN}:${GOBIN}:${GOPATH}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${CARGOBIN}:${NIMBLEBIN}:${GNUBIN}:${PATH}:${XCODEBIN}
+PATH=${SCRIPTS_PATH}:${AQUA_BIN_PATH}:${VOLTA_BIN}:${ZIG_PATH}:${BUNBIN}:${NODEBREWBIN}:${CODONBIN}:${GOBIN}:${GOPATH}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${CARGOBIN}:${NIMBLEBIN}:${GNUBIN}:${PATH}:${XCODEBIN}
 
 # aqua
 export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
@@ -56,10 +57,6 @@ export CCACHE_DIR="$HOME/.ccache"
 export PIP_REQUIRE_VIRTUALENV=true
 export BETTER_EXCEPTIONS=1
 
-# pipenv
-#eval "$(pipenv --completion)"
-export PIPENV_VENV_IN_PROJECT=true
-
 # brew
 export BREW_PREFIX=$(brew --prefix)
 export HOMEBREW_BREWFILE="$HOME/.mackup/.brewfile"
@@ -73,6 +70,7 @@ eval "$(zoxide init bash)"
 
 # direnv
 eval "$(direnv hook bash)"
+
 . "$HOME/.cargo/env"
 
 # bat
@@ -88,6 +86,9 @@ fi
 if command -v nvim &> /dev/null; then
     export MANPAGER="nvim -c ASMANPAGER -"
 fi
+
+# eval "$(github-copilot-cli alias -- "$0")"
+
 
 if [[ -t 0 ]]; then
   stty stop undef

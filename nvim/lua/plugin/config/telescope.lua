@@ -6,6 +6,7 @@ end
 
 return {
   "nvim-telescope/telescope.nvim",
+  enabled = true,
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim", config = le("ui-select") },
@@ -29,8 +30,8 @@ return {
     require("which-key").register({
       [","] = {
         name = "+Telescope",
-        ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
-        -- ["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
+        -- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
+        ["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
         ["f"] = {
           [[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
           "Find File",

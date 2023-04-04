@@ -1,19 +1,17 @@
-local M = {
+local event = { "ColorScheme", "BufReadPost" }
+return {
   "uga-rosa/ccc.nvim",
-  event = { "VeryLazy" },
   cond = vim.o.termguicolors,
+  event = event,
+  config = function()
+    require("ccc").setup({})
+    vim.api.nvim_create_autocmd(event, {
+      pattern = "*",
+      callback = function()
+        require("ccc").setup({})
+        vim.cmd([[CccHighlighterDisable]])
+        vim.cmd([[CccHighlighterEnable]])
+      end,
+    })
+  end,
 }
-
-M.enable_ccc = function()
-  require("ccc").setup({})
-  vim.cmd([[CccHighlighterDisable]])
-  vim.cmd([[CccHighlighterEnable]])
-end
-M.config = function()
-  vim.api.nvim_create_autocmd({ "ColorScheme", "BufReadPost" }, {
-    pattern = "*",
-    callback = M.enable_ccc,
-  })
-end
-
-return M

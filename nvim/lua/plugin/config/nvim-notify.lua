@@ -1,6 +1,7 @@
 return {
   "rcarriga/nvim-notify",
-  enabled = false,
+  enabled = true,
+  lazy = false,
   config = function()
     require("notify").setup({
       -- Icons for the different levels
