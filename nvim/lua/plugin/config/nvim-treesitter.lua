@@ -47,7 +47,7 @@ return {
         enable = true,
       },
       endwise = {
-        enable = true,
+        enable = false,
       },
       textobjects = {
         select = {
@@ -60,10 +60,10 @@ return {
             ["if"] = "@function.inner",
             ["ai"] = "@conditional.outer",
             ["ii"] = "@conditional.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["aC"] = "@comment.outer",
-            ["iC"] = "@comment.inner",
+            ["aC"] = "@class.outer",
+            ["iC"] = "@class.inner",
+            ["ac"] = "@comment.outer",
+            ["ic"] = "@comment.inner",
             ["ab"] = "@block.outer",
             ["ib"] = "@block.inner",
             ["al"] = "@loop.outer",
@@ -73,7 +73,6 @@ return {
             -- ["iS"] = "@scopename.inner",
             -- ["aS"] = "@statement.outer",
             -- ["i"] = "@call.inner",
-            -- ["a"] = "@comment.outer",
             -- ["iF"] = "@frame.inner",
             -- ["oF"] = "@frame.outer",
           },
