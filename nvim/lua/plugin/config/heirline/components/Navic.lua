@@ -1,6 +1,7 @@
 return {
   provider = function()
-    return require("nvim-navic").get_location()
+    local location = require("nvim-navic").get_location()
+    return #location > 0 and " > " .. location
   end,
   condition = function()
     local is_navic_enabled = vim.b.navic_client_id ~= nil
