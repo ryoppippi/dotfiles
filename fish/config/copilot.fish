@@ -13,9 +13,11 @@ function github-copilot_helper
     end
 end
 
-function qf
+function qw
     set -l prev_cmd (history | head -n 1)
-    echo "Previous command: $prev_cmd"
+    set_color yellow
+    echo $prev_cmd
+    set_color normal
     github-copilot_helper what-the-shell "correct the following commands {$prev_cmd}"
 end
 
