@@ -57,7 +57,7 @@ return {
         -- "zls",
         "lua_ls",
         "gopls",
-        "sqls",
+        "sqlls",
         "jsonls",
         "yamlls",
       },
