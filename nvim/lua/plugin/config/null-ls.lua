@@ -44,23 +44,14 @@ return {
       formatting.deno_fmt.with({
         condition = with_root_file("deno.json", "deno.jsonc"),
       }),
+
       -- python
-      formatting.isort.with({
+      formatting.ruff.with({
         diagnostics_format = diagnostics_format,
         prefer_local = ".venv/bin",
-        extra_args = { "--profile", "black" },
+        -- extra_args = { "--fast", "-W", "6" },
       }),
-      -- diagnostics.flake8.with({
-      --   diagnostics_format = diagnostics_format,
-      --   prefer_local = ".venv/bin",
-      --   -- Ignore some errors that are always fixed by black
-      --   extra_args = { "--extend-ignore", "E1,E2,E3,F821,E731,R504,SIM106" },
-      -- }),
-      formatting.black.with({
-        diagnostics_format = diagnostics_format,
-        prefer_local = ".venv/bin",
-        extra_args = { "--fast", "-W", "6" },
-      }),
+
       diagnostics.mypy.with({
         diagnostics_format = diagnostics_format,
         prefer_local = ".venv/bin",
