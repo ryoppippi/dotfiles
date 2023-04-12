@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-notify",
-  enabled = true,
+  enabled = false,
   lazy = false,
   config = function()
     require("notify").setup({

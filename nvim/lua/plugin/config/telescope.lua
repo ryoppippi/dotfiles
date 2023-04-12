@@ -10,7 +10,11 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim", config = le("ui-select") },
-    { "nvim-telescope/telescope-frecency.nvim", dependencies = { "kkharji/sqlite.lua" }, config = le("frecency") },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      dependencies = { "kkharji/sqlite.lua" },
+      config = le("frecency"),
+    },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
     { "nvim-telescope/telescope-media-files.nvim", config = le("media_files") },
     { "nvim-telescope/telescope-symbols.nvim" },
@@ -23,9 +27,12 @@ return {
     { "benfowler/telescope-luasnip.nvim", dependencies = { "L3MON4D3/LuaSnip" } },
     { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
     { "tsakirist/telescope-lazy.nvim", config = le("lazy") },
-    { "Allianaab2m/telescope-kensaku.nvim", dependencies = { "lambdalisue/kensaku.vim" }, config = le("kensaku") },
+    {
+      "Allianaab2m/telescope-kensaku.nvim",
+      dependencies = { "lambdalisue/kensaku.vim" },
+      config = le("kensaku"),
+    },
   },
-
   init = function()
     require("which-key").register({
       [","] = {
@@ -59,9 +66,7 @@ return {
       },
     })
   end,
-
   cmd = { "Telescope" },
-
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
@@ -172,7 +177,11 @@ return {
       },
     })
 
-    le("noice")
-    le("projects")
+    for _, v in ipairs({ "notify", "noice" }) do
+      local status, _ = pcall(require, v)
+      if status then
+        telescope.load_extension(v)
+      end
+    end
   end,
 }

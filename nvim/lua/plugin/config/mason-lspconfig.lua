@@ -29,7 +29,6 @@ return {
       end
     end)
   end,
-
   config = function()
     require("mason")
     local mason_lspconfig = require("mason-lspconfig")
@@ -68,7 +67,6 @@ return {
     local on_attach = handler.on_attach
 
     require("neoconf")
-
 
     mason_lspconfig.setup_handlers({
       function(server_name)
@@ -122,7 +120,7 @@ return {
           opts.before_init = function(_, config)
             config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
                 and lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-                or utils.find_cmd("python3", ".venv/bin", config.root_dir)
+              or utils.find_cmd("python3", ".venv/bin", config.root_dir)
           end
           opts.settings = {
             disableOrganizeImports = true,
