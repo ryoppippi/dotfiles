@@ -12,7 +12,7 @@ return {
       statusline = require("plugin.config.heirline.statusline"),
       winbar = require("plugin.config.heirline.winbar"),
       tabline = require("plugin.config.heirline.tabline"),
-      -- statuscolumn = StatusColumn,
+      -- statuscolumn = require("plugin.config.heirline.statuscolumn"),
       opts = {
         colors = require("kanagawa.colors").setup(),
       },
