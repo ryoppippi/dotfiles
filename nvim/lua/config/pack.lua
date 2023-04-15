@@ -9,7 +9,7 @@ end
 vim.g.enabled_snippet = "luasnip"
 
 -- load plugins
-lazy.setup("plugin.config", {
+lazy.setup("plugin", {
   defaults = { lazy = true },
   install = { missing = true, colorscheme = { "kanagawa" } },
   checker = { enabled = false },
