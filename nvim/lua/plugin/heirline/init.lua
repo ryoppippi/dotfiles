@@ -24,6 +24,7 @@ return {
               "prompt",
               "help",
               "quickfix",
+              "terminal",
             },
             filetype = {
               "toggleterm",
