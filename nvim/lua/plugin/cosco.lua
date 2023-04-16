@@ -1,5 +1,6 @@
 return {
   "lfilho/cosco.vim",
+  enabled = false,
   dependencies = {
     "tpope/vim-repeat",
   },
