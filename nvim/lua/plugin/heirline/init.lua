@@ -8,6 +8,8 @@ return {
     require("heirline").setup(opts)
   end,
   opts = function()
+    local conditions = require("heirline.conditions")
+
     return {
       statusline = require("plugin.heirline.statusline"),
       winbar = require("plugin.heirline.winbar"),
@@ -15,6 +17,23 @@ return {
       -- statuscolumn = require("plugin.heirline.statuscolumn"),
       opts = {
         colors = require("kanagawa.colors").setup(),
+        disable_winbar_cb = function(args)
+          return conditions.buffer_matches({
+            buftype = {
+              "nofile",
+              "prompt",
+              "help",
+              "quickfix",
+            },
+            filetype = {
+              "toggleterm",
+              "Trouble",
+              "noice",
+              "alpha",
+              "lir",
+            },
+          }, args.buf)
+        end,
       },
     }
   end,
