@@ -70,7 +70,6 @@ return {
 
     local handler = require("plugin.lsp.handler")
     local capabilities = handler.capabilities
-    local on_attach = handler.on_attach
 
     require("neoconf")
 
@@ -78,7 +77,6 @@ return {
       function(server_name)
         local opts = {
           capabilities = capabilities,
-          on_attach = on_attach,
         }
 
         if "emmet_ls" == server_name then
@@ -100,9 +98,9 @@ return {
           }
         elseif "tsserver" == server_name then
           opts.root_dir = lsp_util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
-          local ts = require("typescript")
-          ts.setup({
+          require("typescript").setup({
             server = opts,
+            debug = false,
             disable_commands = false,
           })
           goto continue
@@ -133,7 +131,7 @@ return {
           }
         elseif "rust_analyzer" == server_name then
           local rust_tools = require("rust-tools")
-          rust_tools.setup({ server = opts, on_initialized = on_attach })
+          rust_tools.setup({ server = opts })
           goto continue
         elseif "lua_ls" == server_name then
           opts.flags = {
@@ -187,7 +185,6 @@ return {
 
     lspconfig.zls.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
       cmd = { os.getenv("HOME") .. "/zls/zig-out/bin/zls" },
     })
   end,
