@@ -1,6 +1,9 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
   event = { "BufReadPost" },
+  dependencies = {
+    "jay-babu/mason-null-ls.nvim",
+  },
   config = function()
     local null_ls = require("null-ls")
     local diagnostics_format = "[#{c}] #{m} (#{s})"
@@ -76,9 +79,7 @@ return {
     }
 
     local capabilities = require("plugin.lsp.handler").capabilities
-    local on_attach = require("plugin.lsp.handler").on_attach
     null_ls.setup({
-      on_attach = on_attach,
       capabilities = capabilities,
       sources = sources,
     })

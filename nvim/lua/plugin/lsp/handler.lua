@@ -11,10 +11,6 @@ local gen_capabilities = function()
   return capabilities
 end
 
-M.on_attach = function(client, bufnr)
-  --
-end
-
 M.capabilities = gen_capabilities()
 
 return M
