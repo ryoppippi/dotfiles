@@ -1,4 +1,7 @@
 return {
-  "hotwatermorning/auto-git-diff",
-  event = "VeryLazy",
+  "yutkat/git-rebase-auto-diff.nvim",
+  ft = { "gitrebase" },
+  config = function()
+    require("git-rebase-auto-diff").setup()
+  end,
 }
