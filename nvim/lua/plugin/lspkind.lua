@@ -5,7 +5,6 @@ return {
   end,
   opts = {
     preset = "codicons",
-
     -- override preset symbols
     --
     -- default: {}

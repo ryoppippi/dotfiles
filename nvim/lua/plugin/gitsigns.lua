@@ -1,6 +1,9 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPost",
+  dependencies = {
+    "tpope/vim-repeat",
+  },
   config = function()
     require("gitsigns").setup({
       signs = {
