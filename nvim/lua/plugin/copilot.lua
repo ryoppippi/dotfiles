@@ -2,7 +2,7 @@ return {
   {
     "github/copilot.vim",
     event = { "InsertEnter" },
-    enabled = true,
+    enabled = false,
     dependencies = { "tani/vim-artemis" },
     init = function()
       vim.g.copilot_no_tab_map = true
@@ -46,7 +46,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = { "Copilot" },
     event = { "InsertEnter", "CursorHold", "FocusLost" },
     config = function()

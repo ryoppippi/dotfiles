@@ -7,7 +7,7 @@ return {
     {
       "<Leader>l",
       function()
-        local state = require("lsp_lines").toggle()
+        require("lsp_lines").toggle()
       end,
       mode = { "n", "v" },
       desc = "Toggle lsp_lines",
