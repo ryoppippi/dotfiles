@@ -3,5 +3,5 @@
 	"credsStore": "desktop",
 	"experimental": "enabled",
 	"stackOrchestrator": "swarm",
-	"currentContext": "desktop-linux"
+	"currentContext": "orbstack"
 }
