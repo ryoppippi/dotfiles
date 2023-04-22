@@ -40,6 +40,7 @@
   sma = submodule add
   sms = submodule foreach \"git status\"	
   sw = switch
+  swc = switch -c
   fsw =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
