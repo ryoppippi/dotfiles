@@ -34,7 +34,7 @@ packages:
   - name: sharkdp/hyperfine@v1.15.0
   - name: Peltoche/lsd@0.23.1
   - name: docker/compose@v2.15.1
-  - name: sheepla/pingu@v0.0.4-alpha
+  - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.1
   - name: antonmedv/fx@24.0.0
   - name: rhysd/actionlint@v1.6.23
