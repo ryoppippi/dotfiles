@@ -6,5 +6,6 @@
   "lazygit": "~/.config/lazygit",
   "tig": "~/.config/tig",
   "git": "~/.config/git",
-  "ideavimrc": "~/.ideavimrc"
+  "ideavimrc": "~/.ideavimrc",
+  "gup": "~/.config/gup"
 }
