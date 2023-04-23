@@ -55,3 +55,5 @@ packages:
 - name: dandavison/delta@0.15.1
 - name: rhysd/dotfiles@v0.2.2
 - name: Aloxaf/silicon@v0.5.1
+- name: denoland/deno@v1.32.5
+- name: oven-sh/bun@bun-v0.5.9
