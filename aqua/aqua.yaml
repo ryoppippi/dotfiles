@@ -33,7 +33,7 @@ packages:
   - name: jesseduffield/lazydocker@v0.20.0
   - name: sharkdp/hyperfine@v1.15.0
   - name: Peltoche/lsd@0.23.1
-  - name: docker/compose@v2.15.1
+  - name: docker/compose@v2.17.3
   - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.1
   - name: antonmedv/fx@24.1.0
