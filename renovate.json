@@ -1,8 +1,18 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "github>aquaproj/aqua-renovate-config#1.5.2"],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  }
+  "extends": [
+    "github>aquaproj/aqua-renovate-config#1.5.2"
+  ],
+  "labels": ["dependencies"],
+  "reviewers": ["ponkio-o"],
+  "platformAutomerge": true,
+  "dependencyDashboard": true,
+  "patch": {
+      "automerge": true
+  },
+  "packageRules": [
+    {
+      "matchPackageNames":["aquaproj/aqua-registry"],
+      "automerge": true
+    }
+  ]
 }
