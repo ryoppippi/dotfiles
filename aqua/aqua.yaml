@@ -51,7 +51,7 @@ packages:
   - name: gohugoio/hugo@v0.110.0
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
-  - name: projectdiscovery/httpx@v1.2.6
+  - name: projectdiscovery/httpx@v1.2.9
   - name: dandavison/delta@0.15.1
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
