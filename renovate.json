@@ -1,4 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "github>aquaproj/aqua-renovate-config#1.5.2"]
+  "extends": ["config:base", "github>aquaproj/aqua-renovate-config#1.5.2"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  }
 }
