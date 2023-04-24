@@ -36,7 +36,7 @@ packages:
   - name: docker/compose@v2.15.1
   - name: sheepla/pingu@v0.0.4-alpha
   - name: rhysd/vim-startuptime@v1.3.1
-  - name: antonmedv/fx@24.0.0
+  - name: antonmedv/fx@24.1.0
   - name: rhysd/actionlint@v1.6.23
   - name: git-lfs/git-lfs@v3.3.0
   - name: starship/starship@v1.12.0
