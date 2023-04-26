@@ -41,6 +41,7 @@ abbr -a sed gsed
 abbr -a b brew
 abbr -a t tmux
 abbr -a tt tmuximum
+abbr -a wt wezterm
 abbr -a bri 'brew install'
 abbr -a clr clear
 abbr -a rr 'rm -r'
