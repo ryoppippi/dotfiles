@@ -43,7 +43,7 @@ packages:
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v0.8.5
-  - name: cloudflare/cloudflared@2023.4.1
+  - name: cloudflare/cloudflared@2023.4.2
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.10.0
   - name: direnv/direnv@v2.32.2
