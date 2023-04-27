@@ -2,7 +2,7 @@ local has_cmp = function()
   return require("core.plugin").has("nvim-cmp")
 end
 
-local event = { "InsertEnter", "CursorHold", "FocusLost" }
+local event = { "InsertEnter" }
 
 return {
   {
@@ -11,12 +11,13 @@ return {
     dependencies = {
       "tani/vim-artemis",
       {
-        "ryoppippi/cmp-copilot",
-        -- "hrsh7th/cmp-copilot",
+        -- "ryoppippi/cmp-copilot",
+        -- branch = "dev/add-copilot-loaded-detecter",
+        "hrsh7th/cmp-copilot",
         cond = has_cmp,
-        branch = "dev/add-copilot-loaded-detecter",
       },
     },
+    cmd = { "Copilot" },
     event = event,
     keys = function()
       return {
@@ -61,7 +62,7 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = { "Copilot" },
     dependencies = {
       {
