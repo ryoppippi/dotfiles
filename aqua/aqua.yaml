@@ -9,41 +9,41 @@
 #   - all
 registries:
   - type: standard
-    ref: v3.158.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v3.159.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: cli/cli@v2.27.0
+  - name: cli/cli@v2.28.0
   - name: golang/go@go1.20.3
   - name: volta-cli/volta@v1.1.1
-  - name: junegunn/fzf@0.37.0
+  - name: junegunn/fzf@0.39.0
   - name: denisidoro/navi@v2.22.1
   - name: nektos/act@v0.2.44
   - name: b4b4r07/gist@v1.2.6
   - name: denoland/deno@v1.32.5
   - name: jesseduffield/lazygit@v0.37.0
   - name: BurntSushi/ripgrep@13.0.0
-  - name: sharkdp/fd@v8.6.0
+  - name: sharkdp/fd@v8.7.0
   - name: ogham/exa@v0.10.1
   - name: aquaproj/registry-tool@v0.1.10
-  - name: marp-team/marp-cli@v2.3.0
+  - name: marp-team/marp-cli@v2.5.0
   - name: tcnksm/ghr@v0.16.0
-  - name: x-motemen/ghq@v1.3.0
+  - name: x-motemen/ghq@v1.4.2
   - name: ajeetdsouza/zoxide@v0.9.0
-  - name: sharkdp/bat@v0.22.1
+  - name: sharkdp/bat@v0.23.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazydocker@v0.20.0
-  - name: sharkdp/hyperfine@v1.15.0
+  - name: sharkdp/hyperfine@v1.16.1
   - name: Peltoche/lsd@0.23.1
   - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.1
   - name: antonmedv/fx@24.1.0
   - name: rhysd/actionlint@v1.6.24
   - name: git-lfs/git-lfs@v3.3.0
-  - name: starship/starship@v1.12.0
-  - name: tinygo-org/tinygo@v0.26.0
+  - name: starship/starship@v1.14.2
+  - name: tinygo-org/tinygo@v0.27.0
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v0.8.5
-  - name: cloudflare/cloudflared@2023.4.1
+  - name: cloudflare/cloudflared@2023.4.2
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.10.0
   - name: direnv/direnv@v2.32.2
