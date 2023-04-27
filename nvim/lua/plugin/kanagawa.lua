@@ -16,6 +16,7 @@ return {
           TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
           TelescopePreviewNormal = { bg = theme.ui.bg_dim },
           TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+
           TSRainbowRed = { fg = palette.lotusRed },
           TSRainbowYellow = { fg = palette.lotusYellow },
           TSRainbowBlue = { fg = palette.lotusBlue2 },
@@ -31,8 +32,9 @@ return {
     }
   end,
   config = function(_, opts)
-    require("kanagawa").setup(opts)
-    require("kanagawa").load(DEFUALT_THEME)
+    local k = require("kanagawa")
+    k.setup(opts)
+    k.load(DEFUALT_THEME)
     vim.cmd([[silent KanagawaCompile]])
   end,
 }

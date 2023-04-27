@@ -1,10 +1,11 @@
 local function hl_start()
-  require("hlslens").start()
+  if require("core.plugin").has("nvim-hlslens") then
+    require("hlslens").start()
+  end
 end
 
 return {
   "hrsh7th/vim-searchx",
-  event = "VeryLazy",
   enabled = true,
   dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/kensaku.vim" },
   keys = function()

@@ -1,6 +1,18 @@
+local has = require("core.plugin").has
+
 return {
   "akinsho/toggleterm.nvim",
   event = "VeryLazy",
+  enabled = false,
+  dependencies = {
+    {
+      "tknightz/telescope-termfinder.nvim",
+      config = function()
+        require("telescope").load_extension("termfinder")
+      end,
+      cond = has("telescope.nvim"),
+    },
+  },
   config = function()
     local create_cli = function(cmd)
       local Terminal = require("toggleterm.terminal").Terminal
@@ -66,6 +78,7 @@ return {
     vim.g.toglleterm_win_num = vim.fn.winnr()
     local groupname = "vimrc_toggleterm"
     vim.api.nvim_create_augroup(groupname, { clear = true })
+    --[[   ]]
     vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter", "BufEnter" }, {
       group = groupname,
       pattern = "term://*/zsh;#toggleterm#*",

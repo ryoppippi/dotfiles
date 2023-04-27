@@ -4,6 +4,6 @@ return {
     "nvim-lua/plenary.nvim",
     "m00qek/baleia.nvim",
   },
+  enabled = false,
   event = { "VeryLazy" },
-  opts = {},
 }
