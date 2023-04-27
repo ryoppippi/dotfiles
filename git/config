@@ -61,6 +61,8 @@
   sha = "!f() { git rev-parse "${1-HEAD}"; }; f"
   root = rev-parse --show-toplevel
   cza = cz -a
+  la = log --oneline --decorate --graph --branches --tags --remotes --all
+	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
 
 [credential]
