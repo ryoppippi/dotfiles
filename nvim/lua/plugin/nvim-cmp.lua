@@ -1,12 +1,9 @@
 return {
   "hrsh7th/nvim-cmp",
-  name = "cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     { "tani/vim-artemis" },
     { "onsails/lspkind.nvim" },
-    { "hrsh7th/cmp-nvim-lsp", dependencies = { "neovim/nvim-lspconfig" } },
-    { "hrsh7th/cmp-nvim-lsp-document-symbol", dependencies = { "neovim/nvim-lspconfig" } },
     { "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
@@ -15,46 +12,22 @@ return {
     { "hrsh7th/cmp-emoji" },
     { "lukas-reineke/cmp-rg" },
     { "lukas-reineke/cmp-under-comparator" },
-    { "hrsh7th/cmp-nvim-lua" },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
       enabled = true,
-      config = function()
-        require("tailwindcss-colorizer-cmp").setup({
-          color_square_width = 2,
-        })
-      end,
+      opts = { color_square_width = 2 },
+      config = true,
     },
     { "f3fora/cmp-spell" },
     { "yutkat/cmp-mocword" },
-    { "hrsh7th/cmp-vsnip", cond = vim.g.enabled_snippet == "vsnip" },
-    { "saadparwaiz1/cmp_luasnip", cond = vim.g.enabled_snippet == "luasnip" },
-    {
-      "ryoppippi/cmp-copilot",
-      cond = function()
-        return require("core.plugin").has("copilot.vim")
-      end,
-      branch = "dev/add-copilot-loaded-detecter",
-      dependencies = { "github/copilot.vim" },
-    },
-    {
-      "zbirenbaum/copilot-cmp",
-      cond = function()
-        return require("core.plugin").has("copilot.lua")
-      end,
-      config = true,
-    },
+    { "saadparwaiz1/cmp_luasnip" },
     { "petertriho/cmp-git", name = "cmp_git", config = true },
-    -- { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = { "neovim/nvim-lspconfig" } },
     -- { "hrsh7th/cmp-omni" },
-    -- { "hrsh7th/cmp-copilot", dependencies = { "github/copilot.vim" } },
     -- { "uga-rosa/cmp-dictionary" },
     -- { "tzachar/cmp-tabnine", build = "./install.sh" },
     -- { "octaltree/cmp-look" },
   },
   config = function()
-    local snippet_library = vim.g.enabled_snippet
-
     vim.o.completeopt = "menuone,noinsert,noselect"
 
     -- Setup dependencies
@@ -69,36 +42,18 @@ return {
     end
 
     local snippet_jumpable = function(dir)
-      if snippet_library == "vsnip" then
-        return tb(vim.fn["vsnip#jumpable"](dir))
-      elseif snippet_library == "luasnip" then
-        return tb(luasnip.jumpable(dir))
-      end
-      return false
+      return tb(luasnip.jumpable(dir))
     end
 
     local snippet_jump = function(dir)
-      if snippet_library == "vsnip" then
-        if dir == 1 then
-          vim.fn.feedkeys(t("<Plug>(vsnip-jump-next)"), "")
-        elseif dir == -1 then
-          vim.fn.feedkeys(t("<Plug>(vsnip-jump-prev)"), "")
-        end
-      elseif snippet_library == "luasnip" then
-        luasnip.jump(dir)
-      end
+      luasnip.jump(dir)
     end
 
     local setup_opt = {
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-          print(snippet_library)
-          if snippet_library == "vsnip" then
-            vim.fn["vsnip#anonymous"](args.body)
-          elseif snippet_library == "luasnip" then
-            luasnip.lsp_expand(args.body)
-          end
+          luasnip.lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
@@ -182,7 +137,6 @@ return {
       sources = cmp.config.sources({
         { name = "copilot" },
         -- { name = "rg" },
-        { name = "vsnip" },
         { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "path" },
@@ -218,7 +172,6 @@ return {
           path = "[Path]",
           nvim_lua = "[Lua]",
           ultisnips = "[UltiSnips]",
-          vsnip = "[vSnip]",
           luasnip = "[LuaSnip]",
           treesitter = "[TS]",
           spell = "[Spell]",
@@ -248,7 +201,6 @@ return {
         { name = "git" },
         { name = "copilot" },
         -- { name = "rg" },
-        { name = "vsnip" },
         { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "path" },

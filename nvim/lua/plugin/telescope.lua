@@ -7,8 +7,9 @@ end
 return {
   "nvim-telescope/telescope.nvim",
   enabled = true,
+  cmd = { "Telescope" },
   dependencies = {
-    { "nvim-lua/plenary.nvim" },
+    "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-ui-select.nvim", config = le("ui-select") },
     {
       "nvim-telescope/telescope-frecency.nvim",
@@ -16,16 +17,22 @@ return {
       config = le("frecency"),
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
-    { "nvim-telescope/telescope-media-files.nvim", config = le("media_files") },
+    {
+      "nvim-telescope/telescope-media-files.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-lua/popup.nvim",
+      },
+      enabled = false,
+      config = le("media_files"),
+    },
     { "nvim-telescope/telescope-symbols.nvim" },
     { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
     { "nvim-telescope/telescope-github.nvim", config = le("gh") },
+    { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
     { "LinArcX/telescope-env.nvim", config = le("env") },
     { "crispgm/telescope-heading.nvim", config = le("heading") },
     { "LinArcX/telescope-changes.nvim", config = le("changes") },
-    { "tknightz/telescope-termfinder.nvim", config = le("termfinder") },
-    { "benfowler/telescope-luasnip.nvim", dependencies = { "L3MON4D3/LuaSnip" } },
-    { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
     { "tsakirist/telescope-lazy.nvim", config = le("lazy") },
     {
       "Allianaab2m/telescope-kensaku.nvim",
@@ -66,7 +73,6 @@ return {
       },
     })
   end,
-  cmd = { "Telescope" },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")

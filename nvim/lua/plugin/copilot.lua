@@ -1,15 +1,23 @@
+local has_cmp = function()
+  return require("core.plugin").has("nvim-cmp")
+end
+
+local event = { "InsertEnter", "CursorHold", "FocusLost" }
+
 return {
   {
     "github/copilot.vim",
-    event = { "InsertEnter" },
     enabled = true,
-    dependencies = { "tani/vim-artemis" },
-    init = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = ""
-      vim.g.copilot_filetypes = { ["*"] = true }
-    end,
+    dependencies = {
+      "tani/vim-artemis",
+      {
+        "ryoppippi/cmp-copilot",
+        -- "hrsh7th/cmp-copilot",
+        cond = has_cmp,
+        branch = "dev/add-copilot-loaded-detecter",
+      },
+    },
+    event = event,
     keys = function()
       return {
         {
@@ -43,12 +51,26 @@ return {
         },
       }
     end,
+    init = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.g.copilot_tab_fallback = ""
+      vim.g.copilot_filetypes = { ["*"] = true }
+    end,
   },
+
   {
     "zbirenbaum/copilot.lua",
     enabled = false,
     cmd = { "Copilot" },
-    event = { "InsertEnter", "CursorHold", "FocusLost" },
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        cond = has_cmp,
+        config = true,
+      },
+    },
+    event = event,
     config = function()
       vim.defer_fn(function()
         require("copilot").setup({

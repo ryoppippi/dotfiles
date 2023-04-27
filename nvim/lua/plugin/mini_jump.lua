@@ -1,7 +1,7 @@
 return {
   "echasnovski/mini.jump",
   branch = "stable",
-  event = "BufEnter",
+  event = "VeryLazy",
   opts = {
     mappings = {
       forward = "f",

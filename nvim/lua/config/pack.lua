@@ -5,9 +5,6 @@ if vim.env.NVIM_COLORSCHEME == nil then
   vim.env.NVIM_COLORSCHEME = "kanagawa"
 end
 
--- vim.g.enabled_snippet = "vsnip"
-vim.g.enabled_snippet = "luasnip"
-
 -- load plugins
 lazy.setup("plugin", {
   defaults = { lazy = true },

@@ -1,5 +1,5 @@
 return {
   "stevearc/stickybuf.nvim",
-  event = "VimEnter",
+  event = "VeryLazy",
   config = true,
 }
