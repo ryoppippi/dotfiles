@@ -109,7 +109,7 @@ return {
     -- setup(lspconfig.html, { extra_filetypes = html_like })
 
     -- js/ts
-    setup(lspconfig.tsserver, { extra_filetypes = html_like, root_dir = lspconfig.util.root_pattern(node_root_dir) })
+    -- setup(lspconfig.tsserver, { root_dir = lspconfig.util.root_pattern(node_root_dir) })
     -- setup(lspconfig.html, { extra_filetypes = html_like })
 
     setup(lspconfig.denols, {
