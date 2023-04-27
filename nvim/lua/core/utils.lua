@@ -24,7 +24,7 @@ M.merge_tables = function(t1, t2)
 end
 
 M.find_cmd = function(cmd, prefixes, start_from, stop_at)
-  local path = require("lspconfig/util").path
+  local path = require("lspconfig.util").path
 
   if type(prefixes) == "string" then
     prefixes = { prefixes }
