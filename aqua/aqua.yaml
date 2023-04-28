@@ -18,7 +18,7 @@ packages:
   - name: denisidoro/navi@v2.22.1
   - name: nektos/act@v0.2.44
   - name: b4b4r07/gist@v1.2.6
-  - name: denoland/deno@v1.32.5
+  - name: denoland/deno@v1.33.0
   - name: jesseduffield/lazygit@v0.37.0
   - name: BurntSushi/ripgrep@13.0.0
   - name: sharkdp/fd@v8.7.0
@@ -50,9 +50,9 @@ packages:
   - name: gohugoio/hugo@v0.111.3
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
-  - name: projectdiscovery/httpx@v1.2.9
+  - name: projectdiscovery/httpx@v1.3.0
   - name: dandavison/delta@0.15.1
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
-  - name: denoland/deno@v1.32.5
+  - name: denoland/deno@v1.33.0
   - name: oven-sh/bun@bun-v0.5.9
