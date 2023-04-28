@@ -1,7 +1,7 @@
 return {
   "petertriho/nvim-scrollbar",
   event = "VeryLazy",
-  enabled=false,
+  enabled = true,
   opts = function()
     return {
       show = true,
