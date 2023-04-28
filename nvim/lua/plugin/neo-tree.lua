@@ -20,11 +20,11 @@ return {
 
   init = function()
     -- hijack at lazy loading
-    if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
-      vim.cmd.cd(vim.fn.expand("%:p:h"))
-      vim.cmd.bd()
-      vim.cmd.NeoTreeShowInSplit()
-    end
+    -- if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
+    --   vim.cmd.cd(vim.fn.expand("%:p:h"))
+    --   vim.cmd.bd()
+    --   vim.cmd.NeoTreeShowInSplit()
+    -- end
   end,
   config = function(_, opts)
     vim.cmd([[
