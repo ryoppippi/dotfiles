@@ -77,7 +77,6 @@ return {
     local lspconfig = require("lspconfig")
 
     local html_like = opts.html_like
-    local node_root_dir = opts.node_root_dir
 
     local signs = { Error = "", Warn = "", Hint = "", Info = "" }
     for type, icon in pairs(signs) do
@@ -106,11 +105,6 @@ return {
 
     -- html/css
     setup(lspconfig.emmet_ls, { extra_filetypes = html_like })
-    -- setup(lspconfig.html, { extra_filetypes = html_like })
-
-    -- js/ts
-    -- setup(lspconfig.tsserver, { root_dir = lspconfig.util.root_pattern(node_root_dir) })
-    -- setup(lspconfig.html, { extra_filetypes = html_like })
 
     setup(lspconfig.denols, {
       single_file_support = false,
@@ -194,9 +188,7 @@ return {
     local zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
     local zls = lspconfig.zls
     setup(zls, {
-      cmd = tb(os.execute(zls_path .. " " .. "--version")) and { zls_path } or zls.document_config.default_config.cmd,
+      cmd = tb(vim.fn.executable(zls_path)) and { zls_path } or zls.document_config.default_config.cmd,
     })
-
-    vim.cmd([[ do User LspAttachBuffers ]])
   end,
 }
