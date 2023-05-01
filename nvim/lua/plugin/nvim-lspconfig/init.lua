@@ -29,10 +29,10 @@ return {
 
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-      local node_root_dir =
-        lspconfig.util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
-      local is_node_repo = node_root_dir(buf_name) ~= nil
-
+      -- local node_root_dir =
+      --   lspconfig.util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
+      -- local is_node_repo = node_root_dir(buf_name) ~= nil
+      --
       -- local node_servers = {"angularls", "vuels", "svelte", "astro", "tsserver", "eslint",}
       -- if vim.tbl_contains(node_servers, client.name) and not is_node_repo thentbl_
       --   vim.lsp.stop_client(client.id)
@@ -88,16 +88,14 @@ return {
       if extra_opts == nil then
         extra_opts = {}
       end
+
       local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts)
 
-      if local_opts.extra_filetypes then
-        local new_filetypes = local_opts.filetypes or client.document_config.default_config.filetypes or {}
-        for _, ft in ipairs(local_opts.extra_filetypes) do
-          table.insert(new_filetypes, ft)
-        end
-        local_opts.filetypes = new_filetypes
-        local_opts.extra_filetypes = nil
-      end
+      local_opts.filetypes = require("core.utils").merge_arrays(
+        local_opts.filetypes or client.document_config.default_config.filetypes or {},
+        local_opts.extra_filetypes or {}
+      )
+      local_opts.extra_filetypes = nil
 
       client.setup(local_opts)
       vim.cmd([[ do User LspAttachBuffers ]])

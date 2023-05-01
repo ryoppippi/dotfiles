@@ -23,6 +23,13 @@ M.merge_tables = function(t1, t2)
   return t1
 end
 
+M.merge_arrays = function(a1, a2)
+  for _, v in ipairs(a2) do
+    table.insert(a1, v)
+  end
+  return a1
+end
+
 M.find_cmd = function(cmd, prefixes, start_from, stop_at)
   local path = require("lspconfig.util").path
 

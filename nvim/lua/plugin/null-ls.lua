@@ -1,6 +1,6 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
-  event = { "BufReadPost" },
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "jay-babu/mason-null-ls.nvim",
   },
@@ -17,64 +17,50 @@ return {
       end
     end
 
-    -- local with_file = function(...)
-    --   local files = { ... }
-    --   return function(utils)
-    --     return utils.has_file(files)
-    --   end
-    -- end
+    opts = opts or {}
+    opts.sources = require("core.utils").merge_arrays(opts.sources or {}, {
+      -- web
+      formatting.prettierd.with({
+        extra_filetypes = { "svelte" },
+      }),
 
-    return vim.tbl_deep_extend("force", opts, {
-      sources = {
-        -- web
+      diagnostics.tsc.with({
+        diagnostics_format = diagnostics_format,
+        condition = with_root_file("deno.json", "deno.jsonc"),
+      }),
 
-        formatting.prettier.with({
-          extra_filetypes = { "svelte" },
-        }),
+      formatting.deno_fmt.with({
+        condition = with_root_file("deno.json", "deno.jsonc"),
+      }),
 
-        -- formatting.prettierd.with({
-        --   extra_filetypes = { "svelte" },
-        --   -- extra_args = { "--write" },
-        --   -- generator_opts = { to_stdin = false },
-        -- }),
+      -- python
+      formatting.ruff.with({
+        diagnostics_format = diagnostics_format,
+        prefer_local = ".venv/bin",
+        -- extra_args = { "--fast", "-W", "6" },
+      }),
 
-        diagnostics.tsc.with({
-          diagnostics_format = diagnostics_format,
-          condition = with_root_file("deno.json", "deno.jsonc"),
-        }),
+      diagnostics.mypy.with({
+        diagnostics_format = diagnostics_format,
+        prefer_local = ".venv/bin",
+      }),
 
-        formatting.deno_fmt.with({
-          condition = with_root_file("deno.json", "deno.jsonc"),
-        }),
+      -- Docker
+      diagnostics.hadolint.with({
+        diagnostics_format = diagnostics_format,
+      }),
+      -- format
+      -- lua
+      formatting.stylua.with({
+        diagnostics_format = diagnostics_format,
+        condition = with_root_file({ "stylua.toml", ".stylua.toml" }),
+      }),
 
-        -- python
-        formatting.ruff.with({
-          diagnostics_format = diagnostics_format,
-          prefer_local = ".venv/bin",
-          -- extra_args = { "--fast", "-W", "6" },
-        }),
-
-        diagnostics.mypy.with({
-          diagnostics_format = diagnostics_format,
-          prefer_local = ".venv/bin",
-        }),
-
-        -- Docker
-        diagnostics.hadolint.with({
-          diagnostics_format = diagnostics_format,
-        }),
-        -- format
-        -- lua
-        formatting.stylua.with({
-          diagnostics_format = diagnostics_format,
-          condition = with_root_file({ "stylua.toml", ".stylua.toml" }),
-        }),
-
-        -- others
-        diagnostics.fish,
-        formatting.fish_indent,
-        -- diagnostics.cspell,
-      },
+      -- others
+      diagnostics.fish,
+      formatting.fish_indent,
+      -- diagnostics.cspell,
     })
+    return opts
   end,
 }
