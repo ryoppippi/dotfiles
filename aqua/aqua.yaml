@@ -16,7 +16,7 @@ packages:
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.40.0
   - name: denisidoro/navi@v2.22.1
-  - name: nektos/act@v0.2.44
+  - name: nektos/act@v0.2.45
   - name: b4b4r07/gist@v1.2.6
   - name: denoland/deno@v1.33.1
   - name: jesseduffield/lazygit@v0.37.0
