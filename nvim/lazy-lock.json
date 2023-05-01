@@ -157,6 +157,7 @@
   "telescope-heading.nvim": { "branch": "main", "commit": "39e549c8dbe24bdf4545547ab9cebf2ab6597bc2" },
   "telescope-kensaku.nvim": { "branch": "main", "commit": "4080d0f3c98e614cbdb69993647296802fe96c1d" },
   "telescope-lazy.nvim": { "branch": "main", "commit": "62b325696f33e338a820abe623bebc92ebf1786b" },
+  "telescope-live-grep-args.nvim": { "branch": "master", "commit": "0f75ea809c46af8997c64f49c52e3c641d887885" },
   "telescope-luasnip.nvim": { "branch": "master", "commit": "849c4ee1951f34041a26744d2a88284545564ff0" },
   "telescope-symbols.nvim": { "branch": "master", "commit": "f2060117d965df4a626f068a4ebbd8ee051aa076" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "62ea5e58c7bbe191297b983a9e7e89420f581369" },
