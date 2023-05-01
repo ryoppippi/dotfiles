@@ -98,7 +98,6 @@ return {
       local_opts.extra_filetypes = nil
 
       client.setup(local_opts)
-      vim.cmd([[ do User LspAttachBuffers ]])
     end
 
     -- html/css
