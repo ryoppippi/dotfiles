@@ -17,6 +17,7 @@ return {
       config = le("frecency"),
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
+    { "nvim-telescope/telescope-live-grep-args.nvim", config = le("live_grep_args") },
     {
       "nvim-telescope/telescope-media-files.nvim",
       dependencies = {
