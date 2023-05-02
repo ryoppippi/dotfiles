@@ -1,6 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v2.x",
+  enabled = false,
   event = { "BufAdd", "TabEnter" },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -17,7 +18,6 @@ return {
     { "<leader>E", vim.cmd.NeoTreeShowInSplit, silent = true, desc = "Neotree show in split" },
     { "<leader>e", vim.cmd.NeoTreeFloatToggle, silent = true, desc = "Neotree float toggle" },
   },
-
   init = function()
     -- hijack at lazy loading
     -- if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
@@ -71,7 +71,8 @@ return {
         },
       },
       filesystem = {
-        filtered_items = { --These filters are applied to both browsing and searching
+        filtered_items = {
+          --These filters are applied to both browsing and searching
           hide_dotfiles = false,
           hide_gitignored = false,
         },
