@@ -24,6 +24,10 @@ M.merge_tables = function(t1, t2)
 end
 
 M.merge_arrays = function(a1, a2)
+  if type(a2) ~= "table" then
+    local a2 = { a2 }
+  end
+
   for _, v in ipairs(a2) do
     table.insert(a1, v)
   end

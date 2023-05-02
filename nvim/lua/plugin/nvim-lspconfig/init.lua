@@ -1,3 +1,4 @@
+local utils = require("core.utils")
 -- local root_path = "lua/plugin/lsp"
 local has_cmp = function()
   return require("core.plugin").has("nvim-cmp")
@@ -95,10 +96,8 @@ return {
 
       local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts or {})
 
-      local_opts.filetypes = require("core.utils").merge_arrays(
-        local_opts.filetypes or default_opts.filetypes or {},
-        local_opts.extra_filetypes or {}
-      )
+      local_opts.filetypes =
+        utils.merge_arrays(local_opts.filetypes or default_opts.filetypes or {}, local_opts.extra_filetypes or {})
       local_opts.extra_filetypes = nil
 
       client.setup(local_opts)
@@ -187,7 +186,7 @@ return {
       before_init = function(_, config)
         config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
             and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-          or require("core.utils").find_cmd("python3", ".venv/bin", config.root_dir)
+          or utils.find_cmd("python3", ".venv/bin", config.root_dir)
       end,
     })
 
