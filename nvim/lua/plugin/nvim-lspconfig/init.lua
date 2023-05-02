@@ -91,10 +91,12 @@ return {
 
     -- setup server function
     local function setup(client, extra_opts)
+      local default_opts = client.document_config.default_config
+
       local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts or {})
 
       local_opts.filetypes = require("core.utils").merge_arrays(
-        local_opts.filetypes or client.document_config.default_config.filetypes or {},
+        local_opts.filetypes or default_opts.filetypes or {},
         local_opts.extra_filetypes or {}
       )
       local_opts.extra_filetypes = nil
