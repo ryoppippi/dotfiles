@@ -56,3 +56,4 @@ packages:
   - name: Aloxaf/silicon@v0.5.1
   - name: denoland/deno@v1.33.1
   - name: oven-sh/bun@bun-v0.5.9
+  - name: wader/fq@v0.5.0
