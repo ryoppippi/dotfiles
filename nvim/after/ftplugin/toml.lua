@@ -1,4 +1,4 @@
-require("lazy").load({ plugins = { "cmp" } })
+require("lazy").load({ plugins = { "nvim-cmp" } })
 local cmp = require("cmp")
 local sources = cmp.get_config().sources
 for i = #sources, 1, -1 do
