@@ -68,10 +68,8 @@ return {
     }
 
     o.disable_formatting = function(client)
-      return function()
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-      end
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
     end
 
     return o
