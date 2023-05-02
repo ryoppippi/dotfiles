@@ -10,7 +10,6 @@ return {
   cmd = { "Telescope" },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-ui-select.nvim", config = le("ui-select") },
     {
       "nvim-telescope/telescope-frecency.nvim",
       dependencies = { "kkharji/sqlite.lua" },
@@ -175,11 +174,6 @@ return {
             open_in_live_grep = "<C-g>",
             open_plugins_picker = "<C-b>",
           },
-        },
-        ["ui-select"] = {
-          require("telescope.themes").get_cursor({
-            initial_mode = "normal",
-          }),
         },
       },
     })
