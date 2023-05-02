@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local utils = require("utils")
+local mux = wezterm.mux
 
 -- ---------------------------------------------------------------
 -- --- wezterm keymap
@@ -34,11 +35,9 @@ local keys = {
   { key = "&", mods = "LEADER|SHIFT", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
   { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
   { key = "Space", mods = "LEADER", action = "QuickSelect" },
-
-  { key = "n", mods = "SHIFT|CTRL", action = "ToggleFullScreen" },
+  { key = ";", mods = "LEADER", action = "ToggleFullScreen" },
   { key = "v", mods = "SHIFT|CTRL", action = "Paste" },
   { key = "c", mods = "SHIFT|CTRL", action = "Copy" },
-
   { key = "i", mods = "LEADER", action = wezterm.action({ EmitEvent = "trigger-ide" }) },
 }
 
@@ -113,7 +112,6 @@ local config = {
   colors = {
     tab_bar = {
       background = "#1b1f2f",
-
       active_tab = {
         bg_color = "#444b71",
         fg_color = "#c6c8d1",
@@ -122,7 +120,6 @@ local config = {
         italic = false,
         strikethrough = false,
       },
-
       inactive_tab = {
         bg_color = "#282d3e",
         fg_color = "#c6c8d1",
@@ -131,7 +128,6 @@ local config = {
         italic = false,
         strikethrough = false,
       },
-
       inactive_tab_hover = {
         bg_color = "#1b1f2f",
         fg_color = "#c6c8d1",
@@ -140,13 +136,11 @@ local config = {
         italic = true,
         strikethrough = false,
       },
-
       new_tab = {
         bg_color = "#1b1f2f",
         fg_color = "#c6c8d1",
         italic = false,
       },
-
       new_tab_hover = {
         bg_color = "#444b71",
         fg_color = "#c6c8d1",
@@ -164,7 +158,7 @@ local config = {
     top = 0,
     bottom = 0,
   },
-  window_background_opacity = 0.97,
+  window_background_opacity = 0.96,
   -- disable_default_key_bindings = true,
   use_ime = true,
   send_composed_key_when_left_alt_is_pressed = true,
@@ -174,7 +168,6 @@ local config = {
   -- keys = create_keybinds(),
   leader = { key = ";", mods = "CTRL" },
   enable_csi_u_key_encoding = true,
-
   unix_domains = {
     {
 
@@ -182,6 +175,11 @@ local config = {
     },
   },
 }
+
+wezterm.on("gui-startup", function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 -- config = utils.merge_tables(config, require("colors.kanagawa"))
 
 return utils.merge_tables(config, local_config)
