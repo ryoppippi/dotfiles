@@ -19,11 +19,6 @@ return {
       require("plugin.nvim-lspconfig.keymaps").on_attach(client, bufnr)
       require("plugin.nvim-lspconfig.diagnostic").on_attach(client, bufnr)
 
-      local document_formatting_disable_list = { "tsserver", "svelte", "lua_ls", "html" }
-      if vim.tbl_contains(document_formatting_disable_list, client.name) then
-        client.server_capabilities.documentFormattingProvider = false
-      end
-
       local lspconfig = require("lspconfig")
       local buf_name = vim.api.nvim_buf_get_name(bufnr)
 
@@ -44,8 +39,9 @@ return {
   end,
   opts = function()
     local o = {}
+    o.opts = {}
 
-    o.capabilities = vim.tbl_deep_extend(
+    o.opts.capabilities = vim.tbl_deep_extend(
       "force",
       {},
       vim.lsp.protocol.make_client_capabilities(),
@@ -71,25 +67,33 @@ return {
       "vue",
     }
 
+    o.disable_formatting = function(client)
+      return function()
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+      end
+    end
+
     return o
   end,
   config = function(_, opts)
+    local html_like = opts.html_like
+    local node_root_dir = opts.node_root_dir
+    local disable_formatting = opts.disable_formatting
+    opts = opts.opts
+
     local lspconfig = require("lspconfig")
 
-    local html_like = opts.html_like
-
+    -- setup diagnostic signs
     local signs = { Error = "", Warn = "", Hint = "", Info = "" }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
+    -- setup server function
     local function setup(client, extra_opts)
-      if extra_opts == nil then
-        extra_opts = {}
-      end
-
-      local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts)
+      local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts or {})
 
       local_opts.filetypes = require("core.utils").merge_arrays(
         local_opts.filetypes or client.document_config.default_config.filetypes or {},
@@ -100,8 +104,17 @@ return {
       client.setup(local_opts)
     end
 
-    -- html/css
+    -- server configs
+
+    -- html/css/js
     setup(lspconfig.emmet_ls, { extra_filetypes = html_like })
+    setup(lspconfig.html, { on_attach = disable_formatting })
+
+    setup(lspconfig.eslint, {
+      extra_filetypes = { "svelte" },
+      root_dir = lspconfig.util.root_pattern(node_root_dir),
+      on_attach = disable_formatting,
+    })
 
     setup(lspconfig.denols, {
       single_file_support = false,
@@ -123,14 +136,15 @@ return {
     })
 
     -- web DSL
-    setup(lspconfig.svelte)
-    setup(lspconfig.astro)
+    setup(lspconfig.svelte, { on_attach = disable_formatting })
+    setup(lspconfig.astro, { on_attach = disable_formatting })
     setup(lspconfig.angularls)
     setup(lspconfig.vuels)
     setup(lspconfig.prismals)
 
     -- lua
     setup(lspconfig.lua_ls, {
+      on_attach = disable_formatting,
       flags = {
         debounce_text_changes = 150,
       },
@@ -141,11 +155,6 @@ return {
           },
         },
       },
-    })
-
-    -- zig
-    setup(lspconfig.zls, {
-      cmd = { os.getenv("HOME") .. "/zls/zig-out/bin/zls" },
     })
 
     -- json

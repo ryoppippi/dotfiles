@@ -10,6 +10,7 @@ return {
 
       require("typescript").setup({
         server = {
+          on_attach = opts.disable_formatting,
           capabilities = opts.capabilities,
           root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
         },
