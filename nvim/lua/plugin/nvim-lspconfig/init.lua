@@ -39,8 +39,7 @@ return {
     end)
   end,
   opts = function()
-    local o = {}
-    o.opts = {}
+    local o = { opts = {} }
 
     o.opts.capabilities = vim.tbl_deep_extend(
       "force",
@@ -48,6 +47,7 @@ return {
       vim.lsp.protocol.make_client_capabilities(),
       has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
     )
+
     o.node_root_dir = {
       "package.json",
       "tsconfig.json",
