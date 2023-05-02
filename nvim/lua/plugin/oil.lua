@@ -8,7 +8,12 @@ return {
     {
       "<leader>e",
       function()
-        require("oil").open_float(".")
+        -- curerent directory
+        local cd = vim.fn.expand("%:p:h")
+        -- current filename
+        local fn = vim.fn.expand("%:t")
+
+        require("oil").open_float(cd)
       end,
     },
   },
@@ -18,6 +23,7 @@ return {
       ["<CR>"] = "actions.select",
       ["<C-p>"] = "actions.preview",
       ["q"] = "actions.close",
+      ["<esc>"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
       ["-"] = "actions.parent",
       ["_"] = "actions.open_cwd",
