@@ -3,9 +3,7 @@
     "github>aquaproj/aqua-renovate-config#1.5.2",
     "group:allNonMajor"
   ],
-  "labels": [
-    "dependencies"
-  ],
+  "labels": ["dependencies", "renovate"],
   "platformAutomerge": true,
   "dependencyDashboard": false,
   "automerge": true,
