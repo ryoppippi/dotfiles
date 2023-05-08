@@ -8,9 +8,24 @@ return {
       local lspconfig = require("lspconfig")
       local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 
+      local ts = require("typescript")
+      local actions = ts.actions
+
       require("typescript").setup({
         server = {
-          on_attach = opts.disable_formatting,
+          on_attach = function(client, buffer)
+            print("ts")
+
+            vim.keymap.set("n", "<leader>to", function()
+              local o = { sync = true }
+              vim.cmd("TypescriptAddMissingImports!")
+              vim.cmd("TypescriptRemoveUnused!")
+              vim.cmd("TypescriptOrganizeImports!")
+            end, { desc = "Organize imports", buffer = buffer })
+            vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
+
+            opts.disable_formatting(client, buffer)
+          end,
           capabilities = opts.capabilities,
           root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
         },
