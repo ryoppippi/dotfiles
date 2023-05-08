@@ -23,7 +23,6 @@ return {
       ["<CR>"] = "actions.select",
       ["<C-p>"] = "actions.preview",
       ["q"] = "actions.close",
-      ["<esc>"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
       ["-"] = "actions.parent",
       ["_"] = "actions.open_cwd",
