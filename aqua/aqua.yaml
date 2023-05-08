@@ -57,3 +57,4 @@ packages:
   - name: denoland/deno@v1.33.2
   - name: oven-sh/bun@bun-v0.5.9
   - name: wader/fq@v0.5.0
+  - name: planetscale/cli@v0.142.0
