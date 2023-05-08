@@ -35,9 +35,11 @@ alias lt 'ls --tree'
 alias lg 'la --git'
 alias nvprofile 'touch /tmp/startup.log && rm /tmp/startup.log &&  nvim --startuptime /tmp/startup.log +qa && nvim /tmp/startup.log -c "%!sort -k2nr" -c "w"'
 alias nvbench 'hyperfine "nvim --headless +qa" --warmup 4 --prepare "nvim --headless +qa"'
+abbr -a cdr 'cd (git root)'
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a GHCI 'stack ghci'
 abbr -a sed gsed
+abbr -a sc "source $FISH_CONFIG/config.fish"
 abbr -a b brew
 abbr -a t tmux
 abbr -a tt tmuximum
@@ -46,6 +48,7 @@ abbr -a bri 'brew install'
 abbr -a clr clear
 abbr -a rr 'rm -r'
 abbr -a rf 'rm -rf'
+abbr -a mkd 'mkdir -p'
 abbr -a mkdir 'mkdir -p'
 abbr -a src source
 abbr -a cdd __fzf_cd
