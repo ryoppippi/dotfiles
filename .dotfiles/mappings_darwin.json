@@ -3,5 +3,7 @@
   "hammerspoon": "~/.hammerspoon",
   "Brewfile": "~/.Brewfile",
   "finicky.js": "~/.finicky.js",
-  "xcode/Default.idekeybindings": "~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
+  "xcode/Default.idekeybindings": "~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings",
+  "yabai": "~/.config/yabai",
+  "skhd": "~/.config/skhd"
 }
