@@ -8,16 +8,10 @@ return {
       local lspconfig = require("lspconfig")
       local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 
-      local ts = require("typescript")
-      local actions = ts.actions
-
       require("typescript").setup({
         server = {
           on_attach = function(client, buffer)
-            print("ts")
-
             vim.keymap.set("n", "<leader>to", function()
-              local o = { sync = true }
               vim.cmd("TypescriptAddMissingImports!")
               vim.cmd("TypescriptRemoveUnused!")
               vim.cmd("TypescriptOrganizeImports!")
@@ -28,6 +22,7 @@ return {
           end,
           capabilities = opts.capabilities,
           root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
+          single_file_support = false,
         },
         debug = false,
         disable_commands = false,
@@ -38,7 +33,9 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
+      if require("core.plugin").has("typescript.nvim") then
+        table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
+      end
     end,
   },
 }
