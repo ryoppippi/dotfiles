@@ -69,8 +69,10 @@ return {
     }
 
     o.disable_formatting = function(client)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      if client.resolved_capabilities ~= nil then
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+      end
     end
 
     return o
@@ -127,7 +129,7 @@ return {
               ["https://deno.land"] = true,
               ["https://cdn.nest.land"] = true,
               ["https://crux.land"] = true,
-              -- ["https://esm.sh"] = true,
+              ["https://esm.sh"] = true,
             },
           },
         },
