@@ -20,8 +20,8 @@ return {
       require("plugin.nvim-lspconfig.keymaps").on_attach(client, bufnr)
       require("plugin.nvim-lspconfig.diagnostic").on_attach(client, bufnr)
 
-      local lspconfig = require("lspconfig")
-      local buf_name = vim.api.nvim_buf_get_name(bufnr)
+      -- local lspconfig = require("lspconfig")
+      -- local buf_name = vim.api.nvim_buf_get_name(bufnr)
 
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -127,7 +127,7 @@ return {
               ["https://deno.land"] = true,
               ["https://cdn.nest.land"] = true,
               ["https://crux.land"] = true,
-              ["https://esm.sh"] = true,
+              -- ["https://esm.sh"] = true,
             },
           },
         },
