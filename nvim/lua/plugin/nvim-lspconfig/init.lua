@@ -47,6 +47,7 @@ return {
       vim.lsp.protocol.make_client_capabilities(),
       has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
     )
+    o.opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
     o.node_root_dir = {
       "package.json",
@@ -137,7 +138,21 @@ return {
     })
 
     -- web DSL
-    setup(lspconfig.svelte, { on_attach = disable_formatting })
+    setup(lspconfig.svelte, {
+      on_attach = function(client, _)
+        local root_dir = client.config.root_dir
+        vim.api.nvim_create_autocmd("BufWritePost", {
+          pattern = {
+            root_dir .. "/*.js",
+            root_dir .. "/*.ts",
+          },
+          callback = function(ctx)
+            client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+          end,
+        })
+        disable_formatting(client)
+      end,
+    })
     setup(lspconfig.astro, { on_attach = disable_formatting })
     setup(lspconfig.angularls)
     setup(lspconfig.vuels)
