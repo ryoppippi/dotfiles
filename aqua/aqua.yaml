@@ -9,9 +9,9 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.1.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.4.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: cli/cli@v2.28.0
+  - name: cli/cli@v2.29.0
   - name: golang/go@go1.20.4
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.40.0
@@ -27,7 +27,7 @@ packages:
   - name: marp-team/marp-cli@v2.5.0
   - name: tcnksm/ghr@v0.16.0
   - name: x-motemen/ghq@v1.4.2
-  - name: ajeetdsouza/zoxide@v0.9.0
+  - name: ajeetdsouza/zoxide@v0.9.1
   - name: sharkdp/bat@v0.23.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazydocker@v0.20.0
@@ -50,7 +50,7 @@ packages:
   - name: gohugoio/hugo@v0.111.3
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
-  - name: projectdiscovery/httpx@v1.3.0
+  - name: projectdiscovery/httpx@v1.3.1
   - name: dandavison/delta@0.15.1
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
