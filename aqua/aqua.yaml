@@ -55,6 +55,6 @@ packages:
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
   - name: denoland/deno@v1.33.3
-  - name: oven-sh/bun@bun-v0.6.1
+  - name: oven-sh/bun@bun-v0.6.2
   - name: wader/fq@v0.6.0
   - name: planetscale/cli@v0.143.0
