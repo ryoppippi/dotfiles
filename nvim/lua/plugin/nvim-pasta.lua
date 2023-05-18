@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-pasta",
+  enabled = false,
   keys = {
     {
       "p",
@@ -33,5 +34,11 @@ return {
       next_key = vim.api.nvim_replace_termcodes("<C-p>", true, true, true),
       prev_key = vim.api.nvim_replace_termcodes("<C-n>", true, true, true),
     }
+  end,
+  config = function(_, opts)
+    require("pasta").setup(opts)
+    require("pasta").setup.filetype({ "markdown", "yaml" }, {
+      converters = {},
+    })
   end,
 }
