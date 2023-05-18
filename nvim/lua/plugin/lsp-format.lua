@@ -8,10 +8,10 @@ local spec = {
       local enableFormat = client.server_capabilities.documentFormattingProvider
       if enableFormat then
         require("lsp-format").on_attach(client)
-        vim.cmd([[
-              cabbrev wq execute "Format sync" <bar> wq
-              cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q
-            ]])
+        -- vim.cmd([[
+        --       cabbrev wq execute "Format sync" <bar> wq
+        --       cabbrev wqa bufdo execute "Format sync" <bar> wa <bar> q
+        --     ]])
       end
     end)
   end,
