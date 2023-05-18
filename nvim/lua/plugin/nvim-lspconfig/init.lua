@@ -70,10 +70,9 @@ return {
     }
 
     o.disable_formatting = function(client)
-      if client.resolved_capabilities ~= nil then
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-      end
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
     end
 
     return o
