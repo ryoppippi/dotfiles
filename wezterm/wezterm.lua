@@ -12,10 +12,11 @@ local keys = {
   {
     key = "g",
     mods = "LEADER",
-    action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   { key = "t", mods = "CMD", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
   { key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+  { key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
   { key = "W", mods = "CMD|SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
   { key = "z", mods = "CMD", action = act.TogglePaneZoomState },
   { key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
@@ -32,7 +33,7 @@ local keys = {
   { key = ";", mods = "LEADER", action = "ToggleFullScreen" },
   { key = "v", mods = "SHIFT|CTRL", action = "Paste" },
   { key = "c", mods = "SHIFT|CTRL", action = "Copy" },
-  { key = "i", mods = "LEADER", action = act.EmitEvent("trigger-ide") },
+  { key = "f", mods = "LEADER", action = act.EmitEvent("toggle-opacity") },
 }
 
 -- activate tab
@@ -56,50 +57,15 @@ end
 -- ---------------------------------------------------------------
 -- --- wezterm on
 -- ---------------------------------------------------------------
-
--- https://github.com/wez/wezterm/issues/1680
-local function update_window_background(window, pane)
+wezterm.on("toggle-opacity", function(window, _)
   local overrides = window:get_config_overrides() or {}
-  -- If there's no foreground process, assume that we are "wezterm connect" or "wezterm ssh"
-  -- and use a different background color
-  -- if pane:get_foreground_process_name() == nil then
-  -- 	-- overrides.colors = { background = "blue" }
-  -- 	overrides.color_scheme = "Red Alert"
-  -- end
-
-  if pane:get_user_vars().production == "1" then
-    overrides.color_scheme = "OneHalfDark"
+  if not overrides.window_background_opacity then
+    overrides.window_background_opacity = 0.6
+  else
+    overrides.window_background_opacity = nil
   end
   window:set_config_overrides(overrides)
-end
-
-local function update_tmux_style_tab(window, pane)
-  local cwd_uri = pane:get_current_working_dir()
-  local cwd = ""
-  local hostname = ""
-  if cwd_uri then
-    cwd_uri = cwd_uri:sub(8)
-    local slash = cwd_uri:find("/")
-    if slash then
-      hostname = cwd_uri:sub(1, slash - 1)
-      -- Remove the domain name portion of the hostname
-      local dot = hostname:find("[.]")
-      if dot then
-        hostname = hostname:sub(1, dot - 1)
-      end
-      if hostname ~= "" then
-        hostname = "@" .. hostname
-      end
-      -- and extract the cwd from the uri
-      cwd = utils.convert_home_dir(cwd)
-    end
-  end
-  return {
-    { Attribute = { Underline = "Single" } },
-    { Attribute = { Italic = true } },
-    { Text = cwd .. hostname },
-  }
-end
+end)
 
 --
 ---------------------------------------------------------------
@@ -171,7 +137,6 @@ local config = {
     bottom = 0,
   },
   window_background_opacity = 0.96,
-  -- disable_default_key_bindings = true,
   use_ime = true,
   send_composed_key_when_left_alt_is_pressed = true,
   send_composed_key_when_right_alt_is_pressed = false,
