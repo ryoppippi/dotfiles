@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>aquaproj/aqua-renovate-config#1.5.2",
+    "github>aquaproj/aqua-renovate-config#1.6.0",
     "group:allNonMajor"
   ],
   "labels": ["dependencies", "renovate"],
