@@ -1,5 +1,6 @@
 return {
   "rgroli/other.nvim",
+  lazy = false,
   cmd = { "Other", "OtherClear", "OtherSplit", "OtherVSplit" },
   opts = {
     mappings = {
@@ -9,29 +10,32 @@ return {
       "laravel",
       -- custom mapping
       {
-        pattern = "src/(.*).ts$",
-        target = "test/%1.test.ts",
-        -- transformer = "lowercase",
+        pattern = "/(.*)/(.*)/(.*).ts$",
+        target = {
+          {
+            target = "/%1/%2/%3.svelte",
+            context = "script",
+          },
+        },
       },
       {
-        pattern = "test/(.*).test.ts$",
-        target = "src/%1.ts",
-        -- transformer = "lowercase",
+        pattern = "/(.*)/(.*)/(.*).js$",
+        target = {
+          {
+            target = "/%1/%2/%3.svelte",
+            context = "script",
+          },
+        },
       },
+
       {
-        pattern = "lua/(.*)/(.*).lua$",
-        target = "tests/%2_spec.lua",
-        -- transformer = "lowercase",
-      },
-      {
-        pattern = "tests/(.*)_spec.lua$",
-        target = "lua/*/%1.lua",
-        -- transformer = "lowercase",
-      },
-      {
-        pattern = ".config/nvim/lua/rc/pluginconfig/(.*).lua$",
-        target = "../.local/share/nvim/lazy/%1*/README.md",
-        -- transformer = "lowercase",
+        pattern = "/(.*)/(.*)/(.*).svelte$",
+        target = {
+          {
+            target = "/%1/%2/%3\\(*.ts\\|*.js\\)",
+            context = "view",
+          },
+        },
       },
     },
     transformers = {
