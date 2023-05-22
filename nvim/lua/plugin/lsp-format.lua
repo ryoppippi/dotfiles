@@ -1,7 +1,7 @@
 local spec = {
   "lukas-reineke/lsp-format.nvim",
   opts = { sync = true },
-  enabled = true,
+  enabled = false,
   init = function()
     local on_attach = require("core.plugin").on_attach
     on_attach(function(client, _)

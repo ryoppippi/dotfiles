@@ -10,8 +10,6 @@ return {
       function()
         -- curerent directory
         local cd = vim.fn.expand("%:p:h")
-        -- current filename
-        local fn = vim.fn.expand("%:t")
 
         require("oil").open_float(cd)
       end,
@@ -21,11 +19,11 @@ return {
     keymaps = {
       ["g?"] = "actions.show_help",
       ["<CR>"] = "actions.select",
+      ["-"] = "actions.parent",
       ["<C-p>"] = "actions.preview",
       ["q"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
-      ["-"] = "actions.parent",
-      ["_"] = "actions.open_cwd",
+      ["<space>"] = "actions.open_cwd",
       ["`"] = "actions.cd",
       ["~"] = "actions.tcd",
       ["g."] = "actions.toggle_hidden",
@@ -38,4 +36,7 @@ return {
     },
     use_default_keymaps = false,
   },
+  config = function(_, opts)
+    require("oil").setup(opts)
+  end,
 }
