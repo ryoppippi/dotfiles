@@ -16,9 +16,16 @@ return {
     { "hrsh7th/cmp-nvim-lsp-signature-help", cond = has_cmp, enabled = false },
   },
   init = function()
+    local exclude_ft = { "oil" }
     require("core.plugin").on_attach(function(client, bufnr)
+      local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+      if vim.tbl_contains(exclude_ft, ft) then
+        return
+      end
+
       require("plugin.nvim-lspconfig.keymaps").on_attach(client, bufnr)
       require("plugin.nvim-lspconfig.diagnostic").on_attach(client, bufnr)
+      require("plugin.nvim-lspconfig.format").on_attach(client, bufnr)
 
       -- local lspconfig = require("lspconfig")
       -- local buf_name = vim.api.nvim_buf_get_name(bufnr)
@@ -67,12 +74,13 @@ return {
       "typescript.tsx",
       "svelte",
       "vue",
+      "markdown",
     }
 
     o.disable_formatting = function(client)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
-      client.server_capabilities.documentFormattingProvider = false
+      if client and client.resolved_capabilities then
+        client.server_capabilities.documentFormattingProvider = false
+      end
     end
 
     return o
@@ -109,6 +117,7 @@ return {
 
     -- html/css/js
     setup(lspconfig.emmet_ls, { extra_filetypes = html_like })
+    setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = disable_formatting })
     setup(lspconfig.html, { on_attach = disable_formatting })
 
     setup(lspconfig.eslint, {
