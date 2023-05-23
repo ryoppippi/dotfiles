@@ -1,6 +1,11 @@
+local sveltekit_target = {
+  { target = "/%1/%+%2.svelte", context = "view" },
+  { target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transform = "remove_server" },
+  { target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transform = "add_server" },
+}
+
 return {
   "rgroli/other.nvim",
-  lazy = false,
   cmd = { "Other", "OtherClear", "OtherSplit", "OtherVSplit" },
   opts = {
     mappings = {
@@ -12,69 +17,23 @@ return {
       -- sveltekit
       {
         pattern = "/(.*)/%+(.*).server.ts$",
-        target = {
-          {
-            target = "/%1/%+%2.svelte",
-            context = "view",
-          },
-          {
-            target = "/%1/%+%2\\(*.ts\\|*.js\\)",
-            context = "script",
-            transform = "add_server",
-          },
-        },
+        target = sveltekit_target,
       },
       {
         pattern = "/(.*)/%+(.*).server.js$",
-        target = {
-          {
-            target = "/%1/%+%2.svelte",
-            context = "view",
-          },
-          {
-            target = "/%1/%+%2\\(*.ts\\|*.js\\)",
-            context = "script",
-            transform = "add_server",
-          },
-        },
+        target = sveltekit_target,
       },
       {
         pattern = "/(.*)/%+(.*).ts$",
-        target = {
-          {
-            target = "/%1/%+%2.svelte",
-            context = "view",
-          },
-          {
-            target = "/%1/%+%2\\(*.ts\\|*.js\\)",
-            context = "script",
-            transform = "remove_server",
-          },
-        },
+        target = sveltekit_target,
       },
       {
         pattern = "/(.*)/%+(.*).js$",
-        target = {
-          {
-            target = "/%1/%+%2.svelte",
-            context = "view",
-          },
-          {
-            target = "/%1/%+%2\\(*.ts\\|*.js\\)",
-            context = "script",
-            transform = "remove_server",
-          },
-        },
+        target = sveltekit_target,
       },
       {
         pattern = "/(.*)/%+(.*).svelte$",
-        target = {
-          {
-            target = "/%1/%+%2\\(*.ts\\|*.js\\)",
-            context = "script",
-            transform = "remove_server",
-          },
-        },
+        target = sveltekit_target,
       },
     },
     transformers = {
