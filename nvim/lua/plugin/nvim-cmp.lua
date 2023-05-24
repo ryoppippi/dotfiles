@@ -241,9 +241,10 @@ return {
     vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
 
     -- Setup autopairs
-    -- local autopairs = require("nvim-autopairs")
-    -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-    -- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+    if require("core.plugin").has("nvim-autopairs") then
+      print("autopairs")
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+    end
   end,
 }
