@@ -59,7 +59,7 @@ export BETTER_EXCEPTIONS=1
 
 # brew
 export BREW_PREFIX=$(brew --prefix)
-export HOMEBREW_BREWFILE="$HOME/.mackup/.brewfile"
+export HOMEBREW_BREWFILE="$HOME/.brewfile"
 
 if [ -f $BREW_PREFIX/etc/brew-wrap ];then
   source $BREW_PREFIX/etc/brew-wrap
