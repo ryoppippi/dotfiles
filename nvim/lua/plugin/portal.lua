@@ -1,6 +1,5 @@
 return {
   "cbochs/portal.nvim",
-  event = "VeryLazy",
   keys = {
     {
       "g<c-i>",
