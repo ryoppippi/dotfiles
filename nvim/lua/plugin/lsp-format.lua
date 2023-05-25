@@ -1,4 +1,4 @@
-local spec = {
+return {
   "lukas-reineke/lsp-format.nvim",
   opts = { sync = true },
   enabled = false,
@@ -16,4 +16,3 @@ local spec = {
     end)
   end,
 }
-return spec
