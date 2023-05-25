@@ -17,7 +17,7 @@ return {
 
     { "HiPhish/nvim-ts-rainbow2" },
 
-    { "RRethy/nvim-treesitter-endwise",             enable = false },
+    { "RRethy/nvim-treesitter-endwise" },
   },
   config = function()
     require("nvim-treesitter.configs").setup({
