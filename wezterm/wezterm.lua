@@ -29,10 +29,10 @@ local keys = {
   { key = "L", mods = "CMD|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
   { key = "(", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
   { key = ")", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
-  { key = "Space", mods = "LEADER", action = "QuickSelect" },
-  { key = ";", mods = "LEADER", action = "ToggleFullScreen" },
-  { key = "v", mods = "SHIFT|CTRL", action = "Paste" },
-  { key = "c", mods = "SHIFT|CTRL", action = "Copy" },
+  { key = "Space", mods = "LEADER", action = act.QuickSelect },
+  { key = ";", mods = "LEADER", action = act.ToggleFullScreen },
+  -- { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+  -- { key = "c", mods = "SHIFT|CTRL", action = "Copy" },
   { key = "f", mods = "LEADER", action = act.EmitEvent("toggle-opacity") },
 }
 
