@@ -1,18 +1,15 @@
 return {
   "cbochs/portal.nvim",
+  event = "VeryLazy",
   keys = {
     {
       "g<c-i>",
-      function()
-        require("portal").jump_backward()
-      end,
+      "<cmd>Portal jumplist forward<cr>",
       desc = "portal jump backward",
     },
     {
       "g<c-o>",
-      function()
-        require("portal").jump_forward()
-      end,
+      "<cmd>Portal jumplist backward<cr>",
       desc = "portal jump forward",
     },
   },
