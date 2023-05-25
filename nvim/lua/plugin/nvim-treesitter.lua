@@ -17,7 +17,7 @@ return {
 
     { "HiPhish/nvim-ts-rainbow2" },
 
-    { "RRethy/nvim-treesitter-endwise", enabled = false },
+    { "RRethy/nvim-treesitter-endwise" },
   },
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -49,7 +49,7 @@ return {
         enable = true,
       },
       endwise = {
-        enable = false,
+        enable = true,
       },
       textobjects = {
         select = {
