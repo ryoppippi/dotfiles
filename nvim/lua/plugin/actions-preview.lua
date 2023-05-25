@@ -11,7 +11,6 @@ return {
       vim.keymap.set({ "n", "v", "x" }, "ga", require("actions-preview").code_actions, key_opt)
     end)
   end,
-
   opts = function()
     return {
       telescope = require("telescope.themes").get_dropdown({ winblend = 10 }),
