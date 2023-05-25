@@ -11,5 +11,6 @@ return {
   opts = {
     -- configurations go here
     exclude_filetypes = { "netrw", "toggleterm", "oil", "neo-tree" },
+    show_modified = true,
   },
 }
