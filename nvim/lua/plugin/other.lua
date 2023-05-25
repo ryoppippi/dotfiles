@@ -7,6 +7,9 @@ local sveltekit_target = {
 return {
   "rgroli/other.nvim",
   cmd = { "Other", "OtherClear", "OtherSplit", "OtherVSplit" },
+  keys = {
+    { "<leader><TAB>", "<cmd>Other<CR>" },
+  },
   opts = {
     mappings = {
       -- builtin mappings
