@@ -116,7 +116,7 @@ return {
     -- server configs
 
     -- html/css/js
-    setup(lspconfig.emmet_ls, { extra_filetypes = html_like })
+    setup(lspconfig.emmet_ls, { extra_filetypes = html_like, on_attach = disable_formatting })
     setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = disable_formatting })
     setup(lspconfig.html, { on_attach = disable_formatting })
 
