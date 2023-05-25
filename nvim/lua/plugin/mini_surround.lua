@@ -2,7 +2,7 @@ return {
   "echasnovski/mini.surround",
   version = "*",
   event = "VeryLazy",
-  enabled = true,
+  enabled = false,
   opts = {
     mappings = {
       add = "sa", -- Add surrounding in Normal and Visual modes
