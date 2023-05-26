@@ -27,7 +27,6 @@ return {
       config = le("media_files"),
     },
     { "nvim-telescope/telescope-symbols.nvim" },
-    { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
     { "nvim-telescope/telescope-github.nvim", config = le("gh") },
     { "nvim-telescope/telescope-file-browser.nvim", config = le("file_browser") },
     { "LinArcX/telescope-env.nvim", config = le("env") },
@@ -39,6 +38,7 @@ return {
       dependencies = { "lambdalisue/kensaku.vim" },
       config = le("kensaku"),
     },
+    -- { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
   },
   init = function()
     require("which-key").register({
