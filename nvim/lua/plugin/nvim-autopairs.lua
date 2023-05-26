@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  event = { "InsertEnter" },
+  -- event = { "InsertEnter" },
   enabled = true,
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = {
