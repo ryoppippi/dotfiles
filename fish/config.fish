@@ -108,3 +108,6 @@ abbr -a gf 'git fetch'
 #         bash -c "tmuximum"
 #     end
 # end
+
+# direnv
+eval (direnv hook fish)

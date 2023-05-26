@@ -69,7 +69,7 @@ fi
 eval "$(zoxide init bash)"
 
 # direnv
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
 
 . "$HOME/.cargo/env"
 
@@ -88,13 +88,6 @@ if command -v nvim &> /dev/null; then
 fi
 
 # eval "$(github-copilot-cli alias -- "$0")"
-
-# pdm
-if [ -n "$PYTHONPATH" ]; then
-    export PYTHONPATH='/Users/ryoppippi/.local/pipx/venvs/pdm/lib/python3.11/site-packages/pdm/pep582':$PYTHONPATH
-else
-    export PYTHONPATH='/Users/ryoppippi/.local/pipx/venvs/pdm/lib/python3.11/site-packages/pdm/pep582'
-fi
 
 if [[ -t 0 ]]; then
   stty stop undef
