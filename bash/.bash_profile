@@ -82,6 +82,9 @@ if [ -f $WASMER_DIR/wasmer.sh ];then
   source $WASMER_DIR/wasmer.sh
 fi
 
+# rye
+source "$HOME/.rye/env"
+
 # man pager
 if command -v nvim &> /dev/null; then
     export MANPAGER="nvim -c ASMANPAGER -"
