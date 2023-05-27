@@ -5,11 +5,10 @@ return {
   event = "VeryLazy",
   dependencies = {
     "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons", -- optional dependency
+    "nvim-tree/nvim-web-devicons",
   },
   config = true,
   opts = {
-    -- configurations go here
     exclude_filetypes = { "netrw", "toggleterm", "oil", "neo-tree" },
     show_modified = true,
   },
