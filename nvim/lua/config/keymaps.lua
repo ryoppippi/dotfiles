@@ -132,7 +132,7 @@ vim.keymap.set("n", "A", function()
 end, { expr = true, silent = true })
 
 -- custom
-vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
+-- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
 -- tips
 vim.keymap.set("n", "Y", "y$")
