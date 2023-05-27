@@ -1,9 +1,9 @@
 return {
-  "dkarter/bullets.vim",
-  enabled = false,
-  ft = {
-    "markdown",
-    "pandoc.markdown",
-    "rmd",
-  },
+	"dkarter/bullets.vim",
+	enabled = false,
+	ft = {
+		"markdown",
+		"pandoc.markdown",
+		"rmd",
+	},
 }

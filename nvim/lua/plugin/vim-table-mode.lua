@@ -1,6 +1,6 @@
 return {
-  "dhruvasagar/vim-table-mode",
-  ft = {
-    "markdown",
-  },
+	"dhruvasagar/vim-table-mode",
+	ft = {
+		"markdown",
+	},
 }

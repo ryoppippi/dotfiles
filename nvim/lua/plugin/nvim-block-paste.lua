@@ -1,4 +1,4 @@
 return {
-  "Rasukarusan/nvim-block-paste",
-  event = "VeryLazy",
+	"Rasukarusan/nvim-block-paste",
+	event = "VeryLazy",
 }

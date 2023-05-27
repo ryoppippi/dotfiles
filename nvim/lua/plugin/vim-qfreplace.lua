@@ -1,5 +1,5 @@
 return {
-  "thinca/vim-qfreplace",
-  ft = "qf",
-  cmd = { "Qfreplace" },
+	"thinca/vim-qfreplace",
+	ft = "qf",
+	cmd = { "Qfreplace" },
 }

@@ -1,5 +1,5 @@
 return {
-  "kevinhwang91/nvim-hlslens",
-  enabled = false,
-  config = true,
+	"kevinhwang91/nvim-hlslens",
+	enabled = false,
+	config = true,
 }

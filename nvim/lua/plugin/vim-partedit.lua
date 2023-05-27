@@ -1,4 +1,4 @@
 return {
-  "thinca/vim-partedit",
-  event = "VeryLazy",
+	"thinca/vim-partedit",
+	event = "VeryLazy",
 }

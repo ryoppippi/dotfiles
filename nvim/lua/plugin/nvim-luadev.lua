@@ -1,3 +1,3 @@
 return {
-  "bfredl/nvim-luadev",
+	"bfredl/nvim-luadev",
 }

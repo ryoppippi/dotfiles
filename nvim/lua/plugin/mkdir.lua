@@ -1,4 +1,4 @@
 return {
-  "jghauser/mkdir.nvim",
-  lazy = false,
+	"jghauser/mkdir.nvim",
+	lazy = false,
 }

@@ -1,6 +1,6 @@
 return {
-  "tkmpypy/chowcho.nvim",
-  keys = {
-    { "<Leader>wq", "<CMD>Chowcho<CR>" },
-  },
+	"tkmpypy/chowcho.nvim",
+	keys = {
+		{ "<Leader>wq", "<CMD>Chowcho<CR>" },
+	},
 }

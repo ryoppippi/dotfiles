@@ -1,4 +1,4 @@
 return {
-  "lewis6991/spellsitter.nvim",
-  config = true,
+	"lewis6991/spellsitter.nvim",
+	config = true,
 }

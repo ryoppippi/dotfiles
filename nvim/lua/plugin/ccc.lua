@@ -1,17 +1,17 @@
 local event = { "ColorScheme", "BufReadPost" }
 return {
-  "uga-rosa/ccc.nvim",
-  cond = vim.o.termguicolors,
-  event = event,
-  config = function()
-    require("ccc").setup({})
-    vim.api.nvim_create_autocmd(event, {
-      pattern = "*",
-      callback = function()
-        require("ccc").setup({})
-        vim.cmd([[CccHighlighterDisable]])
-        vim.cmd([[CccHighlighterEnable]])
-      end,
-    })
-  end,
+	"uga-rosa/ccc.nvim",
+	cond = vim.o.termguicolors,
+	event = event,
+	config = function()
+		require("ccc").setup({})
+		vim.api.nvim_create_autocmd(event, {
+			pattern = "*",
+			callback = function()
+				require("ccc").setup({})
+				vim.cmd([[CccHighlighterDisable]])
+				vim.cmd([[CccHighlighterEnable]])
+			end,
+		})
+	end,
 }

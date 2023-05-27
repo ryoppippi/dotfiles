@@ -1,6 +1,6 @@
 return {
-  "rhysd/committia.vim",
-  ft = {
-    "git",
-  },
+	"rhysd/committia.vim",
+	ft = {
+		"git",
+	},
 }

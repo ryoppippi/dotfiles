@@ -1,4 +1,4 @@
 return {
-  "LudoPinelli/comment-box.nvim",
-  event = "VeryLazy",
+	"LudoPinelli/comment-box.nvim",
+	event = "VeryLazy",
 }

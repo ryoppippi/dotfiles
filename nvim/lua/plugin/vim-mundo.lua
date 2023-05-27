@@ -1,3 +1,3 @@
 return {
-  "simnalamburt/vim-mundo",
+	"simnalamburt/vim-mundo",
 }

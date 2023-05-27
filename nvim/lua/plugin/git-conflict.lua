@@ -1,7 +1,7 @@
 return {
-  "akinsho/git-conflict.nvim",
-  ft = {
-    "git",
-  },
-  config = true,
+	"akinsho/git-conflict.nvim",
+	ft = {
+		"git",
+	},
+	config = true,
 }

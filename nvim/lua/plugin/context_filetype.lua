@@ -1,4 +1,4 @@
 return {
-  "Shougo/context_filetype.vim",
-  event = "VeryLazy",
+	"Shougo/context_filetype.vim",
+	event = "VeryLazy",
 }

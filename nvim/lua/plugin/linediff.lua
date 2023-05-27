@@ -1,4 +1,4 @@
 return {
-  "AndrewRadev/linediff.vim",
-  event = "VeryLazy",
+	"AndrewRadev/linediff.vim",
+	event = "VeryLazy",
 }

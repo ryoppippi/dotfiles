@@ -1,4 +1,4 @@
 return {
-  "Bakudankun/BackAndForward.vim",
-  enabled=false,
+	"Bakudankun/BackAndForward.vim",
+	enabled = false,
 }

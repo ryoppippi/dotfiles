@@ -1,5 +1,5 @@
 return {
-  "delphinus/qfheight.nvim",
-  ft = "qf",
-  config = true,
+	"delphinus/qfheight.nvim",
+	ft = "qf",
+	config = true,
 }

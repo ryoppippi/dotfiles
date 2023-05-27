@@ -1,4 +1,4 @@
 return {
-  "thinca/vim-prettyprint",
-  event = "VeryLazy",
+	"thinca/vim-prettyprint",
+	event = "VeryLazy",
 }
