@@ -9,12 +9,12 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.9.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.10.1 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.29.0
   - name: golang/go@go1.20.4
   - name: volta-cli/volta@v1.1.1
-  - name: junegunn/fzf@0.41.0
+  - name: junegunn/fzf@0.41.1
   - name: denisidoro/navi@v2.22.1
   - name: nektos/act@v0.2.45
   - name: b4b4r07/gist@v1.2.6
@@ -55,6 +55,6 @@ packages:
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
   - name: denoland/deno@v1.34.0
-  - name: oven-sh/bun@bun-v0.6.3
+  - name: oven-sh/bun@bun-v0.6.4
   - name: wader/fq@v0.6.0
   - name: planetscale/cli@v0.145.0
