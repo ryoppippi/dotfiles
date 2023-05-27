@@ -1,3 +1,3 @@
 return {
-  "nanotee/luv-vimdocs",
+	"nanotee/luv-vimdocs",
 }

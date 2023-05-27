@@ -46,22 +46,22 @@ vim.o.undolevels = 10000
 vim.opt.list = true
 
 vim.opt.listchars = {
-  tab = "▸▹┊",
-  trail = "▫",
-  extends = "❯",
-  precedes = "❮",
+	tab = "▸▹┊",
+	trail = "▫",
+	extends = "❯",
+	precedes = "❮",
 }
 
 vim.g.colorterm = os.getenv("COLORTERM")
 if
-  vim.tbl_contains({ "truecolor", "24bit", "rxvt", "" }, vim.g.colorterm)
-  and tb(vim.fn.exists("+termguicolors"))
-  and not require("core.utils").is_vscode()
+	vim.tbl_contains({ "truecolor", "24bit", "rxvt", "" }, vim.g.colorterm)
+	and tb(vim.fn.exists("+termguicolors"))
+	and not require("core.utils").is_vscode()
 then
-  vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
-  vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
-  vim.o.termguicolors = true
-  vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+	vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+	vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+	vim.o.termguicolors = true
+	vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end
 
 vim.opt.laststatus = 0

@@ -1,4 +1,4 @@
 return {
-  "RRethy/nvim-align",
-  cmd = { "Align" },
+	"RRethy/nvim-align",
+	cmd = { "Align" },
 }

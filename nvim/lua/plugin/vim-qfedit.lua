@@ -1,4 +1,4 @@
 return {
-  "itchyny/vim-qfedit",
-  ft = "qf",
+	"itchyny/vim-qfedit",
+	ft = "qf",
 }

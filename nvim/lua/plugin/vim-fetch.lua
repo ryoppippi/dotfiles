@@ -1,4 +1,4 @@
 return {
-  "wsdjeg/vim-fetch",
-  lazy = false,
+	"wsdjeg/vim-fetch",
+	lazy = false,
 }

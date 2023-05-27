@@ -1,3 +1,3 @@
 return {
-  "uga-rosa/utf8.nvim",
+	"uga-rosa/utf8.nvim",
 }

@@ -1,67 +1,67 @@
 local function hl_start()
-  if require("core.plugin").has("nvim-hlslens") then
-    require("hlslens").start()
-  end
+	if require("core.plugin").has("nvim-hlslens") then
+		require("hlslens").start()
+	end
 end
 
 return {
-  "hrsh7th/vim-searchx",
-  enabled = true,
-  dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/kensaku.vim" },
-  keys = function()
-    return {
-      {
-        "?",
-        function()
-          hl_start()
-          vimx.fn.searchx.start({ dir = 0 })
-        end,
-        mode = { "n", "x" },
-      },
-      {
-        "/",
-        function()
-          hl_start()
-          vimx.fn.searchx.start({ dir = 1 })
-        end,
-        mode = { "n", "x" },
-      },
-      {
-        ":",
-        function()
-          hl_start()
-          vimx.fn.searchx.select()
-        end,
-        mode = { "n" },
-      },
-      {
-        ";",
-        function()
-          hl_start()
-          vimx.fn.searchx.select()
-        end,
-        mode = { "x" },
-      },
-      {
-        "n",
-        function()
-          hl_start()
-          vimx.fn.searchx.next()
-        end,
-        mode = { "n", "x" },
-      },
-      {
-        "N",
-        function()
-          hl_start()
-          vimx.fn.searchx.prev()
-        end,
-        mode = { "n", "x" },
-      },
-    }
-  end,
-  config = function()
-    vim.cmd([[
+	"hrsh7th/vim-searchx",
+	enabled = true,
+	dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/kensaku.vim" },
+	keys = function()
+		return {
+			{
+				"?",
+				function()
+					hl_start()
+					vimx.fn.searchx.start({ dir = 0 })
+				end,
+				mode = { "n", "x" },
+			},
+			{
+				"/",
+				function()
+					hl_start()
+					vimx.fn.searchx.start({ dir = 1 })
+				end,
+				mode = { "n", "x" },
+			},
+			{
+				":",
+				function()
+					hl_start()
+					vimx.fn.searchx.select()
+				end,
+				mode = { "n" },
+			},
+			{
+				";",
+				function()
+					hl_start()
+					vimx.fn.searchx.select()
+				end,
+				mode = { "x" },
+			},
+			{
+				"n",
+				function()
+					hl_start()
+					vimx.fn.searchx.next()
+				end,
+				mode = { "n", "x" },
+			},
+			{
+				"N",
+				function()
+					hl_start()
+					vimx.fn.searchx.prev()
+				end,
+				mode = { "n", "x" },
+			},
+		}
+	end,
+	config = function()
+		vim.cmd([[
     let g:searchx = {}
 
     " Auto jump if the recent input matches to any marker.
@@ -91,13 +91,13 @@ return {
     endfunction
   ]])
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
-      callback = hl_start,
-    })
-    vim.api.nvim_create_autocmd("User", {
-      pattern = { "SearchxLeave", "SearchxCancel" },
-      command = "nohlsearch",
-    })
-  end,
+		vim.api.nvim_create_autocmd("User", {
+			pattern = { "SearchxAccept", "SearchxAcceptMarker", "SearchxAcceptReturn" },
+			callback = hl_start,
+		})
+		vim.api.nvim_create_autocmd("User", {
+			pattern = { "SearchxLeave", "SearchxCancel" },
+			command = "nohlsearch",
+		})
+	end,
 }

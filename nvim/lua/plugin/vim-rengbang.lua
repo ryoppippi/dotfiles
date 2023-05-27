@@ -1,4 +1,4 @@
 return {
-  "deris/vim-rengbang",
-  event = "VeryLazy",
+	"deris/vim-rengbang",
+	event = "VeryLazy",
 }

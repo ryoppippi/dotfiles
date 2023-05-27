@@ -1,3 +1,3 @@
 return {
-  "thinca/vim-ref",
+	"thinca/vim-ref",
 }

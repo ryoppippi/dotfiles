@@ -1,6 +1,6 @@
 return {
-  "vuki656/package-info.nvim",
-  ft = {
-    "json",
-  },
+	"vuki656/package-info.nvim",
+	ft = {
+		"json",
+	},
 }

@@ -1,6 +1,6 @@
 return {
-  "sindrets/diffview.nvim",
-  ft = {
-    "git",
-  },
+	"sindrets/diffview.nvim",
+	ft = {
+		"git",
+	},
 }

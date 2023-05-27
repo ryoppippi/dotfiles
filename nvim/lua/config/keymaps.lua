@@ -5,16 +5,16 @@ vim.keymap.set("n", ":", ";")
 
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
-  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-    return "j"
-  end
-  return "gj"
+	if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+		return "j"
+	end
+	return "gj"
 end, { expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
-  if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-    return "k"
-  end
-  return "gk"
+	if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
+		return "k"
+	end
+	return "gk"
 end, { expr = true })
 
 -- disable keys
@@ -73,7 +73,7 @@ vim.keymap.set("t", [[<ESC>]], [[<C-\><C-n>]])
 --- Emacs style from yutkat
 vim.keymap.set("c", "<C-a>", "<Home>", { silent = false })
 if not vim.g.vscode then
-  vim.keymap.set("c", "<C-e>", "<End>", { silent = false })
+	vim.keymap.set("c", "<C-e>", "<End>", { silent = false })
 end
 vim.keymap.set("c", "<C-f>", "<right>", { silent = false })
 vim.keymap.set("c", "<C-b>", "<left>", { silent = false })
@@ -84,15 +84,15 @@ vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
 
 -- add blank lines
 local function append_new_lines(offset_line)
-  local peridot = require("peridot")
-  return peridot
-    and peridot.repeatable_edit(function(ctx)
-      local curpos = vim.fn.line(".")
-      local pos_line = curpos + offset_line
-      local n_lines = ctx.count1
-      local lines = require("core.utils").repeat_element("", n_lines)
-      vim.fn.append(pos_line, lines)
-    end)
+	local peridot = require("peridot")
+	return peridot
+		and peridot.repeatable_edit(function(ctx)
+			local curpos = vim.fn.line(".")
+			local pos_line = curpos + offset_line
+			local n_lines = ctx.count1
+			local lines = require("core.utils").repeat_element("", n_lines)
+			vim.fn.append(pos_line, lines)
+		end)
 end
 
 vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
@@ -100,18 +100,18 @@ vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
 
 -- paste in next lines
 local function paste_in_new_lines(direction)
-  local peridot = require("peridot")
-  return peridot
-      and peridot.repeatable_edit(function(ctx)
-        for _ = 1, ctx.count1 do
-          if direction == 0 then
-            vim.api.nvim_command("pu")
-          elseif direction == -1 then
-            vim.api.nvim_command("pu!")
-          end
-        end
-      end)
-    or ""
+	local peridot = require("peridot")
+	return peridot
+			and peridot.repeatable_edit(function(ctx)
+				for _ = 1, ctx.count1 do
+					if direction == 0 then
+						vim.api.nvim_command("pu")
+					elseif direction == -1 then
+						vim.api.nvim_command("pu!")
+					end
+				end
+			end)
+		or ""
 end
 
 vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
@@ -120,15 +120,15 @@ vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
 
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
-  return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
+	return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
 end, { expr = true, silent = true })
 
 -- Automatically indent with i and A made by ycino
 vim.keymap.set("n", "i", function()
-  return vim.fn.len(vim.fn.getline(".")) ~= 0 and "i" or '"_cc'
+	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "i" or '"_cc'
 end, { expr = true, silent = true })
 vim.keymap.set("n", "A", function()
-  return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
+	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
 end, { expr = true, silent = true })
 
 -- custom

@@ -1,3 +1,3 @@
 return {
-  "milisims/nvim-luaref",
+	"milisims/nvim-luaref",
 }

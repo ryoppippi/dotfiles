@@ -1,7 +1,7 @@
 return {
-  "sQVe/sort.nvim",
-  cmd = {
-    "Sort",
-  },
-  config = true,
+	"sQVe/sort.nvim",
+	cmd = {
+		"Sort",
+	},
+	config = true,
 }

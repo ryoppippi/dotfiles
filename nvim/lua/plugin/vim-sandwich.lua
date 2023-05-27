@@ -1,5 +1,5 @@
 return {
-  "machakann/vim-sandwich",
-  event = "VeryLazy",
-  enabled = true,
+	"machakann/vim-sandwich",
+	event = "VeryLazy",
+	enabled = true,
 }

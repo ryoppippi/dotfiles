@@ -1,4 +1,4 @@
 return {
-  "spywhere/detect-language.nvim",
-  event = "BufReadPre",
+	"spywhere/detect-language.nvim",
+	event = "BufReadPre",
 }

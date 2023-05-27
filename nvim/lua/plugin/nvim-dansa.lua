@@ -1,5 +1,5 @@
 return {
-  "hrsh7th/nvim-dansa",
-  event = "VeryLazy",
-  config = true,
+	"hrsh7th/nvim-dansa",
+	event = "VeryLazy",
+	config = true,
 }

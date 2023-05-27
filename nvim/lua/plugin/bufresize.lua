@@ -1,5 +1,5 @@
 return {
-  "kwkarlwang/bufresize.nvim",
-  event = "BufEnter",
-  config = true,
+	"kwkarlwang/bufresize.nvim",
+	event = "BufEnter",
+	config = true,
 }
