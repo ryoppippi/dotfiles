@@ -1,6 +1,6 @@
 return {
   "stevearc/oil.nvim",
-  lazy = false,
+  event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -15,6 +15,11 @@ return {
       end,
     },
   },
+  init = function()
+    if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
+      require("oil").open(vim.fn.expand("%:p:h"))
+    end
+  end,
   opts = {
     keymaps = {
       ["g?"] = "actions.show_help",
