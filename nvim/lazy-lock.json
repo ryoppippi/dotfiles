@@ -98,6 +98,7 @@
   "nvim-early-retirement": { "branch": "main", "commit": "3fbc551fde5f6d210e09f128b70c69e9613dfde2" },
   "nvim-file-location": { "branch": "main", "commit": "1f6829a46059e42ce073655991ab672700633cf7" },
   "nvim-gtd": { "branch": "main", "commit": "d2f34debfd8c0af3a0a81708933e33f4478fe120" },
+  "nvim-hlslens": { "branch": "main", "commit": "5e3e9088fba7508cee3612ee50b14dfdd3ab19af" },
   "nvim-lspconfig": { "branch": "master", "commit": "570aae82f8c6bc15fb6e559ed7d5a3fd85374329" },
   "nvim-luadev": { "branch": "master", "commit": "3ba0c02c378503739f1fdb95cff3ea2aad48db3e" },
   "nvim-luaref": { "branch": "main", "commit": "9cd3ed50d5752ffd56d88dd9e395ddd3dc2c7127" },
