@@ -4,9 +4,9 @@ return {
 		{ "tani/vim-artemis" },
 	},
 	keys = {
-		{ "*", "<Plug>(asterisk-z*)" },
-		{ "#", "<Plug>(asterisk-z#)" },
-		{ "g*", "<Plug>(asterisk-zg*)" },
-		{ "g#", "<Plug>(asterisk-zg#)" },
+		{ "*", [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]] },
+		{ "#", "<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>" },
+		{ "g*", "<Plug>(asterisk-zg*)<Cmd>lua require('hlslens').start()<CR>" },
+		{ "g#", "<Plug>(asterisk-zg#)<Cmd>lua require('hlslens').start()<CR>" },
 	},
 }
