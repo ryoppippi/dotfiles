@@ -11,5 +11,6 @@ return {
 	opts = {
 		exclude_filetypes = { "netrw", "toggleterm", "oil", "neo-tree" },
 		show_modified = true,
+		attach_navic = false,
 	},
 }
