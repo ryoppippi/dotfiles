@@ -1,7 +1,7 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v2.x",
-	enabled = false,
+	enabled = true,
 	event = { "BufAdd", "TabEnter" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -13,10 +13,11 @@ return {
 		"NeoTreeFloatToggle",
 		"NeoTreeShow",
 		"Neotree",
+		"NeoTreeShowToggle",
 	},
 	keys = {
-		{ "<leader>E", vim.cmd.NeoTreeShowInSplit, silent = true, desc = "Neotree show in split" },
-		{ "<leader>e", vim.cmd.NeoTreeFloatToggle, silent = true, desc = "Neotree float toggle" },
+		{ "<leader>E", vim.cmd.NeoTree, silent = true, desc = "Neotree show in split" },
+		-- { "<leader>e", vim.cmd.NeoTreeFloatToggle, silent = true, desc = "Neotree float toggle" },
 	},
 	init = function()
 		-- hijack at lazy loading
