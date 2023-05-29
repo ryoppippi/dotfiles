@@ -172,7 +172,6 @@
   "vim-expand-region": { "branch": "master", "commit": "966513543de0ddc2d673b5528a056269e7917276" },
   "vim-fetch": { "branch": "master", "commit": "0a6ab17e84c7f4808bf05ec380121bce40b40d21" },
   "vim-illuminate": { "branch": "master", "commit": "a2907275a6899c570d16e95b9db5fd921c167502" },
-  "vim-licenses": { "branch": "master", "commit": "63a7c392352a2b834e1fd8d78f2b5b6d3e1f37bc" },
   "vim-log-highlighting": { "branch": "master", "commit": "1037e26f3120e6a6a2c0c33b14a84336dee2a78f" },
   "vim-manpager": { "branch": "master", "commit": "ba60d59a79c096775f5c7f7d76fdffa396efdfca" },
   "vim-matchup": { "branch": "master", "commit": "b8eca3b588e41e0bb1b3ae200fae88183b91a76d" },
