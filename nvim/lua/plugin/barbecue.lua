@@ -1,8 +1,9 @@
 return {
 	"utilyre/barbecue.nvim",
-	name = "barbecue",
 	version = "*",
 	event = "VeryLazy",
+	-- cond = not tb(vim.fn.has("nvim-0.10")),
+	enabled = true,
 	dependencies = {
 		"SmiteshP/nvim-navic",
 		"nvim-tree/nvim-web-devicons",
