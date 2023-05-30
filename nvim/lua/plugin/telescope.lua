@@ -66,7 +66,7 @@ return {
 				["j"] = { [[<cmd>Telescope jumplist<cr>]], "jumplist" },
 				["g"] = { [[<cmd>Telescope git_files<cr>]], "git files" },
 				["q"] = { [[<cmd>Telescope quickfix<cr>]], "quickfix" },
-				["p"] = { [[<cmd>Telescope pickers<cr>]], "pickers" },
+				["p"] = { [[<cmd>Telescope commands<cr>]], "commands" },
 				["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
 				["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
 				["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
