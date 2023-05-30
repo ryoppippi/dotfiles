@@ -48,7 +48,6 @@ return {
 			-- ex: +page.ts -> +page.server.ts
 			-- ex: +page.js -> +page.server.js
 			add_server = function(inputString)
-				print(inputString)
 				return inputString:gsub("%.(ts|js)$", ".server.%1")
 			end,
 		},
