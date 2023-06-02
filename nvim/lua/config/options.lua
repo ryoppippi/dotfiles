@@ -65,4 +65,8 @@ then
 end
 
 vim.opt.laststatus = 0
+vim.api.nvim_set_hl(0, "Statusline", { link = "Normal" })
+vim.api.nvim_set_hl(0, "StatuslineNC", { link = "Normal" })
+vim.opt.statusline = string.rep(" ", vim.api.nvim_win_get_width(0))
+
 vim.opt.showcmd = false
