@@ -1,7 +1,7 @@
 return {
 	"rebelot/heirline.nvim",
-	enabled = false,
 	cond = vim.o.termguicolors,
+	enabled = false,
 	event = "UIEnter",
 	dependencies = { "rebelot/kanagawa.nvim" },
 	config = function(_, opts)
@@ -12,8 +12,8 @@ return {
 
 		return {
 			statusline = require("plugin.heirline.statusline"),
-			winbar = require("plugin.heirline.winbar"),
 			tabline = require("plugin.heirline.tabline"),
+			winbar = require("plugin.heirline.winbar"),
 			-- statuscolumn = require("plugin.heirline.statuscolumn"),
 			opts = {
 				colors = require("kanagawa.colors").setup(),
