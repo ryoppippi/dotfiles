@@ -26,10 +26,9 @@
   cl = clone
   cp = cherry-pick
   f = fetch
-  gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
   p = push
-  pushf = push --force-with-lease
-  pf = push --force-with-lease
+  pushf = push --force-with-lease --force-if-includes
+  pf = push --force-with-lease --force-if-includes
   pl = pull
   dlr = !sh -c 'git branch -D $1 && git push origin :$1' -
   r = reset
@@ -62,13 +61,15 @@
   root = rev-parse --show-toplevel
   cza = cz -a
   la = log --oneline --decorate --graph --branches --tags --remotes --all
+  hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+  gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
 
-[credential]
-  helper = osxkeychain
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
+; [credential]
+;   helper = osxkeychain
+; 	helper = 
+; 	helper = /usr/local/share/gcm-core/git-credential-manager
 [ghq]
   root = ~/.go/src
   root = ~/ghq
@@ -83,6 +84,7 @@
   required = true
 [push]
   default = current
+  useForceIfIncludes = true
 ; [url "git@github.com:"]
   ; pushInsteadOf = https://github.com/
 [commit]
