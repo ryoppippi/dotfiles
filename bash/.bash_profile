@@ -82,6 +82,12 @@ if [ -f $WASMER_DIR/wasmer.sh ];then
   source $WASMER_DIR/wasmer.sh
 fi
 
+# ruby
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+
 # rye
 source "$HOME/.rye/env"
 
