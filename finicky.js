@@ -10,12 +10,6 @@ module.exports = {
           }
       }
     }
-//     ,
-//     {
-//       // Redirect all urls to use https
-//       match: ({ url }) => url.protocol === "http" && !url.host.includes("localhost"),
-//       url: { protocol: "https" }
-//     }
   ],
   handlers: [
     {
@@ -26,37 +20,9 @@ module.exports = {
     {
       match: finicky.matchHostnames([
         "colab.research.google.com",
+        "meet.google.com",
       ]),
-      browser: "Microsoft Edge"
-    },
-//     {
-//       match: finicky.matchHostnames([
-//         "github.com",
-//         /.*\.github.com$/,
-//         /.*\.github.us$/
-//       ]),
-//       browser: "Microsoft Edge"
-//     },
-    {
-      match: finicky.matchHostnames([
-        "circleci.com",
-        /.*\.circleci.com$/ 
-      ]),
-      browser: "Microsoft Edge"
-    },
-//     {
-//       match: finicky.matchHostnames([
-//         "zoom.us",
-//         /.*\.zoom.us$/ 
-//       ]),
-//       browser: "Microsoft Edge"
-//     },
-    {
-      match: finicky.matchHostnames([
-        "google.com",
-        /.*\.google.com$/ 
-      ]),
-      browser: "Microsoft Edge"
+      browser: "Google Chrome"
     },
   ]
 };
