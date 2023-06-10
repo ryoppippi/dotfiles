@@ -36,9 +36,8 @@ return {
 		vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 
 		-- rename
-		vim.keymap.set("n", "cW", function()
+		vim.keymap.set("n", "cr", function()
 			if require("core.plugin").has("inc-rename.nvim") then
-				require("inc_rename")
 				-- if ir then
 				return ":IncRename " .. vim.fn.expand("<cword>")
 			end

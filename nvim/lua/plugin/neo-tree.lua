@@ -16,7 +16,7 @@ return {
 		"NeoTreeShowToggle",
 	},
 	keys = {
-		{ "<leader>E", vim.cmd.NeoTree, silent = true, desc = "Neotree show in split" },
+		{ "<leader>E", "<cmd>NeoTreeShowToggle<cr>", silent = true, desc = "Neotree " },
 		-- { "<leader>e", vim.cmd.NeoTreeFloatToggle, silent = true, desc = "Neotree float toggle" },
 	},
 	init = function()
