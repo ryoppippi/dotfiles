@@ -28,6 +28,18 @@ return {
 		end
 
 		return {
+			sources = {
+				path = {
+					modified = function(sym)
+						return sym:merge({
+							name = sym.name,
+							icon = " ",
+							name_hl = "DiffAdded",
+							icon_hl = "DiffAdded",
+						})
+					end,
+				},
+			},
 			menu = {
 				keymaps = {
 					["h"] = "<C-w>c",
