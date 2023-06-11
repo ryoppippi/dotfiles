@@ -24,7 +24,7 @@ packages:
   - name: sharkdp/fd@v8.7.0
   - name: ogham/exa@v0.10.1
   - name: aquaproj/registry-tool@v0.1.10
-  - name: marp-team/marp-cli@v2.5.0
+  - name: marp-team/marp-cli@v3.0.0
   - name: tcnksm/ghr@v0.16.0
   - name: x-motemen/ghq@v1.4.2
   - name: ajeetdsouza/zoxide@v0.9.1
