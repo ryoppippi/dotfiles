@@ -66,10 +66,6 @@
 	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
 
-; [credential]
-;   helper = osxkeychain
-; 	helper = 
-; 	helper = /usr/local/share/gcm-core/git-credential-manager
 [ghq]
   root = ~/.go/src
   root = ~/ghq
@@ -97,5 +93,9 @@
   plus-emph-style="bold 29 29"
   hunk-header-style="omit"
   line-numbers=true
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/Users/ryoppippi/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.30.0/gh_2.30.0_macOS_arm64.zip/gh_2.30.0_macOS_arm64/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/Users/ryoppippi/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.30.0/gh_2.30.0_macOS_arm64.zip/gh_2.30.0_macOS_arm64/bin/gh auth git-credential
