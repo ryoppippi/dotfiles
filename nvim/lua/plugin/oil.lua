@@ -11,7 +11,7 @@ return {
 				-- curerent directory
 				local cd = vim.fn.expand("%:p:h")
 
-				require("oil").open(cd)
+				require("oil").open_float(cd)
 			end,
 		},
 	},
