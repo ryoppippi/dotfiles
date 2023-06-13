@@ -28,6 +28,17 @@ return {
 		end
 
 		return {
+			general = {
+				enable = function(buf, win)
+					local disable_ft = { "oil" }
+
+					return not vim.api.nvim_win_get_config(win).zindex
+						and vim.bo[buf].buftype == ""
+						and vim.api.nvim_buf_get_name(buf) ~= ""
+						and not vim.tbl_contains(disable_ft, vim.api.nvim_buf_get_option(buf, "filetype"))
+						and not vim.wo[win].diff
+				end,
+			},
 			sources = {
 				path = {
 					modified = function(sym)
