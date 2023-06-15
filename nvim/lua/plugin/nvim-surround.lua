@@ -1,7 +1,7 @@
 return {
 	"kylechui/nvim-surround",
 	version = "*", -- Use for stability; omit to use `main` branch for the latest features
-	enabled = true,
+	enabled = false,
 	event = "VeryLazy",
 	opts = {
 		move_cursor = false,
