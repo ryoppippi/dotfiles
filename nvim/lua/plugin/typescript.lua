@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
+		enabled = true,
 		config = function()
 			local lspconfig = require("lspconfig")
 			local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
@@ -24,6 +25,7 @@ return {
 					root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
 					single_file_support = false,
 					settings = {
+						tsserver_plugins = { "typescript-styled-plugin", "typescript-svelte-plugin" },
 						javascript = {
 							inlayHints = {
 								includeInlayEnumMemberValueHints = true,
