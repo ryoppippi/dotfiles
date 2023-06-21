@@ -31,6 +31,7 @@
   "context_filetype.vim": { "branch": "master", "commit": "512db78eb08f284a71bdd83b3ff27026334a3ab2" },
   "convert-git-url.nvim": { "branch": "main", "commit": "fd97c92a627175546f8572088b2b240b92f2790d" },
   "copilot.vim": { "branch": "release", "commit": "1358e8e45ecedc53daf971924a0541ddf6224faf" },
+  "crates.nvim": { "branch": "main", "commit": "258961973c2cbef5717d4a726c68a0730fb0f94b" },
   "denops-docker.vim": { "branch": "main", "commit": "ce585cb067cc47cec9cf3b040ed7eceb5480439f" },
   "denops-graphql.vim": { "branch": "main", "commit": "9f23b81e5afdc14e24d55ea4d2b970a5c5bc32de" },
   "denops-lazy.nvim": { "branch": "main", "commit": "aee18b31b15dafddc7674b6cd256789d56431efe" },
