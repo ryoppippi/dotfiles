@@ -23,6 +23,30 @@ return {
 					capabilities = opts.capabilities,
 					root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
 					single_file_support = false,
+					settings = {
+						javascript = {
+							inlayHints = {
+								includeInlayEnumMemberValueHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayVariableTypeHints = true,
+							},
+						},
+						typescript = {
+							inlayHints = {
+								includeInlayEnumMemberValueHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayVariableTypeHints = true,
+							},
+						},
+					},
 				},
 				debug = false,
 				disable_commands = false,
