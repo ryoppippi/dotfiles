@@ -19,11 +19,22 @@ local function setInlayHintHL()
 	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = foreground, bg = background })
 end
 
+local function keymap(bufnr)
+	vim.keymap.set({ "n", "v" }, "<leader>l", function()
+		vim.lsp.buf.inlay_hint(bufnr)
+		local state, lsp_lines = pcall(require, "lsp_lines")
+		if state then
+			lsp_lines.toggle()
+		end
+	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & lsp_lines" })
+end
+
 return {
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/inlayHint") then
 			vim.lsp.buf.inlay_hint(bufnr, true)
 			setInlayHintHL()
+			keymap(bufnr)
 		end
 	end,
 }
