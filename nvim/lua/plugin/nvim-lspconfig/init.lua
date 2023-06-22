@@ -163,6 +163,20 @@ return {
 				})
 				disable_formatting(client)
 			end,
+			settings = {
+				typescript = {
+					inlayHints = {
+						parameterTypes = { enabled = true },
+						enumMemberValues = { enabled = true },
+						parameterNames = {
+							suppressWhenArgumentMatchesName = true,
+							enabled = "all",
+						},
+						functionLikeReturnTypes = { enabled = true },
+						variableTypes = { enabled = true },
+					},
+				},
+			},
 		})
 		setup(lspconfig.astro, { on_attach = disable_formatting })
 		setup(lspconfig.angularls)
