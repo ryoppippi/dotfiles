@@ -84,6 +84,18 @@ return {
 			end
 		end
 
+		o.typescriptInlayHints = {
+			parameterNames = {
+				enabled = "literals",
+				suppressWhenArgumentMatchesName = true,
+			},
+			parameterTypes = { enabled = true },
+			variableTypes = { enabled = true },
+			propertyDeclarationTypes = { enabled = true },
+			functionLikeReturnTypes = { enabled = true },
+			enumMemberValues = { enabled = true },
+		}
+
 		return o
 	end,
 	config = function(_, opts)
@@ -165,16 +177,7 @@ return {
 			end,
 			settings = {
 				typescript = {
-					inlayHints = {
-						parameterTypes = { enabled = true },
-						enumMemberValues = { enabled = true },
-						parameterNames = {
-							suppressWhenArgumentMatchesName = true,
-							enabled = "all",
-						},
-						functionLikeReturnTypes = { enabled = true },
-						variableTypes = { enabled = true },
-					},
+					inlayHints = opts.typescriptInlayHints,
 				},
 			},
 		})
