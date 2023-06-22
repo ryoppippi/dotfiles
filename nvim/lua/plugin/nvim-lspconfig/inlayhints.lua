@@ -31,6 +31,12 @@ end
 
 return {
 	on_attach = function(client, bufnr)
+		local Util = require("lazy.core.util")
+		local s = client.supports_method("textDocument/inlayHint")
+		if client.name ~= nil then
+			Util.info(s and "Inlay hints supported" or "Inlay hints not supported", { title = client.name })
+		end
+
 		if client.supports_method("textDocument/inlayHint") then
 			vim.lsp.buf.inlay_hint(bufnr, true)
 			setInlayHintHL()

@@ -11,9 +11,9 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
-		{ "hrsh7th/cmp-nvim-lsp",                 cond = has_cmp },
+		{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
 		{ "hrsh7th/cmp-nvim-lsp-document-symbol", cond = has_cmp },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help",  cond = has_cmp, enabled = false },
+		{ "hrsh7th/cmp-nvim-lsp-signature-help", cond = has_cmp, enabled = false },
 	},
 	init = function()
 		local exclude_ft = { "oil" }
@@ -219,7 +219,7 @@ return {
 		setup(lspconfig.pyright, {
 			before_init = function(_, config)
 				config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-					and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+						and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
 					or utils.find_cmd("python3", ".venv/bin", config.root_dir)
 			end,
 		})
