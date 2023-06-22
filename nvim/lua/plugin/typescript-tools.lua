@@ -2,7 +2,7 @@ return {
 	"pmizio/typescript-tools.nvim",
 	event = { "BufReadPost" },
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	enabled = true,
+	enabled = false,
 	opts = {
 		settings = {
 			tsserver_plugins = { "typescript-styled-plugin", "typescript-svelte-plugin" },
