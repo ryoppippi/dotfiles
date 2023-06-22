@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
-		enabled = false,
+		enabled = true,
 		config = function()
 			local lspconfig = require("lspconfig")
 			local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
