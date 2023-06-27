@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		{ "tani/vim-artemis" },
 	},
-	enabled = false,
+	enabled = true,
 	config = function()
 		-- require("insx.preset.standard").setup({ cmdline = { enabled = true } })
 		-- require("insx.preset.standard").setup_cmdline_mode({ cmdline = { enabled = true } })
