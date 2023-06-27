@@ -82,42 +82,6 @@ vim.keymap.set("c", "<C-d>", "<DEL>", { silent = false })
 -- regexp
 vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
 
--- add blank lines
-local function append_new_lines(offset_line)
-	local peridot = require("peridot")
-	return peridot
-		and peridot.repeatable_edit(function(ctx)
-			local curpos = vim.fn.line(".")
-			local pos_line = curpos + offset_line
-			local n_lines = ctx.count1
-			local lines = require("core.utils").repeat_element("", n_lines)
-			vim.fn.append(pos_line, lines)
-		end)
-end
-
-vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
-vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
-
--- paste in next lines
-local function paste_in_new_lines(direction)
-	local peridot = require("peridot")
-	return peridot
-			and peridot.repeatable_edit(function(ctx)
-				for _ = 1, ctx.count1 do
-					if direction == 0 then
-						vim.api.nvim_command("pu")
-					elseif direction == -1 then
-						vim.api.nvim_command("pu!")
-					end
-				end
-			end)
-		or ""
-end
-
-vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
-vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
-vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
-
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
 	return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
@@ -143,3 +107,45 @@ vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 
 vim.keymap.set("", "<c-i>", "<c-i>")
+
+-- repeatable
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		-- add blank lines
+		local function append_new_lines(offset_line)
+			local peridot = require("peridot")
+			return peridot
+				and peridot.repeatable_edit(function(ctx)
+					local curpos = vim.fn.line(".")
+					local pos_line = curpos + offset_line
+					local n_lines = ctx.count1
+					local lines = require("core.utils").repeat_element("", n_lines)
+					vim.fn.append(pos_line, lines)
+				end)
+		end
+
+		vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
+		vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
+
+		-- paste in next lines
+		local function paste_in_new_lines(direction)
+			local peridot = require("peridot")
+			return peridot
+					and peridot.repeatable_edit(function(ctx)
+						for _ = 1, ctx.count1 do
+							if direction == 0 then
+								vim.api.nvim_command("pu")
+							elseif direction == -1 then
+								vim.api.nvim_command("pu!")
+							end
+						end
+					end)
+				or ""
+		end
+
+		vim.keymap.set("n", "<leader>p", paste_in_new_lines(0), { expr = true })
+		vim.keymap.set("n", "<leader>P", paste_in_new_lines(-1), { expr = true })
+		vim.keymap.set("n", "<leader>%", paste_in_new_lines(-1), { expr = true })
+	end,
+	once = true,
+})
