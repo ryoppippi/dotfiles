@@ -9,9 +9,9 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.21.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.23.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: cli/cli@v2.30.0
+  - name: cli/cli@v2.31.0
   - name: golang/go@go1.20.5
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.42.0
@@ -47,14 +47,14 @@ packages:
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.10.0
   - name: direnv/direnv@v2.32.3
-  - name: gohugoio/hugo@v0.114.0
+  - name: gohugoio/hugo@v0.114.1
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
-  - name: projectdiscovery/httpx@v1.3.2
+  - name: projectdiscovery/httpx@v1.3.3
   - name: dandavison/delta@0.16.5
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
   - name: denoland/deno@v1.34.3
-  - name: oven-sh/bun@bun-v0.6.9
+  - name: oven-sh/bun@bun-v0.6.11
   - name: wader/fq@v0.6.0
   - name: planetscale/cli@v0.147.0
