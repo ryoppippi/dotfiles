@@ -6,7 +6,7 @@ return {
 		local has_action_preview = has("actions-preview.nvim")
 
 		-- hover doc
-		-- vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+		vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
 		-- jump to
 		vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
