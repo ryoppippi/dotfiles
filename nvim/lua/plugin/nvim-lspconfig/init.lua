@@ -90,7 +90,7 @@ return {
 				suppressWhenArgumentMatchesName = true,
 			},
 			parameterTypes = { enabled = true },
-			variableTypes = { enabled = true },
+			variableTypes = { enabled = false },
 			propertyDeclarationTypes = { enabled = true },
 			functionLikeReturnTypes = { enabled = true },
 			enumMemberValues = { enabled = true },
