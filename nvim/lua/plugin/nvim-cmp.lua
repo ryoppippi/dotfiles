@@ -1,6 +1,7 @@
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
+	cond = not is_vscode(),
 	dependencies = {
 		{ "tani/vim-artemis" },
 		{ "onsails/lspkind.nvim" },

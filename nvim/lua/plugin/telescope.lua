@@ -7,6 +7,7 @@ end
 return {
 	"nvim-telescope/telescope.nvim",
 	enabled = true,
+	cond = not is_vscode(),
 	cmd = { "Telescope" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",

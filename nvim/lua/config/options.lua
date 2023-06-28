@@ -56,7 +56,7 @@ vim.g.colorterm = os.getenv("COLORTERM")
 if
 	vim.tbl_contains({ "truecolor", "24bit", "rxvt", "" }, vim.g.colorterm)
 	and tb(vim.fn.exists("+termguicolors"))
-	and not require("core.utils").is_vscode()
+	and not is_vscode()
 then
 	vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
 	vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"

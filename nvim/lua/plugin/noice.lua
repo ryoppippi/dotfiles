@@ -2,6 +2,7 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	enabled = true,
+	cond = not is_vscode(),
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
