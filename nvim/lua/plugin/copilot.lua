@@ -8,6 +8,7 @@ return {
 	{
 		"github/copilot.vim",
 		enabled = true,
+		cond = not is_vscode(),
 		dependencies = {
 			"tani/vim-artemis",
 			{
@@ -63,6 +64,7 @@ return {
 	{
 		"zbirenbaum/copilot.lua",
 		enabled = false,
+		cond = not is_vscode(),
 		cmd = { "Copilot" },
 		dependencies = {
 			{

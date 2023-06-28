@@ -1,4 +1,4 @@
-if not require("core.utils").is_macos() then
+if not is_macos() then
 	return
 end
 

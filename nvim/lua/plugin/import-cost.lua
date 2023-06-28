@@ -1,6 +1,7 @@
 return {
 	"barrett-ruth/import-cost.nvim",
 	build = "sh install.sh yarn",
+	cond = not is_vscode(),
 	ft = {
 		"javascript",
 		"javascriptreact",

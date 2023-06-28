@@ -15,3 +15,11 @@ end
 _G.t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
+_G.is_vscode = function()
+	return tb(vim.g.vscode)
+end
+
+_G.is_macos = function()
+	return vim.loop.os_uname().sysname == "Darwin"
+end

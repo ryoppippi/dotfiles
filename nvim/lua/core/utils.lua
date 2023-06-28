@@ -1,13 +1,5 @@
 local M = {}
 
-M.is_vscode = function()
-	return tb(vim.g.vscode)
-end
-
-M.is_macos = function()
-	return vim.loop.os_uname().sysname == "Darwin"
-end
-
 M.is_event_available = function(event)
 	return tb(vim.fn.exists(("##" .. event)))
 end
