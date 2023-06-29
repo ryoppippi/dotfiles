@@ -1,13 +1,11 @@
 return {
 	"petertriho/nvim-scrollbar",
 	event = "VeryLazy",
-	enabled = true,
-	opts = function()
-		return {
-			show = true,
-			set_highlights = false,
-		}
-	end,
+	enabled = false,
+	opts = {
+		show = true,
+		set_highlights = false,
+	},
 	config = function(_, opts)
 		require("scrollbar").setup(opts)
 		if require("core.plugin").has("nvim-hlslens") then
