@@ -16,7 +16,7 @@ return {
 			signs = true,
 			update_in_insert = false,
 			severity_sort = true,
-			virtual_text = { format = diagnostic_formatter },
+			virtual_text = false,
 			float = { sformat = diagnostic_formatter },
 		})
 	end,
