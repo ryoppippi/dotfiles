@@ -47,7 +47,7 @@ packages:
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.10.0
   - name: direnv/direnv@v2.32.3
-  - name: gohugoio/hugo@v0.114.1
+  - name: gohugoio/hugo@v0.115.0
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
   - name: projectdiscovery/httpx@v1.3.3
@@ -55,6 +55,6 @@ packages:
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
   - name: denoland/deno@v1.34.3
-  - name: oven-sh/bun@bun-v0.6.11
+  - name: oven-sh/bun@bun-v0.6.12
   - name: wader/fq@v0.6.0
   - name: planetscale/cli@v0.147.0
