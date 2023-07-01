@@ -27,9 +27,9 @@ return {
 		vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 
 		-- diagnostics
-		vim.keymap.set("n", "gL", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 		if has_telescope then
-			vim.keymap.set("n", "gl", [[<cmd>Telescope diagnostics<cr>]], opts)
+			vim.keymap.set("n", "gL", [[<cmd>Telescope diagnostics<cr>]], opts)
 		end
 
 		vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
