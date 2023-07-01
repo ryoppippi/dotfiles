@@ -5,12 +5,7 @@ return {
 		"neovim/nvim-lspconfig",
 		"nvim-treesitter/nvim-treesitter",
 	},
-	ft = { "go", "gomod" },
-	build = function()
-		require("go.install").update_all_sync()
-	end,
-	config = function()
-		require("go").setup()
+	init = function()
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*.go",
 			callback = function()
@@ -18,4 +13,8 @@ return {
 			end,
 		})
 	end,
+	ft = { "go", "gomod" },
+	event = { "CmdlineEnter" },
+	build = ':lua require("go.install").update_all_sync()',
+	opts = {},
 }
