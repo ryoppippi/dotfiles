@@ -86,7 +86,7 @@ return {
 
 		o.typescriptInlayHints = {
 			parameterNames = {
-				enabled = "literals",
+				enabled = "literals", -- 'none' | 'literals' | 'all'
 				suppressWhenArgumentMatchesName = true,
 			},
 			parameterTypes = { enabled = true },
