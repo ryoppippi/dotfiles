@@ -37,7 +37,7 @@ return {
 			Util.info(s and "Inlay hints supported" or "Inlay hints not supported", { title = client.name })
 		end
 
-		if client.supports_method("textDocument/inlayHint") then
+		if client.server_capabilities.inlayHintProvider then
 			vim.lsp.buf.inlay_hint(bufnr, true)
 			setInlayHintHL()
 			keymap(bufnr)
