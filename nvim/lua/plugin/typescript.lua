@@ -9,6 +9,22 @@ return {
 			local lspconfig = require("lspconfig")
 			local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 
+			local tih = opts.typescriptInlayHints
+			local inlayHints = {
+				includeInlayEnumMemberValueHints = tih.enumMemberValues.enabled,
+				includeInlayFunctionLikeReturnTypeHints = tih.functionLikeReturnTypes.enabled,
+				includeInlayFunctionParameterTypeHints = tih.parameterTypes.enabled,
+				includeInlayParameterNameHints = tih.parameterNames.enabled,
+				includeInlayParameterNameHintsWhenArgumentMatchesName = tih.parameterNames.suppressWhenArgumentMatchesName,
+				includeInlayPropertyDeclarationTypeHints = tih.propertyDeclarationTypes.enabled,
+				includeInlayVariableTypeHints = tih.variableTypes.enabled,
+			}
+
+			local settings = {
+				typescript = { inlayHints = inlayHints },
+				javascript = { inlayHints = inlayHints },
+			}
+
 			require("typescript").setup({
 				server = {
 					on_attach = function(client, buffer)
@@ -24,30 +40,7 @@ return {
 					capabilities = opts.capabilities,
 					root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
 					single_file_support = false,
-					settings = {
-						javascript = {
-							inlayHints = {
-								includeInlayEnumMemberValueHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayVariableTypeHints = true,
-							},
-						},
-						typescript = {
-							inlayHints = {
-								includeInlayEnumMemberValueHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-								includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayVariableTypeHints = true,
-							},
-						},
-					},
+					settings = settings,
 				},
 				debug = false,
 				disable_commands = false,
