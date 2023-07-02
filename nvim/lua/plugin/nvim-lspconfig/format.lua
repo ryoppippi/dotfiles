@@ -42,7 +42,15 @@ function M.format(opts)
 	vim.lsp.buf.format({
 		bufnr = buf,
 		filter = function(client)
-			return have_nls and client.name == "null-ls" or client.name ~= "null-ls"
+			if not client.server_capabilities.documentFormattingProvider then
+				return false
+			end
+			local is_null_ls = have_nls and client.name == "null-ls" or client.name ~= "null-ls"
+			if not is_null_ls then
+				return false
+			end
+			Util.info("format on save", { title = client.name })
+			return true
 		end,
 	})
 end
@@ -53,7 +61,7 @@ local function command()
 	vim.api.nvim_create_user_command("FormatDisable", M.disable, { nargs = 0 })
 end
 
-local function keymap(buf)
+local function auto_format( buf)
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
 		buffer = buf,
@@ -66,17 +74,9 @@ local function keymap(buf)
 end
 
 function M.on_attach(client, buf)
-	if
-		client.config
-		and client.config.capabilities
-		and client.config.capabilities.documentFormattingProvider == false
-	then
-		return
-	end
-
-	if client.supports_method("textDocument/formatting") then
+	if client.server_capabilities.documentFormattingProvider then
 		command()
-		keymap(buf)
+		auto_format(buf)
 	end
 end
 
