@@ -1,3 +1,5 @@
+local Util = require("lazy.core.util")
+
 local function setInlayHintHL()
 	local has_hl, hl = pcall(vim.api.nvim_get_hl_by_name, "LspInlayHint", true)
 	if has_hl and (hl["foreground"] or hl["background"]) then
@@ -31,7 +33,6 @@ end
 
 return {
 	on_attach = function(client, bufnr)
-		local Util = require("lazy.core.util")
 		local supports_inlay_hint = client.server_capabilities.inlayHintProvider
 
 		if client.name ~= nil then
