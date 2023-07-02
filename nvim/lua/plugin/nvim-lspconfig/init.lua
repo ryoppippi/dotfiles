@@ -241,9 +241,6 @@ return {
 			end,
 		})
 
-		-- go
-		setup(lspconfig.gopls)
-
 		-- zigls
 		local zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
 		local zls = lspconfig.zls
