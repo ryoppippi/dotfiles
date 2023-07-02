@@ -50,11 +50,13 @@ return {
 			vim.lsp.inlay_hint(bufnr, true)
 
 			vim.api.nvim_create_autocmd("InsertLeave", {
+				buffer = bufnr,
 				callback = function()
 					vim.lsp.inlay_hint(bufnr, true)
 				end,
 			})
 			vim.api.nvim_create_autocmd("InsertEnter", {
+				buffer = bufnr,
 				callback = function()
 					vim.lsp.inlay_hint(bufnr, false)
 				end,
