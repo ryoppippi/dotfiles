@@ -79,9 +79,8 @@ return {
 		}
 
 		o.disable_formatting = function(client)
-			if client and client.resolved_capabilities then
-				client.server_capabilities.documentFormattingProvider = false
-			end
+			client.server_capabilities.documentFormattingProvider = false
+			client.server_capabilities.documentRangeFormattingProvider = false
 		end
 
 		o.typescriptInlayHints = {
