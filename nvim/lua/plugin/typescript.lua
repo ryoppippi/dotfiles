@@ -30,8 +30,8 @@ return {
 						vim.keymap.set("n", "<leader>to", function()
 							vim.cmd("TypescriptAddMissingImports!")
 							vim.cmd("TypescriptRemoveUnused!")
-							vim.cmd("TypescriptOrganizeImports!")
-						end, { desc = "Organize imports", buffer = buffer })
+							-- vim.cmd("TypescriptOrganizeImports!")
+						end, { desc = "Manage imports", buffer = buffer })
 						vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
 
 						lspfoncig_opts.disable_formatting(client, buffer)

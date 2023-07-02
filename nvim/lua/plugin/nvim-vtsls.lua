@@ -17,7 +17,7 @@ return {
 				vim.keymap.set("n", "<leader>to", function()
 					commands.add_missing_imports()
 					commands.remove_unused_imports()
-					commands.organize_imports()
+					-- commands.organize_imports()
 				end, { desc = "Organize imports", buffer = buffer })
 
 				lspconfig_opts.disable_formatting(client, buffer)
