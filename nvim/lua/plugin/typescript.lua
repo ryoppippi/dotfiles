@@ -5,11 +5,11 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		enabled = true,
-		config = function()
+		opts = function()
 			local lspconfig = require("lspconfig")
-			local opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
+			local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 
-			local tih = opts.typescriptInlayHints
+			local tih = lspfoncig_opts.typescriptInlayHints
 			local inlayHints = {
 				includeInlayEnumMemberValueHints = tih.enumMemberValues.enabled,
 				includeInlayFunctionLikeReturnTypeHints = tih.functionLikeReturnTypes.enabled,
@@ -24,8 +24,7 @@ return {
 				typescript = { inlayHints = inlayHints },
 				javascript = { inlayHints = inlayHints },
 			}
-
-			require("typescript").setup({
+			return {
 				server = {
 					on_attach = function(client, buffer)
 						vim.keymap.set("n", "<leader>to", function()
@@ -35,17 +34,19 @@ return {
 						end, { desc = "Organize imports", buffer = buffer })
 						vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
 
-						opts.disable_formatting(client, buffer)
+						lspfoncig_opts.disable_formatting(client, buffer)
 					end,
-					capabilities = opts.capabilities,
-					root_dir = lspconfig.util.root_pattern(opts.node_root_dir),
+					capabilities = lspfoncig_opts.capabilities,
+					root_dir = lspconfig.util.root_pattern(lspfoncig_opts.node_root_dir),
 					single_file_support = false,
 					settings = settings,
 				},
 				debug = false,
 				disable_commands = false,
-			})
-			return opts
+			}
+		end,
+		config = function(_, opts)
+			require("typescript").setup(opts)
 		end,
 	},
 	{

@@ -20,27 +20,44 @@ local function setInlayHintHL()
 end
 
 local function keymap(bufnr)
-	vim.keymap.set({ "n", "v" }, "<leader>l", function()
-		vim.lsp.buf.inlay_hint(bufnr)
+	vim.keymap.set({ "n", "v", "x" }, "<leader>l", function()
 		local state, lsp_lines = pcall(require, "lsp_lines")
 		if state then
 			lsp_lines.toggle()
 		end
+		vim.lsp.inlay_hint(bufnr)
 	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & lsp_lines" })
 end
 
 return {
 	on_attach = function(client, bufnr)
 		local Util = require("lazy.core.util")
-		local s = client.supports_method("textDocument/inlayHint")
+		local supports_inlay_hint = client.server_capabilities.inlayHintProvider
+
 		if client.name ~= nil then
-			Util.info(s and "Inlay hints supported" or "Inlay hints not supported", { title = client.name })
+			Util.info(
+				supports_inlay_hint and "Inlay hints supported" or "Inlay hints not supported",
+				{ title = client.name }
+			)
 		end
 
-		if client.server_capabilities.inlayHintProvider then
-			vim.lsp.buf.inlay_hint(bufnr, true)
-			setInlayHintHL()
+		if supports_inlay_hint then
 			keymap(bufnr)
+
+			setInlayHintHL()
+
+			vim.lsp.inlay_hint(bufnr, true)
+
+			vim.api.nvim_create_autocmd("InsertLeave", {
+				callback = function()
+					vim.lsp.inlay_hint(bufnr, true)
+				end,
+			})
+			vim.api.nvim_create_autocmd("InsertEnter", {
+				callback = function()
+					vim.lsp.inlay_hint(bufnr, false)
+				end,
+			})
 		end
 	end,
 }
