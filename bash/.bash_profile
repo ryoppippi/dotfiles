@@ -2,6 +2,8 @@ export LC_ALL='en_US.UTF-8'
 ##export LANG=ja_JP.UTF-8
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
+
 export EDITOR=nvim
 
 export ARCH=$(uname -m)
