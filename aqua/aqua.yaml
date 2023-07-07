@@ -9,7 +9,7 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.23.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.25.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.31.0
   - name: golang/go@go1.20.5
@@ -18,7 +18,7 @@ packages:
   - name: denisidoro/navi@v2.22.1
   - name: nektos/act@v0.2.46
   - name: b4b4r07/gist@v1.2.6
-  - name: denoland/deno@v1.34.3
+  - name: denoland/deno@v1.35.0
   - name: jesseduffield/lazygit@v0.38.2
   - name: BurntSushi/ripgrep@13.0.0
   - name: sharkdp/fd@v8.7.0
@@ -45,16 +45,16 @@ packages:
   - name: bootandy/dust@v0.8.6
   - name: cloudflare/cloudflared@2023.6.1
   - name: muesli/duf@v0.8.1
-  - name: wagoodman/dive@v0.10.0
+  - name: wagoodman/dive@v0.11.0
   - name: direnv/direnv@v2.32.3
-  - name: gohugoio/hugo@v0.115.0
+  - name: gohugoio/hugo@v0.115.1
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
   - name: projectdiscovery/httpx@v1.3.3
   - name: dandavison/delta@0.16.5
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
-  - name: denoland/deno@v1.34.3
-  - name: oven-sh/bun@bun-v0.6.12
-  - name: wader/fq@v0.6.0
+  - name: denoland/deno@v1.35.0
+  - name: oven-sh/bun@bun-v0.6.13
+  - name: wader/fq@v0.7.0
   - name: planetscale/cli@v0.147.0
