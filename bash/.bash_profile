@@ -2,7 +2,6 @@ export LC_ALL='en_US.UTF-8'
 ##export LANG=ja_JP.UTF-8
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
 
 export EDITOR=nvim
 
@@ -61,7 +60,8 @@ export BETTER_EXCEPTIONS=1
 
 # brew
 export BREW_PREFIX=$(brew --prefix)
-export HOMEBREW_BREWFILE="$HOME/.brewfile"
+export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
+export HOMEBREW_NO_ANALYTICS=1
 
 if [ -f $BREW_PREFIX/etc/brew-wrap ];then
   source $BREW_PREFIX/etc/brew-wrap
