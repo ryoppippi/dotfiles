@@ -59,13 +59,8 @@ export PIP_REQUIRE_VIRTUALENV=true
 export BETTER_EXCEPTIONS=1
 
 # brew
-export BREW_PREFIX=$(brew --prefix)
 export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
 export HOMEBREW_NO_ANALYTICS=1
-
-if [ -f $BREW_PREFIX/etc/brew-wrap ];then
-  source $BREW_PREFIX/etc/brew-wrap
-fi
 
 # zoxide
 eval "$(zoxide init bash)"
