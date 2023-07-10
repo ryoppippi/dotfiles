@@ -2,11 +2,21 @@ return {
 	"pmizio/typescript-tools.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	enabled = false,
+	enabled = true,
 	opts = function()
 		local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 		local tih = lspfoncig_opts.typescriptInlayHints
 		return {
+			on_attach = function(client, buffer)
+				vim.keymap.set("n", "<leader>to", function()
+					vim.cmd("TSToolsRemoveUnusedImports!")
+					vim.cmd("TSToolsAddMissingImports!")
+					-- vim.cmd("TypescriptOrganizeImports!")
+				end, { desc = "Manage imports", buffer = buffer })
+				vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
+
+				lspfoncig_opts.disable_formatting(client, buffer)
+			end,
 			settings = {
 				tsserver_plugins = { "typescript-styled-plugin", "typescript-svelte-plugin" },
 				tsserver_file_preferences = {
