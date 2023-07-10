@@ -164,7 +164,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "09b0b17d824d2d56f02ff15967e8a2499a89c731" },
   "treesitter-unit": { "branch": "main", "commit": "89968a1f8c72427691088e6d09d26a52c2ddc6f4" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "c60f75520fcc8d9519bbc5bd3ca99fb41e014ba1" },
-  "typescript.nvim": { "branch": "main", "commit": "de304087e6e49981fde01af8ccc5b21e8519306f" },
+  "typescript-tools.nvim": { "branch": "master", "commit": "fffd5ed6781fe3943216e2b57124f81e1c398647" },
   "ugaterm.nvim": { "branch": "main", "commit": "a43c4d61b4813639d66e8b02738a10c0cd223f3b" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
   "vim-artemis": { "branch": "main", "commit": "ea67f8b049cfdb5874515af01a6ab5c03fdf55c1" },
