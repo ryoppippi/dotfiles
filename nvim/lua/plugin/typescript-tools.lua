@@ -13,7 +13,6 @@ return {
 					vim.cmd("TSToolsAddMissingImports!")
 					-- vim.cmd("TypescriptOrganizeImports!")
 				end, { desc = "Manage imports", buffer = buffer })
-				vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
 
 				lspfoncig_opts.disable_formatting(client, buffer)
 			end,
@@ -28,6 +27,9 @@ return {
 					includeInlayPropertyDeclarationTypeHints = tih.propertyDeclarationTypes.enabled,
 					includeInlayVariableTypeHints = tih.variableTypes.enabled,
 				},
+			},
+			tsserver_format_options = {
+				allowRenameOfImportPath = false,
 			},
 		}
 	end,
