@@ -1,0 +1,45 @@
+name: aqua
+on:
+  push:
+    paths:
+      - aqua/
+      - .github/workflows/aqua.yaml
+  pull_request:
+    paths:
+      - aqua/
+      - .github/workflows/aqua.yaml
+jobs:
+  test:
+    strategy:
+      matrix:
+        goos:
+          - darwin
+          - linux
+        goarch:
+          - amd64
+          - arm64
+    runs-on: ubuntu-latest
+    env:
+      AQUA_CONFIG: config/aqua/aqua.yaml
+      AQUA_LOG_COLOR: always
+      AQUA_POLICY_CONFIG: config/aqua/aqua-policy.yaml
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install aqua
+        if: steps.filter.outputs.aqua == 'true'
+        uses: aquaproj/aqua-installer@v1.1.1
+        with:
+          aqua_version: v2.9.0
+      - name: Set up Golang
+        if: steps.filter.outputs.aqua == 'true'
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20.4"
+      - name: Run test
+        if: steps.filter.outputs.aqua == 'true'
+        run: aqua install
+        env:
+          AQUA_GOARCH: ${{ matrix.goarch }}
+          AQUA_GOOS: ${{ matrix.goos }}
