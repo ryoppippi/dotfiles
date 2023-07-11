@@ -1,0 +1,30 @@
+name: neovim ci
+on:
+  push:
+    paths:
+      - nvim/
+      - .github/workflows/neovim.yml
+  pull_request:
+    paths:
+      - nvim/
+      - .github/workflows/neovim.yml
+jobs:
+  neovim_ci:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: copy neovim config
+        run: cp -r nvim/ ~/.config/nvim/
+      - name: Install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: nightly
+      - name: Install dependencies
+        run: nvim --headless "+Lazy! sync" +qa
