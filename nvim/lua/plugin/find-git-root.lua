@@ -1,1 +1,4 @@
-return { "yyk/find-git-root.nvim" }
+return {
+	"yyk/find-git-root.nvim",
+	cmd = { "CdGitRoot" },
+}
