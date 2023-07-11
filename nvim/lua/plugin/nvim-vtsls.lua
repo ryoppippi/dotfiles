@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},
-	enabled = false,
+	enabled = true,
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local commands = require("vtsls").commands

@@ -2,7 +2,7 @@ return {
 	"pmizio/typescript-tools.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	enabled = true,
+	enabled = false,
 	opts = function()
 		local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
 		local tih = lspfoncig_opts.typescriptInlayHints
