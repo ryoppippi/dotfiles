@@ -9,14 +9,14 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.25.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.26.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.31.0
   - name: golang/go@go1.20.5
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.42.0
   - name: denisidoro/navi@v2.22.1
-  - name: nektos/act@v0.2.46
+  - name: nektos/act@v0.2.48
   - name: b4b4r07/gist@v1.2.6
   - name: denoland/deno@v1.35.0
   - name: jesseduffield/lazygit@v0.38.2
