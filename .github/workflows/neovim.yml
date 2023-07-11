@@ -2,11 +2,11 @@ name: neovim ci
 on:
   push:
     paths:
-      - nvim/
+      - nvim/**
       - .github/workflows/neovim.yml
   pull_request:
     paths:
-      - nvim/
+      - nvim/**
       - .github/workflows/neovim.yml
 jobs:
   neovim_ci:

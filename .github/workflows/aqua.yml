@@ -2,7 +2,7 @@ name: aqua
 on:
   push:
     paths:
-      - aqua/
+      - aqua/**
       - .github/workflows/aqua.yaml
   pull_request:
     paths:
