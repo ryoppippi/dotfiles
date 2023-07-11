@@ -11,8 +11,8 @@ registries:
   - type: standard
     ref: v4.26.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: cli/cli@v2.31.0
-  - name: golang/go@go1.20.5
+  - name: cli/cli@v2.32.0
+  - name: golang/go@go1.20.6
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.42.0
   - name: denisidoro/navi@v2.22.1
@@ -43,7 +43,7 @@ packages:
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v0.8.6
-  - name: cloudflare/cloudflared@2023.6.1
+  - name: cloudflare/cloudflared@2023.7.0
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.11.0
   - name: direnv/direnv@v2.32.3
@@ -57,4 +57,4 @@ packages:
   - name: denoland/deno@v1.35.0
   - name: oven-sh/bun@bun-v0.6.13
   - name: wader/fq@v0.7.0
-  - name: planetscale/cli@v0.147.0
+  - name: planetscale/cli@v0.148.0
