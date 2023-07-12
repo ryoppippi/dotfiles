@@ -1,7 +1,7 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v2.x",
-	enabled = true,
+	enabled = false,
 	event = { "BufAdd", "TabEnter" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
