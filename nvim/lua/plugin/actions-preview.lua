@@ -7,8 +7,12 @@ return {
 	event = "LspAttach",
 	init = function()
 		require("core.plugin").on_attach(function(_, buffer)
-			local key_opt = { silent = true, buffer = buffer }
-			vim.keymap.set({ "n", "v", "x" }, "ga", require("actions-preview").code_actions, key_opt)
+			vim.keymap.set(
+				{ "n", "v", "x" },
+				"ga",
+				require("actions-preview").code_actions,
+				{ silent = true, buffer = buffer, desc = "code actions preview" }
+			)
 		end)
 	end,
 	opts = function()
