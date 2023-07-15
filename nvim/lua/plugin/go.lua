@@ -37,6 +37,7 @@ return {
 		"jose-elias-alvarez/null-ls.nvim",
 		opts = function(_, opts)
 			if require("core.plugin").has("go.nvim") then
+				opts.sources = opts.sources or {}
 				local null_ls = require("null-ls")
 
 				table.insert(opts.sources, null_ls.builtins.diagnostics.revive)
