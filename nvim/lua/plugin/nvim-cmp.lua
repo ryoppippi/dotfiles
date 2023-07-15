@@ -151,7 +151,6 @@ return {
 				{ name = "nvim_lua" },
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "git" },
-				{ name = "ghq" },
 			}, {
 				{ name = "buffer" },
 				{ name = "omni" },
@@ -208,6 +207,7 @@ return {
 		cmp.setup.filetype({ "gitcommit", "octo", "markdown" }, {
 			sources = cmp.config.sources({
 				{ name = "git" },
+				{ name = "ghq" },
 				{ name = "copilot" },
 				-- { name = "rg" },
 				{ name = "luasnip" },
@@ -231,6 +231,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_document_symbol" },
 				{ name = "cmdline" },
+				{ name = "ghq" },
 			}, {
 				{ name = "buffer" },
 			}),
