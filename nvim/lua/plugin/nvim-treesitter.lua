@@ -15,8 +15,6 @@ return {
 		{ "haringsrob/nvim_context_vt" },
 		{ "romgrk/nvim-treesitter-context" },
 
-		{ "HiPhish/nvim-ts-rainbow2" },
-
 		{ "RRethy/nvim-treesitter-endwise" },
 	},
 	config = function()
