@@ -9,6 +9,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
+		"jay-babu/mason-null-ls.nvim",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
@@ -88,10 +89,10 @@ return {
 				enabled = "literals", -- 'none' | 'literals' | 'all'
 				suppressWhenArgumentMatchesName = true,
 			},
-			parameterTypes = { enabled = true },
+			parameterTypes = { enabled = false },
 			variableTypes = { enabled = false },
 			propertyDeclarationTypes = { enabled = true },
-			functionLikeReturnTypes = { enabled = true },
+			functionLikeReturnTypes = { enabled = false },
 			enumMemberValues = { enabled = true },
 		}
 
