@@ -51,6 +51,7 @@
   "git-rebase-auto-diff.nvim": { "branch": "main", "commit": "ad95f18cb85c24ddc0b48bf190bc313dfc58e2d6" },
   "gitignore.nvim": { "branch": "master", "commit": "6050f0b66d9b375c3fbcff90becea8aa204cd508" },
   "gitsigns.nvim": { "branch": "main", "commit": "dc2962f7fce953a2a98e7c6d3d7fc4c1d1f66758" },
+  "glance.nvim": { "branch": "master", "commit": "866d0f8584c129e071d84138c679d39aa9b5684c" },
   "go.nvim": { "branch": "master", "commit": "97b76f3188c64d4dacfc17c7c1543f775a3fb8e8" },
   "guihua.lua": { "branch": "master", "commit": "ab8b1f09603cc268770efd057115035dc6cfa83d" },
   "highlight-undo.nvim": { "branch": "main", "commit": "1aeada51fb956f1ef121f29ddbb2ef6108a3c480" },
