@@ -247,5 +247,6 @@ return {
 		setup(zls, {
 			cmd = tb(vim.fn.executable(zls_path)) and { zls_path } or zls.document_config.default_config.cmd,
 		})
+		vim.g.zig_fmt_autosave = 0
 	end,
 }
