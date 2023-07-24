@@ -92,8 +92,23 @@ return {
 		end, opts("code_action"))
 
 		-- workspace
-		vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts("add workspace folder"))
-		vim.keymap.set("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts("remove workspace folder"))
-		vim.keymap.set("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts("list workspace folders"))
+		vim.keymap.set(
+			"n",
+			"<leader>wa",
+			"<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>",
+			opts("add workspace folder")
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>wr",
+			"<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>",
+			opts("remove workspace folder")
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>wl",
+			"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
+			opts("list workspace folders")
+		)
 	end,
 }
