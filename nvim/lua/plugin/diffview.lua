@@ -1,6 +1,5 @@
 return {
 	"sindrets/diffview.nvim",
-	ft = {
-		"git",
-	},
+	event = "VeryLazy",
+	config = true,
 }
