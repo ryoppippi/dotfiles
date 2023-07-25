@@ -1,19 +1,20 @@
-local has = require("core.plugin").has
 return {
 	on_attach = function(_, bufnr)
 		local function opts(desc)
 			return { silent = true, buffer = bufnr, desc = desc }
 		end
 
+		local has = require("core.plugin").has
 		local has_telescope = has("telescope.nvim")
 		local has_glance = has("glance.nvim")
 		local has_action_preview = has("actions-preview.nvim")
+		local has_inc_rename = has("inc-rename.nvim")
 
 		-- hover doc
-		vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts("hover doc"))
+		vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts("hover doc"))
 
 		-- jump to
-		vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts("jump to declaration"))
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("jump to declaration"))
 
 		vim.keymap.set("n", "gd", function()
 			if has_glance then
@@ -61,26 +62,26 @@ return {
 		end, opts("jump to references"))
 
 		-- signature_help
-		vim.keymap.set("i", "<C-k>", "<cmd>vim.lsp.buf.signature_help()<cr>", opts("signature_help"))
-		vim.keymap.set("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts("signature_help"))
+		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts("signature_help"))
+		vim.keymap.set("n", "gk", vim.lsp.buf.signature_help, opts("signature_help"))
 
 		-- diagnostics
-		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts("open diagnostics float"))
+		vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts("open diagnostics float"))
 		if has_telescope then
 			vim.keymap.set("n", "gL", [[<cmd>Telescope diagnostics<cr>]], opts("open diagnostics telescope"))
 		end
 
-		vim.keymap.set("n", "-", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts("goto next diagnostic"))
-		vim.keymap.set("n", "_", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts("goto prev diagnostic"))
+		vim.keymap.set("n", "-", vim.diagnostic.goto_next, opts("goto next diagnostic"))
+		vim.keymap.set("n", "_", vim.diagnostic.goto_prev, opts("goto prev diagnostic"))
 
 		-- rename
 		vim.keymap.set("n", "cr", function()
-			if require("core.plugin").has("inc-rename.nvim") then
-				-- if ir then
+			if has_inc_rename then
+				require("inc_rename")
 				return ":IncRename " .. vim.fn.expand("<cword>")
 			end
-			return vim.lsp.buf.rename
-		end, { expr = true, buffer = bufnr, desc = "rename words" })
+			return ":lua vim.lsp.buf.rename()<cr>"
+		end, require("core.utils").merge_tables({ expr = true }, opts("rename")))
 
 		-- code actions
 		vim.keymap.set({ "n", "v", "x" }, "ga", function()
@@ -92,23 +93,10 @@ return {
 		end, opts("code_action"))
 
 		-- workspace
-		vim.keymap.set(
-			"n",
-			"<leader>wa",
-			"<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>",
-			opts("add workspace folder")
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>wr",
-			"<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>",
-			opts("remove workspace folder")
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>wl",
-			"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
-			opts("list workspace folders")
-		)
+		vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
+		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("remove workspace folder"))
+		vim.keymap.set("n", "<leader>wl", function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, opts("list workspace folders"))
 	end,
 }
