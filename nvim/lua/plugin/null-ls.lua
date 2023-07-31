@@ -21,7 +21,7 @@ return {
 		opts = opts or {}
 		opts.sources = require("core.utils").merge_arrays(opts.sources or {}, {
 			-- web
-			formatting.prettierd.with({
+			formatting.prettier.with({
 				extra_filetypes = { "svelte" },
 			}),
 
