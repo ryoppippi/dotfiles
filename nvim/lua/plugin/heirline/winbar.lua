@@ -1,6 +1,5 @@
 local utils = require("heirline.utils")
 
-local Navic = require("plugin.heirline.components.Navic")
 local FileName = require("plugin.heirline.components.FileName")
 local FileIcon = require("plugin.heirline.components.FileIcon")
 
@@ -16,7 +15,6 @@ WinBar = utils.insert(WinBar, {
 	Readonly,
 	FileIcon,
 	FileName,
-	Navic,
 })
 
 return WinBar
