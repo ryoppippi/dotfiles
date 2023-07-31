@@ -18,8 +18,12 @@ return {
 		if filename == "" then
 			filename = "[No Name]"
 		end
-		if not conditions.width_percent_below(#filename, 0.25) then
-			filename = vim.fn.pathshorten(filename)
+		if not conditions.width_percent_below(#filename, 1) then
+			local split_path = vim.split(filename, "/")
+			local last = split_path[#split_path]
+			local rest = table.concat(vim.list_slice(split_path, 1, #split_path - 1), "/")
+			local shorten = vim.fn.pathshorten(rest)
+			filename = shorten .. "/" .. last
 		end
 		return filename
 	end,
