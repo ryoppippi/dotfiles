@@ -30,7 +30,9 @@ return {
 		return {
 			general = {
 				enable = function(buf, win)
-					local disable_ft = { "oil" }
+					local disable_ft = {
+						-- "oil"
+					}
 
 					return not vim.api.nvim_win_get_config(win).zindex
 						and vim.bo[buf].buftype == ""
