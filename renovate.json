@@ -1,9 +1,11 @@
 {
   "extends": [
-    "github>aquaproj/aqua-renovate-config#1.7.0",
-    "group:allNonMajor"
+    "github>aquaproj/aqua-renovate-config#1.7.0"
   ],
-  "labels": ["dependencies", "renovate"],
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
   "platformAutomerge": true,
   "dependencyDashboard": false,
   "automerge": true,
