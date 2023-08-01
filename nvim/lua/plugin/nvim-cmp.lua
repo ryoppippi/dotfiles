@@ -22,7 +22,14 @@ return {
 		{ "f3fora/cmp-spell" },
 		{ "yutkat/cmp-mocword" },
 		{ "saadparwaiz1/cmp_luasnip" },
-		{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" }, config = true },
+		{
+			"petertriho/cmp-git",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			opts = {
+				filetypes = { "gitcommit", "octo", "markdown" },
+			},
+			config = true,
+		},
 		{
 			"delphinus/cmp-ghq",
 			name = "cmp_ghq",
