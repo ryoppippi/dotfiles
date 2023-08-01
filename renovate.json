@@ -1,4 +1,9 @@
 {
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ]
+  },
   "extends": [
     "github>aquaproj/aqua-renovate-config#1.7.0"
   ],
