@@ -1,7 +1,20 @@
 return {
 	"pmizio/typescript-tools.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"neovim/nvim-lspconfig",
+	},
+	event = function()
+		local return_events = {}
+		local events = { "BufReadPre", "BufNewFile" }
+		local exts = { "js", "jsx", "ts", "tsx" }
+		for _, ext in ipairs(exts) do
+			for _, event in ipairs(events) do
+				table.insert(return_events, string.format("%s *.%s", event, ext))
+			end
+		end
+		return return_events
+	end,
 	enabled = false,
 	opts = function()
 		local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
