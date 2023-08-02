@@ -84,6 +84,7 @@
 ; [url "git@github.com:"]
   ; pushInsteadOf = https://github.com/
 [commit]
+	verbose = true
   ; gpgSign = true
 [delta]
   diff-so-fancy=true
