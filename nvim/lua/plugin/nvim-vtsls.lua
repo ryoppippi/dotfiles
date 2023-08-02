@@ -4,7 +4,17 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	enabled = true,
-	event = { "BufReadPre", "BufNewFile" },
+	event = function()
+		local return_events = {}
+		local events = { "BufReadPre", "BufNewFile" }
+		local exts = { "js", "jsx", "ts", "tsx" }
+		for _, ext in ipairs(exts) do
+			for _, event in ipairs(events) do
+				table.insert(return_events, string.format("%s *.%s", event, ext))
+			end
+		end
+		return return_events
+	end,
 	config = function()
 		local commands = require("vtsls").commands
 		local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
