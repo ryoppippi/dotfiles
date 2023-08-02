@@ -1,6 +1,9 @@
 local le = function(name)
-	return function()
+	local load_extension = function()
 		require("telescope").load_extension(name)
+	end
+	return function()
+		vim.schedule(load_extension)
 	end
 end
 
@@ -10,22 +13,13 @@ return {
 	cond = not is_vscode(),
 	cmd = { "Telescope" },
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
+		{ "nvim-telescope/telescope-live-grep-args.nvim", config = le("live_grep_args") },
 		{
 			"nvim-telescope/telescope-frecency.nvim",
 			dependencies = { "kkharji/sqlite.lua" },
 			config = le("frecency"),
-		},
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
-		{ "nvim-telescope/telescope-live-grep-args.nvim", config = le("live_grep_args") },
-		{
-			"nvim-telescope/telescope-media-files.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-lua/popup.nvim",
-			},
-			enabled = false,
-			config = le("media_files"),
 		},
 		{ "nvim-telescope/telescope-symbols.nvim" },
 		{ "nvim-telescope/telescope-github.nvim", config = le("gh") },
@@ -40,6 +34,14 @@ return {
 			config = le("kensaku"),
 		},
 		-- { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
+		-- {
+		-- 	"nvim-telescope/telescope-media-files.nvim",
+		-- 	dependencies = {
+		-- 		"nvim-lua/plenary.nvim",
+		-- 		"nvim-lua/popup.nvim",
+		-- 	},
+		-- 	config = le("media_files"),
+		-- },
 	},
 	init = function()
 		require("which-key").register({
