@@ -3,10 +3,12 @@ return {
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 	},
-	event = "VeryLazy",
-	opts = {
-		select = {
-			telescope = require("telescope.themes").get_cursor({ initial_mode = "normal" }),
-		},
-	},
+	event = { "CursorHold", "CursorMoved" },
+	opts = function()
+		return {
+			select = {
+				telescope = require("telescope.themes").get_cursor({ initial_mode = "normal" }),
+			},
+		}
+	end,
 }
