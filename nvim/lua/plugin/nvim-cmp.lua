@@ -30,12 +30,12 @@ return {
 			},
 			config = true,
 		},
-		{
-			"delphinus/cmp-ghq",
-			name = "cmp_ghq",
-			dependencies = { "nvim-lua/plenary.nvim" },
-			opts = {},
-		},
+		-- {
+		-- 	"delphinus/cmp-ghq",
+		-- 	name = "cmp_ghq",
+		-- 	dependencies = { "nvim-lua/plenary.nvim" },
+		-- 	opts = {},
+		-- },
 		-- { "hrsh7th/cmp-omni" },
 		-- { "uga-rosa/cmp-dictionary" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh" },
