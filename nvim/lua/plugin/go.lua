@@ -14,8 +14,17 @@ return {
 				end,
 			})
 		end,
-		ft = { "go", "gomod" },
-		event = { "CmdlineEnter" },
+		event = function()
+			local return_events = {}
+			local events = { "BufReadPre", "BufNewFile" }
+			local exts = { "go", "gomod" }
+			for _, ext in ipairs(exts) do
+				for _, event in ipairs(events) do
+					table.insert(return_events, string.format("%s *.%s", event, ext))
+				end
+			end
+			return return_events
+		end,
 		build = ':lua require("go.install").update_all_sync()',
 		opts = function()
 			local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
