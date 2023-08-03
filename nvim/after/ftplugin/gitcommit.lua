@@ -1,5 +1,7 @@
 local uv = vim.loop
-local Promise = require("promise")
+
+vim.b.is_pre_commit_pass = true
+vim.b.is_commit_msg_pass = true
 
 local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
 local git_hooks_path = vim.fn.systemlist("git config --get core.hooksPath")[1] or ".git/hooks"
@@ -11,92 +13,101 @@ local commit_bufnr = vim.api.nvim_get_current_buf()
 local commit_win_id = vim.fn.win_getid()
 local abs_buffer_filename = vim.fn.expand("%:p")
 
-vim.b.is_enable_to_save = true
+vim.schedule(function()
+	if tb(vim.fn.executable(pre_commit_path)) then
+		vim.b.is_pre_commit_pass = false
 
-vim.api.nvim_create_autocmd("BufWriteCmd", {
+		-- create buffer
+		local new_bufnr = vim.api.nvim_create_buf(false, true)
+		vim.api.nvim_buf_set_name(new_bufnr, "pre-commit")
+
+		-- split window
+		vim.cmd([[rightbelow vsplit]])
+		local new_win_id = vim.api.nvim_get_current_win()
+
+		-- set buffer to the split window
+		vim.api.nvim_win_set_buf(new_win_id, new_bufnr)
+
+		-- termopen
+		vim.fn.termopen("cd " .. git_root .. " && " .. pre_commit_path, {
+			on_exit = function()
+				vim.b.is_pre_commit_pass = true
+				vim.fn.win_gotoid(commit_win_id)
+				vim.notify("pre_commit sucess", vim.log.levels.INFO)
+			end,
+		})
+		vim.fn.win_gotoid(commit_win_id)
+		vim.cmd.stopinsert()
+	end
+end)
+
+vim.api.nvim_create_autocmd("BufWritePre", {
 	buffer = commit_bufnr,
 	callback = function()
-		-- if pre-commit hook is running, do not save
-		if not vim.b.is_enable_to_save then
+		if not tb(vim.b.is_pre_commit_pass) then
 			local err_msg = "Please wait for pre-commit hook."
 			vim.notify(err_msg, vim.log.levels.ERROR)
-			vim.cmd.throw(string.format("'%s'", err_msg))
+			vim.api.nvim_err_writeln(err_msg)
+			return false
 		end
+		return true
+	end,
+})
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+	buffer = commit_bufnr,
+	callback = function()
 		-- if commit-msg hook exists, run it
 		if commit_msg_path ~= nil and tb(vim.fn.executable(commit_msg_path)) then
-			Promise.new(function(resolve, reject)
-				local stdout = uv.new_pipe()
-				local stderr = uv.new_pipe()
-				local handle
+			vim.b.is_commit_msg_pass = false
 
-				local on_exit = function(status)
+			local stdout = uv.new_pipe()
+			local stderr = uv.new_pipe()
+			local handle
+
+			local on_exit = function()
+				if handle ~= nil then
 					uv.close(handle)
 				end
+			end
 
-				local opts = {
-					args = { abs_buffer_filename },
-					stdio = { nil, stdout, stderr },
-				}
+			local opts = {
+				args = { abs_buffer_filename },
+				stdio = { nil, stdout, stderr },
+			}
 
-				handle = uv.spawn(commit_msg_path, opts, on_exit)
+			handle = uv.spawn(commit_msg_path, opts, on_exit)
 
+			if stdout ~= nil then
 				uv.read_start(stdout, function(err, data)
 					assert(not err, err)
 					if data then
-						resolve(data)
+						vim.b.is_commit_msg_pass = true
+						vim.notify(data, vim.log.levels.INFO)
+						vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
 					end
 				end)
+			end
 
+			if stderr ~= nil then
 				uv.read_start(stderr, function(err, data)
 					assert(not err, err)
 					if data then
-						reject(data)
+						vim.notify(err, vim.log.levels.ERROR)
+						vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
+						vim.cmd.throw(string.format("'%s'", err))
 					end
 				end)
-			end)
-				:next(function(msg)
-					vim.notify(msg, vim.log.levels.INFO)
-					vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
-				end)
-				:catch(function(err)
-					vim.notify(err, vim.log.levels.ERROR)
-					vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
-					vim.cmd.throw(string.format("'%s'", err))
-				end)
+			end
 		end
 	end,
 })
 
-if tb(vim.fn.executable(pre_commit_path)) then
-	vim.b.is_enable_to_save = false
-
-	-- create buffer
-	local new_bufnr = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_name(new_bufnr, "pre-commit")
-
-	-- split window
-	vim.cmd([[rightbelow vsplit]])
-	local new_win_id = vim.api.nvim_get_current_win()
-
-	-- set buffer to the split window
-	vim.api.nvim_win_set_buf(new_win_id, new_bufnr)
-
-	-- set autocmd to delete buffer when closing window
-	vim.api.nvim_create_autocmd("QuitPre", {
-		buffer = new_bufnr,
-		callback = function()
-			vim.cmd.bdelete({ new_bufnr, bang = true })
-		end,
-	})
-
-	-- termopen
-	vim.fn.termopen("cd " .. git_root .. " && " .. pre_commit_path, {
-		on_exit = function()
-			vim.fn.win_gotoid(commit_win_id)
-			vim.b.is_enable_to_save = true
-		end,
-	})
-	vim.fn.win_gotoid(commit_win_id)
-	vim.cmd.stopinsert()
-end
+vim.api.nvim_create_autocmd("BufDelete", {
+	buffer = commit_bufnr,
+	callback = function()
+		if not vim.b.is_pre_commit_pass then
+			vim.cmd.throw("Please wait for pre-commit and commit-msg hooks.")
+		end
+	end,
+})
