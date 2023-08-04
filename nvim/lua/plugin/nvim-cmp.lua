@@ -1,3 +1,9 @@
+local has = require("core.plugin").has
+
+local enabled_copilot_vim = function()
+	return has("copilot.vim") and tb(vim.g.loaded_copilot)
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
@@ -76,8 +82,11 @@ return {
 					c = cmp.mapping.close(),
 				}),
 				["<C-y>"] = cmp.config.disable,
-				["<C-j>"] = cmp.mapping.select_next_item(),
-				["<C-k>"] = cmp.mapping.select_prev_item(),
+				-- ["<C-j>"] = cmp.mapping.select_next_item(),
+				-- ["<C-k>"] = cmp.mapping.select_prev_item(),
+				["<C-n>"] = function(fallback)
+					fallback()
+				end,
 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<CR>"] = function(fallback)
@@ -99,7 +108,7 @@ return {
 						snippet_jump(1)
 					elseif has_words_before() then
 						cmp.complete()
-					elseif tb(vim.g.loaded_copilot) then
+					elseif enabled_copilot_vim() then
 						vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
 					else
 						fallback()
@@ -110,7 +119,7 @@ return {
 						cmp.select_prev_item()
 					elseif snippet_jumpable(-1) then
 						snippet_jump(-1)
-					elseif tb(vim.g.loaded_copilot) then
+					elseif enabled_copilot_vim() then
 						vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
 					else
 						fallback()

@@ -60,7 +60,6 @@ return {
 			vim.g.copilot_filetypes = { ["*"] = true }
 		end,
 	},
-
 	{
 		"zbirenbaum/copilot.lua",
 		enabled = true,
@@ -70,26 +69,68 @@ return {
 			{
 				"zbirenbaum/copilot-cmp",
 				cond = has_cmp,
-				config = true,
+				dependencies = {
+					"hrsh7th/nvim-cmp",
+				},
+				config = function()
+					require("copilot_cmp").setup()
+
+					-- require("cmp").event:on("menu_opened", function()
+					-- 	vim.b.copilot_suggestion_hidden = true
+					-- end)
+					--
+					-- require("cmp").event:on("menu_closed", function()
+					-- 	vim.b.copilot_suggestion_hidden = false
+					-- end)
+
+					vim.keymap.set("i", "<C-CR>", function()
+						require("cmp").mapping.abort()
+						require("copilot.suggestion").accept()
+					end, {
+						desc = "[copilot] accept suggestion",
+						silent = true,
+					})
+				end,
 			},
 		},
 		event = event,
-		config = function()
+		opts = {
+			panel = {
+				auto_refresh = true,
+				layout = {
+					position = "right",
+				},
+				keymap = {
+					jump_prev = "_",
+					jump_next = "-",
+					accept = "<CR>",
+					refresh = "gr",
+					open = "<C-CR>",
+				},
+			},
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				keymap = {
+					accept = "<Tab>",
+					accept_word = false,
+					accept_line = false,
+					next = "<C-n>",
+					prev = "<C-m>",
+					dismiss = "<C-l>",
+				},
+			},
+			filetypes = {
+				TeleScopePrompt = false,
+				["*"] = true,
+			},
+		},
+		config = function(_, opts)
+			vim.api.nvim_command("highlight link CopilotAnnotation LineNr")
+			vim.api.nvim_command("highlight link CopilotSuggestion LineNr")
+
 			vim.defer_fn(function()
-				require("copilot").setup({
-					suggestion = {
-						enabled = true,
-						auto_trigger = true,
-						keymap = {
-							accept = "<Tab>",
-							accept_word = false,
-							accept_line = false,
-							-- next = "<C-S-n>",
-							-- prev = "<C-S-p>",
-							dismiss = "<C-l>",
-						},
-					},
-				})
+				require("copilot").setup(opts)
 			end, 100)
 		end,
 	},
