@@ -125,9 +125,7 @@ return {
 				local_opts.extra_filetypes or {}
 			)
 			local_opts.extra_filetypes = nil
-			vim.schedule(function()
-				client.setup(local_opts)
-			end)
+			client.setup(local_opts)
 		end
 
 		-- server configs
