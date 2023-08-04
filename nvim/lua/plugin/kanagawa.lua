@@ -1,4 +1,4 @@
-local DEFUALT_THEME = "wave"
+local DEFUALT_THEME = "dragon"
 return {
 	"rebelot/kanagawa.nvim",
 	priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
