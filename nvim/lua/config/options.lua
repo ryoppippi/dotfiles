@@ -14,6 +14,7 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.virtualedit = "onemore"
 vim.opt.visualbell = true
+vim.opt.errorbells = false
 vim.opt.showmatch = true
 vim.opt.showcmd = true
 
@@ -38,10 +39,9 @@ vim.opt.hlsearch = true
 vim.opt.wrapscan = true
 vim.opt.wildmode = { list = "longest" }
 
-vim.opt.errorbells = false
-vim.opt.visualbell = false
-
 vim.o.undolevels = 10000
+
+vim.opt.scrolloff = 4
 
 vim.opt.list = true
 
