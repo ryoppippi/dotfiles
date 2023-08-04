@@ -1,5 +1,6 @@
 return {
 	"stevearc/dressing.nvim",
+	cond = not is_vscode(),
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 	},

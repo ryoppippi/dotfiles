@@ -1,6 +1,7 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
 	event = { "BufReadPre", "BufNewFile" },
+	cond = not is_vscode(),
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"jay-babu/mason-null-ls.nvim",

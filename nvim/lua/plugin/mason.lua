@@ -1,5 +1,6 @@
 return {
 	"williamboman/mason.nvim",
+	cond = not is_vscode(),
 	cmd = { "Mason" },
 	opts = {
 		ui = {

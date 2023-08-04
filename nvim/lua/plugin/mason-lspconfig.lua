@@ -1,5 +1,6 @@
 return {
 	"williamboman/mason-lspconfig.nvim",
+	cond = not is_vscode(),
 	dependencies = {
 		"folke/neoconf.nvim",
 		"williamboman/mason.nvim",

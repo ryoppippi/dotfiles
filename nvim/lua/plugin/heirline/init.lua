@@ -1,6 +1,6 @@
 return {
 	"rebelot/heirline.nvim",
-	cond = vim.o.termguicolors,
+	cond = vim.o.termguicolors and not is_vscode(),
 	enabled = true,
 	event = "UIEnter",
 	dependencies = { "rebelot/kanagawa.nvim" },

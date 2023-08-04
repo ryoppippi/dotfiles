@@ -1,7 +1,7 @@
 local event = { "ColorScheme", "BufReadPost" }
 return {
 	"uga-rosa/ccc.nvim",
-	cond = vim.o.termguicolors,
+	cond = vim.o.termguicolors and not is_vscode(),
 	event = event,
 	config = function()
 		require("ccc").setup({})

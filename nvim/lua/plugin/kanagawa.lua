@@ -4,6 +4,7 @@ return {
 	priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
 	lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
 	build = ":KanagawaCompile",
+	cond = not is_vscode(),
 	opts = function()
 		return {
 			overrides = function(colors)
