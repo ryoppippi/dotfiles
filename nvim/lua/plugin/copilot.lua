@@ -7,7 +7,7 @@ local event = { "InsertEnter" }
 return {
 	{
 		"github/copilot.vim",
-		enabled = true,
+		enabled = false,
 		cond = not is_vscode(),
 		dependencies = {
 			"tani/vim-artemis",
@@ -63,7 +63,7 @@ return {
 
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
+		enabled = true,
 		cond = not is_vscode(),
 		cmd = { "Copilot" },
 		dependencies = {
@@ -78,7 +78,7 @@ return {
 			vim.defer_fn(function()
 				require("copilot").setup({
 					suggestion = {
-						enabled = false,
+						enabled = true,
 						auto_trigger = true,
 						keymap = {
 							accept = "<Tab>",
