@@ -1,6 +1,5 @@
 return {
 	"hrsh7th/nvim-pasta",
-	enabled = false,
 	keys = {
 		{
 			"p",

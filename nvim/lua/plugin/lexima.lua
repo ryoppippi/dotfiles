@@ -1,3 +1,0 @@
-return {
-	"cohama/lexima.vim",
-}
