@@ -1,5 +1,6 @@
 return {
 	"yioneko/nvim-vtsls",
+	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},

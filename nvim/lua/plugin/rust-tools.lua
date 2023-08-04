@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 	},
+	cond = not is_vscode(),
 	event = {
 		"BufReadPre *.rs",
 		"BufNewFile *.rs",

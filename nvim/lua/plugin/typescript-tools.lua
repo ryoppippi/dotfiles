@@ -1,5 +1,6 @@
 return {
 	"pmizio/typescript-tools.nvim",
+	cond = not is_vscode(),
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"neovim/nvim-lspconfig",

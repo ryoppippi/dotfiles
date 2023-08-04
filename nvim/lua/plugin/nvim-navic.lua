@@ -1,5 +1,6 @@
 return {
 	"SmiteshP/nvim-navic",
+	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"onsails/lspkind.nvim",

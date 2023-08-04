@@ -7,6 +7,7 @@ end
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
+	cond = not is_vscode(),
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"jay-babu/mason-null-ls.nvim",
