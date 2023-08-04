@@ -65,6 +65,7 @@ return {
 		enabled = true,
 		cond = not is_vscode(),
 		cmd = { "Copilot" },
+		event = event,
 		dependencies = {
 			{
 				"zbirenbaum/copilot-cmp",
@@ -75,16 +76,18 @@ return {
 				config = function()
 					require("copilot_cmp").setup()
 
-					-- require("cmp").event:on("menu_opened", function()
-					-- 	vim.b.copilot_suggestion_hidden = true
-					-- end)
-					--
-					-- require("cmp").event:on("menu_closed", function()
-					-- 	vim.b.copilot_suggestion_hidden = false
-					-- end)
+					local cmp = require("cmp")
+
+					cmp.event:on("menu_opened", function()
+						vim.b.copilot_suggestion_hidden = true
+					end)
+
+					cmp.event:on("menu_closed", function()
+						vim.b.copilot_suggestion_hidden = false
+					end)
 
 					vim.keymap.set("i", "<C-CR>", function()
-						require("cmp").mapping.abort()
+						cmp.mapping.abort()
 						require("copilot.suggestion").accept()
 					end, {
 						desc = "[copilot] accept suggestion",
@@ -93,7 +96,6 @@ return {
 				end,
 			},
 		},
-		event = event,
 		opts = {
 			panel = {
 				auto_refresh = true,
