@@ -9,9 +9,7 @@ return {
 		{
 			"<leader>e",
 			function()
-				-- curerent directory
-				local cd = vim.fn.expand("%:p:h")
-				require("oil").open(cd)
+				vim.cmd.Oil()
 			end,
 		},
 	},
