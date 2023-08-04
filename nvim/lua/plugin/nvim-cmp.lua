@@ -47,6 +47,11 @@ return {
 		-- { "tzachar/cmp-tabnine", build = "./install.sh" },
 		-- { "octaltree/cmp-look" },
 	},
+	init = function()
+		require("core.plugin").on_load("nvim-cmp", function()
+			vim.api.nvim_exec_autocmds("User", { pattern = "CmpLoaded" })
+		end)
+	end,
 	config = function()
 		vim.o.completeopt = "menuone,noinsert,noselect"
 
@@ -268,11 +273,5 @@ return {
 		})
 
 		vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]])
-
-		-- Setup autopairs
-		if require("core.plugin").has("nvim-autopairs") then
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-		end
 	end,
 }
