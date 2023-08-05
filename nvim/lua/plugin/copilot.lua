@@ -128,9 +128,6 @@ return {
 			},
 		},
 		config = function(_, opts)
-			vim.api.nvim_command("highlight link CopilotAnnotation LineNr")
-			vim.api.nvim_command("highlight link CopilotSuggestion LineNr")
-
 			vim.defer_fn(function()
 				require("copilot").setup(opts)
 			end, 100)
