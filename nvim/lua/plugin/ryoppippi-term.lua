@@ -21,20 +21,14 @@ return {
 
 		vim.api.nvim_create_user_command("TS", function(tbl)
 			local args = tbl.args
-			local splitbelow = vim.o.splitbelow
-			vim.opt.splitbelow = true
 			vim.cmd.split()
 			openTerm(args)
-			vim.opt.splitbelow = splitbelow
 		end, { nargs = "*" })
 
 		vim.api.nvim_create_user_command("TV", function(tbl)
 			local args = tbl.args
-			local splitright = vim.o.splitright
-			vim.opt.splitright = true
 			vim.cmd.vsplit()
 			openTerm(args)
-			vim.opt.splitright = splitright
 		end, { nargs = "*" })
 	end,
 }
