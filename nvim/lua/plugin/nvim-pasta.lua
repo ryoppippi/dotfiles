@@ -25,9 +25,7 @@ return {
 	},
 	opts = function()
 		return {
-			converters = {
-				require("pasta.converters").indentation,
-			},
+			converters = {},
 			paste_mode = true,
 			prevent_diagnostics = false,
 			next_key = vim.api.nvim_replace_termcodes("<C-p>", true, true, true),
