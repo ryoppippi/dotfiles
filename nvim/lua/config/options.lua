@@ -18,8 +18,8 @@ vim.opt.errorbells = false
 vim.opt.showmatch = true
 vim.opt.showcmd = true
 
--- vim.opt.splitright = true
--- vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 vim.opt.fenc = "utf-8"
 local tabwidth = 2

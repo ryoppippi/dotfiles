@@ -36,8 +36,8 @@ vim.keymap.set("n", "gM", "M")
 vim.keymap.set("n", "gL", "L")
 
 -- split window
-vim.keymap.set("n", "ss", "<cmd>split<cr><C-w>w")
-vim.keymap.set("n", "sv", "<cmd>vsplit<cr><C-w>w")
+vim.keymap.set("n", "ss", "<cmd>split<cr>")
+vim.keymap.set("n", "sv", "<cmd>vsplit<cr>")
 
 -- move window
 vim.keymap.set("n", "sh", "<C-w>h")
