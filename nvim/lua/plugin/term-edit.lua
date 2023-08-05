@@ -1,10 +1,14 @@
 return {
 	"chomosuke/term-edit.nvim",
 	lazy = false,
-	enabled = false,
 	version = "1.*",
 	opts = {
 		prompt_end = "❯ ",
+		mapping = {
+			n = {
+				["<C-i>"] = false,
+			},
+		},
 	},
 	config = true,
 }
