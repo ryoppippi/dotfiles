@@ -1,13 +1,20 @@
+local has = require("core.plugin").has
+
+local M = {}
+
+---@param name string
 local le = function(name)
-	local load_extension = function()
-		require("telescope").load_extension(name)
-	end
-	return function()
-		vim.schedule(load_extension)
-	end
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "TelescopeLoaded",
+		callback = function()
+			if has("telescope.nvim") then
+				require("telescope").load_extension(name)
+			end
+		end,
+	})
 end
 
-return {
+M = {
 	{
 		"nvim-telescope/telescope.nvim",
 		enabled = true,
@@ -28,18 +35,6 @@ return {
 				"Allianaab2m/telescope-kensaku.nvim",
 				dependencies = { "lambdalisue/kensaku.vim" },
 				config = le("kensaku"),
-			},
-			{
-				dir = "",
-				name = "telescope-after-load",
-				config = function()
-					for _, v in ipairs({ "notify", "noice" }) do
-						local status, _ = pcall(require, v)
-						if status then
-							le(v)
-						end
-					end
-				end,
 			},
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
@@ -237,3 +232,6 @@ return {
 		config = true,
 	},
 }
+
+M.le = le
+return M

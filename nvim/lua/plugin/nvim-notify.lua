@@ -2,6 +2,9 @@ return {
 	"rcarriga/nvim-notify",
 	enabled = false,
 	cond = not is_vscode(),
+	init = function()
+		require("plugin.telescope").le("project")
+	end,
 	opts = function()
 		require("notify").setup({
 			-- Icons for the different levels
