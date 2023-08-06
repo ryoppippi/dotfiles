@@ -8,6 +8,8 @@ vim.opt.autoread = true
 vim.opt.hidden = true
 vim.opt.mouse = "a"
 
+vim.opt.shortmess:append("I")
+
 vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.cursorline = true
