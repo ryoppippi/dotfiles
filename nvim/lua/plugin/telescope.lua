@@ -94,6 +94,7 @@ M = {
 				vim.api.nvim_exec_autocmds("User", { pattern = "TelescopeLoaded" })
 			end)
 			vim.api.nvim_create_autocmd("BufEnter", {
+				pattern = "*",
 				callback = function()
 					if vim.b.term_mode ~= "t" then
 						vim.cmd.stopinsert()

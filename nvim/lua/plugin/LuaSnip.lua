@@ -3,15 +3,19 @@ local has = require("core.plugin").has
 return {
 	"L3MON4D3/LuaSnip",
 	cond = not is_vscode(),
+	event = { "InsertEnter" },
 	dependencies = {
 		"tpope/vim-repeat",
 		{
 			"benfowler/telescope-luasnip.nvim",
-			config = function()
-				require("telescope").load_extension("luasnip")
+			init = function()
+				require("plugin.telescope").le("luasnip")
 			end,
+		},
+		{
+			"saadparwaiz1/cmp_luasnip",
 			cond = function()
-				has("telescope.nvim")
+				return has("nvim-cmp")
 			end,
 		},
 
