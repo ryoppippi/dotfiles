@@ -10,10 +10,18 @@ return {
 					enable = true,
 				},
 				shortcut = {
-					{ desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+					{ desc = "󰊳  Update", group = "@property", action = "Lazy update", key = "u" },
 					{
 						desc = "Files",
-						icon = " ",
+						icon = "  ",
+						icon_hl = "@variable",
+						group = "Label",
+						action = "Telescope find_files",
+						key = "f",
+					},
+					{
+						desc = "File Browser",
+						icon = "󰈙 ",
 						icon_hl = "@variable",
 						group = "Label",
 						action = "Telescope find_files",
