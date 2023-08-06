@@ -11,7 +11,6 @@ return {
 	dependencies = {
 		{ "tani/vim-artemis" },
 		{ "onsails/lspkind.nvim" },
-		{ "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-cmdline" },
@@ -27,7 +26,6 @@ return {
 		},
 		{ "f3fora/cmp-spell" },
 		{ "yutkat/cmp-mocword" },
-		{ "saadparwaiz1/cmp_luasnip" },
 		{
 			"petertriho/cmp-git",
 			dependencies = { "nvim-lua/plenary.nvim" },

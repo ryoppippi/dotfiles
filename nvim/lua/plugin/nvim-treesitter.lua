@@ -3,6 +3,13 @@ return {
 	build = ":TSUpdate",
 	event = "BufReadPost",
 	dependencies = {
+		{
+			"ray-x/cmp-treesitter",
+			cond = function()
+				return require("core.plugin").has("nvim-cmp")
+			end,
+		},
+
 		{ "yioneko/nvim-yati" },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 
