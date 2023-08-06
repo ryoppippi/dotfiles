@@ -7,6 +7,9 @@ return {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
 	},
+	init = function()
+		require("plugin.telescope").le("noice")
+	end,
 	opts = {
 		lsp = {
 			-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
