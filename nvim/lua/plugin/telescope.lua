@@ -86,6 +86,13 @@ M = {
 			require("core.plugin").on_load("telescope.nvim", function()
 				vim.api.nvim_exec_autocmds("User", { pattern = "TelescopeLoaded" })
 			end)
+			vim.api.nvim_create_autocmd("BufEnter", {
+				callback = function()
+					if vim.b.term_mode ~= "t" then
+						vim.cmd.stopinsert()
+					end
+				end,
+			})
 		end,
 		config = function()
 			local telescope = require("telescope")
