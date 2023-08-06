@@ -2,13 +2,16 @@ return {
 	"rebelot/heirline.nvim",
 	cond = vim.o.termguicolors and not is_vscode(),
 	enabled = true,
-	event = "UIEnter",
+	event = "BufReadPost",
 	dependencies = { "rebelot/kanagawa.nvim" },
 	config = function(_, opts)
 		require("heirline").setup(opts)
 	end,
 	opts = function()
 		local conditions = require("heirline.conditions")
+		-- local colors = require("kanagawa.colors").setup()
+		local _, kanagawa_colors = pcall(require, "kanagawa.colors")
+		local _, colors = pcall(kanagawa_colors.setup)
 
 		return {
 			-- statusline = require("plugin.heirline.statusline"),
@@ -16,7 +19,7 @@ return {
 			winbar = require("plugin.heirline.winbar"),
 			-- statuscolumn = require("plugin.heirline.statuscolumn"),
 			opts = {
-				colors = require("kanagawa.colors").setup(),
+				colors,
 				disable_winbar_cb = function(args)
 					return conditions.buffer_matches({
 						buftype = {

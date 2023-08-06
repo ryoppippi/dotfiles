@@ -2,7 +2,14 @@ local DEFUALT_THEME = "dragon"
 return {
 	"rebelot/kanagawa.nvim",
 	priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
-	lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
+	-- lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
+	event = function()
+		if vim.env.NVIM_COLORSCHEME == "kanagawa" then
+			return { "UiEnter" }
+		else
+			return { "VeryLazy" }
+		end
+	end,
 	build = ":KanagawaCompile",
 	cond = not is_vscode(),
 	opts = function()

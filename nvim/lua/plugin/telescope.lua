@@ -16,6 +16,44 @@ end
 
 M = {
 	{
+		name = "telescope-keymap",
+		dir = "",
+		event = "VeryLazy",
+		config = function()
+			require("which-key").register({
+				[","] = {
+					name = "+Telescope",
+					-- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
+					["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
+					["f"] = {
+						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
+						"Find File",
+					},
+					["d"] = {
+						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
+						"current_buffer_fuzzy_find",
+					},
+					["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
+					[","] = { [[<cmd>Telescope oldfiles<cr>]], "oldfiles" },
+					["e"] = { [[<cmd>Telescope file_browser<cr>]], "file_browser" },
+					["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string", mode = { "n", "x" } },
+					["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
+					["r"] = { [[<cmd>Telescope resume<cr>]], "resume" },
+					["b"] = { [[<cmd>Telescope buffers<cr>]], "buffers" },
+					["h"] = { [[<cmd>Telescope help_tags<cr>]], "help tags" },
+					["H"] = { [[<cmd>Telescope heading<cr>]], "heading" },
+					["j"] = { [[<cmd>Telescope jumplist<cr>]], "jumplist" },
+					["g"] = { [[<cmd>Telescope git_files<cr>]], "git files" },
+					["q"] = { [[<cmd>Telescope quickfix<cr>]], "quickfix" },
+					["p"] = { [[<cmd>Telescope commands<cr>]], "commands" },
+					["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
+					["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
+					["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
+				},
+			})
+		end,
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		enabled = true,
 		cond = not is_vscode(),
@@ -52,37 +90,6 @@ M = {
 			-- },
 		},
 		init = function()
-			require("which-key").register({
-				[","] = {
-					name = "+Telescope",
-					-- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
-					["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
-					["f"] = {
-						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
-						"Find File",
-					},
-					["d"] = {
-						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
-						"current_buffer_fuzzy_find",
-					},
-					["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
-					[","] = { [[<cmd>Telescope oldfiles<cr>]], "oldfiles" },
-					["e"] = { [[<cmd>Telescope file_browser<cr>]], "file_browser" },
-					["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string", mode = { "n", "x" } },
-					["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
-					["r"] = { [[<cmd>Telescope resume<cr>]], "resume" },
-					["b"] = { [[<cmd>Telescope buffers<cr>]], "buffers" },
-					["h"] = { [[<cmd>Telescope help_tags<cr>]], "help tags" },
-					["H"] = { [[<cmd>Telescope heading<cr>]], "heading" },
-					["j"] = { [[<cmd>Telescope jumplist<cr>]], "jumplist" },
-					["g"] = { [[<cmd>Telescope git_files<cr>]], "git files" },
-					["q"] = { [[<cmd>Telescope quickfix<cr>]], "quickfix" },
-					["p"] = { [[<cmd>Telescope commands<cr>]], "commands" },
-					["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
-					["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
-					["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
-				},
-			})
 			require("core.plugin").on_load("telescope.nvim", function()
 				vim.api.nvim_exec_autocmds("User", { pattern = "TelescopeLoaded" })
 			end)
