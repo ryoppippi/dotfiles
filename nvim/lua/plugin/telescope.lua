@@ -204,7 +204,7 @@ return {
 						-- the default case_mode is "smart_case"
 					},
 					file_browser = {
-						initial_mode = "insert",
+						initial_mode = "normal",
 					},
 					heading = {
 						theme = "dropdown",
