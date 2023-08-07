@@ -94,12 +94,10 @@ M = {
 			require("core.plugin").on_load("telescope.nvim", function()
 				vim.api.nvim_exec_autocmds("User", { pattern = "TelescopeLoaded" })
 			end)
-			vim.api.nvim_create_autocmd("BufEnter", {
+			vim.api.nvim_create_autocmd("BufReadPost", {
 				pattern = "*",
 				callback = function()
-					if vim.b.term_mode ~= "t" then
-						vim.cmd.stopinsert()
-					end
+					vim.cmd.stopinsert()
 				end,
 			})
 		end,
