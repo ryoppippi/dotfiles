@@ -196,6 +196,7 @@
   "vim-visual-multi": { "branch": "master", "commit": "724bd53adfbaf32e129b001658b45d4c5c29ca1a" },
   "vim-vsnip-snippets": { "branch": "master", "commit": "0eb01ac397fc591f456dde86ac2f75a48c32c1b1" },
   "vim-wakatime": { "branch": "master", "commit": "018fa9a80c27ccf2a8967b9e27890372e5c2fb4f" },
+  "vimdoc-ja": { "branch": "master", "commit": "f0a65a6dcae2a2daaa23d24ab9195d453093c086" },
   "vscode-javascript": { "branch": "master", "commit": "ecfeba765ebdaff72b23e7a5d030e35c941a7c30" },
   "vscode-svelte-snippets": { "branch": "master", "commit": "564ac3300bfeda01ff0bf6b89152cef43f85a4ce" },
   "wb-only-current-line.nvim": { "branch": "main", "commit": "7580a58ee6b9df554e274ac7fc64b077cd3fb0f4" },
