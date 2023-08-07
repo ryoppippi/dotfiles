@@ -32,9 +32,9 @@ return {
 				["`"] = "actions.cd",
 				["~"] = "actions.tcd",
 				["g."] = "actions.toggle_hidden",
-				-- ["<C-s>"] = "actions.select_vsplit",
-				-- ["<C-h>"] = "actions.select_split",
-				-- ["<C-t>"] = "actions.select_tab",
+				["<C-s>"] = "actions.select_vsplit",
+				["<C-h>"] = "actions.select_split",
+				["<C-t>"] = "actions.select_tab",
 			},
 			view_options = {
 				show_hidden = true,
