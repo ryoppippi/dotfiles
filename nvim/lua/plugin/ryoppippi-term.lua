@@ -1,8 +1,11 @@
 return {
 	dir = "",
 	name = "ryoppippi-term.nvim",
-	dependencies = { "MunifTanjim/nui.nvim" },
 	cmd = { "T", "TS", "TV" },
+	keys = {
+		{ "stv", "<cmd>TV<cr>" },
+		{ "sts", "<cmd>TS<cr>" },
+	},
 	config = function()
 		local function openTerm(args)
 			local tf = vim.cmd.terminal
