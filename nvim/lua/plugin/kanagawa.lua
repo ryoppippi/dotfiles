@@ -52,6 +52,8 @@ return {
 		local k = require("kanagawa")
 		k.setup(opts)
 		k.load(DEFUALT_THEME)
-		vim.cmd([[silent KanagawaCompile]])
+		vim.schedule(function()
+			vim.cmd([[silent KanagawaCompile]])
+		end)
 	end,
 }
