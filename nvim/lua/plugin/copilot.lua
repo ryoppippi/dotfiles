@@ -2,7 +2,7 @@ local has_cmp = function()
 	return require("core.plugin").has("nvim-cmp")
 end
 
-local event = { "InsertEnter" }
+local event = { "InsertEnter", "CursorHold" }
 
 return {
 	{
