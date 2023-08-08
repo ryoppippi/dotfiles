@@ -61,7 +61,7 @@ local function command()
 	vim.api.nvim_create_user_command("FormatDisable", M.disable, { nargs = 0 })
 end
 
-local function auto_format( buf)
+local function auto_format(buf)
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
 		buffer = buf,
