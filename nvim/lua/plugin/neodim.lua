@@ -1,1 +1,5 @@
-return { "zbirenbaum/neodim", event = "LspAttach", config = true }
+return {
+	"futsuuu/neodim",
+	event = "LspAttach",
+	config = true,
+}
