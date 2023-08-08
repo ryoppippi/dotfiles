@@ -36,8 +36,8 @@ return {
 					RainbowDelimiterCyan = { fg = theme.syn.type },
 					-- }}
 					-- Copilot {{
-					CopilotAnnotation = { bg = theme.ui.bg_p1 },
-					CopilotSuggestion = { bg = theme.ui.bg_p2 },
+					CopilotAnnotation = { bg = theme.ui.bg_p1, italic = true },
+					CopilotSuggestion = { bg = theme.ui.bg_p2, italic = true },
 					-- }}
 					-- Noice {{
 					NoiceVirtualText = { bg = theme.ui.bg_search },
