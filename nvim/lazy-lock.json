@@ -202,6 +202,5 @@
   "wb-only-current-line.nvim": { "branch": "main", "commit": "7580a58ee6b9df554e274ac7fc64b077cd3fb0f4" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" },
-  "zig-snippets": { "branch": "master", "commit": "ece338461cff37f14a7231479529f01193a31195" },
-  "zippy.nvim": { "branch": "master", "commit": "365a08d505a606220ec01395b9c427fc41d15101" }
+  "zig-snippets": { "branch": "master", "commit": "ece338461cff37f14a7231479529f01193a31195" }
 }
