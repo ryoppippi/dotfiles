@@ -65,6 +65,7 @@ then
 	vim.o.termguicolors = true
 	vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end
+vim.opt.pumblend = 10
 
 vim.opt.laststatus = 0
 vim.api.nvim_set_hl(0, "Statusline", { link = "Normal" })
