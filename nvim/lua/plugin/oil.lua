@@ -13,9 +13,22 @@ return {
 		},
 	},
 	init = function()
-		if tb(vim.fn.isdirectory(vim.fn.expand("%:p"))) then
-			require("oil").open(vim.fn.expand("%:p:h"))
+		local openWithOil = function()
+			local path = vim.fn.expand("%:p")
+
+			---@cast path string
+			if string.match(path, "oil://") then
+				return
+			end
+
+			if not tb(vim.fn.isdirectory(path)) then
+				return
+			end
+
+			vim.cmd.Oil(path)
 		end
+		vim.api.nvim_create_autocmd({ "BufEnter" }, { callback = openWithOil, nested = true })
+		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = openWithOil })
 	end,
 	opts = function()
 		local trash_command = "trash"
