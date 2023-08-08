@@ -1,3 +1,0 @@
-return {
-	"MunifTanjim/nui.nvim",
-}
