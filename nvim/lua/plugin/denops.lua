@@ -9,4 +9,5 @@ return {
 		},
 	},
 	event = { "VeryLazy" },
+	priority = 1000,
 }
