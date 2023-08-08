@@ -12,8 +12,6 @@ return {
 		dependencies = {
 			"tani/vim-artemis",
 			{
-				-- "ryoppippi/cmp-copilot",
-				-- branch = "dev/add-copilot-loaded-detecter",
 				"hrsh7th/cmp-copilot",
 				cond = has_cmp,
 			},
@@ -51,10 +49,42 @@ return {
 					expr = true,
 					desc = "copilot dismiss",
 				},
+				{
+					"<c-cr>",
+					function()
+						vimx.fn.copilot.Suggest()
+					end,
+					mode = "i",
+					expr = true,
+					desc = "copilot suggest",
+				},
+				{
+					"<C-n>",
+					function()
+						vimx.fn.copilot.Next()
+					end,
+					mode = "i",
+					script = true,
+					nowait = true,
+					expr = true,
+					desc = "copilot next",
+				},
+				{
+					"<C-m>",
+					function()
+						vimx.fn.copilot.Previous()
+					end,
+					mode = "i",
+					script = true,
+					nowait = true,
+					expr = true,
+					desc = "copilot previous",
+				},
 			}
 		end,
 		init = function()
 			vim.g.copilot_no_tab_map = true
+			vim.g.copilot_no_maps = true
 			vim.g.copilot_assume_mapped = true
 			vim.g.copilot_tab_fallback = ""
 			vim.g.copilot_filetypes = { ["*"] = true }
@@ -106,15 +136,15 @@ return {
 					jump_prev = "_",
 					jump_next = "-",
 					accept = "<CR>",
-					refresh = "gr",
-					open = "<C-CR>",
+					refresh = false,
+					open = "<C-S-CR>",
 				},
 			},
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<Tab>",
+					accept = "<C-CR>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-n>",
