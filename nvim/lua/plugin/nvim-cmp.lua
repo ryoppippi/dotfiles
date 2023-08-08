@@ -93,7 +93,10 @@ return {
 				-- ["<C-k>"] = cmp.mapping.select_prev_item(),
 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<CR>"] = function(fallback)
+				["<c-n>"] = cmp.mapping(function(fallback)
+					fallback()
+				end, { "i", "s" }),
+				["<CR>"] = cmp.mapping(function(fallback)
 					local entry = cmp.get_selected_entry()
 					if cmp.visible() and entry ~= nil then
 						local confirm_option = {
@@ -104,12 +107,14 @@ return {
 					else
 						fallback() -- If you are using vim-endwise, this fallback function will be behaive as the vim-endwise.
 					end
-				end,
+				end, { "i", "s" }),
 				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() and has_words_before() then
+					if cmp.visible() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					elseif snippet_jumpable(1) then
 						snippet_jump(1)
+					elseif has_words_before() then
+						cmp.complete()
 					elseif enabled_copilot_vim() then
 						vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
 					else
@@ -117,7 +122,7 @@ return {
 					end
 				end, { "i", "s" }),
 				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+					if cmp.visible() and has_words_before() then
 						cmp.select_prev_item()
 					elseif snippet_jumpable(-1) then
 						snippet_jump(-1)

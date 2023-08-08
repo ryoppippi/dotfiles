@@ -7,7 +7,7 @@ local event = { "InsertEnter" }
 return {
 	{
 		"github/copilot.vim",
-		enabled = false,
+		enabled = true,
 		cond = not is_vscode(),
 		dependencies = {
 			"tani/vim-artemis",
@@ -92,7 +92,7 @@ return {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = true,
+		enabled = false,
 		cond = not is_vscode(),
 		cmd = { "Copilot" },
 		event = event,
@@ -115,14 +115,6 @@ return {
 					cmp.event:on("menu_closed", function()
 						vim.b.copilot_suggestion_hidden = false
 					end)
-
-					vim.keymap.set("i", "<C-CR>", function()
-						cmp.mapping.abort()
-						require("copilot.suggestion").accept()
-					end, {
-						desc = "[copilot] accept suggestion",
-						silent = true,
-					})
 				end,
 			},
 		},
@@ -144,7 +136,7 @@ return {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<C-CR>",
+					accept = "<Tab>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-n>",
