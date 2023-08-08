@@ -6,9 +6,9 @@ return {
 		return {
 			theme = "hyper",
 			config = {
-				-- week_header = {
-				-- 	enable = false,
-				-- },
+				week_header = {
+					enable = true,
+				},
 				shortcut = {
 					{
 						desc = "Files",
