@@ -6,9 +6,9 @@ return {
 		return {
 			theme = "hyper",
 			config = {
-				week_header = {
-					enable = true,
-				},
+				-- week_header = {
+				-- 	enable = false,
+				-- },
 				shortcut = {
 					{
 						desc = "Files",
@@ -35,16 +35,8 @@ return {
 					{
 						desc = "dotfiles",
 						icon = " ",
-						group = "Number",
-						action = ":Config",
+						action = "Config",
 						key = "d",
-					},
-					{
-						desc = "Update",
-						icon = "󰊳 ",
-						group = "@property",
-						action = "Lazy update",
-						key = "u",
 					},
 					{
 						desc = "Lazy",
@@ -58,7 +50,7 @@ return {
 						desc = "Quit",
 						icon = " ",
 						icon_hl = "@property",
-						action = ":qa",
+						action = "qa",
 						key = "q",
 					},
 				},
