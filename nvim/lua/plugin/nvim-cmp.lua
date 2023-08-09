@@ -59,8 +59,9 @@ return {
 
 		-- Setup dependencies
 		local cmp = require("cmp")
-
 		local types = require("cmp.types")
+
+		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
 
 		local has_words_before = function()
@@ -190,36 +191,46 @@ return {
 			},
 		}
 
+		local menu = {
+			nvim_lsp = "[LSP]",
+			buffer = "[Buffer]",
+			path = "[Path]",
+			nvim_lua = "[Lua]",
+			ultisnips = "[UltiSnips]",
+			luasnip = "[LuaSnip]",
+			treesitter = "[TS]",
+			spell = "[Spell]",
+			calc = "[Calc]",
+			emoji = "[Emoji]",
+			neorg = "[Neorg]",
+			rg = "[rg]",
+			omni = "[Omni]",
+			-- cmp_tabnine = "[Tabnine]",
+			nvim_lsp_signature_help = "[Signature]",
+			copilot = "[Copilot]",
+			cmdline_history = "[History]",
+			mocword = "[Mocword]",
+			dictionary = "[Dictionary]",
+			look = "[Look]",
+			git = "[Git]",
+			ghq = "[GHQ]",
+			-- cmp_openai_codex = "[Codex]",
+		}
+
 		setup_opt.formatting = {
-			format = require("lspkind").cmp_format({
+			format = lspkind.cmp_format({
 				mode = "symbol_text",
 				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-				menu = {
-					nvim_lsp = "[LSP]",
-					buffer = "[Buffer]",
-					path = "[Path]",
-					nvim_lua = "[Lua]",
-					ultisnips = "[UltiSnips]",
-					luasnip = "[LuaSnip]",
-					treesitter = "[TS]",
-					spell = "[Spell]",
-					calc = "[Calc]",
-					emoji = "[Emoji]",
-					neorg = "[Neorg]",
-					rg = "[rg]",
-					omni = "[Omni]",
-					-- cmp_tabnine = "[Tabnine]",
-					nvim_lsp_signature_help = "[Signature]",
-					copilot = "[Copilot]",
-					cmdline_history = "[History]",
-					mocword = "[Mocword]",
-					dictionary = "[Dictionary]",
-					look = "[Look]",
-					git = "[Git]",
-					ghq = "[GHQ]",
-					-- cmp_openai_codex = "[Codex]",
-				},
 				-- before = require("tailwindcss-colorizer-cmp").formatter,
+				before = function(entry, vim_item)
+					if entry.source.name == "nvim_lsp" then
+						vim_item.menu = "{" .. entry.source.source.client.name .. "}"
+					else
+						vim_item.menu = menu[entry.source.name] or entry.source.name
+					end
+
+					return vim_item
+				end,
 			}),
 		}
 
