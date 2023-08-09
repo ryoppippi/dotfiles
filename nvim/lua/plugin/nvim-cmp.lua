@@ -221,8 +221,8 @@ return {
 			format = lspkind.cmp_format({
 				mode = "symbol_text",
 				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-				-- before = require("tailwindcss-colorizer-cmp").formatter,
 				before = function(entry, vim_item)
+					vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
 					if entry.source.name == "nvim_lsp" then
 						vim_item.menu = "{" .. entry.source.source.client.name .. "}"
 					else
