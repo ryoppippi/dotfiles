@@ -197,6 +197,10 @@ return {
 					diagnostics = {
 						globals = { "vim" },
 					},
+					completion = {
+						showWord = "Disable",
+						callSnippet = "Replace",
+					},
 					workspace = {
 						checkThirdParty = false,
 					},
