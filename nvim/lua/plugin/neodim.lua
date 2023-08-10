@@ -1,6 +1,6 @@
 return {
 	"futsuuu/neodim",
 	event = "LspAttach",
-	enabled = false,
+	enabled = true,
 	config = true,
 }
