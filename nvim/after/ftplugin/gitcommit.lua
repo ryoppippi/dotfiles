@@ -1,8 +1,4 @@
-local uv = vim.loop
-
-vim.b.is_pre_commit_pass = true
-vim.b.is_commit_msg_pass = true
-
+local uv = vim.uv
 local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
 local git_hooks_path = vim.fn.systemlist("git config --get core.hooksPath")[1] or ".git/hooks"
 local git_hooks_abs_path = vim.fn.resolve(git_root .. "/" .. git_hooks_path)
@@ -12,6 +8,15 @@ local commit_msg_path = vim.fn.resolve(git_hooks_abs_path .. "/commit-msg")
 local commit_bufnr = vim.api.nvim_get_current_buf()
 local commit_win_id = vim.fn.win_getid()
 local abs_buffer_filename = vim.fn.expand("%:p")
+
+vim.b.is_pre_commit_pass = not tb(vim.fn.executable(pre_commit_path))
+vim.b.is_commit_msg_pass = not tb(vim.fn.executable(commit_msg_path))
+
+local cquit_if_not_passed = function()
+	if not vim.b.is_pre_commit_pass or not vim.b.is_commit_msg_pass then
+		vim.cmd.cquit()
+	end
+end
 
 vim.schedule(function()
 	if tb(vim.fn.executable(pre_commit_path)) then
@@ -28,12 +33,24 @@ vim.schedule(function()
 		-- set buffer to the split window
 		vim.api.nvim_win_set_buf(new_win_id, new_bufnr)
 
+		-- delete buffer if commit buffer is deleted
+		vim.api.nvim_create_autocmd("WinClosed", {
+			buffer = commit_bufnr,
+			callback = function()
+				vim.api.nvim_buf_delete(new_bufnr, { force = true })
+			end,
+		})
+
 		-- termopen
 		vim.fn.termopen("cd " .. git_root .. " && " .. pre_commit_path, {
-			on_exit = function()
+			on_exit = function(_, exit_code, _)
+				if exit_code ~= 0 then
+					vim.b.is_pre_commit_pass = false
+					vim.notify("pre-commit failed", vim.log.levels.ERROR)
+					return
+				end
 				vim.b.is_pre_commit_pass = true
-				vim.fn.win_gotoid(commit_win_id)
-				vim.notify("pre_commit sucess", vim.log.levels.INFO)
+				vim.notify("pre_commit success", vim.log.levels.INFO)
 			end,
 		})
 		vim.fn.win_gotoid(commit_win_id)
@@ -57,15 +74,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePost", {
 	buffer = commit_bufnr,
 	callback = function()
-		-- if commit-msg hook exists, run it
-		if commit_msg_path ~= nil and tb(vim.fn.executable(commit_msg_path)) then
+		if tb(vim.fn.executable(commit_msg_path)) then
 			vim.b.is_commit_msg_pass = false
 
 			local stdout = uv.new_pipe()
 			local stderr = uv.new_pipe()
 			local handle
 
-			local on_exit = function()
+			local on_exit = function(exit_code, _)
+				vim.b.is_commit_msg_pass = exit_code == 0
+
+				if exit_code ~= 0 then
+					vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
+				else
+					vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
+				end
+
 				if handle ~= nil then
 					uv.close(handle)
 				end
@@ -82,9 +106,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 				uv.read_start(stdout, function(err, data)
 					assert(not err, err)
 					if data then
-						vim.b.is_commit_msg_pass = true
 						vim.notify(data, vim.log.levels.INFO)
-						vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
 					end
 				end)
 			end
@@ -94,8 +116,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 					assert(not err, err)
 					if data then
 						vim.notify(err, vim.log.levels.ERROR)
-						vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
-						vim.cmd.throw(string.format("'%s'", err))
 					end
 				end)
 			end
@@ -103,11 +123,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufDelete", {
+vim.api.nvim_create_autocmd({ "BufDelete" }, {
 	buffer = commit_bufnr,
-	callback = function()
-		if not vim.b.is_pre_commit_pass then
-			vim.cmd.throw("Please wait for pre-commit and commit-msg hooks.")
-		end
-	end,
+	callback = cquit_if_not_passed,
+})
+vim.api.nvim_create_autocmd({ "QuitPre" }, {
+	callback = cquit_if_not_passed,
 })
