@@ -65,11 +65,7 @@ then
 	vim.o.termguicolors = true
 	vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end
+
 vim.opt.pumblend = 10
-
 vim.opt.laststatus = 0
-vim.api.nvim_set_hl(0, "Statusline", { link = "Normal" })
-vim.api.nvim_set_hl(0, "StatuslineNC", { link = "Normal" })
-vim.opt.statusline = string.rep(" ", vim.api.nvim_win_get_width(0))
-
 vim.opt.showcmd = false
