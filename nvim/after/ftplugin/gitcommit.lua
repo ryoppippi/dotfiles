@@ -45,12 +45,11 @@ vim.schedule(function()
 		vim.fn.termopen("cd " .. git_root .. " && " .. pre_commit_path, {
 			on_exit = function(_, exit_code, _)
 				if exit_code ~= 0 then
-					vim.b.is_pre_commit_pass = false
 					vim.notify("pre-commit failed", vim.log.levels.ERROR)
-					return
+				else
+					vim.notify("pre_commit success", vim.log.levels.INFO)
 				end
-				vim.b.is_pre_commit_pass = true
-				vim.notify("pre_commit success", vim.log.levels.INFO)
+				vim.b.is_pre_commit_pass = exit_code == 0
 			end,
 		})
 		vim.fn.win_gotoid(commit_win_id)
@@ -58,67 +57,34 @@ vim.schedule(function()
 	end
 end)
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePost", {
 	buffer = commit_bufnr,
 	callback = function()
 		if not tb(vim.b.is_pre_commit_pass) then
 			local err_msg = "Please wait for pre-commit hook."
 			vim.notify(err_msg, vim.log.levels.ERROR)
 			vim.api.nvim_err_writeln(err_msg)
-			return false
 		end
-		return true
-	end,
-})
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	buffer = commit_bufnr,
-	callback = function()
 		if tb(vim.fn.executable(commit_msg_path)) then
 			vim.b.is_commit_msg_pass = false
 
-			local stdout = uv.new_pipe()
-			local stderr = uv.new_pipe()
-			local handle
-
-			local on_exit = function(exit_code, _)
-				vim.b.is_commit_msg_pass = exit_code == 0
-
-				if exit_code ~= 0 then
-					vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
-				else
-					vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
-				end
-
-				if handle ~= nil then
-					uv.close(handle)
-				end
-			end
-
-			local opts = {
-				args = { abs_buffer_filename },
-				stdio = { nil, stdout, stderr },
-			}
-
-			handle = uv.spawn(commit_msg_path, opts, on_exit)
-
-			if stdout ~= nil then
-				uv.read_start(stdout, function(err, data)
-					assert(not err, err)
-					if data then
-						vim.notify(data, vim.log.levels.INFO)
+			vim.fn.jobstart(commit_msg_path .. " " .. abs_buffer_filename, {
+				on_exit = function(_, exit_code, _)
+					if exit_code ~= 0 then
+						vim.notify("commit-msg hook failed.", vim.log.levels.ERROR)
+					else
+						vim.notify("commit-msg hook succeeded.", vim.log.levels.INFO)
 					end
-				end)
-			end
-
-			if stderr ~= nil then
-				uv.read_start(stderr, function(err, data)
-					assert(not err, err)
-					if data then
-						vim.notify(err, vim.log.levels.ERROR)
-					end
-				end)
-			end
+					vim.b.is_commit_msg_pass = exit_code == 0
+				end,
+				on_stderr = function(_, data, _)
+					vim.notify(vim.fn.join(data, "\n"), vim.log.levels.ERROR)
+				end,
+				on_stdout = function(_, data, _)
+					vim.notify(vim.fn.join(data, "\n"), vim.log.levels.INFO)
+				end,
+			})
 		end
 	end,
 })
