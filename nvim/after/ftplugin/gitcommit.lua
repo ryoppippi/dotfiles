@@ -1,4 +1,3 @@
-local uv = vim.uv
 local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
 local git_hooks_path = vim.fn.systemlist("git config --get core.hooksPath")[1] or ".git/hooks"
 local git_hooks_abs_path = vim.fn.resolve(git_root .. "/" .. git_hooks_path)
