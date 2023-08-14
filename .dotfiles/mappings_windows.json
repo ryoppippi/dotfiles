@@ -1,4 +1,5 @@
 {
   "nvim": "~/AppData/Local/nvim",
-  "aqua": "~/AppData/Local/aquaproj-aqua"
+  "aqua": "~/AppData/Local/aquaproj-aqua",
+  "efm-langserver": "~/AppData/efm-langserver"
 }
