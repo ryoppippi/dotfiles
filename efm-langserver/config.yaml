@@ -1,0 +1,23 @@
+version: 2
+# log-file: "~/.local/state/nvim/efm.log"
+log-level: 1
+root-markers:
+- .git/
+- package.json
+
+tools:
+  fish_indent: &fish_indent
+    format-command: "fish_indent"
+    format-stdin: true
+  
+  fish_diagnostics: &fish_diagnostics
+    lint-command: "fish --no-execute ${INPUT}"
+    lint-stdin: true
+    lint-ignore-exit-code: true
+    lint-formats:
+      - '%.%#(line %l): %m'
+
+languages:
+  fish:
+    - <<: *fish_diagnostics
+    - <<: *fish_indent

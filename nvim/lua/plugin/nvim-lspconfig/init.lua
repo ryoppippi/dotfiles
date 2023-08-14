@@ -116,7 +116,9 @@ return {
 
 		-- efm
 		setup(lspconfig.efm, {
-			filetypes = {},
+			filetypes = {
+				"fish",
+			},
 			init_options = {
 				documentFormatting = true,
 				rangeFormatting = true,
