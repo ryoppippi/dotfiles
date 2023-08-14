@@ -109,7 +109,7 @@ vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("", "<c-i>", "<c-i>")
 
 -- repeatable
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
 		-- add blank lines
 		local function append_new_lines(offset_line)
