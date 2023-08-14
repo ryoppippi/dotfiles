@@ -11,6 +11,13 @@ return {
 				},
 				shortcut = {
 					{
+						desc = "Restore Session",
+						icon = " ",
+						icon_hl = "@function",
+						action = 'lua require("persistence").load()',
+						key = "s",
+					},
+					{
 						desc = "Files",
 						icon = " ",
 						icon_hl = "@variable",
@@ -19,7 +26,7 @@ return {
 						key = "f",
 					},
 					{
-						desc = "File Browser",
+						desc = "Oil",
 						icon = "󰈙 ",
 						icon_hl = "@variable",
 						group = "Label",
@@ -27,7 +34,8 @@ return {
 						key = ".",
 					},
 					{
-						desc = " MRU",
+						desc = "MRU",
+						icon = " ",
 						group = "DiagnosticHint",
 						action = "Telescope oldfiles",
 						key = "r",
@@ -46,13 +54,13 @@ return {
 						action = "Lazy",
 						key = "z",
 					},
-					{
-						desc = "Quit",
-						icon = " ",
-						icon_hl = "@property",
-						action = "qa",
-						key = "q",
-					},
+					-- {
+					-- 	desc = "Quit",
+					-- 	icon = " ",
+					-- 	icon_hl = "@property",
+					-- 	action = "qa",
+					-- 	key = "q",
+					-- },
 				},
 			},
 		}
