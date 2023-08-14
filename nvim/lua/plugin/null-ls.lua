@@ -58,10 +58,6 @@ return {
 				condition = with_root_file({ "stylua.toml", ".stylua.toml" }),
 			}),
 
-			-- fish
-			diagnostics.fish,
-			formatting.fish_indent,
-
 			diagnostics.vacuum,
 			-- diagnostics.cspell,
 		})
