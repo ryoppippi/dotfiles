@@ -1,5 +1,4 @@
 version: 2
-# log-file: "~/.local/state/nvim/efm.log"
 log-level: 1
 root-markers:
 - .git/
@@ -23,6 +22,12 @@ tools:
     root-markers:
       - stylua.toml 
 
+  hadolint: &hadolint
+    lint-command: 'hadolint'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l %m'
+
 languages:
   fish:
     - <<: *fish_diagnostics
@@ -30,3 +35,6 @@ languages:
 
   lua:
     - <<: *stylua
+
+  dockerfile:
+    - <<: *hadolint

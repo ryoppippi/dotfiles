@@ -119,6 +119,7 @@ return {
 			filetypes = {
 				"fish",
 				"lua",
+				"dockerfile",
 			},
 			init_options = {
 				documentFormatting = true,
