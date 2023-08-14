@@ -114,6 +114,19 @@ return {
 
 		-- server configs
 
+		-- efm
+		setup(lspconfig.efm, {
+			filetypes = {},
+			init_options = {
+				documentFormatting = true,
+				rangeFormatting = true,
+				hover = true,
+				documentSymbol = true,
+				codeAction = true,
+				completion = true,
+			},
+		})
+
 		-- html/css/js
 		setup(lspconfig.emmet_ls, { extra_filetypes = html_like, on_attach = format_config(false) })
 		setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = format_config(false) })
@@ -250,4 +263,3 @@ return {
 		vim.g.zig_fmt_autosave = 0
 	end,
 }
-
