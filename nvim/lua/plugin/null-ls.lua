@@ -47,11 +47,6 @@ return {
 				prefer_local = ".venv/bin",
 			}),
 
-			-- Docker
-			diagnostics.hadolint.with({
-				diagnostics_format = diagnostics_format,
-			}),
-
 			diagnostics.vacuum,
 			-- diagnostics.cspell,
 		})
