@@ -112,13 +112,6 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		-- setup diagnostic signs
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-		end
-
 		-- server configs
 
 		-- html/css/js
@@ -221,12 +214,14 @@ return {
 						extra = {
 							{
 								name = "openAPI 3.0",
-								url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml",
+								url =
+								"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml",
 							},
 							{
 
 								name = "openAPI 3.1",
-								url = "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.yaml",
+								url =
+								"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.yaml",
 							},
 						},
 					}),
@@ -243,7 +238,7 @@ return {
 		setup(lspconfig.pyright, {
 			before_init = function(_, config)
 				config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-						and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+					and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
 					or utils.find_cmd("python3", ".venv/bin", config.root_dir)
 			end,
 		})
@@ -257,3 +252,4 @@ return {
 		vim.g.zig_fmt_autosave = 0
 	end,
 }
+
