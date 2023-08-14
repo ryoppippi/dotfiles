@@ -51,12 +51,6 @@ return {
 			diagnostics.hadolint.with({
 				diagnostics_format = diagnostics_format,
 			}),
-			-- format
-			-- lua
-			formatting.stylua.with({
-				diagnostics_format = diagnostics_format,
-				condition = with_root_file({ "stylua.toml", ".stylua.toml" }),
-			}),
 
 			diagnostics.vacuum,
 			-- diagnostics.cspell,

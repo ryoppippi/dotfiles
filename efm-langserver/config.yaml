@@ -17,7 +17,16 @@ tools:
     lint-formats:
       - '%.%#(line %l): %m'
 
+  stylua: &stylua
+    format-command: "stylua -s --color Never -"
+    format-stdin: true
+    root-markers:
+      - stylua.toml 
+
 languages:
   fish:
     - <<: *fish_diagnostics
     - <<: *fish_indent
+
+  lua:
+    - <<: *stylua
