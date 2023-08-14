@@ -17,6 +17,9 @@ return {
 			overrides = function(colors)
 				local theme = colors.theme
 				return {
+					StatusLine = { bg = theme.ui.bg_p1, fg = theme.ui.fg_dim },
+					StatusLineNC = { bg = theme.ui.bg_p1, fg = theme.ui.fg_dim },
+
 					-- Telescope {{
 					TelescopeTitle = { fg = theme.ui.special, bold = true },
 					TelescopePromptNormal = { bg = theme.ui.bg_p1 },
@@ -41,6 +44,7 @@ return {
 					-- }}
 					-- Noice {{
 					NoiceVirtualText = { bg = theme.ui.bg_search },
+					-- }}
 				}
 			end,
 			globalStatus = true,
