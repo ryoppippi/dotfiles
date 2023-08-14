@@ -18,8 +18,9 @@ return {
 	end,
 	enabled = false,
 	opts = function()
-		local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
-		local tih = lspfoncig_opts.typescriptInlayHints
+		local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]
+		local lsp_opts = lspconfig_opts.lsp_opts
+		local tih = lspconfig_opts.typescriptInlayHints
 		return {
 			on_attach = function(client, buffer)
 				vim.keymap.set("n", "<leader>to", function()
@@ -28,8 +29,9 @@ return {
 					-- vim.cmd("TypescriptOrganizeImports!")
 				end, { desc = "Manage imports", buffer = buffer })
 
-				lspfoncig_opts.disable_formatting(client, buffer)
+				lspconfig_opts.format_config(false)(client)
 			end,
+			capabilities = lsp_opts.capabilities,
 			settings = {
 				tsserver_plugins = { "typescript-styled-plugin", "typescript-svelte-plugin" },
 				tsserver_file_preferences = {

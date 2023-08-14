@@ -1,6 +1,7 @@
 local utils = require("core.utils")
--- local root_path = "lua/plugin/lsp"
-local has_cmp = function()
+
+---@return boolean 'is cmp installed?'
+local function has_cmp()
 	return require("core.plugin").has("nvim-cmp")
 end
 
@@ -10,7 +11,6 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
-		"jay-babu/mason-null-ls.nvim",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
@@ -18,8 +18,8 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp-signature-help", cond = has_cmp, enabled = false },
 	},
 	init = function()
-		local exclude_ft = { "oil" }
 		require("core.plugin").on_attach(function(client, bufnr)
+			local exclude_ft = { "oil" }
 			local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
 			if vim.tbl_contains(exclude_ft, ft) then
 				return
@@ -30,34 +30,20 @@ return {
 			require("plugin.nvim-lspconfig.format").on_attach(client, bufnr)
 			require("plugin.nvim-lspconfig.inlayhints").on_attach(client, bufnr)
 
-			-- local lspconfig = require("lspconfig")
-			-- local buf_name = vim.api.nvim_buf_get_name(bufnr)
-
 			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-			-- local node_root_dir =
-			--   lspconfig.util.root_pattern("package.json", "tsconfig.json", "tsconfig.jsonc", "node_modules")
-			-- local is_node_repo = node_root_dir(buf_name) ~= nil
-			--
-			-- local node_servers = {"angularls", "vuels", "svelte", "astro", "tsserver", "eslint",}
-			-- if vim.tbl_contains(node_servers, client.name) and not is_node_repo thentbl_
-			--   vim.lsp.stop_client(client.id)
-			-- end
-			-- if "denols" == client.name and is_node_repo then
-			--   vim.lsp.stop_client(client.id)
-			-- end
 		end)
 	end,
 	opts = function()
-		local o = { opts = {} }
+		---@class LSPConfigOpts
+		local o = { lsp_opts = {} }
 
-		o.opts.capabilities = vim.tbl_deep_extend(
+		o.lsp_opts.capabilities = vim.tbl_deep_extend(
 			"force",
 			{},
 			vim.lsp.protocol.make_client_capabilities(),
 			has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
 		)
-		o.opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+		o.lsp_opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
 		o.node_root_dir = {
 			"package.json",
@@ -80,11 +66,6 @@ return {
 			"markdown",
 		}
 
-		o.disable_formatting = function(client)
-			client.server_capabilities.documentFormattingProvider = false
-			client.server_capabilities.documentRangeFormattingProvider = false
-		end
-
 		o.typescriptInlayHints = {
 			parameterNames = {
 				enabled = "literals", -- 'none' | 'literals' | 'all'
@@ -97,13 +78,37 @@ return {
 			enumMemberValues = { enabled = true },
 		}
 
+		function o.format_config(enabled)
+			return function(client)
+				client.server_capabilities.documentFormattingProvider = enabled
+				client.server_capabilities.documentRangeFormattingProvider = enabled
+			end
+		end
+
+		function o.setup(client, extra_opts)
+			-- vim.print(client.document_config)
+			local default_opts = client.document_config.default_config
+
+			local local_opts = vim.tbl_deep_extend("force", {}, o.lsp_opts, extra_opts or {})
+
+			local_opts.filetypes = utils.merge_arrays(
+				local_opts.filetypes or default_opts.filetypes or {},
+				local_opts.extra_filetypes or {}
+			)
+			local_opts.extra_filetypes = nil
+			client.setup(local_opts)
+		end
+
 		return o
 	end,
+	---@param _ any
+	---@param opts LSPConfigOpts
 	config = function(_, opts)
+		local format_config = opts.format_config
+		local setup = opts.setup
 		local html_like = opts.html_like
 		local node_root_dir = opts.node_root_dir
-		local disable_formatting = opts.disable_formatting
-		opts = opts.opts
+		local typescriptInlayHints = opts.typescriptInlayHints
 
 		local lspconfig = require("lspconfig")
 
@@ -114,31 +119,17 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 		end
 
-		-- setup server function
-		local function setup(client, extra_opts)
-			local default_opts = client.document_config.default_config
-
-			local local_opts = vim.tbl_deep_extend("force", {}, opts, extra_opts or {})
-
-			local_opts.filetypes = utils.merge_arrays(
-				local_opts.filetypes or default_opts.filetypes or {},
-				local_opts.extra_filetypes or {}
-			)
-			local_opts.extra_filetypes = nil
-			client.setup(local_opts)
-		end
-
 		-- server configs
 
 		-- html/css/js
-		setup(lspconfig.emmet_ls, { extra_filetypes = html_like, on_attach = disable_formatting })
-		setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = disable_formatting })
-		setup(lspconfig.html, { on_attach = disable_formatting })
+		setup(lspconfig.emmet_ls, { extra_filetypes = html_like, on_attach = format_config(false) })
+		setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = format_config(false) })
+		setup(lspconfig.html, { on_attach = format_config(false) })
 
 		setup(lspconfig.eslint, {
 			extra_filetypes = { "svelte" },
 			root_dir = lspconfig.util.root_pattern(node_root_dir),
-			on_attach = disable_formatting,
+			on_attach = format_config(false),
 		})
 
 		setup(lspconfig.denols, {
@@ -173,22 +164,22 @@ return {
 						client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
 					end,
 				})
-				disable_formatting(client)
+				format_config(false)(client)
 			end,
 			settings = {
 				typescript = {
-					inlayHints = opts.typescriptInlayHints,
+					inlayHints = typescriptInlayHints,
 				},
 			},
 		})
-		setup(lspconfig.astro, { on_attach = disable_formatting })
+		setup(lspconfig.astro, { on_attach = format_config(false) })
 		setup(lspconfig.angularls)
 		setup(lspconfig.vuels)
 		setup(lspconfig.prismals)
 
 		-- lua
 		setup(lspconfig.lua_ls, {
-			on_attach = disable_formatting,
+			on_attach = format_config(false),
 			flags = {
 				debounce_text_changes = 150,
 			},
