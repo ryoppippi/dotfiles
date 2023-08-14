@@ -7,9 +7,9 @@ return {
 		enabled = false,
 		opts = function()
 			local lspconfig = require("lspconfig")
-			local lspfoncig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
+			local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]
 
-			local tih = lspfoncig_opts.typescriptInlayHints
+			local tih = lspconfig_opts.typescriptInlayHints
 			local inlayHints = {
 				includeInlayEnumMemberValueHints = tih.enumMemberValues.enabled,
 				includeInlayFunctionLikeReturnTypeHints = tih.functionLikeReturnTypes.enabled,
@@ -33,11 +33,10 @@ return {
 							-- vim.cmd("TypescriptOrganizeImports!")
 						end, { desc = "Manage imports", buffer = buffer })
 						vim.keymap.set("n", "<leader>tr", "<Cmd>TypescriptRenameFile<CR>", { buffer = buffer })
-
-						lspfoncig_opts.disable_formatting(client, buffer)
+						lspconfig_opts.format_config(false)(client)
 					end,
-					capabilities = lspfoncig_opts.capabilities,
-					root_dir = lspconfig.util.root_pattern(lspfoncig_opts.node_root_dir),
+					capabilities = lspconfig_opts.lsp_opts.capabilities,
+					root_dir = lspconfig.util.root_pattern(lspconfig_opts.node_root_dir),
 					single_file_support = false,
 					settings = settings,
 				},

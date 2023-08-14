@@ -28,9 +28,11 @@ return {
 			})
 		end,
 		opts = function()
-			local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts()
+			local lspconfig_opts = (
+				require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]
+			)
 			return {
-				capabilities = lspconfig_opts.capabilities,
+				capabilities = lspconfig_opts.lsp_opts.capabilities,
 				luasnip = true,
 				lsp_inlay_hints = {
 					enable = true,
