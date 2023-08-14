@@ -118,6 +118,7 @@ return {
 		setup(lspconfig.efm, {
 			filetypes = {
 				"fish",
+				"lua",
 			},
 			init_options = {
 				documentFormatting = true,
