@@ -68,4 +68,5 @@ end
 
 vim.opt.pumblend = 10
 vim.opt.laststatus = 0
+vim.cmd([[set statusline=%{repeat('─',winwidth('.'))}]])
 vim.opt.showcmd = false

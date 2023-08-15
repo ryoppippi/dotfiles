@@ -1,4 +1,5 @@
 local DEFUALT_THEME = "dragon"
+local TRANSPARENT = true
 return {
 	"rebelot/kanagawa.nvim",
 	priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
@@ -17,8 +18,10 @@ return {
 			overrides = function(colors)
 				local theme = colors.theme
 				return {
-					StatusLine = { bg = theme.ui.bg_p1, fg = theme.ui.fg_dim },
-					StatusLineNC = { bg = theme.ui.bg_p1, fg = theme.ui.fg_dim },
+					-- StatusLine {{
+					StatusLine = { fg = theme.ui.fg_dim, bg = not TRANSPARENT and theme.ui.bg or "NONE" },
+					StatusLineNC = { fg = theme.ui.fg_dim, bg = not TRANSPARENT and theme.ui.bg or "NONE" },
+					-- }}
 
 					-- Telescope {{
 					TelescopeTitle = { fg = theme.ui.special, bold = true },
@@ -48,7 +51,7 @@ return {
 				}
 			end,
 			globalStatus = true,
-			transparent = true,
+			transparent = TRANSPARENT,
 			theme = DEFUALT_THEME,
 		}
 	end,
