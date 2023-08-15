@@ -9,7 +9,8 @@ tools:
     format-command: "stylua -s --color Never -"
     format-stdin: true
     root-markers:
-      - stylua.toml 
+      - stylua.toml
+      - .stylua.toml
 
   html-prettier: &html-prettier
     format-command: "prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html"
