@@ -84,7 +84,8 @@ vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
 
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
-	return string.match(vim.fn.getline("."):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0" or "^"
+	return string.match((vim.fn.getline(".") --[[@as string]]):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0"
+		or "^"
 end, { expr = true, silent = true })
 
 -- Automatically indent with i and A made by ycino
