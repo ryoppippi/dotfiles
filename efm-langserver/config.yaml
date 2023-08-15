@@ -137,22 +137,22 @@ languages:
     - <<: *prettier
   javascriptreact:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   javascript.jsx:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   typescriptreact:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   typescript.tsx:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   markdown:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   markdown.mdx:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   ## styles
   css:
     - <<: *prettier
@@ -163,10 +163,10 @@ languages:
   ## scripts
   javascript:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   typescript:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   ## other
   graphql:
     - <<: *prettier
@@ -175,15 +175,13 @@ languages:
 
   # config
   json:
-    - <<: *vacuum
     - <<: *fixjson
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   jsonc:
     - <<: *prettier
-    - <<: *deno-format
+    # - <<: *deno-format
   yaml:
-    - <<: *vacuum
     - <<: *prettier
     - <<: *actionlint-lint
 
