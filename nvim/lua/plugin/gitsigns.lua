@@ -31,11 +31,4 @@ return {
 		},
 		config = true,
 	},
-	-- {
-	-- 	"jose-elias-alvarez/null-ls.nvim",
-	-- 	opts = function(_, opts)
-	-- 		opts.sources = opts.sources or {}
-	-- 		table.insert(opts.sources, require("null-ls").builtins.code_actions.gitsigns)
-	-- 	end,
-	-- },
 }
