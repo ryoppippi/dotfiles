@@ -33,11 +33,6 @@ return {
 				-- extra_args = { "--fast", "-W", "6" },
 			}),
 
-			diagnostics.mypy.with({
-				diagnostics_format = diagnostics_format,
-				prefer_local = ".venv/bin",
-			}),
-
 			diagnostics.vacuum,
 			-- diagnostics.cspell,
 		})
