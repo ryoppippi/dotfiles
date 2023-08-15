@@ -19,6 +19,10 @@ tools:
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
 
+  ruff-format: &ruff-format
+    format-command: "ruff --fix -e -n --stdin-filename -"
+    format-stdin: true
+
   html-prettier: &html-prettier
     format-command: "prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html"
     format-stdin: true
@@ -78,6 +82,7 @@ languages:
   # python
   python:
     - <<: *mypy
+    - <<: *ruff-format
 
   # web
   ## markup

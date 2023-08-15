@@ -29,12 +29,6 @@ return {
 				}),
 
 				-- python
-				formatting.ruff.with({
-					diagnostics_format = diagnostics_format,
-					prefer_local = ".venv/bin",
-					-- extra_args = { "--fast", "-W", "6" },
-				}),
-
 				diagnostics.vacuum,
 				-- diagnostics.cspell,
 			},
