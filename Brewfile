@@ -178,6 +178,7 @@ brew "graphicsmagick"
 brew "gts"
 brew "graphviz"
 brew "grex"
+brew "hadolint"
 brew "hdf5"
 brew "hexedit"
 brew "hexyl"
@@ -320,6 +321,7 @@ cask "appcleaner"
 cask "arc"
 cask "arduino"
 cask "audacity"
+cask "background-music"
 cask "balenaetcher"
 cask "basictex"
 cask "blender"
@@ -401,10 +403,10 @@ mas "Be Focused", id: 973134470
 mas "BlockComment", id: 1246672247
 mas "Clean", id: 418412301
 mas "Command X", id: 6448461551
+mas "Consent-O-Matic", id: 1606897889
 mas "CotEditor", id: 1024640650
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
-mas "Display Menu", id: 549083868
 mas "Document Generator", id: 1437883178
 mas "Downlink", id: 1454269192
 mas "Download Shuttle", id: 847809913
@@ -415,6 +417,7 @@ mas "Gifski", id: 1351639930
 mas "GIPHY CAPTURE", id: 668208984
 mas "Grammarly for Safari", id: 1462114288
 mas "Hex Fiend", id: 1342896380
+mas "Hush", id: 1544743900
 mas "iHosts", id: 1102004240
 mas "iText Express", id: 416550249
 mas "Keepa - Price Tracker", id: 1533805339
