@@ -58,6 +58,7 @@ abbr -a v nvim
 abbr -a nv nvim
 abbr -a y yarn
 abbr -a ya 'yarn add -D'
+abbr -a bunx 'bun x'
 abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
