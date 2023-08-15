@@ -12,6 +12,13 @@ tools:
       - stylua.toml
       - .stylua.toml
 
+  mypy: &mypy
+    lint-command: 'mypy --show-column-numbers'
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+
   html-prettier: &html-prettier
     format-command: "prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html"
     format-stdin: true
@@ -67,6 +74,10 @@ languages:
   # lua
   lua:
     - <<: *stylua
+
+  # python
+  python:
+    - <<: *mypy
 
   # web
   ## markup
