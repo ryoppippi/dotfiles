@@ -81,7 +81,7 @@ return {
 				return ":IncRename " .. vim.fn.expand("<cword>")
 			end
 			return ":lua vim.lsp.buf.rename()<cr>"
-		end, require("core.utils").merge_tables({ expr = true }, opts("rename")))
+		end, vim.tbl_deep_extend("error", { expr = true }, opts("rename")))
 
 		-- code actions
 		vim.keymap.set({ "n", "v", "x" }, "ga", function()
