@@ -12,6 +12,36 @@ tools:
       - stylua.toml
       - .stylua.toml
 
+  golint: &golint
+    lint-command: 'golint - '
+    lint-stdin: true
+    lint-formats:
+      - '%.%#:%l:%c: %m' 
+    root-markers:
+      - go.mod
+      - go.sum
+
+  gofmt: &gofmt
+    format-command: "gofmt"
+    format-stdin: true
+    root-markers:
+      - go.mod
+      - go.sum
+
+  golines: &golines
+    format-command: "golines"
+    format-stdin: true
+    root-markers:
+      - go.mod
+      - go.sum
+
+  goimports: &goimports
+    format-command: "goimports"
+    format-stdin: true
+    root-markers:
+      - go.mod
+      - go.sum
+
   mypy: &mypy
     lint-command: 'mypy --show-column-numbers'
     lint-formats:
@@ -92,6 +122,13 @@ languages:
     - <<: *mypy
     - <<: *ruff-format
 
+  # go
+  go:
+    - <<: *golint
+    - <<: *gofmt
+    - <<: *golines
+    - <<: *goimports
+
   # web
   ## markup
   html:
@@ -142,6 +179,7 @@ languages:
 
   # config
   json:
+    - <<: *vacuum
     - <<: *fixjson
     - <<: *prettier
     - <<: *deno-format
@@ -149,6 +187,7 @@ languages:
     - <<: *prettier
     - <<: *deno-format
   yaml:
+    - <<: *vacuum
     - <<: *prettier
     - <<: *actionlint-lint
 

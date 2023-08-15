@@ -118,19 +118,24 @@ return {
 		setup(lspconfig.efm, {
 			filetypes = vim.tbl_flatten({
 				{
-					-- config
+					"lua",
+					"python",
+					"go",
+				},
+				-- config
+				{
 					"json",
 					"jsonc",
 					"yaml",
+				},
+				-- others
+				{
 
-					-- shell
 					"fish",
 					"dockerfile",
 				},
+				-- web
 				{
-					"lua",
-					"python",
-					-- web
 					-- -- markup
 					"html",
 					"svelte",

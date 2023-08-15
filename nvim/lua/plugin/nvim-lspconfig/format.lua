@@ -36,17 +36,11 @@ function M.format(opts)
 		return
 	end
 	local ft = vim.bo[buf].filetype
-	local have_nls = package.loaded["null-ls"]
-		and (#require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0)
 
 	vim.lsp.buf.format({
 		bufnr = buf,
 		filter = function(client)
 			if not client.server_capabilities.documentFormattingProvider then
-				return false
-			end
-			local is_null_ls = have_nls and client.name == "null-ls" or client.name ~= "null-ls"
-			if not is_null_ls then
 				return false
 			end
 			Util.info("format on save", { title = client.name })
