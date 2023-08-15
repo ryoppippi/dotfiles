@@ -116,11 +116,42 @@ return {
 
 		-- efm
 		setup(lspconfig.efm, {
-			filetypes = {
-				"fish",
-				"lua",
-				"dockerfile",
-			},
+			filetypes = vim.tbl_flatten({
+				{
+					-- config
+					"json",
+					"jsonc",
+					"yaml",
+
+					-- shell
+					"fish",
+					"dockerfile",
+				},
+				{
+					"lua",
+					"python",
+					-- web
+					-- -- markup
+					"html",
+					"svelte",
+					"vue",
+					"astro",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescriptreact",
+					"typescript.tsx",
+					"markdown",
+					"markdown.mdx",
+					-- -- style
+					"css",
+					"scss",
+					"less",
+
+					-- -- script
+					"javascript",
+					"typescript",
+				},
+			}),
 			init_options = {
 				documentFormatting = true,
 				rangeFormatting = true,
