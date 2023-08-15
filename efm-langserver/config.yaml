@@ -68,14 +68,6 @@ tools:
       - .prettierrc.cjs
       - .prettierrc.toml
 
-  deno-format: &deno-format
-    format-command: "deno fmt"
-    format-stdin: true
-    format-diff: "deno fmt --unstable -"
-    root-markers:
-      - deno.json
-      - deno.jsonc
-
   fish_indent: &fish_indent
     format-command: "fish_indent"
     format-stdin: true
@@ -137,22 +129,16 @@ languages:
     - <<: *prettier
   javascriptreact:
     - <<: *prettier
-    # - <<: *deno-format
   javascript.jsx:
     - <<: *prettier
-    # - <<: *deno-format
   typescriptreact:
     - <<: *prettier
-    # - <<: *deno-format
   typescript.tsx:
     - <<: *prettier
-    # - <<: *deno-format
   markdown:
     - <<: *prettier
-    # - <<: *deno-format
   markdown.mdx:
     - <<: *prettier
-    # - <<: *deno-format
   ## styles
   css:
     - <<: *prettier
@@ -163,10 +149,8 @@ languages:
   ## scripts
   javascript:
     - <<: *prettier
-    # - <<: *deno-format
   typescript:
     - <<: *prettier
-    # - <<: *deno-format
   ## other
   graphql:
     - <<: *prettier
@@ -177,10 +161,8 @@ languages:
   json:
     - <<: *fixjson
     - <<: *prettier
-    # - <<: *deno-format
   jsonc:
     - <<: *prettier
-    # - <<: *deno-format
   yaml:
     - <<: *prettier
     - <<: *actionlint-lint
