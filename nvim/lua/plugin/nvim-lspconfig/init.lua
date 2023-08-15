@@ -121,6 +121,7 @@ return {
 					"lua",
 					"python",
 					"go",
+					"rust",
 				},
 				-- config
 				{

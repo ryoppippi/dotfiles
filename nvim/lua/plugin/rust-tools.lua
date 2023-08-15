@@ -8,13 +8,12 @@ return {
 		"BufReadPre *.rs",
 		"BufNewFile *.rs",
 	},
-	config = function()
+	opts = function()
 		local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]
-		require("rust-tools").setup({
+		return {
 			server = {
 				capabilities = lspconfig_opts.lsp_opts.capabilities,
 			},
-		})
-		return opts
+		}
 	end,
 }
