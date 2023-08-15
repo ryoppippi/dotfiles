@@ -53,12 +53,8 @@ tools:
     format-command: "ruff --fix -e -n --stdin-filename -"
     format-stdin: true
 
-  html-prettier: &html-prettier
-    format-command: "prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html"
-    format-stdin: true
-
   prettier: &prettier
-    format-command: "prettier --stdin --stdin-filepath ${INPUT} ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
+    format-command: "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT} ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
     format-stdin: true
     format-can-range: true
     root-markers:
@@ -132,7 +128,7 @@ languages:
   # web
   ## markup
   html:
-    - <<: *html-prettier
+    - <<: *prettier
   svelte:
     - <<: *prettier
   vue:
