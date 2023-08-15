@@ -57,6 +57,12 @@ tools:
     root-markers:
       - .github
 
+  fixjson: &fixjson
+    format-command: >
+      deno run --allow-all --no-config --no-lock --node-modules-dir=false
+      npm:fixjson --stdin-filename ${INPUT}
+    format-stdin: true
+
 languages:
   # lua
   lua:
@@ -100,6 +106,7 @@ languages:
 
   # config
   json:
+    - <<: *fixjson
     - <<: *prettier
   jsonc:
     - <<: *prettier
