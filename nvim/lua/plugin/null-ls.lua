@@ -23,11 +23,6 @@ return {
 		opts.sources = vim.tbl_flatten({
 			opts.sources or {},
 			{
-				-- web
-				formatting.deno_fmt.with({
-					condition = with_root_file("deno.json", "deno.jsonc"),
-				}),
-
 				-- python
 				diagnostics.vacuum,
 				-- diagnostics.cspell,
