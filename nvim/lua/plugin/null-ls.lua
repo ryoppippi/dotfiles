@@ -22,15 +22,6 @@ return {
 		opts = opts or {}
 		opts.sources = require("core.utils").merge_arrays(opts.sources or {}, {
 			-- web
-			formatting.prettier.with({
-				extra_filetypes = { "svelte" },
-			}),
-
-			diagnostics.tsc.with({
-				diagnostics_format = diagnostics_format,
-				condition = with_root_file("deno.json", "deno.jsonc"),
-			}),
-
 			formatting.deno_fmt.with({
 				condition = with_root_file("deno.json", "deno.jsonc"),
 			}),

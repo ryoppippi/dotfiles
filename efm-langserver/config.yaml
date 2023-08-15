@@ -5,6 +5,25 @@ root-markers:
 - package.json
 
 tools:
+  html-prettier: &html-prettier
+    format-command: "prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html"
+    format-stdin: true
+
+  prettier: &prettier
+    format-command: "prettier --stdin --stdin-filepath ${INPUT} ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
+    format-stdin: true
+    format-can-range: true
+    root-markers:
+      - .prettierrc
+      - .prettierrc.json
+      - .prettierrc.js
+      - .prettierrc.yml
+      - .prettierrc.yaml
+      - .prettierrc.json5
+      - .prettierrc.mjs
+      - .prettierrc.cjs
+      - .prettierrc.toml
+
   fish_indent: &fish_indent
     format-command: "fish_indent"
     format-stdin: true
@@ -29,12 +48,53 @@ tools:
       - '%f:%l %m'
 
 languages:
+  # web
+  ## markup
+  html:
+    - <<: *html-prettier
+  svelte:
+    - <<: *prettier
+  vue:
+    - <<: *prettier
+  astro:
+    - <<: *prettier
+  javascriptreact:
+    - <<: *prettier
+  typescriptreact:
+    - <<: *prettier
+  markdown:
+    - <<: *prettier
+  markdown.mdx:
+    - <<: *prettier
+  ## styles
+  css:
+    - <<: *prettier
+  scss:
+    - <<: *prettier
+  less:
+    - <<: *prettier
+  ## scripts
+  javascript:
+    - <<: *prettier
+  typescript:
+    - <<: *prettier
+  ## config
+  json:
+    - <<: *prettier
+  jsonc:
+    - <<: *prettier
+  yaml:
+    - <<: *prettier
+  ## other
+  graphql:
+    - <<: *prettier
+  handlebars:
+    - <<: *prettier
+
   fish:
     - <<: *fish_diagnostics
     - <<: *fish_indent
-
   lua:
     - <<: *stylua
-
   dockerfile:
     - <<: *hadolint
