@@ -4,28 +4,6 @@ M.is_event_available = function(event)
 	return tb(vim.fn.exists(("##" .. event)))
 end
 
-M.merge_tables = function(t1, t2)
-	for k, v in pairs(t2) do
-		if (type(v) == "table") and (type(t1[k] or false) == "table") then
-			M.merge_tables(t1[k], t2[k])
-		else
-			t1[k] = v
-		end
-	end
-	return t1
-end
-
-M.merge_arrays = function(a1, a2)
-	if type(a2) ~= "table" then
-		local a2 = { a2 }
-	end
-
-	for _, v in ipairs(a2) do
-		table.insert(a1, v)
-	end
-	return a1
-end
-
 M.find_cmd = function(cmd, prefixes, start_from, stop_at)
 	local path = require("lspconfig.util").path
 

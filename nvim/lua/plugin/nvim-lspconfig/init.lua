@@ -91,10 +91,10 @@ return {
 
 			local local_opts = vim.tbl_deep_extend("force", {}, o.lsp_opts, extra_opts or {})
 
-			local_opts.filetypes = utils.merge_arrays(
+			local_opts.filetypes = vim.tbl_flatten({
 				local_opts.filetypes or default_opts.filetypes or {},
-				local_opts.extra_filetypes or {}
-			)
+				local_opts.extra_filetypes or {},
+			})
 			local_opts.extra_filetypes = nil
 			client.setup(local_opts)
 		end

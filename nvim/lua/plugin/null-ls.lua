@@ -20,21 +20,24 @@ return {
 		end
 
 		opts = opts or {}
-		opts.sources = require("core.utils").merge_arrays(opts.sources or {}, {
-			-- web
-			formatting.deno_fmt.with({
-				condition = with_root_file("deno.json", "deno.jsonc"),
-			}),
+		opts.sources = vim.tbl_flatten({
+			opts.sources or {},
+			{
+				-- web
+				formatting.deno_fmt.with({
+					condition = with_root_file("deno.json", "deno.jsonc"),
+				}),
 
-			-- python
-			formatting.ruff.with({
-				diagnostics_format = diagnostics_format,
-				prefer_local = ".venv/bin",
-				-- extra_args = { "--fast", "-W", "6" },
-			}),
+				-- python
+				formatting.ruff.with({
+					diagnostics_format = diagnostics_format,
+					prefer_local = ".venv/bin",
+					-- extra_args = { "--fast", "-W", "6" },
+				}),
 
-			diagnostics.vacuum,
-			-- diagnostics.cspell,
+				diagnostics.vacuum,
+				-- diagnostics.cspell,
+			},
 		})
 		return opts
 	end,
