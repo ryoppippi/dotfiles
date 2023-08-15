@@ -41,7 +41,7 @@
   sync = !git pull && git push
   sw = switch
   swc = switch -c
-  fsw =!git branch -a | fzf | xargs git switch
+  swf =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
   cor = "!f() { local -r ref=$(git branch -r | fzf); git checkout -b \"${1:-${ref#*/}}\" $ref; }; f"
