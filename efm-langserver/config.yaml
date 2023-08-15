@@ -91,7 +91,11 @@ languages:
     - <<: *prettier
   javascriptreact:
     - <<: *prettier
+  javascript.jsx:
+    - <<: *prettier
   typescriptreact:
+    - <<: *prettier
+  typescript.tsx:
     - <<: *prettier
   markdown:
     - <<: *prettier
