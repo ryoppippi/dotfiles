@@ -7,7 +7,7 @@ local event = { "InsertEnter", "CursorHold" }
 return {
 	{
 		"github/copilot.vim",
-		enabled = true,
+		enabled = false,
 		cond = not is_vscode(),
 		dependencies = {
 			"tani/vim-artemis",
@@ -92,7 +92,7 @@ return {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
+		enabled = true,
 		cond = not is_vscode(),
 		cmd = { "Copilot" },
 		event = event,
@@ -136,7 +136,7 @@ return {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<Tab>",
+					accept = "<S-tab>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-n>",
