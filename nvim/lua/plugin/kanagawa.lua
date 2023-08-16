@@ -19,8 +19,12 @@ return {
 				local theme = colors.theme
 				return {
 					-- StatusLine {{
-					StatusLine = { fg = theme.ui.fg_dim, bg = not TRANSPARENT and theme.ui.bg or "NONE" },
-					StatusLineNC = { fg = theme.ui.fg_dim, bg = not TRANSPARENT and theme.ui.bg or "NONE" },
+					StatusLine = { link = "Normal" },
+					StatusLineNC = { link = "Normal" },
+					-- }}
+
+					-- SatelliteBar {{
+					SatelliteBar = { bg = theme.ui.special },
 					-- }}
 
 					-- Telescope {{
