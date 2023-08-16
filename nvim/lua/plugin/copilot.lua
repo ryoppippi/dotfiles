@@ -136,7 +136,7 @@ return {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<S-tab>",
+					accept = "<C-y>",
 					accept_word = false,
 					accept_line = false,
 					next = "<C-n>",
