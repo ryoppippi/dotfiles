@@ -6,7 +6,7 @@ return {
 		{
 			"ray-x/cmp-treesitter",
 			cond = function()
-				return require("core.plugin").has("nvim-cmp")
+				return require("core.plugin").has("nvim-cmp") and not is_vscode()
 			end,
 		},
 
