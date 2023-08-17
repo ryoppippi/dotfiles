@@ -12,7 +12,7 @@ return {
 		end
 	end,
 	build = ":KanagawaCompile",
-	cond = not is_vscode(),
+	cond = vim.o.termguicolors and not is_vscode(),
 	opts = function()
 		return {
 			overrides = function(colors)
