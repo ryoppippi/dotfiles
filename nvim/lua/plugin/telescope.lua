@@ -1,17 +1,13 @@
 local has = require("core.plugin").has
+local on_load = require("core.plugin").on_load
 
 local M = {}
 
 ---@param name string
 local le = function(name)
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "TelescopeLoaded",
-		callback = function()
-			if has("telescope.nvim") then
-				require("telescope").load_extension(name)
-			end
-		end,
-	})
+	on_load("telescope.nvim", function()
+		require("telescope").load_extension(name)
+	end)
 end
 
 M = {
@@ -91,9 +87,6 @@ M = {
 			-- },
 		},
 		init = function()
-			require("core.plugin").on_load("telescope.nvim", function()
-				vim.api.nvim_exec_autocmds("User", { pattern = "TelescopeLoaded" })
-			end)
 			vim.api.nvim_create_autocmd("BufReadPost", {
 				pattern = "*",
 				callback = function()
@@ -242,8 +235,11 @@ M = {
 			"kkharji/sqlite.lua",
 			"nvim-telescope/telescope.nvim",
 		},
-		event = "User TelescopeLoaded",
-		config = true,
+		init = function()
+			on_load("telescope.nvim", function()
+				require("telescope-all-recent").setup({})
+			end)
+		end,
 	},
 }
 
