@@ -47,9 +47,6 @@ volta install node@18
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# tmux tpm
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 # post install
 if [ "$(uname)" == "Darwin" ]; then
   brew cleanup -s
