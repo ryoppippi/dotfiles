@@ -85,7 +85,6 @@
   "neodim": { "branch": "master", "commit": "5f61587e47955d38ccb92dadf19c333e52059912" },
   "neogen": { "branch": "main", "commit": "1dd0319ccf41b2498f45a3c7607f2ee325ffc6a0" },
   "neogit": { "branch": "master", "commit": "72824006f2dcf775cc498cc4a046ddd2c99d20a3" },
-  "neotest": { "branch": "master", "commit": "bec7be0f13ee19c85561943fc5f7b8daa4f4d465" },
   "noice.nvim": { "branch": "main", "commit": "894db25ec726d32047799d4d0a982b701bec453b" },
   "nui.nvim": { "branch": "main", "commit": "9e3916e784660f55f47daa6f26053ad044db5d6a" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "c06f8befe4b9438aa4f4b763e70d77cabf5093f1" },
