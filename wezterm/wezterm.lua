@@ -159,4 +159,6 @@ wezterm.on("gui-startup", function(cmd)
 end)
 -- config = utils.merge_tables(config, require("colors.kanagawa"))
 
+require("zen-mode")
+
 return utils.merge_tables(config, local_config)
