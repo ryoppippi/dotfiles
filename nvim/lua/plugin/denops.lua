@@ -1,5 +1,6 @@
 return {
 	"vim-denops/denops.vim",
+	lazy = false,
 	dependencies = {
 		{
 			"yuki-yano/denops-lazy.nvim",
@@ -8,6 +9,5 @@ return {
 			},
 		},
 	},
-	event = { "VeryLazy" },
 	priority = 1000,
 }

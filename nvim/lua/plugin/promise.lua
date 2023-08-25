@@ -1,3 +1,0 @@
-return {
-	"notomo/promise.nvim",
-}

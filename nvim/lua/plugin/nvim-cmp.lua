@@ -11,6 +11,7 @@ end
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
+	enabled = false,
 	cond = not is_vscode(),
 	dependencies = {
 		{ "tani/vim-artemis" },
