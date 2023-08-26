@@ -96,9 +96,9 @@ abbr -a gaa 'git add --all'
 abbr -a gco 'git checkout'
 abbr -a gc 'git commit'
 abbr -a gcn 'git commit -n'
-abbr -a gcm 'git commit -m "'
-abbr -a gcnm 'git commit -n -m "'
-abbr -a gcam 'git commit --amend -m "'
+abbr -a --set-cursor gcm git commit -m \"%\"
+abbr -a --set-cursor gcnm git commit -n -m \"%\"
+abbr -a --set-cursor gcam git commit --amend -m \"%\"
 abbr -a gcz 'git cz'
 abbr -a gcza 'git cza'
 abbr -a gp 'git push'
