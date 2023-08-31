@@ -57,7 +57,7 @@ packages:
   - name: denoland/deno@v1.36.3
   - name: oven-sh/bun@bun-v0.8.1
   - name: wader/fq@v0.7.0
-  - name: planetscale/cli@v0.153.0
+  - name: planetscale/cli@v0.154.0
   - name: nao1215/gup@v0.22.0
   - name: hadolint/hadolint@v2.12.0
   - name: noborus/trdsql@v0.11.1
