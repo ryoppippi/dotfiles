@@ -30,12 +30,13 @@ end
 
 alias vim nvim
 alias bash 'bash --norc'
-alias ll 'exa --icons -hlF'
-alias la 'll -a'
-alias lt 'll --tree'
-alias lg 'la --git'
 alias nvprofile 'touch /tmp/startup.log && rm /tmp/startup.log &&  nvim --startuptime /tmp/startup.log +qa && nvim /tmp/startup.log -c "%!sort -k2nr" -c "w"'
 alias nvbench 'hyperfine "nvim --headless +qa" --warmup 4 --prepare "nvim --headless +qa"'
+abbr ls lsd
+abbr ll 'lsd -hlF'
+abbr la 'lsd -hlFA'
+abbr lt 'lsd --tree'
+abbr lg 'lsd --git'
 abbr -a cdr 'cd (git root)'
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a GHCI 'stack ghci'
