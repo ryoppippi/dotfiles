@@ -38,7 +38,7 @@
   smu = submodule update --remote --init --recursive  
   sma = submodule add
   sms = submodule foreach \"git status\"	
-  sync = !git pull && git push
+  sync = !git pull --rebase && git push
   sw = switch
   swc = switch -c
   swf =!git branch -a | fzf | xargs git switch
