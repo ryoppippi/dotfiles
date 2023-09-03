@@ -4,6 +4,7 @@
   "actions-preview.nvim": { "branch": "master", "commit": "5650c76abfb84d6498330dd045657ba630ecdbba" },
   "askpass.vim": { "branch": "main", "commit": "c40b7e296ad626ffebdf26793236a55c8e3517ca" },
   "bad-apple.vim": { "branch": "main", "commit": "111fd6caf12d2824a4889999b32c2f70cec3872d" },
+  "bigfile.nvim": { "branch": "main", "commit": "9616b73670ffeb92679677554ded88854ae42cf8" },
   "bufdelete.nvim": { "branch": "master", "commit": "07d1f8ba79dec59d42b975a4df1c732b2e4e37b4" },
   "bufferline.nvim": { "branch": "main", "commit": "9961d87bb3ec008213c46ba14b3f384a5f520eb5" },
   "bufresize.nvim": { "branch": "master", "commit": "3b19527ab936d6910484dcc20fb59bdb12322d8b" },
