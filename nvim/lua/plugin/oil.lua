@@ -51,6 +51,10 @@ return {
 			},
 			view_options = {
 				show_hidden = true,
+				is_always_hidden = function(name, _)
+					local ignore_list = { ".DS_Store" }
+					return vim.tbl_contains(ignore_list, name)
+				end,
 			},
 			use_default_keymaps = false,
 			delete_to_trash = is_trash,
