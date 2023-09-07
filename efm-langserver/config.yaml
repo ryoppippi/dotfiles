@@ -58,6 +58,7 @@ tools:
     format-stdin: true
     format-can-range: true
     root-markers:
+      - .git
       - .prettierrc
       - .prettierrc.json
       - .prettierrc.js
@@ -95,9 +96,7 @@ tools:
       - .github
 
   fixjson: &fixjson
-    format-command: >
-      deno run --allow-all --no-config --no-lock --node-modules-dir=false
-      npm:fixjson --stdin-filename ${INPUT}
+    format-command: bun x fixjson --stdin-filename ${INPUT}
     format-stdin: true
 
 languages:
