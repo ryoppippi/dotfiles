@@ -54,7 +54,12 @@ tools:
     format-stdin: true
 
   prettier: &prettier
-    format-command: "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT} ${--range-start:charStart} ${--range-end:charEnd} ${--tab-width:tabSize} ${--use-tabs:!insertSpaces}"
+    format-command: >
+      ./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT} \
+        ${--range-start:charStart} \
+        ${--range-end:charEnd} \
+        ${--tab-width:tabSize} \
+        ${--use-tabs:!insertSpaces}
     format-stdin: true
     format-can-range: true
     root-markers:
