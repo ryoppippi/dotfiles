@@ -251,6 +251,7 @@ return {
 
 		-- json
 		setup(lspconfig.jsonls, {
+			on_attach = format_config(false),
 			settings = {
 				json = {
 					schemas = require("schemastore").json.schemas(),
