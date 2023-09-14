@@ -36,7 +36,7 @@ abbr ls lsd
 abbr ll 'lsd -hlF'
 abbr la 'lsd -hlFA'
 abbr lt 'lsd --tree'
-abbr lg 'lsd --git'
+abbr lg 'lsd -hlFg'
 abbr -a cdr 'cd (git root)'
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a GHCI 'stack ghci'
