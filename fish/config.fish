@@ -93,86 +93,12 @@ if type -q nvim
 end
 
 # configs
-for file in $FISH_CONFIG_DIR/config/*.fish
-    source $file
-end
+source $FISH_CONFIG_DIR/config/*.fish
 
 # theme
 set -gx theme_nerd_fonts yes
 set -gx BAT_THEME TwoDark
 source $FISH_CONFIG_DIR/themes/kanagawa.fish
-
-# aliases and abbreviations
-alias vim nvim
-alias bash 'bash --norc'
-abbr ls lsd
-abbr ll 'lsd -hlF'
-abbr la 'lsd -hlFA'
-abbr lt 'lsd --tree'
-abbr lg 'lsd -hlFg'
-abbr -a cdr 'cd (git root)'
-abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
-abbr -a sed gsed
-abbr -a sc "source $FISH_CONFIG"
-abbr -a b brew
-abbr -a t tmux
-abbr -a tt tmuximum
-abbr -a wt wezterm
-abbr -a bri 'brew install'
-abbr -a clr clear
-abbr -a rr 'rm -r'
-abbr -a rf 'rm -rf'
-abbr -a mkd 'mkdir -p'
-abbr -a mkdir 'mkdir -p'
-abbr -a src source
-abbr -a cdd __fzf_cd
-abbr -a o open
-abbr -a v nvim
-abbr -a nv nvim
-abbr -a bunx 'bun x'
-abbr -a cda conda
-abbr -a lzg lazygit
-abbr -a lzd lazydocker
-abbr -a ech envchain
-abbr -a vc 'code (pwd)'
-abbr -a jn 'jupyter notebook'
-abbr -a jl 'jupyter lab'
-abbr -a py python
-abbr -a d docker
-abbr -a dp "docker ps"
-abbr -a db "docker build"
-abbr -a dr "docker run --rm"
-abbr -a dx "docker exec -it"
-abbr -a dc docker compose
-abbr -a dcu "docker compose up"
-abbr -a dcub "docker compose up --build"
-abbr -a dcd "docker compose down"
-abbr -a dcr "docker compose restart"
-
-abbr -a cpf "pbcopy < "
-abbr -a paf "pbpaste > "
-
-abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
-
-# git configs
-abbr -a g git
-abbr -a ga 'git add'
-abbr -a ga. 'git add .'
-abbr -a gaa 'git add --all'
-abbr -a gco 'git checkout'
-abbr -a gc 'git commit'
-abbr -a gcn 'git commit -n'
-abbr -a --set-cursor gcm git commit -m \"%\"
-abbr -a --set-cursor gcnm git commit -n -m \"%\"
-abbr -a --set-cursor gcam git commit --amend -m \"%\"
-abbr -a gcz 'git cz'
-abbr -a gcza 'git cza'
-abbr -a gp 'git push'
-abbr -a gpo 'git push origin'
-abbr -a gpf 'git pushf'
-abbr -a gpfo 'git pushf origin'
-abbr -a gpl 'git pull'
-abbr -a gf 'git fetch'
 
 # third party config cache
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
