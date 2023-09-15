@@ -22,7 +22,7 @@ fish_add_path /usr/local/opt/curl/bin
 fish_add_path /Applications/Xcode.app/Contents/Developer/usr/bin
 
 # brew
-set -gx HOMEBREW_BUNDLE_FILE "$HOME/brew/Brewfile"
+set -gx HOMEBREW_BUNDLE_FILE "$HOME/.Brewfile"
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_ARM_BIN /opt/homebrew/bin
 set -gx HOMEBREW_X86_64_BIN /usr/local/bin
