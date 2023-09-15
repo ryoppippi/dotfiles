@@ -199,7 +199,7 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
     direnv hook fish >>$CONFIG_CACHE
     zoxide init fish >>$CONFIG_CACHE
-    starship init fish >>$CONFIG_CACHE
+    # starship init fish >>$CONFIG_CACHE
 
     echo 'cache generated'
 end
