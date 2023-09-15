@@ -66,7 +66,7 @@ export HOMEBREW_NO_ANALYTICS=1
 eval "$(zoxide init bash)"
 
 # direnv
-# eval "$(direnv hook bash)"
+eval "$(direnv hook bash)"
 
 . "$HOME/.cargo/env"
 
@@ -99,4 +99,3 @@ if [[ -t 0 ]]; then
   stty stop undef
   stty start undef
 fi
-
