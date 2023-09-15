@@ -103,12 +103,8 @@ set -gx BAT_THEME TwoDark
 source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
 # aliases and abbreviations
-
-type -q trash && alias rm trash
 alias vim nvim
 alias bash 'bash --norc'
-alias nvprofile 'touch /tmp/startup.log && rm /tmp/startup.log &&  nvim --startuptime /tmp/startup.log +qa && nvim /tmp/startup.log -c "%!sort -k2nr" -c "w"'
-alias nvbench 'hyperfine "nvim --headless +qa" --warmup 4 --prepare "nvim --headless +qa"'
 abbr ls lsd
 abbr ll 'lsd -hlF'
 abbr la 'lsd -hlFA'
