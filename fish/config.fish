@@ -10,8 +10,8 @@ set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
 set -g FISH_USER_FUNCTIONS $FISH_CONFIG_DIR/user_functions
-set -g CACHE_DIR $HOME/.cache/fish
 set -gp fish_function_path $FISH_USER_FUNCTIONS $fish_function_path
+set -g FISH_CACHE_DIR $HOME/.cache/fish
 
 # general bin paths
 fish_add_path $HOME/.local/bin
@@ -178,9 +178,9 @@ abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 
 # third party config cache
-set -l CONFIG_CACHE $CACHE_DIR/config.fish
+set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
-    mkdir -p $CACHE_DIR
+    mkdir -p $FISH_CACHE_DIR
     echo '' >$CONFIG_CACHE
 
     echo "fish_add_path $(gem environment gemdir 2> /dev/null)/bin" >>$CONFIG_CACHE
