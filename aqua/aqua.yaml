@@ -62,3 +62,4 @@ packages:
   - name: JohnnyMorganz/StyLua@v0.18.2
   - name: mattn/efm-langserver@v0.0.48
   - name: cloudflare/cloudflared@2023.8.2
+  - name: wasmerio/wasmer@v4.2.0
