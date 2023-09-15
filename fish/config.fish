@@ -18,8 +18,6 @@ fish_add_path $HOME/.local/bin
 fish_add_path /usr/local/opt/coreutils/libexec/gnubin
 fish_add_path /usr/local/opt/curl/bin
 
-# xcode
-fish_add_path /Applications/Xcode.app/Contents/Developer/usr/bin
 
 # brew
 set -gx HOMEBREW_BUNDLE_FILE "$HOME/.Brewfile"
@@ -67,10 +65,6 @@ fish_add_path "$HOME/.nimble/bin"
 # zig
 fish_add_path "$HOME/zig"
 
-# ruby
-fish_add_path "$HOMEBREW_ARM_BIN/opt/ruby/bin"
-fish_add_path "$HOMEBREW_X86_64_BIN/opt/ruby/bin"
-
 # python
 fish_add_path "$HOME/.rye/shims"
 fish_add_path "$HOME/.poetry/bin"
@@ -100,13 +94,20 @@ set -gx theme_nerd_fonts yes
 set -gx BAT_THEME TwoDark
 source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
-# third party config cache
+# config caches
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
     echo '' >$CONFIG_CACHE
 
-    echo "fish_add_path $(gem environment gemdir 2> /dev/null)/bin" >>$CONFIG_CACHE
+    # xcode
+    type -q xcode-select && echo "fish_add_path $(xcode-select -p)/usr/bin" >>$CONFIG_CACHE
+
+    # ruby
+    echo "fish_add_path $(brew --prefix)/opt/rub/bin" >>$CONFIG_CACHE
+    echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
+
+    # tools
     direnv hook fish >>$CONFIG_CACHE
     zoxide init fish >>$CONFIG_CACHE
     # starship init fish >>$CONFIG_CACHE
