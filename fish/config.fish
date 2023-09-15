@@ -24,10 +24,10 @@ fish_add_path /Applications/Xcode.app/Contents/Developer/usr/bin
 # brew
 set -gx HOMEBREW_BUNDLE_FILE "$HOME/.Brewfile"
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
-set -gx HOMEBREW_ARM_BIN /opt/homebrew/bin
-set -gx HOMEBREW_X86_64_BIN /usr/local/bin
-fish_add_path $HOMEBREW_ARM_BIN
-fish_add_path $HOMEBREW_X86_64_BIN
+set -gx HOMEBREW_ARM /opt/homebrew
+set -gx HOMEBREW_X86_64 /usr/local
+fish_add_path $HOMEBREW_ARM/bin
+fish_add_path $HOMEBREW_X86_64/bin
 
 # aqua
 set -gx AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
