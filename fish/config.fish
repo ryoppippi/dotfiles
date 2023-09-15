@@ -1,29 +1,110 @@
-if status --is-interactive
-    bass source ~/.bash_profile
+not status is-interactive; and exit 0
+
+set -gx LC_ALL 'en_US.UTF-8'
+set -gx BASH_SILENCE_DEPRECATION_WARNING 1
+
+set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME "$HOME/.config"
+
+set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME "$HOME/.local/share"
+
+# export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+
+set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
+set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
+set -g FISH_USER_FUNCTIONS $FISH_CONFIG_DIR/user_functions
+set -g CACHE_DIR $HOME/.cache/fish
+set -gp fish_function_path $FISH_USER_FUNCTIONS $fish_function_path
+
+# general bin paths
+fish_add_path $HOME/.local/bin
+fish_add_path /usr/local/opt/coreutils/libexec/gnubin
+fish_add_path /usr/local/opt/curl/bin
+
+# xcode
+fish_add_path /Applications/Xcode.app/Contents/Developer/usr/bin
+
+# brew
+set -gx HOMEBREW_BUNDLE_FILE "$HOME/brew/Brewfile"
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
+set -gx HOMEBREW_ARM_BIN /opt/homebrew/bin
+set -gx HOMEBREW_X86_64_BIN /usr/local/bin
+fish_add_path $HOMEBREW_ARM_BIN
+fish_add_path $HOMEBREW_X86_64_BIN
+
+# aqua
+set -gx AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
+fish_add_path -p $AQUA_ROOT_DIR/bin
+
+set -gx AQUA_GLOBAL_CONFIG $AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+
+# c / c++
+# c++
+# export CPPFLAGS=-I/opt/X11/include
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/binutils/lib -L/opt/homebrew/lib"
+# export CFLAGS="-I/usr/local/opt/zlib/include -I$(xcrun --show-sdk-path) $CFLAGS"
+# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include -I$(xcrun --show-sdk-path) -I/usr/local/opt/binutils/include -I/opt/homebrew/include"
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/openblas/lib -L/usr/local/opt/lapack/lib"
+# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openblas/include -I/usr/local/opt/lapack/include"
+set -gx USE_CCACHE 1
+set -gx CCACHE_DIR "$HOME/.ccache"
+
+# js/ts
+## volta
+fish_add_path $HOME/.volta/bin
+## bun
+fish_add_path $HOME/.bun/bin
+## nodebrew
+fish_add_path $HOME/.nodebrew/current/bin
+
+# go
+set -gx GOPATH "$HOME/go"
+fish_add_path $GOPATH/bin
+
+# rust 
+fish_add_path "$HOME/.cargo/bin"
+
+# nim
+fish_add_path "$HOME/.nimble/bin"
+
+# zig
+fish_add_path "$HOME/zig"
+
+# ruby
+fish_add_path "$HOMEBREW_ARM_BIN/opt/ruby/bin"
+fish_add_path "$HOMEBREW_X86_64_BIN/opt/ruby/bin"
+
+# python
+fish_add_path "$HOME/.rye/shims"
+fish_add_path "$HOME/.poetry/bin"
+set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
+set -gx PYENV_ROOT "$HOME/.pyenv"
+set -gx BETTER_EXCEPTIONS 1
+## codon
+fish_add_path "$HOME/.codon/bin"
+
+# user scripts
+fish_add_path $HOME/.scripts
+fish_add_path $HOME/.scripts/bin
+
+# Neovim
+if type -q nvim
+    set -gx EDITOR nvim
+    set -gx GIT_EDITOR nvim
+    set -gx VISUAL nvim
+    set -gx MANPAGER "nvim -c ASMANPAGER -"
 end
 
-#test -d "$HOME/.tea" && "$HOME/.tea/tea.xyz/v*/bin/tea" --magic=fish --silent | source
-
-starship init fish | source
-source $FISH_CONFIG/themes/kanagawa.fish
-
-set -g theme_nerd_fonts yes
-
-set -l FISH_CONFIG $XDG_CONFIG_HOME/fish
-for file in $FISH_CONFIG/config/*.fish
+# configs
+for file in $FISH_CONFIG_DIR/config/*.fish
     source $file
 end
 
-set -l FISH_USER_FUNCTIONS $FISH_CONFIG/user_functions
-set -gp fish_function_path $FISH_USER_FUNCTIONS $fish_function_path
+# theme
+set -gx theme_nerd_fonts yes
+set -gx BAT_THEME TwoDark
+source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
-
-# zoxide
-zoxide init fish | source
-
-# python
-set -x VIRTUAL_ENV_DISABLE_PROMPT 1
-
+# aliases and abbreviations
 if type -q trash
     alias rm trash
 end
@@ -41,7 +122,7 @@ abbr -a cdr 'cd (git root)'
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a GHCI 'stack ghci'
 abbr -a sed gsed
-abbr -a sc "source $FISH_CONFIG/config.fish"
+abbr -a sc "source $FISH_CONFIG"
 abbr -a b brew
 abbr -a t tmux
 abbr -a tt tmuximum
@@ -109,11 +190,23 @@ abbr -a gpfo 'git pushf origin'
 abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 
-# if test -z $TMUX && test -z $VIRTUAL_ENV
-#     if not status --is-login && status --is-interactive && test "$TERM_PROGRAM" != "vscode"
-#         bash -c "tmuximum"
-#     end
-# end
+# third party config cache
+set -l CONFIG_CACHE $CACHE_DIR/config.fish
+if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
+    mkdir -p $CACHE_DIR
+    echo '' >$CONFIG_CACHE
 
-# direnv
-eval (direnv hook fish)
+    echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
+    direnv hook fish >>$CONFIG_CACHE
+    zoxide init fish >>$CONFIG_CACHE
+    starship init fish >>$CONFIG_CACHE
+
+    echo 'cache generated'
+end
+source $CONFIG_CACHE
+
+
+if status is-interactive
+    stty stop undef
+    stty start undef
+end
