@@ -141,8 +141,6 @@ abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
 abbr -a ech envchain
-abbr -a cci 'ech circleci circleci-cli'
-abbr -a ccibr 'cci browse'
 abbr -a xsh xonsh
 abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
