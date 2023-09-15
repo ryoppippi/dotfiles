@@ -104,3 +104,6 @@
 	prune = true
 [init]
 	defaultBranch = main
+[diff "lockb"]
+	textconv = bun
+	binary = true
