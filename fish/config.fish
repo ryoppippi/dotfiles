@@ -116,7 +116,6 @@ abbr lt 'lsd --tree'
 abbr lg 'lsd -hlFg'
 abbr -a cdr 'cd (git root)'
 abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
-abbr -a GHCI 'stack ghci'
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
 abbr -a b brew
@@ -146,8 +145,6 @@ abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
 abbr -a py python
-abbr -a ppv pipenv
-abbr -a ppx pipx
 abbr -a d docker
 abbr -a dp "docker ps"
 abbr -a db "docker build"
