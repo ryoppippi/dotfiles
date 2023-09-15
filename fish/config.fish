@@ -129,14 +129,11 @@ abbr -a cdd __fzf_cd
 abbr -a o open
 abbr -a v nvim
 abbr -a nv nvim
-abbr -a y yarn
-abbr -a ya 'yarn add -D'
 abbr -a bunx 'bun x'
 abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
 abbr -a ech envchain
-abbr -a xsh xonsh
 abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
