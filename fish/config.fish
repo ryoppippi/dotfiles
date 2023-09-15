@@ -195,7 +195,9 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     zoxide init fish >>$CONFIG_CACHE
     # starship init fish >>$CONFIG_CACHE
 
-    echo 'cache generated'
+    set_color brmagenta --bold --underline
+    echo 'config cache updated'
+    set_color normal
 end
 source $CONFIG_CACHE
 
