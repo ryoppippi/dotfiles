@@ -67,7 +67,6 @@ packages:
   - name: spf13/cobra-cli@v1.3.0
   - name: golang/tools/guru@v0.13.0
   - name: segmentio/golines@v0.11.0
-  - name: golang.org/x/tools/gopls@gopls/v0.13.2
   - name: golang/tools/goimports@v0.13.0
   - name: abice/go-enum@v0.5.7
   - name: gotestyourself/gotestsum@v1.10.1
