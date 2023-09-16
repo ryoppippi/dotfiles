@@ -118,8 +118,7 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
 end
 source $CONFIG_CACHE
 
-
 if status is-interactive
-    stty stop undef
-    stty start undef
+    stty stop undef &
+    stty start undef &
 end
