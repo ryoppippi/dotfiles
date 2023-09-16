@@ -12,8 +12,10 @@ function clean
     cd $AQUA_CONFIG
     aqua install -l
 
-    # install volta deps
+    # install essential deps
     volta --help >/dev/null 2>&1
+    deno --help >/dev/null 2>&1
+    gh auth setup-git >>/dev/null 2>&1
 
     # brew
     type -q brew && brew cleanup -s
