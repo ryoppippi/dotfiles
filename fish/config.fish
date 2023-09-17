@@ -1,26 +1,34 @@
-set -gx LC_ALL 'en_US.UTF-8'
+set -gx LC_ALL "en_US.UTF-8"
 set -gx BASH_SILENCE_DEPRECATION_WARNING 1
 
-set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME "$HOME/.config"
+# define XDG paths
+set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
+set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 
-set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME "$HOME/.local/share"
-
-# export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
-
+# define fish config paths
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
-set -g FISH_USER_FUNCTIONS $FISH_CONFIG_DIR/user_functions
-set -gp fish_function_path $FISH_USER_FUNCTIONS $fish_function_path
 set -g FISH_CACHE_DIR $HOME/.cache/fish
+
+# add user config
+set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
+# function load_user_config
+for file in $FISH_CONFIG_DIR/config/*.fish
+    source $file &
+end
+
+# theme
+set -gx theme_nerd_fonts yes
+set -gx BAT_THEME TwoDark
+source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
 # general bin paths
 fish_add_path $HOME/.local/bin
 fish_add_path /usr/local/opt/coreutils/libexec/gnubin
 fish_add_path /usr/local/opt/curl/bin
 
-
 # brew
-set -gx HOMEBREW_BUNDLE_FILE "$HOME/.Brewfile"
+set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_ARM /opt/homebrew
 set -gx HOMEBREW_X86_64 /usr/local
@@ -28,7 +36,7 @@ fish_add_path $HOMEBREW_ARM/bin
 fish_add_path $HOMEBREW_X86_64/bin
 
 # aqua
-set -gx AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
+set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
 fish_add_path -p $AQUA_ROOT_DIR/bin
 
 set -gx AQUA_GLOBAL_CONFIG $AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
@@ -42,7 +50,7 @@ set -gx AQUA_GLOBAL_CONFIG $AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aq
 # export LDFLAGS="$LDFLAGS -L/usr/local/opt/openblas/lib -L/usr/local/opt/lapack/lib"
 # export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openblas/include -I/usr/local/opt/lapack/include"
 set -gx USE_CCACHE 1
-set -gx CCACHE_DIR "$HOME/.ccache"
+set -gx CCACHE_DIR $HOME/.ccache
 
 # js/ts
 ## volta
@@ -53,26 +61,26 @@ fish_add_path $HOME/.bun/bin
 fish_add_path $HOME/.nodebrew/current/bin
 
 # go
-set -gx GOPATH "$HOME/go"
+set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
 
 # rust 
-fish_add_path "$HOME/.cargo/bin"
+fish_add_path $HOME/.cargo/bin
 
 # nim
-fish_add_path "$HOME/.nimble/bin"
+fish_add_path $HOME/.nimble/bin
 
 # zig
-fish_add_path "$HOME/zig"
+fish_add_path $HOME/zig
 
 # python
-fish_add_path "$HOME/.rye/shims"
-fish_add_path "$HOME/.poetry/bin"
+fish_add_path $HOME/.rye/shims
+fish_add_path $HOME/.poetry/bin
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
-set -gx PYENV_ROOT "$HOME/.pyenv"
+set -gx PYENV_ROOT $HOME/.pyenv
 set -gx BETTER_EXCEPTIONS 1
 ## codon
-fish_add_path "$HOME/.codon/bin"
+fish_add_path $HOME/.codon/bin
 
 # user scripts
 fish_add_path $HOME/.scripts
@@ -86,13 +94,6 @@ if type -q nvim
     set -gx MANPAGER "nvim -c ASMANPAGER -"
 end
 
-# configs
-source $FISH_CONFIG_DIR/config/*.fish
-
-# theme
-set -gx theme_nerd_fonts yes
-set -gx BAT_THEME TwoDark
-source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
 # config caches
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
@@ -104,16 +105,16 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     type -q xcode-select && echo "fish_add_path $(xcode-select -p)/usr/bin" >>$CONFIG_CACHE
 
     # ruby
-    echo "fish_add_path $(brew --prefix)/opt/rub/bin" >>$CONFIG_CACHE
-    echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
+    type -q brew && echo "fish_add_path $(brew --prefix)/opt/rub/bin" >>$CONFIG_CACHE
+    type -q gem && echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
 
     # tools
-    direnv hook fish >>$CONFIG_CACHE
-    zoxide init fish >>$CONFIG_CACHE
+    type -q direnv && direnv hook fish >>$CONFIG_CACHE
+    type -q zoxide && zoxide init fish >>$CONFIG_CACHE
     # starship init fish >>$CONFIG_CACHE
 
     set_color brmagenta --bold --underline
-    echo 'config cache updated'
+    echo "config cache updated"
     set_color normal
 end
 source $CONFIG_CACHE
