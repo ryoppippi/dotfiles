@@ -3,11 +3,11 @@ on:
   push:
     paths:
       - nvim/**
-      - .github/workflows/neovim.yml
+      - .github/workflows/neovim.yaml
   pull_request:
     paths:
       - nvim/**
-      - .github/workflows/neovim.yml
+      - .github/workflows/neovim.yaml
 jobs:
   neovim_ci:
     strategy:
