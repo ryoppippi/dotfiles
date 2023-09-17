@@ -38,7 +38,10 @@ jobs:
         run: aqua install -l
       - name: setup fish
         uses: fish-actions/install-fish@v1.1.0
+      - name: add path
+        run: dotfiles link .
       - name: test fish/config.fish
-        shell: bash
         run: sh -c "fish -c exit"
+      - name: install fisher plugins
+        run: sh -c "fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && git checkout . && fisher update && exit'"
 
