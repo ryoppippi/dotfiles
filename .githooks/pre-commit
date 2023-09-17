@@ -4,6 +4,6 @@
 files=$(git diff --cached --name-only --diff-filter=ACM)
 
 git stash -k
-bun x @secretlint/quick-start  $(git diff --name-only --cached)
+bun x @secretlint/quick-start $files
 git add $files
 git stash pop
