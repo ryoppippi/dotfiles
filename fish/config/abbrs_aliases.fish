@@ -11,7 +11,7 @@ abbr lg 'lsd -hlFg'
 abbr -a cdr 'cd (git root)'
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
-abbr -a b brew
+abbr -a br brew
 abbr -a t tmux
 abbr -a tt tmuximum
 abbr -a wt wezterm
@@ -26,7 +26,9 @@ abbr -a cdd __fzf_cd
 abbr -a o open
 abbr -a v nvim
 abbr -a nv nvim
+abbr -a bunb 'bun --bun'
 abbr -a bunx 'bun x'
+abbr -a bunbx 'bun --bun x'
 abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
