@@ -9,7 +9,6 @@ abbr la 'lsd -hlFA'
 abbr lt 'lsd --tree'
 abbr lg 'lsd -hlFg'
 abbr -a cdr 'cd (git root)'
-abbr -a venvav "source ./.venv/bin/activate.fish or  source ./venv/bin/activate.fish"
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
 abbr -a b brew
