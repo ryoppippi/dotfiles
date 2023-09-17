@@ -105,7 +105,7 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     type -q xcode-select && echo "fish_add_path $(xcode-select -p)/usr/bin" >>$CONFIG_CACHE
 
     # ruby
-    type -q brew && echo "fish_add_path $(brew --prefix)/opt/rub/bin" >>$CONFIG_CACHE
+    type -q brew && echo "fish_add_path $(brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
     type -q gem && echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
 
     # tools
