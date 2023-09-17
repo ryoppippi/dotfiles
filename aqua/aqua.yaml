@@ -49,7 +49,7 @@ packages:
   - name: gohugoio/hugo@v0.118.2
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
-  - name: projectdiscovery/httpx@v1.3.4
+  - name: projectdiscovery/httpx@v1.3.5
   - name: dandavison/delta@0.16.5
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.1
