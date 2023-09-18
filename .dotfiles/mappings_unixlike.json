@@ -7,5 +7,6 @@
   "zshenv": "~/.zshenv",
   "fish": "~/.config/fish",
   "docker/config.json": "~/.docker/config.json",
-  "efm-langserver": "~/.config/efm-langserver"
+  "efm-langserver": "~/.config/efm-langserver",
+  "pip/pip.conf": "~/.pip/pip.conf"
 }

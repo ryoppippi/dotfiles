@@ -55,7 +55,6 @@ export USE_CCACHE=1
 export CCACHE_DIR="$HOME/.ccache"
 
 # python
-export PIP_REQUIRE_VIRTUALENV=true
 export BETTER_EXCEPTIONS=1
 
 # brew
