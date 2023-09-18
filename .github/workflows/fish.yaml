@@ -31,7 +31,7 @@ jobs:
         with:
           go-version: "1.20.4"
       - name: Install aqua
-        uses: aquaproj/aqua-installer@v1.1.1
+        uses: aquaproj/aqua-installer@v1.2.0
         with:
           aqua_version: v2.10.1
       - name: Install aqua plugins
