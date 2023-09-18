@@ -13,21 +13,22 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_CACHE_HOME=$HOME/.cache
 XDG_DATA_HOME=$HOME/.local/share
 
+# aqua
+curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash
+
 # install homebrew
-if [ "$(uname)" == "Darwin" ]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  source $DIR/bash/.bash_profile
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+source $DIR/bash/.bash_profile
 
-  brew install aquaproj/aqua/aqua fish curl
+brew install fish curl
 
-  # install deps via brew
-  export HOMEBREW_BREWFILE="$HOME/.brewfile"
-  brew bundle --global
-  brew reinstall fish
+# install deps via brew
+export HOMEBREW_BREWFILE="$HOME/.brewfile"
+brew bundle --global
+brew reinstall fish
 
-else
-  curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash
-fi
+# aqua
+curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.0.2/aqua-installer | bash
 
 
 # fish shell
@@ -47,8 +48,9 @@ volta install node@18
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# rye
+curl -sSf https://rye-up.com/get | bash
+
 # post install
-if [ "$(uname)" == "Darwin" ]; then
-  brew cleanup -s
-fi
+brew cleanup -s
 
