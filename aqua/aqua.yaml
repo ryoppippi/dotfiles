@@ -56,6 +56,7 @@ packages:
   - name: oven-sh/bun@bun-v1.0.1
   - name: wader/fq@v0.7.0
   - name: planetscale/cli@v0.154.0
+  - name: supabase/cli@v1.93.0
   - name: nao1215/gup@v0.23.0
   - name: hadolint/hadolint@v2.12.0
   - name: noborus/trdsql@v0.11.1
@@ -71,3 +72,23 @@ packages:
   - name: abice/go-enum@v0.5.7
   - name: gotestyourself/gotestsum@v1.10.1
   - name: golang/tools/gorename@v0.13.0
+  - name: charmbracelet/vhs@v0.6.0
+  - name: ninja-build/ninja@v1.11.1
+  - name: sassman/t-rec-rs@v0.7.6
+  - name: blacknon/hwatch@0.3.10
+  - name: watchexec/watchexec@v1.23.0
+  - name: topgrade-rs/topgrade@v12.0.2
+  - name: rclone/rclone@v1.64.0
+  - name: hhatto/gocloc@v0.5.1
+  - name: tsl0922/ttyd@1.7.3
+  - name: whalebrew/whalebrew@0.4.0
+  - name: sharkdp/pastel@v0.9.0
+  - name: dalance/procs@v0.14.0
+  - name: chriswalz/bit@v1.1.2
+  - name: bcicen/ctop@v0.7.7
+  - name: sharkdp/hexyl@v0.13.1
+  - name: orf/gping@gping-v1.14.0
+  - name: mozilla/sccache@v0.5.4
+  - name: pemistahl/grex@v1.4.4
+  - name: charmbracelet/glow@v1.5.1
+  - name: simeji/jid@v0.7.6
