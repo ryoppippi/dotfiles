@@ -51,8 +51,6 @@ abbr -a dcr "docker compose restart"
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
 
-abbr -a addvenv "echo layout python3 >> .envrc && direnv allow"
-
 # git configs
 abbr -a g git
 abbr -a ga 'git add'
