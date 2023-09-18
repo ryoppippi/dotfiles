@@ -1,7 +1,6 @@
 return {
 	"barrett-ruth/import-cost.nvim",
-	build = "sh install.sh yarn",
-	enabled = false,
+	build = "sh install.sh bun",
 	cond = not is_vscode(),
 	ft = {
 		"javascript",
