@@ -4,10 +4,12 @@ set -x LOADED_ABBRS_ALIASES 1
 alias vim nvim
 alias bash 'bash --norc'
 abbr ls lsd
-abbr ll 'lsd -hlF'
-abbr la 'lsd -hlFA'
-abbr lt 'lsd --tree'
-abbr lg 'lsd -hlFg'
+if type -q lsd
+    abbr ll 'lsd -hlF'
+    abbr la 'lsd -hlFA'
+    abbr lt 'lsd --tree'
+    abbr lg 'lsd -hlFg'
+end
 abbr -a cdr 'cd (git root)'
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
