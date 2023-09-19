@@ -1,5 +1,5 @@
 return {
 	"kwkarlwang/bufresize.nvim",
-	event = "WinEnter",
+	event = { "WinNew" },
 	config = true,
 }
