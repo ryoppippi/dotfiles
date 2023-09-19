@@ -10,7 +10,43 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	cond = not is_vscode(),
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+		{
+			"williamboman/mason-lspconfig.nvim",
+			opts = function(_, opts)
+				opts.ensure_installed = vim.tbl_flatten({
+					opts.ensure_installed or {},
+					{ "efm" },
+					{
+						"emmet_ls",
+						"tailwindcss",
+						"html",
+						"stylelint_lsp",
+						"eslint",
+						"denols",
+					},
+					{
+						"svelte",
+						"angularls",
+						"astro",
+						"vuels",
+						"prismals",
+					},
+					{ "lua_ls" },
+					{
+						"jsonls",
+						"yamlls",
+					},
+					{
+						"pyright",
+						"ruff_lsp",
+					},
+					{ "ruby_ls" },
+					{ "r_language_server" },
+					{ "sqlls" },
+					-- { "zls" },
+				})
+			end,
+		},
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
@@ -172,6 +208,7 @@ return {
 		setup(lspconfig.emmet_ls, { extra_filetypes = html_like, on_attach = format_config(false) })
 		setup(lspconfig.tailwindcss, { extra_filetypes = html_like, on_attach = format_config(false) })
 		setup(lspconfig.html, { on_attach = format_config(false) })
+		setup(lspconfig.stylelint_lsp, { on_attach = format_config(false) })
 
 		setup(lspconfig.eslint, {
 			extra_filetypes = { "svelte" },
@@ -288,13 +325,22 @@ return {
 		setup(lspconfig.sourcekit)
 
 		-- python
-		setup(lspconfig.pyright, {
-			before_init = function(_, config)
-				config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-						and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-					or utils.find_cmd("python3", ".venv/bin", config.root_dir)
-			end,
-		})
+		local python_lsp_init = function(_, config)
+			config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
+					and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+				or utils.find_cmd("python3", ".venv/bin", config.root_dir)
+		end
+		setup(lspconfig.pyright, { before_init = python_lsp_init })
+		setup(lspconfig.ruff_lsp, { before_init = python_lsp_init })
+
+		-- ruby
+		setup(lspconfig.ruby_ls)
+
+		-- r
+		setup(lspconfig.r_language_server)
+
+		-- sql
+		setup(lspconfig.sqlls)
 
 		-- zigls
 		local zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"

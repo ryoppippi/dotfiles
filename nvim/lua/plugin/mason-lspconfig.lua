@@ -5,32 +5,13 @@ return {
 		"folke/neoconf.nvim",
 		"williamboman/mason.nvim",
 	},
-	config = function()
+	opts = {
+		ensure_installed = {},
+	},
+	config = function(_, opts)
 		require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 
-		mason_lspconfig.setup({
-			ensure_installed = {
-				"emmet_ls",
-				"tailwindcss",
-				"stylelint_lsp",
-				"tsserver",
-				"eslint",
-				"denols",
-				"svelte",
-				"angularls",
-				"astro",
-				"prismals",
-				"pyright",
-				"r_language_server",
-				"rust_analyzer",
-				-- "zls",
-				"lua_ls",
-				"gopls",
-				"sqlls",
-				"jsonls",
-				"yamlls",
-			},
-		})
+		mason_lspconfig.setup(opts)
 	end,
 }
