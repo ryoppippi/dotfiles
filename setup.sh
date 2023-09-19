@@ -48,9 +48,6 @@ volta install node@18
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# rye
-curl -sSf https://rye-up.com/get | bash
-
 # post install
 brew cleanup -s
 
