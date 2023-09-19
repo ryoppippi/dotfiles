@@ -3,8 +3,22 @@ return {
 		"ray-x/go.nvim",
 		dependencies = {
 			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
+			"neovim/nvim-lspconfig",
+			{
+				"williamboman/mason-lspconfig.nvim",
+				opts = function(_, opts)
+					opts.ensure_installed = vim.tbl_flatten({
+						opts.ensure_installed or {},
+						{
+							"gleam",
+							"gopls",
+							"goimports",
+							"golangci_lint_ls",
+						},
+					})
+				end,
+			},
 		},
 		event = function()
 			local return_events = {}
