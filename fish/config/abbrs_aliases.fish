@@ -1,8 +1,10 @@
 test -n "$LOADED_ABBRS_ALIASES" && return
 set -x LOADED_ABBRS_ALIASES 1
 
-alias vim nvim
 alias bash 'bash --norc'
+alias vim nvim
+abbr -a v nvim
+abbr -a nv nvim
 abbr ll 'ls -hlF'
 abbr la 'ls -hlFA'
 abbr lt 'ls --tree'
@@ -23,8 +25,6 @@ abbr -a mkdir 'mkdir -p'
 abbr -a src source
 abbr -a cdd __fzf_cd
 abbr -a o open
-abbr -a v nvim
-abbr -a nv nvim
 abbr -a bunb 'bun --bun'
 abbr -a bunx 'bun x'
 abbr -a bunbx 'bun --bun x'
