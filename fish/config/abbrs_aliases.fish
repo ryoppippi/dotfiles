@@ -52,6 +52,7 @@ abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
 
 # git configs
+type -q bit && alias git bit
 abbr -a g git
 abbr -a ga 'git add'
 abbr -a ga. 'git add .'
