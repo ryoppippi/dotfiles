@@ -9,7 +9,7 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.50.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.51.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.34.0
   - name: golang/go@go1.21.1
@@ -97,3 +97,14 @@ packages:
   - name: goodwithtech/dockle@v0.4.13
   - name: suzuki-shunsuke/github-comment@v6.0.1
   - name: uzimaru0000/oglens@v0.1.1
+  - name: kyoh86/richgo@v0.3.12
+  - name: koki-develop/sheep@v0.4.0
+  - name: golang/mock@v1.6.0
+  - name: babarot/afx@v0.2.1
+  - name: greymd/ojichat@v0.2.2
+  - name: koron/iferr@bb332a3b1d9129b6486c7ddcb7030c11b05cfc88
+  - name: mattn/zig-update@v0.0.1
+  - name: mike-engel/jwt-cli@6.0.0
+  - name: simonwhitaker/gibo@v3.0.7
+  - name: tmc/json-to-struct@1f65fffbfdbb2b0e56a3f6f6cd24daad58e90dec
+  - name: tomohiro/gyazo-cli@1.0.0
