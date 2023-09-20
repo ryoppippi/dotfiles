@@ -22,6 +22,7 @@ return {
 						"html",
 						"stylelint_lsp",
 						"eslint",
+						"biome",
 						"denols",
 					},
 					{
@@ -215,6 +216,8 @@ return {
 			root_dir = lspconfig.util.root_pattern(node_root_dir),
 			on_attach = format_config(false),
 		})
+
+		setup(lspconfig.biome, { root_dir = lspconfig.util.root_pattern(node_root_dir) })
 
 		setup(lspconfig.denols, {
 			single_file_support = false,
