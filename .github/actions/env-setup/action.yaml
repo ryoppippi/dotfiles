@@ -1,0 +1,27 @@
+name: 'Environment Setup'
+description: 'Setup environment for CI'
+inputs:
+  aqua_config:
+    description: 'Aqua config file path'
+    required: false
+    default: aqua/aqua.yaml
+  GITHUB_TOKEN:
+    description: 'GITHUB_TOKEN'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Golang
+      uses: actions/setup-go@v4
+      with:
+        go-version: 'stable'
+    - name: Install aqua
+      uses: aquaproj/aqua-installer@v2.1.2
+      with:
+        aqua_version: v2.12.0
+        policy_allow: "true"
+      env:
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        AQUA_CONFIG: ${{ inputs.aqua_config }}
+        AQUA_LOG_COLOR: always
+
