@@ -112,6 +112,16 @@ tools:
     format-command: bun x fixjson --stdin-filename ${INPUT}
     format-stdin: true
 
+  textlint: &textlint
+    lint-command: 'bun x textlint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m [%trror/%r]'
+    root-markers:
+      - .textlintrc
+      - .git
+
 languages:
   # lua
   lua:
@@ -154,8 +164,10 @@ languages:
     - <<: *biome
   markdown:
     - <<: *prettier
+    - <<: *textlint
   markdown.mdx:
     - <<: *prettier
+    - <<: *textlint
   ## styles
   css:
     - <<: *prettier
