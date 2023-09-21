@@ -45,7 +45,7 @@ return {
 					{ "ruby_ls" },
 					{ "r_language_server" },
 					{ "sqlls" },
-					-- { "zls" },
+					{ "zls" },
 				})
 			end,
 		},
@@ -357,10 +357,31 @@ return {
 		setup(lspconfig.sqlls)
 
 		-- zigls
-		local zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
 		local zls = lspconfig.zls
+		local function get_zls_path()
+			---@type string|nil
+			local nightly_zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
+			nightly_zls_path = tb(vim.fn.executable(nightly_zls_path)) and nightly_zls_path or nil
+			local nightly_zls_version = nightly_zls_path and vim.fn.systemlist(nightly_zls_path .. " --version")[1]
+			local nightly_zls_version_major = nightly_zls_version and vim.split(nightly_zls_version, "-")[1]
+
+			local stable_zls_path = zls.document_config.default_config.cmd[1]
+			local stable_zls_version = vim.fn.systemlist(stable_zls_path .. " --version")[1]
+			local stable_zls_version_major = vim.split(stable_zls_version, "-")[1]
+
+			local zig_version = vim.fn.systemlist("zig version")[1]
+			local zig_version_major = vim.split(zig_version, "-")[1]
+
+			if zig_version_major == stable_zls_version_major then
+				return { stable_zls_path }
+			end
+			if zig_version_major == nightly_zls_version_major then
+				return { nightly_zls_path }
+			end
+			return {}
+		end
 		setup(zls, {
-			cmd = tb(vim.fn.executable(zls_path)) and { zls_path } or zls.document_config.default_config.cmd,
+			cmd = get_zls_path(),
 		})
 		vim.g.zig_fmt_autosave = 0
 	end,
