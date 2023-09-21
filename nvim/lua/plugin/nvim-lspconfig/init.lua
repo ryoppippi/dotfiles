@@ -12,6 +12,7 @@ return {
 	dependencies = {
 		{
 			"williamboman/mason-lspconfig.nvim",
+			"folke/neoconf.nvim",
 			opts = function(_, opts)
 				opts.ensure_installed = vim.tbl_flatten({
 					opts.ensure_installed or {},
@@ -82,13 +83,6 @@ return {
 		)
 		o.lsp_opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
-		o.node_root_dir = {
-			"package.json",
-			"tsconfig.json",
-			"tsconfig.jsonc",
-			"node_modules",
-		}
-
 		o.html_like = {
 			"astro",
 			"html",
@@ -144,7 +138,6 @@ return {
 		local format_config = opts.format_config
 		local setup = opts.setup
 		local html_like = opts.html_like
-		local node_root_dir = opts.node_root_dir
 		local typescriptInlayHints = opts.typescriptInlayHints
 
 		local lspconfig = require("lspconfig")
@@ -213,15 +206,33 @@ return {
 
 		setup(lspconfig.eslint, {
 			extra_filetypes = { "svelte" },
-			root_dir = lspconfig.util.root_pattern(node_root_dir),
 			on_attach = format_config(false),
 		})
 
-		setup(lspconfig.biome, { root_dir = lspconfig.util.root_pattern(node_root_dir) })
+		setup(lspconfig.biome)
 
 		setup(lspconfig.denols, {
-			single_file_support = false,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "import_map.json"),
+			single_file_support = true,
+			on_attach = function(client, bufnr)
+				local auto_disable_servers = {
+					"vtsls",
+					"tsserver",
+				}
+
+				local disable_servers = function()
+					for _, active_client in pairs(vim.lsp.get_active_clients()) do
+						-- stop denols server
+						if vim.tbl_contains(auto_disable_servers, active_client.name) then
+							vim.lsp.buf_detach_client(bufnr, client.id)
+						end
+					end
+				end
+
+				disable_servers()
+				require("core.plugin").on_attach(function(_, _)
+					disable_servers()
+				end)
+			end,
 			init_options = {
 				lint = true,
 				unstable = true,
