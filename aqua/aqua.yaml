@@ -13,6 +13,11 @@ registries:
 packages:
   - name: cli/cli@v2.34.0
   - name: golang/go@go1.21.1
+  - name: golang.org/x/tools/gopls@gopls/v0.13.2
+  - name: golang/tools/guru@v0.13.0
+  - name: golang/tools/goimports@v0.13.0
+  - name: golang/tools/gorename@v0.13.0
+  - name: golang/mock@v1.6.0
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.42.0
   - name: denisidoro/navi@v2.22.1
@@ -66,12 +71,9 @@ packages:
   - name: wasmerio/wasmer@v4.2.0
   - name: mattn/bsky@v0.0.46
   - name: spf13/cobra-cli@v1.3.0
-  - name: golang/tools/guru@v0.13.0
   - name: segmentio/golines@v0.11.0
-  - name: golang/tools/goimports@v0.13.0
   - name: abice/go-enum@v0.5.7
   - name: gotestyourself/gotestsum@v1.11.0
-  - name: golang/tools/gorename@v0.13.0
   - name: charmbracelet/vhs@v0.6.0
   - name: ninja-build/ninja@v1.11.1
   - name: sassman/t-rec-rs@v0.7.6
@@ -99,7 +101,6 @@ packages:
   - name: uzimaru0000/oglens@v0.1.1
   - name: kyoh86/richgo@v0.3.12
   - name: koki-develop/sheep@v0.4.0
-  - name: golang/mock@v1.6.0
   - name: babarot/afx@v0.2.1
   - name: greymd/ojichat@v0.2.2
   - name: koron/iferr@bb332a3b1d9129b6486c7ddcb7030c11b05cfc88
