@@ -12,30 +12,18 @@ jobs:
   test:
     strategy:
       matrix:
-        goos:
-          - darwin
-          - linux
-        goarch:
-          - amd64
-          - arm64
-    runs-on: ubuntu-latest
+        os:
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
     env:
       AQUA_CONFIG: aqua/aqua.yaml
-      AQUA_LOG_COLOR: always
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Golang
-        uses: actions/setup-go@v3
+      - uses: ./.github/actions/env-setup
         with:
-          go-version: 'stable'
-      - name: Install aqua
-        uses: aquaproj/aqua-installer@v1.1.1
-        with:
-          aqua_version: v2.12.0
-      - name: Run test
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          aqua_config: ${{ env.AQUA_CONFIG }}
+      - name: Aqua install test
         run: aqua install
-        env:
-          AQUA_GOARCH: ${{ matrix.goarch }}
-          AQUA_GOOS: ${{ matrix.goos }}
