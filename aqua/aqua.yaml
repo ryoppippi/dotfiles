@@ -72,7 +72,7 @@ packages:
   - name: mattn/bsky@v0.0.46
   - name: spf13/cobra-cli@v1.3.0
   - name: segmentio/golines@v0.11.0
-  - name: abice/go-enum@v0.5.7
+  - name: abice/go-enum@v0.5.8
   - name: gotestyourself/gotestsum@v1.11.0
   - name: charmbracelet/vhs@v0.6.0
   - name: ninja-build/ninja@v1.11.1
