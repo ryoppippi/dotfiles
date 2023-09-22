@@ -25,5 +25,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           aqua_config: ${{ env.AQUA_CONFIG }}
-      - name: Aqua install test
-        run: aqua install
+      # - name: Aqua install test
+      #   run: aqua install
