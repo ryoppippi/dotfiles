@@ -41,7 +41,8 @@ vim.opt.hlsearch = true
 vim.opt.wrapscan = true
 vim.opt.wildmode = { list = "longest" }
 
-vim.o.undolevels = 10000
+vim.opt.undolevels = 1000
+vim.opt.history = 1000
 
 vim.opt.scrolloff = 4
 
