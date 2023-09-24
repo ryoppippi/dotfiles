@@ -1,6 +1,7 @@
 vim.filetype.add({
 	extension = {
 		jax = "help",
+		zon = "zig",
 	},
 	filename = {
 		[".envrc"] = "sh",
