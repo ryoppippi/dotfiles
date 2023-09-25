@@ -38,10 +38,10 @@
   smu = submodule update --remote --init --recursive  
   sma = submodule add
   sms = submodule foreach \"git status\"	
-  sync = !git pull --rebase && git push
+  ; sync = !git pull --rebase && git push
   sw = switch
   swc = switch -c
-  swf =!git branch -a | fzf | xargs git switch
+  ; swf =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
   cor = "!f() { local -r ref=$(git branch -r | fzf); git checkout -b \"${1:-${ref#*/}}\" $ref; }; f"
