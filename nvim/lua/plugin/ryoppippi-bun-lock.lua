@@ -13,8 +13,6 @@ return {
 				end
 				-- excecute command `bun install --dry-run --yarn`
 				vim.fn.system("bun install --dry-run --yarn", dir)
-				-- create a buffer
-				vim.api.nvim_command("enew")
 				-- read a yarn.lock and write to the buffer
 				vim.api.nvim_buf_set_lines(0, 0, -1, true, vim.fn.readfile(dir .. "/yarn.lock"))
 				-- set filetype to yarn.lock
