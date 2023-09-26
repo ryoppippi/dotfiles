@@ -8,9 +8,15 @@
 
 ## Usage
 
+``` sh
+cd ~
+dotfiles clone ryoppippi
 ```
-$ cd ~
-$ dotfiles clone ryoppippi
+
+or
+
+``` sh
+curl -L https://raw.githubusercontent.com/ryoppippi/dotfiles/main/setup.sh | sh
 ```
 
 ## Stats
