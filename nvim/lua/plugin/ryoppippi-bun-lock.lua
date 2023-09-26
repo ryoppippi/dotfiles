@@ -2,7 +2,7 @@ return {
 	dir = "",
 	name = "ryoppippi/bun-lock",
 	init = function()
-		vim.api.nvim_create_autocmd("BufReadPost", {
+		vim.api.nvim_create_autocmd("BufReadCmd", {
 			pattern = "bun.lockb",
 			callback = function()
 				-- get directory of the current buffer
