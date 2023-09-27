@@ -28,7 +28,7 @@ packages:
   - name: BurntSushi/ripgrep@13.0.0
   - name: sharkdp/fd@v8.7.0
   - name: aquaproj/registry-tool@v0.1.10
-  - name: marp-team/marp-cli@v3.2.1
+  - name: marp-team/marp-cli@v3.3.0
   - name: tcnksm/ghr@v0.16.0
   - name: x-motemen/ghq@v1.4.2
   - name: ajeetdsouza/zoxide@v0.9.2
