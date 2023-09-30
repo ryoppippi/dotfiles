@@ -85,47 +85,6 @@ local local_config = load_local_config()
 local config = {
 	font = wezterm.font("UDEV Gothic 35LG"),
 	font_size = 13.0,
-	color_scheme = "onedark",
-	color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
-	colors = {
-		tab_bar = {
-			background = "#1b1f2f",
-			active_tab = {
-				bg_color = "#444b71",
-				fg_color = "#c6c8d1",
-				intensity = "Normal",
-				underline = "None",
-				italic = false,
-				strikethrough = false,
-			},
-			inactive_tab = {
-				bg_color = "#282d3e",
-				fg_color = "#c6c8d1",
-				intensity = "Normal",
-				underline = "None",
-				italic = false,
-				strikethrough = false,
-			},
-			inactive_tab_hover = {
-				bg_color = "#1b1f2f",
-				fg_color = "#c6c8d1",
-				intensity = "Normal",
-				underline = "None",
-				italic = true,
-				strikethrough = false,
-			},
-			new_tab = {
-				bg_color = "#1b1f2f",
-				fg_color = "#c6c8d1",
-				italic = false,
-			},
-			new_tab_hover = {
-				bg_color = "#444b71",
-				fg_color = "#c6c8d1",
-				italic = false,
-			},
-		},
-	},
 	tab_bar_at_bottom = false,
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
@@ -136,7 +95,6 @@ local config = {
 		top = 0,
 		bottom = 0,
 	},
-	window_background_opacity = 0.96,
 	use_ime = true,
 	send_composed_key_when_left_alt_is_pressed = true,
 	send_composed_key_when_right_alt_is_pressed = false,
@@ -154,10 +112,10 @@ local config = {
 }
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
+	local _, _, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
 end)
--- config = utils.merge_tables(config, require("colors.kanagawa"))
+config = utils.merge_tables(config, require("colors.kanagawa_dragon"))
 
 require("zen-mode")
 
