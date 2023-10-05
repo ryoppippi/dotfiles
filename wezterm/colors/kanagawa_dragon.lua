@@ -3,7 +3,6 @@ return {
 	use_fancy_tab_bar = false,
 	window_background_opacity = 0.9,
 	colors = {
-		force_reverse_video_cursor = true,
 		foreground = "#c5c9c5",
 		background = "#181616",
 
