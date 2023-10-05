@@ -12,7 +12,7 @@
 [alias]
   a = add 
   aa = add -a
-  fa = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta \" | xargs -0 -o -t git add -p"
+  af = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta \" | xargs -0 -o -t git add -p"
   cm = commit -m
   cma = commit --amend -m 
   fixit = commit --amend --no-edit
