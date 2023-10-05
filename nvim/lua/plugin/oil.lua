@@ -36,6 +36,7 @@ return {
 		return {
 			keymaps = {
 				["g?"] = "actions.show_help",
+				["<leader>b"] = "actions.open_external",
 				["<CR>"] = "actions.select",
 				["-"] = "actions.parent",
 				["<C-p>"] = "actions.preview",
