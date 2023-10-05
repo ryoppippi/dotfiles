@@ -212,7 +212,7 @@ return {
 		setup(lspconfig.biome)
 
 		setup(lspconfig.denols, {
-			single_file_support = true,
+			single_file_support = false,
 			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 			on_attach = function(client, bufnr)
 				local auto_disable_servers = {
