@@ -13,9 +13,9 @@ local link = function(spec)
 end
 
 return {
-	{ "yusukebe/gh-markdown-preview", build = { "go build", link } },
-	{ "dlvhdr/gh-dash", build = { "go build", link } },
-	{ "actions/gh-actions-cache", build = { "go build", link } },
+	{ "yusukebe/gh-markdown-preview", build = { "go clean", "go build", link } },
+	{ "dlvhdr/gh-dash", build = { "go clean", "go build", link } },
+	{ "actions/gh-actions-cache", build = { "go clean", "go build", link } },
 	{ "k1LoW/gh-do", build = { link } },
 	{ "kawarimidoll/gh-graph", build = { link } },
 }
