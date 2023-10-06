@@ -6,7 +6,11 @@ if vim.env.NVIM_COLORSCHEME == nil then
 end
 
 -- load plugins
-lazy.setup("plugin", {
+lazy.setup({
+	spec = {
+		{ import = "plugin" },
+		{ import = "cli" },
+	},
 	defaults = { lazy = true },
 	install = { missing = true, colorscheme = { "kanagawa" } },
 	checker = { enabled = false },
