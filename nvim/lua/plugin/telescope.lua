@@ -110,7 +110,7 @@ M = {
 				local expand_filepath = vim.fn.expand(filepath)
 
 				---@cast expand_filepath string
-				vim.loop.fs_stat(expand_filepath, function(_, stat)
+				vim.uv.fs_stat(expand_filepath, function(_, stat)
 					if not stat then
 						return
 					end
