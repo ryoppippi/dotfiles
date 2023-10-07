@@ -21,5 +21,5 @@ _G.is_vscode = function()
 end
 
 _G.is_macos = function()
-	return vim.loop.os_uname().sysname == "Darwin"
+	return vim.uv.os_uname().sysname == "Darwin"
 end
