@@ -6,10 +6,8 @@ local link = function(spec)
 	local xdgDataDir = os.getenv("XDG_DATA_HOME") or os.getenv("HOME") .. "/.local/share"
 	local ghExtensionDir = xdgDataDir .. "/gh/extensions"
 
-	-- create gh extension dir if not exists
-	os.execute("mkdir -p " .. ghExtensionDir)
-	-- symlink gh-markdown-preview to gh extension dir
-	os.execute("ln -sf " .. installedDir .. " " .. ghExtensionDir .. "/" .. name)
+	vim.loop.fs_mkdir(ghExtensionDir, 511)
+	vim.loop.fs_symlink(installedDir, ghExtensionDir .. "/" .. name)
 end
 
 return {
