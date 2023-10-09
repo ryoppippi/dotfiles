@@ -15,7 +15,7 @@ packages:
   - name: golang/go@go1.21.2
   - name: golang/tools/guru@v0.13.0
   - name: golang/tools/goimports@v0.14.0
-  - name: golang/tools/gorename@v0.13.0
+  - name: golang/tools/gorename@v0.14.0
   - name: golang/mock@v1.6.0
   - name: volta-cli/volta@v1.1.1
   - name: junegunn/fzf@0.42.0
