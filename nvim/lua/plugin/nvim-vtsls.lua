@@ -49,8 +49,7 @@ return {
 				end,
 				root_dir = function(path)
 					local marker = require("climbdir.marker")
-					local found
-					require("climbdir").climb(
+					local found = require("climbdir").climb(
 						path,
 						marker.one_of(marker.has_readable_file("package.json"), marker.has_directory("node_modules")),
 						{
