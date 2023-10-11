@@ -3,6 +3,7 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
+		"kyoh86/climbdir.nvim",
 		{
 			"williamboman/mason-lspconfig.nvim",
 			opts = function(_, opts)
@@ -45,6 +46,18 @@ return {
 					end, { desc = "Organize imports", buffer = buffer })
 
 					lspconfig_opts.format_config(false)(client)
+				end,
+				root_dir = function(path)
+					local marker = require("climbdir.marker")
+					local found
+					require("climbdir").climb(
+						path,
+						marker.one_of(marker.has_readable_file("package.json"), marker.has_directory("node_modules")),
+						{
+							halt = marker.has_readable_file("deno.json"),
+						}
+					)
+					return found
 				end,
 				single_file_support = false,
 				capabilities = capabilities,

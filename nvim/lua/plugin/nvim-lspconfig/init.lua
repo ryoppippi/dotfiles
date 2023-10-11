@@ -12,6 +12,7 @@ return {
 	dependencies = {
 		{
 			"williamboman/mason-lspconfig.nvim",
+			"kyoh86/climbdir.nvim",
 			"folke/neoconf.nvim",
 			opts = function(_, opts)
 				opts.ensure_installed = vim.tbl_flatten({
@@ -213,27 +214,47 @@ return {
 
 		setup(lspconfig.denols, {
 			single_file_support = false,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-			on_attach = function(client, bufnr)
-				local auto_disable_servers = {
-					"vtsls",
-					"tsserver",
-				}
-
-				local disable_servers = function()
-					for _, active_client in pairs(vim.lsp.get_active_clients()) do
-						-- stop denols server
-						if vim.tbl_contains(auto_disable_servers, active_client.name) then
-							vim.lsp.buf_detach_client(bufnr, client.id)
-						end
-					end
+			root_dir = function(path)
+				local marker = require("climbdir.marker")
+				local found = require("climbdir").climb(
+					path,
+					marker.one_of(
+						marker.has_readable_file("deno.json"),
+						marker.has_readable_file("deno.jsonc"),
+						marker.has_directory("denops")
+					),
+					{
+						halt = marker.one_of(
+							marker.has_readable_file("package.json"),
+							marker.has_directory("node_modules")
+						),
+					}
+				)
+				if found then
+					vim.b[vim.fn.bufnr()].deno_deps_candidate = found .. "/deps.ts"
 				end
-
-				disable_servers()
-				require("core.plugin").on_attach(function(_, _)
-					disable_servers()
-				end)
+				return found
 			end,
+			-- on_attach = function(client, bufnr)
+			-- 	local auto_disable_servers = {
+			-- 		"vtsls",
+			-- 		"tsserver",
+			-- 	}
+			--
+			-- 	local disable_servers = function()
+			-- 		for _, active_client in pairs(vim.lsp.get_active_clients()) do
+			-- 			-- stop denols server
+			-- 			if vim.tbl_contains(auto_disable_servers, active_client.name) then
+			-- 				vim.lsp.buf_detach_client(bufnr, client.id)
+			-- 			end
+			-- 		end
+			-- 	end
+			--
+			-- 	disable_servers()
+			-- 	require("core.plugin").on_attach(function(_, _)
+			-- 		disable_servers()
+			-- 	end)
+			-- end,
 			init_options = {
 				lint = true,
 				unstable = true,
