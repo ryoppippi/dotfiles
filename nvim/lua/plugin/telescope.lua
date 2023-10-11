@@ -1,4 +1,3 @@
-local has = require("core.plugin").has
 local on_load = require("core.plugin").on_load
 
 local M = {}
@@ -71,6 +70,7 @@ M = {
 				dependencies = { "lambdalisue/kensaku.vim" },
 				config = le("kensaku"),
 			},
+			{ "fdschmidt93/telescope-egrepify.nvim", config = le("egrepify") },
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
 			-- 	dependencies = { "kkharji/sqlite.lua" },
