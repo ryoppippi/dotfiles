@@ -73,7 +73,6 @@ M = {
 			{ "fdschmidt93/telescope-egrepify.nvim", config = le("egrepify") },
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
-			-- 	dependencies = { "kkharji/sqlite.lua" },
 			-- 	config = le("frecency"),
 			-- },
 			-- { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
