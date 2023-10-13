@@ -28,3 +28,5 @@ Temporary Items
 .apdisk
 
 .luarc.json
+
+.mypy_cache/*
