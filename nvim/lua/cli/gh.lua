@@ -6,7 +6,8 @@ local link = function(spec)
 	local xdgDataDir = os.getenv("XDG_DATA_HOME") or os.getenv("HOME") .. "/.local/share"
 	local ghExtensionDir = xdgDataDir .. "/gh/extensions"
 
-	vim.uv.fs_mkdir(ghExtensionDir, 511)
+	-- vim.uv.fs_mkdir(ghExtensionDir, 511)
+	vim.fn.mkdir(ghExtensionDir, "p")
 	vim.uv.fs_symlink(installedDir, ghExtensionDir .. "/" .. name)
 end
 
