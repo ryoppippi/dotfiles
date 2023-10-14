@@ -212,5 +212,6 @@
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" },
   "zen-mode.nvim": { "branch": "main", "commit": "cb73b8bd0ef9d765b942db09dc762c603a89ae44" },
-  "zig-snippets": { "branch": "master", "commit": "ece338461cff37f14a7231479529f01193a31195" }
+  "zig-snippets": { "branch": "master", "commit": "ece338461cff37f14a7231479529f01193a31195" },
+  "zls": { "branch": "master", "commit": "1a282b30cccb6dd52438fa1ef6e6b887069e109f" }
 }
