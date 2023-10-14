@@ -15,6 +15,7 @@ return {
 	{ "yusukebe/gh-markdown-preview", build = { "go clean", "go build", link } },
 	{ "dlvhdr/gh-dash", build = { "go clean", "go build", link } },
 	{ "actions/gh-actions-cache", build = { "go clean", "go build", link } },
+	{ "seachicken/gh-poi", build = { "go clean", "go build", link } },
 	{ "k1LoW/gh-do", build = { link } },
 	{ "kawarimidoll/gh-graph", build = { link } },
 }

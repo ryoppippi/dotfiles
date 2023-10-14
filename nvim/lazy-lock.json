@@ -53,6 +53,7 @@
   "gh-do": { "branch": "main", "commit": "d0b13fa37891e136169ee527082bb5b88508d408" },
   "gh-graph": { "branch": "main", "commit": "30a1fa20a8ed7e4d05014358e7cbd8e369c8c400" },
   "gh-markdown-preview": { "branch": "master", "commit": "e541afb6202b39f85ae1376649df88464e38c874" },
+  "gh-poi": { "branch": "main", "commit": "da77b46abaf7cb202f6c0c8dd780b654a14ac708" },
   "gin.vim": { "branch": "main", "commit": "8e659fcb5af0f0ade8cf4ee9fd0fb88dfa56689b" },
   "git-conflict.nvim": { "branch": "main", "commit": "896261933afe2fddf6fb043d9cd4d88301b151a9" },
   "git-rebase-auto-diff.nvim": { "branch": "main", "commit": "ad95f18cb85c24ddc0b48bf190bc313dfc58e2d6" },
