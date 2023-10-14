@@ -10,7 +10,7 @@ return {
 			end,
 		},
 
-		{ "yioneko/nvim-yati" },
+		{ "yioneko/nvim-yati", enabled = false },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 
 		-- textobj
@@ -22,7 +22,7 @@ return {
 		{ "haringsrob/nvim_context_vt" },
 		{ "romgrk/nvim-treesitter-context" },
 
-		{ "RRethy/nvim-treesitter-endwise" },
+		-- { "RRethy/nvim-treesitter-endwise" },
 	},
 	config = function()
 		require("nvim-treesitter.configs").setup({
