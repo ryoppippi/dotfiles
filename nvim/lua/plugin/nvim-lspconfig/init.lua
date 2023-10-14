@@ -12,8 +12,6 @@ return {
 	dependencies = {
 		{
 			"williamboman/mason-lspconfig.nvim",
-			"kyoh86/climbdir.nvim",
-			"folke/neoconf.nvim",
 			opts = function(_, opts)
 				opts.ensure_installed = vim.tbl_flatten({
 					opts.ensure_installed or {},
@@ -46,12 +44,13 @@ return {
 					{ "ruby_ls" },
 					{ "r_language_server" },
 					{ "sqlls" },
-					{ "zls" },
+					-- { "zls" },
 				})
 			end,
 		},
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
+		"kyoh86/climbdir.nvim",
 		{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
 		{ "hrsh7th/cmp-nvim-lsp-document-symbol", cond = has_cmp },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help", cond = has_cmp, enabled = false },
@@ -235,26 +234,6 @@ return {
 				end
 				return found
 			end,
-			-- on_attach = function(client, bufnr)
-			-- 	local auto_disable_servers = {
-			-- 		"vtsls",
-			-- 		"tsserver",
-			-- 	}
-			--
-			-- 	local disable_servers = function()
-			-- 		for _, active_client in pairs(vim.lsp.get_active_clients()) do
-			-- 			-- stop denols server
-			-- 			if vim.tbl_contains(auto_disable_servers, active_client.name) then
-			-- 				vim.lsp.buf_detach_client(bufnr, client.id)
-			-- 			end
-			-- 		end
-			-- 	end
-			--
-			-- 	disable_servers()
-			-- 	require("core.plugin").on_attach(function(_, _)
-			-- 		disable_servers()
-			-- 	end)
-			-- end,
 			init_options = {
 				lint = true,
 				unstable = true,
@@ -380,30 +359,30 @@ return {
 
 		-- zigls
 		local zls = lspconfig.zls
-		local function get_zls_path()
-			---@type string|nil
-			local nightly_zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
-			nightly_zls_path = tb(vim.fn.executable(nightly_zls_path)) and nightly_zls_path or nil
-			local nightly_zls_version = nightly_zls_path and vim.fn.systemlist(nightly_zls_path .. " --version")[1]
-			local nightly_zls_version_major = nightly_zls_version and vim.split(nightly_zls_version, "-")[1]
-
-			local stable_zls_path = zls.document_config.default_config.cmd[1]
-			local stable_zls_version = vim.fn.systemlist(stable_zls_path .. " --version")[1]
-			local stable_zls_version_major = vim.split(stable_zls_version, "-")[1]
-
-			local zig_version = vim.fn.systemlist("zig version")[1]
-			local zig_version_major = vim.split(zig_version, "-")[1]
-
-			if zig_version_major == stable_zls_version_major then
-				return { stable_zls_path }
-			end
-			if zig_version_major == nightly_zls_version_major then
-				return { nightly_zls_path }
-			end
-			return {}
-		end
+		-- local function get_zls_path()
+		-- 	---@type string|nil
+		-- 	local nightly_zls_path = os.getenv("HOME") .. "/zls/zig-out/bin/zls"
+		-- 	nightly_zls_path = tb(vim.fn.executable(nightly_zls_path)) and nightly_zls_path or nil
+		-- 	local nightly_zls_version = nightly_zls_path and vim.fn.systemlist(nightly_zls_path .. " --version")[1]
+		-- 	local nightly_zls_version_major = nightly_zls_version and vim.split(nightly_zls_version, "-")[1]
+		--
+		-- 	local stable_zls_path = zls.document_config.default_config.cmd[1]
+		-- 	local stable_zls_version = vim.fn.systemlist(stable_zls_path .. " --version")[1]
+		-- 	local stable_zls_version_major = vim.split(stable_zls_version, "-")[1]
+		--
+		-- 	local zig_version = vim.fn.systemlist("zig version")[1]
+		-- 	local zig_version_major = vim.split(zig_version, "-")[1]
+		--
+		-- 	if zig_version_major == stable_zls_version_major then
+		-- 		return { stable_zls_path }
+		-- 	end
+		-- 	if zig_version_major == nightly_zls_version_major then
+		-- 		return { nightly_zls_path }
+		-- 	end
+		-- 	return {}
+		-- end
 		setup(zls, {
-			cmd = get_zls_path(),
+			-- cmd = get_zls_path(),
 		})
 		vim.g.zig_fmt_autosave = 0
 	end,
