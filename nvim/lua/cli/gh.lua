@@ -18,4 +18,5 @@ return {
 	{ "seachicken/gh-poi", build = { "go clean", "go build", link } },
 	{ "k1LoW/gh-do", build = { link } },
 	{ "kawarimidoll/gh-graph", build = { link } },
+	{ "kawarimidoll/gh-q", build = { link } },
 }
