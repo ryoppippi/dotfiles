@@ -49,6 +49,7 @@
   "friendly-snippets": { "branch": "main", "commit": "43727c2ff84240e55d4069ec3e6158d74cb534b6" },
   "fuzzy-motion.vim": { "branch": "main", "commit": "f926a6080489d03b08af66cdd1e89b8c2f5c4f39" },
   "gh-actions-cache": { "branch": "main", "commit": "d88f49218fd18a37f6f63ee4f8716764316a7f7d" },
+  "gh-cr": { "branch": "main", "commit": "278886428bc221733f9a3be176b18e2a7d9a8c3e" },
   "gh-dash": { "branch": "main", "commit": "555c5d9f5671b8fdf77a2dca9056ef8a8e86a316" },
   "gh-do": { "branch": "main", "commit": "8b81a91045c22845bf40abbff86607009689dba7" },
   "gh-graph": { "branch": "main", "commit": "30a1fa20a8ed7e4d05014358e7cbd8e369c8c400" },

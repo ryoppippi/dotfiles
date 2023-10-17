@@ -12,4 +12,5 @@ return {
 	{ "k1LoW/gh-do", build = { install } },
 	{ "kawarimidoll/gh-graph", build = { install } },
 	{ "kawarimidoll/gh-q", build = { install } },
+	{ "ryoppippi/gh-cr", build = { install } },
 }
