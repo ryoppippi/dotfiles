@@ -50,7 +50,7 @@
   "fuzzy-motion.vim": { "branch": "main", "commit": "f926a6080489d03b08af66cdd1e89b8c2f5c4f39" },
   "gh-actions-cache": { "branch": "main", "commit": "d88f49218fd18a37f6f63ee4f8716764316a7f7d" },
   "gh-dash": { "branch": "main", "commit": "555c5d9f5671b8fdf77a2dca9056ef8a8e86a316" },
-  "gh-do": { "branch": "main", "commit": "d0b13fa37891e136169ee527082bb5b88508d408" },
+  "gh-do": { "branch": "main", "commit": "8b81a91045c22845bf40abbff86607009689dba7" },
   "gh-graph": { "branch": "main", "commit": "30a1fa20a8ed7e4d05014358e7cbd8e369c8c400" },
   "gh-markdown-preview": { "branch": "master", "commit": "e541afb6202b39f85ae1376649df88464e38c874" },
   "gh-poi": { "branch": "main", "commit": "da77b46abaf7cb202f6c0c8dd780b654a14ac708" },
