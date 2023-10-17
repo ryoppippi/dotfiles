@@ -1,0 +1,4 @@
+
+{{_input_:component}}/{{_input_:component}}.svelte
+{{_input_:component}}/{{_input_:component}}.stories.ts
+{{_input_:component}}/index.ts
