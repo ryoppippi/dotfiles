@@ -154,7 +154,7 @@
   "starry.nvim": { "branch": "master", "commit": "dacd68fd7a3b4657ca5a57f3a3236b9c88dd9c29" },
   "stickybuf.nvim": { "branch": "master", "commit": "ae746b982f9c3b6880d62f221c56ec4d7bb239f6" },
   "substitute.nvim": { "branch": "main", "commit": "523047fac696ab2acdbfd6fec707587c64d6f9d7" },
-  "sveltekit_inspector.vim": { "branch": "main", "commit": "7e36a32ef0b6b68ccae67a93980004bfc70b146d" },
+  "svelte_inspector.vim": { "branch": "main", "commit": "7c121e90f98d8445aaf11c0eae1b6e907d13cdae" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "bc25c56083939f274edcfe395c6ff7de23b67c50" },
   "telescope-all-recent.nvim": { "branch": "main", "commit": "dee20f810aec14c31287988b3baa8c371900cf06" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
