@@ -56,8 +56,6 @@ set -gx CCACHE_DIR $HOME/.ccache
 fish_add_path $HOME/.volta/bin
 ## bun
 fish_add_path $HOME/.bun/bin
-## nodebrew
-fish_add_path $HOME/.nodebrew/current/bin
 
 # go
 set -gx GOPATH $HOME/go
