@@ -108,3 +108,4 @@ packages:
   - name: simonwhitaker/gibo@v3.0.7
   - name: tmc/json-to-struct@1f65fffbfdbb2b0e56a3f6f6cd24daad58e90dec
   - name: tomohiro/gyazo-cli@1.0.0
+  - name: wakatime/wakatime-cli@v1.85.2
