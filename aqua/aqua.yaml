@@ -25,7 +25,7 @@ packages:
   - name: denoland/deno@v1.37.2
   - name: jesseduffield/lazygit@v0.40.2
   - name: BurntSushi/ripgrep@13.0.0
-  - name: sharkdp/fd@v8.7.0
+  - name: sharkdp/fd@v8.7.1
   - name: aquaproj/registry-tool@v0.1.10
   - name: marp-team/marp-cli@v3.3.1
   - name: tcnksm/ghr@v0.16.2
