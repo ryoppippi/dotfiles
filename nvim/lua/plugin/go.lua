@@ -21,7 +21,7 @@ return {
 			},
 		},
 		event = function()
-			local return_events = {}
+			local return_events = { "VeryLazy" }
 			local events = { "BufReadPre", "BufNewFile" }
 			local exts = { "go", "gomod" }
 			for _, ext in ipairs(exts) do

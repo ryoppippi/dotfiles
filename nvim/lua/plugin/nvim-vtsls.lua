@@ -16,7 +16,7 @@ return {
 	},
 	enabled = true,
 	event = function()
-		local return_events = {}
+		local return_events = { "VeryLazy" }
 		local events = { "BufReadPre", "BufNewFile" }
 		local exts = { "js", "jsx", "ts", "tsx" }
 		for _, ext in ipairs(exts) do

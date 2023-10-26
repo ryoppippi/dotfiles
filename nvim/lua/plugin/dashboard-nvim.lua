@@ -1,7 +1,7 @@
 return {
 	"glepnir/dashboard-nvim",
-	dependencies = { { "nvim-tree/nvim-web-devicons" } },
-	event = "VimEnter",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	lazy = false,
 	opts = function()
 		return {
 			theme = "hyper",
