@@ -1,7 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	event = "BufReadPost",
+	event = { "BufReadPost", "VeryLazy" },
 	dependencies = {
 		{
 			"ray-x/cmp-treesitter",

@@ -18,6 +18,7 @@ return {
 	event = {
 		"BufReadPre *.rs",
 		"BufNewFile *.rs",
+		"VeryLazy",
 	},
 	opts = function()
 		local lspconfig_opts = require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]

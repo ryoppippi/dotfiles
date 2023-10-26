@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 	},
-	event = { "CursorHold", "CursorMoved" },
+	event = { "VeryLazy" },
 	opts = function()
 		return {
 			select = {
