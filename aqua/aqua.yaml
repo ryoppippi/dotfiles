@@ -9,7 +9,7 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.73.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.75.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.37.0
   - name: golang/go@go1.21.3
@@ -109,3 +109,4 @@ packages:
   - name: tmc/json-to-struct@1f65fffbfdbb2b0e56a3f6f6cd24daad58e90dec
   - name: tomohiro/gyazo-cli@1.0.0
   - name: wakatime/wakatime-cli@v1.85.2
+  - name: BurntSushi/xsv@0.13.0
