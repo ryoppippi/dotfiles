@@ -183,7 +183,6 @@ cask "db-browser-for-sqlite"
 cask "dbeaver-community"
 cask "deepl"
 cask "discord"
-cask "finicky"
 cask "font-udev-gothic"
 cask "font-udev-gothic-nf"
 cask "gitify"
@@ -239,6 +238,7 @@ cask "xquartz"
 cask "zerotier-one"
 cask "zoom"
 mas "Accelerate", id: 1459809092
+mas "Actions", id: 1586435171
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
 mas "Be Focused", id: 973134470
@@ -281,6 +281,7 @@ mas "PiPifier", id: 1160374471
 mas "Screegle", id: 1591051659
 mas "Seashore", id: 1448648921
 mas "Sequel Ace", id: 1518036000
+mas "Shareful", id: 1522267256
 mas "Skitch", id: 425955336
 mas "Spark", id: 1176895641
 mas "Speedtest", id: 1153157709
@@ -290,6 +291,7 @@ mas "TestFlight", id: 899247664
 mas "The Unarchiver", id: 425424353
 mas "Tunacan", id: 980577198
 mas "uBlacklist for Safari", id: 1547912640
+mas "Velja", id: 1607635845
 mas "Vimari", id: 1480933944
 mas "VisBug", id: 1538509686
 mas "WinArchiver Lite", id: 414855915
