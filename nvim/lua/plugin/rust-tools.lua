@@ -15,6 +15,7 @@ return {
 		},
 	},
 	cond = not is_vscode(),
+	enabled = false,
 	event = {
 		"BufReadPre *.rs",
 		"BufNewFile *.rs",
