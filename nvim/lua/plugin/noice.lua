@@ -6,7 +6,6 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
 	},
 	init = function()
 		require("plugin.telescope").le("noice")

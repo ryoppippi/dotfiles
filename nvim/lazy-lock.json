@@ -144,7 +144,6 @@
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "9fda1322e704acfbb5a9691e2c4303368d591367" },
   "rainbow_csv": { "branch": "master", "commit": "6955d13a65e0161e8dad488b6045441d527d62ec" },
   "registers.nvim": { "branch": "main", "commit": "7a16c6e6fe96f3c9c8bb55b95047d745dd34ca4d" },
-  "rest.nvim": { "branch": "main", "commit": "b8d6c0a8762fd374e0204768a94241135ca3e311" },
   "rustaceanvim": { "branch": "master", "commit": "a0e8b510b04043865dffe940f50b53a66411e578" },
   "satellite.nvim": { "branch": "main", "commit": "7911fa8137c77258ba509ba875ea52c6d59737e8" },
   "schemastore.nvim": { "branch": "main", "commit": "976e7e3e9c400b99f1cb337b2ce804a9652571ec" },
