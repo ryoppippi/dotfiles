@@ -39,6 +39,7 @@ function M.format(opts)
 
 	vim.lsp.buf.format({
 		bufnr = buf,
+		timeout_ms = 5000,
 		filter = function(client)
 			if not client.server_capabilities.documentFormattingProvider then
 				return false
