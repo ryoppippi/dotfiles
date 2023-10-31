@@ -93,7 +93,7 @@ packages:
   - name: charmbracelet/glow@v1.5.1
   - name: simeji/jid@v0.7.6
   - name: mitsuhiko/rye@0.15.2
-  - name: aquasecurity/trivy@v0.46.0
+  - name: aquasecurity/trivy@v0.46.1
   - name: itchyny/mmv@v0.1.6
   - name: goodwithtech/dockle@v0.4.13
   - name: suzuki-shunsuke/github-comment@v6.0.2
