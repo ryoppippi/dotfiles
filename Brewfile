@@ -250,7 +250,6 @@ mas "CotEditor", id: 1024640650
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
 mas "Document Generator", id: 1437883178
-mas "Downlink", id: 1454269192
 mas "Download Shuttle", id: 847809913
 mas "DuckDuckGo Privacy for Safari", id: 1482920575
 mas "FocusRecorder", id: 6446467176
