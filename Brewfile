@@ -290,6 +290,7 @@ mas "TestFlight", id: 899247664
 mas "The Unarchiver", id: 425424353
 mas "Tunacan", id: 980577198
 mas "uBlacklist for Safari", id: 1547912640
+mas "Userscripts-Mac-App", id: 1463298887
 mas "Velja", id: 1607635845
 mas "Vimari", id: 1480933944
 mas "VisBug", id: 1538509686
