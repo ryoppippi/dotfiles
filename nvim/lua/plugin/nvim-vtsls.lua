@@ -44,6 +44,9 @@ return {
 						commands.remove_unused_imports()
 						-- commands.organize_imports()
 					end, { desc = "Organize imports", buffer = buffer })
+					vim.keymap.set("gD", "<leader>to", function()
+						commands.goto_source_definition()
+					end, { desc = "Go to source definition", buffer = buffer })
 
 					lspconfig_opts.format_config(false)(client)
 				end,
