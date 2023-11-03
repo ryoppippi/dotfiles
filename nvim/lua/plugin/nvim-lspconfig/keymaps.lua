@@ -14,7 +14,7 @@ return {
 		vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts("hover doc"))
 
 		-- jump to
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("jump to declaration"))
+		-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("jump to declaration"))
 
 		vim.keymap.set("n", "gd", function()
 			if has_glance then
