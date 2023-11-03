@@ -44,7 +44,7 @@ return {
 						commands.remove_unused_imports()
 						-- commands.organize_imports()
 					end, { desc = "Organize imports", buffer = buffer })
-					vim.keymap.set("gD", "<leader>to", function()
+					vim.keymap.set("n", "gD", function()
 						commands.goto_source_definition()
 					end, { desc = "Go to source definition", buffer = buffer })
 
