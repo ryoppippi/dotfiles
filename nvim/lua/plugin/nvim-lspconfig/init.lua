@@ -233,6 +233,14 @@ return {
 				end
 				return found
 			end,
+			on_attach = function(_, buffer)
+				vim.api.nvim_create_autocmd("BufWritePost", {
+					buffer = buffer,
+					callback = function()
+						vim.cmd.DenolsCache()
+					end,
+				})
+			end,
 			init_options = {
 				lint = true,
 				unstable = true,
