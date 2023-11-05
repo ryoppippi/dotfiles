@@ -23,7 +23,7 @@ return {
 						"stylelint_lsp",
 						"eslint",
 						"biome",
-						"denols",
+						-- "denols",
 					},
 					{
 						"svelte",
