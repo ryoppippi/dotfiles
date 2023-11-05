@@ -1,10 +1,10 @@
 test -n "$LOADED_ABBRS_ALIASES" && return
 set -x LOADED_ABBRS_ALIASES 1
 
-alias bash 'bash --norc'
 alias vim nvim
 abbr -a v nvim
 abbr -a nv nvim
+abbr -a bash 'bash --norc'
 abbr ll 'ls -hlF'
 abbr la 'ls -hlFA'
 abbr lt 'ls --tree'
