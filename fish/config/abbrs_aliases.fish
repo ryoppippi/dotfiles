@@ -47,6 +47,8 @@ abbr -a dcub "docker compose up --build"
 abbr -a dcd "docker compose down"
 abbr -a dcr "docker compose restart"
 
+abbr -a der "deno run -A --unstable"
+
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
 
