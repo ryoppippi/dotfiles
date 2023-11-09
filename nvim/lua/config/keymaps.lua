@@ -106,6 +106,7 @@ vim.keymap.set({ "n", "v" }, "X", '"_d$')
 vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
+vim.keymap.set("n", "<leader>a", "ggVG")
 
 vim.keymap.set("", "<c-i>", "<c-i>")
 
