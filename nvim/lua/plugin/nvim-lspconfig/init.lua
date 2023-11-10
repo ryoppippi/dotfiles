@@ -32,7 +32,6 @@ return {
 						"vuels",
 						"prismals",
 					},
-					{ "lua_ls" },
 					{
 						"jsonls",
 						"yamlls",
