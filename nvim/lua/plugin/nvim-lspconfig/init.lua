@@ -37,8 +37,8 @@ return {
 						"yamlls",
 					},
 					{
-						"pyright",
-						"ruff_lsp",
+						-- "pyright",
+						-- "ruff_lsp",
 					},
 					{ "ruby_ls" },
 					{ "r_language_server" },
