@@ -87,10 +87,25 @@ return {
 			augend.constant.new({ elements = { "True", "False" }, cyclic = true }),
 		}
 
+		local typescript = {
+			augend.integer.alias.decimal,
+			augend.integer.alias.hex,
+			augend.constant.new({ elements = { "let", "const" } }),
+		}
+
 		require("dial.config").augends:register_group({
 			default = default,
 			markdown = markdown,
 			python = python,
+			typescript = typescript,
+			javascript = typescript,
+			typescriptreact = typescript,
+			javascriptreact = typescript,
+			tsx = typescript,
+			jsx = typescript,
+			svelte = typescript,
+			vue = typescript,
+			astro = default,
 		})
 
 		set_filetype_autocmd("markdown")
