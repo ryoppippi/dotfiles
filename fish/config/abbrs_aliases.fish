@@ -61,6 +61,7 @@ abbr -a gaa 'git add --all'
 abbr -a gco 'git checkout'
 abbr -a gc 'git commit'
 abbr -a gcn 'git commit -n'
+abbr -a gcl 'git clone'
 abbr -a --set-cursor gcm git commit -m \"%\"
 abbr -a --set-cursor gcnm git commit -n -m \"%\"
 abbr -a --set-cursor gcam git commit --amend -m \"%\"
