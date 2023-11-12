@@ -26,6 +26,7 @@ return {
 		keymap()
 
 		local augend = require("dial.augend")
+
 		local default = {
 			augend.integer.alias.decimal,
 			augend.integer.alias.hex,
@@ -52,6 +53,10 @@ return {
 			augend.constant.new({ elements = { "let", "const" } }),
 		}
 
+		local markdown = {
+			augend.misc.alias.markdown_header,
+		}
+
 		require("dial.config").augends:register_group({
 			default = default,
 		})
@@ -66,6 +71,7 @@ return {
 			svelte = typescript,
 			vue = typescript,
 			astro = default,
+			markdown = markdown,
 		})
 
 		require("core.utils").redetect_filetype()
