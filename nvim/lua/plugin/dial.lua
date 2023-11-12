@@ -13,9 +13,6 @@ return {
 			vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), {})
 		end
 
-
-		keymap()
-
 		local augend = require("dial.augend")
 
 		local default = {
@@ -38,14 +35,20 @@ return {
 			}),
 		}
 
+		-- filetypes
 		local typescript = {
 			augend.integer.alias.decimal,
 			augend.integer.alias.hex,
+			augend.paren.alias.quote,
 			augend.constant.new({ elements = { "let", "const" } }),
 		}
 
 		local markdown = {
 			augend.misc.alias.markdown_header,
+		}
+
+		local python = {
+			augend.constant.new({ elements = { "True", "False" }, cyclic = true }),
 		}
 
 		require("dial.config").augends:register_group({
@@ -61,10 +64,12 @@ return {
 			jsx = typescript,
 			svelte = typescript,
 			vue = typescript,
-			astro = default,
+			astro = typescript,
 			markdown = markdown,
+			python = python,
 		})
 
 		require("core.utils").redetect_filetype()
+		keymap()
 	end,
 }
