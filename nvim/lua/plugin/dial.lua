@@ -54,6 +54,9 @@ return {
 
 		require("dial.config").augends:register_group({
 			default = default,
+		})
+
+		require("dial.config").augends:on_filetype({
 			typescript = typescript,
 			javascript = typescript,
 			typescriptreact = typescript,
@@ -65,8 +68,6 @@ return {
 			astro = default,
 		})
 
-		set_filetype_autocmd("markdown")
-		set_filetype_autocmd("python")
 		require("core.utils").redetect_filetype()
 	end,
 }
