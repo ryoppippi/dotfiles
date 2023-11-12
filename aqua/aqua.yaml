@@ -13,7 +13,7 @@ registries:
 packages:
   - name: cli/cli@v2.38.0
   - name: golang/go@go1.21.4
-  - name: golang/tools/guru@v0.14.0
+  - name: golang/tools/guru@v0.15.0
   - name: golang/tools/goimports@v0.15.0
   - name: golang/tools/gorename@v0.15.0
   - name: golang/mock@v1.6.0
