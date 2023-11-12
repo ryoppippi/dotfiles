@@ -1,6 +1,6 @@
 return {
 	"monaqa/dial.nvim",
-	keys = { "<C-a>", "<C-x>" },
+	keys = { "<C-a>", "<C-x>", "g<C-a>", "g<C-x>" },
 	config = function()
 		local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
 
