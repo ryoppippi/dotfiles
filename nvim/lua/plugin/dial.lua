@@ -13,15 +13,6 @@ return {
 			vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), {})
 		end
 
-		local function set_filetype_autocmd(filetype)
-			vim.api.nvim_create_autocmd("Filetype", {
-				pattern = filetype,
-				callback = function()
-					keymap(filetype)
-				end,
-				group = au_dial,
-			})
-		end
 
 		keymap()
 
