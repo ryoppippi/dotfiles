@@ -1,6 +1,6 @@
 return {
 	name = "node_servers",
-	dir = vim.fn.stdpath("config") .. "/lua/cli/node_servers",
+	dir = vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ":h"),
 	build = "bun install",
 	config = function(spec)
 		local dir = spec.dir
