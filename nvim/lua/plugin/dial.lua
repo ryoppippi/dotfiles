@@ -35,39 +35,47 @@ return {
 			}),
 		}
 
-		-- filetypes
-		local typescript = {
-			augend.integer.alias.decimal,
-			augend.integer.alias.hex,
-			augend.paren.alias.quote,
-			augend.constant.new({ elements = { "let", "const" } }),
-		}
-
-		local markdown = {
-			augend.misc.alias.markdown_header,
-		}
-
-		local python = {
-			augend.constant.new({ elements = { "True", "False" }, cyclic = true }),
-		}
-
 		require("dial.config").augends:register_group({
 			default = default,
 		})
 
-		require("dial.config").augends:on_filetype({
-			typescript = typescript,
-			javascript = typescript,
-			typescriptreact = typescript,
-			javascriptreact = typescript,
-			tsx = typescript,
-			jsx = typescript,
-			svelte = typescript,
-			vue = typescript,
-			astro = typescript,
-			markdown = markdown,
-			python = python,
-		})
+		require("dial.config").augends:on_filetype(vim.tbl_flatten({
+			(function()
+				local typescript = vim.tbl_flatten({
+					default,
+					{
+						augend.integer.alias.decimal,
+						augend.integer.alias.hex,
+						augend.paren.alias.quote,
+						augend.constant.new({ elements = { "let", "const" } }),
+					},
+				})
+				local ft_table = {}
+				for _, value in pairs({
+					"typescript",
+					"javascript",
+					"typescriptreact",
+					"javascriptreact",
+					"tsx",
+					"jsx",
+					"svelte",
+					"vue",
+					"astro",
+				}) do
+					ft_table[value] = typescript
+				end
+				return ft_table
+			end)(),
+
+			python = vim.tbl_flatten({
+				default,
+				{ augend.constant.new({ elements = { "True", "False" }, cyclic = true }) },
+			}),
+			markdown = vim.tbl_flatten({
+				default,
+				{ augend.misc.alias.markdown_header },
+			}),
+		}))
 
 		require("core.utils").redetect_filetype()
 		keymap()
