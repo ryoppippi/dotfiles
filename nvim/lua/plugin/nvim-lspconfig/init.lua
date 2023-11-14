@@ -10,42 +10,14 @@ return {
 	event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 	cond = not is_vscode(),
 	dependencies = {
-		{
-			"williamboman/mason-lspconfig.nvim",
-			opts = function(_, opts)
-				opts.ensure_installed = vim.tbl_flatten({
-					opts.ensure_installed or {},
-					{ "efm" },
-					{
-						"emmet_ls",
-						"tailwindcss",
-						"html",
-						"stylelint_lsp",
-						"eslint",
-						"biome",
-						-- "denols",
-					},
-					{
-						"svelte",
-						"angularls",
-						"astro",
-						"vuels",
-						"prismals",
-					},
-					{
-						"jsonls",
-						"yamlls",
-					},
-					{
-						-- "pyright",
-						-- "ruff_lsp",
-					},
-					{ "ruby_ls" },
-					{ "r_language_server" },
-					{ "sqlls" },
-				})
-			end,
-		},
+		-- {
+		-- 	"williamboman/mason-lspconfig.nvim",
+		-- 	opts = function(_, opts)
+		-- 		opts.ensure_installed = vim.tbl_flatten({
+		-- 			opts.ensure_installed or {},
+		-- 		})
+		-- 	end,
+		-- },
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		"kyoh86/climbdir.nvim",
