@@ -10,15 +10,6 @@ return {
 	event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 	cond = not is_vscode(),
 	dependencies = {
-		-- {
-		-- 	"williamboman/mason-lspconfig.nvim",
-		-- 	opts = function(_, opts)
-		-- 		opts.ensure_installed = vim.tbl_flatten({
-		-- 			opts.ensure_installed or {},
-		-- 		})
-		-- 	end,
-		-- },
-		"zigtools/zls",
 		"node_servers",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
@@ -89,7 +80,10 @@ return {
 		end
 
 		function o.setup(client, extra_opts)
-			-- vim.print(client.document_config)
+			if type(client) == "string" then
+				client = require("lspconfig")[client]
+			end
+
 			local default_opts = client.document_config.default_config
 
 			local local_opts = vim.tbl_deep_extend("force", {}, o.lsp_opts, extra_opts or {})
