@@ -1,7 +1,6 @@
 [project]
 name = "python-tools"
 version = "0.1.0"
-description = "Add your description here"
 authors = [
     { name = "ryoppippi", email = "1560508+ryoppippi@users.noreply.github.com" }
 ]
