@@ -13,6 +13,7 @@
     "emmet-ls": "^0.4.2",
     "sql-language-server": "^1.7.0",
     "stylelint": "^15.11.0",
+    "stylelint-lsp": "^1.2.4",
     "svelte-language-server": "^0.15.22",
     "unocss-language-server": "^0.0.10",
     "vscode-langservers-extracted": "^4.8.0",
