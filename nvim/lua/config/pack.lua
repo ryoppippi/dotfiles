@@ -9,6 +9,7 @@ end
 lazy.setup({
 	spec = {
 		{ import = "plugin" },
+		{ import = "plugin.nvim-lspconfig.servers" },
 		{ import = "cli" },
 	},
 	defaults = { lazy = true },

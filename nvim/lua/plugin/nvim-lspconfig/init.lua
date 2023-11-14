@@ -315,15 +315,6 @@ return {
 		-- swift
 		setup(lspconfig.sourcekit)
 
-		-- python
-		local python_lsp_init = function(_, config)
-			config.settings.python.pythonPath = vim.env.VIRTUAL_ENV
-					and lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-				or utils.find_cmd("python3", ".venv/bin", config.root_dir)
-		end
-		setup(lspconfig.pyright, { before_init = python_lsp_init })
-		setup(lspconfig.ruff_lsp, { before_init = python_lsp_init })
-
 		-- ruby
 		setup(lspconfig.ruby_ls)
 
@@ -332,9 +323,5 @@ return {
 
 		-- sql
 		setup(lspconfig.sqlls)
-
-		-- zigls
-		setup(lspconfig.zls, {})
-		vim.g.zig_fmt_autosave = 0
 	end,
 }
