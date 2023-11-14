@@ -1,13 +1,6 @@
 {
   "name": "node_servers",
   "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
     "@angular/language-server": "^17.0.2",
     "@astrojs/language-server": "^2.5.2",
@@ -23,5 +16,6 @@
     "unocss-language-server": "^0.0.10",
     "vscode-langservers-extracted": "^4.8.0",
     "yaml-language-server": "^1.14.0"
-  }
+  },
+  "type": "module"
 }
