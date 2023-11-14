@@ -18,6 +18,8 @@ return {
 		-- 		})
 		-- 	end,
 		-- },
+		"zigtools/zls",
+		"node_servers",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		"kyoh86/climbdir.nvim",
@@ -338,10 +340,7 @@ return {
 		setup(lspconfig.sqlls)
 
 		-- zigls
-		local zls = lspconfig.zls
-		setup(zls, {
-			cmd = { require("lazy.core.config").spec.plugins.zls.dir .. "/zig-out/bin/zls" },
-		})
+		setup(lspconfig.zls, {})
 		vim.g.zig_fmt_autosave = 0
 	end,
 }
