@@ -1,8 +1,10 @@
+local Path = require("plenary.path")
+
 local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
 local git_hooks_path = vim.fn.systemlist("git config --get core.hooksPath")[1] or ".git/hooks"
-local git_hooks_abs_path = vim.fn.resolve(git_root .. "/" .. git_hooks_path)
-local pre_commit_path = vim.fn.resolve(git_hooks_abs_path .. "/pre-commit")
-local commit_msg_path = vim.fn.resolve(git_hooks_abs_path .. "/commit-msg")
+local git_hooks_abs_path = Path:new(git_root, git_hooks_path):absolute()
+local pre_commit_path = Path:new(git_hooks_abs_path, "pre-commit"):absolute()
+local commit_msg_path = Path:new(git_hooks_abs_path, "commit-msg"):absolute()
 
 local commit_bufnr = vim.api.nvim_get_current_buf()
 local commit_win_id = vim.fn.win_getid()
