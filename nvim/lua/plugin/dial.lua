@@ -1,18 +1,72 @@
 return {
 	"monaqa/dial.nvim",
-	keys = { "<C-a>", "<C-x>", "g<C-a>", "g<C-x>" },
+	keys = {
+		{
+			"<C-a>",
+			function()
+				require("dial.map").manipulate("increment", "normal")
+			end,
+			mode = "n",
+			desc = "dial increment",
+		},
+		{
+			"<C-x>",
+			function()
+				require("dial.map").manipulate("decrement", "normal")
+			end,
+			mode = "n",
+			desc = "dial decrement",
+		},
+		{
+			"g<C-a>",
+			function()
+				require("dial.map").manipulate("increment", "gnormal")
+			end,
+			mode = "n",
+			desc = "dial increment",
+		},
+		{
+			"g<C-x>",
+			function()
+				require("dial.map").manipulate("decrement", "gnormal")
+			end,
+			mode = "n",
+			desc = "dial decrement",
+		},
+		{
+			"<C-a>",
+			function()
+				require("dial.map").manipulate("increment", "visual")
+			end,
+			mode = "v",
+			desc = "dial increment",
+		},
+		{
+			"<C-x>",
+			function()
+				require("dial.map").manipulate("decrement", "visual")
+			end,
+			mode = "v",
+			desc = "dial decrement",
+		},
+		{
+			"g<C-a>",
+			function()
+				require("dial.map").manipulate("increment", "gvisual")
+			end,
+			mode = "v",
+			desc = "dial increment",
+		},
+		{
+			"g<C-x>",
+			function()
+				require("dial.map").manipulate("decrement", "gvisual")
+			end,
+			mode = "v",
+			desc = "dial decrement",
+		},
+	},
 	config = function()
-		local au_dial = vim.api.nvim_create_augroup("dial", { clear = true })
-
-		local function keymap(group_name)
-			vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(group_name), {})
-			vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(group_name), {})
-			vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(group_name), {})
-			vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(group_name), {})
-			vim.keymap.set("v", "g<C-a>", require("dial.map").inc_gvisual(group_name), {})
-			vim.keymap.set("v", "g<C-x>", require("dial.map").dec_gvisual(group_name), {})
-		end
-
 		local augend = require("dial.augend")
 
 		local default = {
@@ -78,6 +132,5 @@ return {
 		}))
 
 		require("core.utils").redetect_filetype()
-		keymap()
 	end,
 }
