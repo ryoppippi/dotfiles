@@ -5,20 +5,20 @@ return {
 			"ray-x/guihua.lua",
 			"nvim-treesitter/nvim-treesitter",
 			"neovim/nvim-lspconfig",
-			{
-				"williamboman/mason-lspconfig.nvim",
-				opts = function(_, opts)
-					opts.ensure_installed = vim.tbl_flatten({
-						opts.ensure_installed or {},
-						{
-							"gleam",
-							"gopls",
-							"goimports",
-							"golangci_lint_ls",
-						},
-					})
-				end,
-			},
+			-- {
+			-- 	"williamboman/mason-lspconfig.nvim",
+			-- 	opts = function(_, opts)
+			-- 		opts.ensure_installed = vim.tbl_flatten({
+			-- 			opts.ensure_installed or {},
+			-- 			{
+			-- 				"gleam",
+			-- 				"gopls",
+			-- 				"goimports",
+			-- 				"golangci_lint_ls",
+			-- 			},
+			-- 		})
+			-- 	end,
+			-- },
 		},
 		event = function()
 			local return_events = { "VeryLazy" }

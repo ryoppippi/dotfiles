@@ -1,6 +1,7 @@
 return {
 	"RubixDev/mason-update-all",
 	cond = not is_vscode(),
+	enabled = false,
 	cmd = { "MasonUpdateAll" },
 	dependencies = {
 		"williamboman/mason.nvim",
