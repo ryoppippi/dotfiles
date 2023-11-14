@@ -12,6 +12,7 @@ return {
 	dependencies = {
 		"node_servers",
 		"python_tools",
+		"cli",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
 		"kyoh86/climbdir.nvim",
