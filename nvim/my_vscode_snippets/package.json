@@ -2,7 +2,7 @@
   "name": "my_vscode_snippets",
   "author": "ryoppippi",
     "engines": {
-    "vscode": "^1.11.0"
+    "vscode": "^2023.0.0"
   },
   "contributes": {
     "snippets": [
