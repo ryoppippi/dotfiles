@@ -110,6 +110,6 @@ packages:
   - name: tomohiro/gyazo-cli@1.0.0
   - name: wakatime/wakatime-cli@v1.86.5
   - name: BurntSushi/xsv@0.13.0
-  - name: LuaLS/lua-language-server@3.7.2
+  - name: LuaLS/lua-language-server@3.7.3
   - name: astral-sh/ruff@v0.1.5
   - name: rust-lang/rust-analyzer@2023-11-13
