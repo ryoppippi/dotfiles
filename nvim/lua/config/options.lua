@@ -61,8 +61,8 @@ if
 	and tb(vim.fn.exists("+termguicolors"))
 	and not is_vscode()
 then
-	vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
-	vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+	-- vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+	-- vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
 	vim.o.termguicolors = true
 	vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end
