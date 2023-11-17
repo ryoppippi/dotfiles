@@ -51,18 +51,18 @@ M.on_attach = function(client, bufnr)
 
 		setInlayHintHL()
 
-		vim.lsp.inlay_hint(bufnr, true)
+		vim.lsp.inlay_hint.enable(bufnr, true)
 
 		vim.api.nvim_create_autocmd("InsertLeave", {
 			buffer = bufnr,
 			callback = function()
-				vim.lsp.inlay_hint(bufnr, M.showInlayHint)
+				vim.lsp.inlay_hint.enable(bufnr, M.showInlayHint)
 			end,
 		})
 		vim.api.nvim_create_autocmd("InsertEnter", {
 			buffer = bufnr,
 			callback = function()
-				vim.lsp.inlay_hint(bufnr, false)
+				vim.lsp.inlay_hint.enable(bufnr, false)
 			end,
 		})
 	end
