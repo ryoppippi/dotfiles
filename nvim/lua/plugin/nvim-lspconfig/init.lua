@@ -269,9 +269,9 @@ return {
 						showWord = "Disable",
 						callSnippet = "Replace",
 					},
-					workspace = {
-						checkThirdParty = false,
-					},
+					-- workspace = {
+					-- 	checkThirdParty = false,
+					-- },
 					hint = {
 						enable = true,
 					},
