@@ -18,7 +18,7 @@ packages:
   - name: golang/tools/gorename@v0.15.0
   - name: golang/mock@v1.6.0
   - name: volta-cli/volta@v1.1.1
-  - name: junegunn/fzf@0.44.0
+  - name: junegunn/fzf@0.44.1
   - name: denisidoro/navi@v2.22.1
   - name: nektos/act@v0.2.54
   - name: b4b4r07/gist@v1.2.6
