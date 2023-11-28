@@ -107,3 +107,5 @@
 [diff "lockb"]
 	textconv = bun
 	binary = true
+[rebase]
+	autostash = true
