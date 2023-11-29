@@ -1,7 +1,7 @@
 {
   "name": "my_vscode_snippets",
   "author": "ryoppippi",
-    "engines": {
+  "engines": {
     "vscode": "^2023.0.0"
   },
   "contributes": {
@@ -13,6 +13,10 @@
       {
         "language": "cpp",
         "path": "./snippets/cpp.json"
+      },
+      {
+        "language": "svelte",
+        "path": "./snippets/svelte.json"
       }
     ]
   }
