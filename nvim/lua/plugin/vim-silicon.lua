@@ -1,7 +1,7 @@
 return {
 	"segeljakt/vim-silicon",
 	cmd = "Silicon",
-	init = function()
+	config = function()
 		vim.g.silicon = {
 			theme = "gruvbox",
 		}
