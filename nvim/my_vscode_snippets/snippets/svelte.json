@@ -1,0 +1,10 @@
+{
+  "rune not found comment": {
+    "prefix": "rnf",
+    "body": [
+      "// TODO: wait for eslint-plugin-svelte to support runes",
+      "// eslint-disable-next-line no-undef"
+    ],
+    "description": "Comment to disable eslint for rune not found"
+  }
+}
