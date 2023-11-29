@@ -11,7 +11,6 @@ return {
 		},
 
 		{ "yioneko/nvim-yati", enabled = false },
-		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 
 		-- textobj
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -35,10 +34,6 @@ return {
 				disable = function(_, bufnr)
 					return bufnr and vim.api.nvim_buf_line_count(bufnr) > 50000
 				end,
-			},
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = false,
 			},
 			rainbow = {
 				enable = true,
