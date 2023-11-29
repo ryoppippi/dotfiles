@@ -5,6 +5,7 @@ return {
 	cond = not is_vscode(),
 	event = { "InsertEnter" },
 	dependencies = {
+		"nvim-lua/plenary.nvim",
 		"tpope/vim-repeat",
 		{
 			"benfowler/telescope-luasnip.nvim",
@@ -36,11 +37,15 @@ return {
 		-- }}
 	},
 	config = function()
+		local Path = require("plenary.path")
+
 		require("luasnip")
 		require("luasnip.loaders.from_snipmate").lazy_load()
 		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_vscode").lazy_load({
-			paths = { vim.fn.stdpath("config") .. "/my_vscode_snippets" },
+			paths = {
+				Path:new(vim.fn.stdpath("config"), "my_vscode_snippets"):absolute(),
+			},
 		})
 	end,
 }
