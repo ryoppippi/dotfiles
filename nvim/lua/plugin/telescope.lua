@@ -108,8 +108,12 @@ M = {
 
 				local expand_filepath = vim.fn.expand(filepath)
 
-				---@cast expand_filepath string
-				vim.uv.fs_stat(expand_filepath, function(_, stat)
+				local async = require("plenary.async")
+
+				async.void(function()
+					local err, stat = async.uv.fs_stat(expand_filepath)
+					assert(not err, err)
+
 					if not stat then
 						return
 					end
