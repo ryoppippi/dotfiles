@@ -127,20 +127,18 @@ M = {
 						n = {
 							["<ESC>"] = actions.close,
 							["q"] = actions.close,
-							["<C-q>"] = require("telescope.actions").send_to_qflist
-								+ require("telescope.actions").open_qflist,
-							["<C-s>"] = require("telescope.actions").send_selected_to_qflist
-								+ require("telescope.actions").open_qflist,
-							["<C-l>"] = require("telescope.actions").send_to_loclist
-								+ require("telescope.actions").open_loclist,
+							["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+							["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
+							["<C-l>"] = actions.send_to_loclist + actions.open_loclist,
 						},
 						i = {
-							["<C-q>"] = require("telescope.actions").send_to_qflist
-								+ require("telescope.actions").open_qflist,
-							["<C-s>"] = require("telescope.actions").send_selected_to_qflist
-								+ require("telescope.actions").open_qflist,
-							["<C-l>"] = require("telescope.actions").send_to_loclist
-								+ require("telescope.actions").open_loclist,
+							["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+							["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
+							["<C-l>"] = actions.send_to_loclist + actions.open_loclist,
+							["<CR>"] = function(prompt_bufnr)
+								require("telescope.actions").select_default(prompt_bufnr)
+								vim.cmd.stopinsert()
+							end,
 						},
 					},
 					initial_mode = "insert",
