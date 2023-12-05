@@ -231,16 +231,16 @@ return {
 		-- web DSL
 		setup(lspconfig.svelte, {
 			on_attach = function(client, _)
-				-- local root_dir = client.config.root_dir
-				-- vim.api.nvim_create_autocmd("BufWritePost", {
-				-- 	pattern = {
-				-- 		root_dir .. "/*.js",
-				-- 		root_dir .. "/*.ts",
-				-- 	},
-				-- 	callback = function(ctx)
-				-- 		client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-				-- 	end,
-				-- })
+				local root_dir = client.config.root_dir
+				vim.api.nvim_create_autocmd("BufWritePost", {
+					pattern = {
+						root_dir .. "/*.js",
+						root_dir .. "/*.ts",
+					},
+					callback = function(ctx)
+						client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+					end,
+				})
 				format_config(false)(client)
 			end,
 			settings = {
