@@ -35,6 +35,14 @@ return {
 
 			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 		end)
+
+		-- local ok, wf = pcall(require, "vim.lsp._watchfiles")
+		-- if ok then
+		-- 	-- disable lsp watcher. Too slow on linux
+		-- 	wf._watchfunc = function()
+		-- 		return function() end
+		-- 	end
+		-- end
 	end,
 	opts = function()
 		---@class LSPConfigOpts
@@ -265,9 +273,9 @@ return {
 						showWord = "Disable",
 						callSnippet = "Replace",
 					},
-					-- workspace = {
-					-- 	checkThirdParty = false,
-					-- },
+					workspace = {
+						checkThirdParty = false,
+					},
 					hint = {
 						enable = true,
 					},
