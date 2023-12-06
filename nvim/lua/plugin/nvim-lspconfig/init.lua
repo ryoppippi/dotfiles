@@ -273,8 +273,8 @@ return {
 						showWord = "Disable",
 						callSnippet = "Replace",
 					},
-					workspace = {
-						checkThirdParty = false,
+					format = {
+						enable = false,
 					},
 					hint = {
 						enable = true,
