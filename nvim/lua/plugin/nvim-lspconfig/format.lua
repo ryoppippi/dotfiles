@@ -54,6 +54,7 @@ local function command()
 	vim.api.nvim_create_user_command("FormatToggle", M.toggle, { nargs = 0 })
 	vim.api.nvim_create_user_command("FormatEnable", M.enable, { nargs = 0 })
 	vim.api.nvim_create_user_command("FormatDisable", M.disable, { nargs = 0 })
+	vim.api.nvim_create_user_command("Format", M.format, { nargs = 0 })
 end
 
 local function auto_format(buf)
