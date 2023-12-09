@@ -1,5 +1,5 @@
 return {
 	"folke/neoconf.nvim",
-	-- dependencies = { "folke/neodev.nvim", config = true },
+	dependencies = { "folke/neodev.nvim", config = true },
 	config = true,
 }
