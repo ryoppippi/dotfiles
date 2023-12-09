@@ -26,3 +26,8 @@ end, { nargs = 0, force = true })
 
 -- sort startuptime
 vim.api.nvim_create_user_command("SortStartupTime", "%!sort -k2nr", { force = true })
+
+vim.api.nvim_create_user_command("ToggleCursorline", function()
+	vim.wo.cursorline = not vim.wo.cursorline
+	vim.wo.cursorcolumn = not vim.wo.cursorcolumn
+end, { nargs = 0, force = true })
