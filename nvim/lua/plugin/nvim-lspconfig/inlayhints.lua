@@ -32,7 +32,7 @@ local function keymap(bufnr)
 			lsp_lines.toggle()
 		end
 		M.showInlayHint = not M.showInlayHint
-		vim.lsp.inlay_hint(bufnr, M.showInlayHint)
+		vim.lsp.inlay_hint.enable(bufnr, M.showInlayHint)
 	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & lsp_lines" })
 end
 
