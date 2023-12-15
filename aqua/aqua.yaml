@@ -86,7 +86,7 @@ packages:
   - name: dalance/procs@v0.14.4
   - name: chriswalz/bit@v1.1.2
   - name: bcicen/ctop@v0.7.7
-  - name: sharkdp/hexyl@v0.13.1
+  - name: sharkdp/hexyl@v0.14.0
   - name: orf/gping@gping-v1.16.0
   - name: mozilla/sccache@v0.7.4
   - name: pemistahl/grex@v1.4.4
