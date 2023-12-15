@@ -2,6 +2,7 @@ return {
 	"glepnir/dashboard-nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	lazy = false,
+	enabled = false,
 	opts = function()
 		return {
 			theme = "hyper",
