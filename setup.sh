@@ -14,6 +14,17 @@ mkdir -p $HOME/.config
 mkdir -p $HOME/.cache
 mkdir -p $HOME/.local/share
 
+if [ "$(uname)" == "Darwin" ] ; then
+  xcode-select --install
+fi
+
+if [ "$(uname)" == "Linux" ] ; then
+  apt-get update
+  apt-get install -y curl
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+fi
+
 # get ghp
 curl -sSfL "https://github.com/x-motemen/ghq/releases/download/${GHQ_VERSION}/ghq_$(uname)_$(uname -a).zip" \
   | bsdtar -xvf- -C /tmp ghq 
@@ -32,14 +43,6 @@ cd $DOTFILES_DIR \
 AQUA_VERSION=2.0.2
 
 
-if [ "$(uname)" == "Darwin" ] ; then
-  xcode-select --install
-fi
-
-if [ "$(uname)" == "Linux" ] ; then
-  sudo apt update
-  sudo apt install -y curl
-fi
 
 # aqua
 curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VERSION}/aqua-installer" | bash
