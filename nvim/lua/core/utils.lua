@@ -58,7 +58,7 @@ function M.repeat_element(x, n)
 end
 
 function M.combination(tbl1, tbl2, separator)
-	return_events = {}
+	local return_events = {}
 	for _, ext in ipairs(tbl1) do
 		for _, event in ipairs(tbl2) do
 			table.insert(return_events, string.format("%s *.%s", event, ext))
