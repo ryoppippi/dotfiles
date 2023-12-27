@@ -2,6 +2,7 @@ return {
 	"echasnovski/mini.indentscope",
 	branch = "stable",
 	event = "VeryLazy",
+	enabled = false,
 	init = function()
 		vim.api.nvim_create_autocmd({ "BufEnter" }, {
 			callback = function()
