@@ -111,5 +111,5 @@ packages:
   - name: wakatime/wakatime-cli@v1.88.0
   - name: BurntSushi/xsv@0.13.0
   - name: LuaLS/lua-language-server@3.7.3
-  - name: astral-sh/ruff@v0.1.9
+  - name: astral-sh/ruff@v0.1.10
   - name: rust-lang/rust-analyzer@2023-11-13
