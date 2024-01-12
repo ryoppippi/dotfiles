@@ -100,6 +100,7 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
 
     # xcode
     type -q xcode-select && echo "fish_add_path $(xcode-select -p)/usr/bin" >>$CONFIG_CACHE
+    type -q xcode-select && echo "set SDKROOT $(xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
 
     # ruby
     type -q brew && echo "fish_add_path $(brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
