@@ -216,7 +216,7 @@
                         ]
                     },
                     {
-                        "description": "Tap Ctrl -> ESC + japanese_eisuu",
+                        "description": "Tap Ctrl -> japanese_eisuu + ESC",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -246,10 +246,10 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "escape"
+                                        "key_code": "japanese_eisuu"
                                     },
                                     {
-                                        "key_code": "japanese_eisuu"
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
@@ -257,7 +257,7 @@
                         ]
                     },
                     {
-                        "description": "esc + japanese_eisuu",
+                        "description": "esc -> japanese_eisuu + esc",
                         "manipulators": [
                             {
                                 "from": {
@@ -265,10 +265,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "escape"
+                                        "key_code": "japanese_eisuu"
                                     },
                                     {
-                                        "key_code": "japanese_eisuu"
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
