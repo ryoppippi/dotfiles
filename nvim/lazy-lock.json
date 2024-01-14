@@ -32,7 +32,7 @@
   "context_filetype.vim": { "branch": "master", "commit": "7ff5b43fc8d5b274aa19ade5af11e9fa57577ed6" },
   "convert-git-url.nvim": { "branch": "main", "commit": "fd97c92a627175546f8572088b2b240b92f2790d" },
   "copilot-cmp": { "branch": "master", "commit": "72fbaa03695779f8349be3ac54fa8bd77eed3ee3" },
-  "copilot.lua": { "branch": "master", "commit": "858bbfa6fa81c88fb1f64107d7981f1658619e0a" },
+  "copilot.lua": { "branch": "master", "commit": "b03617a6dc4bc88b65ab5deac1631da9a9c2dcaf" },
   "crates.nvim": { "branch": "main", "commit": "81c6325b7f8875857ec09e5d24f3b6d7986f29e2" },
   "denops-docker.vim": { "branch": "main", "commit": "566eff31e62d97ca1ec16099699b5e422c5299bc" },
   "denops-lazy.nvim": { "branch": "main", "commit": "aee18b31b15dafddc7674b6cd256789d56431efe" },
