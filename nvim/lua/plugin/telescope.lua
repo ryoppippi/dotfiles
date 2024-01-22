@@ -120,7 +120,7 @@ M = {
 					if stat.size > 100000 then
 						return
 					else
-						previewers.buffer_previewer_maker(filepath, bufnr, opts)
+						return previewers.buffer_previewer_maker(filepath, bufnr, opts)
 					end
 				end)
 			end
@@ -168,7 +168,7 @@ M = {
 					use_less = true,
 					scroll_strategy = "cycle",
 					set_env = { ["COLORTERM"] = "truecolor" },
-					buffer_previewer_maker = new_maker,
+					-- buffer_previewer_maker = new_maker,
 					winblend = 20,
 					layout_strategy = "flex",
 					layout_config = {
