@@ -16,7 +16,7 @@ runs:
       with:
         go-version: 'stable'
     - name: Install aqua
-      uses: aquaproj/aqua-installer@v2.2.0
+      uses: aquaproj/aqua-installer@v2.3.0
       with:
         aqua_version: v2.21.3
         policy_allow: "true"
