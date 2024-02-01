@@ -96,10 +96,10 @@
   line-numbers=true
 [credential "https://github.com"]
 	helper = 
-	helper = !/Users/kimura_ryotaro/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.41.0/gh_2.41.0_macOS_arm64.zip/gh_2.41.0_macOS_arm64/bin/gh auth git-credential
+	helper = !/Users/ryoppippi/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.42.1/gh_2.42.1_macOS_arm64.zip/gh_2.42.1_macOS_arm64/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/Users/kimura_ryotaro/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.41.0/gh_2.41.0_macOS_arm64.zip/gh_2.41.0_macOS_arm64/bin/gh auth git-credential
+	helper = !/Users/ryoppippi/.local/share/aquaproj-aqua/pkgs/github_release/github.com/cli/cli/v2.42.1/gh_2.42.1_macOS_arm64.zip/gh_2.42.1_macOS_arm64/bin/gh auth git-credential
 [fetch]
 	prune = true
 [init]
