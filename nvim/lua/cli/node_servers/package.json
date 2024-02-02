@@ -5,7 +5,7 @@
     "@angular/language-server": "17.1.0",
     "@astrojs/language-server": "2.6.2",
     "@oven/zig": "0.12.0-dev.1286",
-    "@prisma/language-server": "5.8.1",
+    "@prisma/language-server": "5.9.0",
     "@tailwindcss/language-server": "0.0.16",
     "@vtsls/language-server": "0.1.25",
     "@vue/language-server": "1.8.27",
