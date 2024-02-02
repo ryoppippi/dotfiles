@@ -12,7 +12,7 @@
     "biome": "0.3.3",
     "emmet-ls": "0.4.2",
     "sql-language-server": "1.7.0",
-    "stylelint": "16.0.0",
+    "stylelint": "16.2.0",
     "stylelint-lsp": "2.0.0",
     "svelte-language-server": "0.16.3",
     "unocss-language-server": "0.0.10",
