@@ -95,7 +95,7 @@ packages:
   - name: mitsuhiko/rye@0.21.0
   - name: aquasecurity/trivy@v0.49.0
   - name: itchyny/mmv@v0.1.6
-  - name: goodwithtech/dockle@v0.4.13
+  - name: goodwithtech/dockle@v0.4.14
   - name: suzuki-shunsuke/github-comment@v6.0.3
   - name: uzimaru0000/oglens@v0.1.1
   - name: kyoh86/richgo@v0.3.12
