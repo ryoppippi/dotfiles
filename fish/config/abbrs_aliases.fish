@@ -77,4 +77,4 @@ abbr -a gf 'git fetch'
 # github copilot
 abbr -a --set-cursor q gh copilot suggest -t shell \"%\"
 abbr -a --set-cursor qgit gh copilot suggest -t git \"%\"
-abbr -a --set-cursor qgh gh copilot suggest -t github \"%\"
+abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
