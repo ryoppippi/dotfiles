@@ -1,6 +1,3 @@
-test -n "$LOADED_ABBRS_ALIASES" && return
-set -x LOADED_ABBRS_ALIASES 1
-
 alias vim nvim
 abbr -a v nvim
 abbr -a nv nvim
