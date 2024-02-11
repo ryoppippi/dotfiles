@@ -3,7 +3,7 @@
   "module": "index.ts",
   "dependencies": {
     "@angular/language-server": "17.1.1",
-    "@astrojs/language-server": "2.6.3",
+    "@astrojs/language-server": "2.7.1",
     "@oven/zig": "0.12.0-dev.1286",
     "@prisma/language-server": "5.9.1",
     "@tailwindcss/language-server": "0.0.16",
