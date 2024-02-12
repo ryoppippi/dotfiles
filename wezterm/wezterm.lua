@@ -109,6 +109,7 @@ local config = {
 			name = "unix",
 		},
 	},
+	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
 }
 
 wezterm.on("gui-startup", function(cmd)
