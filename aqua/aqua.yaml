@@ -37,7 +37,7 @@ packages:
   - name: sharkdp/hyperfine@v1.18.0
   - name: Peltoche/lsd@v1.0.0
   - name: sheepla/pingu@v0.0.5
-  - name: rhysd/vim-startuptime@v1.3.1
+  - name: rhysd/vim-startuptime@v1.3.2
   - name: antonmedv/fx@31.0.0
   - name: rhysd/actionlint@v1.6.26
   - name: git-lfs/git-lfs@v3.4.1
