@@ -30,7 +30,7 @@ packages:
   - name: marp-team/marp-cli@v3.4.0
   - name: tcnksm/ghr@v0.16.2
   - name: x-motemen/ghq@v1.5.0
-  - name: ajeetdsouza/zoxide@v0.9.2
+  - name: ajeetdsouza/zoxide@v0.9.3
   - name: sharkdp/bat@v0.24.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazydocker@v0.23.1
