@@ -51,6 +51,7 @@ return {
 				lsp_inlay_hints = {
 					enable = true,
 				},
+				lsp_keymaps = false,
 			}
 		end,
 		config = function(_, opts)
