@@ -60,7 +60,7 @@ packages:
   - name: oven-sh/bun@bun-v1.0.28
   - name: wader/fq@v0.10.0
   - name: planetscale/cli@v0.183.0
-  - name: supabase/cli@v1.145.2
+  - name: supabase/cli@v1.145.4
   - name: nao1215/gup@v0.24.1
   - name: hadolint/hadolint@v2.12.0
   - name: noborus/trdsql@v0.20.0
