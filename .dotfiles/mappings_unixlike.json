@@ -8,5 +8,6 @@
   "fish": "~/.config/fish",
   "docker/config.json": "~/.docker/config.json",
   "efm-langserver": "~/.config/efm-langserver",
-  "pip/pip.conf": "~/.pip/pip.conf"
+  "pip/pip.conf": "~/.pip/pip.conf",
+  "zed/settings.json": "~/.config/zed/settings.json"
 }
