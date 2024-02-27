@@ -174,6 +174,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
   "treesitter-unit": { "branch": "main", "commit": "89968a1f8c72427691088e6d09d26a52c2ddc6f4" },
   "troublesum.nvim": { "branch": "master", "commit": "b00301bb565bfcb6fcfa41f2012e43a0528da65b" },
+  "ts-error-translator.nvim": { "branch": "main", "commit": "95e49232bed7da76cfc51bd4cc67a7dccec70dc5" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "551b617629c3bd0ff6c98d89d679e405f28deeb7" },
   "ugaterm.nvim": { "branch": "main", "commit": "aac32d2f28f58121cefd370f1e912202bf5282fa" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
