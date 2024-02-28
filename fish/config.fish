@@ -73,7 +73,7 @@ fish_add_path $HOME/zig
 # python
 fish_add_path $HOME/.rye/shims
 fish_add_path $HOME/.poetry/bin
-set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
+# set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 set -gx PYENV_ROOT $HOME/.pyenv
 set -gx BETTER_EXCEPTIONS 1
 ## codon
