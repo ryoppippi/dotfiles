@@ -33,6 +33,7 @@
   dlr = !sh -c 'git branch -D $1 && git push origin :$1' -
   r = reset
   rbm = rebase origin/main
+  rsr = restore
   st = stash
   sts = status -s -uno
   sm = submodule 
