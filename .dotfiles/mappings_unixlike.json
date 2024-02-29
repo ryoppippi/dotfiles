@@ -9,5 +9,6 @@
   "docker/config.json": "~/.docker/config.json",
   "efm-langserver": "~/.config/efm-langserver",
   "pip/pip.conf": "~/.pip/pip.conf",
+  "rye/config.toml": "~/.rye/config.toml",
   "zed/settings.json": "~/.config/zed/settings.json"
 }
