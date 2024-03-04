@@ -50,7 +50,7 @@ packages:
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.12.0
   - name: direnv/direnv@v2.34.0
-  - name: gohugoio/hugo@v0.123.6
+  - name: gohugoio/hugo@v0.123.7
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
   - name: projectdiscovery/httpx@v1.4.0
