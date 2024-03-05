@@ -8,6 +8,8 @@
   pager = delta
 [interactive]
   diffFilter = delta --color-only
+[remote]
+  pushDefault = origin
 
 [alias]
   a = add 
