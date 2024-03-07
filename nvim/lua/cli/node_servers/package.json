@@ -8,7 +8,7 @@
     "@prisma/language-server": "5.10.2",
     "@tailwindcss/language-server": "0.0.16",
     "@vtsls/language-server": "0.1.25",
-    "@vue/language-server": "2.0.3",
+    "@vue/language-server": "2.0.4",
     "biome": "0.3.3",
     "emmet-ls": "0.4.2",
     "sql-language-server": "1.7.0",
