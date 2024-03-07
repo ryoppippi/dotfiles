@@ -76,7 +76,7 @@ packages:
   - name: charmbracelet/vhs@v0.7.1
   - name: ninja-build/ninja@v1.11.1
   - name: sassman/t-rec-rs@v0.7.6
-  - name: blacknon/hwatch@0.3.10
+  - name: blacknon/hwatch@0.3.11
   - name: watchexec/watchexec@v1.25.1
   - name: rclone/rclone@v1.65.2
   - name: hhatto/gocloc@v0.5.2
