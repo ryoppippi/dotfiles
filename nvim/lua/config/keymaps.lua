@@ -46,7 +46,6 @@ vim.keymap.set("n", "sk", "<C-w>k")
 vim.keymap.set("n", "sl", "<C-w>l")
 
 -- tab management
-
 vim.keymap.set("n", "<tab>", "<cmd>tabnext<cr>", { silent = true })
 vim.keymap.set("n", "<s-tab>", "<cmd>tabprevious<cr>", { silent = true })
 vim.keymap.set("n", "th", "<cmd>tabfirst<cr>", { silent = true })
