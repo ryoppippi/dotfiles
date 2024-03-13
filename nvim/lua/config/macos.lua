@@ -2,4 +2,4 @@ if not is_macos() then
 	return
 end
 
-vim.opt.clipboard:append("unnamedplus")
+-- vim.opt.clipboard:append("unnamedplus")

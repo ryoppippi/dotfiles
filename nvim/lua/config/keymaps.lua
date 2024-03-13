@@ -99,7 +99,9 @@ end, { expr = true, silent = true })
 -- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
 -- tips
+vim.keymap.set({ "n", "v" }, "gy", '"+y')
 vim.keymap.set("n", "Y", "y$")
+vim.keymap.set("n", "gY", '"+y$')
 vim.keymap.set({ "n", "v" }, "x", '"_x')
 vim.keymap.set({ "n", "v" }, "X", '"_d$')
 vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
