@@ -1,5 +1,6 @@
 return {
 	"stevearc/oil.nvim",
+	event = "VeryLazy",
 	cmd = { "Oil" },
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
@@ -13,22 +14,20 @@ return {
 		},
 	},
 	init = function()
-		local openWithOil = function()
-			local path = vim.fn.expand("%:p")
+		local path = vim.fn.expand("%:p")
+		local oilPathList = { "oil://", "oil%-ssh://", "oil%-trash://" }
+		local isDir = vim.fn.isdirectory(path)
+		local isOilPath = false
 
-			---@cast path string
-			if string.match(path, "oil://") then
-				return
+		for _, oilPath in ipairs(oilPathList) do
+			if string.match(path, oilPath) ~= nil then
+				isOilPath = true
 			end
-
-			if not tb(vim.fn.isdirectory(path)) then
-				return
-			end
-
-			vim.cmd.Oil(path)
 		end
-		vim.api.nvim_create_autocmd({ "BufEnter" }, { callback = openWithOil, nested = true })
-		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = openWithOil })
+
+		if isOilPath or isDir then
+			require("oil")
+		end
 	end,
 	opts = function()
 		local trash_command = "trash"
