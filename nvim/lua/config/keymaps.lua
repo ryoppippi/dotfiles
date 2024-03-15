@@ -99,11 +99,11 @@ end, { expr = true, silent = true })
 -- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
 -- tips
-vim.keymap.set({ "n", "v" }, "gy", '"+y')
-vim.keymap.set("n", "Y", "y$")
-vim.keymap.set("n", "gY", '"+y$')
-vim.keymap.set({ "n", "v" }, "x", '"_x')
-vim.keymap.set({ "n", "v" }, "X", '"_d$')
+vim.keymap.set({ "n", "v" }, "gy", '"+y') -- yank to clipboard
+vim.keymap.set("n", "Y", "y$") -- yank to end of line
+vim.keymap.set("n", "gY", '"+y$') -- yank to end of line and to clipboard
+vim.keymap.set({ "n", "v" }, "x", '"_x') -- delete without yank
+vim.keymap.set({ "n", "v" }, "X", '"_d$') -- delete to end of line without yank
 vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
