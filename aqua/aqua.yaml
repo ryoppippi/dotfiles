@@ -54,7 +54,7 @@ packages:
   - name: b4b4r07/gomi@v1.1.6
   - name: dylanaraps/neofetch@7.1.0
   - name: projectdiscovery/httpx@v1.6.0
-  - name: dandavison/delta@0.16.5
+  - name: dandavison/delta@0.17.0
   - name: rhysd/dotfiles@v0.2.2
   - name: Aloxaf/silicon@v0.5.2
   - name: oven-sh/bun@bun-v1.0.31
