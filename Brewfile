@@ -242,7 +242,6 @@ mas "BlockComment", id: 1246672247
 mas "Clean", id: 418412301
 mas "Command X", id: 6448461551
 mas "Consent-O-Matic", id: 1606897889
-mas "CotEditor", id: 1024640650
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
 mas "Document Generator", id: 1437883178
