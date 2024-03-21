@@ -231,6 +231,7 @@ cask "vlc"
 cask "wezterm"
 cask "xquartz"
 cask "zerotier-one"
+cask "zed"
 cask "zoom"
 mas "Accelerate", id: 1459809092
 mas "Actions", id: 1586435171
