@@ -15,7 +15,7 @@ mkdir -p $HOME/.cache
 mkdir -p $HOME/.local/share
 
 if [ "$(uname)" == "Darwin" ] ; then
-  xcode-select --install
+  xcode-select --install > /dev/null
   defaults write com.apple.dock persistent-apps -array
   killall Dock
   defaults write com.apple.desktopservices DSDontWriteNetworkStores True
