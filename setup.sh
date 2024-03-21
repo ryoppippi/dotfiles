@@ -16,6 +16,8 @@ mkdir -p $HOME/.local/share
 
 if [ "$(uname)" == "Darwin" ] ; then
   xcode-select --install
+  defaults write com.apple.dock persistent-apps -array
+  killall Dock
 fi
 
 if [ "$(uname)" == "Linux" ] ; then
