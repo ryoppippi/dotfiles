@@ -9,6 +9,7 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_CACHE_HOME=$HOME/.cache
 XDG_DATA_HOME=$HOME/.local/share
 
+AQUA_VERSION=2.3.2
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 arch=$(uname -m)
@@ -65,10 +66,6 @@ DOTFILES_DIR=$(ghq root)/$(ghq list | grep ryoppippi/dotfiles)
 
 cd $DOTFILES_DIR \
   && /tmp/dotfiles link .
-
-AQUA_VERSION=2.0.2
-
-
 
 # aqua
 curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VERSION}/aqua-installer" | bash
