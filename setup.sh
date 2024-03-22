@@ -19,8 +19,23 @@ if [ "$(uname)" == "Darwin" ] ; then
     xcode-select --install
   fi
   softwareupdate --install-rosetta --agree-to-license
+
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  defaults write -g AppleShowAllExtensions -bool true
+  defaults write com.apple.CrashReporter DialogType -string "none"
+
+  defaults write com.apdefaults write ple.dock persistent-apps -array
+  defaults write com.apple.dock autohide -bool true
+  defaults write com.apple.dock show-recents -bool false
   killall Dock
-  defaults write com.apple.desktopservices DSDontWriteNetworkStores True
+
+  defaults write com.apple.finder AppleShowAllFiles -bool true
+  defaults write com.apple.finder ShowPathbar -bool true
+  defaults write com.apple.finder ShowStatusBar -bool true
+  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+  defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+  defaults write com.apple.finder "_FXSortFoldersFirst" -bool true
+  defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float 0
   killall Finder
 fi
 
