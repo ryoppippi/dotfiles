@@ -9,12 +9,16 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_CACHE_HOME=$HOME/.cache
 XDG_DATA_HOME=$HOME/.local/share
 
+
+os=$(uname -s | tr '[:upper:]' '[:lower:]')
+arch=$(uname -m)
+
 # XDG Base Directory
 mkdir -p $HOME/.config
 mkdir -p $HOME/.cache
 mkdir -p $HOME/.local/share
 
-if [ "$(uname)" == "Darwin" ] ; then
+if [ os == "darwin" ] ; then
   if ! xcode-select -p > /dev/null 2>&1 ; then
     xcode-select --install
   fi
@@ -40,7 +44,7 @@ if [ "$(uname)" == "Darwin" ] ; then
   killall Finder
 fi
 
-if [ "$(uname)" == "Linux" ] ; then
+if [ os == "linux" ] ; then
   apt-get update
   apt-get install -y curl
   apt-get clean
