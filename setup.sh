@@ -97,7 +97,9 @@ fish -c "fisher update"
 fish -c "fish_update_completions"
 
 # node
-volta install node@18
+volta --help
+bun i -g @antfu/ni
+deno --help
 
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
