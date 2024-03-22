@@ -19,6 +19,7 @@ if [ "$(uname)" == "Darwin" ] ; then
     xcode-select --install
   fi
   softwareupdate --install-rosetta --agree-to-license
+  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
 
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
   defaults write -g AppleShowAllExtensions -bool true
