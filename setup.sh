@@ -18,6 +18,7 @@ if [ "$(uname)" == "Darwin" ] ; then
   if ! xcode-select -p > /dev/null 2>&1 ; then
     xcode-select --install
   fi
+  softwareupdate --install-rosetta --agree-to-license
   killall Dock
   defaults write com.apple.desktopservices DSDontWriteNetworkStores True
   killall Finder
