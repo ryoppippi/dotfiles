@@ -49,6 +49,7 @@
   "flatten.nvim": { "branch": "main", "commit": "92c59ae6200e6b04aff167577ebb8a9035a6d2b3" },
   "friendly-snippets": { "branch": "main", "commit": "dcd4a586439a1c81357d5b9d26319ae218cc9479" },
   "fuzzy-motion.vim": { "branch": "main", "commit": "f926a6080489d03b08af66cdd1e89b8c2f5c4f39" },
+  "garbage-day.nvim": { "branch": "main", "commit": "29d6abeed654bf142e0f5e741e1968b16f59357a" },
   "gh-actions-cache": { "branch": "main", "commit": "0e7c371e56e408bcc06c06001b29593f488b8d31" },
   "gh-copilot": { "branch": "main", "commit": "ca1ec3308c5860a7a5b728382276aa086fa9fa0d" },
   "gh-cr": { "branch": "main", "commit": "1f29ad1517617165160716c74395dd999ad9eeda" },
