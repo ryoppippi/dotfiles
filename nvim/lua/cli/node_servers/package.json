@@ -7,7 +7,7 @@
     "@oven/zig": "0.12.0-dev.1286",
     "@prisma/language-server": "5.11.0",
     "@tailwindcss/language-server": "0.0.16",
-    "@vtsls/language-server": "0.2.0",
+    "@vtsls/language-server": "0.2.1",
     "@vue/language-server": "2.0.6",
     "biome": "0.3.3",
     "emmet-ls": "0.4.2",
