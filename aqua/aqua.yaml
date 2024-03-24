@@ -41,7 +41,7 @@ packages:
   - name: antonmedv/fx@33.0.0
   - name: rhysd/actionlint@v1.6.27
   - name: git-lfs/git-lfs@v3.5.1
-  - name: starship/starship@v1.17.1
+  - name: starship/starship@v1.18.0
   - name: tinygo-org/tinygo@v0.31.2
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
