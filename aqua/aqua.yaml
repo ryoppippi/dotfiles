@@ -45,7 +45,7 @@ packages:
   - name: tinygo-org/tinygo@v0.31.2
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
-  - name: bootandy/dust@v0.9.0
+  - name: bootandy/dust@v1.0.0
   - name: cloudflare/cloudflared@2024.3.0
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.12.0
