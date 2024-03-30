@@ -98,3 +98,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # post install
 brew cleanup -s
+
+# allow sudo with touch id
+curl -sL https://gist.githubusercontent.com/kawaz/d95fb3b547351e01f0f3f99783180b9f/raw/beec8c942e68cc43ff7b9bcde344c2b76a95199b/install-pam_tid-and-pam_reattach.sh | bash
+
