@@ -52,29 +52,23 @@ if [ os == "linux" ] ; then
   rm -rf /var/lib/apt/lists/*
 fi
 
-# get ghp
-curl -sSfL "https://github.com/x-motemen/ghq/releases/download/${GHQ_VERSION}/ghq_$(uname)_$(uname -a).zip" \
-  | bsdtar -xvf- -C /tmp ghq 
-
-# get dotfiles 
-curl -sSfL https://github.com/rhysd/dotfiles/releases/download/${DOTFILES_VERSION}/dotfiles_$(uname)_$(uname -a).zip \
-  | bsdtar -xvf- -C /tmp dotfiles
-
-/tmp/ghq get ryoppippi/dotfiles
-
-DOTFILES_DIR=$(ghq root)/$(ghq list | grep ryoppippi/dotfiles)
-
-cd $DOTFILES_DIR \
-  && /tmp/dotfiles link .
-
 # aqua
 curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VERSION}/aqua-installer" | bash
 
 # install deps via aqua
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
-cd $DOTFILES_DIR/aqua \
-  && aqua install -l -a \
+cd /tmp
+  && aqua init
+  && aqua g -i rhysd/dotfiles
+  && aqua g -i x-motemen/ghq
+  && aqua i -l
+  && ghq get ryoppippi/dotfiles
+  && DOTFILES_DIR=$(ghq root)/$(ghq list | grep ryoppippi/dotfiles)
+  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua
+  && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml
+  && cd $AQUA_GLOBAL_CONFIG_DIR
+  && aqua install -l -a
   && dotfiles link .
 
 # install homebrew
