@@ -10,7 +10,7 @@ return {
 		{
 			"zigtools/zls",
 			build = {
-				"bun x @oven/zig build -Doptimize=ReleaseSafe --verbose",
+				"zig build -Doptimize=ReleaseSafe --verbose",
 			},
 			config = function(spec)
 				local Path = require("plenary.path")
