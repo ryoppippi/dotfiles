@@ -42,6 +42,7 @@ if [ os == "darwin" ] ; then
   defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
   defaults write com.apple.finder "_FXSortFoldersFirst" -bool true
   defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float 0
+  defaults write NSGlobalDomain AppleShowAllExtensions -bool true
   killall Finder
 fi
 
