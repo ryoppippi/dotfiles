@@ -15,9 +15,9 @@ os=$(uname -s | tr '[:upper:]' '[:lower:]')
 arch=$(uname -m)
 
 # XDG Base Directory
-mkdir -p $HOME/.config
-mkdir -p $HOME/.cache
-mkdir -p $HOME/.local/share
+mkdir -p $XD_CONFIG_HOME
+mkdir -p $XDG_CACHE_HOME
+mkdir -p $XDG_DATA_HOME
 
 if [ os == "darwin" ] ; then
   if ! xcode-select -p > /dev/null 2>&1 ; then
