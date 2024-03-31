@@ -4,6 +4,8 @@ function clean
     type -q aqua && aqua rm --all
     # brew
     type -q brew && brew cleanup -s
+    # mise
+    type -q mise && mise prune
 
     set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 
