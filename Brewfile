@@ -130,7 +130,6 @@ brew "metis"
 brew "msgpack"
 brew "zlib"
 brew "mysql-client"
-brew "neovim", args: ["HEAD"]
 brew "parallel"
 brew "plotutils"
 brew "portaudio"

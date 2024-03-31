@@ -1,3 +1,4 @@
 [tools]
 zig = "master"
 rust = "latest"
+neovim = "nightly"
