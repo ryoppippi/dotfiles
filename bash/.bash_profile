@@ -21,7 +21,7 @@ export POETRY_PATH="$HOME/.poetry/bin"
 export NODEBREWBIN="$HOME/.nodebrew/current/bin"
 export BUN_INSTALL="$HOME/.bun"
 export BUNBIN="$HOME/.bun/bin"
-export CARGOBIN="$HOME/.cargo/bin"
+# export CARGOBIN="$HOME/.cargo/bin"
 export NIMBLEBIN="$HOME/.nimble/bin"
 export GNUBIN="/usr/local/opt/coreutils/libexec/gnubin"
 export XCODEBIN="/Applications/Xcode.app/Contents/Developer/usr/bin"
@@ -67,7 +67,7 @@ eval "$(zoxide init bash)"
 # direnv
 eval "$(direnv hook bash)"
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # bat
 export BAT_THEME="TwoDark"
