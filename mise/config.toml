@@ -1,4 +1,5 @@
 [tools]
 zig = "master"
 rust = "latest"
+rust-analyzer = "latest"
 neovim = "nightly"
