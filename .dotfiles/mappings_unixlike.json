@@ -10,5 +10,6 @@
   "efm-langserver": "~/.config/efm-langserver",
   "pip/pip.conf": "~/.pip/pip.conf",
   "rye/config.toml": "~/.rye/config.toml",
+  "mise": "~/.config/mise",
   "zed/settings.json": "~/.config/zed/settings.json"
 }
