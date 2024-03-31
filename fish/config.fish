@@ -91,6 +91,7 @@ if type -q nvim
     set -gx MANPAGER "nvim -c ASMANPAGER -"
 end
 
+mise activate fish | source
 
 # config caches
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
