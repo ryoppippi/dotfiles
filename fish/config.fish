@@ -61,9 +61,6 @@ fish_add_path $HOME/.bun/bin
 set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
 
-# rust 
-fish_add_path $HOME/.cargo/bin
-
 # nim
 fish_add_path $HOME/.nimble/bin
 
