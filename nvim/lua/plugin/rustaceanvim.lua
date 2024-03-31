@@ -1,6 +1,6 @@
 return {
 	"mrcjkb/rustaceanvim",
 	cond = not is_vscode(),
-	version = "^3", -- Recommended
+	version = "^4",
 	ft = { "rust" },
 }
