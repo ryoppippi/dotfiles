@@ -38,7 +38,7 @@ packages:
   - name: Peltoche/lsd@v1.1.2
   - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.2
-  - name: antonmedv/fx@33.0.0
+  - name: antonmedv/fx@34.0.0
   - name: rhysd/actionlint@v1.6.27
   - name: git-lfs/git-lfs@v3.5.1
   - name: starship/starship@v1.18.1
