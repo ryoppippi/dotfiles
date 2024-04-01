@@ -71,6 +71,15 @@ M = {
 				config = le("kensaku"),
 			},
 			{ "fdschmidt93/telescope-egrepify.nvim", config = le("egrepify") },
+			{
+				"danielfalk/smart-open.nvim",
+				dependencies = {
+					"kkharji/sqlite.lua",
+					{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+					"nvim-telescope/telescope-fzy-native.nvim",
+				},
+				config = le("smart_open"),
+			},
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
 			-- 	config = le("frecency"),
