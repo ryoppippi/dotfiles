@@ -88,6 +88,9 @@ if type -q nvim
     set -gx MANPAGER "nvim -c ASMANPAGER -"
 end
 
+# Secretive
+set -gx SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+
 mise activate fish | source
 
 # config caches
