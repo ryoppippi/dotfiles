@@ -21,8 +21,8 @@ M = {
 					-- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
 					["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
 					["f"] = {
-						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
-						"Find File",
+						[[<cmd>Telescope smart_open<cr>]],
+						"Smart Open",
 					},
 					["d"] = {
 						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
@@ -71,6 +71,15 @@ M = {
 				config = le("kensaku"),
 			},
 			{ "fdschmidt93/telescope-egrepify.nvim", config = le("egrepify") },
+			{
+				"danielfalk/smart-open.nvim",
+				dependencies = {
+					"kkharji/sqlite.lua",
+					{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+					{ "nvim-telescope/telescope-fzy-native.nvim" },
+				},
+				config = le("smart_open"),
+			},
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
 			-- 	config = le("frecency"),
