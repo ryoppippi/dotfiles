@@ -89,7 +89,8 @@ if type -q nvim
 end
 
 # Secretive
-set -gx SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+test -e $SSH_SECRETIVE_SSH_SOCK && set -gx SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
 
 mise activate fish | source
 
