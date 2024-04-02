@@ -77,6 +77,7 @@ M = {
 				},
 				config = le("smart_open"),
 			},
+			{ "d00h/telescope-any" },
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
 			-- 	config = le("frecency"),
