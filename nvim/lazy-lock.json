@@ -160,7 +160,6 @@
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "svelte_inspector.vim": { "branch": "main", "commit": "ce1172819434bc9d4b72be8f4d6fac17577939f3" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86" },
-  "telescope-all-recent.nvim": { "branch": "main", "commit": "b47ef2069e91f128d19c24ca231b204a553edfcf" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-egrepify.nvim": { "branch": "master", "commit": "728dc1b7f31297876c3a3254fc6108108b6a9e9d" },
   "telescope-env.nvim": { "branch": "master", "commit": "00a703cc7b713cdda0a981d88fddf3ce25502af5" },
