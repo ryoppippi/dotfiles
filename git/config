@@ -116,3 +116,5 @@
 	autostash = true
 [merge]
 	ff = false
+[pull]
+	ff = only
