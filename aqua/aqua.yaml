@@ -80,7 +80,7 @@ packages:
   - name: watchexec/watchexec@v1.25.1
   - name: rclone/rclone@v1.66.0
   - name: hhatto/gocloc@v0.5.2
-  - name: tsl0922/ttyd@1.7.6
+  - name: tsl0922/ttyd@1.7.7
   - name: whalebrew/whalebrew@0.4.1
   - name: sharkdp/pastel@v0.9.0
   - name: dalance/procs@v0.14.5
