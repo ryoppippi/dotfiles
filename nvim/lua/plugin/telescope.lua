@@ -236,18 +236,18 @@ M = {
 			})
 		end,
 	},
-	{
-		"prochri/telescope-all-recent.nvim",
-		dependencies = {
-			"kkharji/sqlite.lua",
-			"nvim-telescope/telescope.nvim",
-		},
-		init = function()
-			on_load("telescope.nvim", function()
-				require("telescope-all-recent").setup({})
-			end)
-		end,
-	},
+	-- {
+	-- 	"prochri/telescope-all-recent.nvim",
+	-- 	dependencies = {
+	-- 		"kkharji/sqlite.lua",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- 	init = function()
+	-- 		on_load("telescope.nvim", function()
+	-- 			require("telescope-all-recent").setup({})
+	-- 		end)
+	-- 	end,
+	-- },
 }
 
 M.le = le
