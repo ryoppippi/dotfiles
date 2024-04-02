@@ -114,3 +114,5 @@
 	binary = true
 [rebase]
 	autostash = true
+[merge]
+	ff = false
