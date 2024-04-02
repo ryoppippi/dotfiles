@@ -18,18 +18,17 @@ M = {
 			require("which-key").register({
 				[","] = {
 					name = "+Telescope",
+					[","] = {
+						[[<cmd>Telescope smart_open<cr>]],
+						"Smart Open",
+					},
 					-- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
 					["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
-					["f"] = {
-						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
-						"Find File",
-					},
 					["d"] = {
 						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
 						"current_buffer_fuzzy_find",
 					},
 					["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
-					[","] = { [[<cmd>Telescope oldfiles<cr>]], "oldfiles" },
 					["e"] = { [[<cmd>Telescope file_browser<cr>]], "file_browser" },
 					["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string", mode = { "n", "x" } },
 					["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
