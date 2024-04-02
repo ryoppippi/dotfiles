@@ -78,11 +78,11 @@ M = {
 				config = le("smart_open"),
 			},
 			{ "d00h/telescope-any" },
+			{ "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
 			-- {
 			-- 	"nvim-telescope/telescope-frecency.nvim",
 			-- 	config = le("frecency"),
 			-- },
-			-- { "nvim-telescope/telescope-ghq.nvim", config = le("ghq") },
 			-- {
 			-- 	"nvim-telescope/telescope-media-files.nvim",
 			-- 	dependencies = {
