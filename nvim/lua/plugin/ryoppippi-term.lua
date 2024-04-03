@@ -4,6 +4,9 @@ return {
 	cmd = { "T", "Ts", "Tv", "Tg" },
 	keys = {
 		{ "g,", "<cmd>Tg<cr>" },
+		{ "<leader>tt", "<cmd>T<cr>" },
+		{ "<leader>ts", "<cmd>Ts<cr>" },
+		{ "<leader>tv", "<cmd>Tv<cr>" },
 	},
 	config = function()
 		local function openTerm(args)
