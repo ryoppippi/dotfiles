@@ -80,8 +80,10 @@ fish_add_path $HOME/.codon/bin
 fish_add_path $HOME/.scripts
 fish_add_path $HOME/.scripts/bin
 
+mise activate fish | source
+
 # Neovim
-if type -q nvim
+if type -q nvim or (type -q mise and test $(mise where -q neovim) != "")
     set -gx EDITOR nvim
     set -gx GIT_EDITOR nvim
     set -gx VISUAL nvim
@@ -91,8 +93,6 @@ end
 # Secretive
 set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 test -e $SSH_SECRETIVE_SSH_SOCK && set -gx SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
-
-mise activate fish | source
 
 # config caches
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
