@@ -15,6 +15,18 @@ M = {
 		dir = "",
 		event = "VeryLazy",
 		config = function()
+			local function telescope_grep_any()
+				local builtin = require("telescope.builtin")
+				local telescope_any = require("telescope-any")
+				local extensions = require("telescope").extensions
+				local grep_telescope_any = telescope_any.create_telescope_any({
+					pickers = {
+						["k "] = { extensions.kensaku.kensaku, "Kensaku" },
+						[""] = extensions.egrepify.egrepify,
+					},
+				})
+				grep_telescope_any()
+			end
 			require("which-key").register({
 				[","] = {
 					name = "+Telescope",
@@ -22,8 +34,7 @@ M = {
 						[[<cmd>Telescope smart_open<cr>]],
 						"Smart Open",
 					},
-					-- ["<space>"] = { [[<cmd>Telescope kensaku<cr>]], "live_grep" },
-					["<space>"] = { [[<cmd>Telescope live_grep<cr>]], "live_grep" },
+					["<space>"] = { telescope_grep_any, "live_grep or kensaku" },
 					["d"] = {
 						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
 						"current_buffer_fuzzy_find",
