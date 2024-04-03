@@ -16,7 +16,7 @@ return {
 		theta.buttons.val = {
 			dashboard.button("e", "  New file", "<cmd>enew<cr>"),
 			dashboard.button("s", "  Restore Session", '<cmd>lua require("persistence").load()<cr>'),
-			dashboard.button("f", "  Files", "<cmd>Telescope find_files<cr>"),
+			dashboard.button("f", "  Files", "<cmd>Telescope smart_open<cr>"),
 			dashboard.button(".", "󰈙  Oil", "<cmd>Oil<cr>"),
 			dashboard.button("r", "  MRU", "<cmd>Telescope oldfiles<cr>"),
 			dashboard.button("d", "  dotfiles", "<cmd>Config<cr>"),
