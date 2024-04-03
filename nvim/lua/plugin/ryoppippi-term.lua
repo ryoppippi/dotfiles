@@ -1,11 +1,7 @@
 return {
 	dir = "",
 	name = "ryoppippi-term.nvim",
-	cmd = { "T", "TS", "TV" },
-	keys = {
-		{ "stv", "<cmd>TV<cr>" },
-		{ "sts", "<cmd>TS<cr>" },
-	},
+	cmd = { "T", "Ts", "Tv" },
 	config = function()
 		local function openTerm(args)
 			local tf = vim.cmd.terminal
@@ -22,13 +18,13 @@ return {
 			openTerm(args)
 		end, { nargs = "*" })
 
-		vim.api.nvim_create_user_command("TS", function(tbl)
+		vim.api.nvim_create_user_command("Ts", function(tbl)
 			local args = tbl.args
 			vim.cmd.split()
 			openTerm(args)
 		end, { nargs = "*" })
 
-		vim.api.nvim_create_user_command("TV", function(tbl)
+		vim.api.nvim_create_user_command("Tv", function(tbl)
 			local args = tbl.args
 			vim.cmd.vsplit()
 			openTerm(args)
