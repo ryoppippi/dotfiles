@@ -20,6 +20,8 @@ end
 
 return {
 	on_attach = function(_, bufnr)
+		---@param desc string
+		---@return vim.keymap.set.Opts
 		local function opts(desc)
 			return { silent = true, buffer = bufnr, desc = desc }
 		end
