@@ -6,10 +6,6 @@
   excludesfile = /Users/ryoppippi/.gitignore_global
   editor = nvim
   pager = delta
-[interactive]
-  diffFilter = delta --color-only --dark
-[remote]
-  pushDefault = origin
 
 [alias]
   a = add 
@@ -70,7 +66,6 @@
   gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
-
 [ghq]
   root = ~/.go/src
   root = ~/ghq
@@ -120,3 +115,7 @@
 	ff = false
 [pull]
 	ff = only
+[interactive]
+  diffFilter = delta --color-only --dark
+[remote]
+  pushDefault = origin
