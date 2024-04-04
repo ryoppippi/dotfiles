@@ -113,6 +113,9 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     type -q zoxide && zoxide init fish >>$CONFIG_CACHE
     # starship init fish >>$CONFIG_CACHE
 
+    # set vivid colors
+    type -q vivid && echo "set -gx LS_COLORS '$(vivid generate gruvbox-dark)'" >>$CONFIG_CACHE
+
     set_color brmagenta --bold --underline
     echo "config cache updated"
     set_color normal
