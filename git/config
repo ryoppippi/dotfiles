@@ -90,7 +90,9 @@
   ; pushInsteadOf = https://github.com/
 [commit]
 	verbose = true
-  ; gpgSign = true
+	gpgsign = true
+[gpg]
+	format = ssh
 [delta]
   diff-so-fancy=true
   keep-plus-minus-markers=true
