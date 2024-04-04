@@ -8,6 +8,7 @@ neovim = "nightly"
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-outdated" = "latest"
 "cargo:cargo-edit" = "latest"
+"cargo:cargo-bisect-rustc" = "latest"
 
 [settings]
 experimental = true
