@@ -2,4 +2,8 @@
 zig = "master"
 rust = "latest"
 rust-analyzer = "latest"
+"cargo:cargo-watch" = "latest"
 neovim = "nightly"
+
+[settings]
+experimental = true
