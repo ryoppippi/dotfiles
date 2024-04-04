@@ -4,6 +4,7 @@ rust = "latest"
 rust-analyzer = "latest"
 "cargo:cargo-watch" = "latest"
 neovim = "nightly"
+"cargo:cargo-expand" = "latest"
 
 [settings]
 experimental = true
