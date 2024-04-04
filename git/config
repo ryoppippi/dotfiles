@@ -11,7 +11,7 @@
   a = add 
   aa = add -a
   ap = add -p
-  apf = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta --dark \" | xargs -0 -o -t git add -p"
+  apf = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"echo {} | xargs git diff | delta\" | xargs -0 -o -t git add -p"
   cm = commit -m
   cma = commit --amend -m 
   fixit = commit --amend --no-edit
@@ -89,6 +89,7 @@
 [gpg]
 	format = ssh
 [delta]
+  dark = true
   diff-so-fancy=true
   keep-plus-minus-markers=true
   ; side-by-side = true
@@ -116,6 +117,6 @@
 [pull]
 	ff = only
 [interactive]
-  diffFilter = delta --color-only --dark
+  diffFilter = delta --color-only
 [remote]
   pushDefault = origin
