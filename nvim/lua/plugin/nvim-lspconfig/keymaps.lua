@@ -4,16 +4,15 @@
 ---@param opts vim.keymap.set.Opts
 local function keyset(mode, lhs, rhs, opts)
 	local maparg = vim.fn.maparg
-	local empty = vim.fn.empty
 
 	if type(mode) == "table" then
 		for _, m in ipairs(mode) do
-			vim.keymap.set(m, lhs, rhs, opts)
+			keyset(m, lhs, rhs, opts)
 		end
 		return
 	end
 
-	if tb(empty(maparg(lhs, mode))) then
+	if (maparg(lhs, mode)) == "" then
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
 end
