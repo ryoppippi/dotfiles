@@ -1,3 +1,23 @@
+---@param mode string|string[]
+---@param lhs string
+---@param rhs string|function
+---@param opts vim.keymap.set.Opts
+local function keyset(mode, lhs, rhs, opts)
+	local maparg = vim.fn.maparg
+	local empty = vim.fn.empty
+
+	if type(mode) == "table" then
+		for _, m in ipairs(mode) do
+			vim.keymap.set(m, lhs, rhs, opts)
+		end
+		return
+	end
+
+	if tb(empty(maparg(lhs, mode))) then
+		vim.keymap.set(mode, lhs, rhs, opts)
+	end
+end
+
 return {
 	on_attach = function(_, bufnr)
 		local function opts(desc)
@@ -11,12 +31,12 @@ return {
 		local has_inc_rename = has("inc-rename.nvim")
 
 		-- hover doc
-		vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts("hover doc"))
+		keyset("n", "gh", vim.lsp.buf.hover, opts("hover doc"))
 
 		-- jump to
-		-- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts("jump to declaration"))
+		-- keyset("n", "gD", vim.lsp.buf.declaration, opts("jump to declaration"))
 
-		vim.keymap.set("n", "gd", function()
+		keyset("n", "gd", function()
 			if has_glance then
 				vim.cmd([[Glance definitions]])
 				return
@@ -27,7 +47,7 @@ return {
 			end
 			vim.lsp.buf.type_definition()
 		end, opts("jump to definition"))
-		vim.keymap.set("n", "gt", function()
+		keyset("n", "gt", function()
 			if has_glance then
 				vim.cmd([[Glance type_definitions]])
 				return
@@ -38,7 +58,7 @@ return {
 			end
 			vim.lsp.buf.type_definition()
 		end, opts("jump to type_definition"))
-		vim.keymap.set("n", "gI", function()
+		keyset("n", "gI", function()
 			if has_glance then
 				vim.cmd([[Glance implementations]])
 				return
@@ -49,7 +69,7 @@ return {
 			end
 			vim.lsp.buf.implementation()
 		end, opts("jump to implementation"))
-		vim.keymap.set("n", "gr", function()
+		keyset("n", "gr", function()
 			if has_glance then
 				vim.cmd([[Glance references]])
 				return
@@ -62,20 +82,20 @@ return {
 		end, opts("jump to references"))
 
 		-- signature_help
-		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts("signature_help"))
-		vim.keymap.set("n", "gk", vim.lsp.buf.signature_help, opts("signature_help"))
+		keyset("i", "<C-k>", vim.lsp.buf.signature_help, opts("signature_help"))
+		keyset("n", "gk", vim.lsp.buf.signature_help, opts("signature_help"))
 
 		-- diagnostics
-		vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts("open diagnostics float"))
+		keyset("n", "gl", vim.diagnostic.open_float, opts("open diagnostics float"))
 		if has_telescope then
-			vim.keymap.set("n", "gL", [[<cmd>Telescope diagnostics<cr>]], opts("open diagnostics telescope"))
+			keyset("n", "gL", [[<cmd>Telescope diagnostics<cr>]], opts("open diagnostics telescope"))
 		end
 
-		vim.keymap.set("n", "-", vim.diagnostic.goto_next, opts("goto next diagnostic"))
-		vim.keymap.set("n", "_", vim.diagnostic.goto_prev, opts("goto prev diagnostic"))
+		keyset("n", "-", vim.diagnostic.goto_next, opts("goto next diagnostic"))
+		keyset("n", "_", vim.diagnostic.goto_prev, opts("goto prev diagnostic"))
 
 		-- rename
-		vim.keymap.set("n", "cr", function()
+		keyset("n", "cr", function()
 			if has_inc_rename then
 				require("inc_rename")
 				return ":IncRename " .. vim.fn.expand("<cword>")
@@ -84,7 +104,7 @@ return {
 		end, vim.tbl_deep_extend("error", { expr = true }, opts("rename")))
 
 		-- code actions
-		vim.keymap.set({ "n", "v", "x" }, "ga", function()
+		keyset({ "n", "v", "x" }, "ga", function()
 			if has_action_preview then
 				require("actions-preview").code_actions()
 				return
@@ -93,9 +113,9 @@ return {
 		end, opts("code_action"))
 
 		-- workspace
-		vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
-		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("remove workspace folder"))
-		vim.keymap.set("n", "<leader>wl", function()
+		keyset("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
+		keyset("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("remove workspace folder"))
+		keyset("n", "<leader>wl", function()
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 		end, opts("list workspace folders"))
 	end,
