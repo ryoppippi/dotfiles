@@ -3,6 +3,15 @@ vim.api.nvim_create_user_command("Config", function()
 	vim.cmd.e(vim.fn.stdpath("config"))
 end, { nargs = 0 })
 
+vim.api.nvim_create_user_command("ConfigTelescope", function()
+	local ok = (pcall(require, "telescope"))
+	if not ok then
+		vim.notify("Telescope is not installed")
+	end
+
+	vim.cmd("Telescope find_files cwd=" .. vim.fn.stdpath("config"))
+end, { nargs = 0 })
+
 -- indent change
 vim.api.nvim_create_user_command("IndentChange", "set tabstop=<args> shiftwidth=<args>", { force = true, nargs = 1 })
 
