@@ -117,3 +117,4 @@ packages:
   - name: jdx/mise@v2024.3.11
   - name: ducaale/xh@v0.21.0
   - name: xo/usql@v0.18.1
+  - name: sharkdp/vivid@v0.9.0
