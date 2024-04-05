@@ -8,11 +8,6 @@ return {
 	},
 	opts = {
 		debug = false, -- Enable debugging
-		-- prompts = {
-		-- 	Explain = {
-		-- prompt = "/COPILOT_EXPLAIN 上のコードの説明を段落として書きなさい。",
-		-- 	},
-		-- },
 	},
 	-- See Commands section for default commands if you want to lazy load on them
 }
