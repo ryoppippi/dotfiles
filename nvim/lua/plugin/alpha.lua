@@ -21,6 +21,7 @@ return {
 			dashboard.button("r", "  MRU", "<cmd>Telescope oldfiles<cr>"),
 			dashboard.button("d", "  dotfiles", "<cmd>Config<cr>"),
 			dashboard.button("z", "󰒲  Lazy", "<cmd>Lazy<cr>"),
+			dashboard.button("q", "󰅚  Quit", "<cmd>q<cr>"),
 		}
 		return theta.config
 	end,
