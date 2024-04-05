@@ -1,14 +1,14 @@
 [tools]
 zig = "master"
-rust = "latest"
-rust-analyzer = "latest"
-"cargo:cargo-watch" = "latest"
 neovim = "nightly"
-"cargo:cargo-expand" = "latest"
-"cargo:cargo-audit" = "latest"
-"cargo:cargo-outdated" = "latest"
-"cargo:cargo-edit" = "latest"
-"cargo:cargo-bisect-rustc" = "latest"
+rust = "2024-04-01"
+rust-analyzer = "2024-04-01"
+"cargo:cargo-watch" = "8.5.2"
+"cargo:cargo-expand" = "1.0.81"
+"cargo:cargo-audit" = "0.20.0"
+"cargo:cargo-outdated" = "0.15.0"
+"cargo:cargo-edit" = "0.12.2"
+"cargo:cargo-bisect-rustc" = "0.6.8"
 
 [settings]
 experimental = true
