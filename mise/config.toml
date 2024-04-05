@@ -1,7 +1,7 @@
 [tools]
 neovim = "nightly"
 zig = "master"
-rust = "2024-04-01"
+rust = "1.77.1"
 rust-analyzer = "2024-04-01"
 "cargo:cargo-watch" = "8.5.2"
 "cargo:cargo-expand" = "1.0.81"
