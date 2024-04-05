@@ -12,7 +12,12 @@ local function keyset(mode, lhs, rhs, opts)
 		return
 	end
 
-	if (maparg(lhs, mode)) == "" then
+	local function is_nop(_lhs, _mode)
+		local keymap = maparg(_lhs, _mode)
+		return (keymap == "" or keymap:lower() == "<nop>")
+	end
+
+	if is_nop(lhs, mode) then
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
 end
