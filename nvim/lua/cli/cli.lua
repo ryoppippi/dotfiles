@@ -26,5 +26,12 @@ return {
 				vim.env.PATH = BIN_DIR:absolute() .. ":" .. vim.env.PATH
 			end,
 		},
+
+		-- rust
+		{
+			name = "rust-analyzer",
+			dir = "",
+			build = { "rustup component add rust-analyzer" },
+		},
 	},
 }
