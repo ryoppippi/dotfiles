@@ -3,6 +3,7 @@
   "aqua": "~/.config/aquaproj-aqua",
   "bash/.bash_profile": "~/.bash_profile",
   "bash/.bashrc": "~/.bashrc",
+  "bat": "~/.config/bat",
   "zsh": "~/.config/zsh",
   "zshenv": "~/.zshenv",
   "fish": "~/.config/fish",

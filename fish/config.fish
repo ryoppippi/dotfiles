@@ -19,7 +19,6 @@ end
 
 # theme
 set -gx theme_nerd_fonts yes
-set -gx BAT_THEME TwoDark
 set -gx BIT_THEME monochrome
 source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
