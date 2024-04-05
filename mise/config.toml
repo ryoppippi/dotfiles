@@ -1,6 +1,6 @@
 [tools]
-zig = "master"
 neovim = "nightly"
+zig = "master"
 rust = "2024-04-01"
 rust-analyzer = "2024-04-01"
 "cargo:cargo-watch" = "8.5.2"
