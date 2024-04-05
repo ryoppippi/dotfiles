@@ -72,7 +72,7 @@
 [color]
   ui = auto
 [tag]
-  forceSignAnnotated = true
+  ; forceSignAnnotated = true
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
@@ -85,7 +85,7 @@
   ; pushInsteadOf = https://github.com/
 [commit]
 	verbose = true
-	gpgsign = true
+	; gpgsign = true
 [gpg]
 	format = ssh
 [delta]
