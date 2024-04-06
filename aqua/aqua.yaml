@@ -113,7 +113,7 @@ packages:
   - name: LuaLS/lua-language-server@3.7.4
   - name: astral-sh/ruff@v0.3.5
   - name: eza-community/eza@v0.18.9
-  - name: crates.io/gitu@0.13.1
+  - name: crates.io/gitu@0.14.0
   - name: jdx/mise@v2024.4.0
   - name: ducaale/xh@v0.21.0
   - name: xo/usql@v0.18.1
