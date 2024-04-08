@@ -59,7 +59,7 @@ packages:
   - name: Aloxaf/silicon@v0.5.2
   - name: oven-sh/bun@bun-v1.1.1
   - name: wader/fq@v0.10.0
-  - name: planetscale/cli@v0.192.0
+  - name: planetscale/cli@v0.193.0
   - name: supabase/cli@v1.153.4
   - name: nao1215/gup@v0.24.3
   - name: hadolint/hadolint@v2.12.0
