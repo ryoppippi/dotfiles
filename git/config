@@ -46,7 +46,6 @@
   swf =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
-  cob = checkout -b
   cid = log -n 1 --format=%H
   clean-local-branches = !"git branch --merged | grep -v \\* | xargs git branch -d"
   clb = clean-local-branches
