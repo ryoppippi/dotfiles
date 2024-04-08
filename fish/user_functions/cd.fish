@@ -1,9 +1,5 @@
-## cd後にls 
-
-# functions --copy cd standard_cd
-
-function cd
-    builtin cd $argv
-    type -q lsd && lsd -hlF && return
-    ls -hlF
+function __ls_after_cd__on_variable_pwd --on-variable PWD
+    if status --is-interactive
+        ls -hlF
+    end
 end
