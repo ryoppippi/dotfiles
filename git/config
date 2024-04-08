@@ -43,9 +43,9 @@
   sw = switch
   swc = switch -c
   ; swf =!git branch -a | fzf | xargs git switch
+  swor = "!f() { local -r ref=$(git branch -r | fzf); git sw \"${1:-${ref#*/}}\" $ref; }; f"
   po = push origin
   difff = diff --word-diff
-  cor = "!f() { local -r ref=$(git branch -r | fzf); git checkout -b \"${1:-${ref#*/}}\" $ref; }; f"
   cob = checkout -b
   cid = log -n 1 --format=%H
   clean-local-branches = !"git branch --merged | grep -v \\* | xargs git branch -d"
