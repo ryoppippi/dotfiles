@@ -43,6 +43,7 @@
   sw = switch
   swc = switch -c
   swor = "!f() { local -r ref=$(git branch -r | fzf); git sw \"${1:-${ref#*/}}\" $ref; }; f"
+  ; coc = ! git log --pretty=oneline --abbrev-commit --reverse | fzf --tac +s -e | awk '{print $1;}' | read -l result; and git checkout "$result"
   swf =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
