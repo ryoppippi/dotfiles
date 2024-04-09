@@ -14,20 +14,18 @@ return {
 		},
 	},
 	init = function()
+		local i = require("plenary.iterators")
+
+		local oilPathPatterns = { "oil://", "oil-ssh://", "oil-trash://" }
 		local path = vim.fn.expand("%:p")
-		local oilPathList = { "oil://", "oil%-ssh://", "oil%-trash://" }
-		local isDir = vim.fn.isdirectory(path)
-		local isOilPath = false
 
-		for _, oilPath in ipairs(oilPathList) do
-			if string.match(path, oilPath) ~= nil then
-				isOilPath = true
-			end
-		end
-
-		if isOilPath or isDir then
-			require("oil")
-		end
+		-- stylua: ignore start
+		local isDir = tb(vim.fn.isdirectory(path))
+		local isOilPath = i.iter(oilPathPatterns):any(function(opp)
+			return string.find(path, opp, 1, true)
+		end)
+		if isDir or isOilPath then require("oil") end
+		-- stylua: ignore end
 	end,
 	opts = function()
 		local trash_command = "trash"
