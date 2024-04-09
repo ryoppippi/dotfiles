@@ -46,6 +46,7 @@
   "find-git-root.nvim": { "branch": "main", "commit": "8586a46c88f720f40f02138e1aa28509b26f54fa" },
   "flask-snippets": { "branch": "master", "commit": "db0a50c214b541c5514cdfcae221bdd236cd39d1" },
   "flatten.nvim": { "branch": "main", "commit": "92c59ae6200e6b04aff167577ebb8a9035a6d2b3" },
+  "freeze.nvim": { "branch": "main", "commit": "214e9e360066c92e3eaac514cf6325bf6c235bc6" },
   "friendly-snippets": { "branch": "main", "commit": "ea068f1becd91bcd4591fceb6420d4335e2e14d3" },
   "fuzzy-motion.vim": { "branch": "main", "commit": "f926a6080489d03b08af66cdd1e89b8c2f5c4f39" },
   "garbage-day.nvim": { "branch": "main", "commit": "3af496f0d1dc6586dcf4ceda6bbf61a8f820ab66" },
