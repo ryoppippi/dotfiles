@@ -80,8 +80,6 @@ fish_add_path $HOME/.codon/bin
 fish_add_path $HOME/.scripts
 fish_add_path $HOME/.scripts/bin
 
-mise activate fish | source
-
 # Neovim
 if type -q nvim or (type -q mise and test $(mise where -q neovim) != "")
     set -gx EDITOR nvim
