@@ -125,12 +125,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		-- add blank lines
 		local function append_new_lines(offset_line)
 			local peridot = require("peridot")
+			local i = require("plenary.iterators")
 			return peridot
 				and peridot.repeatable_edit(function(ctx)
 					local curpos = vim.fn.line(".")
 					local pos_line = curpos + offset_line
 					local n_lines = ctx.count1
-					local lines = require("core.utils").repeat_element("", n_lines)
+					-- stylua: ignore
+					local lines = i.range(n_lines):map(function() return "" end):tolist()
+
 					vim.fn.append(pos_line, lines)
 				end)
 		end
