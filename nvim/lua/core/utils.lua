@@ -49,29 +49,4 @@ function M.redetect_filetype()
 	vim.bo.filetype = vim.bo.filetype
 end
 
-function M.repeat_element(x, n)
-	local tbl = {}
-	for _ = 1, n, 1 do
-		table.insert(tbl, x)
-	end
-	return tbl
-end
-
-function M.combination(tbl1, tbl2, separator)
-	local return_events = {}
-	for _, ext in ipairs(tbl1) do
-		for _, event in ipairs(tbl2) do
-			table.insert(return_events, string.format("%s *.%s", event, ext))
-		end
-	end
-	return return_events
-end
-
-function M.event_exe_combination(events, exts, init)
-	return vim.tbl_flatten({
-		init or {},
-		M.combination(exts, events, " *."),
-	})
-end
-
 return M
