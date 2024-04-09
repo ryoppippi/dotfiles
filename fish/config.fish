@@ -27,14 +27,6 @@ fish_add_path $HOME/.local/bin
 fish_add_path /usr/local/opt/coreutils/libexec/gnubin
 fish_add_path /usr/local/opt/curl/bin
 
-# brew
-set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
-set -gx HOMEBREW_NO_AUTO_UPDATE 1
-set -gx HOMEBREW_ARM /opt/homebrew
-set -gx HOMEBREW_X86_64 /usr/local
-fish_add_path $HOMEBREW_ARM/bin
-fish_add_path $HOMEBREW_X86_64/bin
-
 # aqua
 set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
 set -gx AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
