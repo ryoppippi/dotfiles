@@ -195,7 +195,6 @@
   "vim-ref": { "branch": "master", "commit": "c452d2ce084a972c5af03827519aada799fd0b06" },
   "vim-rengbang": { "branch": "master", "commit": "e8c58cade2208b90dca989abfa9bcf1d79c4e931" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
-  "vim-silicon": { "branch": "master", "commit": "4a93122ae2139a12e2a56f064d086c05160b6835" },
   "vim-snippets": { "branch": "master", "commit": "393d980157b8149b3ff65a48bc4aae24dca9c846" },
   "vim-sonictemplate": { "branch": "master", "commit": "b85d7b5802c7efdf2b3fbf3dea2119c25322bab3" },
   "vim-startuptime": { "branch": "master", "commit": "ac2cccb5be617672add1f4f3c0a55ce99ba34e01" },
