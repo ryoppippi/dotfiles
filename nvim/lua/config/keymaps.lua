@@ -98,7 +98,7 @@ end, { expr = true, silent = true })
 vim.keymap.set(
 	{ "n", "v" },
 	"<leader>b",
-	vim.fn.maparg("gx", "n", 0, 1).callback,
+	vim.fn.maparg("gx", "n", false, true).callback,
 	{ desc = "Open URL under cursor in browser" }
 )
 vim.keymap.del({ "n", "v" }, "gx")
