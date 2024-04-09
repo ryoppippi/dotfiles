@@ -696,7 +696,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "mission_control"
+                            "key_code": "f18"
                         }
                     ]
                 },
@@ -706,7 +706,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "launchpad"
+                            "key_code": "f17"
                         }
                     ]
                 },
@@ -716,7 +716,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "illumination_decrement"
+                            "consumer_key_code": "dictation"
                         }
                     ]
                 },
@@ -726,7 +726,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "illumination_increment"
+                            "key_code": "f16"
                         }
                     ]
                 },
