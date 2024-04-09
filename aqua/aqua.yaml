@@ -120,3 +120,4 @@ packages:
   - name: sharkdp/vivid@v0.9.0
   - name: ynqa/jnv@v0.2.1
   - name: charmbracelet/freeze@v0.1.6
+  - name: svenstaro/genact@v1.4.2
