@@ -259,29 +259,7 @@ return {
 		setup(lspconfig.prismals)
 
 		-- lua
-		setup(lspconfig.lua_ls, {
-			on_attach = format_config(false),
-			flags = {
-				debounce_text_changes = 150,
-			},
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					completion = {
-						showWord = "Disable",
-						callSnippet = "Replace",
-					},
-					format = {
-						enable = false,
-					},
-					hint = {
-						enable = true,
-					},
-				},
-			},
-		})
+		setup(unpack(require("plugin.nvim-lspconfig.servers.lua_ls")))
 
 		-- json
 		setup(lspconfig.jsonls, {
@@ -294,6 +272,8 @@ return {
 				},
 			},
 		})
+
+		setup(unpack(require("plugin.nvim-lspconfig.servers.lua_ls")))
 
 		-- yaml
 		setup(lspconfig.yamlls, {
