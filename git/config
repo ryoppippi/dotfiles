@@ -82,10 +82,10 @@
   default = current
   useForceIfIncludes = true
 ; [url "git@github.com:"]
-  ; pushInsteadOf = https://github.com/
+  pushInsteadOf = https://github.com/
 [commit]
 	verbose = true
-	; gpgsign = true
+	gpgsign = true
 [gpg]
 	format = ssh
 [delta]
