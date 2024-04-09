@@ -6,32 +6,39 @@ local lspconfig_opts = (
 local format_config = lspconfig_opts.format_config
 
 local lua_ls = require("lspconfig").lua_ls
+local i = require("plenary.iterators")
 
 ---@param names string[]
----@return string[]
+---@return Iterator<string>
 local function get_plugin_paths(names)
 	local plugins = require("lazy.core.config").plugins
-	local paths = {}
-	for _, name in ipairs(names) do
-		if plugins[name] then
-			table.insert(paths, plugins[name].dir .. "/lua")
-		else
-			vim.notify("Invalid plugin name: " .. name)
-		end
-	end
-	return paths
+	return i.iter(names)
+		:filter(function(n)
+			local ia = plugins[n] ~= nil
+			if not ia then
+				vim.notify("Invalid plugin name: " .. n)
+			end
+			return ia
+		end)
+		:map(function(n)
+			return plugins[n].dir .. "/lua"
+		end)
 end
 
 ---@param plugins string[]
 ---@return string[]
 local function library(plugins)
 	local paths = get_plugin_paths(plugins)
-	table.insert(paths, vim.fn.stdpath("config") .. "/lua")
-	table.insert(paths, vim.env.VIMRUNTIME .. "/lua")
-	table.insert(paths, "${3rd}/luv/library")
-	table.insert(paths, "${3rd}/busted/library")
-	table.insert(paths, "${3rd}/luassert/library")
-	return paths
+
+	return i.iter({
+		vim.fn.stdpath("config") .. "/lua",
+		vim.env.VIMRUNTIME .. "/lua",
+		"${3rd}/luv/library",
+		"${3rd}/busted/library",
+		"${3rd}/luassert/library",
+	})
+		:chain(paths)
+		:tolist()
 end
 
 return {
