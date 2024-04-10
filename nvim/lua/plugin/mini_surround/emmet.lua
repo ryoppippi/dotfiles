@@ -1,5 +1,7 @@
--- https://blog.atusy.net/2023/09/01/mini-surround-emmet/
+-- copy from: https://github.com/atusy/dotfiles/blob/2c646b21f43ab1ef6098fd19f2cf64aa2143d5ea/dot_config/nvim/lua/atusy/parser/emmet.lua#L4
+
 local lpeg = vim.lpeg
+
 local name = (lpeg.P(1) - lpeg.S("#.[>")) ^ 1
 local tag = lpeg.Cg(name, "tag")
 local id = lpeg.P("#") * name
@@ -79,38 +81,6 @@ local function totag(x)
 end
 
 return {
-	"echasnovski/mini.surround",
-	version = "*",
-	event = "VeryLazy",
-	enabled = true,
-	opts = {
-		n_lines = 100,
-		mappings = {
-			add = "sa", -- Add surrounding in Normal and Visual modes
-			delete = "sd", -- Delete surrounding
-			find = "sf", -- Find surrounding (to the right)
-			find_left = "sF", -- Find surrounding (to the left)
-			highlight = "", -- Highlight surrounding
-			replace = "sr", -- Replace surrounding
-			update_n_lines = "sn", -- Update `n_lines`
-			suffix_last = "l", -- Suffix to search with "prev" method
-			suffix_next = "n", -- Suffix to search with "next" method
-		},
-		custom_surroundings = {
-			t = {
-				input = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- from https://github.com/echasnovski/mini.surround/blob/14f418209ecf52d1a8de9d091eb6bd63c31a4e01/lua/mini/surround.lua#LL1048C13-L1048C72
-				output = function()
-					local emmet = require("mini.surround").user_input("Emmet")
-					if not emmet then
-						return nil
-					end
-					return totag(emmet)
-				end,
-			},
-		},
-	},
-	config = function(_, opts)
-		-- use gz mappings instead of s to prevent conflict with leap
-		require("mini.surround").setup(opts)
-	end,
+	parse = parse,
+	totag = totag,
 }
