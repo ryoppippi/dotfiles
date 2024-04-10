@@ -317,7 +317,7 @@ return {
 		setup(lspconfig.r_language_server)
 
 		-- sql
-		setup(lspconfig.sqlls)
+		setup(lspconfig.sqls)
 
 		-- zls
 		setup(lspconfig.zls)
