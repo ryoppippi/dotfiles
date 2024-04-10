@@ -129,6 +129,7 @@
   "oil.nvim": { "branch": "master", "commit": "e462a3446505185adf063566f5007771b69027a1" },
   "other.nvim": { "branch": "main", "commit": "d36a66af270b63459c080d4589126a06cf56578c" },
   "package-info.nvim": { "branch": "master", "commit": "45acce5b12ce824332d8000cc2c91805b6710446" },
+  "parinfer-rust": { "branch": "master", "commit": "0e4d52e712641ad351a1bfe6cee3d34d63ed087b" },
   "peridot.vim": { "branch": "master", "commit": "5dda71a487d225c16209617d34acff08afb2d50b" },
   "persistence.nvim": { "branch": "main", "commit": "4982499c1636eac254b72923ab826ee7827b3084" },
   "plenary.nvim": { "branch": "master", "commit": "8aad4396840be7fc42896e3011751b7609ca4119" },
