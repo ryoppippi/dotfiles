@@ -2,7 +2,7 @@
 return {
 	"echasnovski/mini.surround",
 	version = "*",
-	event = "VeryLazy",
+	keys = { { "s", "<Nop>", mode = "" } },
 	enabled = true,
 	opts = {
 		n_lines = 100,
