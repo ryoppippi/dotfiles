@@ -60,6 +60,7 @@
   "gh-poi": { "branch": "main", "commit": "94a5819db1dc3a6a846afcdfa3b7290730f903ec" },
   "gh-q": { "branch": "main", "commit": "5dc627f350902e0166016a9dd1f9479c75e3f392" },
   "gin.vim": { "branch": "main", "commit": "bba0adcbd17e54c2cc566cae88fd68a58d702e7f" },
+  "gist.nvim": { "branch": "main", "commit": "92b13e486dd9fd083750450e0d262fcc68a62b91" },
   "git-conflict.nvim": { "branch": "main", "commit": "4c8e252b87d54d944c1e56bfb477f78b6fdaf661" },
   "git-rebase-auto-diff.nvim": { "branch": "main", "commit": "ad95f18cb85c24ddc0b48bf190bc313dfc58e2d6" },
   "gitignore.nvim": { "branch": "master", "commit": "2455191ec94da8ed222806a4fe3aa358eac1e558" },
