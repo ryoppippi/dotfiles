@@ -54,6 +54,10 @@ M = {
 					["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
 					["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
 					["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
+					["f"] = {
+						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
+						"Find Files",
+					},
 				},
 			})
 		end,
