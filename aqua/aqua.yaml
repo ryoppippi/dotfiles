@@ -55,7 +55,7 @@ packages:
   - name: dylanaraps/neofetch@7.1.0
   - name: projectdiscovery/httpx@v1.6.0
   - name: dandavison/delta@0.17.0
-  - name: rhysd/dotfiles@v0.2.2
+  - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.2
   - name: oven-sh/bun@bun-v1.1.3
   - name: wader/fq@v0.10.0
