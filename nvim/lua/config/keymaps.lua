@@ -80,6 +80,7 @@ vim.keymap.set("c", "<C-d>", "<DEL>", { silent = false })
 
 -- regexp
 vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
+vim.keymap.set("n", "<leader>r", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
 
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
