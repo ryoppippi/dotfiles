@@ -123,3 +123,4 @@ packages:
   - name: svenstaro/genact@v1.4.2
   - name: sqls-server/sqls@v0.2.27
   - name: ClementTsang/bottom@0.9.6
+  - name: graelo/pumas@v0.2.3
