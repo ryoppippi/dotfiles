@@ -112,7 +112,7 @@ local config = {
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
 
-	window_background_opacity = 0.9,
+	window_background_opacity = 0.89,
 	colors = {},
 }
 
