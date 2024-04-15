@@ -87,6 +87,7 @@ local config = {
 	font_size = 13.0,
 	tab_bar_at_bottom = false,
 	use_fancy_tab_bar = false,
+	force_reverse_video_cursor = true,
 	hide_tab_bar_if_only_one_tab = true,
 	adjust_window_size_when_changing_font_size = false,
 	window_padding = {
@@ -110,12 +111,17 @@ local config = {
 		},
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
+
+	window_background_opacity = 0.9,
+	colors = {},
 }
 
 wezterm.on("gui-startup", function(cmd)
 	local _, _, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
 end)
+
+config.colors.tab_bar = require("tab_bar")
 config = utils.merge_tables(config, require("colors.kanagawa_dragon"))
 
 require("zen-mode")
