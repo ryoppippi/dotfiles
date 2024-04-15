@@ -71,6 +71,7 @@ abbr -a gpfo 'git pushf origin'
 abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 abbr -a gsw 'git switch'
+abbr -a gg 'ghq get'
 
 # github copilot
 abbr -a --set-cursor q gh copilot suggest -t shell \"%\"
