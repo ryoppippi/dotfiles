@@ -16,21 +16,16 @@ return {
 				return
 			end
 
-			--- @type string | nil
-			local replaced_reg_content = nil
 			vim.ui.input({
 				prompt = "Edit a macro",
 				default = reg_content,
 			}, function(i)
-				replaced_reg_content = i
+				if i == nil or i == "" then
+					vim.notify(string.format("Edit a macro '%s' canceled", reg))
+					return
+				end
+				vim.fn.setreg(reg, i)
 			end)
-
-			if replaced_reg_content == nil then
-				vim.notify(string.format("Edit a macro '%s' canceled", reg))
-				return
-			end
-
-			vim.fn.setreg(reg, replaced_reg_content)
 		end)
 	end,
 }
