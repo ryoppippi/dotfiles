@@ -8,3 +8,8 @@ git:
     colorArg: always
     pager: delta --color-only --paging=never
 
+customCommands:
+  - key: "c"
+    context: "commits"
+    description: "yank commit hash"
+    command: "git rev-parse HEAD | pbcopy"
