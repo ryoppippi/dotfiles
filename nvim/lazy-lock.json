@@ -59,6 +59,7 @@
   "gh-markdown-preview": { "branch": "master", "commit": "e541afb6202b39f85ae1376649df88464e38c874" },
   "gh-poi": { "branch": "main", "commit": "94a5819db1dc3a6a846afcdfa3b7290730f903ec" },
   "gh-q": { "branch": "main", "commit": "5dc627f350902e0166016a9dd1f9479c75e3f392" },
+  "gh-user-stars": { "branch": "main", "commit": "1829ccdb28159e4924a22e533a5d8b81698dc218" },
   "gin.vim": { "branch": "main", "commit": "bba0adcbd17e54c2cc566cae88fd68a58d702e7f" },
   "gist.nvim": { "branch": "main", "commit": "92b13e486dd9fd083750450e0d262fcc68a62b91" },
   "git-conflict.nvim": { "branch": "main", "commit": "4c8e252b87d54d944c1e56bfb477f78b6fdaf661" },

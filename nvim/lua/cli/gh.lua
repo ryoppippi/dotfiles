@@ -13,5 +13,6 @@ return {
 	{ "kawarimidoll/gh-graph", build = { install } },
 	{ "kawarimidoll/gh-q", build = { install } },
 	{ "ryoppippi/gh-cr", build = { install } },
+	{ "korosuke613/gh-user-stars", build = { install } },
 	{ "github/gh-copilot", build = "gh extension install github/gh-copilot --force" },
 }
