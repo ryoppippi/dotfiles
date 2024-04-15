@@ -85,7 +85,6 @@
   "luv-vimdocs": { "branch": "main", "commit": "997b9338fd3ac91a53bbdc19110c127e3bea01c4" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "marks.nvim": { "branch": "master", "commit": "74e8d01b2a2131b6e46354cffc553aa7f81bcf5b" },
-  "medit": { "branch": "master", "commit": "65455f8aff879c20da4d97a41b5fbd69192cf0f1" },
   "mini.jump": { "branch": "stable", "commit": "7d6dc73bd1a28c41545973cab0e10292a3accc56" },
   "mini.splitjoin": { "branch": "main", "commit": "a6b043b4afb075058a8c49325ff22e07f0e96170" },
   "mini.surround": { "branch": "main", "commit": "a1b590cc3b676512de507328d6bbab5e43794720" },
