@@ -55,6 +55,7 @@ tools:
 
   swift-format-format: &swift-format-format
     format-command: "swift-format"
+    format-stdin: false
     root-markers:
       - .swift-format
       - .git
@@ -208,7 +209,7 @@ languages:
 
   # swift
   swift:
-    - <<: *swift-format-format
+    # - <<: *swift-format-format
     # - <<: *swift-format-lint
 
   # config
