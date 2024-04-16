@@ -1,9 +1,12 @@
+tap "artginzburg/tap"
 tap "danielbayley/alfred"
+tap "dimentium/autoraise"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "koekeishiya/formulae"
+tap "kphrx/personal"
 tap "ryoppippi/neovim-nightly"
 brew "libpng"
 brew "little-cms2"
@@ -138,12 +141,14 @@ brew "qhull"
 brew "qrupdate"
 brew "qscintilla2"
 brew "rlwrap"
+brew "xxhash"
 brew "rsync"
 brew "screenresolution"
 brew "sl"
 brew "smartmontools"
 brew "suite-sparse"
 brew "sundials"
+brew "swift-format"
 brew "switchaudio-osx"
 brew "ta-lib"
 brew "telnet"
@@ -151,15 +156,18 @@ brew "terminal-notifier"
 brew "tldr"
 brew "trash"
 brew "tree"
+brew "ttyd"
 brew "utf8proc"
 brew "veclibfort"
 brew "wallpaper"
 brew "wget"
+brew "artginzburg/tap/sudo-touchid"
 cask "alfred"
 cask "alt-tab"
 cask "appcleaner"
 cask "arc"
 cask "audacity"
+cask "autoraiseapp"
 cask "background-music"
 cask "balenaetcher"
 cask "basictex"
@@ -173,6 +181,7 @@ cask "cyberduck"
 cask "dbeaver-community"
 cask "deepl"
 cask "discord"
+cask "font-line-seed-jp"
 cask "font-udev-gothic"
 cask "font-udev-gothic-nf"
 cask "google-chrome"
@@ -197,6 +206,7 @@ cask "numi"
 cask "obs"
 cask "obsidian"
 cask "ollama"
+cask "openvpn-connect"
 cask "orbstack"
 cask "processing"
 cask "qlvideo"
@@ -235,21 +245,20 @@ mas "Disk Speed Test", id: 425264550
 mas "Document Generator", id: 1437883178
 mas "Download Shuttle", id: 847809913
 mas "DuckDuckGo Privacy for Safari", id: 1482920575
+mas "Final Cut Pro", id: 424389933
 mas "FocusRecorder", id: 6446467176
-mas "GarageBand", id: 682658836
 mas "Gemini 2", id: 1090488118
 mas "Gifski", id: 1351639930
 mas "GIPHY CAPTURE", id: 668208984
 mas "Grammarly for Safari", id: 1462114288
 mas "Hex Fiend", id: 1342896380
 mas "Hush", id: 1544743900
-mas "iBar", id: 6443843900
 mas "iHosts", id: 1102004240
-mas "iMovie", id: 408981434
 mas "iText Express", id: 416550249
 mas "Keepa - Price Tracker", id: 1533805339
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
+mas "Kindle", id: 302584613
 mas "LadioCast", id: 411213048
 mas "LanguageTranslator", id: 1218781096
 mas "LINE", id: 539883307
@@ -261,7 +270,6 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "NamingTranslator", id: 1218784832
-mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PicGIF Lite", id: 844918735
 mas "PiPifier", id: 1160374471
