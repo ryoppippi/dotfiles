@@ -128,6 +128,7 @@ return {
 					"python",
 					"go",
 					"rust",
+					"swift",
 				},
 				-- config
 				{
