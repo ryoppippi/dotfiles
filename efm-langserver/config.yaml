@@ -53,6 +53,24 @@ tools:
     format-command: "ruff --fix -e -n --stdin-filename -"
     format-stdin: true
 
+  swift-format-format: &swift-format-format
+    format-command: "swift-format"
+    root-markers:
+      - .swift-format
+      - .git
+
+  swift-format-lint: &swift-format-lint
+    lint-command: "swift-format lint --assume-filename"
+    lint-stdin: false
+    lint-ignore-exit-code: true
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+    root-markers:
+      - .swift-format
+      - .git
+
   prettier: &prettier
     format-command: >
       ./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT} 
@@ -187,6 +205,11 @@ languages:
     - <<: *prettier
   handlebars:
     - <<: *prettier
+
+  # swift
+  swift:
+    - <<: *swift-format-format
+    # - <<: *swift-format-lint
 
   # config
   json:
