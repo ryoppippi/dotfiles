@@ -212,7 +212,7 @@ return {
 				return found
 			end,
 			on_attach = function(_, buffer)
-				vim.api.nvim_create_autocmd("BufWritePost", {
+				vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
 					buffer = buffer,
 					callback = function()
 						vim.cmd.DenolsCache()
