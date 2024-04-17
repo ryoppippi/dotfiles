@@ -124,5 +124,5 @@ packages:
   - name: sqls-server/sqls@v0.2.27
   - name: ClementTsang/bottom@0.9.6
   - name: graelo/pumas@v0.2.3
-  - name: tamasfe/taplo@release-taplo-cli-0.9.0
+  # - name: tamasfe/taplo@release-taplo-cli-0.9.0
   - name: sachaos/viddy@v0.4.0

@@ -8,6 +8,7 @@ rust = "1.77.1"
 "cargo:cargo-outdated" = "0.15.0"
 "cargo:cargo-edit" = "0.12.2"
 "cargo:cargo-bisect-rustc" = "0.6.8"
+"cargo:taplo-cli" = "latest"
 
 [settings]
 experimental = true
