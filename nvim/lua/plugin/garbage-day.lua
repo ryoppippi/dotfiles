@@ -3,6 +3,9 @@ return {
 	dependencies = "neovim/nvim-lspconfig",
 	event = "LSPAttach",
 	opts = {
-		excluded_lsp_clients = { "efm" },
+		excluded_lsp_clients = {
+			"efm",
+			"copilot",
+		},
 	},
 }
