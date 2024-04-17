@@ -299,6 +299,9 @@ return {
 			},
 		})
 
+		-- toml
+		setup(lspconfig.taplo)
+
 		-- swift
 		setup(lspconfig.sourcekit)
 
