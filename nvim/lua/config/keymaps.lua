@@ -117,5 +117,8 @@ vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "<C-l>", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "<leader>a", "ggVG")
+vim.cmd(
+	[[cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s//g<Left><Left>" : 's']]
+)
 
 vim.keymap.set("", "<c-i>", "<c-i>")
