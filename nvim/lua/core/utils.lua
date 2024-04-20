@@ -49,4 +49,9 @@ function M.redetect_filetype()
 	vim.bo.filetype = vim.bo.filetype
 end
 
+---@param path string
+M.open_file_with_quicklook = function(path)
+	vim.cmd(("silent !qlmanage -p %s &"):format(path))
+end
+
 return M
