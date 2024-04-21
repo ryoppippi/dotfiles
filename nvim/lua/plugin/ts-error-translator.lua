@@ -6,7 +6,7 @@ return {
 		local exts = { "js", "jsx", "ts", "tsx" }
 		for _, ext in ipairs(exts) do
 			for _, event in ipairs(events) do
-				table.insert(return_events, string.format("%s *.%s", event, ext))
+				table.insert(return_events, ("%s *.%s"):format(event, ext))
 			end
 		end
 		return return_events
