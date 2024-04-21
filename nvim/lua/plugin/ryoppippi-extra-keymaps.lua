@@ -13,13 +13,12 @@ return {
 		config = function()
 			local function append_new_lines(offset_line)
 				local peridot = require("peridot")
-				local i = require("plenary.iterators")
 				return peridot
 					and peridot.repeatable_edit(function(ctx)
 						local curpos = vim.fn.line(".")
 						local pos_line = curpos + offset_line
 						local n_lines = ctx.count1
-						local lines = i.range(n_lines):map(_l([[: ""]])):tolist()
+						local lines = vim.iter(vim.fn.range(n_lines)):map(_l([[: ""]])):totable()
 
 						vim.fn.append(pos_line, lines)
 					end)
