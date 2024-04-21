@@ -113,7 +113,8 @@
 	textconv = bun
 	binary = true
 [rebase]
-	autostash = true
+	autoStash = true
+	autosquash = true
 [merge]
 	ff = false
 [pull]
