@@ -19,8 +19,7 @@ return {
 						local curpos = vim.fn.line(".")
 						local pos_line = curpos + offset_line
 						local n_lines = ctx.count1
-					-- stylua: ignore
-					local lines = i.range(n_lines):map(function() return "" end):tolist()
+						local lines = i.range(n_lines):map(_l([[: ""]])):tolist()
 
 						vim.fn.append(pos_line, lines)
 					end)
