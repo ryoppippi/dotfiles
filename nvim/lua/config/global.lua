@@ -17,6 +17,19 @@ _G.t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+---Generate a lambda function
+---@param str string
+---@return function
+_G._l = function(str)
+	local lambda_chunk = [[
+	return function(%s)
+	  return %s
+	end
+	]]
+	local arg, body = str:match("(.*):(.*)")
+	return assert(load(lambda_chunk:format(arg, body)))()
+end
+
 _G.is_vscode = function()
 	return tb(vim.g.vscode)
 end
