@@ -7,6 +7,8 @@
   editor = nvim
   pager = delta
 	ignorecase = false
+	untrackedCache = true
+	fsmonitor = true
 
 [alias]
   a = add 
