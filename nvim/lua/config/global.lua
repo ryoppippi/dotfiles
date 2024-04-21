@@ -1,3 +1,4 @@
+---Convert a value to a boolean
 _G.tb = function(value)
 	if value == nil then
 		return false
