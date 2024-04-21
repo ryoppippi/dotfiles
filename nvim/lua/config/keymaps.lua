@@ -122,3 +122,4 @@ vim.cmd(
 )
 
 vim.keymap.set("", "<c-i>", "<c-i>")
+vim.keymap.set("n", "g<leader>", "<cmd>QuickLook<cr>")
