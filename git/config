@@ -6,6 +6,7 @@
   excludesfile = /Users/ryoppippi/.gitignore_global
   editor = nvim
   pager = delta
+	ignorecase = false
 
 [alias]
   a = add 
