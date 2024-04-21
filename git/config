@@ -73,7 +73,7 @@
   root = ~/.go/src
   root = ~/ghq
 [color]
-  ui = auto
+	ui = auto
 [tag]
   ; forceSignAnnotated = true
 [filter "lfs"]
@@ -122,3 +122,5 @@
   diffFilter = delta --color-only
 [remote]
   pushDefault = origin
+[column]
+	ui = auto
