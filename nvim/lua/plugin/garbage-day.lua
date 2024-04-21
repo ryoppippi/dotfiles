@@ -6,6 +6,7 @@ return {
 		excluded_lsp_clients = {
 			"efm",
 			"copilot",
+			"crates.nvim",
 		},
 	},
 }
