@@ -6,6 +6,7 @@ vim.filetype.add({
 	filename = {
 		[".envrc"] = "sh",
 		["tsconfig.json"] = "jsonc",
+		["bun.lockb"] = "bunlockb",
 	},
 	pattern = {
 		[".*/%.git/config"] = "gitconfig",
