@@ -218,6 +218,9 @@ M = {
 					oldfiles = {
 						-- initial_mode = "normal",
 					},
+					colorscheme = {
+						enable_preview = true,
+					},
 				},
 				extensions = {
 					fzf = {
