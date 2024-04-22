@@ -219,5 +219,5 @@
   "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" },
   "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" },
   "zig-snippets": { "branch": "master", "commit": "11961a7996859c79378ac440aa5a36d469f35ffd" },
-  "zls": { "branch": "master", "commit": "4e01c08f558ea07462aaa7b71d2a24f86f47a855" }
+  "zls": { "branch": "master", "commit": "07508440588bf06f041da9f6dd3956948368f194" }
 }
