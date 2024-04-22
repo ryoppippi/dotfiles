@@ -56,7 +56,15 @@ return {
 					path = { "?.lua", "?/init.lua" },
 				},
 				workspace = {
-					library = library({ "lazy.nvim", "nvim-insx", "plenary.nvim", "vim-artemis", "oil.nvim" }),
+					library = library({
+						"lazy.nvim",
+						"nvim-insx",
+						"plenary.nvim",
+						"vim-artemis",
+						"oil.nvim",
+						"nui.nvim",
+						"noice.nvim",
+					}),
 					checkThirdParty = "Disable",
 				},
 				diagnostics = {
