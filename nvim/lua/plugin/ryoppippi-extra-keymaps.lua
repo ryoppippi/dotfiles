@@ -7,8 +7,8 @@ return {
 		name = "ryoppippi-append-new-lines",
 		dependencies = dependencies,
 		keys = {
-			"<leader>o",
-			"<leader>O",
+			{ "<leader>o", "<Plug>(append-new-lines-forward)" },
+			{ "<leader>O", "<Plug>(append-new-lines-backward)" },
 		},
 		config = function()
 			local function append_new_lines(offset_line)
@@ -24,8 +24,8 @@ return {
 					end)
 			end
 
-			vim.keymap.set("n", "<leader>o", append_new_lines(0), { expr = true })
-			vim.keymap.set("n", "<leader>O", append_new_lines(-1), { expr = true })
+			vim.keymap.set("n", "<Plug>(append-new-lines-forward)", append_new_lines(0), { expr = true })
+			vim.keymap.set("n", "<Plug>(append-new-lines-backward)", append_new_lines(-1), { expr = true })
 		end,
 	},
 	{
@@ -33,9 +33,9 @@ return {
 		name = "ryoppippi-paste-in-new-lines",
 		dependencies = dependencies,
 		keys = {
-			"<leader>p",
-			"<leader>P",
-			"<leader>%",
+			{ "<leader>p" },
+			{ "<leader>P" },
+			{ "<leader>%" },
 		},
 		config = function()
 			local function paste_in_new_lines(direction)
