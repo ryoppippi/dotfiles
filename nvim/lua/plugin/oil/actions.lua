@@ -198,7 +198,7 @@ M.weztermPreview = {
 			})
 		end
 
-		vim.api.nvim_create_autocmd("BufLeave", {
+		vim.api.nvim_create_autocmd({ "BufLeave", "BufDelete", "VimLeave" }, {
 			desc = "Close oil wezterm preview",
 			group = "Oil",
 			buffer = bufnr,
