@@ -98,7 +98,7 @@ local config = {
 	},
 	use_ime = true,
 	send_composed_key_when_left_alt_is_pressed = false,
-	send_composed_key_when_right_alt_is_pressed = true,
+	send_composed_key_when_right_alt_is_pressed = false,
 	keys = keys,
 	set_environment_variables = {},
 	-- keys = create_keybinds(),
