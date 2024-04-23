@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
 	"stevearc/oil.nvim",
 	event = "VeryLazy",
@@ -28,16 +29,19 @@ return {
 	opts = function()
 		local trash_command = "trash"
 		local is_trash = tb(vim.fn.executable(trash_command))
+		local custom_actions = require("plugin.oil.actions")
 		return {
 			keymaps = {
-				["g?"] = "actions.show_help",
-				["<leader>b"] = "actions.open_external",
+				["?"] = "actions.show_help",
+				["gx"] = "actions.open_external",
 				["<CR>"] = "actions.select",
 				["-"] = "actions.parent",
 				["<C-p>"] = "actions.preview",
+				["gp"] = custom_actions.weztermPreveiw,
+				["g<leader>"] = custom_actions.openWithQuickLook,
 				["q"] = "actions.close",
 				["<C-l>"] = "actions.refresh",
-				["<space>"] = "actions.open_cwd",
+				["_"] = "actions.open_cwd",
 				["`"] = "actions.cd",
 				["~"] = "actions.tcd",
 				["g."] = "actions.toggle_hidden",
