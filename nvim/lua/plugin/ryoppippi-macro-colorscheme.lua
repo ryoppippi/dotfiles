@@ -39,12 +39,12 @@ return {
 				height = 1,
 			},
 			position = {
-				row = -3,
-				col = -1,
+				row = 1,
+				col = 1,
 			},
 		})
 
-		vim.api.nvim_create_autocmd("CursorMoved", {
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 			pattern = "*",
 			callback = function()
 				popup:update_layout()
