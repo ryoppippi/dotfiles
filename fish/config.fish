@@ -39,8 +39,6 @@ set -gx USE_CCACHE 1
 set -gx CCACHE_DIR $HOME/.ccache
 
 # js/ts
-## volta
-fish_add_path $HOME/.volta/bin
 ## bun
 fish_add_path $HOME/.bun/bin
 

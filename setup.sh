@@ -89,7 +89,6 @@ fish -c "fisher update"
 fish -c "fish_update_completions"
 
 # node
-volta --help
 bun i -g @antfu/ni
 deno --help
 
