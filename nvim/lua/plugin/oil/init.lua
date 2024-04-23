@@ -37,7 +37,7 @@ return {
 				["<CR>"] = "actions.select",
 				["-"] = "actions.parent",
 				["<C-p>"] = "actions.preview",
-				["gp"] = custom_actions.weztermPreveiw,
+				["gp"] = custom_actions.weztermPreview,
 				["g<leader>"] = custom_actions.openWithQuickLook,
 				["q"] = "actions.close",
 				["<C-l>"] = "actions.refresh",

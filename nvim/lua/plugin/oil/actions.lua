@@ -127,7 +127,7 @@ local is_wezterm_preview_open = function()
 	return getPreviewWeztermPaneId() ~= nil
 end
 
-M.weztermPreveiw = {
+M.weztermPreview = {
 	callback = function()
 		if is_wezterm_preview_open() then
 			closeWeztermPane(getPreviewWeztermPaneId())
