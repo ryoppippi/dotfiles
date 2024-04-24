@@ -1,12 +1,12 @@
 return {
 	dir = "",
 	name = "ryoppippi-term.nvim",
-	cmd = { "T", "Ts", "Tv", "Tg" },
+	cmd = { "T", "TS", "TV", "TG" },
 	keys = {
 		{ "g,", "<cmd>Tg<cr>" },
 		{ "<leader>tt", "<cmd>T<cr>" },
-		{ "<leader>ts", "<cmd>Ts<cr>" },
-		{ "<leader>tv", "<cmd>Tv<cr>" },
+		{ "<leader>ts", "<cmd>TS<cr>" },
+		{ "<leader>tv", "<cmd>TV<cr>" },
 	},
 	config = function()
 		local function openTerm(args)
@@ -24,19 +24,19 @@ return {
 			openTerm(args)
 		end, { nargs = "*" })
 
-		vim.api.nvim_create_user_command("Ts", function(tbl)
+		vim.api.nvim_create_user_command("TS", function(tbl)
 			local args = tbl.args
 			vim.cmd.split()
 			openTerm(args)
 		end, { nargs = "*" })
 
-		vim.api.nvim_create_user_command("Tv", function(tbl)
+		vim.api.nvim_create_user_command("TV", function(tbl)
 			local args = tbl.args
 			vim.cmd.vsplit()
 			openTerm(args)
 		end, { nargs = "*" })
 
-		vim.api.nvim_create_user_command("Tg", function()
+		vim.api.nvim_create_user_command("TG", function()
 			vim.cmd.tabe()
 			vim.fn.termopen("lazygit", {
 				on_exit = function(_, _, _)
