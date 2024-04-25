@@ -102,6 +102,14 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
 end
 source $CONFIG_CACHE
 
+# neovim
+if type -q nvim
+    set -gx EDITOR nvim
+    set -gx GIT_EDITOR nvim
+    set -gx VISUAL nvim
+    set -gx MANPAGER "nvim -c ASMANPAGER -"
+end
+
 if status is-interactive
     stty stop undef &
     stty start undef &
