@@ -11,6 +11,7 @@ rust = "1.77.1"
 "cargo:cargo-binstall" = "latest"
 node = "latest"
 "npm:@antfu/ni" = "latest"
+"cargo:rust-script" = "latest"
 
 [settings]
 experimental = true
