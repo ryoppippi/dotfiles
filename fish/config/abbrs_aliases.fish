@@ -23,8 +23,7 @@ abbr -a src source
 abbr -a cdd __fzf_cd
 abbr -a o open
 abbr -a bunb 'bun --bun'
-abbr -a bunx 'bun x'
-abbr -a bunbx 'bun --bun x'
+abbr -a bunbx 'bunx --bun'
 abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
