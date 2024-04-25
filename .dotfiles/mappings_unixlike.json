@@ -4,6 +4,7 @@
   "bash/.bash_profile": "~/.bash_profile",
   "bash/.bashrc": "~/.bashrc",
   "bat": "~/.config/bat",
+  ".bunfig.toml": "~/.config/.bunfig.toml",
   "zsh": "~/.config/zsh",
   "zshenv": "~/.zshenv",
   "fish": "~/.config/fish",

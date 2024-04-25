@@ -1,0 +1,2 @@
+[install.cache]
+dir = "~/.bun/install/cache"
