@@ -4,6 +4,7 @@ set -gx BASH_SILENCE_DEPRECATION_WARNING 1
 # define XDG paths
 set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
+set -q XDG_CACHE_HOME || set -gx XDG_CACHE_HOME $HOME/.cache
 
 # define fish config paths
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
