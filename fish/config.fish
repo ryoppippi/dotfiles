@@ -77,24 +77,24 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     echo '' >$CONFIG_CACHE
 
     # set mise path to global
-    echo "$(mise activate fish)" >>$CONFIG_CACHE
-    echo "$(mise activate --shims)" >>$CONFIG_CACHE
+    echo "$(ensure_installed mise activate fish)" >>$CONFIG_CACHE
+    echo "$(ensure_installed mise activate --shims)" >>$CONFIG_CACHE
 
     # xcode
-    type -q xcode-select && echo "fish_add_path $(xcode-select -p)/usr/bin" >>$CONFIG_CACHE
-    type -q xcrun && echo "set -gx SDKROOT $(xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
+    echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
+    echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
 
     # ruby
-    type -q brew && echo "fish_add_path $(brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
-    type -q gem && echo "fish_add_path $(gem environment gemdir)/bin" >>$CONFIG_CACHE
+    echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
+    echo "fish_add_path $(ensure_installed gem environment gemdir)/bin" >>$CONFIG_CACHE
 
     # tools
-    type -q direnv && direnv hook fish >>$CONFIG_CACHE
-    type -q zoxide && zoxide init fish >>$CONFIG_CACHE
+    ensure_installed direnv hook fish >>$CONFIG_CACHE
+    ensure_installed zoxide init fish >>$CONFIG_CACHE
     # starship init fish >>$CONFIG_CACHE
 
     # set vivid colors
-    type -q vivid && echo "set -gx LS_COLORS '$(vivid generate gruvbox-dark)'" >>$CONFIG_CACHE
+    echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE
 
     set_color brmagenta --bold --underline
     echo "config cache updated"
