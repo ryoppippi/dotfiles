@@ -11,7 +11,6 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"node_servers",
-		"python_tools",
 		"cli",
 		"folke/neoconf.nvim",
 		"b0o/schemastore.nvim",
