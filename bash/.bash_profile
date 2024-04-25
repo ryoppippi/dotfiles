@@ -92,6 +92,13 @@ fi
 
 # eval "$(github-copilot-cli alias -- "$0")"
 
+# mise
+if [ -f "$HOME/.local/bin/mise" ]; then
+  eval "$(~/.local/bin/mise activate bash)"
+  export PATH="$HOME/.local/share/mise/shims:$PATH
+fi
+
+
 if [[ -t 0 ]]; then
   stty stop undef
   stty start undef
