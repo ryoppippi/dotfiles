@@ -9,7 +9,7 @@ on:
       - nvim/**
       - .github/workflows/neovim.yaml
 jobs:
-  neovim_ci:
+  neovim-ci:
     strategy:
       matrix:
         os:

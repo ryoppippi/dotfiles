@@ -9,7 +9,7 @@ on:
       - aqua/
       - .github/workflows/fish.yaml
 jobs:
-  test:
+  fich-ci:
     strategy:
       matrix:
         os:

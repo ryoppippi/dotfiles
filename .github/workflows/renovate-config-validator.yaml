@@ -17,7 +17,7 @@ on:
       - renovate.5json
 
 jobs:
-  validate:
+  renovate-validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

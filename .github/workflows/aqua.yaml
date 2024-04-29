@@ -9,7 +9,7 @@ on:
       - aqua/
       - .github/workflows/aqua.yaml
 jobs:
-  test:
+  aqua-ci:
     strategy:
       matrix:
         os:
