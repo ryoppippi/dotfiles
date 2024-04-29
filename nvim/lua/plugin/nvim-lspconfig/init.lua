@@ -133,6 +133,7 @@ return {
 				{
 					"json",
 					"jsonc",
+					"json5",
 					"yaml",
 				},
 				-- others
@@ -264,6 +265,7 @@ return {
 		-- json
 		setup(lspconfig.jsonls, {
 			on_attach = format_config(false),
+			filetypes = { "json", "jsonc", "json5" },
 			settings = {
 				json = {
 					schemas = require("schemastore").json.schemas(),
