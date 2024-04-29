@@ -16,7 +16,7 @@ jobs:
           - ubuntu-latest
     runs-on: ${{ matrix.os }}
     env:
-      AQUA_CONFIG: aqua/aqua.yaml
+      AQUA_CONFIG: ${{ github.workspace }}/aqua/aqua.yaml
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
