@@ -7,12 +7,14 @@ on:
     paths:
       - .github/workflows/renovate-config-validator.yml
       - renovate.json
+      - renovate.5json
   push:
     branches:
       - main
     paths:
       - .github/workflows/renovate-config-validator.yml
       - renovate.json
+      - renovate.5json
 
 jobs:
   validate:
