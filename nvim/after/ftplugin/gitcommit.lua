@@ -1,4 +1,5 @@
 local Path = require("plenary.path")
+local has = require("core.plugin").has
 
 local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
 local git_hooks_path = vim.fn.systemlist("git config --get core.hooksPath")[1] or ".git/hooks"
@@ -98,11 +99,13 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
 	callback = cquit_if_not_passed,
 })
 
-vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatCommitStaged<CR>", { buffer = commit_bufnr })
-vim.schedule(function()
-	local has = require("core.plugin").has
-	if has("CopilotChat.nvim") then
+if has("CopilotChat.nvim") then
+	vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatCommitStaged<CR>", { buffer = commit_bufnr })
+	vim.schedule(function()
 		require("CopilotChat")
 		vim.cmd.CopilotChatCommitStaged()
-	end
-end)
+	end)
+	vim.api.nvim_create_autocmd("QuitPre", {
+		command = "CopilotChatClose",
+	})
+end
