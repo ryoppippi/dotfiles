@@ -2,8 +2,9 @@ alias vim nvim
 abbr -a v nvim
 abbr -a nv nvim
 abbr -a bash 'bash --norc'
-abbr ll 'ls -hlF'
-abbr la 'ls -hlFA'
+alias ls eza
+abbr ll 'ls -hl'
+abbr la 'ls -hlA'
 abbr lt 'ls --tree'
 abbr lg 'ls -hlFg'
 abbr -a cdr 'cd (git root)'
