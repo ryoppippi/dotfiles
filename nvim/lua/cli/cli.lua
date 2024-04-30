@@ -1,12 +1,15 @@
+---@type LazySpec
 return {
 	name = "cli",
 	dir = "",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		-- ruby
+		--- ruby
+		---@type LazySpec
 		{ "Shopify/ruby-lsp", version = "*", build = { "gem install --user-install --no-document --pre ruby-lsp" } },
 
-		-- zig
+		--- zig
+		---@type LazySpec
 		{
 			"zigtools/zls",
 			build = {
@@ -27,11 +30,34 @@ return {
 			end,
 		},
 
-		-- rust
+		--- rust
+		---@type LazySpec
 		{
 			name = "rust-analyzer",
 			dir = "",
-			build = { "rustup component add rust-analyzer" },
+			config = function()
+				vim.system({ "rustup", "component", "add", "rust-analyzer" }, { text = true }):wait()
+			end,
+		},
+		--- python
+		---@type LazySpec
+		{
+			name = "rye-tools",
+			dir = "",
+			opts = {
+				tools = {
+					"ruff",
+					"ruff-lsp",
+					"black",
+					"pyright",
+					"mypy",
+				},
+			},
+			config = function(_, opts)
+				vim.schedule(function()
+					vim.iter(opts.tools):map(_l("x: vim.system({ 'rye', 'install', '-f', x }, { text = true })"))
+				end)
+			end,
 		},
 	},
 }
