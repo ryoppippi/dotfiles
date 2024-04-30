@@ -11,7 +11,7 @@ node = "latest"
 "cargo:cargo-bisect-rustc" = "0.6.8"
 "cargo:cargo-binstall" = "latest"
 "cargo:rust-script" = "latest"
-"npm:@antfu/ni" = "latest"
+"npm:@antfu/ni" = "v0.21.12"
 
 [settings]
 experimental = true
