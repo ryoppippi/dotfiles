@@ -27,6 +27,7 @@
   clone = clone --recursive
   cl = clone
   cp = cherry-pick
+  cpn = cherry-pick -n
   f = fetch
   p = push
   pushf = push --force-with-lease --force-if-includes
