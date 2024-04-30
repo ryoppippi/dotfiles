@@ -220,6 +220,9 @@ languages:
   jsonc:
     - <<: *prettier
     - <<: *biome
+  json5:
+    - <<: *prettier
+    - <<: *biome
   yaml:
     - <<: *prettier
     - <<: *actionlint-lint
