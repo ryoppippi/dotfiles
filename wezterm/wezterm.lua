@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local utils = require("utils")
 local mux = wezterm.mux
 
-local keys = require("wezterm.keymaps")
+local keys = require("keymaps")
 
 -- ---------------------------------------------------------------
 -- --- wezterm on
