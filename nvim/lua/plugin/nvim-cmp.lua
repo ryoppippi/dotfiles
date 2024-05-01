@@ -93,10 +93,23 @@ return {
 					c = cmp.mapping.close(),
 				}),
 				["<C-y>"] = cmp.config.disable,
-				-- ["<C-j>"] = cmp.mapping.select_next_item(),
-				-- ["<C-k>"] = cmp.mapping.select_prev_item(),
-				["<C-d>"] = cmp.mapping.scroll_docs(-4),
-				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-j>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+					else
+						fallback()
+					end
+				end),
+				["<C-k>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						fallback()
+					end
+				end),
+
+				["<A-j>"] = cmp.mapping.scroll_docs(4),
+				["<A-k>"] = cmp.mapping.scroll_docs(-4),
 				["<c-n>"] = cmp.mapping(function(fallback)
 					fallback()
 				end, { "i", "s" }),
