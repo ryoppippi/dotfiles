@@ -127,3 +127,5 @@
   pushDefault = origin
 [column]
 	ui = auto
+[branch]
+	sort = -committerdate
