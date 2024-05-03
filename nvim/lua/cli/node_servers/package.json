@@ -2,7 +2,7 @@
   "name": "node_servers",
   "module": "index.ts",
   "dependencies": {
-    "@angular/language-server": "17.3.1",
+    "@angular/language-server": "17.3.2",
     "@astrojs/language-server": "2.8.4",
     "@prisma/language-server": "5.13.1",
     "@tailwindcss/language-server": "0.0.16",
