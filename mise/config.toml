@@ -1,6 +1,7 @@
 [tools]
 neovim = "nightly"
-zig = "ref:master"
+# zig = "ref:master"
+zig = "0.12.0"
 rust = "1.77.2"
 node = "latest"
 
