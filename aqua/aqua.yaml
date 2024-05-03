@@ -126,3 +126,5 @@ packages:
   - name: hatoo/oha@v1.4.4
   - name: abhimanyu003/sttr@v0.2.20
   - name: theryangeary/choose@v1.3.4
+  - name: watchexec/cargo-watch@v8.5.2
+  - name: suzuki-shunsuke/cmdx@v1.7.4
