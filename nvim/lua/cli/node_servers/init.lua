@@ -12,6 +12,6 @@ return {
 		end
 
 		vim.env.PATH = BIN_DIR:absolute() .. ":" .. vim.env.PATH
-		vim.system({ "bun", "i" }, { cwd = dir, text = true })
+		vim.system({ "bun", "i" }, { cwd = dir, text = true }):wait()
 	end,
 }
