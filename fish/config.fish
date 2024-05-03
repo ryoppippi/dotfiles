@@ -43,6 +43,9 @@ set -gx CCACHE_DIR $HOME/.ccache
 ## bun
 fish_add_path $HOME/.bun/bin
 
+## deno
+fish_add_path $HOME/.deno/bin
+
 # go
 set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
