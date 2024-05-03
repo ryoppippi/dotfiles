@@ -307,7 +307,7 @@ return {
 		setup(lspconfig.sourcekit)
 
 		-- ruby
-		setup(lspconfig.ruby_ls)
+		setup(lspconfig.ruby_lsp)
 
 		-- python
 		local python_lsp_init = function(_, config)
