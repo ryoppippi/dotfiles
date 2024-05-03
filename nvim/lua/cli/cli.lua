@@ -1,15 +1,13 @@
----@type LazySpec
+---@type LazySpec[]
 return {
 	name = "cli",
 	dir = "",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		--- ruby
-		---@type LazySpec
 		{ "Shopify/ruby-lsp", version = "*", build = { "gem install --user-install --no-document --pre ruby-lsp" } },
 
 		--- zig
-		---@type LazySpec
 		{
 			"zigtools/zls",
 			build = {
@@ -31,16 +29,15 @@ return {
 		},
 
 		--- rust
-		---@type LazySpec
 		{
 			name = "rust-analyzer",
 			dir = "",
 			config = function()
-				vim.system({ "rustup", "component", "add", "rust-analyzer" }, { text = true }):wait()
+				vim.system({ "rustup", "component", "add", "rust-analyzer" }, { text = true })
 			end,
 		},
+
 		--- python
-		---@type LazySpec
 		{
 			name = "rye-tools",
 			dir = "",
