@@ -77,3 +77,5 @@ abbr -a gg 'ghq get'
 abbr -a --set-cursor q gh copilot suggest -t shell \"%\"
 abbr -a --set-cursor qgit gh copilot suggest -t git \"%\"
 abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
+
+abbr -a ghcr 'gh cr'
