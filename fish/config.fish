@@ -42,6 +42,7 @@ set -gx CCACHE_DIR $HOME/.ccache
 # js/ts
 ## bun
 fish_add_path $HOME/.bun/bin
+fish_add_path $HOME/.cache/.bun/bin
 
 ## deno
 fish_add_path $HOME/.deno/bin
