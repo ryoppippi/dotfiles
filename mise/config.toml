@@ -3,14 +3,6 @@ neovim = "nightly"
 zig = "ref:master"
 rust = "1.77.2"
 node = "latest"
-"cargo:cargo-watch" = "8.5.2"
-"cargo:cargo-expand" = "1.0.81"
-"cargo:cargo-audit" = "0.20.0"
-"cargo:cargo-outdated" = "0.15.0"
-"cargo:cargo-edit" = "0.12.2"
-"cargo:cargo-bisect-rustc" = "0.6.8"
-"cargo:cargo-binstall" = "latest"
-"cargo:rust-script" = "latest"
 
 [settings]
 experimental = true
