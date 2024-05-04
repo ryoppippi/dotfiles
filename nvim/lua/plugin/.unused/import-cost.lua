@@ -12,7 +12,7 @@ return {
 		"svelte",
 	},
 	config = function()
-		require("import-cost").setup({
+		require("nvim.lua.plugin.unused.import-cost").setup({
 			filetypes = {
 				"javascript",
 				"javascriptreact",
