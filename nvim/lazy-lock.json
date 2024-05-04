@@ -75,7 +75,6 @@
   "highlight-undo.nvim": { "branch": "main", "commit": "a0dbc6afa19b438ca5a6f54bc7f1a10399f21a15" },
   "hlargs.nvim": { "branch": "main", "commit": "0f2dbf02ff948e8fc8ebe07b215f3174a12bbe3c" },
   "hlchunk.nvim": { "branch": "main", "commit": "882d1bc86d459fa8884398223c841fd09ea61b6b" },
-  "import-cost.nvim": { "branch": "main", "commit": "39ef36f438574db0b26e9c957316eb1cb22e970f" },
   "inc-rename.nvim": { "branch": "main", "commit": "1d7d3f647d0928614c00ca9ef4ce695c45147c05" },
   "kanagawa.nvim": { "branch": "master", "commit": "860e4f80df71221d18bf2cd9ef1deb4d364274d2" },
   "kensaku.vim": { "branch": "main", "commit": "7ddad2f355a3678597ebbac666e2ee6dda6b9cf3" },
