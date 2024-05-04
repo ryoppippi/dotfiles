@@ -35,6 +35,7 @@
   "copilot-cmp": { "branch": "master", "commit": "72fbaa03695779f8349be3ac54fa8bd77eed3ee3" },
   "copilot.lua": { "branch": "master", "commit": "f7612f5af4a7d7615babf43ab1e67a2d790c13a6" },
   "crates.nvim": { "branch": "main", "commit": "f00e11e8282b94f2a2e938d32712c99f0e0bdeb4" },
+  "cronex.nvim": { "branch": "main", "commit": "dcdaa5ac70ae144e9045a16dcb2dcc0aee857933" },
   "denops-docker.vim": { "branch": "main", "commit": "8249f1d0c8893e793c23908f4955f9a2300fb3f8" },
   "denops-lazy.nvim": { "branch": "main", "commit": "505ffaa5686eee6595811c66ab9b909531f189a4" },
   "denops.vim": { "branch": "main", "commit": "9f0f941f09c4daa397478e7fab4805262fb87cc9" },
