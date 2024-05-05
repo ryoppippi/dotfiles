@@ -1,7 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "CopilotChat.nvim": { "branch": "canary", "commit": "40cb88b9ffe58fe45d16b859b869947062fbbcef" },
-  "LuaSnip": { "branch": "master", "commit": "b152822e1a4bafb6bdf11a16cc26525cbd95ee00" },
   "actions-preview.nvim": { "branch": "master", "commit": "5072b1b1065a6b22bdd46b5c21780a91d6a08071" },
   "alpha-nvim": { "branch": "main", "commit": "41283fb402713fc8b327e60907f74e46166f4cfd" },
   "askpass.vim": { "branch": "main", "commit": "c40b7e296ad626ffebdf26793236a55c8e3517ca" },
@@ -27,7 +26,6 @@
   "cmp-spell": { "branch": "master", "commit": "32a0867efa59b43edbb2db67b0871cfad90c9b66" },
   "cmp-treesitter": { "branch": "master", "commit": "13e4ef8f4dd5639fca2eb9150e68f47639a9b37d" },
   "cmp-under-comparator": { "branch": "master", "commit": "6857f10272c3cfe930cece2afa2406e1385bfef8" },
-  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "colorful-winsep.nvim": { "branch": "alpha", "commit": "1d0a0d6c8552ea5c5a02546a89efeb7c9abb16df" },
   "comment-box.nvim": { "branch": "main", "commit": "06bb771690bc9df0763d14769b779062d8f12bc5" },
   "context_filetype.vim": { "branch": "master", "commit": "7ff5b43fc8d5b274aa19ade5af11e9fa57577ed6" },
@@ -173,7 +171,6 @@
   "telescope-kensaku.nvim": { "branch": "main", "commit": "4605ba9149fa276e55f08b77acc7473233b7a063" },
   "telescope-lazy.nvim": { "branch": "main", "commit": "08eb9d05455cabc126e9b850470205d4f3ac7caf" },
   "telescope-live-grep-args.nvim": { "branch": "master", "commit": "731a046da7dd3adff9de871a42f9b7fb85f60f47" },
-  "telescope-luasnip.nvim": { "branch": "master", "commit": "2ef7da3a363890686dbaad18ddbf59177cfe4f78" },
   "telescope-symbols.nvim": { "branch": "master", "commit": "a6d0127a53d39b9fc2af75bd169d288166118aec" },
   "telescope.nvim": { "branch": "master", "commit": "fac83a556e7b710dc31433dec727361ca062dbe9" },
   "term-edit.nvim": { "branch": "master", "commit": "e04f69d5828c6e6a4d81c34f75f18762fad50372" },
