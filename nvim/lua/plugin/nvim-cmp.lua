@@ -62,7 +62,8 @@ return {
 		local types = require("cmp.types")
 
 		local lspkind = require("lspkind")
-		local luasnip = require("luasnip")
+		local luasnip_status, luasnip = pcall(require, "luasnip")
+		local denippet = vimx.fn.denippet
 
 		local has_words_before = function()
 			if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -73,18 +74,31 @@ return {
 		end
 
 		local snippet_jumpable = function(dir)
-			return tb(luasnip.jumpable(dir))
+			if luasnip_status then
+				return tb(luasnip.jumpable(dir))
+			elseif denippet ~= nil then
+				return tb(denippet.jumpable(dir))
+			end
+			return false
 		end
 
 		local snippet_jump = function(dir)
-			luasnip.jump(dir)
+			if luasnip_status then
+				luasnip.jump(dir)
+			elseif denippet ~= nil then
+				denippet.jump(dir)
+			end
 		end
 
 		local setup_opt = {
 			snippet = {
 				-- REQUIRED - you must specify a snippet engine
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					if luasnip_status then
+						luasnip.lsp_expand(args.body)
+					elseif denippet ~= nil then
+						denippet.anonymous(args.body)
+					end
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -167,6 +181,7 @@ return {
 				{ name = "copilot", priority = 90 },
 				-- { name = "rg" },
 				{ name = "luasnip", priority = 20 },
+				{ name = "denippet", priority = 20 },
 				{ name = "nvim_lsp", priority = 100 },
 				{ name = "path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
