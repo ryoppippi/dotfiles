@@ -3,6 +3,7 @@ local has = require("core.plugin").has
 return {
 	"L3MON4D3/LuaSnip",
 	cond = not is_vscode(),
+	enabled = false,
 	event = { "InsertEnter" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
