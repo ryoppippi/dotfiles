@@ -4,9 +4,11 @@ local sveltekit_target = {
 	{ target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transform = "add_server" },
 }
 
+---@type LazySpec
 return {
 	"rgroli/other.nvim",
 	cmd = { "Other", "OtherClear", "OtherSplit", "OtherVSplit" },
+	commit = "d36a66a",
 	keys = {
 		{ "<leader><TAB>", "<cmd>Other<CR>" },
 	},
