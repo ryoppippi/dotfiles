@@ -18,6 +18,6 @@ return {
 		"xabikos/vscode-javascript",
 
 		-- personla snippets
-		"https://github.com/ryoppippi/my-personal-snippets",
+		{ "ryoppippi/my-personal-snippets", dev = true },
 	},
 }

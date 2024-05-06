@@ -11,6 +11,9 @@ lazy.setup({
 		{ import = "plugin" },
 		{ import = "cli" },
 	},
+	dev = {
+		path = "~/ghq/github.com/ryoppippi/",
+	},
 	defaults = { lazy = true },
 	install = { missing = true, colorscheme = { "kanagawa" } },
 	checker = { enabled = false },
