@@ -16,10 +16,8 @@ return {
 		-- web
 		"fivethree-team/vscode-svelte-snippets",
 		"xabikos/vscode-javascript",
-		{
-			name = "ryoppippi_my_vscode_snippets",
-			dir = vim.fs.joinpath(vim.fn.stdpath("config"), "my_vscode_snippets"),
-		},
+
+		-- personla snippets
+		"https://github.com/ryoppippi/my-personal-snippets",
 	},
 }
-
