@@ -189,7 +189,7 @@ return {
 		setup(lspconfig.biome)
 
 		setup(lspconfig.denols, {
-			single_file_support = false,
+			single_file_support = true,
 			root_dir = function(path)
 				local marker = require("climbdir.marker")
 				local found = require("climbdir").climb(
