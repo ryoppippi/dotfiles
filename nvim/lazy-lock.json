@@ -97,7 +97,7 @@
   "mkdir.nvim": { "branch": "main", "commit": "c55d1dee4f099528a1853b28bb28caa802eba217" },
   "modes.nvim": { "branch": "main", "commit": "4035a46aaabe43faf1b54740575af9dd5bb03809" },
   "modesearch.vim": { "branch": "master", "commit": "71f123cadbb86e0cbacc12f472d18684fc3308a8" },
-  "my-personal-snippets": { "branch": "main", "commit": "c1748722e274e462906099edc75f1d0c5ea24508" },
+  "my-personal-snippets": { "branch": "main", "commit": "415e8df0a8fc9c00e514833b200258763e8877a6" },
   "neoconf.nvim": { "branch": "main", "commit": "d4a48c2a6fdeec138605cee4eb6f8c6fafd0b3ed" },
   "neodim": { "branch": "master", "commit": "0543414f1205d8937d8e703a73ae1f9948940b14" },
   "neogen": { "branch": "main", "commit": "0daffcec249bf42275e322361fe55b89a05ff278" },
