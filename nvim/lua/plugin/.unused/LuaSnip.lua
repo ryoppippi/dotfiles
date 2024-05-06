@@ -3,6 +3,7 @@ local has = require("core.plugin").has
 return {
 	"L3MON4D3/LuaSnip",
 	cond = not is_vscode(),
+	enabled = false,
 	event = { "InsertEnter" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -19,22 +20,7 @@ return {
 				return has("nvim-cmp")
 			end,
 		},
-
-		-- {{ snippets
-		"craigmac/vim-vsnip-snippets",
-		"honza/vim-snippets",
-		"rafamadriz/friendly-snippets",
-
-		-- language specific snippets
-		-- python
-		"cstrap/flask-snippets",
-		"cstrap/python-snippets",
-		-- zig
-		"Metalymph/zig-snippets",
-		-- web
-		"fivethree-team/vscode-svelte-snippets",
-		"xabikos/vscode-javascript",
-		-- }}
+		"ryoppippi-snippets-list",
 	},
 	config = function()
 		local Path = require("plenary.path")
