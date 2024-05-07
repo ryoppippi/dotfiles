@@ -22,7 +22,7 @@ return {
 	init = function()
 		require("core.plugin").on_attach(function(client, bufnr)
 			local exclude_ft = { "oil" }
-			local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+			local ft = vim.bo.filetype
 			if vim.tbl_contains(exclude_ft, ft) then
 				return
 			end
@@ -32,7 +32,7 @@ return {
 			require("plugin.nvim-lspconfig.format").on_attach(client, bufnr)
 			require("plugin.nvim-lspconfig.inlayhints").on_attach(client, bufnr)
 
-			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+			vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 		end)
 
 		-- local ok, wf = pcall(require, "vim.lsp._watchfiles")
