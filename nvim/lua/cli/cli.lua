@@ -10,6 +10,7 @@ return {
 		--- zig
 		{
 			"zigtools/zls",
+			tag = "0.12.0",
 			build = {
 				"zig build -Doptimize=ReleaseSafe --verbose",
 			},
