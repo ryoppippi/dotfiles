@@ -189,7 +189,7 @@ return {
 		setup(lspconfig.biome)
 
 		setup(lspconfig.denols, {
-			single_file_support = true,
+			single_file_support = false,
 			root_dir = function(path)
 				local marker = require("climbdir.marker")
 				local found = require("climbdir").climb(
@@ -207,7 +207,7 @@ return {
 					}
 				)
 				if found then
-					vim.b[vim.fn.bufnr()].deno_deps_candidate = found .. "/deps.ts"
+					vim.b[vim.fn.bufnr()].deno_deps_candidate = vim.fs.joinpath(found, "deps.ts")
 				end
 				return found
 			end,
