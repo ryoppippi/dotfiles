@@ -4,8 +4,8 @@ local enabled_copilot_vim = function()
 	return has("copilot.vim") and tb(vim.g.loaded_copilot)
 end
 
-local enabled_copilot_lua = function()
-	return has("copilot.lua")
+local feedkey = function(key, mode)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
 return {
@@ -108,14 +108,18 @@ return {
 				}),
 				["<C-y>"] = cmp.config.disable,
 				["<C-j>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+					if denippet ~= nil and tb(denippet.choosable()) then
+						feedkey("<Plug>(denippet-choice-next)", "i")
+					elseif cmp.visible() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					else
 						fallback()
 					end
 				end),
 				["<C-k>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+					if denippet ~= nil and tb(denippet.choosable()) then
+						feedkey("<Plug>(denippet-choice-prev)", "i")
+					elseif cmp.visible() then
 						cmp.select_prev_item()
 					else
 						fallback()
@@ -147,7 +151,8 @@ return {
 					elseif has_words_before() then
 						cmp.complete()
 					elseif enabled_copilot_vim() then
-						vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
+						-- vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
+						feedkey(vimx.fn.copilot.Accept(t("<Tab>")), "n")
 					else
 						fallback()
 					end

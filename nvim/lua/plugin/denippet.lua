@@ -33,11 +33,6 @@ return {
 			"vim-denops/denops.vim",
 			"ryoppippi-snippets-list",
 		},
-		init = function()
-			vim.cmd([[
-				let g:denops#debug = 1 
-			]])
-		end,
 		config = function()
 			require("denops-lazy").load("denippet-autoimport-vscode")
 
