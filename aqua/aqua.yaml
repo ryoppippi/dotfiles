@@ -127,6 +127,6 @@ packages:
   - name: theryangeary/choose@v1.3.4
   - name: suzuki-shunsuke/cmdx@v1.7.4
   - name: watchexec/cargo-watch@v8.5.2
-  - name: crates.io/cargo-expand@1.0.85
+  - name: crates.io/cargo-expand@1.0.86
   - name: crates.io/cargo-run-script@0.2.0
   - name: nishanths/license@v5.0.4
