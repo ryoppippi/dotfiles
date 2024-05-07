@@ -5,6 +5,7 @@ return {
 	cmd = { "Oil" },
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
+		"refractalize/oil-git-status.nvim",
 	},
 	keys = {
 		{
@@ -60,9 +61,13 @@ return {
 			use_default_keymaps = false,
 			delete_to_trash = is_trash,
 			trash_command = trash_command,
+			win_options = {
+				signcolumn = "yes:2",
+			},
 		}
 	end,
 	config = function(_, opts)
 		require("oil").setup(opts)
+		require("oil-git-status").setup()
 	end,
 }
