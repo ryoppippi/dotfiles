@@ -1,9 +1,6 @@
 local utils = require("core.utils")
-
----@return boolean 'is cmp installed?'
-local function has_cmp()
-	return require("core.plugin").has("nvim-cmp")
-end
+local lsp_utils = require("core.lsp.utils")
+local has_cmp = lsp_utils.has_cmp
 
 return {
 	"neovim/nvim-lspconfig",
@@ -41,77 +38,11 @@ return {
 		-- 	end
 		-- end
 	end,
-	opts = function()
-		---@class LSPConfigOpts
-		local o = { lsp_opts = {} }
-
-		o.lsp_opts.capabilities = vim.tbl_deep_extend(
-			"force",
-			{},
-			vim.lsp.protocol.make_client_capabilities(),
-			has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
-		)
-		o.lsp_opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-
-		o.html_like = {
-			"astro",
-			"html",
-			"htmldjango",
-			"css",
-			"javascriptreact",
-			"javascript.jsx",
-			"typescriptreact",
-			"typescript.tsx",
-			"svelte",
-			"vue",
-			"markdown",
-		}
-
-		o.typescriptInlayHints = {
-			parameterNames = {
-				enabled = "literals", -- 'none' | 'literals' | 'all'
-				suppressWhenArgumentMatchesName = true,
-			},
-			parameterTypes = { enabled = false },
-			variableTypes = { enabled = false },
-			propertyDeclarationTypes = { enabled = true },
-			functionLikeReturnTypes = { enabled = false },
-			enumMemberValues = { enabled = true },
-		}
-
-		function o.format_config(enabled)
-			return function(client)
-				client.server_capabilities.documentFormattingProvider = enabled
-				client.server_capabilities.documentRangeFormattingProvider = enabled
-			end
-		end
-
-		function o.setup(client, extra_opts)
-			if type(client) == "string" then
-				client = require("lspconfig")[client]
-			end
-
-			local default_opts = client.document_config.default_config
-
-			local local_opts = vim.tbl_deep_extend("force", {}, o.lsp_opts, extra_opts or {})
-
-			local_opts.filetypes = vim.tbl_flatten({
-				local_opts.filetypes or default_opts.filetypes or {},
-				local_opts.extra_filetypes or {},
-			})
-			local_opts.extra_filetypes = nil
-			client.setup(local_opts)
-		end
-
-		return o
-	end,
-	---@param _ any
-	---@param opts LSPConfigOpts
-	config = function(_, opts)
-		local format_config = opts.format_config
-		local setup = opts.setup
-		local html_like = opts.html_like
-		local typescriptInlayHints = opts.typescriptInlayHints
+	config = function()
+		local format_config = lsp_utils.format_config
+		local setup = lsp_utils.setup
+		local html_like = lsp_utils.html_like
+		local typescriptInlayHints = lsp_utils.typescriptInlayHints
 
 		local lspconfig = require("lspconfig")
 
