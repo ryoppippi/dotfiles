@@ -1,8 +1,7 @@
 return {
 	"tani/dmacro.nvim",
-	lazy = false,
-	enabled = false,
+	lazy = true,
 	config = {
-		dmacro_key = "<Down>",
+		dmacro_key = "<c-t>",
 	},
 }
