@@ -36,6 +36,7 @@ local function keymap(bufnr)
 	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & lsp_lines" })
 end
 
+---@type OnAttachCallback
 M.on_attach = function(client, bufnr)
 	local supports_inlay_hint = client.server_capabilities.inlayHintProvider
 

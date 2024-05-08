@@ -23,6 +23,7 @@ local function keyset(mode, lhs, rhs, opts)
 end
 
 return {
+	---@type OnAttachCallback
 	on_attach = function(_, bufnr)
 		---@param desc string
 		---@return vim.keymap.set.Opts

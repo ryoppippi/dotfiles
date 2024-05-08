@@ -69,6 +69,7 @@ local function auto_format(buf)
 	})
 end
 
+---@type OnAttachCallback
 function M.on_attach(client, buf)
 	if client.server_capabilities.documentFormattingProvider then
 		command()

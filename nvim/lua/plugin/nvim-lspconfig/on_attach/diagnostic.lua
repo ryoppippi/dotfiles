@@ -3,6 +3,7 @@ local function diagnostic_formatter(diagnostic)
 end
 
 return {
+	---@type OnAttachCallback
 	on_attach = function(client, bufnr)
 		-- setup diagnostic signs
 		local signs = {
