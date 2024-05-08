@@ -100,7 +100,6 @@
   "neoconf.nvim": { "branch": "main", "commit": "d4a48c2a6fdeec138605cee4eb6f8c6fafd0b3ed" },
   "neodim": { "branch": "master", "commit": "0543414f1205d8937d8e703a73ae1f9948940b14" },
   "neogen": { "branch": "main", "commit": "0daffcec249bf42275e322361fe55b89a05ff278" },
-  "no-neck-pain.nvim": { "branch": "main", "commit": "34625be12649666b7ccb08761087cc97bb788552" },
   "noice.nvim": { "branch": "main", "commit": "f4decbc7a80229ccc9f86026b74bdcf0c39e38a7" },
   "nui.nvim": { "branch": "main", "commit": "a3597dc88b53489d3fddbddbbd13787355253bb0" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "96bbf843595dbe865838b3f2484b73557f34700c" },
