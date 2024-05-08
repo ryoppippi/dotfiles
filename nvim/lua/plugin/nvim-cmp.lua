@@ -136,7 +136,8 @@ return {
 					if cmp.visible() and entry ~= nil then
 						local confirm_option = {
 							select = false,
-							-- behavior = entry.source.name == "copilot" and cmp.ConfirmBehavior.Insert or cmp.ConfirmBehavior.Replace,
+							-- behavior = entry.source.name == "copilot" and cmp.ConfirmBehavior.Insert
+							-- 	or cmp.ConfirmBehavior.Replace,
 						}
 						cmp.confirm(confirm_option)
 					else

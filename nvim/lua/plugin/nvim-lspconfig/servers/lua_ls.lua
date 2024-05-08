@@ -1,11 +1,9 @@
 -- based on: https://zenn.dev/uga_rosa/articles/afe384341fc2e1
 
-local lspconfig_opts = (
-	require("lazy.core.config").plugins["nvim-lspconfig"].opts() --[[@as LSPConfigOpts]]
-)
-local format_config = lspconfig_opts.format_config
+local lsp_utils = require("plugin.nvim-lspconfig.utils")
+local setup = lsp_utils.setup
+local format_config = lsp_utils.format_config
 
-local lua_ls = require("lspconfig").lua_ls
 local i = require("plenary.iterators")
 
 ---@param names string[]
@@ -41,47 +39,59 @@ local function library(plugins)
 		:tolist()
 end
 
+---@type LazySpec
 return {
-	lua_ls,
-	{
-		on_attach = format_config(false),
-		flags = {
-			debounce_text_changes = 150,
-		},
-		settings = {
-			Lua = {
-				runtime = {
-					version = "LuaJIT",
-					pathStrict = true,
-					path = { "?.lua", "?/init.lua" },
-				},
-				workspace = {
-					library = library({
-						"lazy.nvim",
-						"nvim-insx",
-						"plenary.nvim",
-						"vim-artemis",
-						"oil.nvim",
-						"nui.nvim",
-						"noice.nvim",
-						"nvim-cmp",
-					}),
-					checkThirdParty = "Disable",
-				},
-				diagnostics = {
-					globals = { "vim" },
-				},
-				completion = {
-					showWord = "Disable",
-					callSnippet = "Replace",
-				},
-				format = {
-					enable = false,
-				},
-				hint = {
-					enable = true,
+	name = "lua_ls",
+	dir = "",
+	dependencies = { "neovim/nvim-lspconfig" },
+	ft = function(spec)
+		return lsp_utils.get_default_filetypes(spec.name)
+	end,
+	opts = function()
+		return {
+			on_attach = format_config(false),
+			flags = {
+				debounce_text_changes = 150,
+			},
+			settings = {
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+						pathStrict = true,
+						path = { "?.lua", "?/init.lua" },
+					},
+					workspace = {
+						library = library({
+							"lazy.nvim",
+							"nvim-insx",
+							"plenary.nvim",
+							"vim-artemis",
+							"oil.nvim",
+							"nui.nvim",
+							"noice.nvim",
+							"nvim-cmp",
+							"nvim-lspconfig",
+						}),
+						checkThirdParty = "Disable",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					completion = {
+						showWord = "Disable",
+						callSnippet = "Replace",
+					},
+					format = {
+						enable = false,
+					},
+					hint = {
+						enable = true,
+					},
 				},
 			},
-		},
-	},
+		}
+	end,
+	config = function(spec, opts)
+		setup(spec.name, opts)
+	end,
 }
