@@ -12,7 +12,6 @@
   "capture.vim": { "branch": "master", "commit": "857ee11cfe1193948d3d45dcb8d511fded8533fb" },
   "ccc.nvim": { "branch": "main", "commit": "f388f1981d222967c741fe9927edf9ba5fa3bcbe" },
   "chowcho.nvim": { "branch": "main", "commit": "51ff2608748e9fa4ea79c1c1ae18b60c2cd24276" },
-  "climbdir.nvim": { "branch": "main", "commit": "dcccc2f17a3014ec456976f10c8ebbe36c1148a9" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-calc": { "branch": "main", "commit": "ce91d14d2e7a8b3f6ad86d85e34d41c1ae6268d9" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },

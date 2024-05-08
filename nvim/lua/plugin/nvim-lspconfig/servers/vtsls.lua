@@ -10,7 +10,6 @@ return {
 	dependencies = {
 		"node_servers",
 		"neovim/nvim-lspconfig",
-		"kyoh86/climbdir.nvim",
 	},
 	enabled = true,
 	ft = filetypes,
@@ -40,18 +39,38 @@ return {
 				keymap(client, buffer)
 				format_config(false)(client)
 			end,
-			root_dir = function(path)
-				local marker = require("climbdir.marker")
-				local found = require("climbdir").climb(
-					path,
-					marker.one_of(marker.has_readable_file("package.json"), marker.has_directory("node_modules")),
-					{
-						halt = marker.has_readable_file("deno.json"),
-					}
-				)
-				return found
-			end,
 			single_file_support = false,
+			root_dir = function(path)
+				-- stop vtsls if denols is working
+				vim.defer_fn(
+					vim.schedule_wrap(function()
+						local vtslsClients = vim.lsp.get_clients({ name = "vtsls", bufnr = 0 })
+						local denoClients = vim.lsp.get_clients({ name = "denols", bufnr = 0 })
+						if #vtslsClients > 0 and #denoClients > 0 then
+							vim.iter(vtslsClients):each(function(client)
+								client.stop()
+							end)
+						end
+					end),
+					1000
+				)
+
+				local project_root = vim.fs.root(path, vim.iter({ ".git", ft.node_files }):flatten(math.huge):totable())
+
+				if project_root == nil then
+					return nil
+				end
+
+				local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
+					return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
+				end)
+
+				if is_node_files_found then
+					return project_root
+				end
+
+				return nil
+			end,
 			capabilities = capabilities,
 			settings = {
 				typescript = {
