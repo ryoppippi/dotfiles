@@ -1,3 +1,5 @@
+---@alias OnAttachCallback fun(client: vim.lsp.Client, buffer: integer)
+
 local M = {}
 
 function M.init()
@@ -15,7 +17,7 @@ function M.init()
 	vim.opt.runtimepath:prepend(lazypath)
 end
 
----@param on_attach fun(client, buffer)
+---@param on_attach OnAttachCallback
 function M.on_attach(on_attach)
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)
