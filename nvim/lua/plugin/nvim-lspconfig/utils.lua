@@ -1,34 +1,107 @@
 local o = {}
----@class LSPConfigOpts
-o.lsp_opts = {}
+
+---@param client string | table
+local function _convert_client(client)
+	local _client = client
+	if type(client) == "string" then
+		_client = require("lspconfig")[client]
+	end
+
+	assert(_client)
+
+	return _client
+end
 
 ---@return boolean 'is cmp installed?'
 function o.has_cmp()
 	return require("core.plugin").has("nvim-cmp")
 end
 
-o.lsp_opts.capabilities = vim.tbl_deep_extend(
-	"force",
-	{},
-	vim.lsp.protocol.make_client_capabilities(),
-	o.has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
-)
-o.lsp_opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+---@return LSPConfigOpts
+function o.default_opts()
+	---@class LSPConfigOpts
+	local opts = {}
 
-o.html_like = {
-	"astro",
-	"html",
-	"htmldjango",
-	"css",
+	opts.capabilities = vim.tbl_deep_extend(
+		"force",
+		{},
+		vim.lsp.protocol.make_client_capabilities(),
+		o.has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
+	)
+	opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+
+	return opts
+end
+
+o.ft = {}
+o.ft.js_like = {
+	"javascript",
 	"javascriptreact",
 	"javascript.jsx",
+	"typescript",
 	"typescriptreact",
 	"typescript.tsx",
-	"svelte",
-	"vue",
-	"markdown",
 }
 
+o.ft.js_framework_like = vim.iter({
+	o.ft.js_like,
+	{
+		"svelte",
+		"astro",
+		"vue",
+	},
+})
+	:flatten(math.huge)
+	:totable()
+
+o.ft.markdown_like = {
+	"markdown",
+	"markdown.mdx",
+}
+
+o.ft.css_like = {
+	"css",
+	"scss",
+	"less",
+}
+
+o.ft.html_like = vim.iter({
+	o.ft.markdown_like,
+	o.ft.css_like,
+	o.ft.js_framework_like,
+	{ "html", "htmldjango" },
+})
+	:flatten(math.huge)
+	:totable()
+
+o.ft.json_like = {
+	"json",
+	"jsonc",
+	"json5",
+}
+
+o.ft.yaml_like = {
+	"yaml",
+	"yaml.docker-compose",
+	"yaml.gitlab",
+}
+
+o.ft.config_like = vim.iter({
+	o.ft.json_like,
+	o.ft.yaml_like,
+	{ "toml" },
+})
+	:flatten(math.huge)
+	:totable()
+
+o.ft.sh_like = {
+	"sh",
+	"bash",
+	"zsh",
+	"fish",
+}
+
+---Typescript inlay hints confis
 o.typescriptInlayHints = {
 	parameterNames = {
 		enabled = "literals", -- 'none' | 'literals' | 'all'
@@ -41,6 +114,8 @@ o.typescriptInlayHints = {
 	enumMemberValues = { enabled = true },
 }
 
+---Format config
+---@param enabled boolean
 function o.format_config(enabled)
 	return function(client)
 		client.server_capabilities.documentFormattingProvider = enabled
@@ -48,23 +123,33 @@ function o.format_config(enabled)
 	end
 end
 
+---@param client any
+function o.get_default_filetypes(client)
+	local _client = _convert_client(client)
+
+	local default_config = _client.document_config.default_config
+	return default_config.filetypes or {}
+end
+
 ---Setup LSP client
 ---@param client any
----@param extra_opts LSPConfigOpts
+---@param extra_opts LSPConfigOpts | nil
 function o.setup(client, extra_opts)
-	if type(client) == "string" then
-		client = require("lspconfig")[client]
-	end
+	client = _convert_client(client)
 
-	local default_opts = client.document_config.default_config
+	local default_config = client.document_config.default_config
 
+	local default_opts = o.default_opts()
 	---@class LSPConfigOpts
-	local local_opts = vim.tbl_deep_extend("force", {}, o.lsp_opts, extra_opts or {})
+	local local_opts = vim.tbl_deep_extend("force", {}, default_opts, extra_opts or {})
 
-	local_opts.filetypes = vim.tbl_flatten({
-		local_opts.filetypes or default_opts.filetypes or {},
+	local_opts.filetypes = vim.iter({
+		local_opts.filetypes or o.get_default_filetypes(client),
 		local_opts.extra_filetypes or {},
 	})
+		:flatten()
+		:totable()
+
 	local_opts.extra_filetypes = nil
 	client.setup(local_opts)
 end
