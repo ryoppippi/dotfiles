@@ -27,10 +27,8 @@ return {
 				return
 			end
 
-			require("plugin.nvim-lspconfig.keymaps").on_attach(client, bufnr)
-			require("plugin.nvim-lspconfig.diagnostic").on_attach(client, bufnr)
-			require("plugin.nvim-lspconfig.format").on_attach(client, bufnr)
-			require("plugin.nvim-lspconfig.inlayhints").on_attach(client, bufnr)
+			local on_attach = require("plugin.nvim-lspconfig.on_attach")
+			on_attach(client, bufnr)
 
 			vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 		end)
