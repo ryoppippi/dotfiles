@@ -64,6 +64,7 @@ return {
 						"oil.nvim",
 						"nui.nvim",
 						"noice.nvim",
+						"nvim-cmp",
 					}),
 					checkThirdParty = "Disable",
 				},
