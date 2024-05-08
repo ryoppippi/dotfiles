@@ -12,7 +12,6 @@ return {
 		dependencies = {
 			"folke/neoconf.nvim",
 			"b0o/schemastore.nvim",
-			"kyoh86/climbdir.nvim",
 			{ "hrsh7th/cmp-nvim-lsp", cond = has_cmp },
 			{ "hrsh7th/cmp-nvim-lsp-document-symbol", cond = has_cmp },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help", cond = has_cmp, enabled = false },

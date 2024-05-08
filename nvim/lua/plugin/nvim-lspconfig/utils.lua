@@ -101,6 +101,29 @@ o.ft.sh_like = {
 	"fish",
 }
 
+o.ft.deno_files = {
+	"deno.json",
+	"deno.jsonc",
+	"denops",
+	"package.json",
+}
+
+o.ft.node_specific_files = {
+	"node_modules",
+	"bun.lockb", -- bun
+	"package-lock.json", -- npm or bun
+	"npm-shrinkwrap.json", -- npm
+	"yarn.lock", -- yarn
+	"pnpm-lock.yaml", -- pnpm
+}
+
+o.ft.node_files = vim.iter({
+	o.ft.node_specific_files,
+	"package.json",
+})
+	:flatten(math.huge)
+	:totable()
+
 ---Typescript inlay hints confis
 o.typescriptInlayHints = {
 	parameterNames = {

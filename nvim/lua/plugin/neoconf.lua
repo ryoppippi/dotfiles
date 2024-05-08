@@ -3,59 +3,55 @@ local convertT = {
 	vtsls = "tsserver",
 }
 
----@param name string
-local function checkEnable(name)
-	name = assert(convertT[name] or name)
-
+---@param key string
+local function getOptions(key)
 	local neoconf = require("neoconf")
 
-	local schemaT = vim.iter({ "", "vscode", "coc", "lsp" }):map(function(key)
-		return key == "" and name or ("%s.%s"):format(key, name)
+	local schemaT = vim.iter({ "", "vscode", "coc", "nlsp" }):map(function(configType)
+		return configType == "" and key or ("%s.%s"):format(configType, key)
 	end)
 
-	local allowKey = vim.iter(schemaT)
-		:map(function(key)
-			return ("%s.enable"):format(key)
+	---@type nil|string|table|integer|boolean
+	local item = vim.iter(schemaT)
+		:map(function(item)
+			return neoconf.get(item)
 		end)
-		:totable()
-
-	local disableKey = vim.iter(schemaT)
-		:map(function(key)
-			return ("%s.disable"):format(key)
+		:find(function(item)
+			return item ~= nil
 		end)
-		:totable()
-
-	for _, key in ipairs(allowKey) do
-		local res = neoconf.get(key)
-		if res ~= nil then
-			return res
-		end
-	end
-
-	for _, key in ipairs(disableKey) do
-		local res = neoconf.get(key)
-		if res ~= nil then
-			return not res
-		end
-	end
-
-	return true
 end
 
+--@param name string
+local function isClientEnable(name)
+	name = assert(convertT[name] or name)
+	local enable = getOptions(name .. ".enable")
+	local disable = getOptions(name .. ".disable")
+	if enable == nil and disable == nil then
+		return nil
+	end
+
+	local isEnable = enable == true or disable == false
+	return isEnable
+end
+
+---@type LazySpec
 return {
 	"folke/neoconf.nvim",
 	-- dependencies = { "folke/neodev.nvim", config = true },
-	config = function()
+	opts = {},
+	config = function(_, opts)
 		local neoconf = require("neoconf")
-		neoconf.setup({})
+		neoconf.setup(opts)
 
 		require("core.plugin").on_attach(function(client, bufnr)
 			local name = client.name
+			local isEnable = isClientEnable(name)
 
-			vim.print(("%s-%s"):format(name, checkEnable(name)))
-			if not checkEnable(name) then
+			if isEnable == false then
 				vim.lsp.buf_detach_client(bufnr, client.id)
 			end
 		end)
 	end,
+	isClientEnable = isClientEnable,
+	getOptions = getOptions,
 }
