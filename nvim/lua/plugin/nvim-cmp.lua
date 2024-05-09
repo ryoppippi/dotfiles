@@ -97,7 +97,9 @@ return {
 					if luasnip_status then
 						luasnip.lsp_expand(args.body)
 					elseif denippet ~= nil then
-						denippet.anonymous(args.body)
+						if args.body ~= "" then
+							denippet.anonymous(args.body)
+						end
 					end
 				end,
 			},
