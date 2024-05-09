@@ -2,6 +2,7 @@
 return {
 	"https://github.com/tani/vim-typo",
 	lazy = false,
+	enabled = false,
 	init = function()
 		vim.api.nvim_create_autocmd("InsertEnter", {
 			pattern = "*",
