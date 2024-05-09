@@ -6,11 +6,13 @@ local setup = lsp_utils.setup
 local function findRootDirForDeno(path)
 	---@type string|nil
 	local project_root = vim.fs.root(path, vim.iter({ ".git", ft.deno_files }):flatten(math.huge):totable())
+	project_root = project_root or vim.env.PWD
 
 	local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
 		return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
 	end)
 
+	-- when node files not found, lauch denols
 	if not is_node_files_found then
 		local deps_path = vim.fs.joinpath(project_root, "deps.ts")
 		if vim.uv.fs_stat(deps_path) ~= nil then
@@ -19,6 +21,7 @@ local function findRootDirForDeno(path)
 		return project_root
 	end
 
+	-- if node files found, check if deno is enabled for this project
 	-- check .vscode/settings.json or .neoconf.json for deno.enable and deno.enablePaths
 	local getOptions = require("plugin.neoconf").getOptions
 	local enable = getOptions("deno.enable")
@@ -26,7 +29,7 @@ local function findRootDirForDeno(path)
 	if enable ~= false and type(enable_paths) == "table" then
 		local root_in_enable_path = vim.iter(enable_paths)
 			:map(function(p)
-				return vim.fs.joinpath(vim.env.PWD, p)
+				return vim.fs.joinpath(project_root, p)
 			end)
 			:find(function(absEnablePath)
 				return vim.startswith(path, absEnablePath)
@@ -40,6 +43,7 @@ local function findRootDirForDeno(path)
 		end
 	end
 
+	-- otherwise, return nil
 	return nil
 end
 
@@ -56,7 +60,7 @@ return {
 	end,
 	opts = function()
 		return {
-			single_file_support = false,
+			single_file_support = true,
 			root_dir = function(path)
 				return findRootDirForDeno(path)
 			end,
