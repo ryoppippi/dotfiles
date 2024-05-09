@@ -132,3 +132,4 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: ziglang/zig@0.12.0
   - name: zigtools/zls@0.12.0
+  - name: jetify-com/devbox@0.10.6
