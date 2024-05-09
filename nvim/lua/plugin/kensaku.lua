@@ -1,8 +1,8 @@
 return {
-	"lambdalisue/kensaku.vim",
+	"lambdalisue/vim-kensaku",
 	event = { "User DenopsReady" },
 	dependencies = { "vim-denops/denops.vim" },
 	config = function()
-		require("denops-lazy").load("kensaku.vim")
+		require("denops-lazy").load("vim-kensaku")
 	end,
 }

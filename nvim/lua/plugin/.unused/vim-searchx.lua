@@ -7,7 +7,7 @@ end
 return {
 	"hrsh7th/vim-searchx",
 	enabled = false,
-	dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/kensaku.vim" },
+	dependencies = { "kevinhwang91/nvim-hlslens", "tani/vim-artemis", "lambdalisue/vim-kensaku" },
 	keys = function()
 		return {
 			{

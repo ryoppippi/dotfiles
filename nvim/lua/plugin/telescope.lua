@@ -79,7 +79,7 @@ M = {
 			{ "tsakirist/telescope-lazy.nvim", config = le("lazy") },
 			{
 				"Allianaab2m/telescope-kensaku.nvim",
-				dependencies = { "lambdalisue/kensaku.vim" },
+				dependencies = { "lambdalisue/vim-kensaku" },
 				config = le("kensaku"),
 			},
 			{ "fdschmidt93/telescope-egrepify.nvim", config = le("egrepify") },
