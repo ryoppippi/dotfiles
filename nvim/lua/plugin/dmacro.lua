@@ -1,6 +1,6 @@
 return {
 	"tani/dmacro.nvim",
-	lazy = true,
+	event = { "BufReadPost", "VeryLazy" },
 	config = {
 		dmacro_key = "<c-t>",
 	},
