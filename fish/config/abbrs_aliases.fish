@@ -33,18 +33,26 @@ abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
 abbr -a py python
-abbr -a d docker
-abbr -a dp "docker ps"
-abbr -a db "docker build"
-abbr -a dr "docker run --rm"
-abbr -a dx "docker exec -it"
+
+# docker
+abbr -a do docker
+abbr -a dop "docker ps"
+abbr -a dob "docker build"
+abbr -a dor "docker run --rm"
+abbr -a dox "docker exec -it"
+
+# docker compose
 abbr -a dc docker compose
 abbr -a dcu "docker compose up"
 abbr -a dcub "docker compose up --build"
 abbr -a dcd "docker compose down"
 abbr -a dcr "docker compose restart"
 
-abbr -a der "deno run -A --unstable"
+# devbox
+abbr -a dx devbox
+
+# deno
+abbr -a dr "deno run -A --unstable"
 
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
