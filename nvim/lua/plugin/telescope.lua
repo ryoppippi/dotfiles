@@ -149,6 +149,11 @@ M = {
 
 			telescope.setup({
 				defaults = themes.get_dropdown({
+					path_display = {
+						filename_first = {
+							reverse_directories = true,
+						},
+					},
 					mappings = {
 						n = {
 							["<ESC>"] = actions.close,
