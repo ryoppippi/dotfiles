@@ -116,3 +116,9 @@ if status is-interactive
     stty stop undef &
     stty start undef &
 end
+
+
+set -l NIX_DEAMON_PATH /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+if test -e $NIX_DEAMON_PATH
+    . $NIX_DEAMON_PATH
+end
