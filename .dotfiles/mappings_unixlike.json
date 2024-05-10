@@ -5,6 +5,7 @@
   "bash/.bashrc": "~/.bashrc",
   "bat": "~/.config/bat",
   ".bunfig.toml": "~/.config/.bunfig.toml",
+  "devbox/global/default": "~/.local/share/devbox/global/default",
   "zsh": "~/.config/zsh",
   "zshenv": "~/.zshenv",
   "fish": "~/.config/fish",
