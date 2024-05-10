@@ -26,6 +26,8 @@ return {
 				})
 				grep_telescope_any()
 			end
+			vim.keymap.set("ca", "tel", "Telescope")
+			vim.keymap.set("n", ",<cr>", ":Telescope ", { expr = true })
 			require("which-key").register({
 				[","] = {
 					name = "+Telescope",
