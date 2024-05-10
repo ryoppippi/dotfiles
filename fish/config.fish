@@ -80,10 +80,6 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
     echo '' >$CONFIG_CACHE
 
-    # set mise path to global
-    echo "$(ensure_installed mise activate fish)" >>$CONFIG_CACHE
-    echo "$(ensure_installed mise activate --shims)" >>$CONFIG_CACHE
-
     # xcode
     echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
     echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
