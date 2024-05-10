@@ -8,7 +8,6 @@ return {
 		dir = "",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"cli",
 		},
 		ft = function(spec)
 			return lsp_utils.get_default_filetypes(spec.name)
