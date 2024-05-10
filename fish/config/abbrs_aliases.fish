@@ -51,6 +51,10 @@ abbr -a dcr "docker compose restart"
 # devbox
 abbr -a dx devbox
 
+# nix
+abbr -a ns nix-shell
+abbr -a ngc nix-collect-garbage
+
 # deno
 abbr -a dr "deno run -A --unstable"
 
