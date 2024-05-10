@@ -5,7 +5,8 @@ local setup = lsp_utils.setup
 ---@param path string
 local function findRootDirForDeno(path)
 	---@type string|nil
-	local project_root = vim.fs.root(path, vim.iter({ ".git", ft.deno_files }):flatten(math.huge):totable())
+	local project_root =
+		vim.fs.root(path, vim.iter({ ".git", ft.deno_files, ft.node_specific_files }):flatten(math.huge):totable())
 	project_root = project_root or vim.env.PWD
 
 	local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
