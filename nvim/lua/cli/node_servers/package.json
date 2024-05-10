@@ -15,7 +15,7 @@
     "stylelint-lsp": "2.0.0",
     "svelte-language-server": "0.16.9",
     "unocss-language-server": "0.0.10",
-    "vscode-langservers-extracted": "4.8.0",
+    "vscode-langservers-extracted": "4.9.0",
     "yaml-language-server": "1.14.0"
   },
   "type": "module"
