@@ -1,7 +1,5 @@
 local on_load = require("core.plugin").on_load
 
-local M = {}
-
 ---@param name string
 local le = function(name)
 	on_load("telescope.nvim", function()
@@ -9,7 +7,8 @@ local le = function(name)
 	end)
 end
 
-M = {
+---@type LazySpec[]
+return {
 	{
 		name = "telescope-keymap",
 		dir = "",
@@ -272,7 +271,5 @@ M = {
 	-- 		end)
 	-- 	end,
 	-- },
+	le = le,
 }
-
-M.le = le
-return M
