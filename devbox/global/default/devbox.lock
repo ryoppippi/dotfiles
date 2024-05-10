@@ -3,6 +3,7 @@
   "packages": {
     "nodejs@latest": {
       "last_modified": "2024-04-26T00:29:51Z",
+      "plugin_version": "0.0.2",
       "resolved": "github:NixOS/nixpkgs/4c86138ce486d601d956a165e2f7a0fc029a03c1#nodejs_22",
       "source": "devbox-search",
       "version": "22.0.0",
@@ -62,6 +63,54 @@
             }
           ],
           "store_path": "/nix/store/nx76dx71yjni4bajdn9pshxqs38lkj29-nodejs-22.0.0"
+        }
+      }
+    },
+    "swift-format@latest": {
+      "last_modified": "2024-05-04T07:54:21Z",
+      "resolved": "github:NixOS/nixpkgs/d32560238207b8e26d88b265207b216ee46b8450#swift-format",
+      "source": "devbox-search",
+      "version": "5.8",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mkigyc6vi8xpr8bijsfxriw9m1znb8v8-swift-format-5.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mkigyc6vi8xpr8bijsfxriw9m1znb8v8-swift-format-5.8"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/kcrvzbnr5a82fb3dhrmd306dmlr17f7y-swift-format-5.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/kcrvzbnr5a82fb3dhrmd306dmlr17f7y-swift-format-5.8"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/g7bkasqckvpbjrsvxfln1hqagjdqgx4w-swift-format-5.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/g7bkasqckvpbjrsvxfln1hqagjdqgx4w-swift-format-5.8"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8gbp9z40awgqr9f1a3akcwayfa75w8x4-swift-format-5.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8gbp9z40awgqr9f1a3akcwayfa75w8x4-swift-format-5.8"
         }
       }
     }
