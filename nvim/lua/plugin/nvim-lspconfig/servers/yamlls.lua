@@ -11,6 +11,7 @@ return {
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"b0o/schemastore.nvim",
+		"node_servers",
 	},
 	ft = filetypes,
 	opts = function()
