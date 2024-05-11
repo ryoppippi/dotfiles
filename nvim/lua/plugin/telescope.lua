@@ -13,7 +13,6 @@ return {
 		name = "telescope-keymap",
 		dir = "",
 		event = "VeryLazy",
-		cmd = "Telescope",
 		keys = {
 			{ "tel", "Telescope", mode = "ca" },
 		},
