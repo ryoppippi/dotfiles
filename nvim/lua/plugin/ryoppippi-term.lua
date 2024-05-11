@@ -3,7 +3,7 @@ return {
 	name = "ryoppippi-term.nvim",
 	cmd = { "T", "TS", "TV", "TG" },
 	keys = {
-		{ "g,", "<cmd>Tg<cr>" },
+		{ "g,", "<cmd>TG<cr>" },
 		{ "<leader>tt", "<cmd>T<cr>" },
 		{ "<leader>ts", "<cmd>TS<cr>" },
 		{ "<leader>tv", "<cmd>TV<cr>" },
