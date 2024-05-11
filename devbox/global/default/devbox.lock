@@ -1,6 +1,74 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "eza@latest": {
+      "last_modified": "2024-05-03T15:42:32Z",
+      "resolved": "github:NixOS/nixpkgs/5fd8536a9a5932d4ae8de52b7dc08d92041237fc#eza",
+      "source": "devbox-search",
+      "version": "0.18.14",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3ji23pz1x94g0cj45r3cphmrll6vlh6w-eza-0.18.14",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/qrg0j3i39834p5zg4n397r85ki00251x-eza-0.18.14-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/3ji23pz1x94g0cj45r3cphmrll6vlh6w-eza-0.18.14"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/18iq40jj7j6v464g4fblha8c2jpfgqgn-eza-0.18.14",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/nnanplpjg5cba8zsb08sq8pzdhrmy324-eza-0.18.14-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/18iq40jj7j6v464g4fblha8c2jpfgqgn-eza-0.18.14"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/aba6q54ac62kgf7wkpqr1skb3f8pzx5j-eza-0.18.14",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/p7y3d1n0h0awrkfqxs9l482b84mb6dv7-eza-0.18.14-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/aba6q54ac62kgf7wkpqr1skb3f8pzx5j-eza-0.18.14"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sb33b4iyrs9cl3swgs56dm96ah9nwsgr-eza-0.18.14",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/j9l6gq3ibrmpgy1pqn38b6x7jx90x98j-eza-0.18.14-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sb33b4iyrs9cl3swgs56dm96ah9nwsgr-eza-0.18.14"
+        }
+      }
+    },
     "nodejs@latest": {
       "last_modified": "2024-04-26T00:29:51Z",
       "plugin_version": "0.0.2",
