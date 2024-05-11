@@ -13,6 +13,10 @@ return {
 		name = "telescope-keymap",
 		dir = "",
 		event = "VeryLazy",
+		cmd = "Telescope",
+		keys = {
+			{ "tel", "Telescope", mode = "ca" },
+		},
 		config = function()
 			local function telescope_grep_any()
 				local builtin = require("telescope.builtin")
@@ -26,8 +30,6 @@ return {
 				})
 				grep_telescope_any()
 			end
-			vim.keymap.set("ca", "tel", "Telescope")
-			vim.keymap.set("n", ",<cr>", ":Telescope ", { expr = true })
 			require("which-key").register({
 				[","] = {
 					name = "+Telescope",
