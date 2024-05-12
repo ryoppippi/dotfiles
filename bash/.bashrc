@@ -92,10 +92,9 @@ fi
 
 # eval "$(github-copilot-cli alias -- "$0")"
 
-# mise
-if [ -f "$HOME/.local/bin/mise" ]; then
-  eval "$(~/.local/bin/mise activate bash)"
-  export PATH="$HOME/.local/share/mise/shims:$PATH"
+# nix
+if [ -e " /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then 
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
 if [[ -t 0 ]]; then
