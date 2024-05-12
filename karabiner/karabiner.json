@@ -407,7 +407,7 @@
                         },
                         {
                             "from": {
-                                "key_code": "page_up"
+                                "key_code": "menu"
                             },
                             "to": [
                                 {
