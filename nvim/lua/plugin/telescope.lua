@@ -79,6 +79,7 @@ return {
 			{ "crispgm/telescope-heading.nvim", config = le("heading") },
 			{ "LinArcX/telescope-changes.nvim", config = le("changes") },
 			{ "tsakirist/telescope-lazy.nvim", config = le("lazy") },
+			{ "jvgrootveld/telescope-zoxide", config = le("zoxide") },
 			{
 				"Allianaab2m/telescope-kensaku.nvim",
 				dependencies = { "lambdalisue/vim-kensaku" },
