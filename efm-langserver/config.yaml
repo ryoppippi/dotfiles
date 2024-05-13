@@ -182,10 +182,10 @@ languages:
     - <<: *prettier
     - <<: *biome
   markdown:
-    - <<: *prettier
+    # - <<: *prettier
     - <<: *textlint
   markdown.mdx:
-    - <<: *prettier
+    # - <<: *prettier
     - <<: *textlint
   ## styles
   css:
