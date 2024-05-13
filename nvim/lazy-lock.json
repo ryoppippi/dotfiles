@@ -34,7 +34,7 @@
   "crates.nvim": { "branch": "main", "commit": "7d8541ec0e3b30ac2c43864d3ee13a632e1231ed" },
   "cronex.nvim": { "branch": "main", "commit": "dcdaa5ac70ae144e9045a16dcb2dcc0aee857933" },
   "denippet-autoimport-vscode": { "branch": "main", "commit": "81c09c53a61e4b42234fee43ce26f0ceb196b9b7" },
-  "denippet.vim": { "branch": "feature/add-snippetIdToString", "commit": "3e867bfd0c3a7ab38a4f1ab4f6bdf78859a477ff" },
+  "denippet.vim": { "branch": "feature/add-snippetIdToString", "commit": "402f4a30ffbb306234f4cae0fb7a2ed7b3137051" },
   "denops-docker.vim": { "branch": "main", "commit": "d6e9917cb8ba8b2c3486eb71ffaa8ea9549d426c" },
   "denops-lazy.nvim": { "branch": "main", "commit": "505ffaa5686eee6595811c66ab9b909531f189a4" },
   "denops.vim": { "branch": "main", "commit": "2a393849db9531d14106dcd437f9b7deb5012057" },
