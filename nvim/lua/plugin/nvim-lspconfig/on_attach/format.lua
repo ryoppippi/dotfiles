@@ -32,10 +32,14 @@ end
 ---@param opts? {force?:boolean}
 function M.format(opts)
 	local buf = vim.api.nvim_get_current_buf()
+	local win = vim.api.nvim_get_current_win()
 	if vim.b.autoformat == false and not (opts and opts.force) then
 		return
 	end
-	local ft = vim.bo[buf].filetype
+	-- local ft = vim.bo[buf].filetype
+
+	-- keep cursor position
+	local line, col = unpack(vim.api.nvim_win_get_cursor(win))
 
 	vim.lsp.buf.format({
 		bufnr = buf,
@@ -48,6 +52,10 @@ function M.format(opts)
 			return true
 		end,
 	})
+
+	-- restore cursor position
+	line = math.min(line, vim.fn.line("$"))
+	vim.api.nvim_win_set_cursor(win, { line, col })
 end
 
 local function command()
