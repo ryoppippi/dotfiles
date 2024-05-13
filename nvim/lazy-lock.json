@@ -178,6 +178,7 @@
   "treesitter-unit": { "branch": "main", "commit": "89968a1f8c72427691088e6d09d26a52c2ddc6f4" },
   "troublesum.nvim": { "branch": "master", "commit": "b00301bb565bfcb6fcfa41f2012e43a0528da65b" },
   "ts-error-translator.nvim": { "branch": "main", "commit": "11ae55b28bde02663b5f983f59b0e3fd9c4e845b" },
+  "tsnip.nvim": { "branch": "main", "commit": "d01f5228250f793d40849a1e1f9f001fc36087ae" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "551b617629c3bd0ff6c98d89d679e405f28deeb7" },
   "ugaterm.nvim": { "branch": "main", "commit": "a08280a4dfede6f274c42c48d93be519143ed770" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
