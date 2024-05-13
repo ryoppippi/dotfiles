@@ -26,8 +26,8 @@ return {
 		init = function()
 			vim.g.denippet_drop_on_zero = true
 		end,
-		config = function()
-			require("denops-lazy").load("denippet.vim")
+		config = function(spec)
+			require("denops-lazy").load(spec.name)
 		end,
 	},
 	{
