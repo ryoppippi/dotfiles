@@ -1,7 +1,8 @@
+---@type LazySpec
 return {
 	"lambdalisue/vim-askpass",
 	event = { "User DenopsReady" },
-	config = function()
-		require("denops-lazy").load("vim-askpass")
+	config = function(spec)
+		require("denops-lazy").load(spec.name)
 	end,
 }
