@@ -41,20 +41,6 @@ return {
 			end,
 			single_file_support = false,
 			root_dir = function(path)
-				-- stop vtsls if denols is working
-				vim.defer_fn(
-					vim.schedule_wrap(function()
-						local vtslsClients = vim.lsp.get_clients({ name = "vtsls", bufnr = 0 })
-						local denoClients = vim.lsp.get_clients({ name = "denols", bufnr = 0 })
-						if #vtslsClients > 0 and #denoClients > 0 then
-							vim.iter(vtslsClients):each(function(client)
-								client.stop()
-							end)
-						end
-					end),
-					1000
-				)
-
 				local project_root = vim.fs.root(path, vim.iter({ ".git", ft.node_files }):flatten(math.huge):totable())
 
 				if project_root == nil then
