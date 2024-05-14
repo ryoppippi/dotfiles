@@ -112,7 +112,7 @@ packages:
   - name: eza-community/eza@v0.18.15
   - name: crates.io/gitu@0.20.1
   - name: ducaale/xh@v0.22.0
-  - name: xo/usql@v0.18.1
+  - name: xo/usql@v0.19.0
   - name: sharkdp/vivid@v0.9.0
   - name: ynqa/jnv@v0.2.2
   - name: charmbracelet/freeze@v0.1.6
