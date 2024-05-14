@@ -40,12 +40,6 @@ return {
 				lsp_doc_border = true,
 				long_message_to_split = true,
 			},
-			routes = {
-				{
-					view = "notify",
-					filter = { event = "msg_showmode" },
-				},
-			},
 		}
 	end,
 	config = true,
