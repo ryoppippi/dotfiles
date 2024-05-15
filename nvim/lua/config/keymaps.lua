@@ -56,7 +56,7 @@ vim.keymap.set("n", "tt", "<cmd>tabe .<cr>", { silent = true })
 vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 
 -- jj -> <ESC>
-vim.keymap.set("i", "jj", "<Esc>")
+-- vim.keymap.set("i", "jj", "<Esc>")
 
 -- arrow key prevent stopping undo block
 -- vim.keymap.set("i", "<Left>", "<C-g>u<Left>")
