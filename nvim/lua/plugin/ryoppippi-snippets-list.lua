@@ -11,8 +11,6 @@ return {
 		-- python
 		"cstrap/flask-snippets",
 		"cstrap/python-snippets",
-		-- zig
-		"Metalymph/zig-snippets",
 		-- web
 		"fivethree-team/vscode-svelte-snippets",
 		"xabikos/vscode-javascript",
