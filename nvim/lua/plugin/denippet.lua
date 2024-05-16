@@ -3,17 +3,13 @@ local has = require("core.plugin").has
 ---@type LazySpec[]
 return {
 	{
-		-- "https://github.com/uga-rosa/denippet.vim",
-		"https://github.com/ryoppippi/denippet.vim",
-		branch = "feature/add-snippetIdToString",
+		"https://github.com/uga-rosa/denippet.vim",
 		cond = not is_vscode(),
 		event = { "InsertEnter", "User DenopsReady" },
 		dependencies = {
 			"vim-denops/denops.vim",
 			{
-				-- "uga-rosa/cmp-denippet",
-				"ryoppippi/cmp-denippet",
-				branch = "feature/fix",
+				"uga-rosa/cmp-denippet",
 				cond = function()
 					return has("nvim-cmp")
 				end,
