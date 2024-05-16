@@ -32,8 +32,9 @@
   p = push
   pushf = push --force-with-lease --force-if-includes
   pf = push --force-with-lease --force-if-includes
-  P = pull
+  pl = pull
   dlr = !sh -c 'git branch -D $1 && git push origin :$1' -
+  gg = !ghq get
   r = reset
   rbm = rebase origin/main
   rsr = restore
