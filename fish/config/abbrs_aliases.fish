@@ -35,11 +35,11 @@ abbr -a jl 'jupyter lab'
 abbr -a py python
 
 # docker
-abbr -a do docker
-abbr -a dop "docker ps"
-abbr -a dob "docker build"
-abbr -a dor "docker run --rm"
-abbr -a dox "docker exec -it"
+abbr -a do docker container
+abbr -a dop "docker container ps"
+abbr -a dob "docker container build"
+abbr -a dor "docker container run --rm"
+abbr -a dox "docker container exec -it"
 
 # docker compose
 abbr -a dc docker compose
@@ -50,6 +50,11 @@ abbr -a dcr "docker compose restart"
 
 # devbox
 abbr -a dx devbox
+abbr -a dxr devbox run
+abbr -a dxa devbox run
+abbr -a dxrm devbox rm
+abbr -a -c devbox r run
+abbr -a -c devbox a add
 
 # nix
 abbr -a ns nix-shell
