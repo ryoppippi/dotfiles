@@ -53,8 +53,8 @@ abbr -a dx devbox
 abbr -a dxr devbox run
 abbr -a dxa devbox run
 abbr -a dxrm devbox rm
-abbr -a -c devbox r run
-abbr -a -c devbox a add
+# abbr -a -c devbox r run
+# abbr -a -c devbox a add
 
 # nix
 abbr -a ns nix-shell
