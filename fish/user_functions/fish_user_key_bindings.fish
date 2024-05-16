@@ -48,11 +48,4 @@ function fish_user_key_bindings
         end
     end
     ### fzf ###
-
-    ### autopair ###
-    set -e autopair_path "$CONFIG/fish/conf.d/autopair.fish"
-    if test -f $autopair_path
-        source $autopair_path
-    end
-    ### autopair ###
 end
