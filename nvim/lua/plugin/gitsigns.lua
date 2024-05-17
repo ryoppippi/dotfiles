@@ -1,8 +1,12 @@
+---@type LazySpec
 return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPost" },
 		cmd = { "Gitsigns" },
+		keys = {
+			{ "gs", "Gitsigns", mode = "ca" },
+		},
 		dependencies = {
 			"tpope/vim-repeat",
 		},
