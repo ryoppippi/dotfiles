@@ -1,7 +1,7 @@
 return {
 	"Bekaboo/dropbar.nvim",
 	event = "VeryLazy",
-	cond = tb(vim.fn.has("nvim-0.10")),
+	cond = not is_vscode(),
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},

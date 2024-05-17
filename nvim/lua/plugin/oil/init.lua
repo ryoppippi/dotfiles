@@ -7,6 +7,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"refractalize/oil-git-status.nvim",
 	},
+	cond = not is_vscode(),
 	keys = {
 		{
 			"<leader>e",
