@@ -44,20 +44,6 @@ local function findRootDirForDeno(path)
 		end
 	end
 
-	-- stop denols if vtsls or tsserver is running
-	vim.defer_fn(
-		vim.schedule_wrap(function()
-			local vtslsClients = vim.lsp.get_clients({ name = "vtsls", bufnr = 0 })
-			local denoClients = vim.lsp.get_clients({ name = "denols", bufnr = 0 })
-			local tsserverClients = vim.lsp.get_clients({ name = "tsserver", bufnr = 0 })
-			if (#vtslsClients + #tsserverClients) > 0 and #denoClients > 0 then
-				vim.iter(denoClients):each(function(client)
-					client.stop()
-				end)
-			end
-		end),
-		1000
-	)
 	-- otherwise, return nil
 	return nil
 end
@@ -72,6 +58,33 @@ return {
 	},
 	ft = function(spec)
 		return lsp_utils.get_default_filetypes(spec.name)
+	end,
+	init = function()
+		-- detach denols if vtsls or tsserver is running. If no buffer is attached to denols, stop the client
+		require("core.plugin").on_attach(function(client, bufnr)
+			if client.name ~= "denols" then
+				return
+			end
+
+			local denols_client = client
+			local denols_client_id = denols_client.id
+
+			vim.schedule(function()
+				---@type vim.lsp.Client[]
+				local nodeLSPs = vim.iter({ "vtsls", "tsserver" })
+					:map(function(cn)
+						return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
+					end)
+					:flatten()
+					:totable()
+				if #nodeLSPs > 0 then
+					vim.lsp.buf_detach_client(bufnr, denols_client_id)
+				end
+				if #denols_client.attached_buffers < 1 then
+					vim.lsp.stop_client(denols_client_id)
+				end
+			end)
+		end)
 	end,
 	opts = function()
 		return {
