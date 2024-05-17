@@ -61,6 +61,7 @@ return {
 			use_default_keymaps = false,
 			delete_to_trash = is_trash,
 			trash_command = trash_command,
+			experimental_watch_for_changes = false,
 			win_options = {
 				signcolumn = "yes:2",
 			},
