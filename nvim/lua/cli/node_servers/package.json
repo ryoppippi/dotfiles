@@ -18,5 +18,8 @@
     "vscode-langservers-extracted": "4.10.0",
     "yaml-language-server": "1.14.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "typescript-svelte-plugin": "^0.3.38"
+  }
 }
