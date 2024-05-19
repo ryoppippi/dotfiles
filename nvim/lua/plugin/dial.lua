@@ -93,43 +93,53 @@ return {
 			default = default,
 		})
 
-		require("dial.config").augends:on_filetype(vim.tbl_flatten({
-			(function()
-				local typescript = vim.tbl_flatten({
-					default,
-					{
-						augend.integer.alias.decimal,
-						augend.integer.alias.hex,
-						augend.paren.alias.quote,
-						augend.constant.new({ elements = { "let", "const" } }),
-					},
-				})
-				local ft_table = {}
-				for _, value in pairs({
-					"typescript",
-					"javascript",
-					"typescriptreact",
-					"javascriptreact",
-					"tsx",
-					"jsx",
-					"svelte",
-					"vue",
-					"astro",
-				}) do
-					ft_table[value] = typescript
-				end
-				return ft_table
-			end)(),
+		require("dial.config").augends:on_filetype(vim.iter({
+			({
+				f = function()
+					local typescript = vim.iter({
+						default,
+						{
+							augend.integer.alias.decimal,
+							augend.integer.alias.hex,
+							augend.paren.alias.quote,
+							augend.constant.new({ elements = { "let", "const" } }),
+						},
+					})
+						:flatten()
+						:totable()
+					local ft_table = {}
+					for _, value in pairs({
+						"typescript",
+						"javascript",
+						"typescriptreact",
+						"javascriptreact",
+						"tsx",
+						"jsx",
+						"svelte",
+						"vue",
+						"astro",
+					}) do
+						ft_table[value] = typescript
+					end
+					return ft_table
+				end,
+			}).f(),
 
-			python = vim.tbl_flatten({
+			python = vim.iter({
 				default,
 				{ augend.constant.new({ elements = { "True", "False" }, cyclic = true }) },
-			}),
-			markdown = vim.tbl_flatten({
+			})
+				:flatten()
+				:totable(),
+			markdown = vim.iter({
 				default,
 				{ augend.misc.alias.markdown_header },
-			}),
-		}))
+			})
+				:flatten()
+				:totable(),
+		})
+			:flatten()
+			:totable())
 
 		require("core.utils").redetect_filetype()
 	end,
