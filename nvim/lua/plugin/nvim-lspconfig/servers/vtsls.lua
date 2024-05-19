@@ -66,6 +66,12 @@ return {
 					inlayHints = inlayHints,
 					tsserver = {
 						pluginPaths = { "." },
+						globalPlugins = {
+							{
+								name = "typescript-svelte-plugin",
+								enableForWorkspaceTypeScriptVersions = true,
+							},
+						},
 					},
 				},
 				javascript = {
