@@ -182,6 +182,7 @@
   "tsnode-marker.nvim": { "branch": "main", "commit": "551b617629c3bd0ff6c98d89d679e405f28deeb7" },
   "ugaterm.nvim": { "branch": "main", "commit": "a08280a4dfede6f274c42c48d93be519143ed770" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
+  "vim-aomi-grayscale": { "branch": "main", "commit": "eb4a16f36d93a6a1ff2b6520bf8fa3042e40ad4e" },
   "vim-artemis": { "branch": "main", "commit": "8ed2f0c067b7d70263a785604d1a81e4ee446136" },
   "vim-askpass": { "branch": "main", "commit": "c40b7e296ad626ffebdf26793236a55c8e3517ca" },
   "vim-asterisk": { "branch": "master", "commit": "77e97061d6691637a034258cc415d98670698459" },
