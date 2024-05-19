@@ -68,6 +68,7 @@ return {
 	},
 	config = function()
 		local augend = require("dial.augend")
+		local config = require("dial.config")
 
 		local default = {
 			augend.integer.alias.decimal,
@@ -89,48 +90,20 @@ return {
 			}),
 		}
 
-		require("dial.config").augends:register_group({
+		config.augends:register_group({
 			default = default,
 		})
 
-		require("dial.config").augends:on_filetype(vim.iter({
-			({
-				f = function()
-					local typescript = vim.iter({
-						default,
-						{
-							augend.integer.alias.decimal,
-							augend.integer.alias.hex,
-							augend.paren.alias.quote,
-							augend.constant.new({ elements = { "let", "const" } }),
-						},
-					})
-						:flatten()
-						:totable()
-					local ft_table = {}
-					for _, value in pairs({
-						"typescript",
-						"javascript",
-						"typescriptreact",
-						"javascriptreact",
-						"tsx",
-						"jsx",
-						"svelte",
-						"vue",
-						"astro",
-					}) do
-						ft_table[value] = typescript
-					end
-					return ft_table
-				end,
-			}).f(),
-
+		config.augends:on_filetype({
 			python = vim.iter({
 				default,
 				{ augend.constant.new({ elements = { "True", "False" }, cyclic = true }) },
 			})
 				:flatten()
 				:totable(),
+		})
+
+		config.augends:on_filetype({
 			markdown = vim.iter({
 				default,
 				{ augend.misc.alias.markdown_header },
@@ -138,8 +111,34 @@ return {
 				:flatten()
 				:totable(),
 		})
+
+		local typescriptGroup = vim.iter({
+			default,
+			{
+				augend.integer.alias.decimal,
+				augend.integer.alias.hex,
+				augend.paren.alias.quote,
+				augend.constant.new({ elements = { "let", "const" } }),
+			},
+		})
 			:flatten()
-			:totable())
+			:totable()
+
+		vim.iter({
+			"typescript",
+			"javascript",
+			"typescriptreact",
+			"javascriptreact",
+			"tsx",
+			"jsx",
+			"svelte",
+			"vue",
+			"astro",
+		}):each(function(ft)
+			config.augends:on_filetype({
+				[ft] = typescriptGroup,
+			})
+		end)
 
 		require("core.utils").redetect_filetype()
 	end,
