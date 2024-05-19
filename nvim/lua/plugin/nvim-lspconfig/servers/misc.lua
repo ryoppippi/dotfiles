@@ -5,6 +5,7 @@ local setup = lsp_utils.setup
 
 ---@type LazySpec[]
 return vim.iter({
+	"nixd",
 	"r_language_server",
 	"sourcekit",
 	"sqls",
