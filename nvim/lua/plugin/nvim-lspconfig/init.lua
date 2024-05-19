@@ -1,4 +1,3 @@
-local utils = require("core.utils")
 local lsp_utils = require("plugin.nvim-lspconfig.utils")
 local has_cmp = lsp_utils.has_cmp
 
