@@ -6,7 +6,7 @@ return {
 	dependencies = {
 		"vim-denops/denops.vim",
 	},
-	config = function(spec)
-		require("denops-lazy").load(spec.name)
+	config = function()
+		require("denops-lazy").load("fall")
 	end,
 }
