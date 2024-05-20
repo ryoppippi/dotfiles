@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"https://github.com/vim-fall/vim-fall",
+	"https://github.com/lambdalisue/vim-fall",
 	event = { "User DenopsReady" },
 	cmd = "Fall",
 	dependencies = {

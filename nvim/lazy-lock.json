@@ -187,7 +187,7 @@
   "vim-askpass": { "branch": "main", "commit": "c40b7e296ad626ffebdf26793236a55c8e3517ca" },
   "vim-asterisk": { "branch": "master", "commit": "77e97061d6691637a034258cc415d98670698459" },
   "vim-carbon-now-sh": { "branch": "master", "commit": "31a18d26fc27e7bd5786da092ed886273b4cf639" },
-  "vim-fall": { "branch": "main", "commit": "3e0641c6ffdd613b876e30ebd49ba40e15031bf1" },
+  "vim-fall": { "branch": "main", "commit": "b0f14eea161c2c3a44828eb473cb3ea53de1d251" },
   "vim-gin": { "branch": "main", "commit": "6daee3786b7dd7ad779c4a7904aa008695a2e6f2" },
   "vim-illuminate": { "branch": "master", "commit": "e522e0dd742a83506db0a72e1ced68c9c130f185" },
   "vim-kensaku": { "branch": "main", "commit": "7ddad2f355a3678597ebbac666e2ee6dda6b9cf3" },
