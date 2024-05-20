@@ -62,7 +62,7 @@ abbr -a ngc nix-collect-garbage
 
 # deno
 abbr -a dr "deno run -A --unstable"
-abbr -a deno-cache-clear "rm -rf (deno info | grep "DENO_DIR" | string split -r -m1 ' ')[-1]"
+abbr -a deno-cache-clear "rm -rf (deno info | string match --entire --regex 'DENO_DIR*' | string split ' ')[-1]"
 
 abbr -a cpf "pbcopy < "
 abbr -a paf "pbpaste > "
