@@ -3,8 +3,7 @@ function fish_hybrid_key_bindings --description \
     for mode in default insert visual
         fish_default_key_bindings -M $mode
     end
-    if set -q NVIM
-        or set -q VIM_TERMINAL
+    if is_vim_shell
         fish_default_key_bindings
     else
         fish_vi_key_bindings --no-erase
