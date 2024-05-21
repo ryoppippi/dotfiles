@@ -1,6 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
 	event = "BufReadPost",
+	enabled = false,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"JoosepAlviste/nvim-ts-context-commentstring",
