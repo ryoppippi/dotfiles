@@ -1,7 +1,6 @@
 import * as k from "karabiner_ts";
-import { writeToProfile } from "karabiner_ts";
 
-writeToProfile("Default profile", [
+k.writeToProfile("Default profile", [
   k.rule("Tap Ctrl -> japanese_eisuu + ESC")
     .manipulators([
       k.map({ key_code: "left_control", modifiers: { optional: ["any"] } })
