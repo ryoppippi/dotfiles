@@ -66,6 +66,10 @@ return {
 				return
 			end
 
+			if client.root_dir ~= nil then
+				return
+			end
+
 			local denols_client = client
 			local denols_client_id = denols_client.id
 
