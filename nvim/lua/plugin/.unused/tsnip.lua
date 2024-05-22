@@ -30,6 +30,7 @@ return {
 	"https://github.com/yuki-yano/tsnip.nvim",
 	event = { "User DenopsReady" },
 	dependencies = { "vim-denops/denops.vim", "tani/vim-artemis" },
+	enabled = false,
 	init = function()
 		vim.g.tsnip_snippet_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "tsnip")
 		vim.api.nvim_create_autocmd("User", {
