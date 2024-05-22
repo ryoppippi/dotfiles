@@ -1,23 +1,9 @@
 local wezterm = require("wezterm")
+
 local utils = require("utils")
-local mux = wezterm.mux
-
 local keys = require("keymaps")
+require("on")
 
--- ---------------------------------------------------------------
--- --- wezterm on
--- ---------------------------------------------------------------
-wezterm.on("toggle-opacity", function(window, _)
-	local overrides = window:get_config_overrides() or {}
-	if not overrides.window_background_opacity then
-		overrides.window_background_opacity = 0.6
-	else
-		overrides.window_background_opacity = nil
-	end
-	window:set_config_overrides(overrides)
-end)
-
---
 ---------------------------------------------------------------
 --- load local_config
 ---------------------------------------------------------------
@@ -65,13 +51,6 @@ local config = {
 	window_background_opacity = 0.89,
 	colors = {},
 }
-
-wezterm.on("gui-startup", function(cmd)
-	local _, _, window = mux.spawn_window(cmd or {})
-	local w = window:gui_window()
-	w:maximize()
-	w:toggle_fullscreen()
-end)
 
 config.colors.tab_bar = require("tab_bar")
 -- config = utils.merge_tables(config, require("colors.kanagawa_dragon"))
