@@ -68,7 +68,9 @@ local config = {
 
 wezterm.on("gui-startup", function(cmd)
 	local _, _, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
+	local w = window:gui_window()
+	w:maximize()
+	w:toggle_fullscreen()
 end)
 
 config.colors.tab_bar = require("tab_bar")
