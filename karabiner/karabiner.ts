@@ -30,18 +30,19 @@ writeToProfile("Default profile", [
   ]),
 
   k.rule("Tap CMD to toggle Kana/Eisuu").manipulators([
-    k.map({ key_code: "left_command", modifiers: { optional: ["any"] } })
-      .to({ key_code: "left_command", lazy: true })
-      .toIfAlone({ key_code: "japanese_eisuu" })
-      .description("Tap left_command alone to switch to japanese_eisuu"),
-
-    k.map({ key_code: "right_command", modifiers: { optional: ["any"] } })
-      .to({ key_code: "right_command", lazy: true })
-      .toIfAlone({ key_code: "japanese_kana" })
-      .description("Tap right_command alone to switch to japanese_kana"),
-  ].map((km) =>
-    km.parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
-  ))
+    k.withMapper(
+      {
+        "left_command": "japanese_eisuu",
+        "right_command": "japanese_kana",
+      } as const,
+    )((cmd, lang) =>
+      k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
+        .to({ key_code: cmd, lazy: true })
+        .toIfAlone({ key_code: lang })
+        .description(`Tap ${cmd} alone to switch to ${lang}`)
+        .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
+    ),
+  ])
     .condition(
       k.ifDevice([
         { product_id: 1, vendor_id: 22854 }, // Claw44
