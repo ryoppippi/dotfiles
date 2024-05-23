@@ -7,6 +7,14 @@ function toHideApp(name: string) {
   );
 }
 
+/** not apple keyboard */
+const ifNotSelfMadeKeyboard = k.ifDevice([
+  { product_id: 1, vendor_id: 22854 }, // Claw44
+]).unless();
+
+const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
+  .unless();
+
 k.writeToProfile("Default profile", [
   k.rule("Tap Ctrl -> japanese_eisuu + ESC")
     .manipulators([
@@ -35,7 +43,7 @@ k.writeToProfile("Default profile", [
       }),
   ]),
 
-  k.rule("Tap CMD to toggle Kana/Eisuu").manipulators([
+  k.rule("Tap CMD to toggle Kana/Eisuu", ifNotSelfMadeKeyboard).manipulators([
     k.withMapper(
       {
         "left_command": "japanese_eisuu",
@@ -48,12 +56,7 @@ k.writeToProfile("Default profile", [
         .description(`Tap ${cmd} alone to switch to ${lang}`)
         .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
     ),
-  ])
-    .condition(
-      k.ifDevice([
-        { product_id: 1, vendor_id: 22854 }, // Claw44
-      ]).unless(),
-    ),
+  ]),
 
   k.rule("Toggle WezTerm by ctrl+,")
     .manipulators([
