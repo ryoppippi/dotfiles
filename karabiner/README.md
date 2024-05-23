@@ -5,5 +5,11 @@ My personal karabiner config built with [karabiner.ts](https://github.com/evan-l
 ## Build
 
 ```bash
-deno task run build
+deno task build
+```
+
+or watch build
+
+```bash
+deno task watch
 ```
