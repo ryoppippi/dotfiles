@@ -74,4 +74,23 @@ k.writeToProfile("Default profile", [
         ])
       ),
     ]),
+
+  k.rule(
+    "toggle h/j/k/l to arrow keys",
+    ifTrackpadTouched,
+    ifNotSelfMadeKeyboard,
+  ).manipulators([
+    k.withMapper(
+      {
+        "h": "left_arrow",
+        "j": "down_arrow",
+        "k": "up_arrow",
+        "l": "right_arrow",
+      } as const,
+    )((key, arrow) =>
+      k.map({ key_code: key })
+        .to({ key_code: arrow })
+        .description(`Tap ${key} to ${arrow}`)
+    ),
+  ]),
 ]);
