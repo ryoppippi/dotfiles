@@ -1,5 +1,12 @@
 import * as k from "karabiner_ts";
 
+/** Hide the application by name */
+function toHideApp(name: string) {
+  return k.to$(
+    `osascript -e 'tell application "System Events" to set visible of process "${name}" to false'`,
+  );
+}
+
 k.writeToProfile("Default profile", [
   k.rule("Tap Ctrl -> japanese_eisuu + ESC")
     .manipulators([
@@ -47,4 +54,21 @@ k.writeToProfile("Default profile", [
         { product_id: 1, vendor_id: 22854 }, // Claw44
       ]).unless(),
     ),
+
+  k.rule("Toggle WezTerm by ctrl+,")
+    .manipulators([
+      k.withMapper(
+        [
+          toHideApp("WezTerm"),
+          k.toApp("WezTerm"),
+        ] as const,
+      )((event, i) =>
+        k.withCondition(
+          ...[k.ifApp("wezterm")].map((c) => i === 0 ? c : c.unless()),
+        )([
+          k.map({ key_code: "comma", modifiers: { mandatory: ["control"] } })
+            .to(event),
+        ])
+      ),
+    ]),
 ]);
