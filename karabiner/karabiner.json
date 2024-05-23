@@ -218,6 +218,123 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "toggle h/j/k/l to arrow keys",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h"
+                },
+                "to": [
+                  {
+                    "key_code": "left_arrow"
+                  }
+                ],
+                "description": "Tap h to left_arrow",
+                "conditions": [
+                  {
+                    "type": "variable_unless",
+                    "name": "multitouch_extension_finger_count_total",
+                    "value": 0
+                  },
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j"
+                },
+                "to": [
+                  {
+                    "key_code": "down_arrow"
+                  }
+                ],
+                "description": "Tap j to down_arrow",
+                "conditions": [
+                  {
+                    "type": "variable_unless",
+                    "name": "multitouch_extension_finger_count_total",
+                    "value": 0
+                  },
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k"
+                },
+                "to": [
+                  {
+                    "key_code": "up_arrow"
+                  }
+                ],
+                "description": "Tap k to up_arrow",
+                "conditions": [
+                  {
+                    "type": "variable_unless",
+                    "name": "multitouch_extension_finger_count_total",
+                    "value": 0
+                  },
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l"
+                },
+                "to": [
+                  {
+                    "key_code": "right_arrow"
+                  }
+                ],
+                "description": "Tap l to right_arrow",
+                "conditions": [
+                  {
+                    "type": "variable_unless",
+                    "name": "multitouch_extension_finger_count_total",
+                    "value": 0
+                  },
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {
