@@ -220,6 +220,57 @@
             ]
           },
           {
+            "description": "Swap Enter & Shift+Enter in Discord",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "return_or_enter"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "com.hnc.Discord"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "return_or_enter"
+                },
+                "to": [
+                  {
+                    "key_code": "return_or_enter",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "com.hnc.Discord"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "toggle h/j/k/l to arrow keys",
             "manipulators": [
               {

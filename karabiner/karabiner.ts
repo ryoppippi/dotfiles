@@ -76,6 +76,21 @@ k.writeToProfile("Default profile", [
     ]),
 
   k.rule(
+    "Swap Enter & Shift+Enter in Discord",
+    k.ifApp({ bundle_identifiers: ["com.hnc.Discord"] }),
+  )
+    .manipulators([
+      k.map({
+        key_code: "return_or_enter",
+        modifiers: { mandatory: ["shift"] },
+      })
+        .to({ key_code: "return_or_enter" }),
+
+      k.map({ key_code: "return_or_enter" })
+        .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
+    ]),
+
+  k.rule(
     "toggle h/j/k/l to arrow keys",
     ifTrackpadTouched,
     ifNotSelfMadeKeyboard,
