@@ -165,6 +165,59 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "Toggle WezTerm by ctrl+,",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": [
+                      "control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript -e 'tell application \"System Events\" to set visible of process \"WezTerm\" to false'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "wezterm"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": [
+                      "control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"WezTerm\".app"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_unless",
+                    "bundle_identifiers": [
+                      "wezterm"
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {
