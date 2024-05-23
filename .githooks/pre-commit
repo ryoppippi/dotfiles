@@ -1,9 +1,13 @@
 #!/bin/sh
 
-# get the list of staged files
-files=$(git diff --cached --name-only --diff-filter=ACM)
+secretlint="@secretlint/quick-start"
+files=$(git ls-files)
 
-git stash -k
-bun x @secretlint/quick-start $files
-git add $files
-git stash pop
+if command -v bun >/dev/null 2>&1; then
+  bun x $secretlint $files
+elif command -v deno >/dev/null 2>&1; then
+  deno run -A "npm:$secretlint" $files
+else
+  npx $secretlint $files
+fi
+
