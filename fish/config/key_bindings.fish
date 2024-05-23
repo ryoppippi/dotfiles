@@ -10,4 +10,4 @@ function fish_hybrid_key_bindings --description \
     end
 end
 
-set -g fish_key_bindings fish_hybrid_key_bindings
+#set -g fish_key_bindings fish_hybrid_key_bindings
