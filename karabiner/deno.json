@@ -1,7 +1,7 @@
 {
   "tasks": {
     "build": "deno run --allow-env --allow-read --allow-write karabiner.ts",
-    "dev": "deno run --watch --allow-env --allow-read --allow-write karabiner.ts"
+    "watch": "deno run --watch --allow-env --allow-read --allow-write karabiner.ts"
   },
   "imports": {
     "karabiner_ts": "https://deno.land/x/karabinerts@1.29.0/deno.ts"
