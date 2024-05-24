@@ -41,7 +41,7 @@ k.writeToProfile("Default profile", [
     })
       .toIfHeldDown({
         key_code: "q",
-        modifiers: ["left_command"],
+        modifiers: ["command"],
         repeat: false,
       }),
   ]),
