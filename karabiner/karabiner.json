@@ -79,7 +79,7 @@
                   {
                     "key_code": "q",
                     "modifiers": [
-                      "left_command"
+                      "command"
                     ],
                     "repeat": false
                   }
