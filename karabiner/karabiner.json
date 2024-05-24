@@ -31,10 +31,10 @@
                 ],
                 "to_if_alone": [
                   {
-                    "key_code": "japanese_eisuu",
-                    "modifiers": [
-                      "left_control"
-                    ]
+                    "key_code": "japanese_eisuu"
+                  },
+                  {
+                    "key_code": "escape"
                   }
                 ]
               }
