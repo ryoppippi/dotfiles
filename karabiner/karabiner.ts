@@ -20,7 +20,10 @@ k.writeToProfile("Default profile", [
     .manipulators([
       k.map({ key_code: "left_control", modifiers: { optional: ["any"] } })
         .to({ key_code: "left_control", lazy: true })
-        .toIfAlone({ key_code: "japanese_eisuu", modifiers: ["left_control"] }),
+        .toIfAlone([
+          { key_code: "japanese_eisuu" },
+          { key_code: "escape" },
+        ]),
     ]),
 
   k.rule("Tap ESC -> japanese_eisuu + esc").manipulators([
