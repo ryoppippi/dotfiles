@@ -44,7 +44,7 @@ k.writeToProfile("Default profile", [
   ]),
 
   k.rule("Tap CMD to toggle Kana/Eisuu", ifNotSelfMadeKeyboard).manipulators([
-    k.withMapper(
+    k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
       {
         "left_command": "japanese_eisuu",
         "right_command": "japanese_kana",
@@ -95,7 +95,7 @@ k.writeToProfile("Default profile", [
     ifTrackpadTouched,
     ifNotSelfMadeKeyboard,
   ).manipulators([
-    k.withMapper(
+    k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
       {
         "h": "left_arrow",
         "j": "down_arrow",
