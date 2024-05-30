@@ -1,3 +1,29 @@
+local ok, reset = pcall(require, "nvim-reset")
+if not ok then
+	vim.notify("nvim-reset is not installed", "warn")
+	return
+end
+reset.setup({
+	ignore_maps = {
+		--- open url [[
+		{ mode = { "n", "x", "v" }, lhs = "gx" },
+		--- ]]
+		--- comment toggle [[
+		{ mode = { "n", "x" }, lhs = "gcc" },
+		{ mode = "x", lhs = "gc" },
+		{ mode = "o", lhs = "gc" },
+		--- ]]
+
+		--- macro [[
+		{ mode = { "n", "x" }, lhs = "q" },
+		{ mode = { "n", "x" }, lhs = "Q" },
+		{ mode = { "n", "x" }, lhs = "@" },
+		{ mode = { "n", "x" }, lhs = "g@" },
+		--- ]]
+	},
+})
+vim.print("keymap")
+
 vim.g.completion_trigger_character = "."
 
 vim.keymap.set("n", ";", ":")
@@ -96,13 +122,15 @@ vim.keymap.set("n", "A", function()
 	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
 end, { expr = true, silent = true })
 
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>b",
-	vim.fn.maparg("gx", "n", false, true).callback,
-	{ desc = "Open URL under cursor in browser" }
-)
-vim.keymap.del({ "n", "v" }, "gx")
+vim.iter({ "n", "x" }):each(function(mode)
+	vim.keymap.set(
+		mode,
+		"<leader>b",
+		vim.fn.maparg("gx", mode, false, true).callback,
+		{ desc = "Open URL under cursor in browser" }
+	)
+	vim.keymap.del(mode, "gx")
+end)
 
 -- custom
 -- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
