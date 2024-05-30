@@ -20,6 +20,7 @@ return vim.iter({
 	{ "tailwindcss", format = false, extra_filetypes = ft.css_like },
 	{ "html", format = false },
 	{ "stylelint_lsp", format = false },
+	{ "unocss", format = false },
 })
 	:map(function(tbl)
 		---@type LazySpec
