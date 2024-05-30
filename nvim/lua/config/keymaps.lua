@@ -1,28 +1,28 @@
-local ok, reset = pcall(require, "nvim-reset")
-if not ok then
-	vim.notify("nvim-reset is not installed", "warn")
-	return
-end
-reset.setup({
-	ignore_maps = {
-		--- open url [[
-		{ mode = { "n", "x", "v" }, lhs = "gx" },
-		--- ]]
-		--- comment toggle [[
-		{ mode = { "n", "x" }, lhs = "gcc" },
-		{ mode = "x", lhs = "gc" },
-		{ mode = "o", lhs = "gc" },
-		--- ]]
-
-		--- macro [[
-		{ mode = { "n", "x" }, lhs = "q" },
-		{ mode = { "n", "x" }, lhs = "Q" },
-		{ mode = { "n", "x" }, lhs = "@" },
-		{ mode = { "n", "x" }, lhs = "g@" },
-		--- ]]
-	},
-})
-vim.print("keymap")
+-- local ok, reset = pcall(require, "nvim-reset")
+-- if not ok then
+-- 	vim.notify("nvim-reset is not installed", "warn")
+-- 	return
+-- end
+-- reset.setup({
+-- 	ignore_maps = {
+-- 		--- open url [[
+-- 		{ mode = { "n", "x", "v" }, lhs = "gx" },
+-- 		--- ]]
+-- 		--- comment toggle [[
+-- 		{ mode = { "n", "x" }, lhs = "gcc" },
+-- 		{ mode = "x", lhs = "gc" },
+-- 		{ mode = "o", lhs = "gc" },
+-- 		--- ]]
+--
+-- 		--- macro [[
+-- 		{ mode = { "n", "x" }, lhs = "q" },
+-- 		{ mode = { "n", "x" }, lhs = "Q" },
+-- 		{ mode = { "n", "x" }, lhs = "@" },
+-- 		{ mode = { "n", "x" }, lhs = "g@" },
+-- 		--- ]]
+-- 	},
+-- })
+-- vim.print("keymap")
 
 vim.g.completion_trigger_character = "."
 
