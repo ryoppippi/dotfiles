@@ -11,7 +11,6 @@ return {
 	{ "seachicken/gh-poi", build = { "go build", install } },
 	{ "k1LoW/gh-do", build = { install } },
 	{ "kawarimidoll/gh-graph", build = { install } },
-	{ "ryoppippi/gh-cr", build = { install } },
 	{ "korosuke613/gh-user-stars", build = { install } },
 	{ "github/gh-copilot", build = "gh extension install github/gh-copilot --force" },
 }
