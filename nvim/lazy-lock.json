@@ -54,7 +54,6 @@
   "garbage-day.nvim": { "branch": "main", "commit": "3af496f0d1dc6586dcf4ceda6bbf61a8f820ab66" },
   "gh-actions-cache": { "branch": "main", "commit": "0e7c371e56e408bcc06c06001b29593f488b8d31" },
   "gh-copilot": { "branch": "main", "commit": "1b9fb5aeb5bd94b06f9f549823cb6a0c52693f69" },
-  "gh-cr": { "branch": "main", "commit": "1f29ad1517617165160716c74395dd999ad9eeda" },
   "gh-dash": { "branch": "main", "commit": "6f5752135a10050cac51036f7bc68da6e19cce99" },
   "gh-do": { "branch": "main", "commit": "5b989f2747ad0f6c248c670db2e2e1f6fb48a408" },
   "gh-graph": { "branch": "main", "commit": "30a1fa20a8ed7e4d05014358e7cbd8e369c8c400" },
