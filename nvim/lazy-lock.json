@@ -35,6 +35,7 @@
   "cronex.nvim": { "branch": "main", "commit": "dcdaa5ac70ae144e9045a16dcb2dcc0aee857933" },
   "denippet-autoimport-vscode": { "branch": "main", "commit": "81c09c53a61e4b42234fee43ce26f0ceb196b9b7" },
   "denippet.vim": { "branch": "main", "commit": "68449bee6555b65b671a9cf18f91fcf7728e4d63" },
+  "deno-cache": { "branch": "main", "commit": "c782f50a958870ffdcc57972d916bdff0640f2f5" },
   "denops-docker.vim": { "branch": "main", "commit": "44ff90593ea2cf045eba71d4501a4d25f10246cc" },
   "denops-lazy.nvim": { "branch": "main", "commit": "505ffaa5686eee6595811c66ab9b909531f189a4" },
   "denops.vim": { "branch": "main", "commit": "bcc88ca61f1edcbe364dbfb4967204193efc6e9a" },
