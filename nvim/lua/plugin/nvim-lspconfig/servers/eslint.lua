@@ -16,7 +16,7 @@ return {
 	ft = filetype,
 	opts = function()
 		return {
-			on_attach = format_config(false),
+			on_attach = format_config(true),
 		}
 	end,
 	config = function(_, opts)
