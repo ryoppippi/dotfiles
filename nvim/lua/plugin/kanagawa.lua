@@ -1,16 +1,24 @@
 local DEFUALT_THEME = "dragon"
 local TRANSPARENT = true
+
+local isKanagawa = function()
+	return vim.env.NVIM_COLORSCHEME == "kanagawa"
+end
+
+local kanagawaConfig = function(opts)
+	local k = require("kanagawa")
+	k.setup(opts)
+	k.load(DEFUALT_THEME)
+	vim.schedule(function()
+		vim.cmd([[silent KanagawaCompile]])
+	end)
+end
+
 return {
 	"rebelot/kanagawa.nvim",
-	priority = vim.env.NVIM_COLORSCHEME == "kanagawa" and 1000 or 50,
+	priority = isKanagawa() and 1000 or 50,
 	-- lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
-	event = function()
-		if vim.env.NVIM_COLORSCHEME == "kanagawa" then
-			return { "UiEnter" }
-		else
-			return { "VeryLazy" }
-		end
-	end,
+	event = isKanagawa() and { "UiEnter" } or { "VeryLazy" },
 	build = ":KanagawaCompile",
 	cond = vim.o.termguicolors and not is_vscode(),
 	opts = function()
@@ -60,11 +68,9 @@ return {
 		}
 	end,
 	config = function(_, opts)
-		local k = require("kanagawa")
-		k.setup(opts)
-		k.load(DEFUALT_THEME)
-		vim.schedule(function()
-			vim.cmd([[silent KanagawaCompile]])
-		end)
+		if vim.env.NVIM_COLORSCHEME == "kanagawa" then
+			vim.cmd.colorscheme(DEFUALT_THEME ~= nil and "kanagawa" or ("kanagawa-%s"):format(DEFUALT_THEME))
+		end
+		kanagawaConfig(opts)
 	end,
 }
