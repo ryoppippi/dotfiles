@@ -29,6 +29,10 @@ return {
 				vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 			end)
 
+			vim.api.nvim_create_user_command("LspDiagnosticReset", function()
+				vim.diagnostic.reset()
+			end, {})
+
 			-- local ok, wf = pcall(require, "vim.lsp._watchfiles")
 			-- if ok then
 			-- 	-- disable lsp watcher. Too slow on linux
