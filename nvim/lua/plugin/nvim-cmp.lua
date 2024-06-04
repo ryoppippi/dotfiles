@@ -190,7 +190,7 @@ return {
 				-- { name = "rg" },
 				{ name = "luasnip", priority = 20 },
 				{ name = "denippet", priority = 20 },
-				{ name = "nvim_lsp", priority = 100, trigger_characters = { "-", ".", "/" } },
+				{ name = "nvim_lsp", priority = 100, trigger_characters = { "-", ".", "/", ":" } },
 				{ name = "path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
 				{ name = "nvim_lua", priority = 50 },
