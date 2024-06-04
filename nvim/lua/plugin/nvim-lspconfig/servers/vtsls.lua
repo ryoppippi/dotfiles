@@ -41,21 +41,35 @@ return {
 			end,
 			single_file_support = false,
 			root_dir = function(path)
-				local project_root = vim.fs.root(path, vim.iter({ ".git", ft.node_files }):flatten(math.huge):totable())
+				---@param current_path string|nil
+				local function find_root(current_path)
+					if current_path == nil or current_path == "" then
+						return nil
+					end
 
-				if project_root == nil then
-					return nil
+					local project_root =
+						vim.fs.root(current_path, vim.iter({ ".git", ft.node_files }):flatten(math.huge):totable())
+
+					if project_root == nil then
+						return nil
+					end
+
+					local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
+						return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
+					end)
+
+					if is_node_files_found then
+						return project_root
+					end
+
+					if vim.uv.fs_stat(vim.fs.joinpath(project_root, ".git")) ~= nil then
+						return project_root
+					end
+
+					return find_root(vim.fs.dirname(current_path))
 				end
 
-				local is_node_files_found = vim.iter(ft.node_specific_files):any(function(file)
-					return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
-				end)
-
-				if is_node_files_found then
-					return project_root
-				end
-
-				return nil
+				return find_root(path)
 			end,
 			capabilities = capabilities,
 			settings = {
