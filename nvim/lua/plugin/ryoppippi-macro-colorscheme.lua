@@ -18,7 +18,7 @@ return {
 	name = "ryoppippi-macro-colorscheme",
 	event = "BufEnter",
 	opts = {
-		macro_cs = "kanagawa-wave",
+		macro_cs = "moonlight",
 		check_interval = 200,
 	},
 	config = function(_, opts)
