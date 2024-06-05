@@ -15,7 +15,7 @@ return {
 			"*.js",
 		},
 		explainer = {
-			cmd = { "deno", "run", "npm:cronstrue" },
+			cmd = { "bun", "x", "cronstrue" },
 		},
 	},
 }
