@@ -77,7 +77,7 @@
   "hlchunk.nvim": { "branch": "main", "commit": "882d1bc86d459fa8884398223c841fd09ea61b6b" },
   "inc-rename.nvim": { "branch": "main", "commit": "7c6125b1ee476b56708a6518a37b2a3357f57bfc" },
   "kanagawa.nvim": { "branch": "master", "commit": "860e4f80df71221d18bf2cd9ef1deb4d364274d2" },
-  "lackluster.nvim": { "branch": "main", "commit": "ab84a74196d76b8172ba299071f8f5de6aed2a63" },
+  "lackluster.nvim": { "branch": "main", "commit": "ee83df5a6f3861dc76b14fd990d855939ea92822" },
   "lazy.nvim": { "branch": "main", "commit": "e44636a43376e8a1e851958f7e9cbe996751d59f" },
   "linediff.vim": { "branch": "main", "commit": "ddae71ef5f94775d101c1c70032ebe8799f32745" },
   "live-command.nvim": { "branch": "main", "commit": "d460067d47948725a6f25b20f31ea8bbfdfe4622" },
