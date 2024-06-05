@@ -149,5 +149,10 @@ vim.cmd(
 	[[cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s//g<Left><Left>" : 's']]
 )
 
+-- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
+for _, quote in ipairs({ '"', "'", "`" }) do
+	vim.keymap.set({ "x", "o" }, "a" .. quote, "2i" .. quote)
+end
+
 vim.keymap.set("", "<c-i>", "<c-i>")
 vim.keymap.set("n", "g<leader>", "<cmd>QuickLook<cr>")
