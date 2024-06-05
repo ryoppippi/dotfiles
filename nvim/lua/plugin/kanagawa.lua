@@ -1,4 +1,3 @@
-local DEFUALT_THEME = "dragon"
 local TRANSPARENT = true
 
 local isKanagawa = function()
@@ -64,15 +63,14 @@ return {
 			end,
 			globalStatus = true,
 			transparent = TRANSPARENT,
-			theme = DEFUALT_THEME,
 			compile = true,
 		}
 	end,
 	config = function(_, opts)
 		local k = require("kanagawa")
 		k.setup(opts)
-		if vim.env.NVIM_COLORSCHEME == "kanagawa" then
-			vim.cmd.colorscheme(DEFUALT_THEME ~= nil and "kanagawa" or ("kanagawa-%s"):format(DEFUALT_THEME))
+		if isKanagawa() then
+			vim.cmd.colorscheme(vim.env.NVIM_COLORSCHEME)
 		end
 	end,
 }
