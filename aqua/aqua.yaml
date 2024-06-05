@@ -114,7 +114,7 @@ packages:
   - name: ducaale/xh@v0.22.0
   - name: xo/usql@v0.19.1
   - name: sharkdp/vivid@v0.9.0
-  - name: ynqa/jnv@v0.2.3
+  - name: ynqa/jnv@v0.3.0
   - name: charmbracelet/freeze@v0.1.6
   - name: svenstaro/genact@v1.4.2
   - name: sqls-server/sqls@v0.2.27
