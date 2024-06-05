@@ -17,6 +17,7 @@ end
 return {
 	"rebelot/kanagawa.nvim",
 	priority = isKanagawa() and 1000 or 50,
+	enabled = isKanagawa(),
 	-- lazy = vim.env.NVIM_COLORSCHEME ~= "kanagawa",
 	event = isKanagawa() and { "UiEnter" } or { "VeryLazy" },
 	build = ":KanagawaCompile",
