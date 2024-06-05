@@ -9,16 +9,6 @@ return {
 	"slugbyte/lackluster.nvim",
 	priority = isLackluster() and 1000 or 50,
 	event = isLackluster() and { "UiEnter" } or { "VeryLazy" },
-	init = function()
-		vim.api.nvim_create_autocmd("ColorScheme", {
-			callback = function(args)
-				if not vim.startswith(args.match, "lackluster") then
-					return
-				end
-				vim.g.colors_name = args.match
-			end,
-		})
-	end,
 	config = function()
 		local lackluster = require("lackluster")
 		local color = lackluster.color -- blue, green, red, orange, black, lack, luster, gray1-9
