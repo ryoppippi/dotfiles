@@ -123,3 +123,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function(args)
+		vim.g.colors_name = args.match
+	end,
+})
