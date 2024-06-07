@@ -63,7 +63,7 @@ return {
 					end
 
 					if vim.uv.fs_stat(vim.fs.joinpath(project_root, ".git")) ~= nil then
-						return project_root
+						return nil
 					end
 
 					return find_root(vim.fs.dirname(current_path))
