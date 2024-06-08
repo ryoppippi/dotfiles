@@ -2,11 +2,13 @@ vim.filetype.add({
 	extension = {
 		jax = "help",
 		zon = "zig",
+		mdx = "markdown",
 	},
 	filename = {
 		[".envrc"] = "sh",
 		["tsconfig.json"] = "jsonc",
 		["bun.lockb"] = "bunlockb",
+		["mdx"] = "markdown",
 	},
 	pattern = {
 		[".*/%.git/config"] = "gitconfig",
