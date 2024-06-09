@@ -106,5 +106,5 @@ if has("CopilotChat.nvim") then
 		command = "CopilotChatClose",
 	})
 
-	vim.keymap.set("ca", "qq", "execute 'CopilotChatClose' <bar> wq")
+	vim.keymap.set("ca", "qq", "execute 'CopilotChatClose' <bar> wqa")
 end
