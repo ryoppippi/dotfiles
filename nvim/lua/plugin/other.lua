@@ -1,7 +1,7 @@
 local sveltekit_target = {
 	{ target = "/%1/%+%2.svelte", context = "view" },
-	{ target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transform = "remove_server" },
-	{ target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transform = "add_server" },
+	{ target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transformer = "remove_server" },
+	{ target = "/%1/%+%2\\(*.ts\\|*.js\\)", context = "script", transformer = "add_server" },
 }
 
 ---@type LazySpec
