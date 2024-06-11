@@ -90,6 +90,7 @@ abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 abbr -a gsw 'git switch'
 abbr -a gsm "command git switch main 2>/dev/null || command git switch master"
+abbr -a gpt 'git push --tags'
 
 # ghq
 abbr -a gg 'ghq get'
