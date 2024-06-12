@@ -19,7 +19,7 @@ return {
 			on_attach = format_config(true),
 		}
 	end,
-	config = function(_, opts)
-		setup("eslint", opts)
+	config = function(spec, opts)
+		setup(spec.name, opts)
 	end,
 }
