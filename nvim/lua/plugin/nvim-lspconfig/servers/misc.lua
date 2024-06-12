@@ -7,7 +7,6 @@ local setup = lsp_utils.setup
 return vim.iter({
 	"nixd",
 	"r_language_server",
-	"sourcekit",
 	"sqls",
 	"taplo",
 	"ruby_lsp",
