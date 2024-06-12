@@ -12,19 +12,16 @@ return {
 		ft = function(spec)
 			return lsp_utils.get_default_filetypes(spec.name)
 		end,
-		config = function()
-			setup(
-				"sourcekit",
-				{
-					capabilities = {
-						workspace = {
-							didChangeWatchedFiles = {
-								dynamicRegistration = true,
-							},
+		config = function(spec)
+			setup(spec.name, {
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
 						},
 					},
-				}
-			)
+				},
+			})
 		end,
 	},
 }

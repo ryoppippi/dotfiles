@@ -15,8 +15,8 @@ return {
 		init = function()
 			vim.g.zig_fmt_autosave = 0
 		end,
-		config = function()
-			setup("zls")
+		config = function(spec)
+			setup(spec.name)
 		end,
 	},
 }
