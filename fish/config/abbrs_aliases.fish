@@ -103,4 +103,6 @@ abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
 # gh
 abbr -a gh-fork-sync "gh repo list --limit 200 --fork --json nameWithOwner --jq '.[].nameWithOwner' | xargs -n1 gh repo sync"
 
+# misc
 abbr -a n -f _na
+abbr --position anywhere rpp ryoppippi
