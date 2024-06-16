@@ -117,6 +117,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "a27179f56c6f98a4cdcc79ee2971b514815a4940" },
   "nvim-luadev": { "branch": "master", "commit": "3ba0c02c378503739f1fdb95cff3ea2aad48db3e" },
   "nvim-navic": { "branch": "master", "commit": "8649f694d3e76ee10c19255dece6411c29206a54" },
+  "nvim-pqf": { "branch": "main", "commit": "148ee2ca8b06d83fd9bf6f9b9497724ad39a07d6" },
   "nvim-regexplainer": { "branch": "main", "commit": "78fff711edcb986a05a03253c28a90e32c4ce31f" },
   "nvim-treesitter": { "branch": "master", "commit": "c26cfc75bc77b3538f4f288b013bc927a371bf2e" },
   "nvim-treesitter-clipping": { "branch": "master", "commit": "4a008176a4d75febb96f5817ad2ccc76ef513ce5" },
