@@ -15,6 +15,7 @@ end
 ---@type LazySpec
 return {
 	dir = "",
+	enabled = false,
 	name = "ryoppippi-macro-colorscheme",
 	event = "BufEnter",
 	opts = {
