@@ -3,7 +3,6 @@
   email = 1560508+ryoppippi@users.noreply.github.com
 [core]
   autocrlf = input
-  excludesfile = /Users/ryoppippi/.gitignore_global
   editor = nvim
   pager = delta
 	ignorecase = false
