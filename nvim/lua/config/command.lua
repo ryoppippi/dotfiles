@@ -13,7 +13,11 @@ vim.api.nvim_create_user_command("ConfigTelescope", function()
 end, { nargs = 0 })
 
 -- indent change
-vim.api.nvim_create_user_command("IndentChange", "set tabstop=<args> shiftwidth=<args>", { force = true, nargs = 1 })
+vim.api.nvim_create_user_command(
+	"IndentChange",
+	"setlocal tabstop=<args> shiftwidth=<args>",
+	{ force = true, nargs = 1 }
+)
 
 vim.api.nvim_create_user_command("EncodingReload", "execute 'e ++enc=<args>'", { force = true, nargs = 1 })
 
