@@ -12,13 +12,6 @@ vim.api.nvim_create_user_command("ConfigTelescope", function()
 	vim.cmd("Telescope find_files cwd=" .. vim.fn.stdpath("config"))
 end, { nargs = 0 })
 
--- indent change
-vim.api.nvim_create_user_command(
-	"IndentChange",
-	"setlocal tabstop=<args> shiftwidth=<args>",
-	{ force = true, nargs = 1 }
-)
-
 vim.api.nvim_create_user_command("EncodingReload", "execute 'e ++enc=<args>'", { force = true, nargs = 1 })
 
 -- count word
