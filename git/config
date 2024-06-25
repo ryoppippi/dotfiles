@@ -121,7 +121,7 @@
 [merge]
 	ff = false
 [pull]
-	ff = only
+	rebase = true
 [interactive]
   diffFilter = delta --color-only
 [remote]
