@@ -50,7 +50,7 @@ packages:
   - name: direnv/direnv@v2.34.0
   - name: gohugoio/hugo@v0.127.0
   - name: b4b4r07/gomi@v1.1.6
-  - name: projectdiscovery/httpx@v1.6.3
+  - name: projectdiscovery/httpx@v1.6.4
   - name: dandavison/delta@0.17.0
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.2
