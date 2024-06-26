@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+
+set -l filename $argv[1]
+set -l line $argv[2]
+set -l column $argv[3]
+
+echo "Opening $filename at line $line, column $column"
+$EDITOR "$filename:$line:$column"
