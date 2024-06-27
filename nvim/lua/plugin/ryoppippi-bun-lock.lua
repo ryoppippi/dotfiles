@@ -1,5 +1,5 @@
 return {
-	dir = "",
+	dir = vim.env.TMPDIR .. "/bun-lock",
 	name = "ryoppippi/bun-lock",
 	init = function()
 		vim.api.nvim_create_autocmd("BufReadCmd", {

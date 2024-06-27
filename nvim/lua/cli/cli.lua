@@ -1,14 +1,14 @@
 ---@type LazySpec[]
 return {
 	name = "cli",
-	dir = "",
+	dir = vim.env.TMPDIR .. "/cli",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 
 		--- python
 		{
 			name = "rye-tools",
-			dir = "",
+			dir = vim.env.TMPDIR .. "/cli-rye-tools",
 			opts = {
 				tools = {
 					"ruff",

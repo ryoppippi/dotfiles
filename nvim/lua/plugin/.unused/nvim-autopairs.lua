@@ -14,7 +14,7 @@ return {
 		},
 	},
 	{
-		dir = "",
+		dir =vim.env.TMPDIR..'/after_auto_pairs',
 		name = "after_auto_pairs",
 		dependencies = {
 			"hrsh7th/nvim-cmp",

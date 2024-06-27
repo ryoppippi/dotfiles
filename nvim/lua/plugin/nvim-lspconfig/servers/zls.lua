@@ -5,7 +5,7 @@ local setup = lsp_utils.setup
 return {
 	{
 		name = "zls",
-		dir = "",
+		dir = vim.env.TMPDIR .. "/lsp-zls",
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},

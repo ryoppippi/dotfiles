@@ -2,5 +2,5 @@
 return {
 	"ryoppippi/nvim-reset",
 	enabled = false,
-  dev = true,
+	dev = true,
 }
