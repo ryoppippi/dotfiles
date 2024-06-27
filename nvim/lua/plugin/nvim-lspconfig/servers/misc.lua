@@ -22,10 +22,11 @@ return vim.iter({
 	{ "unocss", format = false },
 })
 	:map(function(tbl)
+		local name = type(tbl) == "string" and tbl or tbl[1]
 		---@type LazySpec
 		return {
-			name = type(tbl) == "string" and tbl or tbl[1],
-			dir = "",
+			name = name,
+			dir = vim.env.TMPDIR .. "/lsp-" .. name,
 			dependencies = {
 				"neovim/nvim-lspconfig",
 				"cli",

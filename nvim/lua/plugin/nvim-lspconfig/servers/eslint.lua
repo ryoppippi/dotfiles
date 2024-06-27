@@ -8,7 +8,7 @@ local filetype = ft.js_framework_like
 ---@type LazySpec
 return {
 	name = "eslint",
-	dir = "",
+	dir = vim.env.TMPDIR .. "/lsp-eslint",
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"cli",

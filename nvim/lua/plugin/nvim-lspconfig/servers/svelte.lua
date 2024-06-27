@@ -5,7 +5,7 @@ local format_config = lsp_utils.format_config
 ---@type LazySpec
 return {
 	name = "svelte",
-	dir = "",
+	dir = vim.env.TMPDIR .. "/lsp-svelte",
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"cli",

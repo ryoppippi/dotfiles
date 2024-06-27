@@ -19,7 +19,7 @@ return vim.iter({
 		---@type LazySpec
 		return {
 			name = name,
-			dir = "",
+			dir = vim.env.TMPDIR .. "/lsp-" .. name,
 			dependencies = {
 				"neovim/nvim-lspconfig",
 				"cli",
