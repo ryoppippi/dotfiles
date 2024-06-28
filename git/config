@@ -20,8 +20,8 @@
   b = branch
   bm = branch -m
   bn = rev-parse --abbrev-ref HEAD
-  ; browse = !gh repo view --web
-  browse = "!deno run --allow-net --allow-run --allow-read --allow-env jsr:@lambdalisue/git-browse/cli"
+  browse = !gh repo view --web
+  ; browse = "!deno run --allow-net --allow-run --allow-read --allow-env jsr:@lambdalisue/git-browse/cli"
   br = browse
   brc = !"echo $(gh repo view --json url  --jq .url)/commit/$(git rev-parse HEAD)"
   clone = clone --recursive
