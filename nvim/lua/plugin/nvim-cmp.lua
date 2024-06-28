@@ -24,7 +24,7 @@ return {
 		{ "lukas-reineke/cmp-under-comparator" },
 		{
 			"roobert/tailwindcss-colorizer-cmp.nvim",
-			enabled = true,
+			enabled = false,
 			opts = { color_square_width = 2 },
 			config = true,
 		},
@@ -244,7 +244,11 @@ return {
 				mode = "symbol_text",
 				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 				before = function(entry, vim_item)
-					vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+					if has("tailwindcss-colorizer-cmp.nvim") then
+						vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+					elseif has("tailwind-tools.nvim") then
+						vim_item = require("tailwind-tools.cmp").lspkind_format(entry, vim_item)
+					end
 					if entry.source.name == "nvim_lsp" then
 						vim_item.menu = "{" .. entry.source.source.client.name .. "}"
 					else
