@@ -89,7 +89,7 @@ return {
 					vim.iter(denoLSPs):each(function(denoLSP)
 						vim.lsp.stop_client(denoLSP.id)
 						if #denoLSP.attached_buffers < 1 then
-							vim.lsp.stop_client(denols_client_id)
+							vim.lsp.stop_client(denoLSP.id)
 						end
 					end)
 				end
