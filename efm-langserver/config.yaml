@@ -8,6 +8,7 @@ tools:
   stylua: &stylua
     format-command: "stylua -s --color Never -"
     format-stdin: true
+    require-marker: true
     root-markers:
       - stylua.toml
       - .stylua.toml
@@ -17,6 +18,7 @@ tools:
     lint-stdin: true
     lint-formats:
       - '%.%#:%l:%c: %m' 
+    require-marker: true
     root-markers:
       - go.mod
       - go.sum
@@ -24,6 +26,7 @@ tools:
   gofmt: &gofmt
     format-command: "gofmt"
     format-stdin: true
+    require-marker: true
     root-markers:
       - go.mod
       - go.sum
@@ -31,6 +34,7 @@ tools:
   golines: &golines
     format-command: "golines"
     format-stdin: true
+    require-marker: true
     root-markers:
       - go.mod
       - go.sum
@@ -38,6 +42,7 @@ tools:
   goimports: &goimports
     format-command: "goimports"
     format-stdin: true
+    require-marker: true
     root-markers:
       - go.mod
       - go.sum
@@ -81,6 +86,7 @@ tools:
         # ${--use-tabs:!insertSpaces}
     format-stdin: true
     format-can-range: true
+    require-marker: true
     root-markers:
       - .prettierrc
       - .prettierrc.json
@@ -95,10 +101,10 @@ tools:
   biome: &biome
     format-command: './node_modules/.bin/biome format --stdin-file-path ${INPUT}'
     format-stdin: true
+    require-marker: true
     root-markers:
       - biome.json
       - rome.json
-      - .git
 
   fish_indent: &fish_indent
     format-command: "fish_indent"
