@@ -59,7 +59,6 @@ return {
 
 		-- Setup dependencies
 		local cmp = require("cmp")
-		local types = require("cmp.types")
 
 		local lspkind = require("lspkind")
 		local luasnip_status, luasnip = pcall(require, "luasnip")
