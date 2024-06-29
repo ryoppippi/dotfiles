@@ -30,7 +30,6 @@ M.openWithQuickLook = {
 	desc = "Open with QuickLook",
 }
 
-local OIL_PREVIEW_ENTRY_ID_VAR_NAME = "OIL_PREVIEW_ENTRY_ID"
 local function getNeovimWeztermPane()
 	local wezterm_pane_id = vim.env.WEZTERM_PANE
 	if not wezterm_pane_id then
@@ -178,7 +177,6 @@ M.weztermPreview = {
 					end
 
 					sendCommandToWeztermPane(preview_pane_id, command)
-					previw_entry_id = entry.id
 				end
 			end),
 			50
