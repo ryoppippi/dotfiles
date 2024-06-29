@@ -91,7 +91,6 @@ tools:
       - .prettierrc.mjs
       - .prettierrc.cjs
       - .prettierrc.toml
-      - .git
 
   biome: &biome
     format-command: './node_modules/.bin/biome format --stdin-file-path ${INPUT}'
