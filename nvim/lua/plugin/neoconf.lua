@@ -19,6 +19,7 @@ local function getOptions(key)
 		:find(function(item)
 			return item ~= nil
 		end)
+	return item
 end
 
 --@param name string
