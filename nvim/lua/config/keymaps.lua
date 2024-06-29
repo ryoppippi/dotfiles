@@ -142,9 +142,6 @@ vim.keymap.set({ "n", "v" }, "X", '"_d$') -- delete to end of line without yank
 vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "<leader>a", "ggVG")
-vim.cmd(
-	[[cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s//g<Left><Left>" : 's']]
-)
 
 -- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
 for _, quote in ipairs({ '"', "'", "`" }) do
