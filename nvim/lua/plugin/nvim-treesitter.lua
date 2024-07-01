@@ -19,7 +19,7 @@ return {
 
 		-- UI
 		{ "haringsrob/nvim_context_vt" },
-		{ "romgrk/nvim-treesitter-context" },
+		-- { "romgrk/nvim-treesitter-context" },
 
 		-- { "RRethy/nvim-treesitter-endwise" },
 	},
