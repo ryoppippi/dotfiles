@@ -129,5 +129,5 @@ packages:
   - name: crates.io/cargo-expand@1.0.88
   - name: crates.io/cargo-run-script@0.2.0
   - name: nishanths/license@v5.0.4
-  - name: jetify-com/devbox@0.11.1
+  - name: jetify-com/devbox@0.12.0
   - name: dduan/tre@v0.4.0
