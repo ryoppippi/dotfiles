@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	dir = "ryoppippi/ray-so.vim",
+	"ryoppippi/ray-so.vim",
 	dev = true,
 	event = { "User DenopsReady" },
 	dependencies = {
