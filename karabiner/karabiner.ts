@@ -80,7 +80,7 @@ k.writeToProfile("Default profile", [
 
   k.rule(
     "Swap Enter & Shift+Enter in Discord",
-    k.ifApp({ bundle_identifiers: ["com.hnc.Discord"] }),
+    k.ifApp({ bundle_identifiers: ["com.hnc.Discord", "com.openai.chat"] }),
   )
     .manipulators([
       k.map({
