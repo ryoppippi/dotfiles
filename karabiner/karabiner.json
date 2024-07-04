@@ -241,7 +241,8 @@
                   {
                     "type": "frontmost_application_if",
                     "bundle_identifiers": [
-                      "com.hnc.Discord"
+                      "com.hnc.Discord",
+                      "com.openai.chat"
                     ]
                   }
                 ]
@@ -263,7 +264,8 @@
                   {
                     "type": "frontmost_application_if",
                     "bundle_identifiers": [
-                      "com.hnc.Discord"
+                      "com.hnc.Discord",
+                      "com.openai.chat"
                     ]
                   }
                 ]
