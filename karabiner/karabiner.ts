@@ -89,6 +89,12 @@ k.writeToProfile("Default profile", [
       })
         .to({ key_code: "return_or_enter" }),
 
+      k.map({
+        key_code: "return_or_enter",
+        modifiers: { mandatory: ["command"] },
+      })
+        .to({ key_code: "return_or_enter" }),
+
       k.map({ key_code: "return_or_enter" })
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
