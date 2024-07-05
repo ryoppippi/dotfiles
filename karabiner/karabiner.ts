@@ -79,13 +79,19 @@ k.writeToProfile("Default profile", [
     ]),
 
   k.rule(
-    "Swap Enter & Shift+Enter in Discord",
+    "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
     k.ifApp({ bundle_identifiers: ["com.hnc.Discord", "com.openai.chat"] }),
   )
     .manipulators([
       k.map({
         key_code: "return_or_enter",
         modifiers: { mandatory: ["shift"] },
+      })
+        .to({ key_code: "return_or_enter" }),
+
+      k.map({
+        key_code: "return_or_enter",
+        modifiers: { mandatory: ["command"] },
       })
         .to({ key_code: "return_or_enter" }),
 
