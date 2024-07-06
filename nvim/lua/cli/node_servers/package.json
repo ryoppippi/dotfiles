@@ -6,7 +6,7 @@
     "@astrojs/language-server": "2.10.0",
     "@prisma/language-server": "5.16.1",
     "@tailwindcss/language-server": "0.0.18",
-    "@vtsls/language-server": "0.2.4",
+    "@vtsls/language-server": "0.2.5",
     "@vue/language-server": "2.0.24",
     "biome": "0.3.3",
     "emmet-ls": "0.4.2",
