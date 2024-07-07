@@ -22,7 +22,7 @@ export async function extractIdentifer(appName: string): Promise<string> {
     .text();
 
   /** output is like com.apple.Safari */
-  const identifer = output.match(/"(.*)"/)?.[1];
+  const identifer = output.match(/"(.*)"/)?.at(1)?.trim();
 
   u.assert(identifer, u.isString, {
     message: `Failed to extract bundle identifier for ${appName}`,
