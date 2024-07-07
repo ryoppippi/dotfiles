@@ -1,4 +1,5 @@
 import * as k from "karabiner_ts";
+import * as devices from "./devices.ts";
 
 /** Hide the application by name */
 function toHideApp(name: string) {
@@ -8,9 +9,7 @@ function toHideApp(name: string) {
 }
 
 /** not apple keyboard */
-const ifNotSelfMadeKeyboard = k.ifDevice([
-  { product_id: 1, vendor_id: 22854 }, // Claw44
-]).unless();
+const ifNotSelfMadeKeyboard = k.ifDevice([devices.CLAW44]).unless();
 
 const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
   .unless();
