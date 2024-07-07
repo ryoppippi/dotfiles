@@ -5,6 +5,11 @@ import * as utils from "./utils.ts";
 const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
   .unless();
 
+const IDENTIFERS = {
+  discord: await utils.extractIdentifer("Discord"),
+  chatgpt: await utils.extractIdentifer("ChatGPT"),
+} as const;
+
 k.writeToProfile("Default profile", [
   k.rule("Tap Ctrl -> japanese_eisuu + ESC")
     .manipulators([
@@ -71,7 +76,7 @@ k.writeToProfile("Default profile", [
 
   k.rule(
     "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
-    k.ifApp({ bundle_identifiers: ["com.hnc.Discord", "com.openai.chat"] }),
+    k.ifApp({ bundle_identifiers: [IDENTIFERS.discord, IDENTIFERS.chatgpt] }),
   )
     .manipulators([
       k.map({

@@ -1,5 +1,75 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@core/unknownutil@^3.18.1": "jsr:@core/unknownutil@3.18.1",
+      "jsr:@david/dax@^0.41.0": "jsr:@david/dax@0.41.0",
+      "jsr:@david/which@^0.4.1": "jsr:@david/which@0.4.1",
+      "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
+      "jsr:@std/bytes@^0.221.0": "jsr:@std/bytes@0.221.0",
+      "jsr:@std/fmt@^0.221.0": "jsr:@std/fmt@0.221.0",
+      "jsr:@std/fs@0.221.0": "jsr:@std/fs@0.221.0",
+      "jsr:@std/io@0.221.0": "jsr:@std/io@0.221.0",
+      "jsr:@std/io@^0.221.0": "jsr:@std/io@0.221.0",
+      "jsr:@std/path@0.221.0": "jsr:@std/path@0.221.0",
+      "jsr:@std/path@^0.221.0": "jsr:@std/path@0.221.0",
+      "jsr:@std/streams@0.221.0": "jsr:@std/streams@0.221.0"
+    },
+    "jsr": {
+      "@core/unknownutil@3.18.1": {
+        "integrity": "6aaa108b623ff971d062dd345da7ca03b97f61ae3d29c8677bff14fec11f0d76"
+      },
+      "@david/dax@0.41.0": {
+        "integrity": "9e1ecf66a0415962cc8ad3ba4e3fa93ce0f1a1cc797dd95c36fdfb6977dc7fc8",
+        "dependencies": [
+          "jsr:@david/which@^0.4.1",
+          "jsr:@std/fmt@^0.221.0",
+          "jsr:@std/fs@0.221.0",
+          "jsr:@std/io@0.221.0",
+          "jsr:@std/path@0.221.0",
+          "jsr:@std/streams@0.221.0"
+        ]
+      },
+      "@david/which@0.4.1": {
+        "integrity": "896a682b111f92ab866cc70c5b4afab2f5899d2f9bde31ed00203b9c250f225e"
+      },
+      "@std/assert@0.221.0": {
+        "integrity": "a5f1aa6e7909dbea271754fd4ab3f4e687aeff4873b4cef9a320af813adb489a"
+      },
+      "@std/bytes@0.221.0": {
+        "integrity": "64a047011cf833890a4a2ab7293ac55a1b4f5a050624ebc6a0159c357de91966"
+      },
+      "@std/fmt@0.221.0": {
+        "integrity": "379fed69bdd9731110f26b9085aeb740606b20428ce6af31ef6bd45ef8efa62a"
+      },
+      "@std/fs@0.221.0": {
+        "integrity": "028044450299de8ed5a716ade4e6d524399f035513b85913794f4e81f07da286",
+        "dependencies": [
+          "jsr:@std/assert@^0.221.0",
+          "jsr:@std/path@^0.221.0"
+        ]
+      },
+      "@std/io@0.221.0": {
+        "integrity": "faf7f8700d46ab527fa05cc6167f4b97701a06c413024431c6b4d207caa010da",
+        "dependencies": [
+          "jsr:@std/assert@^0.221.0",
+          "jsr:@std/bytes@^0.221.0"
+        ]
+      },
+      "@std/path@0.221.0": {
+        "integrity": "0a36f6b17314ef653a3a1649740cc8db51b25a133ecfe838f20b79a56ebe0095",
+        "dependencies": [
+          "jsr:@std/assert@^0.221.0"
+        ]
+      },
+      "@std/streams@0.221.0": {
+        "integrity": "47f2f74634b47449277c0ee79fe878da4424b66bd8975c032e3afdca88986e61",
+        "dependencies": [
+          "jsr:@std/io@^0.221.0"
+        ]
+      }
+    }
+  },
   "remote": {
     "https://deno.land/std@0.192.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.192.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
@@ -45,5 +115,11 @@
     "https://deno.land/x/karabinerts@1.29.0/utils/with-condition.ts": "cce5784d4305c9df285e8f390bc02d34c247bd9cddab458894e6ee88f1b2b060",
     "https://deno.land/x/karabinerts@1.29.0/utils/with-mapper.ts": "3b6aca69277c73a0e853d875d0233a4d4acfa358e0664ac35eb167571a4bc642",
     "https://deno.land/x/karabinerts@1.29.0/utils/with-modifier.ts": "6ec0223c4132199921e1807f61a85940aa87a6f4252d1c4c9092bd85af453b6c"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@core/unknownutil@^3.18.1",
+      "jsr:@david/dax@^0.41.0"
+    ]
   }
 }
