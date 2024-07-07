@@ -33,7 +33,7 @@ export async function extractIdentifer(appName: string): Promise<string> {
 
 export async function getDeviceId(
   deviceName: string,
-): Promise<Readonly<k.DeviceIdentifier>> {
+): Promise<Readonly<k.DeviceIdentifier | undefined>> {
   const output = await $`hidutil list -n`.lines();
 
   const devices = output.map((line) => JSON.parse(line));
@@ -51,7 +51,7 @@ export async function getDeviceId(
   const info = _devices.get(deviceName);
 
   if (u.isNullish(info)) {
-    throw new Error(`Device not found: ${deviceName}`);
+    return undefined;
   }
   return info;
 }
