@@ -1,6 +1,5 @@
 import * as k from "karabiner_ts";
 import * as devices from "./devices.ts";
-
 import * as utils from "./utils.ts";
 
 const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
@@ -57,7 +56,7 @@ k.writeToProfile("Default profile", [
     .manipulators([
       k.withMapper(
         [
-          toHideApp("WezTerm"),
+          utils.toHideApp("WezTerm"),
           k.toApp("WezTerm"),
         ] as const,
       )((event, i) =>
