@@ -1,15 +1,7 @@
 import * as k from "karabiner_ts";
 import * as devices from "./devices.ts";
 
-/** Hide the application by name */
-function toHideApp(name: string) {
-  return k.to$(
-    `osascript -e 'tell application "System Events" to set visible of process "${name}" to false'`,
-  );
-}
-
-/** not apple keyboard */
-const ifNotSelfMadeKeyboard = k.ifDevice([devices.CLAW44]).unless();
+import * as utils from "./utils.ts";
 
 const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
   .unless();
@@ -45,20 +37,21 @@ k.writeToProfile("Default profile", [
       }),
   ]),
 
-  k.rule("Tap CMD to toggle Kana/Eisuu", ifNotSelfMadeKeyboard).manipulators([
-    k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
-      {
-        "left_command": "japanese_eisuu",
-        "right_command": "japanese_kana",
-      } as const,
-    )((cmd, lang) =>
-      k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
-        .to({ key_code: cmd, lazy: true })
-        .toIfAlone({ key_code: lang })
-        .description(`Tap ${cmd} alone to switch to ${lang}`)
-        .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
-    ),
-  ]),
+  k.rule("Tap CMD to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
+    .manipulators([
+      k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
+        {
+          "left_command": "japanese_eisuu",
+          "right_command": "japanese_kana",
+        } as const,
+      )((cmd, lang) =>
+        k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
+          .to({ key_code: cmd, lazy: true })
+          .toIfAlone({ key_code: lang })
+          .description(`Tap ${cmd} alone to switch to ${lang}`)
+          .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
+      ),
+    ]),
 
   k.rule("Toggle WezTerm by ctrl+,")
     .manipulators([
@@ -101,7 +94,7 @@ k.writeToProfile("Default profile", [
   k.rule(
     "toggle h/j/k/l to arrow keys",
     ifTrackpadTouched,
-    ifNotSelfMadeKeyboard,
+    devices.ifNotSelfMadeKeyboard,
   ).manipulators([
     k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
       {
