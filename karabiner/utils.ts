@@ -30,3 +30,28 @@ export async function extractIdentifer(appName: string) {
 
   return identifer;
 }
+
+export async function getDeviceId(
+  deviceName: string,
+): Promise<Readonly<k.DeviceIdentifier>> {
+  const output = await $`hidutil list -n`.lines();
+
+  const devices = output.map((line) => JSON.parse(line));
+
+  const _devices = new Map(devices
+    .map((device) => [
+      device.Product,
+      {
+        product_id: device.ProductID as number,
+        vendor_id: device.VendorID as number,
+        // location_id: device.LocationID as number,
+      } as const satisfies k.DeviceIdentifier,
+    ]));
+
+  const info = _devices.get(deviceName);
+
+  if (u.isNullish(info)) {
+    throw new Error(`Device not found: ${deviceName}`);
+  }
+  return info;
+}
