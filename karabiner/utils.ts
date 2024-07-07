@@ -10,7 +10,7 @@ export function toHideApp(name: string) {
 }
 
 /** Get the bundle identifier of the application by name */
-export async function extractIdentifer(appName: string) {
+export async function extractIdentifer(appName: string): Promise<string> {
   const appPath = $.path(`/Applications/${appName}.app`);
 
   if (!await appPath.exists()) {
