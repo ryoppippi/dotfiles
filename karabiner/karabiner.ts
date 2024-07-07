@@ -94,23 +94,22 @@ k.writeToProfile("Default profile", [
       k.map({ key_code: "return_or_enter" })
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
-
-  k.rule(
-    "toggle h/j/k/l to arrow keys",
-    ifTrackpadTouched,
-    devices.ifNotSelfMadeKeyboard,
-  ).manipulators([
-    k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
-      {
-        "h": "left_arrow",
-        "j": "down_arrow",
-        "k": "up_arrow",
-        "l": "right_arrow",
-      } as const,
-    )((key, arrow) =>
-      k.map({ key_code: key })
-        .to({ key_code: arrow })
-        .description(`Tap ${key} to ${arrow}`)
-    ),
-  ]),
+  // k.rule(
+  //   "toggle h/j/k/l to arrow keys",
+  //   ifTrackpadTouched,
+  //   devices.ifNotSelfMadeKeyboard,
+  // ).manipulators([
+  //   k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
+  //     {
+  //       "h": "left_arrow",
+  //       "j": "down_arrow",
+  //       "k": "up_arrow",
+  //       "l": "right_arrow",
+  //     } as const,
+  //   )((key, arrow) =>
+  //     k.map({ key_code: key })
+  //       .to({ key_code: arrow })
+  //       .description(`Tap ${key} to ${arrow}`)
+  //   ),
+  // ]),
 ]);
