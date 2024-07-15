@@ -39,6 +39,9 @@ fish_add_path /usr/local/opt/curl/bin
 set -gx USE_CCACHE 1
 set -gx CCACHE_DIR $HOME/.ccache
 
+# brew
+fish_add_path /opt/homebrew/bin
+
 # js/ts
 ## bun
 fish_add_path $HOME/.bun/bin
@@ -79,6 +82,14 @@ set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
     echo '' >$CONFIG_CACHE
+
+    # homebrew
+    if test (uname -m) = arm64
+        echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE
+        echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE
+    else
+        echo $(/usr/local/bin/brew shellenv) >>$CONFIG_CACHE
+    end
 
     # xcode
     echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
