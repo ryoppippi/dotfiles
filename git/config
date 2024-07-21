@@ -6,7 +6,7 @@
   editor = nvim
   pager = delta
 	ignorecase = false
-	untrackedCache = false
+	untrackedCache = true
 	fsmonitor = false
 
 [alias]
