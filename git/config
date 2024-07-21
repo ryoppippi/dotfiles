@@ -7,7 +7,7 @@
   pager = delta
 	ignorecase = false
 	untrackedCache = true
-	fsmonitor = true
+	fsmonitor = false
 
 [alias]
   a = add 
