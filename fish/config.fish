@@ -113,10 +113,6 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     set_color brmagenta --bold --underline
     echo "config cache updated"
     set_color normal
-
-    if test (uname) = Darwin
-        echo "set -gx BROWSER 'arc'" >>$CONFIG_CACHE
-    end
 end
 source $CONFIG_CACHE
 
