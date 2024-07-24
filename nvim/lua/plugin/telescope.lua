@@ -29,38 +29,35 @@ return {
 				})
 				grep_telescope_any()
 			end
-			require("which-key").register({
-				[","] = {
-					name = "+Telescope",
-					[","] = {
-						[[<cmd>Telescope smart_open<cr>]],
-						"Smart Open",
-					},
-					["<space>"] = { telescope_grep_any, "live_grep or kensaku" },
-					["d"] = {
-						[[<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>]],
-						"current_buffer_fuzzy_find",
-					},
-					["<cr>"] = { [[<cmd>Telescope<cr>]], "open Telescope" },
-					["s"] = { [[<cmd>Telescope grep_string<cr>]], "grep_string", mode = { "n", "x" } },
-					["t"] = { [[<cmd>TodoTelescope<cr>]], "TODO" },
-					["r"] = { [[<cmd>Telescope resume<cr>]], "resume" },
-					["b"] = { [[<cmd>Telescope buffers<cr>]], "buffers" },
-					["h"] = { [[<cmd>Telescope help_tags<cr>]], "help tags" },
-					["H"] = { [[<cmd>Telescope heading<cr>]], "heading" },
-					["j"] = { [[<cmd>Telescope jumplist<cr>]], "jumplist" },
-					["g"] = { [[<cmd>Telescope git_files<cr>]], "git files" },
-					["q"] = { [[<cmd>Telescope quickfix<cr>]], "quickfix" },
-					["p"] = { [[<cmd>Telescope commands<cr>]], "commands" },
-					["P"] = { [[<cmd>Telescope projects<cr>]], "projects" },
-					["m"] = { [[<cmd>Telescope marks<cr>]], "marks" },
-					["c"] = { [[<cmd>Telescope colorscheme<cr>]], "colorscheme" },
-					["l"] = { [[<cmd>Telescope lazy<cr>]], "Lazy" },
-					["f"] = {
-						[[<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>]],
-						"Find Files",
-					},
+			require("which-key").add({
+				{ ",", group = "Telescope" },
+				{ ",,", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
+				{ ",<cr>", "<cmd>Telescope<cr>", desc = "open Telescope" },
+				{ ",<space>", telescope_grep_any, desc = "live_grep or kensaku" },
+				{ ",H", "<cmd>Telescope heading<cr>", desc = "heading" },
+				{ ",P", "<cmd>Telescope projects<cr>", desc = "projects" },
+				{ ",b", "<cmd>Telescope buffers<cr>", desc = "buffers" },
+				{ ",c", "<cmd>Telescope colorscheme<cr>", desc = "colorscheme" },
+				{
+					",d",
+					"<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<cr>",
+					desc = "current_buffer_fuzzy_find",
 				},
+				{
+					",f",
+					"<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--smart-case,--files<cr>",
+					desc = "Find Files",
+				},
+				{ ",g", "<cmd>Telescope git_files<cr>", desc = "git files" },
+				{ ",h", "<cmd>Telescope help_tags<cr>", desc = "help tags" },
+				{ ",j", "<cmd>Telescope jumplist<cr>", desc = "jumplist" },
+				{ ",l", "<cmd>Telescope lazy<cr>", desc = "Lazy" },
+				{ ",m", "<cmd>Telescope marks<cr>", desc = "marks" },
+				{ ",p", "<cmd>Telescope commands<cr>", desc = "commands" },
+				{ ",q", "<cmd>Telescope quickfix<cr>", desc = "quickfix" },
+				{ ",r", "<cmd>Telescope resume<cr>", desc = "resume" },
+				{ ",t", "<cmd>TodoTelescope<cr>", desc = "TODO" },
+				{ ",s", "<cmd>Telescope grep_string<cr>", desc = "grep_string", mode = { "n", "x" } },
 			})
 		end,
 	},
