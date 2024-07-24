@@ -12,5 +12,5 @@ return {
 			desc = "portal jump forward",
 		},
 	},
-	config = {},
+	opts = {},
 }
