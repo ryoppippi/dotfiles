@@ -1,6 +1,9 @@
 {
   "name": "node_servers",
   "module": "index.ts",
+  "scripts": {
+    "prepare": "npx bunpare"
+  },
   "dependencies": {
     "@angular/language-server": "18.1.2",
     "@astrojs/language-server": "2.13.1",
