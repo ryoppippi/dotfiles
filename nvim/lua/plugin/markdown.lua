@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
 	"MeanderingProgrammer/markdown.nvim",
+	enabled = false,
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	ft = { "markdown" },
 	opts = {
