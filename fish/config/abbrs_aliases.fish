@@ -93,6 +93,9 @@ abbr -a gsw 'git switch'
 abbr -a gsm "command git switch main 2>/dev/null || command git switch master"
 abbr -a gpt 'git push --tags'
 
+# gh
+abbr -a ghp 'gh poi'
+
 # ghq
 abbr -a gg 'ghq get'
 
