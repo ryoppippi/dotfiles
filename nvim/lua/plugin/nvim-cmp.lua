@@ -8,6 +8,23 @@ local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+local function load_after(plugin)
+	local dir = plugin.dir .. "/after/plugin"
+	local fd = vim.loop.fs_scandir(dir)
+	if not fd then
+		return
+	end
+	while true do
+		local file_name, type = vim.loop.fs_scandir_next(fd)
+		if not file_name then
+			break
+		end
+		if type == "file" then
+			vim.cmd.source(dir .. "/" .. file_name)
+		end
+	end
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
@@ -15,21 +32,66 @@ return {
 	dependencies = {
 		{ "tani/vim-artemis" },
 		{ "onsails/lspkind.nvim" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-cmdline" },
-		{ "hrsh7th/cmp-calc" },
-		{ "hrsh7th/cmp-emoji" },
-		{ "lukas-reineke/cmp-rg" },
-		{ "lukas-reineke/cmp-under-comparator" },
+		{
+			"hrsh7th/cmp-buffer",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-path",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-cmdline",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-calc",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-emoji",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"lukas-reineke/cmp-rg",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"lukas-reineke/cmp-under-comparator",
+			config = function(p)
+				load_after(p)
+			end,
+		},
 		{
 			"roobert/tailwindcss-colorizer-cmp.nvim",
 			enabled = false,
 			opts = { color_square_width = 2 },
 			config = true,
 		},
-		{ "f3fora/cmp-spell" },
-		{ "yutkat/cmp-mocword" },
+		{
+			"f3fora/cmp-spell",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"yutkat/cmp-mocword",
+			config = function(p)
+				load_after(p)
+			end,
+		},
 		{
 			"petertriho/cmp-git",
 			dependencies = { "nvim-lua/plenary.nvim" },
