@@ -78,7 +78,7 @@ packages:
   - name: rclone/rclone@v1.67.0
   - name: hhatto/gocloc@v0.5.2
   - name: tsl0922/ttyd@1.7.7
-  - name: whalebrew/whalebrew@0.4.1
+  - name: whalebrew/whalebrew@0.5.0
   - name: sharkdp/pastel@v0.9.0
   - name: dalance/procs@v0.14.6
   - name: chriswalz/bit@v1.1.2
