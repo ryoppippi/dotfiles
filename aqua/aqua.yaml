@@ -118,7 +118,7 @@ packages:
   - name: charmbracelet/freeze@v0.1.6
   - name: svenstaro/genact@v1.4.2
   - name: sqls-server/sqls@v0.2.27
-  - name: ClementTsang/bottom@0.10.1
+  - name: ClementTsang/bottom@0.10.2
   - name: graelo/pumas@v0.2.3
   - name: sachaos/viddy@v0.4.0
   - name: hatoo/oha@v1.4.5
