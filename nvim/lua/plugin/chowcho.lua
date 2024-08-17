@@ -5,7 +5,7 @@ return {
 	},
 	opts = {
 		-- stylua: ignore
-		labels = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
+		labels={'h','j','k','l','u','i','o','p','n','m','y','t','g','b','v','c','r','e','w','q','s','x','z','a','f','d'},
 		ignore_case = true,
 	},
 }
