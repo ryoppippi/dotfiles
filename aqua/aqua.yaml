@@ -118,7 +118,7 @@ packages:
   - name: svenstaro/genact@v1.4.2
   - name: sqls-server/sqls@v0.2.27
   - name: ClementTsang/bottom@0.10.2
-  - name: graelo/pumas@v0.2.3
+  - name: graelo/pumas@v0.2.4
   - name: sachaos/viddy@v0.4.0
   - name: hatoo/oha@v1.4.5
   - name: abhimanyu003/sttr@v0.2.23
