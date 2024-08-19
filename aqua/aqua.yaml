@@ -51,7 +51,7 @@ packages:
   - name: gohugoio/hugo@v0.132.2
   - name: b4b4r07/gomi@v1.1.6
   - name: projectdiscovery/httpx@v1.6.8
-  - name: dandavison/delta@0.17.0
+  - name: dandavison/delta@0.18.0
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.2
   - name: oven-sh/bun@bun-v1.1.24
