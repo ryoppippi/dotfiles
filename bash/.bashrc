@@ -82,9 +82,6 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH=`gem environment gemdir`/bin:$PATH
 fi
 
-# rye
-source "$HOME/.rye/env"
-
 # man pager
 if command -v nvim &> /dev/null; then
     export MANPAGER="nvim -c ASMANPAGER -"
