@@ -9,7 +9,7 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.214.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.215.1 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.55.0
   - name: golang/go@go1.23.0
@@ -129,4 +129,4 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: jetify-com/devbox@0.12.0
   - name: dduan/tre@v0.4.0
-  - name: astral-sh/uv@0.3.0
+  - name: astral-sh/uv@0.3.3
