@@ -129,4 +129,4 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: jetify-com/devbox@0.12.0
   - name: dduan/tre@v0.4.0
-  - name: astral-sh/uv@0.3.4
+  - name: astral-sh/uv@0.3.5
