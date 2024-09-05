@@ -7,7 +7,7 @@
   "dependencies": {
     "@angular/language-server": "18.2.0",
     "@astrojs/language-server": "2.14.1",
-    "@prisma/language-server": "5.19.0",
+    "@prisma/language-server": "5.19.1",
     "@tailwindcss/language-server": "0.0.24",
     "@vtsls/language-server": "0.2.5",
     "@vue/language-server": "2.1.4",
