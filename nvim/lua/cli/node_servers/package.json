@@ -16,7 +16,7 @@
     "sql-language-server": "1.7.0",
     "stylelint": "16.9.0",
     "stylelint-lsp": "2.0.0",
-    "svelte-language-server": "0.16.14",
+    "svelte-language-server": "0.17.0",
     "typescript-svelte-plugin": "^0.3.38",
     "unocss-language-server": "0.1.5",
     "vscode-langservers-extracted": "4.10.0",
