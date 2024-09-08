@@ -1,6 +1,7 @@
 return {
 	"yuki-yano/fuzzy-motion.vim",
 	cmd = { "FuzzyMotion" },
+	enabled = false,
 	keys = {
 		{ "<CR>", "<CMD>FuzzyMotion<CR>", mode = { "n", "v", "x" } },
 	},
