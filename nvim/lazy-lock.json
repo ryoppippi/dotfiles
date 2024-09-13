@@ -137,6 +137,7 @@
   "promise.nvim": { "branch": "main", "commit": "69f5b21627be0fc6f218d16fc2efca70416774ca" },
   "python-snippets": { "branch": "master", "commit": "adeadc1327d05cc381e6e5206eade7e8e0f94a88" },
   "quick-scope": { "branch": "master", "commit": "4d35d3b2bc6794666353dcc241b2680bd560416f" },
+  "quicker.nvim": { "branch": "master", "commit": "183041a46d6c908eefb1c23ea02cce9c8f41256e" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "5f73b24aeb94f5274c218955573153c69ce4d1ee" },
   "rainbow_csv": { "branch": "master", "commit": "3dbbfd7d17536aebfb80f571255548495574c32b" },
   "registers.nvim": { "branch": "main", "commit": "17df665d3fd8995b69a1a434cb285a25ab22cc49" },
