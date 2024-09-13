@@ -101,6 +101,7 @@
   "nvim-align": { "branch": "master", "commit": "8d447436f3a382c1e43532f1568c6e39d945e08d" },
   "nvim-automa": { "branch": "main", "commit": "5ff0ff15586c95f27e7af901a5f0bad8bc7a0828" },
   "nvim-block-paste": { "branch": "master", "commit": "4964c784e9630880ab234f152afe49024aca3e31" },
+  "nvim-bqf": { "branch": "main", "commit": "1b24dc6050c34e8cd377b6b4cd6abe40509e0187" },
   "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
   "nvim-comment-frame": { "branch": "main", "commit": "3dbdfc89c5d1f7e00ea824e4ef6c8b746cb277a5" },
   "nvim-dansa": { "branch": "main", "commit": "8cf0921a3795cd5b17e2e5c690eb4a2a87bef96f" },
