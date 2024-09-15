@@ -116,6 +116,7 @@ vim.keymap.set("n", "U", "<C-r>", { remap = false }) -- redo by U
 vim.keymap.set("n", "M", "%", { remap = false }) -- jump to matching bracket by M
 vim.keymap.set({ "o", "x" }, "i<space>", "iW", { remap = false }) -- select WORD by i<space>
 vim.keymap.set("x", "p", "P", { remap = false }) -- {visual}p to put without yank to unnamed register https://github.com/Shougo/shougo-s-github/blob/21a3f500cdc2b37c8d184edbf640d9e17458358a/vim/rc/mappings.rc.vim#L190-L191
+vim.keymap.set("x", "y", "mzy`z", { remap = false }) -- keep cursor position after yank in visual mode
 
 -- replace
 vim.keymap.set("x", "S", 'y:%s/<C-r><C-r>"//g<Left><Left>')
