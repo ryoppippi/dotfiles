@@ -78,10 +78,6 @@ vim.keymap.set("c", "<C-f>", "<right>", { silent = false })
 vim.keymap.set("c", "<C-b>", "<left>", { silent = false })
 vim.keymap.set("c", "<C-d>", "<DEL>", { silent = false })
 
--- regexp
-vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
-vim.keymap.set("n", "<leader>r", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
-
 -- toggle 0 made by ycino
 vim.keymap.set("n", "0", function()
 	return string.match((vim.fn.getline(".") --[[@as string]]):sub(0, vim.fn.col(".") - 1), "^%s+$") and "0"
@@ -109,7 +105,7 @@ end)
 -- custom
 -- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
--- tips
+-- tips {{
 -- vim.keymap.set({ "n", "v" }, "gy", '"+y') -- yank to clipboard
 vim.keymap.set({ "n", "v" }, "x", '"_x') -- delete without yank
 vim.keymap.set({ "n", "v" }, "X", '"_d$') -- delete to end of line without yank
@@ -119,6 +115,11 @@ vim.keymap.set("n", "<leader>a", "ggVG")
 vim.keymap.set("n", "U", "<C-r>", { remap = false }) -- redo by U
 vim.keymap.set("n", "M", "%", { remap = false }) -- jump to matching bracket by M
 vim.keymap.set({ "o", "x" }, "i<space>", "iW", { remap = false }) -- select WORD by i<space>
+
+-- replace
+vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
+vim.keymap.set("n", "<leader>r", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
+-- }}
 
 -- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
 for _, quote in ipairs({ '"', "'", "`" }) do
