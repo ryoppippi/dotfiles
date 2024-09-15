@@ -115,10 +115,11 @@ vim.keymap.set("n", "<leader>a", "ggVG")
 vim.keymap.set("n", "U", "<C-r>", { remap = false }) -- redo by U
 vim.keymap.set("n", "M", "%", { remap = false }) -- jump to matching bracket by M
 vim.keymap.set({ "o", "x" }, "i<space>", "iW", { remap = false }) -- select WORD by i<space>
+vim.keymap.set("x", "p", "P", { remap = false }) -- {visual}p to put without yank to unnamed register https://github.com/Shougo/shougo-s-github/blob/21a3f500cdc2b37c8d184edbf640d9e17458358a/vim/rc/mappings.rc.vim#L190-L191
 
 -- replace
-vim.keymap.set("x", "<leader>r", 'y:%s/<C-r><C-r>"//g<Left><Left>')
-vim.keymap.set("n", "<leader>r", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
+vim.keymap.set("x", "S", 'y:%s/<C-r><C-r>"//g<Left><Left>')
+vim.keymap.set("n", "S", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
 -- }}
 
 -- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
