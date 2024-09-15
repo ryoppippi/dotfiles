@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	config = true,
 	dev = true,
 	lazy = false,
 }
