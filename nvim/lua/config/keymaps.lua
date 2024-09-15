@@ -121,6 +121,10 @@ vim.keymap.set("x", "y", "mzy`z") -- keep cursor position after yank in visual m
 -- replace
 vim.keymap.set("x", "S", 'y:%s/<C-r><C-r>"//g<Left><Left>')
 vim.keymap.set("n", "S", 'yiw:%s/<C-r><C-r>"//g<Left><Left>')
+
+-- indent in visual mode
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
 -- }}
 
 -- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
