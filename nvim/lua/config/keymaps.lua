@@ -118,6 +118,7 @@ vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "<leader>a", "ggVG")
 vim.keymap.set("n", "U", "<C-r>", { remap = false }) -- redo by U
 vim.keymap.set("n", "M", "%", { remap = false }) -- jump to matching bracket by M
+vim.keymap.set({ "o", "x" }, "i<space>", "iW", { remap = false }) -- select WORD by i<space>
 
 -- tips from monaqa san: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features
 for _, quote in ipairs({ '"', "'", "`" }) do
