@@ -12,7 +12,11 @@ return {
 			desc = "Toggle tiny_lsp",
 		},
 	},
-	opts = {},
+	opts = {
+		options = {
+			show_source = true,
+		},
+	},
 	config = function(_, opts)
 		vim.diagnostic.config({ virtual_text = false })
 		require("tiny-inline-diagnostic").setup(opts)
