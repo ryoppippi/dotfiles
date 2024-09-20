@@ -255,7 +255,6 @@ return {
 				{ name = "path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
 				{ name = "nvim_lua", priority = 50 },
-				{ name = "nvim_lsp_signature_help", priority = 80 },
 			}, {
 				{ name = "buffer" },
 				{ name = "omni" },
@@ -289,7 +288,6 @@ return {
 			rg = "[rg]",
 			omni = "[Omni]",
 			-- cmp_tabnine = "[Tabnine]",
-			nvim_lsp_signature_help = "[Signature]",
 			copilot = "[Copilot]",
 			cmdline_history = "[History]",
 			mocword = "[Mocword]",
