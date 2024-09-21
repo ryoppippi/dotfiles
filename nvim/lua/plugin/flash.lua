@@ -3,7 +3,13 @@ return {
 	"https://github.com/folke/flash.nvim",
 	event = "VeryLazy",
 	---@type Flash.Config
-	opts = {},
+	opts = {
+		modes = {
+			char = { enabled = false },
+			search = { enabled = false },
+			treesitter = { enabled = false },
+		},
+	},
 	keys = {
 		{
 			"<CR>",
