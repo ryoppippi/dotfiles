@@ -16,7 +16,7 @@ return vim.iter({
 	{ "astro", format = false },
 	{ "biome", format = false },
 	{ "emmet_ls", format = false, extra_filetypes = ft.html_like },
-	{ "tailwindcss", format = false, extra_filetypes = ft.css_like },
+	{ "tailwindcss", format = false },
 	{ "html", format = false },
 	{ "stylelint_lsp", format = false },
 	{ "unocss", format = false },
