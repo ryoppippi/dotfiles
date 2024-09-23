@@ -43,7 +43,7 @@ return vim.iter({
 				return dft
 			end,
 			opts = function()
-				local opts = tbl.opts or {}
+				local opts = tbl or {}
 				if tbl.format ~= nil and tbl.format == false then
 					table.insert(opts, { on_attach = format_config(false) })
 				end
