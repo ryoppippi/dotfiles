@@ -17,9 +17,9 @@ return vim.iter({
 	{ "biome", format = false },
 	{ "emmet_ls", format = false, extra_filetypes = ft.html_like },
 	{ "tailwindcss", format = false },
+	{ "unocss", format = false },
 	{ "html", format = false },
 	{ "stylelint_lsp", format = false },
-	{ "unocss", format = false },
 })
 	:map(function(tbl)
 		local name = type(tbl) == "string" and tbl or tbl[1]
