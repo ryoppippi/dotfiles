@@ -8,7 +8,7 @@
     "@angular/language-server": "18.2.0",
     "@astrojs/language-server": "2.14.2",
     "@prisma/language-server": "5.19.1",
-    "@tailwindcss/language-server": "0.0.24",
+    "@tailwindcss/language-server": "0.0.25",
     "@vtsls/language-server": "0.2.6",
     "@vue/language-server": "2.1.6",
     "biome": "0.3.3",
