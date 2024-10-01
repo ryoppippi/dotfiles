@@ -15,6 +15,7 @@ return vim.iter({
 	"angularls",
 	{ "astro", format = false },
 	{ "biome", format = false },
+	{ "eslint", format = true, extra_filetypes = ft.html_like },
 	{ "emmet_ls", format = false, extra_filetypes = ft.html_like },
 	{ "tailwindcss", format = false, extra_filetypes = ft.html_like },
 	{ "unocss", format = false, extra_filetypes = ft.html_like },
