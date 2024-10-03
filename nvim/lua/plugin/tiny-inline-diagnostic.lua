@@ -15,6 +15,7 @@ return {
 	opts = {
 		options = {
 			show_source = true,
+			softwrap = 5,
 		},
 	},
 	config = function(_, opts)
