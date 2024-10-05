@@ -123,7 +123,7 @@ packages:
   - name: abhimanyu003/sttr@v0.2.23
   - name: theryangeary/choose@v1.3.6
   - name: suzuki-shunsuke/cmdx@v1.7.4
-  - name: watchexec/cargo-watch@v8.5.2
+  - name: watchexec/cargo-watch@v8.5.3
   - name: crates.io/cargo-expand@1.0.90
   - name: crates.io/cargo-run-script@0.2.0
   - name: nishanths/license@v5.0.4
