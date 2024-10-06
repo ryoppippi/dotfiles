@@ -117,6 +117,13 @@ vim.keymap.set("n", "M", "%") -- jump to matching bracket by M
 vim.keymap.set({ "o", "x" }, "i<space>", "iW") -- select WORD by i<space>
 vim.keymap.set("x", "p", "P") -- {visual}p to put without yank to unnamed register https://github.com/Shougo/shougo-s-github/blob/21a3f500cdc2b37c8d184edbf640d9e17458358a/vim/rc/mappings.rc.vim#L190-L191
 vim.keymap.set("x", "y", "mzy`z") -- keep cursor position after yank in visual mode
+vim.keymap.set("i", "<C-k>", function() -- capitalize word
+	local line = vim.fn.getline(".")
+	local col = vim.fn.getpos(".")[3]
+	local substring = line:sub(1, col - 1)
+	local result = vim.fn.matchstr(substring, [[\v<(\k(<)@!)*$]])
+	return "<C-w>" .. result:upper()
+end, { expr = true })
 
 -- replace
 vim.keymap.set("x", "S", 'y:%s/<C-r><C-r>"//g<Left><Left>')
