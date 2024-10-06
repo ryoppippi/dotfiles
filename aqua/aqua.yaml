@@ -131,3 +131,4 @@ packages:
   - name: dduan/tre@v0.4.0
   - name: astral-sh/uv@0.4.18
   - name: mikefarah/yq@v4.44.3
+  - name: sheepla/srss@v0.1.0
