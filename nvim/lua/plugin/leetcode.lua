@@ -5,6 +5,9 @@ return {
 	event = {
 		"BufReadPre leetcode.nvim",
 	},
+	init = function()
+		vim.keymap.set("ca", "lt", "Leet")
+	end,
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 		"nvim-lua/plenary.nvim", -- required by telescope
