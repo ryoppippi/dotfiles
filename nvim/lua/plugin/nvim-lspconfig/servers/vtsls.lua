@@ -85,6 +85,9 @@ return {
 								name = "typescript-svelte-plugin",
 								enableForWorkspaceTypeScriptVersions = true,
 							},
+							{
+								name = "@astrojs/ts-plugin",
+							},
 						},
 					},
 				},
