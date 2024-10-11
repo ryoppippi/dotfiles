@@ -5,7 +5,7 @@ return {
 	{
 		"https://github.com/uga-rosa/denippet.vim",
 		cond = not is_vscode(),
-		event = { "InsertEnter", "User DenopsReady" },
+		event = { "User DenopsReady" },
 		dependencies = {
 			"vim-denops/denops.vim",
 			{
@@ -28,7 +28,7 @@ return {
 	},
 	{
 		"ryoppippi/denippet-autoimport-vscode",
-		event = { "InsertEnter", "User DenopsReady" },
+		event = { "User DenopsReady" },
 		dependencies = {
 			"vim-denops/denops.vim",
 			"ryoppippi-snippets-list",
