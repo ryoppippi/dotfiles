@@ -2,70 +2,70 @@
   "lockfile_version": "1",
   "packages": {
     "eza@latest": {
-      "last_modified": "2024-09-29T05:15:19Z",
-      "resolved": "github:NixOS/nixpkgs/2dcd9c55e8914017226f5948ac22c53872a13ee2#eza",
+      "last_modified": "2024-10-03T15:28:05Z",
+      "resolved": "github:NixOS/nixpkgs/75b209227dff3cbfac19f510a62f9446c92beac4#eza",
       "source": "devbox-search",
-      "version": "0.20.0",
+      "version": "0.20.1",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/q2irnlmglvwn0q7nibp4clvhd5bkxa3j-eza-0.20.0",
+              "path": "/nix/store/5977g4qd1irjfvj7d4ipsbcaplm5v8qk-eza-0.20.1",
               "default": true
             },
             {
               "name": "man",
-              "path": "/nix/store/qwq9zqdm4br8jc6xk6crbhlx1s9jzqn5-eza-0.20.0-man",
+              "path": "/nix/store/4abbjz8dg4hglfbp0359c2kyx3zazr61-eza-0.20.1-man",
               "default": true
             }
           ],
-          "store_path": "/nix/store/q2irnlmglvwn0q7nibp4clvhd5bkxa3j-eza-0.20.0"
+          "store_path": "/nix/store/5977g4qd1irjfvj7d4ipsbcaplm5v8qk-eza-0.20.1"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/s5r6s0js0g3n026vjm53cq959k80rmhz-eza-0.20.0",
+              "path": "/nix/store/7qk9k8r0kbypbxpiliy08vzgxz0wrf1r-eza-0.20.1",
               "default": true
             },
             {
               "name": "man",
-              "path": "/nix/store/gfxdy2dpsa9dngnaaiczsfrn1fc48zn9-eza-0.20.0-man",
+              "path": "/nix/store/vb9wiapx31rqbfcr3w7y6pz7c01nj81i-eza-0.20.1-man",
               "default": true
             }
           ],
-          "store_path": "/nix/store/s5r6s0js0g3n026vjm53cq959k80rmhz-eza-0.20.0"
+          "store_path": "/nix/store/7qk9k8r0kbypbxpiliy08vzgxz0wrf1r-eza-0.20.1"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/ajvwyg23cszi8gs96swhp4sqpxm10hbq-eza-0.20.0",
+              "path": "/nix/store/1ypla99icnhffhymbwc4gwzk92l39p3l-eza-0.20.1",
               "default": true
             },
             {
               "name": "man",
-              "path": "/nix/store/dwv76d06rh8nz4cn00jnx9cl10bigc68-eza-0.20.0-man",
+              "path": "/nix/store/kw7n8mzmd3lmacfq4ig5k0sh4kwwdy0v-eza-0.20.1-man",
               "default": true
             }
           ],
-          "store_path": "/nix/store/ajvwyg23cszi8gs96swhp4sqpxm10hbq-eza-0.20.0"
+          "store_path": "/nix/store/1ypla99icnhffhymbwc4gwzk92l39p3l-eza-0.20.1"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/vg9qhq79rp39izr3ibqsgz2jbjln1v1m-eza-0.20.0",
+              "path": "/nix/store/kqyqnpa2ai8ig19i9a45gy564ym7lzpb-eza-0.20.1",
               "default": true
             },
             {
               "name": "man",
-              "path": "/nix/store/6fsl164m6p953dab7zq7n7qhxygcpa42-eza-0.20.0-man",
+              "path": "/nix/store/g25900zn1aqgf8g4y4867h7ja7fw59cf-eza-0.20.1-man",
               "default": true
             }
           ],
-          "store_path": "/nix/store/vg9qhq79rp39izr3ibqsgz2jbjln1v1m-eza-0.20.0"
+          "store_path": "/nix/store/kqyqnpa2ai8ig19i9a45gy564ym7lzpb-eza-0.20.1"
         }
       }
     },
