@@ -120,7 +120,7 @@ packages:
   - name: graelo/pumas@v0.2.4
   - name: sachaos/viddy@v1.1.6
   - name: hatoo/oha@v1.4.6
-  - name: abhimanyu003/sttr@v0.2.23
+  - name: abhimanyu003/sttr@v0.2.24
   - name: theryangeary/choose@v1.3.6
   - name: suzuki-shunsuke/cmdx@v1.7.4
   - name: watchexec/cargo-watch@v8.5.3
