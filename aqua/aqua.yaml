@@ -132,3 +132,4 @@ packages:
   - name: astral-sh/uv@0.4.20
   - name: mikefarah/yq@v4.44.3
   - name: sheepla/srss@v0.1.0
+  - name: martinvonz/jj@v0.22.0
