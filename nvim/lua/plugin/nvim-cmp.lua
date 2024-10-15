@@ -96,7 +96,7 @@ return {
 			"petertriho/cmp-git",
 			dependencies = { "nvim-lua/plenary.nvim" },
 			opts = {
-				filetypes = { "gitcommit", "octo", "markdown" },
+				filetypes = { "gitcommit", "octo" },
 			},
 			config = true,
 		},
