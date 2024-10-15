@@ -113,6 +113,9 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     # devbox
     echo "$(devbox global shellenv)" >>$CONFIG_CACHE
 
+    # jj
+    ensure_installed jj util completion fish >>$CONFIG_CACHE
+
     set_color brmagenta --bold --underline
     echo "config cache updated"
     set_color normal
