@@ -118,7 +118,7 @@ packages:
   - name: sqls-server/sqls@v0.2.27
   - name: ClementTsang/bottom@0.10.2
   - name: graelo/pumas@v0.2.4
-  - name: sachaos/viddy@v1.1.6
+  - name: sachaos/viddy@v1.2.0
   - name: hatoo/oha@v1.4.6
   - name: abhimanyu003/sttr@v0.2.24
   - name: theryangeary/choose@v1.3.6
