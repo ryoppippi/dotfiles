@@ -10,15 +10,27 @@ return {
 		"github/copilot.vim",
 	},
 	opts = {
+		adapters = {
+			ollama = function()
+				return require("codecompanion.adapters").extend("ollama", {
+					schema = {
+						name = "qwen2.5-coder",
+						model = {
+							default = "qwen2.5-coder:latest",
+						},
+					},
+				})
+			end,
+		},
 		strategies = {
 			chat = {
-				adapter = "copilot",
+				adapter = "ollama",
 			},
 			inline = {
-				adapter = "copilot",
+				adapter = "ollama",
 			},
 			agent = {
-				adapter = "copilot",
+				adapter = "ollama",
 			},
 		},
 	},
