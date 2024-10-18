@@ -76,7 +76,7 @@ packages:
   - name: blacknon/hwatch@0.3.15
   - name: watchexec/watchexec@v2.2.0
   - name: rclone/rclone@v1.68.1
-  - name: hhatto/gocloc@v0.5.2
+  - name: hhatto/gocloc@v0.5.3
   - name: tsl0922/ttyd@1.7.7
   - name: whalebrew/whalebrew@0.5.0
   - name: sharkdp/pastel@v0.10.0
