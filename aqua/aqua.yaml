@@ -124,7 +124,7 @@ packages:
   - name: theryangeary/choose@v1.3.6
   - name: suzuki-shunsuke/cmdx@v1.7.4
   - name: nishanths/license@v5.0.4
-  - name: jetify-com/devbox@0.13.4
+  - name: jetify-com/devbox@0.13.5
   - name: dduan/tre@v0.4.0
   - name: astral-sh/uv@0.4.22
   - name: mikefarah/yq@v4.44.3
