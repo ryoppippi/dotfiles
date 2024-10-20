@@ -92,16 +92,6 @@ vim.keymap.set("n", "A", function()
 	return vim.fn.len(vim.fn.getline(".")) ~= 0 and "A" or '"_cc'
 end, { expr = true, silent = true })
 
-vim.iter({ "n", "x" }):each(function(mode)
-	vim.keymap.set(
-		mode,
-		"<leader>b",
-		vim.fn.maparg("gx", mode, false, true).callback,
-		{ desc = "Open URL under cursor in browser" }
-	)
-	vim.keymap.del(mode, "gx")
-end)
-
 -- custom
 -- vim.keymap.set("n", "<leader>ss", vim.cmd.ToggleStatusBar)
 
