@@ -9,7 +9,7 @@ return {
 	priority = isKanagawa() and 1000 or 50,
 	event = isKanagawa() and { "UiEnter" } or { "ColorScheme" },
 	build = ":KanagawaCompile",
-	cond = vim.o.termguicolors and not is_vscode(),
+	cond = not is_vscode(),
 	init = function()
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			callback = function(args)

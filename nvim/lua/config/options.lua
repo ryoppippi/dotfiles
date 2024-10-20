@@ -56,16 +56,6 @@ vim.opt.listchars = {
 	precedes = "❮",
 }
 
-vim.g.colorterm = os.getenv("COLORTERM")
-if
-	vim.tbl_contains({ "truecolor", "24bit", "rxvt", "" }, vim.g.colorterm)
-	and tb(vim.fn.exists("+termguicolors"))
-	and not is_vscode()
-then
-	vim.o.termguicolors = true
-	vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-end
-
 vim.opt.pumblend = 10
 vim.opt.laststatus = 0
 vim.cmd([[set statusline=%{repeat('─',winwidth('.'))}]])
