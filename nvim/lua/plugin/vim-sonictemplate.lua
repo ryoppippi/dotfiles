@@ -2,7 +2,7 @@ return {
 	"mattn/vim-sonictemplate",
 	cmd = { "Template" },
 	dependencies = { "nvim-lua/plenary.nvim" },
-	config = function()
+	init = function()
 		vim.g.sonictemplate_key = 0
 		vim.g.sonictemplate_intelligent_key = 0
 		vim.g.sonictemplate_postfix_key = 0
@@ -11,7 +11,8 @@ return {
 				author = 'Ryotaro "Justin" Kimura',
 			},
 		}
-
+	end,
+	config = function()
 		local Path = require("plenary.path")
 		vim.g.sonictemplate_vim_template_dir = {
 			Path:new(vim.fn.stdpath("config"), "template"):absolute(),
