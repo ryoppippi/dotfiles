@@ -1,6 +1,5 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "CopilotChat.nvim": { "branch": "canary", "commit": "9333944fde3c65868818e245c73aa29eef826e9b" },
   "actions-preview.nvim": { "branch": "master", "commit": "9f52a01c374318e91337697ebed51c6fae57f8a4" },
   "alpha-nvim": { "branch": "main", "commit": "bf3c8bb8c02ed3d9644cc5bbc48e2bdc39349cd7" },
   "bad-apple.vim": { "branch": "main", "commit": "a44cce011d5e732d01cebfeeee5dc87ecdda9b20" },
@@ -113,6 +112,7 @@
   "nvim-early-retirement": { "branch": "main", "commit": "2c36a5671b9d8f0d9e11b77c5a55de802bc45e34" },
   "nvim-file-location": { "branch": "main", "commit": "26ede92a734f2b133b362104da66c4942137d988" },
   "nvim-gtd": { "branch": "main", "commit": "ad6d228045b4083230afd0dcf4c840737c1b499c" },
+  "nvim-highlight-colors": { "branch": "main", "commit": "a411550ef85cae467b889ba7d1a96bd78332d90e" },
   "nvim-insx": { "branch": "main", "commit": "af5f076d5ad26976f75376107b86338f67f78cf3" },
   "nvim-lightbulb": { "branch": "master", "commit": "33d4c95e0e853956bc9468b70b3064c87d5abaca" },
   "nvim-linkedit": { "branch": "main", "commit": "ce2c7fb46f90cef5df52ca3adaeefb2473125bb1" },
@@ -162,7 +162,6 @@
   "stickybuf.nvim": { "branch": "master", "commit": "183b9569bef78f44b17c078214f7d731f19cbefe" },
   "substitute.nvim": { "branch": "main", "commit": "97f49d16f8eea7967d41db4f657dd63af53eeba1" },
   "svelte_inspector.vim": { "branch": "main", "commit": "1bd5604855934973c5ec4d50ec738f9c9da31f96" },
-  "tailwind-tools.nvim": { "branch": "master", "commit": "89e560705ecd49607c63c277935c5264bb770d57" },
   "telescope-any": { "branch": "master", "commit": "0e79dd6131c8a7282899679cd9ffa14e74d2c973" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-egrepify.nvim": { "branch": "master", "commit": "a8070970a661330c4e00450d25f874f6c2b00af9" },

@@ -75,12 +75,6 @@ return {
 			end,
 		},
 		{
-			"roobert/tailwindcss-colorizer-cmp.nvim",
-			enabled = false,
-			opts = { color_square_width = 2 },
-			config = true,
-		},
-		{
 			"f3fora/cmp-spell",
 			config = function(p)
 				load_after(p)
@@ -122,7 +116,6 @@ return {
 		-- Setup dependencies
 		local cmp = require("cmp")
 
-		local lspkind = require("lspkind")
 		local luasnip_status, luasnip = pcall(require, "luasnip")
 		local denippet = vimx.fn.denippet
 
@@ -299,24 +292,29 @@ return {
 		}
 
 		setup_opt.formatting = {
-			format = lspkind.cmp_format({
-				mode = "symbol_text",
-				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-				before = function(entry, vim_item)
-					if has("tailwindcss-colorizer-cmp.nvim") then
-						vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-					elseif has("tailwind-tools.nvim") then
-						vim_item = require("tailwind-tools.cmp").lspkind_format(entry, vim_item)
-					end
-					if entry.source.name == "nvim_lsp" then
-						vim_item.menu = "{" .. entry.source.source.client.name .. "}"
-					else
-						vim_item.menu = menu[entry.source.name] or entry.source.name
-					end
-
-					return vim_item
-				end,
-			}),
+			format = function(entry, item)
+				local color_item = nil
+				if has("nvim-highlight-colors") then
+					color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+				end
+				item = require("lspkind").cmp_format({
+					mode = "symbol_text",
+					maxwidth = 50,
+					before = function(_entry, vim_item)
+						if entry.source.name == "nvim_lsp" then
+							vim_item.menu = "{" .. _entry.source.source.client.name .. "}"
+						else
+							vim_item.menu = menu[_entry.source.name] or _entry.source.name
+						end
+						return vim_item
+					end,
+				})(entry, item)
+				if color_item ~= nil and color_item.abbr_hl_group then
+					item.kind_hl_group = color_item.abbr_hl_group
+					item.kind = color_item.abbr
+				end
+				return item
+			end,
 		}
 
 		cmp.setup(setup_opt)
