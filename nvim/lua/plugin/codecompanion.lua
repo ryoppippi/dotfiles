@@ -9,6 +9,11 @@ return {
 		"stevearc/dressing.nvim",
 		"github/copilot.vim",
 	},
+	keys = {
+		{ "cc", "CodeCompanion", mode = "ca" },
+		{ "ccc", "CodeCompanionChat", mode = "ca" },
+		{ "cca", "CodeCompanionAction", mode = "ca" },
+	},
 	opts = {
 		adapters = {
 			ollama = function()
@@ -35,8 +40,6 @@ return {
 		},
 	},
 	config = function(_, opts)
-		vim.keymap.set("ca", "cc", "CodeCompanion")
-
 		require("codecompanion").setup(opts)
 	end,
 }
