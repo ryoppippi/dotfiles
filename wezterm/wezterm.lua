@@ -25,13 +25,19 @@ local config = {
 	use_fancy_tab_bar = false,
 	force_reverse_video_cursor = true,
 	hide_tab_bar_if_only_one_tab = true,
+	show_new_tab_button_in_tab_bar = false,
 	adjust_window_size_when_changing_font_size = false,
+
 	window_padding = {
 		left = 5,
 		right = 5,
 		top = 0,
 		bottom = 0,
 	},
+	window_background_opacity = 0.80,
+	macos_window_background_blur = 20,
+	window_decorations = "RESIZE",
+
 	use_ime = true,
 	send_composed_key_when_left_alt_is_pressed = false,
 	send_composed_key_when_right_alt_is_pressed = false,
@@ -47,10 +53,11 @@ local config = {
 		},
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
-
-	window_background_opacity = 0.80,
-	macos_window_background_blur = 20,
-	colors = {},
+	colors = {
+		tab_bar = {
+			inactive_tab_edge = "none",
+		},
+	},
 }
 
 config.colors.tab_bar = require("tab_bar")
