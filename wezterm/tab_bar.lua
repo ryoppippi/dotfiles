@@ -1,5 +1,6 @@
 local tab_bar = {
 	background = "#1b1f2f",
+	inactive_tab_edge = "none",
 
 	active_tab = {
 		bg_color = "#444b71",
