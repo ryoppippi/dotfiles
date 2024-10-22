@@ -34,9 +34,19 @@ local config = {
 		top = 0,
 		bottom = 0,
 	},
+
 	window_background_opacity = 0.80,
-	macos_window_background_blur = 20,
+	macos_window_background_blur = 15,
 	window_decorations = "RESIZE",
+	window_background_gradient = {
+		colors = { "#000000" },
+	},
+
+	colors = {
+		tab_bar = {
+			inactive_tab_edge = "none",
+		},
+	},
 
 	use_ime = true,
 	send_composed_key_when_left_alt_is_pressed = false,
@@ -53,11 +63,6 @@ local config = {
 		},
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
-	colors = {
-		tab_bar = {
-			inactive_tab_edge = "none",
-		},
-	},
 }
 
 config.colors.tab_bar = require("tab_bar")
