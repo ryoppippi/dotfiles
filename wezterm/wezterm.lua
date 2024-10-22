@@ -25,7 +25,7 @@ local config = {
 	adjust_window_size_when_changing_font_size = false,
 
 	window_padding = {
-		left = 0,
+		left = 5,
 		right = 0,
 		top = 0,
 		bottom = 0,
