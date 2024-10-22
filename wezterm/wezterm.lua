@@ -31,7 +31,7 @@ local config = {
 		bottom = 0,
 	},
 
-	window_background_opacity = 0.80,
+	window_background_opacity = 0.70,
 	macos_window_background_blur = 15,
 	window_decorations = "RESIZE",
 	window_background_gradient = {
