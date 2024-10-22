@@ -21,11 +21,7 @@ local local_config = load_local_config()
 local config = {
 	font = wezterm.font("UDEV Gothic 35LG"),
 	font_size = 13.0,
-	tab_bar_at_bottom = false,
-	use_fancy_tab_bar = false,
 	force_reverse_video_cursor = true,
-	hide_tab_bar_if_only_one_tab = true,
-	show_new_tab_button_in_tab_bar = false,
 	adjust_window_size_when_changing_font_size = false,
 
 	window_padding = {
@@ -52,14 +48,13 @@ local config = {
 	enable_csi_u_key_encoding = true,
 	unix_domains = {
 		{
-
 			name = "unix",
 		},
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
 }
 
-config.colors.tab_bar = require("tab_bar")
+config = utils.merge_tables(config, require("tab_bar"))
 config = utils.merge_tables(config, require("colors.kanagawa_dragon"))
 -- config.color_scheme = "Kimber (base16)"
 
