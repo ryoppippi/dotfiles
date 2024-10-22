@@ -29,7 +29,7 @@ local keys = {
 	{ key = ")", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
 	{ key = "Space", mods = "LEADER", action = act.QuickSelect },
 	{ key = ";", mods = "LEADER", action = act.ToggleFullScreen },
-	{ key = "f", mods = "CMD|SHIFT", action = act.EmitEvent("toggle-opacity") },
+	{ key = "f", mods = "CMD|SHIFT", action = act.EmitEvent("toggle-blur") },
 }
 
 -- activate tab
