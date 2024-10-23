@@ -6,6 +6,5 @@
   "tig": "~/.config/tig",
   "git": "~/.config/git",
   "ideavimrc": "~/.ideavimrc",
-  "gup": "~/.config/gup",
   "my_scripts": "~/.scripts"
 }
