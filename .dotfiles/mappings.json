@@ -1,6 +1,5 @@
 {
   "tmux": "~/.config/tmux",
-  "alacritty": "~/.config/alacritty",
   "starship.toml": "~/.config/starship.toml",
   "wezterm": "~/.config/wezterm",
   "lazygit": "~/.config/lazygit",
