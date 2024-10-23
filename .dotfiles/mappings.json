@@ -3,7 +3,6 @@
   "starship.toml": "~/.config/starship.toml",
   "wezterm": "~/.config/wezterm",
   "lazygit": "~/.config/lazygit",
-  "tig": "~/.config/tig",
   "git": "~/.config/git",
   "ideavimrc": "~/.ideavimrc",
   "my_scripts": "~/.scripts"
