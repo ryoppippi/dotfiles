@@ -1,7 +1,6 @@
 return {
 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	name = "lsp_lines",
-	enabled = false,
 	dependencies = { "neovim/nvim-lspconfig" },
 	event = { "LspAttach" },
 	keys = {
