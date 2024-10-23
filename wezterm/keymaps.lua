@@ -30,6 +30,11 @@ local keys = {
 	{ key = "Space", mods = "LEADER", action = act.QuickSelect },
 	{ key = ";", mods = "LEADER", action = act.ToggleFullScreen },
 	{ key = "f", mods = "CMD|SHIFT", action = act.EmitEvent("toggle-blur") },
+	{
+		key = "s",
+		mods = "CMD|SHIFT",
+		action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
+	},
 }
 
 -- activate tab
