@@ -59,6 +59,7 @@ abbr -a dxrm devbox rm
 # nix
 abbr -a ns nix-shell
 abbr -a ngc nix-collect-garbage
+abbr -a nrn --set-cursor nix run nixpkgs#\%
 
 # deno
 abbr -a dr "deno run -A --unstable"
