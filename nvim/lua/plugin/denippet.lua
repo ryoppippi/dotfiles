@@ -21,6 +21,7 @@ return {
 		},
 		init = function()
 			vim.g.denippet_drop_on_zero = true
+			vim.g.denippet_sync_delay = 100
 		end,
 		config = function(spec)
 			require("denops-lazy").load(spec.name)
