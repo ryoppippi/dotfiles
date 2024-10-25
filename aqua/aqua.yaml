@@ -79,7 +79,7 @@ packages:
   - name: tsl0922/ttyd@1.7.7
   - name: whalebrew/whalebrew@0.5.0
   - name: sharkdp/pastel@v0.10.0
-  - name: dalance/procs@v0.14.6
+  - name: dalance/procs@v0.14.7
   - name: chriswalz/bit@v1.1.2
   - name: bcicen/ctop@v0.7.7
   - name: sharkdp/hexyl@v0.14.0
