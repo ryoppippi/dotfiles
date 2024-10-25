@@ -3,6 +3,8 @@ local ft = lsp_utils.ft
 
 local filetypes = ft.js_like
 
+local node_modules_dir = require("lazy.core.config").spec.plugins.node_servers.dir
+
 ---@type LazySpec
 return {
 	"yioneko/nvim-vtsls",
@@ -87,6 +89,11 @@ return {
 							},
 							{
 								name = "@astrojs/ts-plugin",
+							},
+							{
+								name = "@vue/typescript-plugin",
+								location = vim.fs.joinpath(node_modules_dir, "@vue", "language-server"),
+								languages = { "vue" },
 							},
 						},
 					},
