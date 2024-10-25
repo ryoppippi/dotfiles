@@ -8,7 +8,7 @@ return {
 	dir = vim.env.TMPDIR .. "/lsp-svelte",
 	dependencies = {
 		"neovim/nvim-lspconfig",
-		"cli",
+		"node_servers",
 	},
 	ft = function(spec)
 		return lsp_utils.get_default_filetypes(spec.name)
