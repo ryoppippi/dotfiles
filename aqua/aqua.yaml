@@ -129,5 +129,5 @@ packages:
   - name: mikefarah/yq@v4.44.3
   - name: sheepla/srss@v0.1.0
   - name: martinvonz/jj@v0.22.0
-  - name: fastfetch-cli/fastfetch@2.27.1
+  - name: fastfetch-cli/fastfetch@2.28.0
   - name: sxyazi/yazi@v0.3.3
