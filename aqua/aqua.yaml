@@ -131,3 +131,4 @@ packages:
   - name: martinvonz/jj@v0.22.0
   - name: fastfetch-cli/fastfetch@2.28.0
   - name: sxyazi/yazi@v0.3.3
+  - name: typst/typst@v0.12.0
