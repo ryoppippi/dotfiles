@@ -180,54 +180,6 @@
           "store_path": "/nix/store/2sshpha82q4704f8k53nyfrl8fysibv3-swift-format-5.8"
         }
       }
-    },
-    "zls@latest": {
-      "last_modified": "2024-09-10T15:01:03Z",
-      "resolved": "github:NixOS/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269#zls",
-      "source": "devbox-search",
-      "version": "0.13.0",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/z6jdyjmjbi0r0wdb25l229qks8a41mlf-zls-0.13.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/z6jdyjmjbi0r0wdb25l229qks8a41mlf-zls-0.13.0"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/zmyi29b8pjfqj6pc9a3wz02c4n468dy1-zls-0.13.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/zmyi29b8pjfqj6pc9a3wz02c4n468dy1-zls-0.13.0"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/ilv1z86nyrlm38d3gyii4ffrx6dsmzwb-zls-0.13.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/ilv1z86nyrlm38d3gyii4ffrx6dsmzwb-zls-0.13.0"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/93shjdfpz3pzvw9q5wbwsz0wp4v43gir-zls-0.13.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/93shjdfpz3pzvw9q5wbwsz0wp4v43gir-zls-0.13.0"
-        }
-      }
     }
   }
 }
