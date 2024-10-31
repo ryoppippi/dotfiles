@@ -1,7 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.6/.schema/devbox.schema.json",
   "packages": [
-    "nodejs@latest",
     "swift-format@latest",
     "eza@latest",
     "skim@latest",
