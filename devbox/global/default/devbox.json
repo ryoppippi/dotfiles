@@ -3,7 +3,9 @@
   "packages": [
     "swift-format@latest",
     "eza@latest",
-    "skim@latest"
+    "skim@latest",
+    "cargo@latest",
+    "rust-analyzer@latest"
   ],
   "shell": {
     "init_hook": [
