@@ -3,8 +3,7 @@
   "packages": [
     "swift-format@latest",
     "eza@latest",
-    "skim@latest",
-    "zls@latest"
+    "skim@latest"
   ],
   "shell": {
     "init_hook": [
