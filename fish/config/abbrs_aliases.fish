@@ -29,6 +29,7 @@ abbr -a cda conda
 abbr -a lzg lazygit
 abbr -a lzd lazydocker
 abbr -a ech envchain
+abbr -a y yazi
 abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
