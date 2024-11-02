@@ -6,6 +6,7 @@ return {
 	{
 		name = "sourcekit",
 		dir = vim.env.TMPDIR .. "/lsp-sourcekit",
+		cond = not is_vscode(),
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},

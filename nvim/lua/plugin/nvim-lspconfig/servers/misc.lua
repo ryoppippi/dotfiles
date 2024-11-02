@@ -12,7 +12,6 @@ return vim.iter({
 	"ruby_lsp",
 	"prismals",
 	"angularls",
-	"volar",
 	{ "astro", format = false },
 	{ "biome", format = false },
 	{ "eslint", format = true, extra_filetypes = ft.html_like },
@@ -29,6 +28,7 @@ return vim.iter({
 		return {
 			name = name,
 			dir = vim.env.TMPDIR .. "/lsp-" .. name,
+			cond = not is_vscode(),
 			dependencies = {
 				"neovim/nvim-lspconfig",
 				"cli",
