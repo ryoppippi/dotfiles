@@ -8,6 +8,7 @@ local filetypes = ft.yaml_like
 return {
 	name = "yamlls",
 	dir = vim.env.TMPDIR .. "/lsp-yamlls",
+	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"b0o/schemastore.nvim",

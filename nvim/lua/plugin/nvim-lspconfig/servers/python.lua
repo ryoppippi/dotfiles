@@ -20,6 +20,7 @@ return vim.iter({
 		return {
 			name = name,
 			dir = vim.env.TMPDIR .. "/lsp-" .. name,
+			cond = not is_vscode(),
 			dependencies = {
 				"neovim/nvim-lspconfig",
 				"cli",

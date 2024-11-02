@@ -6,6 +6,7 @@ return {
 	{
 		name = "zls",
 		dir = vim.env.TMPDIR .. "/lsp-zls",
+		cond = not is_vscode(),
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},

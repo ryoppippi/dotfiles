@@ -9,6 +9,7 @@ local filetypes = ft.json_like
 return {
 	name = "jsonls",
 	dir = vim.env.TMPDIR .. "/lsp",
+	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"b0o/schemastore.nvim",

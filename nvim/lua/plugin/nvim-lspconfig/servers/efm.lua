@@ -24,6 +24,7 @@ local filetypes = vim.iter({
 return {
 	name = "efm",
 	dir = vim.env.TMPDIR .. "/lsp-efm",
+	cond = not is_vscode(),
 	dependencies = { "neovim/nvim-lspconfig" },
 	ft = filetypes,
 	opts = {

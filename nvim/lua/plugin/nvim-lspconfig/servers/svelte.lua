@@ -6,6 +6,7 @@ local format_config = lsp_utils.format_config
 return {
 	name = "svelte",
 	dir = vim.env.TMPDIR .. "/lsp-svelte",
+	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"node_servers",
