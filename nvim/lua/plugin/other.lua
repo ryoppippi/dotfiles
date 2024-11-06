@@ -11,6 +11,9 @@ return {
 	commit = "d36a66a",
 	keys = {
 		{ "<leader><TAB>", "<cmd>Other<CR>" },
+		{ "soo", "<cmd>Other<CR>" },
+		{ "sov", "<cmd>OtherVSplit<CR>" },
+		{ "sos", "<cmd>OtherSplit<CR>" },
 	},
 	opts = {
 		mappings = {
