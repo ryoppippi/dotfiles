@@ -150,8 +150,12 @@ end
 function o.get_default_filetypes(client)
 	local _client = _convert_client(client)
 
-	local default_config = _client.document_config.default_config
-	return default_config.filetypes or {}
+	local document_config = _client.document_config
+	if document_config ~= nil then
+		return document_config.default_config.filetypes or {}
+	end
+
+	return {}
 end
 
 ---Setup LSP client

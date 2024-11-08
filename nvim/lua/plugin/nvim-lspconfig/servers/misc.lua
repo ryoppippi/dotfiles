@@ -21,6 +21,7 @@ return vim.iter({
 	{ "unocss", format = false, extra_filetypes = ft.html_like },
 	{ "html", format = false },
 	{ "stylelint_lsp", format = false },
+	{ "typos", format = false, event = "BufReadPre" },
 })
 	:map(function(tbl)
 		local name = type(tbl) == "string" and tbl or tbl[1]
@@ -34,13 +35,18 @@ return vim.iter({
 				"cli",
 				"node_servers",
 			},
+			event = tbl.event,
 			ft = function(spec)
 				if tbl.filetype ~= nil then
 					return tbl.filetype
 				end
-				local dft = lsp_utils.get_default_filetypes(spec.name)
+				local ok, dft = pcall(lsp_utils.get_default_filetypes, spec.name)
 				if tbl.extra_filetypes ~= nil then
-					return vim.iter({ dft, tbl.extra_filetypes }):flatten(math.huge):totable()
+					if ok then
+						return vim.iter({ dft, tbl.extra_filetypes }):flatten(math.huge):totable()
+					else
+						return tbl.extra_filetypes
+					end
 				end
 				return dft
 			end,
