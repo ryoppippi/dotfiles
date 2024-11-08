@@ -5,7 +5,9 @@
     "eza@latest",
     "skim@latest",
     "cargo@latest",
-    "rust-analyzer@latest"
+    "rust-analyzer@latest",
+    "typos@latest",
+    "typos-lsp@latest"
   ],
   "shell": {
     "init_hook": [
