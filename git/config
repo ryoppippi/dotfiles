@@ -48,7 +48,6 @@
   sw = switch
   swc = switch -c
   swor = "!f() { local -r ref=$(git branch -r | fzf); git sw \"${1:-${ref#*/}}\" $ref; }; f"
-  ; coc = ! git log --pretty=oneline --abbrev-commit --reverse | fzf --tac +s -e | awk '{print $1;}' | read -l result; and git checkout "$result"
   swf =!git branch -a | fzf | xargs git switch
   po = push origin
   difff = diff --word-diff
@@ -66,9 +65,7 @@
   sha = "!f() { git rev-parse "${1-HEAD}"; }; f"
   root = rev-parse --show-toplevel
   cza = cz -a
-  la = log --oneline --decorate --graph --branches --tags --remotes --all
-  hist = log --pretty=format:'%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)' --graph --date=relative --decorate --all
-  gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+	logg = log --graph --abbrev-commit --pretty=format:'%C(yellow)%h%C(reset) - %C(cyan)%ad%C(reset) %C(green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%n'
 	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
 [ghq]
