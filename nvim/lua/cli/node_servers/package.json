@@ -17,7 +17,7 @@
     "emmet-ls": "0.4.2",
     "sql-language-server": "1.7.0",
     "stylelint": "16.10.0",
-    "stylelint-lsp": "2.0.0",
+    "stylelint-lsp": "2.0.1",
     "svelte-language-server": "0.17.5",
     "typescript-svelte-plugin": "0.3.43",
     "unocss-language-server": "0.1.5",
