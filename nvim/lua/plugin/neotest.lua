@@ -1,3 +1,5 @@
+local has = require("core.plugin").has
+
 ---@type LazySpec
 return {
 	"https://github.com/nvim-neotest/neotest",
@@ -22,7 +24,7 @@ return {
 	},
 	opts = function()
 		return {
-			adapters = {
+			adapters = vim.iter({
 				require("neotest-vitest"),
 				require("neotest-deno"),
 				require("neotest-zig")({
@@ -30,7 +32,12 @@ return {
 						adapter = "lldb",
 					},
 				}),
-			},
+				has("rustaceanvim.neotest") and require("rustaceanvim.neotest") or nil,
+			})
+				:filter(function(adapter)
+					return adapter ~= nil
+				end)
+				:totable(),
 		}
 	end,
 }
