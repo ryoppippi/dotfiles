@@ -18,12 +18,18 @@ return {
 		},
 		"https://github.com/marilari88/neotest-vitest",
 		"https://github.com/MarkEmmons/neotest-deno",
+		"https://github.com/lawrence-laz/neotest-zig",
 	},
 	opts = function()
 		return {
 			adapters = {
 				require("neotest-vitest"),
 				require("neotest-deno"),
+				require("neotest-zig")({
+					dap = {
+						adapter = "lldb",
+					},
+				}),
 			},
 		}
 	end,
