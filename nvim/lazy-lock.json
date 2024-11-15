@@ -190,6 +190,7 @@
   "troublesum.nvim": { "branch": "master", "commit": "b00301bb565bfcb6fcfa41f2012e43a0528da65b" },
   "ts-error-translator.nvim": { "branch": "main", "commit": "3bd23c4cfe4c2edc99278e01b75cdb2a26f03152" },
   "tsnode-marker.nvim": { "branch": "main", "commit": "5350372cd407c3db37fb9921d56fe862a820d507" },
+  "typst-preview.nvim": { "branch": "master", "commit": "06778d1b3d4d29c34f1faf80947b586f403689ba" },
   "ugaterm.nvim": { "branch": "main", "commit": "19c489918a15926464d86a11d6bb4466f0838bb1" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
   "vim-artemis": { "branch": "main", "commit": "8ed2f0c067b7d70263a785604d1a81e4ee446136" },
