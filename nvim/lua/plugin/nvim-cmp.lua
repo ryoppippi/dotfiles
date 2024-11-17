@@ -81,12 +81,6 @@ return {
 			end,
 		},
 		{
-			"yutkat/cmp-mocword",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
 			"petertriho/cmp-git",
 			dependencies = { "nvim-lua/plenary.nvim" },
 			opts = {
@@ -94,16 +88,6 @@ return {
 			},
 			config = true,
 		},
-		-- {
-		-- 	"delphinus/cmp-ghq",
-		-- 	name = "cmp_ghq",
-		-- 	dependencies = { "nvim-lua/plenary.nvim" },
-		-- 	opts = {},
-		-- },
-		-- { "hrsh7th/cmp-omni" },
-		-- { "uga-rosa/cmp-dictionary" },
-		-- { "tzachar/cmp-tabnine", build = "./install.sh" },
-		-- { "octaltree/cmp-look" },
 	},
 	init = function()
 		require("core.plugin").on_load("nvim-cmp", function()
@@ -254,7 +238,6 @@ return {
 				{ name = "calc" },
 				{ name = "spell" },
 				{ name = "treesitter" },
-				{ name = "dictionary", keyword_length = 2 },
 				{ name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
 				-- { name = "cmp_tabnine" },
 			}),
@@ -283,8 +266,6 @@ return {
 			-- cmp_tabnine = "[Tabnine]",
 			copilot = "[Copilot]",
 			cmdline_history = "[History]",
-			mocword = "[Mocword]",
-			dictionary = "[Dictionary]",
 			look = "[Look]",
 			git = "[Git]",
 			ghq = "[GHQ]",
@@ -335,8 +316,6 @@ return {
 				{ name = "spell" },
 				{ name = "calc" },
 				{ name = "treesitter" },
-				{ name = "mocword" },
-				{ name = "dictionary", keyword_length = 2 },
 				{ name = "look", keyword_length = 2, option = { convert_case = true, loud = true } },
 			}),
 		})
