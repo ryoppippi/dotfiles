@@ -57,7 +57,7 @@ packages:
   - name: oven-sh/bun@bun-v1.1.34
   - name: wader/fq@v0.13.0
   - name: planetscale/cli@v0.214.0
-  - name: supabase/cli@v1.223.7
+  - name: supabase/cli@v1.223.10
   - name: hadolint/hadolint@v2.12.0
   - name: noborus/trdsql@v1.1.0
   - name: JohnnyMorganz/StyLua@v0.20.0
