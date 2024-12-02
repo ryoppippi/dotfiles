@@ -132,7 +132,7 @@ packages:
   - name: fastfetch-cli/fastfetch@2.30.1
   - name: sxyazi/yazi@v0.3.3
   - name: typst/typst@v0.12.0
-  - name: pnpm/pnpm@v9.14.2
+  - name: pnpm/pnpm@v9.14.4
   - name: nodejs/node@v23.3.0
   - name: zigtools/zls@0.13.0
   - name: tamasfe/taplo@0.9.3
