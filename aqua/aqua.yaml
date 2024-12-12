@@ -9,7 +9,7 @@
 #   - all
 registries:
   - type: standard
-    ref: v4.271.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.272.0 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.63.2
   - name: golang/go@go1.23.4
