@@ -5,7 +5,7 @@ local setup = lsp_utils.setup
 return {
 	{
 		name = "sourcekit",
-		dir = vim.env.TMPDIR .. "/lsp-sourcekit",
+		dir = ".",
 		cond = not is_vscode(),
 		dependencies = {
 			"neovim/nvim-lspconfig",

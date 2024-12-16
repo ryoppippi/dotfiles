@@ -1,5 +1,5 @@
 return {
-	dir = vim.env.TMPDIR .. "/ryoppippi-help",
+	dir = ".",
 	name = "ryoppippi-help.nvim",
 	dependencies = { "MunifTanjim/nui.nvim" },
 	cmd = { "H" },

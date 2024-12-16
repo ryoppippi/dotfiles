@@ -11,7 +11,7 @@ end
 return {
 	{
 		name = "telescope-keymap",
-		dir = vim.env.TMPDIR .. "/telescope-keymap",
+		dir = ".",
 		event = "VeryLazy",
 		keys = {
 			{ "tel", "Telescope", mode = "ca" },
