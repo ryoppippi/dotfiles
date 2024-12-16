@@ -1,5 +1,5 @@
 return {
-	dir = vim.env.TMPDIR .. "/ryoppippi-term",
+	dir = ".",
 	name = "ryoppippi-term.nvim",
 	cmd = { "T", "TS", "TV", "TG" },
 	keys = {

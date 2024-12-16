@@ -7,7 +7,7 @@ local filetypes = ft.yaml_like
 ---@type LazySpec
 return {
 	name = "yamlls",
-	dir = vim.env.TMPDIR .. "/lsp-yamlls",
+	dir = ".",
 	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
