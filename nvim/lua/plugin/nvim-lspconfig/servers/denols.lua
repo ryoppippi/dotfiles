@@ -51,7 +51,7 @@ end
 ---@type LazySpec
 return {
 	name = "denols",
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/lsp-denols",
 	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",

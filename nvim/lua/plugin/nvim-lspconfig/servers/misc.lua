@@ -21,14 +21,14 @@ return vim.iter({
 	{ "unocss", format = false, extra_filetypes = ft.html_like },
 	{ "html", format = false },
 	{ "stylelint_lsp", format = false },
-	{ "typos_lsp", format = false, extra_filetypes = "*" },
+	{ "typos", format = false, event = "BufReadPre" },
 })
 	:map(function(tbl)
 		local name = type(tbl) == "string" and tbl or tbl[1]
 		---@type LazySpec
 		return {
 			name = name,
-			dir = ".",
+			dir = vim.env.TMPDIR .. "/lsp-" .. name,
 			cond = not is_vscode(),
 			dependencies = {
 				"neovim/nvim-lspconfig",

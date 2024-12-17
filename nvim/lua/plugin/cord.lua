@@ -4,6 +4,6 @@ return {
 	build = " nix develop --command ./build",
 	event = "VeryLazy",
 	opts = {
-		workspace_blacklist = { "~/ghq/github.com/fixpoint/" },
+		workspace_blacklist = {},
 	}, -- calls require('cord').setup()
 }

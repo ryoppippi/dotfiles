@@ -14,7 +14,7 @@ end
 
 ---@type LazySpec
 return {
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/ryoppippi-macro-colorscheme",
 	enabled = false,
 	name = "ryoppippi-macro-colorscheme",
 	event = "BufEnter",
