@@ -13,7 +13,6 @@ end
 return vim.iter({
 	"pyright",
 	"ruff",
-	"ruff_lsp",
 })
 	:map(function(name)
 		---@type LazySpec
