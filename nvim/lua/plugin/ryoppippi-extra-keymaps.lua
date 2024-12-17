@@ -3,7 +3,7 @@ local dependencies = { "monaqa/peridot.vim", "nvim-lua/plenary.nvim" }
 ---@type LazySpec
 return {
 	{
-		dir = ".",
+		dir = vim.env.TMPDIR .. "/ryoppippi-append-new-lines",
 		name = "ryoppippi-append-new-lines",
 		dependencies = dependencies,
 		keys = {
@@ -29,7 +29,7 @@ return {
 		end,
 	},
 	{
-		dir = ".",
+		dir = vim.env.TMPDIR .. "/ryoppippi-paste-in-new-lines",
 		name = "ryoppippi-paste-in-new-lines",
 		dependencies = dependencies,
 		keys = {

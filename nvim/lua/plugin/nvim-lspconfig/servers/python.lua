@@ -13,12 +13,13 @@ end
 return vim.iter({
 	"pyright",
 	"ruff",
+	"ruff_lsp",
 })
 	:map(function(name)
 		---@type LazySpec
 		return {
 			name = name,
-			dir = ".",
+			dir = vim.env.TMPDIR .. "/lsp-" .. name,
 			cond = not is_vscode(),
 			dependencies = {
 				"neovim/nvim-lspconfig",

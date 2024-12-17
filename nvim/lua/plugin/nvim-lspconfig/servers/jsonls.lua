@@ -8,7 +8,7 @@ local filetypes = ft.json_like
 ---@type LazySpec
 return {
 	name = "jsonls",
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/lsp",
 	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",

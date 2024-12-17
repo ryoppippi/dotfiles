@@ -23,7 +23,7 @@ local filetypes = vim.iter({
 ---@type LazySpec
 return {
 	name = "efm",
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/lsp-efm",
 	cond = not is_vscode(),
 	dependencies = { "neovim/nvim-lspconfig" },
 	ft = filetypes,

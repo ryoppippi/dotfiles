@@ -1,5 +1,5 @@
 return {
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/bun-to-deno",
 	name = "ryoppippi/bun-to-deno",
 	init = function()
 		vim.api.nvim_create_user_command("BunToDeno", function()

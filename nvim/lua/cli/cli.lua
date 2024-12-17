@@ -1,7 +1,7 @@
 ---@type LazySpec[]
 return {
 	name = "cli",
-	dir = ".",
+	dir = vim.env.TMPDIR .. "/cli",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
