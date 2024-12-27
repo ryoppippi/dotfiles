@@ -11,7 +11,7 @@
     "@prisma/language-server": "6.1.0",
     "@tailwindcss/language-server": "0.0.27",
     "@vtsls/language-server": "0.2.6",
-    "@vue/language-server": "2.1.10",
+    "@vue/language-server": "2.2.0",
     "biome": "0.3.3",
     "cssmodules-language-server": "1.5.1",
     "emmet-ls": "0.4.2",
