@@ -28,7 +28,7 @@ return {
 		end
 
 		return {
-			general = {
+			bar = {
 				enable = function(buf, win)
 					local disable_ft = { "oil" }
 
@@ -38,6 +38,9 @@ return {
 						and not vim.tbl_contains(disable_ft, vim.api.nvim_get_option_value("filetype", { buf = buf }))
 						and not vim.wo[win].diff
 				end,
+				pick = {
+					pivots = "asdfghjklzxcvbnm,./qwertyuiop",
+				},
 			},
 			sources = {
 				path = {
@@ -67,11 +70,6 @@ return {
 					end,
 					["<ESC>"] = close_menu,
 					["q"] = close_menu,
-				},
-			},
-			bar = {
-				pick = {
-					pivots = "asdfghjklzxcvbnm,./qwertyuiop",
 				},
 			},
 		}
