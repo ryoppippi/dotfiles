@@ -2,9 +2,6 @@ import * as k from "karabiner_ts";
 import * as devices from "./devices.ts";
 import * as utils from "./utils.ts";
 
-const ifTrackpadTouched = k.ifVar("multitouch_extension_finger_count_total", 0)
-  .unless();
-
 const IDENTIFIERS = {
   discord: await utils.extractIdentifer("Discord"),
   chatgpt: await utils.extractIdentifer("ChatGPT"),
@@ -94,22 +91,4 @@ k.writeToProfile("Default profile", [
       k.map({ key_code: "return_or_enter" })
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
-  // k.rule(
-  //   "toggle h/j/k/l to arrow keys",
-  //   ifTrackpadTouched,
-  //   devices.ifNotSelfMadeKeyboard,
-  // ).manipulators([
-  //   k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
-  //     {
-  //       "h": "left_arrow",
-  //       "j": "down_arrow",
-  //       "k": "up_arrow",
-  //       "l": "right_arrow",
-  //     } as const,
-  //   )((key, arrow) =>
-  //     k.map({ key_code: key })
-  //       .to({ key_code: arrow })
-  //       .description(`Tap ${key} to ${arrow}`)
-  //   ),
-  // ]),
 ]);

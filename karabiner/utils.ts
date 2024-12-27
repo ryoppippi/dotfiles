@@ -55,3 +55,9 @@ export async function getDeviceId(
   }
   return info;
 }
+
+export const ifTrackpadTouched = k.ifVar(
+  "multitouch_extension_finger_count_total",
+  0,
+)
+  .unless();
