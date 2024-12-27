@@ -91,4 +91,20 @@ k.writeToProfile("Default profile", [
       k.map({ key_code: "return_or_enter" })
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
+
+  k.rule(
+    "Hold tab to super key, tap tab to tab in Macbook",
+    devices.ifNotSelfMadeKeyboard,
+  ).manipulators([
+    k.map({ key_code: "tab" })
+      .toIfAlone({ key_code: "tab", lazy: true })
+      .to({
+        key_code: "left_command",
+        modifiers: ["left_option", "left_shift", "left_control"],
+      })
+      .toIfHeldDown({
+        key_code: "tab",
+        repeat: true,
+      }),
+  ]),
 ]);
