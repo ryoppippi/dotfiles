@@ -76,12 +76,12 @@ k.writeToProfile("Default profile", [
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
 
-  k.rule("Tap CMD to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
+  k.rule("Tap Option to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
     .manipulators([
       k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
         {
-          "left_command": "japanese_eisuu",
-          "right_command": "japanese_kana",
+          "left_option": "japanese_eisuu",
+          "right_option": "japanese_kana",
         } as const,
       )((cmd, lang) =>
         k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
@@ -109,11 +109,11 @@ k.writeToProfile("Default profile", [
   ]),
 
   k.rule(
-    "tap right option to return",
+    "tap right CMD to return",
     devices.ifNotSelfMadeKeyboard,
   ).manipulators([
-    k.map({ key_code: "right_option" })
+    k.map({ key_code: "right_command", modifiers: { optional: ["any"] } })
       .to({ key_code: "return_or_enter" })
-      .toIfAlone({ key_code: "right_option", lazy: true }),
+      .toIfAlone({ key_code: "right_command" }),
   ]),
 ]);
