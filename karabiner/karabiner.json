@@ -84,85 +84,6 @@
             ]
           },
           {
-            "description": "Tap CMD to toggle Kana/Eisuu",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "left_command",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "left_command",
-                    "lazy": true
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "japanese_eisuu"
-                  }
-                ],
-                "description": "Tap left_command alone to switch to japanese_eisuu",
-                "parameters": {
-                  "basic.to_if_held_down_threshold_milliseconds": 100
-                },
-                "conditions": [
-                  {
-                    "type": "device_unless",
-                    "identifiers": [
-                      {
-                        "product_id": 1,
-                        "vendor_id": 22854
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "right_command",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "right_command",
-                    "lazy": true
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "japanese_kana"
-                  }
-                ],
-                "description": "Tap right_command alone to switch to japanese_kana",
-                "parameters": {
-                  "basic.to_if_held_down_threshold_milliseconds": 100
-                },
-                "conditions": [
-                  {
-                    "type": "device_unless",
-                    "identifiers": [
-                      {
-                        "product_id": 1,
-                        "vendor_id": 22854
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "description": "Toggle WezTerm by ctrl+,",
             "manipulators": [
               {
@@ -287,6 +208,85 @@
                     "bundle_identifiers": [
                       "com.hnc.Discord",
                       "com.openai.chat"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Tap CMD to toggle Kana/Eisuu",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "left_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_command",
+                    "lazy": true
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_eisuu"
+                  }
+                ],
+                "description": "Tap left_command alone to switch to japanese_eisuu",
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 100
+                },
+                "conditions": [
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "right_command",
+                    "lazy": true
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_kana"
+                  }
+                ],
+                "description": "Tap right_command alone to switch to japanese_kana",
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 100
+                },
+                "conditions": [
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
                     ]
                   }
                 ]

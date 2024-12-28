@@ -38,22 +38,6 @@ k.writeToProfile("Default profile", [
       }),
   ]),
 
-  k.rule("Tap CMD to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
-    .manipulators([
-      k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
-        {
-          "left_command": "japanese_eisuu",
-          "right_command": "japanese_kana",
-        } as const,
-      )((cmd, lang) =>
-        k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
-          .to({ key_code: cmd, lazy: true })
-          .toIfAlone({ key_code: lang })
-          .description(`Tap ${cmd} alone to switch to ${lang}`)
-          .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
-      ),
-    ]),
-
   k.rule("Toggle WezTerm by ctrl+,")
     .manipulators([
       k.withMapper(
@@ -90,6 +74,22 @@ k.writeToProfile("Default profile", [
 
       k.map({ key_code: "return_or_enter" })
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
+    ]),
+
+  k.rule("Tap CMD to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
+    .manipulators([
+      k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
+        {
+          "left_command": "japanese_eisuu",
+          "right_command": "japanese_kana",
+        } as const,
+      )((cmd, lang) =>
+        k.map({ key_code: cmd, modifiers: { optional: ["any"] } })
+          .to({ key_code: cmd, lazy: true })
+          .toIfAlone({ key_code: lang })
+          .description(`Tap ${cmd} alone to switch to ${lang}`)
+          .parameters({ "basic.to_if_held_down_threshold_milliseconds": 100 })
+      ),
     ]),
 
   k.rule(
