@@ -116,4 +116,25 @@ k.writeToProfile("Default profile", [
       .to({ key_code: "return_or_enter" })
       .toIfAlone({ key_code: "right_command" }),
   ]),
+
+  k.rule(
+    "toggle fn + h/j/k/l to arrow keys",
+    devices.ifNotSelfMadeKeyboard,
+  ).manipulators([
+    k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
+      {
+        "h": "left_arrow",
+        "j": "down_arrow",
+        "k": "up_arrow",
+        "l": "right_arrow",
+      } as const,
+    )((key, arrow) =>
+      k.map({
+        key_code: key,
+        modifiers: { mandatory: ["fn"] },
+      })
+        .to({ key_code: arrow })
+        .description(`Tap ${key} to ${arrow}`)
+    ),
+  ]),
 ]);
