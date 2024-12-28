@@ -107,4 +107,13 @@ k.writeToProfile("Default profile", [
         repeat: true,
       }),
   ]),
+
+  k.rule(
+    "tap right option to return",
+    devices.ifNotSelfMadeKeyboard,
+  ).manipulators([
+    k.map({ key_code: "right_option" })
+      .to({ key_code: "return_or_enter" })
+      .toIfAlone({ key_code: "right_option", lazy: true }),
+  ]),
 ]);
