@@ -1,0 +1,14 @@
+font-family = UDEV Gothic 35LG
+font-size = 13
+
+background-opacity = 0.70
+background-blur-radius = 20
+macos-titlebar-style = transparent
+
+theme = Kanagawa Dragon
+
+shell-integration = fish
+shell-integration-features = no-cursor
+
+cursor-style = block
+cursor-style-blink = false
