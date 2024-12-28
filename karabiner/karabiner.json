@@ -336,6 +336,39 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "tap right option to return",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_option"
+                },
+                "to": [
+                  {
+                    "key_code": "return_or_enter"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "right_option",
+                    "lazy": true
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {
