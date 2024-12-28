@@ -18,25 +18,27 @@ k.writeToProfile("Default profile", [
         ]),
     ]),
 
-  k.rule("Tap ESC -> japanese_eisuu + esc").manipulators([
-    k.map({ key_code: "escape" })
-      .to([
-        { key_code: "japanese_eisuu" },
-        { key_code: "escape" },
-      ]),
-  ]),
+  k.rule("Tap ESC -> japanese_eisuu + esc")
+    .manipulators([
+      k.map({ key_code: "escape" })
+        .to([
+          { key_code: "japanese_eisuu" },
+          { key_code: "escape" },
+        ]),
+    ]),
 
-  k.rule("Quit application by holding command-q").manipulators([
-    k.map({
-      key_code: "q",
-      modifiers: { mandatory: ["command"], optional: ["caps_lock"] },
-    })
-      .toIfHeldDown({
+  k.rule("Quit application by holding command-q")
+    .manipulators([
+      k.map({
         key_code: "q",
-        modifiers: ["command"],
-        repeat: false,
-      }),
-  ]),
+        modifiers: { mandatory: ["command"], optional: ["caps_lock"] },
+      })
+        .toIfHeldDown({
+          key_code: "q",
+          modifiers: ["command"],
+          repeat: false,
+        }),
+    ]),
 
   k.rule("Toggle WezTerm by ctrl+,")
     .manipulators([
@@ -76,7 +78,10 @@ k.writeToProfile("Default profile", [
         .to({ key_code: "return_or_enter", modifiers: ["shift"] }),
     ]),
 
-  k.rule("Tap Option to toggle Kana/Eisuu", devices.ifNotSelfMadeKeyboard)
+  k.rule(
+    "Tap Option to toggle Kana/Eisuu",
+    devices.ifNotSelfMadeKeyboard,
+  )
     .manipulators([
       k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
         {
