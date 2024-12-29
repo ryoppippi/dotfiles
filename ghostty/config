@@ -1,5 +1,6 @@
 font-family = UDEV Gothic 35LG
 font-size = 13
+font-feature = -dlig
 
 background-opacity = 0.70
 background-blur-radius = 20
