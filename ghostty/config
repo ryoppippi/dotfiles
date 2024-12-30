@@ -5,10 +5,6 @@ font-feature = -dlig
 background-opacity = 0.70
 background-blur-radius = 20
 
-macos-titlebar-style = hidden
-macos-non-native-fullscreen = true
-fullscreen = true
-
 theme = Kanagawa Dragon
 
 shell-integration = fish
