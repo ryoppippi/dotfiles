@@ -85,8 +85,8 @@ k.writeToProfile("Default profile", [
     .manipulators([
       k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
         {
-          "left_shift": "japanese_eisuu",
-          "right_shift": "japanese_kana",
+          "left_option": "japanese_eisuu",
+          "right_option": "japanese_kana",
         } as const,
       )((cmd, lang) =>
         k.map({ key_code: cmd, modifiers: { optional: ["any"] } })

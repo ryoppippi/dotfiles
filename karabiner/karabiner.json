@@ -220,7 +220,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "left_shift",
+                  "key_code": "left_option",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -229,7 +229,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "left_shift",
+                    "key_code": "left_option",
                     "lazy": true
                   }
                 ],
@@ -238,7 +238,7 @@
                     "key_code": "japanese_eisuu"
                   }
                 ],
-                "description": "Tap left_shift alone to switch to japanese_eisuu",
+                "description": "Tap left_option alone to switch to japanese_eisuu",
                 "parameters": {
                   "basic.to_if_held_down_threshold_milliseconds": 100
                 },
@@ -257,7 +257,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "right_shift",
+                  "key_code": "right_option",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -266,7 +266,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "right_shift",
+                    "key_code": "right_option",
                     "lazy": true
                   }
                 ],
@@ -275,7 +275,7 @@
                     "key_code": "japanese_kana"
                   }
                 ],
-                "description": "Tap right_shift alone to switch to japanese_kana",
+                "description": "Tap right_option alone to switch to japanese_kana",
                 "parameters": {
                   "basic.to_if_held_down_threshold_milliseconds": 100
                 },
