@@ -12,3 +12,5 @@ shell-integration-features = no-cursor
 
 cursor-style = block
 cursor-style-blink = false
+
+mouse-hide-while-typing = true
