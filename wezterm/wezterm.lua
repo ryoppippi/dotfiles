@@ -56,7 +56,6 @@ local config = {
 
 config = utils.merge_tables(config, require("tab_bar"))
 config = utils.merge_tables(config, require("colors.kanagawa_dragon"))
--- config.color_scheme = "Kimber (base16)"
 
 require("zen-mode")
 
