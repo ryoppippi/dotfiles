@@ -19,9 +19,6 @@ vim.filetype.add({
 		[".*/%.git/ignore"] = "gitignore",
 		[".*/git/ignore"] = "gitignore",
 
-		["./*/tmux/tmux"] = "tmux",
-		[".*/tmux/tmux"] = "tmux",
-
 		[".*/%.ssh/config"] = "sshconfig",
 
 		[".*/%.ssh/.*%.conf"] = "sshconfig",

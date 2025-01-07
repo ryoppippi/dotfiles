@@ -1,5 +1,4 @@
 {
-  "tmux": "~/.config/tmux",
   "starship.toml": "~/.config/starship.toml",
   "wezterm": "~/.config/wezterm",
   "lazygit": "~/.config/lazygit",
