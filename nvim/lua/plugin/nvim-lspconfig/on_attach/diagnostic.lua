@@ -24,6 +24,17 @@ return {
 			severity_sort = true,
 			virtual_text = false,
 			float = { sformat = diagnostic_formatter },
+			border = "single",
+			title = "Diagnostics",
+			header = {},
+			suffix = {},
+			format = function(diag)
+				if diag.code then
+					return string.format("[%s](%s): %s", diag.source, diag.code, diag.message)
+				else
+					return string.format("[%s]: %s", diag.source, diag.message)
+				end
+			end,
 		})
 	end,
 }
