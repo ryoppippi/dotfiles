@@ -103,13 +103,10 @@ k.writeToProfile("Default profile", [
   ).manipulators([
     k.map({ key_code: "tab" })
       .toIfAlone({ key_code: "tab", lazy: true })
+      .toIfHeldDown({ key_code: "tab", repeat: true })
       .to({
         key_code: "left_command",
         modifiers: ["left_option", "left_shift", "left_control"],
-      })
-      .toIfHeldDown({
-        key_code: "tab",
-        repeat: true,
       }),
   ]),
 
