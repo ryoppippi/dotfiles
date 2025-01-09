@@ -307,6 +307,12 @@
                     "lazy": true
                   }
                 ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "tab",
+                    "repeat": true
+                  }
+                ],
                 "to": [
                   {
                     "key_code": "left_command",
@@ -315,12 +321,6 @@
                       "left_shift",
                       "left_control"
                     ]
-                  }
-                ],
-                "to_if_held_down": [
-                  {
-                    "key_code": "tab",
-                    "repeat": true
                   }
                 ],
                 "conditions": [
