@@ -338,6 +338,44 @@
             ]
           },
           {
+            "description": "tap right CMD to return",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to_if_alone": [
+                  {
+                    "key_code": "return_or_enter",
+                    "lazy": true
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "right_command"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "toggle fn + h/j/k/l to arrow keys",
             "manipulators": [
               {
