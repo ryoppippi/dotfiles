@@ -376,50 +376,6 @@
             ]
           },
           {
-            "description": "tap left CMD to delete",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "left_command",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to_if_alone": [
-                  {
-                    "key_code": "delete_or_backspace",
-                    "lazy": true
-                  }
-                ],
-                "to_if_held_down": [
-                  {
-                    "key_code": "delete_or_backspace",
-                    "repeat": true
-                  }
-                ],
-                "to": [
-                  {
-                    "key_code": "left_command"
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "device_unless",
-                    "identifiers": [
-                      {
-                        "product_id": 1,
-                        "vendor_id": 22854
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "description": "toggle fn + h/j/k/l to arrow keys",
             "manipulators": [
               {

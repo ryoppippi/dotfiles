@@ -120,16 +120,6 @@ k.writeToProfile("Default profile", [
   ]),
 
   k.rule(
-    "tap left CMD to delete",
-    devices.ifNotSelfMadeKeyboard,
-  ).manipulators([
-    k.map({ key_code: "left_command", modifiers: { optional: ["any"] } })
-      .toIfAlone({ key_code: "delete_or_backspace", lazy: true })
-      .toIfHeldDown({ key_code: "delete_or_backspace", repeat: true })
-      .to({ key_code: "left_command" }),
-  ]),
-
-  k.rule(
     "toggle fn + h/j/k/l to arrow keys",
     devices.ifNotSelfMadeKeyboard,
   ).manipulators([
