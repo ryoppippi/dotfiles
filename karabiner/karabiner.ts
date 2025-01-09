@@ -79,14 +79,14 @@ k.writeToProfile("Default profile", [
     ]),
 
   k.rule(
-    "Tap Option to toggle Kana/Eisuu",
+    "Tap CMD to toggle Kana/Eisuu",
     devices.ifNotSelfMadeKeyboard,
   )
     .manipulators([
       k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>(
         {
-          "left_option": "japanese_eisuu",
-          "right_option": "japanese_kana",
+          "left_command": "japanese_eisuu",
+          "right_command": "japanese_kana",
         } as const,
       )((cmd, lang) =>
         k.map({ key_code: cmd, modifiers: { optional: ["any"] } })

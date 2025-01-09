@@ -215,12 +215,12 @@
             ]
           },
           {
-            "description": "Tap Option to toggle Kana/Eisuu",
+            "description": "Tap CMD to toggle Kana/Eisuu",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "left_option",
+                  "key_code": "left_command",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -229,7 +229,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "left_option",
+                    "key_code": "left_command",
                     "lazy": true
                   }
                 ],
@@ -238,7 +238,7 @@
                     "key_code": "japanese_eisuu"
                   }
                 ],
-                "description": "Tap left_option alone to switch to japanese_eisuu",
+                "description": "Tap left_command alone to switch to japanese_eisuu",
                 "parameters": {
                   "basic.to_if_held_down_threshold_milliseconds": 100
                 },
@@ -257,7 +257,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "right_option",
+                  "key_code": "right_command",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -266,7 +266,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "right_option",
+                    "key_code": "right_command",
                     "lazy": true
                   }
                 ],
@@ -275,7 +275,7 @@
                     "key_code": "japanese_kana"
                   }
                 ],
-                "description": "Tap right_option alone to switch to japanese_kana",
+                "description": "Tap right_command alone to switch to japanese_kana",
                 "parameters": {
                   "basic.to_if_held_down_threshold_milliseconds": 100
                 },
