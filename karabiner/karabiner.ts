@@ -114,15 +114,6 @@ k.writeToProfile("Default profile", [
   ]),
 
   k.rule(
-    "tap right CMD to return",
-    devices.ifNotSelfMadeKeyboard,
-  ).manipulators([
-    k.map({ key_code: "right_command", modifiers: { optional: ["any"] } })
-      .to({ key_code: "return_or_enter" })
-      .toIfAlone({ key_code: "right_command" }),
-  ]),
-
-  k.rule(
     "toggle fn + h/j/k/l to arrow keys",
     devices.ifNotSelfMadeKeyboard,
   ).manipulators([
