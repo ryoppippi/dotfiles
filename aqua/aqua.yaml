@@ -71,7 +71,7 @@ packages:
   - name: gotestyourself/gotestsum@v1.12.0
   - name: charmbracelet/vhs@v0.8.0
   - name: ninja-build/ninja@v1.12.1
-  - name: sassman/t-rec-rs@v0.7.6
+  - name: sassman/t-rec-rs@v0.7.7
   - name: blacknon/hwatch@0.3.18
   - name: watchexec/watchexec@v2.2.1
   - name: rclone/rclone@v1.68.2
