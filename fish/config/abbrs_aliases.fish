@@ -96,6 +96,7 @@ abbr -a gpt 'git push --tags'
 
 # gh
 abbr -a ghp 'gh poi'
+abbr -a gh-fork-sync "gh repo list --limit 200 --fork --json nameWithOwner --jq '.[].nameWithOwner' | xargs -n1 gh repo sync"
 
 # ghq
 abbr -a gg 'ghq get'
@@ -104,9 +105,6 @@ abbr -a gg 'ghq get'
 abbr -a --set-cursor q gh copilot suggest -t shell \"%\"
 abbr -a --set-cursor qgit gh copilot suggest -t git \"%\"
 abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
-
-# gh
-abbr -a gh-fork-sync "gh repo list --limit 200 --fork --json nameWithOwner --jq '.[].nameWithOwner' | xargs -n1 gh repo sync"
 
 # leetcode 
 abbr -a lc leetcode
