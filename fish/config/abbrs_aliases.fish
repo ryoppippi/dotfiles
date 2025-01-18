@@ -32,6 +32,7 @@ abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
 abbr -a py python
+abbr -a yz yazi
 
 # docker
 abbr -a do docker container
