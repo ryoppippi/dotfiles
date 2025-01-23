@@ -17,7 +17,6 @@ export GOPATH="$HOME/go"
 export GOBIN=$GOPATH/bin
 export POETRY_PATH="$HOME/.poetry/bin"
 export NODEBREWBIN="$HOME/.nodebrew/current/bin"
-export BUN_INSTALL="$HOME/.bun"
 export BUNBIN="$HOME/.bun/bin"
 # export CARGOBIN="$HOME/.cargo/bin"
 export NIMBLEBIN="$HOME/.nimble/bin"
