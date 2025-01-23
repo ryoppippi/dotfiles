@@ -49,7 +49,6 @@ packages:
   - name: wagoodman/dive@v0.12.0
   - name: direnv/direnv@v2.35.0
   - name: gohugoio/hugo@v0.141.0
-  - name: b4b4r07/gomi@v1.1.8
   - name: projectdiscovery/httpx@v1.6.9
   - name: dandavison/delta@0.18.2
   - name: rhysd/dotfiles@v0.2.3
