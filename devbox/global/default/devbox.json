@@ -4,8 +4,6 @@
     "swift-format@latest",
     "eza@latest",
     "skim@latest",
-    "cargo@latest",
-    "rust-analyzer@latest",
     "typos@latest",
     "typos-lsp@latest"
   ],
