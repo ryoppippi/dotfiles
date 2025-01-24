@@ -34,9 +34,9 @@
   pf = push --force-with-lease --force-if-includes
   pl = pull
   dlr = !sh -c 'git branch -D $1 && git push origin :$1' -
-  r = reset
   rbm = rebase origin/main
-  rsr = restore
+  rst = reset
+  rs = restore
   st = stash
   sts = status -s -uno
   sm = submodule 
