@@ -34,7 +34,6 @@
   pf = push --force-with-lease --force-if-includes
   pl = pull
   dlr = !sh -c 'git branch -D $1 && git push origin :$1' -
-  gg = !ghq get
   r = reset
   rbm = rebase origin/main
   rsr = restore
@@ -44,7 +43,6 @@
   smu = submodule update --remote --init --recursive  
   sma = submodule add
   sms = submodule foreach \"git status\"	
-  ; sync = !git pull --rebase && git push
   sw = switch
   swc = switch -c
   swor = "!f() { local -r ref=$(git branch -r | fzf); git sw \"${1:-${ref#*/}}\" $ref; }; f"
