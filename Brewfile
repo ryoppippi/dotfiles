@@ -49,6 +49,8 @@ brew "leptonica"
 brew "tesseract"
 brew "ghostscript"
 brew "epstool"
+brew "libgit2"
+brew "eza"
 brew "fastfetch"
 brew "folly"
 brew "fizz"
@@ -117,7 +119,6 @@ brew "leiningen"
 brew "libcroco"
 brew "libepoxy"
 brew "libffi"
-brew "libgit2"
 brew "libusbmuxd"
 brew "libimobiledevice"
 brew "libsixel"
@@ -158,6 +159,7 @@ brew "sl"
 brew "smartmontools"
 brew "suite-sparse"
 brew "sundials"
+brew "swift-format"
 brew "swift-sh"
 brew "switchaudio-osx"
 brew "ta-lib"
@@ -166,6 +168,8 @@ brew "terminal-notifier"
 brew "tldr"
 brew "trash", link: true
 brew "ttyd"
+brew "typos-cli"
+brew "typos-lsp"
 brew "utf8proc"
 brew "veclibfort"
 brew "wallpaper"
@@ -235,6 +239,7 @@ cask "sdformatter"
 cask "secretive"
 cask "shortcat"
 cask "shottr"
+cask "skim"
 cask "ssh-tunnel-manager"
 cask "suspicious-package"
 cask "symboliclinker"
@@ -252,6 +257,7 @@ cask "zoom"
 mas "Accelerate", id: 1459809092
 mas "Actions", id: 1586435171
 mas "AdGuard for Safari", id: 1440147259
+mas "Aiko", id: 1672085276
 mas "Amphetamine", id: 937984704
 mas "Be Focused", id: 973134470
 mas "BlockComment", id: 1246672247
@@ -263,6 +269,7 @@ mas "Disk Speed Test", id: 425264550
 mas "Document Generator", id: 1437883178
 mas "Download Shuttle", id: 847809913
 mas "DuckDuckGo Privacy for Safari", id: 1482920575
+mas "Final Cut Pro", id: 424389933
 mas "FocusRecorder", id: 6446467176
 mas "Gemini 2", id: 1090488118
 mas "Gifski", id: 1351639930
@@ -271,8 +278,6 @@ mas "Grammarly for Safari", id: 1462114288
 mas "Hex Fiend", id: 1342896380
 mas "Hush", id: 1544743900
 mas "iHosts", id: 1102004240
-mas "iMovie", id: 408981434
-mas "iText Express", id: 416550249
 mas "Keepa - Price Tracker", id: 1533805339
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
@@ -285,7 +290,6 @@ mas "Mathpix Snipping Tool", id: 1349670778
 mas "Mendeley Web Importer", id: 1577516695
 mas "Messenger", id: 1480068668
 mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "NamingTranslator", id: 1218784832
@@ -514,6 +518,7 @@ vscode "rubymaniac.vscode-direnv"
 vscode "rust-lang.rust-analyzer"
 vscode "ryanolsonx.snippet-creator"
 vscode "sainnhe.gruvbox-material"
+vscode "saoudrizwan.claude-dev"
 vscode "sgryjp.japanese-word-handler"
 vscode "shardulm94.trailing-spaces"
 vscode "shopify.ruby-extensions-pack"
