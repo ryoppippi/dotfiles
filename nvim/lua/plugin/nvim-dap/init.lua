@@ -11,11 +11,11 @@ return {
 		},
 		event = "VeryLazy",
 		keys = {
-			{ "mb", ":DapToggleBreakpoint<CR>" },
-			{ "mc", ":DapContinue<CR>" },
-			{ "mx", ":DapTerminate<CR>" },
-			{ "mo", ":DapStepOver<CR>" },
-			{ "mO", ":DapStepOut<CR>" },
+			{ [[\b]], ":DapToggleBreakpoint<CR>" },
+			{ [[\c]], ":DapContinue<CR>" },
+			{ [[\x]], ":DapTerminate<CR>" },
+			{ [[\o]], ":DapStepOver<CR>" },
+			{ [[\O]], ":DapStepOut<CR>" },
 		},
 		config = function()
 			vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
