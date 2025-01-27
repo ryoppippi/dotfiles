@@ -29,6 +29,7 @@ return {
 				vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
 				vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", opts)
 				vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis split=rightbelow<cr>", opts)
+				vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns diffthis split=rightbelow<cr>", opts)
 				vim.keymap.set("n", "<leader>gm", "<cmd>Gitsigns blame_line<cr>", opts)
 			end,
 		},
