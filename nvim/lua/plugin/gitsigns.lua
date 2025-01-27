@@ -28,9 +28,8 @@ return {
 				vim.keymap.set("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", opts)
 				vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
 				vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", opts)
-				-- vim.keymap.set({ "o", "x" }, "ih", "<cmd><c-u>Gitsigns select_hunk<cr>", opts)
 				vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis split=rightbelow<cr>", opts)
-				-- vim.keymap.set("n", "<leader>gm", "<cmd>Gitsigns blame_line<cr>", opts)
+				vim.keymap.set("n", "<leader>gm", "<cmd>Gitsigns blame_line<cr>", opts)
 			end,
 		},
 		config = true,
