@@ -6,6 +6,16 @@ return {
 		cmd = { "Gitsigns" },
 		keys = {
 			{ "gs", "Gitsigns", mode = "ca" },
+			{ "<leader>gS", "Gitsigns stage_buffer", mode = "n" },
+			{ "<leader>gh", "Gitsigns preview_hunk", mode = "n" },
+			{ "<leader>gs", "Gitsigns stage_hunk", mode = "n" },
+			{ "<leader>gu", "Gitsigns undo_stage_hunk", mode = "n" },
+			{ "<leader>gr", "Gitsigns reset_hunk", mode = "n" },
+			{ "<leader>gp", "Gitsigns preview_hunk", mode = "n" },
+			{ "<leader>gR", "Gitsigns reset_buffer", mode = "n" },
+			{ "<leader>gd", "Gitsigns diffthis split=rightbelow", mode = "n" },
+			{ "<leader>gb", "Gitsigns blame", mode = "n" },
+			{ "<leader>gm", "Gitsigns blame_line", mode = "n" },
 		},
 		dependencies = {
 			"tpope/vim-repeat",
@@ -19,19 +29,6 @@ return {
 				changedelete = { text = "~_" },
 			},
 			current_line_blame = true,
-			on_attach = function(buffer)
-				local opts = { silent = true, buffer = buffer }
-				vim.keymap.set("n", "<leader>gg", "<cmd>Gitsigns<cr>", opts)
-				vim.keymap.set("n", "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>", opts)
-				vim.keymap.set("n", "<leader>gh", "<cmd>Gitsigns preview_hunk<cr>", opts)
-				vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", opts)
-				vim.keymap.set("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", opts)
-				vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", opts)
-				vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", opts)
-				vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis split=rightbelow<cr>", opts)
-				vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns diffthis split=rightbelow<cr>", opts)
-				vim.keymap.set("n", "<leader>gm", "<cmd>Gitsigns blame_line<cr>", opts)
-			end,
 		},
 		config = true,
 	},
