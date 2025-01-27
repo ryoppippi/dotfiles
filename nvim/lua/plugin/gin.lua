@@ -6,6 +6,7 @@ return {
 	keys = {
 		{ "gp", "Gin push", mode = "ca" },
 		{ "gpl", "Gin pull", mode = "ca" },
+		{ "gc", "Gin commit", mode = "ca" },
 	},
 	config = function(spec)
 		require("denops-lazy").load(spec.name)
