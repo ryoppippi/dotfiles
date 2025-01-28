@@ -73,7 +73,7 @@ function M.debounce(func, wait)
 	end
 end
 
----Throttle a function(excecute instantly and ignore the next calls within the wait time))
+---Throttle a function(execute instantly and ignore the next calls within the wait time))
 ---@param func function
 ---@param wait number
 function M.throttle(func, wait)
