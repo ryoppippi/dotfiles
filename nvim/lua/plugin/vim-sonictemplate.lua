@@ -2,6 +2,9 @@ return {
 	"mattn/vim-sonictemplate",
 	cmd = { "Template" },
 	dependencies = { "nvim-lua/plenary.nvim" },
+	keys = {
+		{ "tmp", "Template", mode = "ca" },
+	},
 	init = function()
 		vim.g.sonictemplate_key = 0
 		vim.g.sonictemplate_intelligent_key = 0
