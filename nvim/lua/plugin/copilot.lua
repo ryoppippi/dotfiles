@@ -20,6 +20,7 @@ return {
 		event = event,
 		keys = function()
 			return {
+				{ "cp", "Copilot", mode = "ca" },
 				{
 					"<Plug>(copilot-dummy-map)",
 					function()
