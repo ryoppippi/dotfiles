@@ -40,7 +40,7 @@ return {
 			end,
 		},
 		{
-			"hrsh7th/cmp-path",
+			"https://codeberg.org/FelipeLema/cmp-async-path",
 			config = function(p)
 				load_after(p)
 			end,
@@ -230,7 +230,7 @@ return {
 				{ name = "luasnip", priority = 20 },
 				{ name = "denippet", priority = 20 },
 				{ name = "nvim_lsp", priority = 100, trigger_characters = { "-", ".", "/", ":" } },
-				{ name = "path", priority = 100 },
+				{ name = "async_path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
 				{ name = "nvim_lua", priority = 50 },
 			}, {
@@ -253,7 +253,7 @@ return {
 		local menu = {
 			nvim_lsp = "[LSP]",
 			buffer = "[Buffer]",
-			path = "[Path]",
+			async_path = "[Path]",
 			nvim_lua = "[Lua]",
 			ultisnips = "[UltiSnips]",
 			luasnip = "[LuaSnip]",
@@ -309,7 +309,7 @@ return {
 				-- { name = "rg" },
 				{ name = "luasnip" },
 				{ name = "nvim_lsp" },
-				{ name = "path" },
+				{ name = "async_path" },
 				{ name = "emoji", insert = true },
 			}, {
 				{ name = "buffer" },
@@ -338,7 +338,7 @@ return {
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources(
-				{ { name = "path" } },
+				{ { name = "async_path" } },
 				{ { name = "cmdline" }, { { name = "cmdline_history" } } }
 			),
 			completion = {
