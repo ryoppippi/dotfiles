@@ -26,7 +26,8 @@ local function load_after(plugin)
 end
 
 return {
-	"hrsh7th/nvim-cmp",
+	"https://github.com/iguanacucumber/magazine.nvim",
+	name = "nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	cond = not is_vscode(),
 	dependencies = {
