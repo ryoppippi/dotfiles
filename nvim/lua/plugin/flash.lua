@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
 	"https://github.com/folke/flash.nvim",
-	event = "VeryLazy",
+	event = "BufReadPost",
 	---@type Flash.Config
 	opts = {
 		modes = {
