@@ -232,7 +232,7 @@ return {
 				{ name = "nvim_lsp", priority = 100, trigger_characters = { "-", ".", "/", ":" } },
 				{ name = "async_path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
-				{ name = "nvim_lua", priority = 50 },
+				{ name = "lazydev", group_index = 0 },
 			}, {
 				{ name = "buffer" },
 				{ name = "omni" },
@@ -254,7 +254,6 @@ return {
 			nvim_lsp = "[LSP]",
 			buffer = "[Buffer]",
 			async_path = "[Path]",
-			nvim_lua = "[Lua]",
 			ultisnips = "[UltiSnips]",
 			luasnip = "[LuaSnip]",
 			treesitter = "[TS]",
