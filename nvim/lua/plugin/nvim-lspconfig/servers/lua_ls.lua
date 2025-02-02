@@ -71,6 +71,7 @@ return {
 							"noice.nvim",
 							"nvim-cmp",
 							"nvim-lspconfig",
+							"snacks.nvim",
 						}),
 						checkThirdParty = "Disable",
 					},
