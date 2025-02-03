@@ -311,6 +311,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "async_path" },
 				{ name = "emoji", insert = true },
+				{ name = "codecompanion" },
 			}, {
 				{ name = "buffer" },
 				{ name = "omni" },
