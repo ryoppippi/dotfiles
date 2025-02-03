@@ -11,7 +11,9 @@ return {
 		require("plugin.telescope").le("noice")
 	end,
 	opts = function()
-		return {
+		return
+		---@type NoiceConfig
+		{
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
