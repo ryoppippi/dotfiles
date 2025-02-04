@@ -1,3 +1,4 @@
+-- TODO: replace with vim.diagnostic.config virtual_line https://github.com/neovim/neovim/pull/31959/
 return {
 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	name = "lsp_lines",
