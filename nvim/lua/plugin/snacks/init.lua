@@ -138,6 +138,18 @@ return {
 			end,
 			desc = "Icons",
 		},
+		{
+			",d",
+			function()
+				Snacks.picker.diagnostics_buffer()
+			end,
+		},
+		{
+			",D",
+			function()
+				Snacks.picker.diagnostics()
+			end,
+		},
 	},
 	---@type snacks.Config
 	opts = {
