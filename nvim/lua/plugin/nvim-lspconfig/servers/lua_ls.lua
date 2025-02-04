@@ -72,6 +72,7 @@ return {
 							"nvim-cmp",
 							"nvim-lspconfig",
 							"snacks.nvim",
+							"oil.nvim",
 						}),
 						checkThirdParty = "Disable",
 					},

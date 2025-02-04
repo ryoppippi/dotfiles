@@ -30,6 +30,7 @@ return {
 	end,
 	opts = function()
 		local custom_actions = require("plugin.oil.actions")
+		---@type oil.setupOpts
 		return {
 			keymaps = {
 				["?"] = "actions.show_help",
