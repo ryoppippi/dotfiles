@@ -63,7 +63,7 @@ packages:
   - name: mattn/efm-langserver@v0.0.54
   - name: cloudflare/cloudflared@2025.1.1
   - name: wasmerio/wasmer@v5.0.4
-  - name: mattn/bsky@v0.0.67
+  - name: mattn/bsky@v0.0.73
   - name: spf13/cobra-cli@v1.3.0
   - name: segmentio/golines@v0.12.2
   - name: abice/go-enum@v0.6.0
