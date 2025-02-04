@@ -32,6 +32,7 @@ return {
 		end
 
 		local has = require("core.plugin").has
+		local has_snacks = has("snacks.nvim")
 		local has_telescope = has("telescope.nvim")
 		local has_glance = has("glance.nvim")
 		local has_action_preview = has("actions-preview.nvim")
@@ -48,6 +49,10 @@ return {
 				vim.cmd([[Glance definitions]])
 				return
 			end
+			if has_snacks then
+				Snacks.picker.lsp_definitions()
+				return
+			end
 			if has_telescope then
 				vim.cmd([[Telescope lsp_definitions]])
 				return
@@ -57,6 +62,10 @@ return {
 		keyset("n", "gt", function()
 			if has_glance then
 				vim.cmd([[Glance type_definitions]])
+				return
+			end
+			if has_snacks then
+				Snacks.picker.lsp_type_definitions()
 				return
 			end
 			if has_telescope then
@@ -70,6 +79,10 @@ return {
 				vim.cmd([[Glance implementations]])
 				return
 			end
+			if has_snacks then
+				Snacks.picker.lsp_implementations()
+				return
+			end
 			if has_telescope then
 				vim.cmd([[Telescope lsp_implementations]])
 				return
@@ -79,6 +92,10 @@ return {
 		keyset("n", "gr", function()
 			if has_glance then
 				vim.cmd([[Glance references]])
+				return
+			end
+			if has_snacks then
+				Snacks.picker.lsp_references()
 				return
 			end
 			if has_telescope then
@@ -94,10 +111,6 @@ return {
 
 		-- diagnostics
 		keyset("n", "gl", vim.diagnostic.open_float, opts("open diagnostics float"))
-		if has_telescope then
-			keyset("n", "gL", [[<cmd>Telescope diagnostics<cr>]], opts("open diagnostics telescope"))
-		end
-
 		keyset("n", "-", vim.diagnostic.goto_next, opts("goto next diagnostic"))
 		keyset("n", "_", vim.diagnostic.goto_prev, opts("goto prev diagnostic"))
 
