@@ -139,6 +139,13 @@ return {
 			desc = "Icons",
 		},
 		{
+			",z",
+			function()
+				Snacks.picker.zoxide()
+			end,
+			desc = "Zoxide",
+		},
+		{
 			",d",
 			function()
 				Snacks.picker.diagnostics_buffer()
