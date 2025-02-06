@@ -13,6 +13,7 @@ return {
 		vim.print = _G.dd
 	end,
 	keys = {
+		-- Picker [[
 		{
 			",<cr>",
 			function()
@@ -168,6 +169,20 @@ return {
 				Snacks.picker.diagnostics()
 			end,
 		},
+		-- Picker ]]
+		-- Dim [[
+		{
+			"<leader>d",
+			function()
+				if Snacks.dim.enabled then
+					Snacks.dim.disable()
+				else
+					Snacks.dim.enable()
+				end
+			end,
+			desc = "Dim",
+		},
+		-- Dim ]]
 	},
 	---@type snacks.Config
 	opts = {
