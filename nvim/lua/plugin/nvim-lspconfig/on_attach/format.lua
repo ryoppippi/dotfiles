@@ -1,7 +1,5 @@
 local M = {}
 
-local Util = require("lazy.core.util")
-
 M.autoformat = true
 
 function M.toggle()
@@ -12,21 +10,21 @@ function M.toggle()
 		M.autoformat = not M.autoformat
 	end
 	if M.autoformat then
-		Util.info("Enabled format on save", { title = "Format" })
+		Snacks.notify.info("Enabled format on save", { title = "Format" })
 	else
-		Util.warn("Disabled format on save", { title = "Format" })
+		Snacks.notify.warn("Disabled format on save", { title = "Format" })
 	end
 end
 
 function M.enable()
 	vim.b.autoformat = nil
 	M.autoformat = true
-	Util.info("Enabled format on save", { title = "Format" })
+	Snacks.notify.info("Enabled format on save", { title = "Format" })
 end
 
 function M.disable()
 	M.autoformat = false
-	Util.warn("Disabled format on save", { title = "Format" })
+	Snacks.notify.warn("Disabled format on save", { title = "Format" })
 end
 
 ---@param opts? {force?:boolean}
@@ -48,7 +46,7 @@ function M.format(opts)
 			if not client.server_capabilities.documentFormattingProvider then
 				return false
 			end
-			Util.info("format on save", { title = client.name })
+			Snacks.notify.info("format on save", { title = client.name })
 			return true
 		end,
 	})
