@@ -1,7 +1,5 @@
 local M = {}
 
-local Util = require("lazy.core.util")
-
 M.showInlayHint = true
 
 local function setInlayHintHL()
@@ -41,7 +39,7 @@ M.on_attach = function(client, bufnr)
 	local supports_inlay_hint = client.server_capabilities.inlayHintProvider
 
 	if client.name ~= nil then
-		Util.info(
+		Snacks.notify.info(
 			supports_inlay_hint and "Inlay hints supported" or "Inlay hints not supported",
 			{ title = client.name }
 		)
