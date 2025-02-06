@@ -3,6 +3,15 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	event = "VeryLazy",
+	init = function()
+		_G.dd = function(...)
+			Snacks.debug.inspect(...)
+		end
+		_G.bt = function()
+			Snacks.debug.backtrace()
+		end
+		vim.print = _G.dd
+	end,
 	keys = {
 		{
 			",<cr>",
@@ -169,6 +178,12 @@ return {
 			ui_select = true,
 		},
 		bigfile = {
+			enabled = true,
+		},
+		scratch = {
+			enabled = true,
+		},
+		debug = {
 			enabled = true,
 		},
 	},
