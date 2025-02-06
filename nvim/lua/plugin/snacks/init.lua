@@ -168,5 +168,8 @@ return {
 		picker = {
 			ui_select = true,
 		},
+		bigfile = {
+			enabled = true,
+		},
 	},
 }
