@@ -1,6 +1,5 @@
 return {
 	"dnlhc/glance.nvim",
-	enabled = false,
 	cmd = { "Glance" },
 	opts = function()
 		return {
