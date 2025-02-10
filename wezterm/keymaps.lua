@@ -6,12 +6,8 @@ local act = wezterm.action
 -- ---------------------------------------------------------------
 local keys = {
 	{ key = "a", mods = "LEADER|CTRL", action = act({ SendString = "\x01" }) },
-	{ key = "v", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-	{
-		key = "g",
-		mods = "LEADER",
-		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
+	{ key = "d", mods = "CMD|SHIFT", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+	{ key = "d", mods = "CMD", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "t", mods = "CMD", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
