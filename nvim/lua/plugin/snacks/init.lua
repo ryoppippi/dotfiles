@@ -192,6 +192,12 @@ return {
 		},
 		picker = {
 			ui_select = true,
+			formatters = {
+				file = {
+					filename_first = true,
+					truncate = 400,
+				},
+			},
 		},
 		bigfile = {
 			enabled = true,
