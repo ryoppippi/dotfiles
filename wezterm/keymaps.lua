@@ -26,11 +26,72 @@ local keys = {
 	{ key = "Space", mods = "LEADER", action = act.QuickSelect },
 	{ key = ";", mods = "LEADER", action = act.ToggleFullScreen },
 	{ key = "f", mods = "CMD|SHIFT", action = act.EmitEvent("toggle-blur") },
+	--- workspace [[
+	{ key = "n", mods = "CMD|SHIFT", action = act.SwitchWorkspaceRelative(1) },
+	{ key = "p", mods = "CMD|SHIFT", action = act.SwitchWorkspaceRelative(-1) },
+	{
+		-- Create new workspace
+		key = "S",
+		mods = "CMD|SHIFT",
+		action = act.PromptInputLine({
+			description = "(wezterm) Create new workspace:",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
+	{
+		-- Rename workspace
+		key = "s",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "(wezterm) Set workspace title:",
+			action = wezterm.action_callback(function(win, pane, line)
+				if line then
+					wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+				end
+			end),
+		}),
+	},
 	{
 		key = "s",
-		mods = "CMD|SHIFT",
-		action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
+		mods = "CMD",
+		action = wezterm.action_callback(function(win, pane)
+			-- create workspace list
+			local workspaces = {}
+			for i, name in ipairs(wezterm.mux.get_workspace_names()) do
+				table.insert(workspaces, {
+					id = name,
+					label = string.format("%d. %s", i, name),
+				})
+			end
+			-- launch workspace selection
+			win:perform_action(
+				act.InputSelector({
+					action = wezterm.action_callback(function(_, _, id, label)
+						if not id and not label then
+							wezterm.log_info("Workspace selection canceled") -- 入力が空ならキャンセル
+						else
+							win:perform_action(act.SwitchToWorkspace({ name = id }), pane) -- workspace を移動
+						end
+					end),
+					title = "Select workspace",
+					choices = workspaces,
+					fuzzy = true,
+					-- fuzzy_description = string.format("Select workspace: %s -> ", current), -- requires nightly build
+				}),
+				pane
+			)
+		end),
 	},
+	-- ]]
 }
 
 -- activate tab
