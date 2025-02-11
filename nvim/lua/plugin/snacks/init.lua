@@ -12,6 +12,13 @@ return {
 			Snacks.debug.backtrace()
 		end
 		vim.print = _G.dd
+
+		vim.api.nvim_create_user_command("Bdelete", function()
+			Snacks.bufdelete()
+		end, { nargs = 0 })
+		vim.api.nvim_create_user_command("Bdeleteall", function()
+			Snacks.bufdelete.all()
+		end, { nargs = 0 })
 	end,
 	keys = {
 		-- Picker [[
