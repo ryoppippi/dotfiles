@@ -13,7 +13,7 @@ local function findRootDirForDeno(path)
 		return vim.uv.fs_stat(vim.fs.joinpath(project_root, file)) ~= nil
 	end)
 
-	-- when node files not found, lauch denols
+	-- when node files not found, launch denols
 	if not is_node_files_found then
 		local deps_path = vim.fs.joinpath(project_root, "deps.ts")
 		if vim.uv.fs_stat(deps_path) ~= nil then
