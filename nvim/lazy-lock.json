@@ -42,7 +42,6 @@
   "detect-language.nvim": { "branch": "main", "commit": "670b2d78deb01b268ee8675c66b9f5256054109a" },
   "dial.nvim": { "branch": "master", "commit": "34bbd9c387c358190e61ce71017faad3dffa7a74" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "dressing.nvim": { "branch": "master", "commit": "56ef6a969a4990d938c5fed40c370f65e125fc97" },
   "dropbar.nvim": { "branch": "master", "commit": "e53d0475f161f518c8937d466915838148fdc686" },
   "fall": { "branch": "main", "commit": "88c6ec583e818c1d4c2b93a198301e4eebd1958b" },
   "fileline.nvim": { "branch": "main", "commit": "c116aa8dd7aa7e1db6938f872285e598dc9ee00b" },

@@ -6,8 +6,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope.nvim",
-		"stevearc/dressing.nvim",
-		"github/copilot.vim",
 	},
 	keys = {
 		{ "cc", "CodeCompanion", mode = "ca" },
