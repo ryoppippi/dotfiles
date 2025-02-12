@@ -3,7 +3,6 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	event = "VeryLazy",
 	init = function()
 		_G.dd = function(...)
 			Snacks.debug.inspect(...)
