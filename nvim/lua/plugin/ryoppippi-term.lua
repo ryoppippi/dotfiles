@@ -1,9 +1,8 @@
 return {
 	dir = vim.env.TMPDIR .. "/ryoppippi-term",
 	name = "ryoppippi-term.nvim",
-	cmd = { "T", "TS", "TV", "TG" },
+	cmd = { "T", "TS", "TV" },
 	keys = {
-		{ "g,", "<cmd>TG<cr>" },
 		{ "<leader>tt", "<cmd>T<cr>" },
 		{ "<leader>ts", "<cmd>TS<cr>" },
 		{ "<leader>tv", "<cmd>TV<cr>" },
@@ -35,16 +34,5 @@ return {
 			vim.cmd.vsplit()
 			openTerm(args)
 		end, { nargs = "*" })
-
-		vim.api.nvim_create_user_command("TG", function()
-			vim.cmd.tabe()
-			vim.fn.termopen("lazygit", {
-				on_exit = function(_, _, _)
-					vim.cmd.tabclose()
-				end,
-			})
-			local current_buffer = vim.api.nvim_get_current_buf()
-			vim.keymap.set("t", "<esc>", "<esc>", { buffer = current_buffer, remap = false })
-		end, { nargs = 0 })
 	end,
 }
