@@ -18,6 +18,9 @@ return {
 		vim.api.nvim_create_user_command("Bdeleteall", function()
 			Snacks.bufdelete.all()
 		end, { nargs = 0 })
+		vim.api.nvim_create_user_command("Lazygit", function()
+			Snacks.lazygit()
+		end, { nargs = 0 })
 	end,
 	keys = {
 		-- Picker [[
@@ -190,6 +193,29 @@ return {
 			desc = "Dim",
 		},
 		-- Dim ]]
+		-- lazygit [[
+		{
+			"<leader>g",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Lazygit",
+		},
+		{
+			"<leader>gl",
+			function()
+				Snacks.lazygit.log()
+			end,
+			desc = "Lazygit Log",
+		},
+		{
+			"<leader>gk",
+			function()
+				Snacks.lazygit.log_file()
+			end,
+			desc = "Lazygit Log File",
+		},
+		-- lazygit ]]
 	},
 	---@type snacks.Config
 	opts = {
@@ -212,6 +238,9 @@ return {
 			enabled = true,
 		},
 		debug = {
+			enabled = true,
+		},
+		lazygit = {
 			enabled = true,
 		},
 	},
