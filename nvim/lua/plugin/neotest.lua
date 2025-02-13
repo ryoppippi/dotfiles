@@ -21,12 +21,14 @@ return {
 		"https://github.com/marilari88/neotest-vitest",
 		"https://github.com/MarkEmmons/neotest-deno",
 		"https://github.com/lawrence-laz/neotest-zig",
+		"https://github.com/nvim-neotest/neotest-jest",
 	},
 	opts = function()
 		return {
 			adapters = vim.iter({
 				require("neotest-vitest"),
 				require("neotest-deno"),
+				require("neotest-jest"),
 				require("neotest-zig")({
 					dap = {
 						adapter = "lldb",
