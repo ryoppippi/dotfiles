@@ -31,13 +31,13 @@ return {
 			end,
 			desc = "Picker Actions",
 		},
-		{
-			",,",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
+		-- {
+		-- 	",,",
+		-- 	function()
+		-- 		Snacks.picker.smart()
+		-- 	end,
+		-- 	desc = "Smart Find Files",
+		-- },
 		{
 			",<space>",
 			function()
