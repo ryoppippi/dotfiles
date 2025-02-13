@@ -15,6 +15,7 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{ "tel", "Telescope", mode = "ca" },
+			{ ",,", "<cmd>Telescope smart_open<cr>" },
 		},
 		config = function()
 			local function telescope_grep_any()
