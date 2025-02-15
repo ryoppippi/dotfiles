@@ -37,6 +37,9 @@ return {
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				send = {
+					modes = { n = "<C-s>", i = "<C-s>" },
+				},
 			},
 			inline = {
 				adapter = "copilot",
