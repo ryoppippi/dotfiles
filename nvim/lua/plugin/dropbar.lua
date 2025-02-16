@@ -2,9 +2,6 @@ return {
 	"Bekaboo/dropbar.nvim",
 	event = "VeryLazy",
 	cond = not is_vscode(),
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
 	keys = {
 		{
 			"<leader>h",
