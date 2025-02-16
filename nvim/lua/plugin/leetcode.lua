@@ -15,7 +15,7 @@ return {
 
 		-- optional
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-tree/nvim-web-devicons",
+		"echasnovski/mini.icons",
 	},
 	opts = {
 		-- configuration goes here
