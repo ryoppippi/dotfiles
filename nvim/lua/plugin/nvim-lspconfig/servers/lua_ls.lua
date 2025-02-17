@@ -43,6 +43,7 @@ end
 return {
 	name = "lua_ls",
 	dir = vim.env.TMPDIR .. "/lsp-lua_ls",
+	cond = not is_vscode(),
 	dependencies = { "neovim/nvim-lspconfig" },
 	ft = function(spec)
 		return lsp_utils.get_default_filetypes(spec.name)
