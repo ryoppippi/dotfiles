@@ -223,6 +223,14 @@ return {
 			desc = "Lazygit Log File",
 		},
 		-- lazygit ]]
+		-- zen [[
+		{
+			"<leader>z",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Zen",
+		},
 	},
 	---@type snacks.Config
 	opts = {
@@ -248,6 +256,9 @@ return {
 			enabled = true,
 		},
 		lazygit = {
+			enabled = true,
+		},
+		zen = {
 			enabled = true,
 		},
 	},
