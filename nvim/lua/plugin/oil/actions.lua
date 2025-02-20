@@ -1,3 +1,5 @@
+-- TODO: Snacks image
+
 local M = {}
 
 local debounce = require("core.utils").debounce

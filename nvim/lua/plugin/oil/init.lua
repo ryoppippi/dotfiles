@@ -36,6 +36,12 @@ return {
 				end
 			end,
 		})
+		vim.api.nvim_create_autocmd("Filetype", {
+			pattern = "oil",
+			callback = function(event)
+				vim.b.snacks_main = true
+			end,
+		})
 	end,
 	opts = function()
 		local custom_actions = require("plugin.oil.actions")
