@@ -128,7 +128,7 @@ packages:
   - name: mikefarah/yq@v4.45.1
   - name: sheepla/srss@v0.1.0
   - name: martinvonz/jj@v0.26.0
-  - name: fastfetch-cli/fastfetch@2.36.1
+  - name: fastfetch-cli/fastfetch@2.37.0
   - name: sxyazi/yazi@v25.2.11
   - name: typst/typst@v0.12.0
   - name: pnpm/pnpm@v10.4.1
