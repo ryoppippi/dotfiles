@@ -20,6 +20,7 @@
   b = branch
   bm = branch -m
   bu = rev-parse --abbrev-ref --symbolic-full-name @{u}
+  bv = branch -vv
   browse = !gh repo view --web
   ; browse = "!deno run --allow-net --allow-run --allow-read --allow-env jsr:@lambdalisue/git-browse/cli"
   br = browse
