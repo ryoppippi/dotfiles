@@ -80,7 +80,7 @@
   process = git-lfs filter-process
   required = true
 [push]
-  default = current
+	default = simple
   useForceIfIncludes = true
 ; [url "git@github.com:"]
   pushInsteadOf = https://github.com/
