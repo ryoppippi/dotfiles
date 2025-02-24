@@ -74,6 +74,8 @@ return {
 							"nvim-lspconfig",
 							"snacks.nvim",
 							"oil.nvim",
+							"mini.ai",
+							"mini.extra",
 						}),
 						checkThirdParty = "Disable",
 					},
