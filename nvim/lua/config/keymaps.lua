@@ -103,7 +103,6 @@ vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
 vim.keymap.set("n", "U", "<C-r>") -- redo by U
 vim.keymap.set("n", "M", "%") -- jump to matching bracket by M
-vim.keymap.set({ "o", "x" }, "i<space>", "iW") -- select WORD by i<space>
 vim.keymap.set("x", "p", "P") -- {visual}p to put without yank to unnamed register https://github.com/Shougo/shougo-s-github/blob/21a3f500cdc2b37c8d184edbf640d9e17458358a/vim/rc/mappings.rc.vim#L190-L191
 vim.keymap.set("x", "y", "mzy`z") -- keep cursor position after yank in visual mode
 vim.keymap.set("i", "<C-k>", function() -- capitalize word
