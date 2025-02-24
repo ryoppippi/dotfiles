@@ -85,6 +85,7 @@
   "marks.nvim": { "branch": "master", "commit": "bb25ae3f65f504379e3d08c8a02560b76eaf91e8" },
   "mini.icons": { "branch": "main", "commit": "ec61af6e606fc89ee3b1d8f2f20166a3ca917a36" },
   "mini.jump": { "branch": "stable", "commit": "bb93d998c9db6936697746330411f5fb9957145e" },
+  "mini.move": { "branch": "stable", "commit": "4caa1c212f5ca3d1633d21cfb184808090ed74b1" },
   "mini.splitjoin": { "branch": "main", "commit": "3e92f6764e770ba392325cad3a4497adcada695f" },
   "mini.surround": { "branch": "main", "commit": "aa5e245829dd12d8ff0c96ef11da28681d6049aa" },
   "mini.trailspace": { "branch": "stable", "commit": "3a328e62559c33014e422fb9ae97afc4208208b1" },
