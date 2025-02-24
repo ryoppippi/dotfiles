@@ -83,6 +83,8 @@
   "lspkind.nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "mark-code-action.nvim": { "branch": "main", "commit": "8d5f356ac837e8041b2b9242c40a95eb7191884b" },
   "marks.nvim": { "branch": "master", "commit": "bb25ae3f65f504379e3d08c8a02560b76eaf91e8" },
+  "mini.ai": { "branch": "stable", "commit": "ebb04799794a7f94628153991e6334c3304961b8" },
+  "mini.extra": { "branch": "stable", "commit": "6927348ae967d229fa01c5d2a0baca9ef7d30de4" },
   "mini.icons": { "branch": "main", "commit": "ec61af6e606fc89ee3b1d8f2f20166a3ca917a36" },
   "mini.jump": { "branch": "stable", "commit": "bb93d998c9db6936697746330411f5fb9957145e" },
   "mini.move": { "branch": "stable", "commit": "4caa1c212f5ca3d1633d21cfb184808090ed74b1" },
