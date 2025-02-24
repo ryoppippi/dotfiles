@@ -1,3 +1,4 @@
+-- TODO: replace nvim-treesitter-textobjects with mini.ai
 ---@type LazySpec
 return {
 	"echasnovski/mini.ai",
