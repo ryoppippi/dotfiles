@@ -101,7 +101,6 @@ vim.keymap.set({ "n", "v" }, "x", '"_x') -- delete without yank
 vim.keymap.set({ "n", "v" }, "X", '"_d$') -- delete to end of line without yank
 vim.keymap.set({ "n", "v" }, "<leader>x", vim.cmd.cclose)
 vim.keymap.set("n", "gq", "<cmd>nohlsearch<cr><esc>")
-vim.keymap.set("n", "<leader>a", "ggVG")
 vim.keymap.set("n", "U", "<C-r>") -- redo by U
 vim.keymap.set("n", "M", "%") -- jump to matching bracket by M
 vim.keymap.set({ "o", "x" }, "i<space>", "iW") -- select WORD by i<space>
