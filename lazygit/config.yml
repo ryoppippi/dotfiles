@@ -19,3 +19,7 @@ customCommands:
     context: "files"
     description: "git now"
     command: "git now"
+  - key: "I"
+    context: "localBranches"
+    description: "gh poi"
+    command: "gh poi"
