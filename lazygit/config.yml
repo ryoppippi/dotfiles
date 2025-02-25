@@ -13,10 +13,6 @@ git:
     pager: delta --color-only --paging=never
 
 customCommands:
-  - key: c
-    context: commits
-    description: yank commit hash
-    command: git rev-parse HEAD | pbcopy
   - key: n
     context: files
     description: git now
