@@ -5,7 +5,7 @@ return {
 	branch = "stable",
 	event = "BufReadPost",
 	opts = function()
-		vim.keymap.set({ "x", "o" }, "A", "ae", { remap = true })
+		vim.keymap.set({ "x", "o" }, "%", "ae", { remap = true })
 		local gen_ai_spec = require("mini.extra").gen_ai_spec
 		return {
 			custom_textobjects = {
