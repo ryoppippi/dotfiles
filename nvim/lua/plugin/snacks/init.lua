@@ -93,7 +93,7 @@ return {
 		{
 			",g",
 			function()
-				Snacks.picker.git_files()
+				Snacks.picker.git_branches()
 			end,
 			desc = "Git Files",
 		},
