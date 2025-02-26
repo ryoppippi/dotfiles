@@ -2,6 +2,7 @@
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	event = "VeryLazy",
+	build = "make tiktoken",
 	keys = {
 		{ "cpc", "CopilotChat", mode = "ca" },
 	},
