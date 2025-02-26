@@ -5,7 +5,12 @@ return {
 	branch = "stable",
 	event = "BufReadPost",
 	opts = function()
-		vim.keymap.set({ "x", "o" }, "%", "ae", { remap = true })
+		vim.keymap.set({ "x", "o" }, "A", function()
+			local ctrl_v = vim.keycode("<C-v>")
+			local mode = vim.api.nvim_get_mode().mode
+			return mode == ctrl_v and "A" or "ae"
+		end, { remap = true, expr = true, desc = "Select entire buffer when not in visual block mode" })
+
 		local gen_ai_spec = require("mini.extra").gen_ai_spec
 		return {
 			custom_textobjects = {
