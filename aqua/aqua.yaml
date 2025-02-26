@@ -135,4 +135,4 @@ packages:
   - name: nodejs/node@v23.8.0
   - name: zigtools/zls@0.13.0
   - name: tamasfe/taplo@0.9.3
-  - name: secretlint/secretlint@v9.1.0
+  - name: secretlint/secretlint@v9.2.0
