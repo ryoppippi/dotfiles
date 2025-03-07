@@ -108,7 +108,7 @@ packages:
   - name: astral-sh/ruff@0.9.9
   - name: crates.io/gitu@0.28.2
   - name: ducaale/xh@v0.24.0
-  - name: xo/usql@v0.19.17
+  - name: xo/usql@v0.19.18
   - name: sharkdp/vivid@v0.10.1
   - name: ynqa/jnv@v0.5.0
   - name: charmbracelet/freeze@v0.1.6
