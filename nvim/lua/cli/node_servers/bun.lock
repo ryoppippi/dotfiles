@@ -19,7 +19,7 @@
         "stylelint-lsp": "2.0.1",
         "svelte-language-server": "0.17.10",
         "typescript-svelte-plugin": "0.3.45",
-        "unocss-language-server": "0.1.5",
+        "unocss-language-server": "0.1.6",
         "vscode-langservers-extracted": "4.10.0",
         "yaml-language-server": "1.16.0",
       },
@@ -1690,7 +1690,7 @@
 
     "universalify": ["universalify@2.0.1", "", {}, "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw=="],
 
-    "unocss-language-server": ["unocss-language-server@0.1.5", "", { "dependencies": { "@unocss/autocomplete": "^0.61.0", "@unocss/config": "^0.61.0", "@unocss/core": "^0.61.0", "@unocss/extractor-arbitrary-variants": "^0.61.0", "@unocss/preset-uno": "^0.61.0", "color-rgba": "^3.0.0", "magic-string": "^0.30.10", "unconfig": "^0.3.13", "vscode-languageserver": "^9.0.1", "vscode-languageserver-textdocument": "^1.0.11" }, "bin": { "unocss-language-server": "bin/index.js" } }, "sha512-FaS0yK9iagI0y+gxOtZG1Yu8uF+Bahpryif4vY29cGNS5Mt+pmS32UEqql74JyRlqaQqo4wN/mhNVCH9uAD57w=="],
+    "unocss-language-server": ["unocss-language-server@0.1.6", "", { "dependencies": { "@unocss/autocomplete": "^0.61.0", "@unocss/config": "^0.61.0", "@unocss/core": "^0.61.0", "@unocss/extractor-arbitrary-variants": "^0.61.0", "@unocss/preset-uno": "^0.61.0", "color-rgba": "^3.0.0", "magic-string": "^0.30.10", "unconfig": "^0.3.13", "vscode-languageserver": "^9.0.1", "vscode-languageserver-textdocument": "^1.0.11" }, "bin": { "unocss-language-server": "bin/index.js" } }, "sha512-tdDH7z4/wgXA8Rgb46wLpUm33peroxwpvCU+rrEzjQ4MZ2pwHlBLndZektUYbzjQb6iGpk/SsCpEdxtBWKrydA=="],
 
     "unset-value": ["unset-value@1.0.0", "", { "dependencies": { "has-value": "^0.3.1", "isobject": "^3.0.0" } }, "sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ=="],
 
