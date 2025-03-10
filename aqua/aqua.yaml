@@ -133,6 +133,6 @@ packages:
   - name: typst/typst@v0.13.0
   - name: pnpm/pnpm@v10.6.1
   - name: nodejs/node@v23.9.0
-  - name: zigtools/zls@0.13.0
+  - name: zigtools/zls@0.14.0
   - name: tamasfe/taplo@0.9.3
   - name: secretlint/secretlint@v9.2.0
