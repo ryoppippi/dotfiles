@@ -1,7 +1,7 @@
 {
   "name": "node_servers",
   "dependencies": {
-    "@angular/language-server": "19.2.0",
+    "@angular/language-server": "19.2.1",
     "@astrojs/language-server": "2.15.4",
     "@astrojs/ts-plugin": "1.10.4",
     "@prisma/language-server": "6.5.0",
