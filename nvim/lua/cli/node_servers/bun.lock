@@ -4,7 +4,7 @@
     "": {
       "name": "node_servers",
       "dependencies": {
-        "@angular/language-server": "19.2.0",
+        "@angular/language-server": "19.2.1",
         "@astrojs/language-server": "2.15.4",
         "@astrojs/ts-plugin": "1.10.4",
         "@prisma/language-server": "6.5.0",
@@ -28,7 +28,7 @@
   "packages": {
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
 
-    "@angular/language-server": ["@angular/language-server@19.2.0", "", { "dependencies": { "@angular/language-service": "19.2.0", "vscode-html-languageservice": "^4.2.5", "vscode-jsonrpc": "6.0.0", "vscode-languageserver": "7.0.0", "vscode-languageserver-textdocument": "^1.0.7", "vscode-uri": "3.0.7" }, "bin": { "ngserver": "bin/ngserver" } }, "sha512-HN5gEGEO20ujyiqt2xpwXh2M3+k7vBQqljdpw/n/oh0x32CPr+zSy6e2a4p9G/m0HJRL+Sqziyx+zOUiPvse1g=="],
+    "@angular/language-server": ["@angular/language-server@19.2.1", "", { "dependencies": { "@angular/language-service": "19.2.0", "vscode-html-languageservice": "^4.2.5", "vscode-jsonrpc": "6.0.0", "vscode-languageserver": "7.0.0", "vscode-languageserver-textdocument": "^1.0.7", "vscode-uri": "3.0.7" }, "bin": { "ngserver": "bin/ngserver" } }, "sha512-1FU1oS9zp1Ee/05/G+SUi5aoYGImM25W9vlFlvdrmRa19YgBiBHBlpXrl1d3FRrr5608e1Z1YICr1P9kPCybVQ=="],
 
     "@angular/language-service": ["@angular/language-service@19.2.0", "", {}, "sha512-45utEVXwCYE5vQSMX0ImBjgkcMQ8cqPN4xGHLqYiFEkp/hgbixejA4sMPP1Jn7YrjpfK4DmAaO5z5Hzp11zJ7A=="],
 
