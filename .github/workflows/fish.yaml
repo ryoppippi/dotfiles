@@ -20,13 +20,13 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: ./.github/actions/env-setup
         with:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           aqua_config: ${{ env.AQUA_CONFIG }}
       - name: setup fish
-        uses: fish-actions/install-fish@v1.1.0
+        uses: fish-actions/install-fish@d6d9d26231a15f8d9a6b3e74b3db45512440e3e8 # v1.1.0
       - name: add path
         run: dotfiles link .
       - name: test fish/config.fish
