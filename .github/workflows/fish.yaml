@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           aqua_config: ${{ env.AQUA_CONFIG }}
       - name: setup fish
-        uses: fish-actions/install-fish@d6d9d26231a15f8d9a6b3e74b3db45512440e3e8 # v1.1.0
+        uses: fish-actions/install-fish@4bb37a71daebb76c6fb7d83771cff31b8a78c28e # v1.2.0
       - name: add path
         run: dotfiles link .
       - name: test fish/config.fish
