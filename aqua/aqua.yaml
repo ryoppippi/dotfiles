@@ -28,7 +28,7 @@ packages:
   - name: aquaproj/registry-tool@v0.3.4
   - name: marp-team/marp-cli@v4.1.2
   - name: tcnksm/ghr@v0.17.0
-  - name: x-motemen/ghq@v1.7.1
+  - name: x-motemen/ghq@v1.8.0
   - name: ajeetdsouza/zoxide@v0.9.7
   - name: sharkdp/bat@v0.25.0
   - name: stedolan/jq@jq-1.6
