@@ -12,7 +12,7 @@
     "cssmodules-language-server": "1.5.1",
     "emmet-ls": "0.4.2",
     "sql-language-server": "1.7.1",
-    "stylelint": "16.16.0",
+    "stylelint": "16.17.0",
     "stylelint-lsp": "2.0.1",
     "svelte-language-server": "0.17.11",
     "typescript-svelte-plugin": "0.3.46",
