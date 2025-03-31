@@ -136,4 +136,4 @@ packages:
   - name: zigtools/zls@0.14.0
   - name: tamasfe/taplo@0.9.3
   - name: secretlint/secretlint@v9.2.0
-  - name: suzuki-shunsuke/pinact@v2.2.0
+  - name: suzuki-shunsuke/pinact@v2.2.1
