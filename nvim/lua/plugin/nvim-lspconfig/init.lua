@@ -24,6 +24,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+		dev = true,
 		cond = not is_vscode(),
 		dependencies = {
 			"folke/neoconf.nvim",
