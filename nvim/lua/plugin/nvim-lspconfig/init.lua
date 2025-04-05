@@ -26,7 +26,6 @@ return {
 		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 		cond = not is_vscode(),
 		dependencies = {
-			"folke/neoconf.nvim",
 			"b0o/schemastore.nvim",
 			{
 				"hrsh7th/cmp-nvim-lsp",

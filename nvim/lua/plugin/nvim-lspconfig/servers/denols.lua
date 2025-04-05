@@ -22,28 +22,6 @@ local function findRootDirForDeno(path)
 		return project_root
 	end
 
-	-- if node files found, check if deno is enabled for this project
-	-- check .vscode/settings.json or .neoconf.json for deno.enable and deno.enablePaths
-	local getOptions = require("plugin.neoconf").getOptions
-	local enable = getOptions("deno.enable")
-	local enable_paths = getOptions("deno.enablePaths")
-	if enable ~= false and type(enable_paths) == "table" then
-		local root_in_enable_path = vim.iter(enable_paths)
-			:map(function(p)
-				return vim.fs.joinpath(project_root, p)
-			end)
-			:find(function(absEnablePath)
-				return vim.startswith(path, absEnablePath)
-			end)
-		if root_in_enable_path ~= nil then
-			local deps_path = vim.fs.joinpath(root_in_enable_path, "deps.ts")
-			if vim.uv.fs_stat(deps_path) ~= nil then
-				vim.b[vim.fn.bufnr()].deno_deps_candidate = deps_path
-			end
-			return root_in_enable_path
-		end
-	end
-
 	-- otherwise, return nil
 	return nil
 end
@@ -55,7 +33,6 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"neovim/nvim-lspconfig",
-		"folke/neoconf.nvim",
 	},
 	ft = function(spec)
 		return lsp_utils.get_default_filetypes(spec.name)
