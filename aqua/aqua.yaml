@@ -111,7 +111,7 @@ packages:
   - name: xo/usql@v0.19.19
   - name: sharkdp/vivid@v0.10.1
   - name: ynqa/jnv@v0.5.0
-  - name: charmbracelet/freeze@v0.2.0
+  - name: charmbracelet/freeze@v0.2.2
   - name: svenstaro/genact@v1.4.2
   - name: sqls-server/sqls@v0.2.27
   - name: ClementTsang/bottom@0.10.2
