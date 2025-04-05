@@ -3,7 +3,6 @@ local ft = lsp_utils.ft
 
 local filetypes = ft.js_like
 
-local node_modules_dir = require("lazy.core.config").spec.plugins.node_servers.dir
 
 ---@type LazySpec
 return {
@@ -33,6 +32,8 @@ return {
 				commands.goto_source_definition()
 			end, { desc = "Go to source definition", buffer = buffer })
 		end
+
+		local node_modules_dir = require("lazy.core.config").spec.plugins.node_servers.dir
 
 		---@class VtslsConfig
 		return {
