@@ -5,7 +5,7 @@ return {
 	config = function(spec)
 		local dir = spec.dir
 
-		vim.system({ "bun", "i" }, { cwd = dir, text = true }, _l("obj: vim.print(obj.stdout)"))
+		vim.system({ "bun", "i" }, { cwd = dir, text = true })
 
 		local BIN_DIR =
 			assert((vim.system({ "bun", "pm", "bin" }, { cwd = dir, text = true }):wait()).stdout):gsub("\n[^\n]*$", "")
