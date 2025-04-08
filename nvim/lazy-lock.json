@@ -202,7 +202,6 @@
   "vim-manpager": { "branch": "master", "commit": "ba60d59a79c096775f5c7f7d76fdffa396efdfca" },
   "vim-matchup": { "branch": "master", "commit": "aca23ce53ebfe34e02c4fe07e29e9133a2026481" },
   "vim-mundo": { "branch": "master", "commit": "2ceda8c65f7b3f9066820729fc02003a09df91f9" },
-  "vim-niceblock": { "branch": "master", "commit": "9302f527eefc0fde8df983cbb9710ad52c4213b5" },
   "vim-partedit": { "branch": "master", "commit": "a4ed06ff7759343d205b4a5be08a5bb49ee878c3" },
   "vim-prettyprint": { "branch": "master", "commit": "d6060d2b1ff1cff71714e126addd3b10883ade12" },
   "vim-quickrun": { "branch": "master", "commit": "77b4d6ea9972a206f02c736882c2398c36d2983c" },
