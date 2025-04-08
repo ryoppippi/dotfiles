@@ -3,7 +3,7 @@
 return {
 	"echasnovski/mini.ai",
 	branch = "stable",
-	event = "BufReadPost",
+	event = { "BufReadPost", "BufNew" },
 	opts = function()
 		vim.keymap.set({ "x", "o" }, "A", function()
 			local ctrl_v = vim.keycode("<C-v>")
