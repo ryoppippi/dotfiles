@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
 	"aznhe21/actions-preview.nvim",
+	event = "LspAttach",
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"nvim-telescope/telescope.nvim",
