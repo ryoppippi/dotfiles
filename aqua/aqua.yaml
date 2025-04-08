@@ -120,7 +120,7 @@ packages:
   - name: hatoo/oha@v1.8.0
   - name: abhimanyu003/sttr@v0.2.25
   - name: theryangeary/choose@v1.3.6
-  - name: suzuki-shunsuke/cmdx@v2.0.0
+  - name: suzuki-shunsuke/cmdx@v2.0.1
   - name: nishanths/license@v5.0.4
   - name: jetify-com/devbox@0.14.0
   - name: dduan/tre@v0.4.0
