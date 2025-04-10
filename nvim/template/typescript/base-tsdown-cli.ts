@@ -1,4 +1,6 @@
 import { defineConfig } from "tsdown";
+import { bin } from "./package.json";
+import * as fs from "node:fs";
 
 const config: ReturnType<typeof defineConfig> = defineConfig({
   outDir: "dist",
@@ -10,6 +12,10 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
   publint: true,
   outputOptions: {
     banner: "#!/usr/bin/env node\n",
+  },
+  onSuccess: () => {
+    // Make the output file executable
+    fs.chmodSync(bin, 0o755);
   },
 });
 
