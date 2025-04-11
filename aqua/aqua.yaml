@@ -129,7 +129,7 @@ packages:
   - name: sheepla/srss@v0.1.0
   - name: martinvonz/jj@v0.28.2
   - name: fastfetch-cli/fastfetch@2.40.3
-  - name: sxyazi/yazi@v25.3.2
+  - name: sxyazi/yazi@v25.4.8
   - name: typst/typst@v0.13.1
   - name: pnpm/pnpm@v10.8.0
   - name: nodejs/node@v23.11.0
