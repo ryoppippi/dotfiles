@@ -6,13 +6,15 @@ vim.keymap.set("n", ":", ";")
 -- hjkl
 vim.keymap.set({ "n", "x" }, "j", function()
 	if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-		return "j"
+		-- @see https://eiji.page/blog/neovim-remeber-jump-jk/
+		return "m'" .. vim.v.count .. "j"
 	end
 	return "gj"
 end, { expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
 	if vim.v.count > 0 or #vim.fn.reg_recording() > 0 or #vim.fn.reg_executing() > 0 then
-		return "k"
+		-- @see https://eiji.page/blog/neovim-remeber-jump-jk/
+		return "m'" .. vim.v.count .. "k"
 	end
 	return "gk"
 end, { expr = true })
