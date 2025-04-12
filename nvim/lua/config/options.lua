@@ -56,6 +56,8 @@ vim.opt.listchars = {
 	precedes = "❮",
 }
 
+vim.opt.guicursor:append({ "t:blinkon0" })
+
 vim.opt.pumblend = 10
 vim.opt.laststatus = 0
 vim.cmd([[set statusline=%{repeat('─',winwidth('.'))}]])
