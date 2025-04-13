@@ -99,7 +99,7 @@ tools:
       - .prettierrc.toml
 
   biome: &biome
-    format-command: './node_modules/.bin/biome format --stdin-file-path ${INPUT}'
+    format-command: './node_modules/.bin/biome check --stdin-file-path ${INPUT}'
     format-stdin: true
     require-marker: true
     root-markers:
