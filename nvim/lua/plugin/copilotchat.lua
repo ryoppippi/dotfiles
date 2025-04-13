@@ -13,7 +13,7 @@ return {
 	opts = {
 		debug = false, -- Enable debugging
 		chat_autocomplete = true,
-		model = "claude-3.7-sonnet",
+		model = "gemini-2.5-pro",
 	},
 	-- See Commands section for default commands if you want to lazy load on them
 }
