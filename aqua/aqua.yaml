@@ -55,7 +55,7 @@ packages:
   - name: Aloxaf/silicon@v0.5.3
   - name: oven-sh/bun@bun-v1.2.9
   - name: wader/fq@v0.14.0
-  - name: planetscale/cli@v0.238.0
+  - name: planetscale/cli@v0.239.0
   - name: supabase/cli@v2.20.12
   - name: hadolint/hadolint@v2.12.0
   - name: noborus/trdsql@v1.1.0
