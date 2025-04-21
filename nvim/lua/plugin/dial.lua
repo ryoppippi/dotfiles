@@ -102,6 +102,14 @@ return {
 				:flatten()
 				:totable(),
 		})
+		config.augends:on_filetype({
+			zig = vim.iter({
+				default,
+				{ augend.constant.new({ elements = { "var", "const" }, cyclic = true }) },
+			})
+				:flatten()
+				:totable(),
+		})
 
 		config.augends:on_filetype({
 			markdown = vim.iter({
