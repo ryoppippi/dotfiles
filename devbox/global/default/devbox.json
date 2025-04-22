@@ -1,6 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.6/.schema/devbox.schema.json",
-  "packages": [],
+  "packages": [
+    "yarn@latest",
+    "nodejs@22",
+    "turso-cli@latest",
+    "pnpm@latest"
+  ],
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null"
