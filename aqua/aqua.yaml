@@ -54,7 +54,7 @@ packages:
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.3
   - name: oven-sh/bun@bun-v1.2.10
-  - name: wader/fq@v0.14.0
+  - name: wader/fq@v0.15.0
   - name: planetscale/cli@v0.241.0
   - name: supabase/cli@v2.20.12
   - name: hadolint/hadolint@v2.12.0
