@@ -24,6 +24,7 @@ return {
 			vim.lsp.enable({
 				"lua_ls",
 				"jsonls",
+				"efm",
 			})
 		end,
 
