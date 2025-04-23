@@ -3,13 +3,6 @@ return {
 	build = ":TSUpdate",
 	event = { "BufReadPost", "VeryLazy" },
 	dependencies = {
-		{
-			"ray-x/cmp-treesitter",
-			cond = function()
-				return require("core.plugin").has("nvim-cmp") and not is_vscode()
-			end,
-		},
-
 		{ "yioneko/nvim-yati", enabled = false },
 
 		-- textobj

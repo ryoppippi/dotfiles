@@ -89,6 +89,26 @@ return {
 			},
 			config = true,
 		},
+		{
+			"hrsh7th/cmp-nvim-lsp",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-nvim-lsp-document-symbol",
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			enabled = false,
+			config = function(p)
+				load_after(p)
+			end,
+		},
+		{ "ray-x/cmp-treesitter" },
 	},
 	init = function()
 		require("core.plugin").on_load("nvim-cmp", function()
