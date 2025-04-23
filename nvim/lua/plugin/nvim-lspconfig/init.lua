@@ -29,6 +29,9 @@ return {
 				"jsonls",
 				"yamlls",
 
+				-- web
+				"svelte",
+
 				-- lua
 				"lua_ls",
 
