@@ -9,7 +9,7 @@ return {
 		cond = not is_vscode(),
 		dependencies = {
 			"folke/neoconf.nvim",
-			"b0o/schemastore.nvim",
+			"node_servers",
 		},
 		config = function()
 			vim.lsp.config(
