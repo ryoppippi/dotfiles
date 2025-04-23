@@ -52,6 +52,18 @@ return {
 				end,
 			},
 		},
+		config = function()
+			vim.lsp.config(
+				"*",
+				(function()
+					local opts = {}
+					opts.capabilities = vim.lsp.protocol.make_client_capabilities()
+					opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+					return opts
+				end)()
+			)
+		end,
+
 		init = function()
 			require("core.plugin").on_attach(function(client, bufnr)
 				local exclude_ft = { "oil" }
