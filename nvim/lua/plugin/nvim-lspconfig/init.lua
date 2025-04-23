@@ -5,8 +5,7 @@ return {
 	{ import = "plugin.nvim-lspconfig.servers" },
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-		dev = true,
+		event = { "BufReadPre", "BufNewFile" },
 		cond = not is_vscode(),
 		dependencies = {
 			"folke/neoconf.nvim",
