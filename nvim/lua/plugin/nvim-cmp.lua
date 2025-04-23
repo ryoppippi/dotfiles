@@ -8,79 +8,21 @@ local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
-local function load_after(plugin)
-	local dir = plugin.dir .. "/after/plugin"
-	local fd = vim.loop.fs_scandir(dir)
-	if not fd then
-		return
-	end
-	while true do
-		local file_name, type = vim.loop.fs_scandir_next(fd)
-		if not file_name then
-			break
-		end
-		if type == "file" then
-			vim.cmd.source(dir .. "/" .. file_name)
-		end
-	end
-end
-
 return {
-	"https://github.com/iguanacucumber/magazine.nvim",
-	name = "nvim-cmp",
+	"https://github.com/hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	cond = not is_vscode(),
 	dependencies = {
 		{ "tani/vim-artemis" },
 		{ "onsails/lspkind.nvim" },
-		{
-			"hrsh7th/cmp-buffer",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"https://codeberg.org/FelipeLema/cmp-async-path",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"hrsh7th/cmp-cmdline",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"hrsh7th/cmp-calc",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"hrsh7th/cmp-emoji",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"lukas-reineke/cmp-rg",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"lukas-reineke/cmp-under-comparator",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"f3fora/cmp-spell",
-			config = function(p)
-				load_after(p)
-			end,
-		},
+		{ "hrsh7th/cmp-buffer" },
+		{ "https://codeberg.org/FelipeLema/cmp-async-path" },
+		{ "hrsh7th/cmp-cmdline" },
+		{ "hrsh7th/cmp-calc" },
+		{ "hrsh7th/cmp-emoji" },
+		{ "lukas-reineke/cmp-rg" },
+		{ "lukas-reineke/cmp-under-comparator" },
+		{ "f3fora/cmp-spell" },
 		{
 			"petertriho/cmp-git",
 			dependencies = { "nvim-lua/plenary.nvim" },
@@ -89,24 +31,11 @@ return {
 			},
 			config = true,
 		},
-		{
-			"hrsh7th/cmp-nvim-lsp",
-			config = function(p)
-				load_after(p)
-			end,
-		},
-		{
-			"hrsh7th/cmp-nvim-lsp-document-symbol",
-			config = function(p)
-				load_after(p)
-			end,
-		},
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-nvim-lsp-document-symbol" },
 		{
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			enabled = false,
-			config = function(p)
-				load_after(p)
-			end,
 		},
 		{ "ray-x/cmp-treesitter" },
 	},
