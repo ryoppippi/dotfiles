@@ -3,7 +3,7 @@
   "packages": [
     "yarn@1.22.22",
     "nodejs@22.14.0",
-    "turso-cli@latest",
+    "turso-cli@0.99.1",
     "pnpm@latest"
   ],
   "shell": {
