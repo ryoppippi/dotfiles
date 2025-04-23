@@ -166,9 +166,9 @@
         }
       }
     },
-    "yarn@latest": {
-      "last_modified": "2025-03-29T14:41:00Z",
-      "resolved": "github:NixOS/nixpkgs/eb0e0f21f15c559d2ac7633dc81d079d1caf5f5f#yarn",
+    "yarn@1.22.22": {
+      "last_modified": "2025-03-23T05:31:05Z",
+      "resolved": "github:NixOS/nixpkgs/dd613136ee91f67e5dba3f3f41ac99ae89c5406b#yarn",
       "source": "devbox-search",
       "version": "1.22.22",
       "systems": {
