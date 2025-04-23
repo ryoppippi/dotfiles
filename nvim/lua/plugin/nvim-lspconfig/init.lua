@@ -27,6 +27,8 @@ return {
 
 				-- config files
 				"jsonls",
+				"yamlls",
+
 				-- lua
 				"lua_ls",
 
