@@ -3,7 +3,6 @@ local ft = lsp_utils.ft
 
 local filetypes = ft.js_like
 
-
 ---@type LazySpec
 return {
 	"yioneko/nvim-vtsls",
@@ -17,8 +16,6 @@ return {
 	opts = function()
 		local commands = require("vtsls").commands
 		local format_config = lsp_utils.format_config
-		local lsp_default_opts = lsp_utils.default_opts()
-		local capabilities = lsp_default_opts.capabilities
 		local inlayHints = lsp_utils.typescriptInlayHints
 
 		---setup keymap
@@ -74,7 +71,6 @@ return {
 
 				return find_root(path)
 			end,
-			capabilities = capabilities,
 			settings = {
 				typescript = {
 					suggest = {

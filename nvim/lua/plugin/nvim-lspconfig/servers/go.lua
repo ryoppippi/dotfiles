@@ -24,7 +24,6 @@ return {
 		end,
 		opts = function()
 			return {
-				capabilities = lsp_utils.default_opts().capabilities,
 				luasnip = false,
 				lsp_inlay_hints = {
 					enable = true,

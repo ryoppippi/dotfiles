@@ -17,22 +17,6 @@ function o.has_cmp()
 	return require("core.plugin").has("nvim-cmp")
 end
 
----@return LSPConfigOpts
-function o.default_opts()
-	---@class LSPConfigOpts
-	local opts = {}
-
-	opts.capabilities = vim.tbl_deep_extend(
-		"force",
-		{},
-		vim.lsp.protocol.make_client_capabilities(),
-		o.has_cmp() and require("cmp_nvim_lsp").default_capabilities() or {}
-	)
-	opts.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-
-	return opts
-end
-
 o.ft = {}
 o.ft.js_like = {
 	"javascript",
@@ -163,10 +147,7 @@ end
 ---@param extra_opts LSPConfigOpts | nil
 function o.setup(client, extra_opts)
 	client = _convert_client(client)
-
-	local default_opts = o.default_opts()
-	---@class LSPConfigOpts
-	local local_opts = vim.tbl_deep_extend("force", {}, default_opts, extra_opts or {})
+	local local_opts = extra_opts or {}
 
 	local_opts.filetypes = vim.iter({
 		local_opts.filetypes or o.get_default_filetypes(client),
