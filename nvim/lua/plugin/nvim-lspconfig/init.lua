@@ -29,6 +29,9 @@ return {
 				"jsonls",
 				-- lua
 				"lua_ls",
+
+				-- zig
+				"zls",
 			})
 		end,
 
