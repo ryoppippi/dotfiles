@@ -4,7 +4,7 @@
     "yarn@1.22.22",
     "nodejs@23.11.0",
     "turso-cli@0.99.1",
-    "pnpm@9.15.3"
+    "pnpm@10.8.0"
   ],
   "shell": {
     "init_hook": [
