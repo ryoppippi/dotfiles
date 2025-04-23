@@ -22,9 +22,13 @@ return {
 				end)()
 			)
 			vim.lsp.enable({
-				"lua_ls",
-				"jsonls",
+				-- general
 				"efm",
+
+				-- config files
+				"jsonls",
+				-- lua
+				"lua_ls",
 			})
 		end,
 
