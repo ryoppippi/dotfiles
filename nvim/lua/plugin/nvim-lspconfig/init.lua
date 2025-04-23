@@ -21,6 +21,9 @@ return {
 					return opts
 				end)()
 			)
+			vim.lsp.enable({
+				"lua_ls",
+			})
 		end,
 
 		init = function()
