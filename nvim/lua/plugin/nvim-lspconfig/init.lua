@@ -37,6 +37,9 @@ return {
 
 				-- zig
 				"zls",
+
+				-- swift
+				"sourcekit",
 			})
 		end,
 
