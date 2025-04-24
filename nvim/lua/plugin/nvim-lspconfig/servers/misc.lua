@@ -12,7 +12,6 @@ return vim.iter({
 	"taplo",
 	"ruby_lsp",
 	"prismals",
-	"angularls",
 	{ "astro", format = false },
 	{ "biome", format = false },
 	{ "eslint", format = true, extra_filetypes = ft.html_like },
