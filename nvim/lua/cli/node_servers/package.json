@@ -11,6 +11,7 @@
     "@vue/language-server": "2.2.8",
     "cssmodules-language-server": "1.5.1",
     "emmet-ls": "0.4.2",
+    "gh-actions-language-server": "^0.0.3",
     "sql-language-server": "1.7.1",
     "stylelint": "16.18.0",
     "stylelint-lsp": "2.0.1",
