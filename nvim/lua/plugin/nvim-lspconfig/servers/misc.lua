@@ -10,7 +10,6 @@ return vim.iter({
 	"r_language_server",
 	"sqls",
 	"taplo",
-	"ruby_lsp",
 	"prismals",
 	{ "astro", format = false },
 	{ "biome", format = false },
