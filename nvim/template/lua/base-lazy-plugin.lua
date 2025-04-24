@@ -1,5 +1,4 @@
 ---@type LazySpec
 return {
-  {{_cursor_}}
+	{ { _cursor_ } },
 }
-

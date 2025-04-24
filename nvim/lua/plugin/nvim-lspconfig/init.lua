@@ -2,15 +2,25 @@ local lsp_utils = require("plugin.nvim-lspconfig.utils")
 
 ---@type LazySpec[]
 return {
-	{ import = "plugin.nvim-lspconfig.servers" },
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-		dev = true,
+		event = { "BufReadPre", "BufNewFile" },
 		cond = not is_vscode(),
 		dependencies = {
 			"folke/neoconf.nvim",
+			"node_servers",
 			"b0o/schemastore.nvim",
+			"yioneko/nvim-vtsls",
+			---@diagnostic disable-next-line: missing-fields
+			{
+				"ray-x/go.nvim",
+				build = ':lua require("go.install").update_all_sync()',
+				dependencies = {
+					"ray-x/guihua.lua",
+					"nvim-treesitter/nvim-treesitter",
+					"neovim/nvim-lspconfig",
+				},
+			},
 		},
 		config = function()
 			vim.lsp.config(
@@ -22,6 +32,54 @@ return {
 					return opts
 				end)()
 			)
+			vim.lsp.enable({
+				-- general
+				"efm",
+
+				-- config files
+				"jsonls",
+				"yamlls",
+				"gh_actions_ls",
+				"nixd",
+				"taplo",
+
+				-- web/javascript
+				"svelte",
+				"denols",
+				"prismals",
+				"astro",
+				"biome",
+				"eslint",
+				"emmet_ls",
+				"tailwindcss",
+				"cssmodules_ls",
+				"unocss",
+				"html",
+				"stylelint_lsp",
+				"vtsls",
+
+				-- go
+				"gopls",
+
+				-- lua
+				"lua_ls",
+
+				-- zig
+				"zls",
+
+				-- swift
+				"sourcekit",
+
+				-- python
+				"pyright",
+				"ruff",
+
+				-- misc
+				"typos_lsp",
+				"sqls",
+				"clojure_lsp",
+				"r_language_server",
+			})
 		end,
 
 		init = function()
