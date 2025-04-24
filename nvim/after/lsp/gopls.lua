@@ -1,4 +1,8 @@
 require("core.plugin").on_attach(function(client, bufnr)
+	if client.name == "gopls" then
+		return
+	end
+
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "*.go",
 		callback = function()
@@ -13,3 +17,5 @@ require("core.plugin").on_attach(function(client, bufnr)
 		lsp_keymaps = false,
 	})
 end)
+
+return {}
