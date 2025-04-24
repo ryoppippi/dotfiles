@@ -1,5 +1,4 @@
 local lsp_utils = require("plugin.nvim-lspconfig.utils")
-local format_config = lsp_utils.format_config
 
 return {
 	on_attach = function(client, _)
@@ -9,7 +8,6 @@ return {
 				client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
 			end,
 		})
-		format_config(false)(client)
 	end,
 	settings = {
 		typescript = {
