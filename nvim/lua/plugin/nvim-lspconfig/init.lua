@@ -12,6 +12,16 @@ return {
 			"node_servers",
 			"b0o/schemastore.nvim",
 			"yioneko/nvim-vtsls",
+			---@diagnostic disable-next-line: missing-fields
+			{
+				"ray-x/go.nvim",
+				build = ':lua require("go.install").update_all_sync()',
+				dependencies = {
+					"ray-x/guihua.lua",
+					"nvim-treesitter/nvim-treesitter",
+					"neovim/nvim-lspconfig",
+				},
+			},
 		},
 		config = function()
 			vim.lsp.config(
@@ -48,6 +58,9 @@ return {
 				"html",
 				"stylelint_lsp",
 				"vtsls",
+
+				-- go
+				"gopls",
 
 				-- lua
 				"lua_ls",
