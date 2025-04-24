@@ -106,7 +106,6 @@
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "8d3bce9764e627b62b07424e0df77f680d47ffdb" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "96bbf843595dbe865838b3f2484b73557f34700c" },
-  "nvim-automa": { "branch": "main", "commit": "538b0a088ea54d0931cd2947f87d0f4b2a4bbd9a" },
   "nvim-block-paste": { "branch": "master", "commit": "4964c784e9630880ab234f152afe49024aca3e31" },
   "nvim-bqf": { "branch": "main", "commit": "ebb6d2689e4427452180f17c53f29f7e460236f1" },
   "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
