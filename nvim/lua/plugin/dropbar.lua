@@ -1,6 +1,6 @@
 return {
 	"Bekaboo/dropbar.nvim",
-	event = "VeryLazy",
+	event = "BufReadPost",
 	cond = not is_vscode(),
 	keys = {
 		{
