@@ -1,6 +1,6 @@
 return {
 	"ryoppippi-help.nvim",
-	virtual =true,
+	virtual = true,
 	dependencies = { "MunifTanjim/nui.nvim" },
 	cmd = { "H" },
 	config = function()
