@@ -116,7 +116,8 @@
 	binary = true
 [rebase]
 	autoStash = true
-	autosquash = true
+	autoSquash = true
+	updateRefs = true
 [merge]
 	ff = false
 [pull]
