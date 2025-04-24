@@ -1,6 +1,6 @@
 return {
-	dir = vim.env.TMPDIR .. "/bun-to-deno",
-	name = "ryoppippi/bun-to-deno",
+	"ryoppippi/bun-to-deno",
+	virtual = true,
 	init = function()
 		vim.api.nvim_create_user_command("BunToDeno", function()
 			-- get current buffer text

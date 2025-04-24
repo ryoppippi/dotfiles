@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-	dir = vim.env.TMPDIR .. "/ryoppippi-snippets-list",
-	name = "ryoppippi-snippets-list",
+	"ryoppippi-snippets-list",
+	virtual = true,
 	dependencies = {
 		"craigmac/vim-vsnip-snippets",
 		"honza/vim-snippets",
