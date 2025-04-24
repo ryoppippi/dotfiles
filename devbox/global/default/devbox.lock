@@ -118,51 +118,51 @@
         }
       }
     },
-    "turso-cli@0.99.1": {
-      "last_modified": "2025-03-18T04:27:45Z",
-      "resolved": "github:NixOS/nixpkgs/3549532663732bfd89993204d40543e9edaec4f2#turso-cli",
+    "turso-cli@1.0.6": {
+      "last_modified": "2025-04-09T00:06:13Z",
+      "resolved": "github:NixOS/nixpkgs/6a39c6e495eefabc935d8ddf66aa45d85b85fa3f#turso-cli",
       "source": "devbox-search",
-      "version": "0.99.1",
+      "version": "1.0.6",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/hgs5wd750rs2i7k4f3i9m9hkj4p4nwzb-turso-cli-0.99.1",
+              "path": "/nix/store/c80bkgapm3jp5705b2cjjqqvgzaj37f5-turso-cli-1.0.6",
               "default": true
             }
           ],
-          "store_path": "/nix/store/hgs5wd750rs2i7k4f3i9m9hkj4p4nwzb-turso-cli-0.99.1"
+          "store_path": "/nix/store/c80bkgapm3jp5705b2cjjqqvgzaj37f5-turso-cli-1.0.6"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/fqj4hrzc3b77yln6786ax07frm0pph03-turso-cli-0.99.1",
+              "path": "/nix/store/5rrb2f1i1ww5ahw9wxr75pymnkb8qiry-turso-cli-1.0.6",
               "default": true
             }
           ],
-          "store_path": "/nix/store/fqj4hrzc3b77yln6786ax07frm0pph03-turso-cli-0.99.1"
+          "store_path": "/nix/store/5rrb2f1i1ww5ahw9wxr75pymnkb8qiry-turso-cli-1.0.6"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/rha1wh2lnqpyhp430y8dq14mly6hjjiw-turso-cli-0.99.1",
+              "path": "/nix/store/862l61bin7jzfy5fdr4ja2wffzzjsa6a-turso-cli-1.0.6",
               "default": true
             }
           ],
-          "store_path": "/nix/store/rha1wh2lnqpyhp430y8dq14mly6hjjiw-turso-cli-0.99.1"
+          "store_path": "/nix/store/862l61bin7jzfy5fdr4ja2wffzzjsa6a-turso-cli-1.0.6"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/c7x7ya4vd523p4xmyqi06x1plrx9hda8-turso-cli-0.99.1",
+              "path": "/nix/store/j4h4np532vxsldfnnsbghlwkbv70kz1s-turso-cli-1.0.6",
               "default": true
             }
           ],
-          "store_path": "/nix/store/c7x7ya4vd523p4xmyqi06x1plrx9hda8-turso-cli-0.99.1"
+          "store_path": "/nix/store/j4h4np532vxsldfnnsbghlwkbv70kz1s-turso-cli-1.0.6"
         }
       }
     },
