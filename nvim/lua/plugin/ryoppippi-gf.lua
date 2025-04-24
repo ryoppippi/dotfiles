@@ -9,8 +9,8 @@ end
 
 ---@type LazySpec
 return {
-	dir = vim.env.TMPDIR .. "/ryoppippi-gf",
-	name = "ryoppippi-gf",
+	"ryoppippi-gf",
+	virtual = true,
 	enabled = false,
 	keys = {
 		{

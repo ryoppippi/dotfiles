@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-	dir = vim.env.TMPDIR .. "/ryoppippi-macro-edit",
-	name = "ryoppippi-macro-edit",
+	"ryoppippi-macro-edit",
+	virtual = true,
 	keys = {
 		{ "<leader>q", "<Plug>(macro_edit)", desc = "Edit a macro", silent = true },
 	},

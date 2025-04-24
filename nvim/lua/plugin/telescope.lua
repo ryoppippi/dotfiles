@@ -10,8 +10,8 @@ end
 ---@type LazySpec[]
 return {
 	{
-		name = "telescope-keymap",
-		dir = vim.env.TMPDIR .. "/telescope-keymap",
+		"telescope-keymap",
+		virtual = true,
 		event = "VeryLazy",
 		keys = {
 			{ "tel", "Telescope", mode = "ca" },
