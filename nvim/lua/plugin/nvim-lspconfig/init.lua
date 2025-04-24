@@ -28,6 +28,7 @@ return {
 				-- config files
 				"jsonls",
 				"yamlls",
+				"gh_actions_ls",
 
 				-- web/javascript
 				"svelte",
