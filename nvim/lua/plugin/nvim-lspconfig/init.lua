@@ -42,6 +42,10 @@ return {
 
 				-- swift
 				"sourcekit",
+
+				-- python
+				'pyright',
+				'ruff'
 			})
 		end,
 
