@@ -105,8 +105,10 @@
 	helper = 
 	helper = !gh auth git-credential
 [fetch]
-	prune = true
 	writeCommitGraph = true
+	prune = true
+	pruneTags = true
+	all = true
 [init]
 	defaultBranch = main
 [diff "lockb"]
