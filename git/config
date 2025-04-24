@@ -82,6 +82,8 @@
   required = true
 [push]
 	default = simple
+	autoSetupRemote = true
+	followTags = true
   useForceIfIncludes = true
 ; [url "git@github.com:"]
   pushInsteadOf = https://github.com/
