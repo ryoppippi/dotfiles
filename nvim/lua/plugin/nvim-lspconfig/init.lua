@@ -29,10 +29,22 @@ return {
 				"jsonls",
 				"yamlls",
 				"gh_actions_ls",
+				"nixd",
+				"taplo",
 
 				-- web/javascript
 				"svelte",
 				"denols",
+				"prismals",
+				"astro",
+				"biome",
+				"eslint",
+				"emmet_ls",
+				"tailwindcss",
+				"cssmodules_ls",
+				"unocss",
+				"html",
+				"stylelint_lsp",
 
 				-- lua
 				"lua_ls",
@@ -45,7 +57,13 @@ return {
 
 				-- python
 				'pyright',
-				'ruff'
+				'ruff',
+
+				-- misc
+				"typos_lsp",
+				"sqls",
+				"clojure_lsp",
+				"r_language_server",
 			})
 		end,
 
