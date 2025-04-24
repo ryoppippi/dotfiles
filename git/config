@@ -129,3 +129,8 @@
 	sort = -committerdate
 [help]
 	autocorrect = prompt
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
