@@ -106,7 +106,7 @@ packages:
   - name: BurntSushi/xsv@0.13.0
   - name: LuaLS/lua-language-server@3.14.0
   - name: astral-sh/ruff@0.11.6
-  - name: crates.io/gitu@0.29.0
+  - name: crates.io/gitu@0.30.3
   - name: ducaale/xh@v0.24.0
   - name: xo/usql@v0.19.21
   - name: sharkdp/vivid@v0.10.1
