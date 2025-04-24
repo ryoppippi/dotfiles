@@ -59,8 +59,8 @@ return {
 				"sourcekit",
 
 				-- python
-				'pyright',
-				'ruff',
+				"pyright",
+				"ruff",
 
 				-- misc
 				"typos_lsp",
