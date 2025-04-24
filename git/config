@@ -73,6 +73,7 @@
 [color]
 	ui = auto
 [tag]
+	sort = version:refname
   ; forceSignAnnotated = true
 [filter "lfs"]
   clean = git-lfs clean -- %f
