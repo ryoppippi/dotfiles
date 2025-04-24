@@ -11,6 +11,7 @@ return {
 			"folke/neoconf.nvim",
 			"node_servers",
 			"b0o/schemastore.nvim",
+			"yioneko/nvim-vtsls",
 		},
 		config = function()
 			vim.lsp.config(
@@ -46,6 +47,7 @@ return {
 				"unocss",
 				"html",
 				"stylelint_lsp",
+				"vtsls",
 
 				-- lua
 				"lua_ls",
