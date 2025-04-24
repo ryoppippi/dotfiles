@@ -10,6 +10,7 @@ return {
 		dependencies = {
 			"folke/neoconf.nvim",
 			"node_servers",
+			"b0o/schemastore.nvim",
 		},
 		config = function()
 			vim.lsp.config(
