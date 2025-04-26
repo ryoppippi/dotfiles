@@ -10,7 +10,7 @@
         "@prisma/language-server": "6.6.0",
         "@tailwindcss/language-server": "0.14.15",
         "@vtsls/language-server": "0.2.8",
-        "@vue/language-server": "2.2.8",
+        "@vue/language-server": "2.2.10",
         "cssmodules-language-server": "1.5.1",
         "emmet-ls": "0.4.2",
         "gh-actions-language-server": "^0.0.3",
@@ -388,15 +388,15 @@
 
     "@vue/compiler-vue2": ["@vue/compiler-vue2@2.7.16", "", { "dependencies": { "de-indent": "^1.0.2", "he": "^1.2.0" } }, "sha512-qYC3Psj9S/mfu9uVi5WvNZIzq+xnXMhOwbTFKKDD7b1lhpnn71jXSFdTQ+WsIEk0ONCd7VV2IMm7ONl6tbQ86A=="],
 
-    "@vue/language-core": ["@vue/language-core@2.2.8", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@vue/compiler-dom": "^3.5.0", "@vue/compiler-vue2": "^2.7.16", "@vue/shared": "^3.5.0", "alien-signals": "^1.0.3", "minimatch": "^9.0.3", "muggle-string": "^0.4.1", "path-browserify": "^1.0.1" }, "peerDependencies": { "typescript": "*" }, "optionalPeers": ["typescript"] }, "sha512-rrzB0wPGBvcwaSNRriVWdNAbHQWSf0NlGqgKHK5mEkXpefjUlVRP62u03KvwZpvKVjRnBIQ/Lwre+Mx9N6juUQ=="],
+    "@vue/language-core": ["@vue/language-core@2.2.10", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@vue/compiler-dom": "^3.5.0", "@vue/compiler-vue2": "^2.7.16", "@vue/shared": "^3.5.0", "alien-signals": "^1.0.3", "minimatch": "^9.0.3", "muggle-string": "^0.4.1", "path-browserify": "^1.0.1" }, "peerDependencies": { "typescript": "*" }, "optionalPeers": ["typescript"] }, "sha512-+yNoYx6XIKuAO8Mqh1vGytu8jkFEOH5C8iOv3i8Z/65A7x9iAOXA97Q+PqZ3nlm2lxf5rOJuIGI/wDtx/riNYw=="],
 
-    "@vue/language-server": ["@vue/language-server@2.2.8", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@volar/language-server": "~2.4.11", "@volar/test-utils": "~2.4.11", "@vue/language-core": "2.2.8", "@vue/language-service": "2.2.8", "@vue/typescript-plugin": "2.2.8", "vscode-languageserver-protocol": "^3.17.5", "vscode-uri": "^3.0.8" }, "bin": { "vue-language-server": "./bin/vue-language-server.js" } }, "sha512-nb/EyJ+JqT3MyroPpNp3aaF/qfdUcVe3WqeBdmiMWDB8weLzVwpWgHh4p3UcyiaE4XKsDUMu+uc/wPFHr8+LPA=="],
+    "@vue/language-server": ["@vue/language-server@2.2.10", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@volar/language-server": "~2.4.11", "@volar/test-utils": "~2.4.11", "@vue/language-core": "2.2.10", "@vue/language-service": "2.2.10", "@vue/typescript-plugin": "2.2.10", "vscode-languageserver-protocol": "^3.17.5", "vscode-uri": "^3.0.8" }, "bin": { "vue-language-server": "./bin/vue-language-server.js" } }, "sha512-xNV7zmENTzTZdD9xRDpZK21S/cfwVBeIS7zEf8VIuBCkFEA21zgG/EmI6Q/vF3N7RJnNm1oCCyRCdyl6MI29tQ=="],
 
-    "@vue/language-service": ["@vue/language-service@2.2.8", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@volar/language-service": "~2.4.11", "@volar/typescript": "~2.4.11", "@vue/compiler-dom": "^3.5.0", "@vue/language-core": "2.2.8", "@vue/shared": "^3.5.0", "@vue/typescript-plugin": "2.2.8", "alien-signals": "^1.0.3", "path-browserify": "^1.0.1", "volar-service-css": "0.0.62", "volar-service-emmet": "0.0.62", "volar-service-html": "0.0.62", "volar-service-json": "0.0.62", "volar-service-pug": "0.0.62", "volar-service-pug-beautify": "0.0.62", "volar-service-typescript": "0.0.62", "volar-service-typescript-twoslash-queries": "0.0.62", "vscode-css-languageservice": "^6.3.1", "vscode-html-languageservice": "^5.2.0", "vscode-languageserver-textdocument": "^1.0.11", "vscode-uri": "^3.0.8" } }, "sha512-MQYpg7ZcnndCTr92a4LV50w6O4rJh6kGHrGv2vBQsRtSDJDy9tq7jSdE2lzqXMYfEGUekufNr7lvmOBPkjFblw=="],
+    "@vue/language-service": ["@vue/language-service@2.2.10", "", { "dependencies": { "@volar/language-core": "~2.4.11", "@volar/language-service": "~2.4.11", "@volar/typescript": "~2.4.11", "@vue/compiler-dom": "^3.5.0", "@vue/language-core": "2.2.10", "@vue/shared": "^3.5.0", "@vue/typescript-plugin": "2.2.10", "alien-signals": "^1.0.3", "path-browserify": "^1.0.1", "volar-service-css": "0.0.62", "volar-service-emmet": "0.0.62", "volar-service-html": "0.0.62", "volar-service-json": "0.0.62", "volar-service-pug": "0.0.62", "volar-service-pug-beautify": "0.0.62", "volar-service-typescript": "0.0.62", "volar-service-typescript-twoslash-queries": "0.0.62", "vscode-css-languageservice": "^6.3.1", "vscode-html-languageservice": "^5.2.0", "vscode-languageserver-textdocument": "^1.0.11", "vscode-uri": "^3.0.8" } }, "sha512-7ERgApCm65FnsSmOB9JmDk+DXBz4ReQdL9P1J9jo3ZSG5AFuyRCVD/mrLgqBh0k8xtPrVbcBnx5+rYvbI+KP/Q=="],
 
     "@vue/shared": ["@vue/shared@3.5.13", "", {}, "sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ=="],
 
-    "@vue/typescript-plugin": ["@vue/typescript-plugin@2.2.8", "", { "dependencies": { "@volar/typescript": "~2.4.11", "@vue/language-core": "2.2.8", "@vue/shared": "^3.5.0" } }, "sha512-9fzhFYrzIsPm5Qylv6yBmV1tISqkUhE1PD5uBwkeLCxIwNUjIbnGBdN8HszDa1ZWFWuBsbQpx7FxmV7vQincDw=="],
+    "@vue/typescript-plugin": ["@vue/typescript-plugin@2.2.10", "", { "dependencies": { "@volar/typescript": "~2.4.11", "@vue/language-core": "2.2.10", "@vue/shared": "^3.5.0" } }, "sha512-niKMM8rvDep6AsZ+8FBnv5BjhkUFnxSkyVrihXkSKITGiz3UMLIvPBKRfgvWGtMdc+2a3yW7GEIo+eFJK+91ZA=="],
 
     "abab": ["abab@2.0.6", "", {}, "sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA=="],
 
@@ -1783,6 +1783,8 @@
     "@vtsls/language-service/semver": ["semver@7.5.2", "", { "dependencies": { "lru-cache": "^6.0.0" }, "bin": { "semver": "bin/semver.js" } }, "sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ=="],
 
     "@vtsls/language-service/typescript": ["typescript@5.7.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg=="],
+
+    "@vue/language-service/vscode-html-languageservice": ["vscode-html-languageservice@5.3.2", "", { "dependencies": { "@vscode/l10n": "^0.0.18", "vscode-languageserver-textdocument": "^1.0.12", "vscode-languageserver-types": "^3.17.5", "vscode-uri": "^3.0.8" } }, "sha512-3MgFQqVG+iQVNG7QI/slaoL7lJpne0nssX082kjUF1yn/YJa8BWCLeCJjM0YpTlp8A7JT1+J22mk4qSPx3NjSQ=="],
 
     "acorn-globals/acorn": ["acorn@7.4.1", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A=="],
 
