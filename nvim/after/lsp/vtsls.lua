@@ -21,6 +21,9 @@ return {
 	single_file_support = false,
 	settings = {
 		typescript = {
+			format = {
+				enable = false,
+			},
 			suggest = {
 				completionFunctionCalls = true,
 			},
@@ -43,6 +46,9 @@ return {
 			},
 		},
 		javascript = {
+			format = {
+				enable = false,
+			},
 			inlayHints = inlayHints,
 		},
 	},
