@@ -1,5 +1,7 @@
 local M = {}
 
+local method = "textDocument/formatting"
+
 M.autoformat = true
 
 function M.toggle()
@@ -43,7 +45,7 @@ function M.format(opts)
 		bufnr = buf,
 		timeout_ms = 2000,
 		filter = function(client)
-			if not client.server_capabilities.documentFormattingProvider then
+			if not client.supports_method(method, buf) then
 				return false
 			end
 			Snacks.notify.info("format on save", { title = client.name })
