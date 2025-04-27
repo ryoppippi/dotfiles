@@ -1,7 +1,14 @@
-local lsp_utils = require("plugin.nvim-lspconfig.utils")
-local ft = lsp_utils.ft
-
-local filetypes = ft.js_framework_like
+local filetypes = {
+	"javascript",
+	"javascriptreact",
+	"javascript.jsx",
+	"typescript",
+	"typescriptreact",
+	"typescript.tsx",
+	"svelte",
+	"astro",
+	"vue",
+}
 
 ---@type LazySpec
 return {
