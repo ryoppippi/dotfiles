@@ -1,5 +1,3 @@
-local lsp_utils = require("plugin.nvim-lspconfig.utils")
-
 ---@type LazySpec[]
 return {
 	{
