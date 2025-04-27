@@ -98,14 +98,6 @@ tools:
       - .prettierrc.cjs
       - .prettierrc.toml
 
-  biome: &biome
-    format-command: './node_modules/.bin/biome check --stdin-file-path ${INPUT}'
-    format-stdin: true
-    require-marker: true
-    root-markers:
-      - biome.json
-      - rome.json
-
   fish_indent: &fish_indent
     format-command: "fish_indent"
     format-stdin: true
@@ -173,19 +165,14 @@ languages:
     - <<: *prettier
   astro:
     - <<: *prettier
-    - <<: *biome
   javascriptreact:
     - <<: *prettier
-    - <<: *biome
   javascript.jsx:
     - <<: *prettier
-    - <<: *biome
   typescriptreact:
     - <<: *prettier
-    - <<: *biome
   typescript.tsx:
     - <<: *prettier
-    - <<: *biome
   markdown:
     # - <<: *prettier
     - <<: *textlint
@@ -202,10 +189,8 @@ languages:
   ## scripts
   javascript:
     - <<: *prettier
-    - <<: *biome
   typescript:
     - <<: *prettier
-    - <<: *biome
   ## other
   graphql:
     - <<: *prettier
@@ -221,13 +206,10 @@ languages:
   json:
     - <<: *fixjson
     - <<: *prettier
-    - <<: *biome
   jsonc:
     - <<: *prettier
-    - <<: *biome
   json5:
     - <<: *prettier
-    - <<: *biome
   yaml:
     - <<: *prettier
     - <<: *actionlint-lint
