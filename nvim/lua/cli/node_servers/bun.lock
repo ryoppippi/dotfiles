@@ -7,7 +7,7 @@
         "@astrojs/language-server": "2.15.4",
         "@astrojs/ts-plugin": "1.10.4",
         "@prisma/language-server": "6.6.0",
-        "@tailwindcss/language-server": "0.14.15",
+        "@tailwindcss/language-server": "0.14.16",
         "@vtsls/language-server": "0.2.8",
         "@vue/language-server": "2.2.10",
         "cssmodules-language-server": "1.5.1",
@@ -285,7 +285,7 @@
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@6.0.1", "", { "dependencies": { "@sinonjs/commons": "^1.7.0" } }, "sha512-MZPUxrmFubI36XS1DI3qmI0YdN1gks62JtFZvxR67ljjSNCeK6U08Zx4msEWOXuofgqUt6zPHSi1H9fbjR/NRA=="],
 
-    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.15", "", { "bin": { "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-DMQRQz6v6qGE1ZSKO/8KuzjbTG1ZviA3hJnBMHEOk+83OMYVpQyQJZ/dsUAF2mPrxYQWbtTwJJw2AxBTHlTZzg=="],
+    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.16", "", { "bin": { "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-f8lgFSjdWLaCG7kFKwczgRQZf5iQxFUw6Uk06tkVUXrgKAT2k7h4j/6VoYL+l7u5lrvgynl6bZ+HR5Lk+0SBTQ=="],
 
     "@tootallnate/once": ["@tootallnate/once@2.0.0", "", {}, "sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A=="],
 
