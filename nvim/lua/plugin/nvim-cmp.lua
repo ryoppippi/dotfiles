@@ -1,9 +1,5 @@
 local has = require("core.plugin").has
 
-local enabled_copilot_vim = function()
-	return has("copilot.vim") and tb(vim.g.loaded_copilot)
-end
-
 local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
@@ -126,8 +122,6 @@ return {
 					if cmp.visible() and entry ~= nil then
 						local confirm_option = {
 							select = false,
-							-- behavior = entry.source.name == "copilot" and cmp.ConfirmBehavior.Insert
-							-- 	or cmp.ConfirmBehavior.Replace,
 						}
 						cmp.confirm(confirm_option)
 					else
@@ -141,9 +135,6 @@ return {
 						snippet_jump(1)
 					elseif has_words_before() then
 						cmp.complete()
-					elseif enabled_copilot_vim() then
-						-- vim.api.nvim_feedkeys(vimx.fn.copilot.Accept(t("<Tab>")), "n", true)
-						feedkey(vimx.fn.copilot.Accept(t("<Tab>")), "n")
 					else
 						fallback()
 					end
@@ -174,7 +165,6 @@ return {
 				},
 			},
 			sources = cmp.config.sources({
-				{ name = "copilot", priority = 90 },
 				-- { name = "rg" },
 				{ name = "luasnip", priority = 20 },
 				{ name = "denippet", priority = 20 },
@@ -214,7 +204,6 @@ return {
 			rg = "[rg]",
 			omni = "[Omni]",
 			-- cmp_tabnine = "[Tabnine]",
-			copilot = "[Copilot]",
 			cmdline_history = "[History]",
 			look = "[Look]",
 			git = "[Git]",
@@ -254,7 +243,6 @@ return {
 			sources = cmp.config.sources({
 				{ name = "git" },
 				{ name = "ghq" },
-				{ name = "copilot" },
 				-- { name = "rg" },
 				{ name = "luasnip" },
 				{ name = "nvim_lsp" },
