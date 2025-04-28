@@ -1,5 +1,6 @@
 local lsp_utils = require("plugin.nvim-lspconfig.utils")
 
+---@type vim.lsp.Config
 return {
 	on_attach = function(client, _)
 		vim.api.nvim_create_autocmd("BufWritePost", {

@@ -18,4 +18,5 @@ require("core.plugin").on_attach(function(client, bufnr)
 	})
 end)
 
+---@type vim.lsp.Config
 return {}

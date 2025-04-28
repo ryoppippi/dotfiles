@@ -38,6 +38,7 @@ local function library(plugins)
 		:tolist()
 end
 
+---@type vim.lsp.Config
 return {
 	on_attach = format_config(false),
 	flags = {

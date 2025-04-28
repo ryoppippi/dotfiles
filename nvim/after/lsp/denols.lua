@@ -32,6 +32,7 @@ require("core.plugin").on_attach(function(client, bufnr)
 	end)
 end)
 
+---@type vim.lsp.Config
 return {
 	single_file_support = true,
 	workspace_required = false,

@@ -14,6 +14,7 @@ local function keymap(buffer)
 end
 
 -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
+---@type vim.lsp.Config
 return {
 	on_attach = function(_, buffer)
 		keymap(buffer)
