@@ -19,6 +19,7 @@ return {
 		keymap(buffer)
 	end,
 	single_file_support = false,
+	workspace_required = true,
 	settings = {
 		typescript = {
 			format = {
