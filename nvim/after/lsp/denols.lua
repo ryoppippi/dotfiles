@@ -34,6 +34,7 @@ end)
 
 return {
 	single_file_support = true,
+	workspace_required = false,
 	root_dir = function(bufnr, callback)
 		local found_dirs = vim.fs.find({
 			"deno.json",
