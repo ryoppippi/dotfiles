@@ -261,5 +261,6 @@ return {
 		zen = {
 			enabled = true,
 		},
+		dashboard = require("plugin.snacks.dashboard"),
 	},
 }
