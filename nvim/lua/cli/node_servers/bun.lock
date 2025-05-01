@@ -20,7 +20,7 @@
         "typescript-svelte-plugin": "0.3.46",
         "unocss-language-server": "0.1.7",
         "vscode-langservers-extracted": "4.10.0",
-        "yaml-language-server": "1.17.0",
+        "yaml-language-server": "1.18.0",
       },
     },
   },
@@ -1723,7 +1723,7 @@
 
     "yaml": ["yaml@2.7.0", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA=="],
 
-    "yaml-language-server": ["yaml-language-server@1.17.0", "", { "dependencies": { "ajv": "^8.11.0", "lodash": "4.17.21", "prettier": "^3.0.0", "request-light": "^0.5.7", "vscode-json-languageservice": "4.1.8", "vscode-languageserver": "^9.0.0", "vscode-languageserver-textdocument": "^1.0.1", "vscode-languageserver-types": "^3.16.0", "vscode-nls": "^5.0.0", "vscode-uri": "^3.0.2", "yaml": "2.2.2" }, "bin": { "yaml-language-server": "bin/yaml-language-server" } }, "sha512-cGgjTUNsR/mPGq2NrsNuJYEG3eKMOUro46Kk+qG4pib5LIJUDdn2h+eZPmi1E1DUr5wGvnZuh9IC6OhtsuyfLQ=="],
+    "yaml-language-server": ["yaml-language-server@1.18.0", "", { "dependencies": { "ajv": "^8.11.0", "lodash": "4.17.21", "prettier": "^3.0.0", "request-light": "^0.5.7", "vscode-json-languageservice": "4.1.8", "vscode-languageserver": "^9.0.0", "vscode-languageserver-textdocument": "^1.0.1", "vscode-languageserver-types": "^3.16.0", "vscode-nls": "^5.0.0", "vscode-uri": "^3.0.2", "yaml": "2.2.2" }, "bin": { "yaml-language-server": "bin/yaml-language-server" } }, "sha512-N1g0S7IcA+1PXDNNfnNHB+jQkwWh33Id7yhWLLmTyAsf3HSFdTYTbqnUaVrhiz5MrCUbiKtZjiAVxrn/N4HKLg=="],
 
     "yargs": ["yargs@17.7.2", "", { "dependencies": { "cliui": "^8.0.1", "escalade": "^3.1.1", "get-caller-file": "^2.0.5", "require-directory": "^2.1.1", "string-width": "^4.2.3", "y18n": "^5.0.5", "yargs-parser": "^21.1.1" } }, "sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w=="],
 
