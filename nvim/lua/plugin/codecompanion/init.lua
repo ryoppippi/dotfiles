@@ -37,8 +37,16 @@ return {
 		strategies = {
 			chat = {
 				adapter = "copilot",
-				send = {
-					modes = { n = "<C-s>", i = "<C-s>" },
+				keymaps = {
+					send = {
+						modes = { n = "<C-s>", i = "<C-s>" },
+						index = 1,
+						callback = function(chat)
+							vim.cmd("stopinsert")
+							chat:add_buf_message({ role = "llm", content = "" })
+							chat:submit()
+						end,
+					},
 				},
 			},
 			inline = {
@@ -53,6 +61,6 @@ return {
 		require("codecompanion").setup(opts)
 	end,
 	init = function()
-		require("plugin.codecompanion.notification").init()
+		require("plugin.codecompanion.spinner"):init()
 	end,
 }
