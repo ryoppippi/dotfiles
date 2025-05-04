@@ -52,4 +52,7 @@ return {
 	config = function(_, opts)
 		require("codecompanion").setup(opts)
 	end,
+	init = function()
+		require("plugin.codecompanion.notification").init()
+	end,
 }
