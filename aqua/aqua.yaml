@@ -107,7 +107,7 @@ packages:
   - name: LuaLS/lua-language-server@3.14.0
   - name: astral-sh/ruff@0.11.8
   - name: crates.io/gitu@0.30.3
-  - name: ducaale/xh@v0.24.0
+  - name: ducaale/xh@v0.24.1
   - name: xo/usql@v0.19.21
   - name: sharkdp/vivid@v0.10.1
   - name: ynqa/jnv@v0.6.0
