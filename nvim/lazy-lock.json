@@ -152,7 +152,6 @@
   "rustaceanvim": { "branch": "master", "commit": "e9c5aaba16fead831379d5f44617547a90b913c7" },
   "satellite.nvim": { "branch": "main", "commit": "3379561c794a93c546c5c45f9d60e78a01a31d31" },
   "schemastore.nvim": { "branch": "main", "commit": "442901b78dca4da1078b32e25e1afb32460e0082" },
-  "scrapbox-vim": { "branch": "master", "commit": "3e5049b94d5d4c969e516b0f7cba15993bd35b9b" },
   "smart-open.nvim": { "branch": "main", "commit": "7770b01ce4d551c143d7ec8589879320796621b9" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "sort.nvim": { "branch": "main", "commit": "c789da6968337d2a61104a929880b5f144e02855" },
