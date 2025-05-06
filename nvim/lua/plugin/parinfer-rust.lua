@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
 	"eraserhd/parinfer-rust",
-	build = "nix-shell --run 'cargo build --release --locked'",
+	build = "nix develop --command bash -c 'cargo build --release'",
 	ft = {
 		"clojure",
 		"scheme",
