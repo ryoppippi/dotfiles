@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
 	"vyfor/cord.nvim",
-	build = " nix develop --command ./build",
+	build = ":Cord update",
 	event = "VeryLazy",
 	opts = {
 		workspace_blacklist = {},
