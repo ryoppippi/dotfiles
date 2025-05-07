@@ -4,8 +4,9 @@ gui:
   nerdFontsVersion: "3"
   skipRewordInEditorWarning: true
 git:
-  allBranchesLogCmd: "git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all"
-  branchLogCmd: "git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate {{branchName}} --"
+  allBranchesLogCmds:
+    - 'git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'
+  branchLogCmd: 'git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate {{branchName}} --'
   overrideGpg: true
 
   paging:
