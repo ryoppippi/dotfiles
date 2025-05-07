@@ -6,6 +6,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope.nvim",
+		"ravitemer/codecompanion-history.nvim",
 	},
 	keys = {
 		{ "cc", "CodeCompanion", mode = "ca" },
@@ -54,6 +55,11 @@ return {
 			},
 			agent = {
 				adapter = "copilot",
+			},
+		},
+		extensions = {
+			history = {
+				enabled = true,
 			},
 		},
 	},
