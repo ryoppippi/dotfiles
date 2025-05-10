@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.6/.schema/devbox.schema.json",
   "packages": [
     "yarn@1.22.22",
-    "nodejs@23.11.0",
+    "nodejs@24.0.0",
     "turso-cli@1.0.9",
     "pnpm@10.10.0"
   ],
