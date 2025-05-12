@@ -48,7 +48,6 @@
   "flask-snippets": { "branch": "master", "commit": "db0a50c214b541c5514cdfcae221bdd236cd39d1" },
   "flatten.nvim": { "branch": "main", "commit": "b17a3e65c2e4e2ecd1345a2d08435e80f982c4a6" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "garbage-day.nvim": { "branch": "main", "commit": "750ef08ae6031ee3683014c5349144340c08ead6" },
   "gh-actions-cache": { "branch": "main", "commit": "7a697757fb65925b74116c850a371320fb4d4bcb" },
   "gh-copilot": { "branch": "main", "commit": "7fb0e769e248a2911cb61ea278ce2e385dd31915" },
   "gh-dash": { "branch": "main", "commit": "ec431605f554568b5117a1b06617c796fecde70b" },
