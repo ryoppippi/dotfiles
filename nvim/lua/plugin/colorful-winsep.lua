@@ -1,5 +1,5 @@
 return {
 	"nvim-zh/colorful-winsep.nvim",
-	event = { "WinNew" },
-	opts = {},
+	config = true,
+	event = { "WinLeave" },
 }
