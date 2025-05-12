@@ -23,10 +23,7 @@ require("core.plugin").on_attach(function(client, bufnr)
 		local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
 		if #nodeLSPs > 0 and #denoLSPs > 0 then
 			vim.iter(denoLSPs):each(function(denoLSP)
-				vim.lsp.stop_client(denoLSP.id)
-				if #denoLSP.attached_buffers < 1 then
-					vim.lsp.stop_client(denoLSP.id)
-				end
+				vim.lsp.buf_detach_client(bufnr, denoLSP.id)
 			end)
 		end
 	end)
