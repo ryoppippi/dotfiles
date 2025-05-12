@@ -36,19 +36,6 @@ end)
 return {
 	single_file_support = true,
 	workspace_required = false,
-	root_dir = function(bufnr, on_dir)
-		local found_dirs = vim.fs.find({
-			"deno.json",
-			"deno.jsonc",
-			"deps.ts",
-		}, {
-			upward = true,
-			path = vim.fs.dirname(vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))),
-		})
-		if #found_dirs > 0 then
-			return on_dir(vim.fs.dirname(found_dirs[1]))
-		end
-	end,
 	settings = {
 		deno = {
 			lint = true,
