@@ -134,5 +134,4 @@ packages:
   - name: pnpm/pnpm@v10.10.0
   - name: nodejs/node@v24.0.1
   - name: zigtools/zls@0.14.0
-  - name: tamasfe/taplo@0.9.3
   - name: secretlint/secretlint@v9.3.1
