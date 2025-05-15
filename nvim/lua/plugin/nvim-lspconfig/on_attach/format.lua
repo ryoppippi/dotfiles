@@ -48,10 +48,13 @@ function M.format(opts)
 			if not client.supports_method(method, buf) then
 				return false
 			end
+			local settings = client.config.settings
 			if
-				client.config.settings
-				and client.config.settings.format
-				and client.config.settings.format.enable == false
+				settings ~= nil
+				and (
+					(type(settings.format) == "boolean" and settings.format == false)
+					or (type(settings.format) == "table" and settings.format.enable == false)
+				)
 			then
 				return false
 			end
