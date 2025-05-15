@@ -48,6 +48,13 @@ function M.format(opts)
 			if not client.supports_method(method, buf) then
 				return false
 			end
+			if
+				client.config.settings
+				and client.config.settings.format
+				and client.config.settings.format.enable == false
+			then
+				return false
+			end
 			Snacks.notify.info("format on save", { title = client.name })
 			return true
 		end,
