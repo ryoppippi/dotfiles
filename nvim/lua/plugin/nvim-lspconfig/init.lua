@@ -38,7 +38,6 @@ return {
 				"yamlls",
 				"gh_actions_ls",
 				"nixd",
-				"taplo",
 
 				-- web/javascript
 				"svelte",
