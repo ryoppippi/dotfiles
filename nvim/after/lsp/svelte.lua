@@ -10,7 +10,11 @@ return {
 			end,
 		})
 	end,
+	single_file_support = true,
 	settings = {
+		format = {
+			enable = false,
+		},
 		typescript = {
 			inlayHints = lsp_utils.typescriptInlayHints,
 		},
