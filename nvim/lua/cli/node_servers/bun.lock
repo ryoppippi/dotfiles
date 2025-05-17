@@ -17,7 +17,7 @@
         "stylelint": "16.19.1",
         "stylelint-lsp": "2.0.1",
         "svelte-language-server": "0.17.14",
-        "typescript-svelte-plugin": "0.3.46",
+        "typescript-svelte-plugin": "0.3.47",
         "unocss-language-server": "0.1.7",
         "vscode-langservers-extracted": "4.10.0",
         "yaml-language-server": "1.18.0",
@@ -1601,7 +1601,7 @@
 
     "typescript-auto-import-cache": ["typescript-auto-import-cache@0.3.5", "", { "dependencies": { "semver": "^7.3.8" } }, "sha512-fAIveQKsoYj55CozUiBoj4b/7WpN0i4o74wiGY5JVUEoD0XiqDk1tJqTEjgzL2/AizKQrXxyRosSebyDzBZKjw=="],
 
-    "typescript-svelte-plugin": ["typescript-svelte-plugin@0.3.46", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "svelte2tsx": "~0.7.35" } }, "sha512-6GUb+nafp00/WEOKztBddyCsrJNHbIqO32kPfhDFybWqhj89AxUhwedVE2g4rug2E48d40AgG2jLYW611esJAg=="],
+    "typescript-svelte-plugin": ["typescript-svelte-plugin@0.3.47", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "svelte2tsx": "~0.7.35" } }, "sha512-q7NpMvWokP8n0MfAhB375K3PT+1iYuPC/wFYxOTWMiraCkA81GDA8X/b2DfdiuESfDTJ1VANUR2PqdE8pEqXxg=="],
 
     "unconfig": ["unconfig@7.3.1", "", { "dependencies": { "@quansync/fs": "^0.1.1", "defu": "^6.1.4", "jiti": "^2.4.2", "quansync": "^0.2.8" } }, "sha512-LH5WL+un92tGAzWS87k7LkAfwpMdm7V0IXG2FxEjZz/QxiIW5J5LkcrKQThj0aRz6+h/lFmKI9EUXmK/T0bcrw=="],
 
