@@ -6,7 +6,7 @@
     ]
   },
   "extends": [
-    "github>aquaproj/aqua-renovate-config#2.7.5"
+    "github>aquaproj/aqua-renovate-config#2.8.0"
   ],
   "labels": [
     "dependencies",
