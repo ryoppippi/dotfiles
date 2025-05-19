@@ -21,6 +21,7 @@ return {
 	end,
 	single_file_support = false,
 	workspace_required = true,
+	root_markers = { "package.json" },
 	settings = {
 		typescript = {
 			format = {
