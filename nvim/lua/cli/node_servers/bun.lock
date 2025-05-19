@@ -6,7 +6,7 @@
       "dependencies": {
         "@astrojs/language-server": "2.15.4",
         "@astrojs/ts-plugin": "1.10.4",
-        "@prisma/language-server": "6.8.1",
+        "@prisma/language-server": "6.8.2",
         "@tailwindcss/language-server": "0.14.17",
         "@vtsls/language-server": "0.2.8",
         "@vue/language-server": "2.2.10",
@@ -223,13 +223,13 @@
 
     "@octokit/types": ["@octokit/types@9.3.2", "", { "dependencies": { "@octokit/openapi-types": "^18.0.0" } }, "sha512-D4iHGTdAnEEVsB8fl95m1hiz7D5YiRdQ9b/OEb3BYRVwbLsGHcRVPz+u+BgRLNk0Q0/4iZCBqDN96j2XNxfXrA=="],
 
-    "@prisma/config": ["@prisma/config@6.8.1", "", { "dependencies": { "jiti": "2.4.2" } }, "sha512-8F8fPo32+L9pZ6iESJnFS/Q6R7jvKb5Bn8hsMcOYpkIRV4OQcdvCBQpLS60qol16F0TUAu2NXiE97a/hghex4Q=="],
+    "@prisma/config": ["@prisma/config@6.8.2", "", { "dependencies": { "jiti": "2.4.2" } }, "sha512-ZJY1fF4qRBPdLQ/60wxNtX+eu89c3AkYEcP7L3jkp0IPXCNphCYxikTg55kPJLDOG6P0X+QG5tCv6CmsBRZWFQ=="],
 
-    "@prisma/language-server": ["@prisma/language-server@6.8.1", "", { "dependencies": { "@prisma/config": "6.8.1", "@prisma/prisma-schema-wasm": "6.8.0-43.2060c79ba17c6bb9f5823312b6f6b7f4a845738e", "@prisma/schema-files-loader": "6.8.1", "@types/js-levenshtein": "1.1.3", "js-levenshtein": "1.1.6", "klona": "2.0.6", "vscode-languageserver": "8.1.0", "vscode-languageserver-textdocument": "1.0.11", "vscode-uri": "^3.0.8" }, "bin": { "prisma-language-server": "dist/bin.js" } }, "sha512-o153TR9LsRK4g165BTImhPUR1L3iT/h1K/Zrot8rh+P/s/EAjfM6pPwHDJndlcjYLFHaQGxDxzo0fE1Z+/Cs5A=="],
+    "@prisma/language-server": ["@prisma/language-server@6.8.2", "", { "dependencies": { "@prisma/config": "6.8.2", "@prisma/prisma-schema-wasm": "6.8.0-43.2060c79ba17c6bb9f5823312b6f6b7f4a845738e", "@prisma/schema-files-loader": "6.8.2", "@types/js-levenshtein": "1.1.3", "js-levenshtein": "1.1.6", "klona": "2.0.6", "vscode-languageserver": "8.1.0", "vscode-languageserver-textdocument": "1.0.11", "vscode-uri": "^3.0.8" }, "bin": { "prisma-language-server": "dist/bin.js" } }, "sha512-qJTyWvEW8iXXxCAoKqG5T4O55yY/odoojsRILvpnOV6zTv/UltIGRhvUjikkrh3nkLyrrbyiFjciec/zILBSIA=="],
 
     "@prisma/prisma-schema-wasm": ["@prisma/prisma-schema-wasm@6.8.0-43.2060c79ba17c6bb9f5823312b6f6b7f4a845738e", "", {}, "sha512-s2pYG3FWY1ICGN6TVu/DrzwZWzn4oyeOZnJI8CG5fJey7i3r8EtxiBB9R9ahwL0Kqg+5KAYn37V2kVCu/9+Y/g=="],
 
-    "@prisma/schema-files-loader": ["@prisma/schema-files-loader@6.8.1", "", { "dependencies": { "@prisma/prisma-schema-wasm": "6.8.0-43.2060c79ba17c6bb9f5823312b6f6b7f4a845738e", "fs-extra": "11.3.0" } }, "sha512-oEcXU4dRECa/Yz0we8muqkGUBazzPeBOS+3Wp132qFc9f9s0YpRJuytKxpfjOyYliQtFHdbCTDcvPPvJ22dpUA=="],
+    "@prisma/schema-files-loader": ["@prisma/schema-files-loader@6.8.2", "", { "dependencies": { "@prisma/prisma-schema-wasm": "6.8.0-43.2060c79ba17c6bb9f5823312b6f6b7f4a845738e", "fs-extra": "11.3.0" } }, "sha512-JRXJ08xfA1cP30kgP15AMCOKZchy2ss2oN6nSHxN745euh2tijpzvW4yCD4Q/1ZtnDkfKae45Tcpx0Ytab7RPA=="],
 
     "@quansync/fs": ["@quansync/fs@0.1.3", "", { "dependencies": { "quansync": "^0.2.10" } }, "sha512-G0OnZbMWEs5LhDyqy2UL17vGhSVHkQIfVojMtEWVenvj0V5S84VBgy86kJIuNsGDp2p7sTKlpSIpBUWdC35OKg=="],
 
