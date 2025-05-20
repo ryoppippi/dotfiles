@@ -38,10 +38,4 @@ query (\$owner: String!, \$endCursor: String) {
     ghq get $REPO
 
     cd (ghq root)/github.com/$REPO
-
-    if test -z $GIT_SSH_KEY
-        echo "GIT_SSH_KEY not found"
-        return
-    end
-    git config user.signingKey $GIT_SSH_KEY
 end
