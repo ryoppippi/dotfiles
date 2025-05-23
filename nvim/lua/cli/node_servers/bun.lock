@@ -8,7 +8,7 @@
         "@astrojs/ts-plugin": "1.10.4",
         "@prisma/language-server": "6.8.2",
         "@tailwindcss/language-server": "0.14.17",
-        "@vtsls/language-server": "0.2.8",
+        "@vtsls/language-server": "0.2.9",
         "@vue/language-server": "2.2.10",
         "cssmodules-language-server": "1.5.1",
         "emmet-ls": "0.4.2",
@@ -309,9 +309,9 @@
 
     "@vscode/l10n": ["@vscode/l10n@0.0.18", "", {}, "sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ=="],
 
-    "@vtsls/language-server": ["@vtsls/language-server@0.2.8", "", { "dependencies": { "@vtsls/language-service": "0.2.8", "vscode-languageserver": "^9.0.1", "vscode-uri": "^3.0.8" }, "bin": { "vtsls": "bin/vtsls.js" } }, "sha512-h5vBye8TPCta7b1QdfXxI1O3gxEVAgCrf1uCGeDYzXEf3rMf4Nev7YjH/n2YH+OU/tFwpUs6Jz3FzL7/6iHF+w=="],
+    "@vtsls/language-server": ["@vtsls/language-server@0.2.9", "", { "dependencies": { "@vtsls/language-service": "0.2.9", "vscode-languageserver": "^9.0.1", "vscode-uri": "^3.1.0" }, "bin": { "vtsls": "bin/vtsls.js" } }, "sha512-4RaXUlpg6VPnOLr5fF0uj3vsoteZ17BG04UyFyqVGIg70xbJ8pwy1ZkUXbwUkvXhaYHAtBSbh4P8bJUSmB87eg=="],
 
-    "@vtsls/language-service": ["@vtsls/language-service@0.2.8", "", { "dependencies": { "@vscode/l10n": "^0.0.18", "@vtsls/vscode-fuzzy": "0.0.1", "jsonc-parser": "^3.2.0", "semver": "7.5.2", "typescript": "5.7.2", "vscode-languageserver-protocol": "^3.17.5", "vscode-languageserver-textdocument": "^1.0.12", "vscode-uri": "^3.0.8" } }, "sha512-sfrY76QgXMe1GMGcWjDcjG/ldoYUuc7M+1yYG/ndE4Y/irJ7/UyG+pFefPzXA+dEMQ7Y9h4xi4wrMg0ePDPJBQ=="],
+    "@vtsls/language-service": ["@vtsls/language-service@0.2.9", "", { "dependencies": { "@vscode/l10n": "^0.0.18", "@vtsls/vscode-fuzzy": "0.0.1", "jsonc-parser": "^3.2.0", "semver": "7.5.2", "typescript": "5.8.3", "vscode-languageserver-protocol": "^3.17.5", "vscode-languageserver-textdocument": "^1.0.12", "vscode-uri": "^3.1.0" } }, "sha512-w9yJNfsLm9/NPRLmYL3xKzNe7QQRs3ctmuQVMTrVby2A9c+yCrg0f+cKkle2MhZu2RjnewnBBFSgTSIaR5/MIQ=="],
 
     "@vtsls/vscode-fuzzy": ["@vtsls/vscode-fuzzy@0.0.1", "", {}, "sha512-2KCtA+/OmPVttsdVggO0WQFXZwM0zbG7G8KRGExe4YeoaHB0fDWyfsNrWnutnFVRlpmu8quVTjTI15YK6KGCFw=="],
 
@@ -1717,7 +1717,7 @@
 
     "@vtsls/language-service/semver": ["semver@7.5.2", "", { "dependencies": { "lru-cache": "^6.0.0" }, "bin": { "semver": "bin/semver.js" } }, "sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ=="],
 
-    "@vtsls/language-service/typescript": ["typescript@5.7.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg=="],
+    "@vtsls/language-service/typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
 
     "acorn-globals/acorn": ["acorn@7.4.1", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A=="],
 
