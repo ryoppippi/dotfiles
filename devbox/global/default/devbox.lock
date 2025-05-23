@@ -134,31 +134,51 @@
         }
       }
     },
-    "turso-cli@1.0.9": {
-      "last_modified": "2025-05-07T00:09:58Z",
-      "resolved": "github:NixOS/nixpkgs/b3582c75c7f21ce0b429898980eddbbf05c68e55#turso-cli",
+    "turso-cli@1.0.10": {
+      "last_modified": "2025-05-18T01:51:26Z",
+      "resolved": "github:NixOS/nixpkgs/8406224e30c258025cb8b31704bdb977a8f1f009#turso-cli",
       "source": "devbox-search",
-      "version": "1.0.9",
+      "version": "1.0.10",
       "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ik0h0dmf59f07kmabg7ad7c3s2q701cf-turso-cli-1.0.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ik0h0dmf59f07kmabg7ad7c3s2q701cf-turso-cli-1.0.10"
+        },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/r6f3py74frwl4z57gs37ws6w7zggfw5h-turso-cli-1.0.9",
+              "path": "/nix/store/lgkybycslh07wjla8mc55zz94ghy76g4-turso-cli-1.0.10",
               "default": true
             }
           ],
-          "store_path": "/nix/store/r6f3py74frwl4z57gs37ws6w7zggfw5h-turso-cli-1.0.9"
+          "store_path": "/nix/store/lgkybycslh07wjla8mc55zz94ghy76g4-turso-cli-1.0.10"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/z2yvrd5w93bxx1nayiqmwjbbz1gd1v44-turso-cli-1.0.10",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/z2yvrd5w93bxx1nayiqmwjbbz1gd1v44-turso-cli-1.0.10"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/acbwcmhyb7cxjfvkf0fw369fxmwi29dy-turso-cli-1.0.9",
+              "path": "/nix/store/cvy2zcbyn2dskhf0g2cwb8lzsn752vm4-turso-cli-1.0.10",
               "default": true
             }
           ],
-          "store_path": "/nix/store/acbwcmhyb7cxjfvkf0fw369fxmwi29dy-turso-cli-1.0.9"
+          "store_path": "/nix/store/cvy2zcbyn2dskhf0g2cwb8lzsn752vm4-turso-cli-1.0.10"
         }
       }
     },
