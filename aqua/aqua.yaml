@@ -132,6 +132,6 @@ packages:
   - name: sxyazi/yazi@v25.4.8
   - name: typst/typst@v0.13.1
   - name: pnpm/pnpm@v10.11.0
-  - name: nodejs/node@v24.0.2
+  - name: nodejs/node@v24.1.0
   - name: zigtools/zls@0.14.0
   - name: secretlint/secretlint@v9.3.1
