@@ -16,7 +16,7 @@
         "sql-language-server": "1.7.1",
         "stylelint": "16.19.1",
         "stylelint-lsp": "2.0.1",
-        "svelte-language-server": "0.17.14",
+        "svelte-language-server": "0.17.15",
         "typescript-svelte-plugin": "0.3.47",
         "unocss-language-server": "0.1.7",
         "vscode-langservers-extracted": "4.10.0",
@@ -1495,7 +1495,7 @@
 
     "svelte": ["svelte@4.2.19", "", { "dependencies": { "@ampproject/remapping": "^2.2.1", "@jridgewell/sourcemap-codec": "^1.4.15", "@jridgewell/trace-mapping": "^0.3.18", "@types/estree": "^1.0.1", "acorn": "^8.9.0", "aria-query": "^5.3.0", "axobject-query": "^4.0.0", "code-red": "^1.0.3", "css-tree": "^2.3.1", "estree-walker": "^3.0.3", "is-reference": "^3.0.1", "locate-character": "^3.0.0", "magic-string": "^0.30.4", "periscopic": "^3.1.0" } }, "sha512-IY1rnGr6izd10B0A8LqsBfmlT5OILVuZ7XsI0vdGPEvuonFV7NYEUK4dAkm9Zg2q0Um92kYjTpS1CAP3Nh/KWw=="],
 
-    "svelte-language-server": ["svelte-language-server@0.17.14", "", { "dependencies": { "@jridgewell/trace-mapping": "^0.3.25", "@vscode/emmet-helper": "2.8.4", "chokidar": "^4.0.1", "estree-walker": "^2.0.1", "fdir": "^6.2.0", "globrex": "^0.1.2", "lodash": "^4.17.21", "prettier": "~3.3.3", "prettier-plugin-svelte": "^3.4.0", "svelte": "^4.2.19", "svelte2tsx": "~0.7.35", "typescript": "^5.8.2", "typescript-auto-import-cache": "^0.3.5", "vscode-css-languageservice": "~6.3.5", "vscode-html-languageservice": "~5.4.0", "vscode-languageserver": "9.0.1", "vscode-languageserver-protocol": "3.17.5", "vscode-languageserver-types": "3.17.5", "vscode-uri": "~3.1.0" }, "bin": { "svelteserver": "bin/server.js" } }, "sha512-AkmeZsuq+0qYPNtc/FRAGnFytfa8WPshHQcImn7AphMNLPnXQ56/8gxBKsP+2MN5od/N2zRcHDnwPFch/7mF9Q=="],
+    "svelte-language-server": ["svelte-language-server@0.17.15", "", { "dependencies": { "@jridgewell/trace-mapping": "^0.3.25", "@vscode/emmet-helper": "2.8.4", "chokidar": "^4.0.1", "estree-walker": "^2.0.1", "fdir": "^6.2.0", "globrex": "^0.1.2", "lodash": "^4.17.21", "prettier": "~3.3.3", "prettier-plugin-svelte": "^3.4.0", "svelte": "^4.2.19", "svelte2tsx": "~0.7.35", "typescript": "^5.8.2", "typescript-auto-import-cache": "^0.3.6", "vscode-css-languageservice": "~6.3.5", "vscode-html-languageservice": "~5.4.0", "vscode-languageserver": "9.0.1", "vscode-languageserver-protocol": "3.17.5", "vscode-languageserver-types": "3.17.5", "vscode-uri": "~3.1.0" }, "bin": { "svelteserver": "bin/server.js" } }, "sha512-+El5wFkHitqQ3q+fmkaOJrk4yTTYWgR2orPUO2H0LleX9Omoi7GeBmXFhd1fTvqMf/Ie6Z/8aClUvLfyg9YirA=="],
 
     "svelte2tsx": ["svelte2tsx@0.7.39", "", { "dependencies": { "dedent-js": "^1.0.1", "pascal-case": "^3.1.1" }, "peerDependencies": { "svelte": "^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0", "typescript": "^4.9.4 || ^5.0.0" } }, "sha512-NX8a7eSqF1hr6WKArvXr7TV7DeE+y0kDFD7L5JP7TWqlwFidzGKaG415p992MHREiiEWOv2xIWXJ+mlONofs0A=="],
 
@@ -1551,7 +1551,7 @@
 
     "typescript": ["typescript@4.9.5", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g=="],
 
-    "typescript-auto-import-cache": ["typescript-auto-import-cache@0.3.5", "", { "dependencies": { "semver": "^7.3.8" } }, "sha512-fAIveQKsoYj55CozUiBoj4b/7WpN0i4o74wiGY5JVUEoD0XiqDk1tJqTEjgzL2/AizKQrXxyRosSebyDzBZKjw=="],
+    "typescript-auto-import-cache": ["typescript-auto-import-cache@0.3.6", "", { "dependencies": { "semver": "^7.3.8" } }, "sha512-RpuHXrknHdVdK7wv/8ug3Fr0WNsNi5l5aB8MYYuXhq2UH5lnEB1htJ1smhtD5VeCsGr2p8mUDtd83LCQDFVgjQ=="],
 
     "typescript-svelte-plugin": ["typescript-svelte-plugin@0.3.47", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "svelte2tsx": "~0.7.35" } }, "sha512-q7NpMvWokP8n0MfAhB375K3PT+1iYuPC/wFYxOTWMiraCkA81GDA8X/b2DfdiuESfDTJ1VANUR2PqdE8pEqXxg=="],
 
@@ -1910,6 +1910,8 @@
     "v8-to-istanbul/source-map": ["source-map@0.7.4", "", {}, "sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA=="],
 
     "volar-service-emmet/@vscode/emmet-helper": ["@vscode/emmet-helper@2.11.0", "", { "dependencies": { "emmet": "^2.4.3", "jsonc-parser": "^2.3.0", "vscode-languageserver-textdocument": "^1.0.1", "vscode-languageserver-types": "^3.15.1", "vscode-uri": "^3.0.8" } }, "sha512-QLxjQR3imPZPQltfbWRnHU6JecWTF1QSWhx3GAKQpslx7y3Dp6sIIXhKjiUJ/BR9FX8PVthjr9PD6pNwOJfAzw=="],
+
+    "volar-service-typescript/typescript-auto-import-cache": ["typescript-auto-import-cache@0.3.5", "", { "dependencies": { "semver": "^7.3.8" } }, "sha512-fAIveQKsoYj55CozUiBoj4b/7WpN0i4o74wiGY5JVUEoD0XiqDk1tJqTEjgzL2/AizKQrXxyRosSebyDzBZKjw=="],
 
     "volar-service-yaml/yaml-language-server": ["yaml-language-server@1.15.0", "", { "dependencies": { "ajv": "^8.11.0", "lodash": "4.17.21", "request-light": "^0.5.7", "vscode-json-languageservice": "4.1.8", "vscode-languageserver": "^7.0.0", "vscode-languageserver-textdocument": "^1.0.1", "vscode-languageserver-types": "^3.16.0", "vscode-nls": "^5.0.0", "vscode-uri": "^3.0.2", "yaml": "2.2.2" }, "optionalDependencies": { "prettier": "2.8.7" }, "bin": { "yaml-language-server": "bin/yaml-language-server" } }, "sha512-N47AqBDCMQmh6mBLmI6oqxryHRzi33aPFPsJhYy3VTUGCdLHYjGh4FZzpUjRlphaADBBkDmnkM/++KNIOHi5Rw=="],
 
