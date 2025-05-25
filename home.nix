@@ -188,6 +188,8 @@ in
     gyazo
     bsky
     zig
+    opencode
+    sdkman
     
     # === Migrated from Homebrew ===
     # Core Development Tools
@@ -269,13 +271,16 @@ in
     telnet
     terminal-notifier
     tldr
+    tmux
     trash
+    tree
     
     # Programming Language Tools
     python311
     python39
     leiningen
     llvm
+    clojure
     
     # System Libraries
     libffi
@@ -290,11 +295,15 @@ in
     
     # Other Tools
     aria2
+    awscli
     coreutils
+    dra
     git-now
     gd
     icoutils
     media-info
+    mkcert
+    pinact
     plotutils
     poppler
     utf8proc
@@ -542,10 +551,13 @@ in
     controlPersist = "10m";
   };
   
-  # tmux configuration (if you want to add it)
+  # tmux configuration
   programs.tmux = {
-    enable = false; # Set to true if you use tmux
+    enable = true;
     terminal = "screen-256color";
     keyMode = "vi";
+    clock24 = true;
+    historyLimit = 10000;
+    customPaneNavigationAndResize = true;
   };
 }
