@@ -73,7 +73,7 @@ packages:
   - name: sassman/t-rec-rs@v0.7.9
   - name: blacknon/hwatch@0.3.19
   - name: watchexec/watchexec@v2.3.2
-  - name: rclone/rclone@v1.69.2
+  - name: rclone/rclone@v1.69.3
   - name: hhatto/gocloc@v0.7.0
   - name: tsl0922/ttyd@1.7.7
   - name: whalebrew/whalebrew@0.5.0
