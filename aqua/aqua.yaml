@@ -102,7 +102,7 @@ packages:
   - name: simonwhitaker/gibo@v3.0.12
   - name: tmc/json-to-struct@1f65fffbfdbb2b0e56a3f6f6cd24daad58e90dec
   - name: tomohiro/gyazo-cli@1.0.0
-  - name: wakatime/wakatime-cli@v1.115.2
+  - name: wakatime/wakatime-cli@v1.115.3
   - name: BurntSushi/xsv@0.13.0
   - name: LuaLS/lua-language-server@3.14.0
   - name: astral-sh/ruff@0.11.11
