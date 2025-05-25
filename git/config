@@ -64,6 +64,17 @@
   sha = "!f() { git rev-parse "${1-HEAD}"; }; f"
   root = rev-parse --show-toplevel
   cza = cz -a
+  today-numstat = !"f(){ \
+    git log \
+    --numstat \
+    --branches \
+    --no-merges \
+    --since=midnight \
+    --author=\"$(git config user.name)\" \
+    | awk 'NF==3 {a+=$1; d+=$2} END { \
+      printf(\"%d (\\x1b[32m+%d\\033[m, \\x1b[31m-%d\\033[m)\\n\", a+d, a, d)\
+    }'; \
+  };f"
 	logg = log --graph --abbrev-commit --pretty=format:\"%C(yellow)%h%C(reset) - %C(cyan)%ad%C(reset) %C(green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%n\"
 	aliases = !git config --get-regexp alias |  sed 's/^alias.//g' | sed 's/ / = /1'
 
