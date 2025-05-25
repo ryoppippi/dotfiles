@@ -114,6 +114,9 @@ abbr -a lct leetcode t
 abbr -a lcx leetcode t
 abbr -a lcp leetcode t
 
+# ai
+abbr -a cl claude
+
 # misc
 abbr -a n -f _na
 abbr --position anywhere rpp ryoppippi
