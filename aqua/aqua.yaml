@@ -48,7 +48,7 @@ packages:
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.13.1
   - name: direnv/direnv@v2.36.0
-  - name: gohugoio/hugo@v0.147.5
+  - name: gohugoio/hugo@v0.147.6
   - name: projectdiscovery/httpx@v1.7.0
   - name: dandavison/delta@0.18.2
   - name: rhysd/dotfiles@v0.2.3
