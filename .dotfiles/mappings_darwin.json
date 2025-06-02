@@ -6,6 +6,5 @@
   "xcode/Default.idekeybindings": "~/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings",
   "yabai": "~/.config/yabai",
   "skhd": "~/.config/skhd",
-  "pip/pip.conf": "~/Library/Application Support/pip/pip.conf",
-  "jj": "~/Library/Application Support/jj"
+  "pip/pip.conf": "~/Library/Application Support/pip/pip.conf"
 }
