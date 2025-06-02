@@ -21,7 +21,7 @@ packages:
   - name: denisidoro/navi@v2.24.0
   - name: nektos/act@v0.2.77
   - name: b4b4r07/gist@v1.2.6
-  - name: denoland/deno@v2.3.3
+  - name: denoland/deno@v2.3.4
   - name: jesseduffield/lazygit@v0.51.1
   - name: BurntSushi/ripgrep@14.1.1
   - name: sharkdp/fd@v10.2.0
