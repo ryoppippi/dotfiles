@@ -80,7 +80,8 @@ local function auto_format(buf)
 		group = vim.api.nvim_create_augroup("LspFormat." .. buf, {}),
 		buffer = buf,
 		callback = function()
-			if M.autoformat then
+			local isSkip = vim.b.autoformat == false or tb(vim.v.cmdbang)
+			if not isSkip then
 				M.format()
 			end
 		end,
