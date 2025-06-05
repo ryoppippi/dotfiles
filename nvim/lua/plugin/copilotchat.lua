@@ -13,7 +13,7 @@ return {
 	opts = {
 		debug = false, -- Enable debugging
 		chat_autocomplete = true,
-		model = "gemini-2.5-pro",
+		model = "copilot:gpt-4.1",
 	},
 	-- See Commands section for default commands if you want to lazy load on them
 }
