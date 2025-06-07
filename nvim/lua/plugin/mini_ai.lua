@@ -4,6 +4,13 @@ return {
 	"echasnovski/mini.ai",
 	branch = "stable",
 	event = { "BufReadPost", "BufNew" },
+	dependencies = {
+		{
+			"echasnovski/mini.extra",
+			branch = "stable",
+			config = true,
+		},
+	},
 	opts = function()
 		vim.keymap.set({ "x", "o" }, "A", function()
 			local ctrl_v = vim.keycode("<C-v>")
