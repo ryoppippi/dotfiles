@@ -95,16 +95,3 @@ vim.api.nvim_create_autocmd({ "BufDelete" }, {
 	buffer = commit_bufnr,
 	callback = cquit_if_not_passed,
 })
-
-if has("CopilotChat.nvim") then
-	vim.keymap.set("n", "<leader>c", "<cmd>CopilotChatCommit<CR>", { buffer = commit_bufnr })
-	vim.schedule(function()
-		require("CopilotChat")
-		vim.cmd.CopilotChatCommit()
-	end)
-	vim.api.nvim_create_autocmd("QuitPre", {
-		command = "CopilotChatClose",
-	})
-
-	vim.keymap.set("ca", "qq", "execute 'CopilotChatClose' <bar> wqa")
-end
