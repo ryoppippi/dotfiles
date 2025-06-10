@@ -99,7 +99,7 @@ packages:
   - name: koron/iferr@bb332a3b1d9129b6486c7ddcb7030c11b05cfc88
   - name: mattn/zig-update@v0.0.4
   - name: mike-engel/jwt-cli@6.2.0
-  - name: simonwhitaker/gibo@v3.0.12
+  - name: simonwhitaker/gibo@v3.0.14
   - name: tmc/json-to-struct@1f65fffbfdbb2b0e56a3f6f6cd24daad58e90dec
   - name: tomohiro/gyazo-cli@1.0.0
   - name: wakatime/wakatime-cli@v1.115.3
