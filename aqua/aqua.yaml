@@ -44,7 +44,7 @@ packages:
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v1.2.1
-  - name: cloudflare/cloudflared@2025.5.0
+  - name: cloudflare/cloudflared@2025.6.0
   - name: muesli/duf@v0.8.1
   - name: wagoodman/dive@v0.13.1
   - name: direnv/direnv@v2.36.0
@@ -61,7 +61,7 @@ packages:
   - name: noborus/trdsql@v1.1.0
   - name: JohnnyMorganz/StyLua@v2.1.0
   - name: mattn/efm-langserver@v0.0.54
-  - name: cloudflare/cloudflared@2025.5.0
+  - name: cloudflare/cloudflared@2025.6.0
   - name: wasmerio/wasmer@v6.0.1
   - name: mattn/bsky@v0.0.73
   - name: spf13/cobra-cli@v1.3.0
