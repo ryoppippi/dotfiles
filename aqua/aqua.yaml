@@ -134,4 +134,4 @@ packages:
   - name: pnpm/pnpm@v10.12.1
   - name: nodejs/node@v24.2.0
   - name: zigtools/zls@0.14.0
-  - name: secretlint/secretlint@v9.3.4
+  - name: secretlint/secretlint@v10.1.0
