@@ -40,7 +40,7 @@ packages:
   - name: rhysd/actionlint@v1.7.7
   - name: git-lfs/git-lfs@v3.6.1
   - name: starship/starship@v1.23.0
-  - name: tinygo-org/tinygo@v0.37.0
+  - name: tinygo-org/tinygo@v0.38.0
   - name: uzimaru0000/tv@v0.7.0
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v1.2.1
