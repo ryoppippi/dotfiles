@@ -75,9 +75,6 @@ fish_add_path $HOME/.scripts/bin
 # wezterm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
 
-# claude
-fish_add_path $HOME/.claude/local
-
 # Secretive
 set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
