@@ -80,9 +80,10 @@ set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.Sec
 test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
 
 # claude code
+fish_add_path $XDG_CONFIG_HOME/claude/local
+set -gx CLAUDE_CONFIG_DIR $XDG_CONFIG_HOME/claude
 set -gx ENABLE_BACKGROUND_TASKS 1
 set -gx FORCE_AUTO_BACKGROUND_TASKS 1
-fish_add_path $XDG_CONFIG_HOME/claude/local
 
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
