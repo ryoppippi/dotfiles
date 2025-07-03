@@ -104,7 +104,7 @@ packages:
   - name: tomohiro/gyazo-cli@1.0.0
   - name: wakatime/wakatime-cli@v1.115.5
   - name: BurntSushi/xsv@0.13.0
-  - name: LuaLS/lua-language-server@3.14.0
+  - name: LuaLS/lua-language-server@3.15.0
   - name: astral-sh/ruff@0.12.1
   - name: crates.io/gitu@0.34.0
   - name: ducaale/xh@v0.24.1
