@@ -69,7 +69,7 @@ packages:
   - name: abice/go-enum@v0.7.0
   - name: gotestyourself/gotestsum@v1.12.3
   - name: charmbracelet/vhs@v0.9.0
-  - name: ninja-build/ninja@v1.12.1
+  - name: ninja-build/ninja@v1.13.0
   - name: sassman/t-rec-rs@v0.7.9
   - name: blacknon/hwatch@0.3.19
   - name: watchexec/watchexec@v2.3.2
