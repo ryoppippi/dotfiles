@@ -1,6 +1,8 @@
+---@type LazySpec
 return {
 	"ahmedkhalf/project.nvim",
 	event = "VeryLazy",
+	enabled = false,
 	init = function()
 		require("plugin.telescope").le("projects")
 	end,
