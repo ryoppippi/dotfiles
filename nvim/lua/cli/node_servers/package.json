@@ -4,7 +4,7 @@
     "@astrojs/language-server": "2.15.4",
     "@astrojs/ts-plugin": "1.10.4",
     "@prisma/language-server": "6.11.1",
-    "@tailwindcss/language-server": "0.14.24",
+    "@tailwindcss/language-server": "0.14.25",
     "@vtsls/language-server": "0.2.9",
     "@vue/language-server": "2.2.12",
     "cssmodules-language-server": "1.5.1",
