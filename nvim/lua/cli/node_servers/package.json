@@ -11,7 +11,7 @@
     "emmet-ls": "0.4.2",
     "gh-actions-language-server": "^0.0.3",
     "sql-language-server": "1.7.1",
-    "stylelint": "16.20.0",
+    "stylelint": "16.21.1",
     "stylelint-lsp": "2.0.1",
     "svelte-language-server": "0.17.16",
     "typescript-svelte-plugin": "0.3.48",
