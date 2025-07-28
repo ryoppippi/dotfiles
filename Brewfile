@@ -288,7 +288,6 @@ mas "LanguageTranslator", id: 1218781096
 mas "LINE", id: 539883307
 mas "Mapture", id: 1671995907
 mas "Mathpix Snipping Tool", id: 1349670778
-mas "Mendeley Web Importer", id: 1577516695
 mas "Messenger", id: 1480068668
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft Remote Desktop", id: 1295203466
