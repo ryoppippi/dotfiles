@@ -1,0 +1,4 @@
+- git commit is split into logical units and as detailed as possible
+- git commit should have a commit message
+- git commit is as detailed as possible in the commit message description, including the prompt message
+- git commit follows Conventional Commits in writing commit messages
