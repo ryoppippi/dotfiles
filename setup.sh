@@ -81,7 +81,7 @@ brew install fish curl
 
 # install deps via brew
 export HOMEBREW_BREWFILE="$HOME/.Brewfile"
-brew bundle --global
+brew bundle --file="$HOMEBREW_BREWFILE"
 brew reinstall fish
 
 # fish shell
