@@ -70,6 +70,7 @@ cd /tmp && \
   AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml && \
   cd "$AQUA_GLOBAL_CONFIG_DIR" && \
   aqua install -l -a && \
+  cd "$DOTFILES_DIR" && \
   dotfiles link .
 
 # install homebrew
