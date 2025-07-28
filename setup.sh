@@ -59,18 +59,18 @@ curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VER
 # install deps via aqua
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
-cd /tmp
-  && aqua init
-  && aqua g -i rhysd/dotfiles
-  && aqua g -i x-motemen/ghq
-  && aqua i -l
-  && ghq get ryoppippi/dotfiles
-  && DOTFILES_DIR=$(ghq root)/$(ghq list | grep ryoppippi/dotfiles)
-  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua
-  && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml
-  && cd $AQUA_GLOBAL_CONFIG_DIR
-  && aqua install -l -a
-  && dotfiles link .
+cd /tmp && \
+  aqua init && \
+  aqua g -i rhysd/dotfiles && \
+  aqua g -i x-motemen/ghq && \
+  aqua i -l && \
+  ghq get ryoppippi/dotfiles && \
+  DOTFILES_DIR=$(ghq root)/$(ghq list | grep ryoppippi/dotfiles) && \
+  AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua && \
+  AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml && \
+  cd "$AQUA_GLOBAL_CONFIG_DIR" && \
+  aqua install -l -a && \
+  dotfiles link .
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
