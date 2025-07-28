@@ -80,7 +80,7 @@ source $DOTFILES_DIR/bash/.bash_profile
 brew install fish curl
 
 # install deps via brew
-export HOMEBREW_BREWFILE="$HOME/.brewfile"
+export HOMEBREW_BREWFILE="$HOME/.Brewfile"
 brew bundle --global
 brew reinstall fish
 
