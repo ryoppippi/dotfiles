@@ -89,6 +89,12 @@ fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/
 fish -c "fisher update"
 fish -c "fish_update_completions"
 
+# default shell to fish
+if ! grep -q "$(which fish)" /etc/shells; then
+  echo "$(which fish)" | sudo tee -a /etc/shells
+fi
+chsh -s "$(which fish)"
+
 # node
 bun --help
 deno --help
