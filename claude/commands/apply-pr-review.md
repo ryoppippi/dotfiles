@@ -1,0 +1,3 @@
+- check the current PR in this branch
+- fetch review comments
+- apply the review comments if you agree with them. tell us why you agree or disagree

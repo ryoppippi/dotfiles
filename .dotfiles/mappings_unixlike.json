@@ -12,5 +12,8 @@
   "efm-langserver": "~/.config/efm-langserver",
   "pip/pip.conf": "~/.pip/pip.conf",
   "zed/settings.json": "~/.config/zed/settings.json",
-  "jj": "~/.config/jj"
+  "jj": "~/.config/jj",
+  "claude/commands": "~/.config/claude/commands",
+  "claude/CLAUDE.md": "~/.config/claude/CLAUDE.md",
+  "claude/settings.json": "~/.config/claude/settings.json"
 }

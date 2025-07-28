@@ -1,0 +1,7 @@
+{
+  "cleanupPeriodDays": 3600,
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  }
+}
