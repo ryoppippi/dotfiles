@@ -9,7 +9,7 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_CACHE_HOME=$HOME/.cache
 XDG_DATA_HOME=$HOME/.local/share
 
-AQUA_VERSION=v3.0.0
+AQUA_VERSION=v3.1.2
 
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 arch=$(uname -m)
