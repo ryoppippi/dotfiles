@@ -124,7 +124,7 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: jetify-com/devbox@0.15.0
   - name: dduan/tre@v0.4.0
-  - name: astral-sh/uv@0.7.21
+  - name: astral-sh/uv@0.8.4
   - name: mikefarah/yq@v4.46.1
   - name: sheepla/srss@v0.1.0
   - name: martinvonz/jj@v0.31.0
