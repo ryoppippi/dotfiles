@@ -131,7 +131,7 @@ packages:
   - name: fastfetch-cli/fastfetch@2.49.0
   - name: sxyazi/yazi@v25.5.31
   - name: typst/typst@v0.13.1
-  - name: pnpm/pnpm@v10.13.1
+  - name: pnpm/pnpm@v10.14.0
   - name: nodejs/node@v24.5.0
   - name: zigtools/zls@0.14.0
   - name: secretlint/secretlint@v10.2.2
