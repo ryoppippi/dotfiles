@@ -5,5 +5,9 @@
   "permissions": {
     "defaultMode": "acceptEdits"
   },
-  "model": "opus"
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bun $( ghq root )/github.com/ryoppippi/ccusage/src/index.ts statusline"
+  }
 }
