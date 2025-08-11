@@ -15,6 +15,7 @@ end
 
 function fish_user_key_bindings
     bind \cx\ck fkill
+    bind \cb git_switch_branch
 
     ### fzf ###
     fzf_key_bindings
