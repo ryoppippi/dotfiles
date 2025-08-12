@@ -135,4 +135,4 @@ packages:
   - name: nodejs/node@v24.5.0
   - name: zigtools/zls@0.14.0
   - name: secretlint/secretlint@v10.2.2
-  - name: sst/opencode@v0.4.1
+  - name: sst/opencode@v0.4.2
