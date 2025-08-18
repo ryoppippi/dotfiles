@@ -10,6 +10,7 @@ return {
 		{ "gp", "Gin push", mode = "ca" },
 		{ "gpl", "Gin pull", mode = "ca" },
 		{ "gc", "Gin commit", mode = "ca" },
+		{ "gb", "GinBrowse", mode = "ca" },
 	},
 	config = function(spec)
 		vimx.g.gin_browse_default_args = { "-n", "--permalink" }
