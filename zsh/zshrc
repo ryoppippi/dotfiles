@@ -1,0 +1,11 @@
+source ~/.bash_profile
+
+# if CLAUDECODE env is set, launch fish shell
+if [[ -n "$CLAUDECODE" ]]; then
+  exec fish
+fi
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+
