@@ -52,6 +52,7 @@ local config = {
 		},
 	},
 	macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
+	audible_bell = "SystemBeep",
 }
 
 config = utils.merge_tables(config, require("tab_bar"))
