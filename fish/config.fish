@@ -114,9 +114,6 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     # set vivid colors
     echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE
 
-    # devbox
-    echo "$(devbox global shellenv)" >>$CONFIG_CACHE
-
     # jj
     ensure_installed jj util completion fish >>$CONFIG_CACHE
 

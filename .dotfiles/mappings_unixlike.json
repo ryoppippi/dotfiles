@@ -4,7 +4,6 @@
   "bash/.bash_profile": "~/.bash_profile",
   "bash/.bashrc": "~/.bashrc",
   "bat": "~/.config/bat",
-  "devbox/global/default": "~/.local/share/devbox/global/default",
   "zsh/zshrc": "~/.zshrc",
   "zsh/zshenv": "~/.zshenv",
   "fish": "~/.config/fish",
