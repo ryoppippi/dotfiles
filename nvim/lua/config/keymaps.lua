@@ -1,3 +1,5 @@
+local map_combo = require("mini.keymap").map_combo
+
 vim.g.completion_trigger_character = "."
 
 vim.keymap.set("n", ";", ":")
@@ -68,7 +70,8 @@ vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 vim.keymap.set("n", "s", "<Nop>")
 
 -- terminal mode
-vim.keymap.set("t", [[<ESC>]], [[<C-\><C-n>]])
+map_combo("t", "jk", "<BS><BS><C-\\><C-n>")
+map_combo("t", "kj", "<BS><BS><C-\\><C-n>")
 
 -- command mode
 --- Emacs style from yutkat

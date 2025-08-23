@@ -85,6 +85,7 @@
   "mini.extra": { "branch": "stable", "commit": "6927348ae967d229fa01c5d2a0baca9ef7d30de4" },
   "mini.icons": { "branch": "main", "commit": "397ed3807e96b59709ef3292f0a3e253d5c1dc0a" },
   "mini.jump": { "branch": "stable", "commit": "bb93d998c9db6936697746330411f5fb9957145e" },
+  "mini.keymap": { "branch": "main", "commit": "2aa0a66d6cbf15c9cea331d976ac4d4b9f01621e" },
   "mini.move": { "branch": "stable", "commit": "4caa1c212f5ca3d1633d21cfb184808090ed74b1" },
   "mini.splitjoin": { "branch": "main", "commit": "3e92f6764e770ba392325cad3a4497adcada695f" },
   "mini.surround": { "branch": "main", "commit": "aa5e245829dd12d8ff0c96ef11da28681d6049aa" },
