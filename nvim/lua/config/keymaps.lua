@@ -68,7 +68,7 @@ vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 vim.keymap.set("n", "s", "<Nop>")
 
 -- terminal mode
-vim.keymap.set("t", [[<ESC>]], [[<C-\><C-n>]])
+vim.keymap.set("t", "<C-k>", [[<C-\><C-n>]])
 
 -- command mode
 --- Emacs style from yutkat
