@@ -16,7 +16,8 @@
       "mcp__lsmcp__search_symbol_from_index",
       "mcp__lsmcp__get_definitions",
       "mcp__lsmcp__index_onboarding",
-      "mcp__lsmcp__search_symbols"
+      "mcp__lsmcp__search_symbols",
+      "mcp__lsmcp__get_symbol_details"
     ],
     "defaultMode": "acceptEdits"
   },
