@@ -59,9 +59,6 @@ vim.keymap.set("n", "tl", "<cmd>tablast<cr>", { silent = true })
 vim.keymap.set("n", "tt", "<cmd>tabe .<cr>", { silent = true })
 vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 
--- jj -> <ESC>
--- vim.keymap.set("i", "jj", "<Esc>")
-
 -- arrow key prevent stopping undo block
 -- vim.keymap.set("i", "<Left>", "<C-g>u<Left>")
 -- vim.keymap.set("i", "<Right>", "<C-g>u<Right>")
@@ -70,8 +67,8 @@ vim.keymap.set("n", "tq", "<cmd>tabclose<cr>", { silent = true })
 vim.keymap.set("n", "s", "<Nop>")
 
 -- terminal mode
-map_combo("t", "jk", "<BS><BS><C-\\><C-n>")
-map_combo("t", "kj", "<BS><BS><C-\\><C-n>")
+map_combo({ "i", "t" }, "jk", "<BS><BS><C-\\><C-n>")
+map_combo({ "i", "t" }, "kj", "<BS><BS><C-\\><C-n>")
 
 -- command mode
 --- Emacs style from yutkat
