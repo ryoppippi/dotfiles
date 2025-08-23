@@ -122,7 +122,6 @@ packages:
   - name: theryangeary/choose@v1.3.6
   - name: suzuki-shunsuke/cmdx@v2.0.2
   - name: nishanths/license@v5.0.4
-  - name: jetify-com/devbox@0.15.1
   - name: dduan/tre@v0.4.0
   - name: astral-sh/uv@0.8.11
   - name: mikefarah/yq@v4.47.1
@@ -136,3 +135,6 @@ packages:
   - name: zigtools/zls@0.14.0
   - name: secretlint/secretlint@v11.0.2
   - name: sst/opencode@v0.5.8
+  - name: yarnpkg/yarn@v1.22.22
+  - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
+  - name: pnpm/pnpm@v10.15.0
