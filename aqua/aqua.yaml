@@ -82,7 +82,7 @@ packages:
   - name: chriswalz/bit@v1.1.2
   - name: bcicen/ctop@v0.7.7
   - name: sharkdp/hexyl@v0.16.0
-  - name: orf/gping@gping-v1.19.0
+  - name: orf/gping@gping-v1.20.1
   - name: mozilla/sccache@v0.10.0
   - name: pemistahl/grex@v1.4.5
   - name: charmbracelet/glow@v2.1.1
