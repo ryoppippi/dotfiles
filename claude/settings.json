@@ -4,6 +4,10 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs",
       "mcp__bundlephobia__get_npm_package_info",
