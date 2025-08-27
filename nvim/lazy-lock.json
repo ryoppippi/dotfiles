@@ -56,6 +56,7 @@
   "gh-graph": { "branch": "main", "commit": "16cc618618bbe7c9a745091b2f4eea74114ab967" },
   "gh-markdown-preview": { "branch": "master", "commit": "ebc63cd6e8c2e7d4449956651c0743530f0e579b" },
   "gh-poi": { "branch": "main", "commit": "ec902154f1d18a72c4d774abb316b6fbc9eb8007" },
+  "gh-triage": { "branch": "main", "commit": "27fa4a9e458706a11eeca527aa860292f3ea6a44" },
   "gh-user-stars": { "branch": "main", "commit": "1829ccdb28159e4924a22e533a5d8b81698dc218" },
   "git-conflict.nvim": { "branch": "main", "commit": "a1badcd070d176172940eb55d9d59029dad1c5a6" },
   "git-rebase-auto-diff.nvim": { "branch": "main", "commit": "a01fa9da788832a4c6949f80fd24bcfd76d9bd0f" },

@@ -12,5 +12,6 @@ return {
 	{ "k1LoW/gh-do", build = { install } },
 	{ "kawarimidoll/gh-graph", build = { install } },
 	{ "korosuke613/gh-user-stars", build = { install } },
+	{ "k1LoW/gh-triage", build = { install } },
 	{ "github/gh-copilot", build = "gh extension install github/gh-copilot --force" },
 }
