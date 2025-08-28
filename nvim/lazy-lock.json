@@ -213,7 +213,6 @@
   "vim-uppercase-sql": { "branch": "master", "commit": "58bfde1d679a1387dabfe292b38d51d84819b267" },
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
   "vim-vsnip-snippets": { "branch": "master", "commit": "0eb01ac397fc591f456dde86ac2f75a48c32c1b1" },
-  "vim-wakatime": { "branch": "master", "commit": "7b53ba7882ba28b91b571fa4ffb2755378086837" },
   "vscode-javascript": { "branch": "master", "commit": "ecfeba765ebdaff72b23e7a5d030e35c941a7c30" },
   "vscode-js-debug": { "branch": "main", "commit": "392048b8436036f1d54f823008895be5bd604da6" },
   "vscode-svelte-snippets": { "branch": "master", "commit": "564ac3300bfeda01ff0bf6b89152cef43f85a4ce" },
