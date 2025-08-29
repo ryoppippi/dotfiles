@@ -139,4 +139,4 @@ packages:
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.15.0
   - name: suzuki-shunsuke/pinact@v3.4.2
-  - name: openai/codex@rust-v0.25.0
+  - name: openai/codex@rust-v0.27.0
