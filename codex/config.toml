@@ -1,0 +1,6 @@
+model="gpt-5"
+model_reasoning_effort="high"
+
+[tools]
+web_search = true
+
