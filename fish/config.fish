@@ -82,6 +82,9 @@ test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
 # claude code
 set -gx CLAUDE_CONFIG_DIR $XDG_CONFIG_HOME/claude
 
+# openai codex
+set -gx CODEX_HOME $XDG_CONFIG_HOME/codex
+
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
