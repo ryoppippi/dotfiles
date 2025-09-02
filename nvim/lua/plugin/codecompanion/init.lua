@@ -14,25 +14,27 @@ return {
 	},
 	opts = {
 		adapters = {
-			ollama = function()
-				return require("codecompanion.adapters").extend("ollama", {
-					schema = {
-						name = "qwen2.5-coder",
-						model = {
-							default = "qwen2.5-coder:latest",
+			http = {
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							name = "qwen2.5-coder",
+							model = {
+								default = "qwen2.5-coder:latest",
+							},
 						},
-					},
-				})
-			end,
-			copilot = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					schema = {
-						model = {
-							default = "gpt-4.1",
+					})
+				end,
+				copilot = function()
+					return require("codecompanion.adapters").extend("copilot", {
+						schema = {
+							model = {
+								default = "gpt-5",
+							},
 						},
-					},
-				})
-			end,
+					})
+				end,
+			},
 		},
 		strategies = {
 			chat = {
