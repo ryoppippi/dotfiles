@@ -8,25 +8,22 @@ require("core.plugin").on_attach(function(client, bufnr)
 		return
 	end
 
-	-- if client.root_dir ~= nil then
-	-- 	return
-	-- end
-
-	vim.schedule(function()
-		---@type vim.lsp.Client[]
-		local nodeLSPs = vim.iter({ "vtsls", "tsserver" })
-			:map(function(cn)
-				return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
+	---@type vim.lsp.Client[]
+	local nodeLSPs = vim.iter({ "vtsls", "tsserver" })
+		:map(function(cn)
+			return vim.lsp.get_clients({ name = cn, bufnr = bufnr })
+		end)
+		:flatten()
+		:totable()
+	local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
+	if #nodeLSPs > 0 and #denoLSPs > 0 then
+		vim.lsp.stop_client(vim.iter(denoLSPs)
+			:map(function(c)
+				return c.id
 			end)
-			:flatten()
-			:totable()
-		local denoLSPs = vim.lsp.get_clients({ name = "denols", bufnr = bufnr })
-		if #nodeLSPs > 0 and #denoLSPs > 0 then
-			vim.iter(denoLSPs):each(function(denoLSP)
-				vim.lsp.buf_detach_client(bufnr, denoLSP.id)
-			end)
-		end
-	end)
+			:totable())
+		-- vim.diagnostic.enable(true)
+	end
 end)
 
 ---@type vim.lsp.Config
