@@ -10,27 +10,6 @@
     "DISABLE_ERROR_REPORTING": "1"
   },
   "permissions": {
-    "allow": [
-      "Bash(gh pr view:*)",
-      "Bash(gh pr checks:*)",
-      "Bash(gh run list:*)",
-      "Bash(gh run view:*)",
-      "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs",
-      "mcp__bundlephobia__get_npm_package_info",
-      "mcp__grep__searchGitHub",
-      "mcp__deepwiki__ask_question",
-      "mcp__lsmcp__index_symbols",
-      "mcp__lsmcp__list_dir",
-      "mcp__lsmcp__search_for_pattern",
-      "mcp__lsmcp__find_file",
-      "mcp__lsmcp__search_symbol_from_index",
-      "mcp__lsmcp__get_definitions",
-      "mcp__lsmcp__index_onboarding",
-      "mcp__lsmcp__search_symbols",
-      "mcp__lsmcp__get_symbol_details",
-      "mcp__lsmcp__lsp_get_document_symbols"
-    ],
     "defaultMode": "acceptEdits"
   },
   "model": "opusplan",
