@@ -17,5 +17,6 @@
   "claude/agents": "~/.config/claude/agents",
   "claude/CLAUDE.md": "~/.config/claude/CLAUDE.md",
   "claude/settings.json": "~/.config/claude/settings.json",
-  "codex/config.toml": "~/.config/codex/config.toml"
+  "codex/config.toml": "~/.config/codex/config.toml",
+  "opencode": "~/.config/opencode"
 }
