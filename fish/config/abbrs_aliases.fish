@@ -108,6 +108,8 @@ abbr -a lcp leetcode t
 
 # ai
 abbr -a cl claude
+abbr -a oc opencode
+abbr -a cx codex
 
 # misc
 abbr -a n -f _na
