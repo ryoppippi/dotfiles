@@ -12,7 +12,7 @@ registries:
     ref: v4.407.2 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: cli/cli@v2.78.0
-  - name: golang/go@go1.25.0
+  - name: golang/go@go1.25.1
   - name: golang/tools/guru@v0.21.0
   - name: golang/tools/goimports@v0.21.0
   - name: golang/tools/gorename@v0.21.0
