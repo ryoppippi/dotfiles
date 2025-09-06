@@ -16,5 +16,16 @@
   "dependencyDashboard": false,
   "automerge": true,
   "branchConcurrentLimit": 0,
-  "minimumReleaseAge": "3 days"
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "opencode",
+        "codex",
+        "bun",
+        "deno"
+      ],
+      "stabilityDays": 0
+    }
+  ]
 }
