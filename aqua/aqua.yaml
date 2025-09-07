@@ -134,7 +134,7 @@ packages:
   - name: nodejs/node@v24.7.0
   - name: zigtools/zls@0.15.0
   - name: secretlint/secretlint@v11.2.0
-  - name: sst/opencode@v0.6.3
+  - name: sst/opencode@v0.6.4
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.15.1
