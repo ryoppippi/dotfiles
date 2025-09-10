@@ -1,1 +1,1 @@
-call git-commit-crafter
+call git-commit-crafter agent
