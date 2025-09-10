@@ -22,7 +22,7 @@ jobs:
       - name: copy neovim config
         run: cp -r ${{ github.workspace }}/nvim/ ~/.config/nvim/
       - name: Install neovim
-        uses: rhysd/action-setup-vim@8e931b9954b19d4203d5caa5ff5521f3bc21dcc7 # v1.4.2
+        uses: rhysd/action-setup-vim@89f3345bcde053529463583418779d83ee6dfb33 # v1.4.3
         with:
           neovim: true
           version: nightly
