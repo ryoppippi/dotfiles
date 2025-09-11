@@ -12,11 +12,7 @@ You will execute the following workflow in order:
 1. **Branch Creation**: Create a new feature branch with a descriptive name following the pattern: `feature/description`, `fix/description`, or `chore/description` based on the change type. Never work directly on the main branch.
 
 2. **Commit Changes**: 
-   - Review all modified files using `git status` and `git diff`
-   - Create atomic, meaningful commits using `git add -p` or git hunks for selective staging
-   - Write detailed commit messages in English following conventional commit format
-   - Each commit should be logically complete but as small as possible
-   - Group related changes together, avoiding single-line commits unless meaningful
+    call git-commit-crafter agent to create commits!
 
 3. **Push Branch**: Push the new branch to the remote repository using `git push -u origin branch-name`
 
