@@ -45,7 +45,7 @@ packages:
   - name: XAMPPRocky/tokei@v12.1.2
   - name: bootandy/dust@v1.2.3
   - name: cloudflare/cloudflared@2025.8.1
-  - name: muesli/duf@v0.9.0
+  - name: muesli/duf@v0.9.1
   - name: wagoodman/dive@v0.13.1
   - name: direnv/direnv@v2.37.1
   - name: gohugoio/hugo@v0.149.1
