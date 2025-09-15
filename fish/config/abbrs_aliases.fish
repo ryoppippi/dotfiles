@@ -53,6 +53,8 @@ abbr -a ns nix-shell
 abbr -a ngc nix-collect-garbage
 abbr -a nrn --set-cursor nix run nixpkgs#\%
 
+abbr -a dv devenv
+
 # deno
 abbr -a dr "deno run -A --unstable"
 abbr -a deno-cache-clear "rm -rf (deno info | string match --entire --regex 'DENO_DIR*' | string split ' ')[-1]"
