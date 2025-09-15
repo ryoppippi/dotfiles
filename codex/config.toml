@@ -1,10 +1,8 @@
 model= "gpt-5-codex"
 
-# https://github.com/openai/codex/blob/main/docs/config.md#model_reasoning_effort
-model_reasoning_effort="high"
-
 # https://github.com/openai/codex/blob/main/docs/config.md#approval_policy
 approval_policy = "on-request"
+model_reasoning_effort = "high"
 
 [tools]
 web_search = true
