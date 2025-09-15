@@ -1,4 +1,4 @@
-model="gpt-5"
+model= "gpt-5-codex"
 
 # https://github.com/openai/codex/blob/main/docs/config.md#model_reasoning_effort
 model_reasoning_effort="high"
