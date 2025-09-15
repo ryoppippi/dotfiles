@@ -7,3 +7,7 @@ model_reasoning_effort = "high"
 [tools]
 web_search = true
 
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
+
