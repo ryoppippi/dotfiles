@@ -2,12 +2,27 @@ model= "gpt-5-codex"
 
 # https://github.com/openai/codex/blob/main/docs/config.md#approval_policy
 approval_policy = "on-request"
-model_reasoning_effort = "high"
 
 [tools]
 web_search = true
 
 [mcp_servers.playwright]
-command = "npx"
-args = ["@playwright/mcp@latest"]
+startup_timeout_ms = 20_000
+command = "nix"
+args = [
+  "run",
+  "nixpkgs#playwright-mcp"
+]
+
+[mcp_servers.figma-dev-mode-mcp-server]
+startup_timeout_ms = 20_000
+command="nix"
+args=[
+  "shell",
+  "nixpkgs#bun",
+  "--command",
+  "bunx",
+  "mcp-remote",
+  "http://127.0.0.1:3845/mcp",
+]
 
