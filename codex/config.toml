@@ -10,8 +10,11 @@ web_search = true
 startup_timeout_ms = 20_000
 command = "nix"
 args = [
-  "run",
-  "nixpkgs#playwright-mcp"
+  "shell",
+  "nixpkgs#bun",
+  "--command",
+  "bunx",
+  "@playwright/mcp"
 ]
 
 [mcp_servers.figma-dev-mode-mcp-server]
