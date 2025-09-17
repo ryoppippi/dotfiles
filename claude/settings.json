@@ -16,6 +16,6 @@
   "model": "opusplan",
   "statusLine": {
     "type": "command",
-    "command": "bun $( ghq root )/github.com/ryoppippi/ccusage/src/index.ts statusline --cost-source both"
+    "command": "bun $( ghq root )/github.com/ryoppippi/ccusage/packages/ccusage/src/index.ts statusline --cost-source both"
   }
 }
