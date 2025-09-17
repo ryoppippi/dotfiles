@@ -139,3 +139,4 @@ packages:
   - name: pnpm/pnpm@v10.16.1
   - name: suzuki-shunsuke/pinact@v3.4.2
   - name: openai/codex@rust-v0.36.0
+  - name: nodejs/node@v24.8.0
