@@ -7,7 +7,6 @@ approval_policy = "on-request"
 web_search = true
 
 [mcp_servers.playwright]
-startup_timeout_ms = 20_000
 command = "nix"
 args = [
   "shell",
@@ -18,7 +17,6 @@ args = [
 ]
 
 [mcp_servers.figma-dev-mode-mcp-server]
-startup_timeout_ms = 20_000
 command="nix"
 args=[
   "shell",
