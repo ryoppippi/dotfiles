@@ -33,9 +33,9 @@ args=[
 command="nix"
 args=[
   "shell",
-  "nixpkgs#nodejs",
+  "nixpkgs#bun",
   "--command",
-  "npx",
+  "bunx",
   "-y",
   "@mizchi/lsmcp@latest",
   "-p",
