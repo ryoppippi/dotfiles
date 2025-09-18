@@ -8,18 +8,22 @@ web_search = true
 
 [mcp_servers.playwright]
 startup_timeout_ms = 20_000
-command = "aqua"
+command = "nix"
 args = [
-  "exec",
+  "shell",
+  "nixpkgs#bun",
+  "--command",
   "bunx",
   "@playwright/mcp"
 ]
 
 [mcp_servers.figma-dev-mode-mcp-server]
 startup_timeout_ms = 20_000
-command="aqua"
+command="nix"
 args=[
-  "exec",
+  "shell",
+  "nixpkgs#bun",
+  "--command",
   "bunx",
   "mcp-remote",
   "http://127.0.0.1:3845/mcp",
