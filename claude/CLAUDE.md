@@ -18,4 +18,8 @@ Instead of ordinary tools, you can use the tools below which are already install
 - bunx - replacement for npx
 - jq - JSON processor
 
-Also, you may have codex mcp. codex is a ai agent. if you are stuck, you can ask codex for help. They also can write code for you.
+Also, you may have codex mcp. codex is a ai agent. if you are stuck, you can ask codex for help. 
+Codex is:
+- capable of writing code in multiple programming languages
+- capable of analysing code and finding bugs
+- capable of searching the web for information (really good)
