@@ -29,3 +29,16 @@ args=[
   "http://127.0.0.1:3845/mcp",
 ]
 
+[mcp_servers.lsmcp-tsgo]
+command="nix"
+args=[
+  "shell",
+  "nixpkgs#nodejs",
+  "--command",
+  "npx",
+  "-y",
+  "@mizchi/lsmcp@latest",
+  "-p",
+  "tsgo",
+]
+
