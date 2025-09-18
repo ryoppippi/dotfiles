@@ -17,3 +17,5 @@ Instead of ordinary tools, you can use the tools below which are already install
 - typos - spell checker
 - bunx - replacement for npx
 - jq - JSON processor
+
+Also, you may have codex mcp. codex is a ai agent. if you are stuck, you can ask codex for help. They also can write code for you.
