@@ -17,6 +17,7 @@ args = [
 ]
 
 [mcp_servers.figma-dev-mode-mcp-server]
+startup_timeout_ms = 5_000
 command="nix"
 args=[
   "shell",
