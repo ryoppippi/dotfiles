@@ -41,3 +41,9 @@ args=[
   "tsgo",
 ]
 
+[mcp_servers.devenv]
+command="devenv"
+args=[
+  "mcp"
+]
+
