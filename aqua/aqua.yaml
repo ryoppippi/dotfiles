@@ -90,7 +90,7 @@ packages:
   - name: aquasecurity/trivy@v0.66.0
   - name: itchyny/mmv@v0.1.6
   - name: goodwithtech/dockle@v0.4.15
-  - name: suzuki-shunsuke/github-comment@v6.3.4
+  - name: suzuki-shunsuke/github-comment@v6.3.5
   - name: uzimaru0000/oglens@v0.1.1
   - name: kyoh86/richgo@v0.3.12
   - name: koki-develop/sheep@v0.4.0
