@@ -14,6 +14,15 @@ return {
 	},
 	opts = {
 		adapters = {
+			acp = {
+				claude_code = function()
+					return require("codecompanion.adapters").extend("claude_code", {
+						env = {
+							CLAUDE_CODE_OAUTH_TOKEN = "my-oauth-token",
+						},
+					})
+				end,
+			},
 			http = {
 				ollama = function()
 					return require("codecompanion.adapters").extend("ollama", {
