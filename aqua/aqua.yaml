@@ -133,10 +133,10 @@ packages:
   - name: pnpm/pnpm@v10.17.1
   - name: zigtools/zls@0.15.0
   - name: secretlint/secretlint@v11.2.4
-  - name: sst/opencode@v0.11.1
+  - name: sst/opencode@v0.11.4
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.17.1
   - name: suzuki-shunsuke/pinact@v3.4.2
-  - name: openai/codex@rust-v0.39.0
+  - name: openai/codex@rust-v0.41.0
   - name: nodejs/node@v24.8.0
