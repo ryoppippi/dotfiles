@@ -6,14 +6,14 @@ approval_policy = "on-request"
 [tools]
 web_search = true
 
-[mcp_servers.playwright]
+[mcp_servers.chrome-devtools]
 command = "nix"
 args = [
   "shell",
   "nixpkgs#bun",
   "--command",
   "bunx",
-  "@playwright/mcp"
+  "chrome-devtools-mcp@latest"
 ]
 
 [mcp_servers.figma-dev-mode-mcp-server]
