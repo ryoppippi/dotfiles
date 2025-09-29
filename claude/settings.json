@@ -13,7 +13,6 @@
   "permissions": {
     "defaultMode": "acceptEdits"
   },
-  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "bun $( ghq root )/github.com/ryoppippi/ccusage/apps/ccusage/src/index.ts statusline --cost-source both"
