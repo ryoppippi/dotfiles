@@ -15,4 +15,4 @@ cursor-style-blink = false
 
 mouse-hide-while-typing = true
 
-window-inherit-working-directory = false
+working-directory = inherit
