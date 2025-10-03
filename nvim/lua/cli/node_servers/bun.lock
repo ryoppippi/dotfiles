@@ -10,7 +10,7 @@
         "@tailwindcss/language-server": "0.14.26",
         "@vtsls/language-server": "0.2.9",
         "@vue/language-server": "3.1.0",
-        "@zed-industries/claude-code-acp": "^0.4.4",
+        "@zed-industries/claude-code-acp": "^0.5.0",
         "cssmodules-language-server": "1.5.1",
         "emmet-ls": "0.4.2",
         "gh-actions-language-server": "^0.0.3",
@@ -36,7 +36,9 @@
 
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
 
-    "@anthropic-ai/claude-code": ["@anthropic-ai/claude-code@1.0.123", "", { "optionalDependencies": { "@img/sharp-darwin-arm64": "^0.33.5", "@img/sharp-darwin-x64": "^0.33.5", "@img/sharp-linux-arm": "^0.33.5", "@img/sharp-linux-arm64": "^0.33.5", "@img/sharp-linux-x64": "^0.33.5", "@img/sharp-win32-x64": "^0.33.5" }, "bin": { "claude": "cli.js" } }, "sha512-egniOpnrjpm8pA2ygj9aDw+rZ0jKJdso94CvKlKzdVcLdw0r0FSMvgxWRGGxjHuqcl6BP6yhHGSKlZ6qzd14OA=="],
+    "@anthropic-ai/claude-agent-sdk": ["@anthropic-ai/claude-agent-sdk@0.1.1", "", { "optionalDependencies": { "@img/sharp-darwin-arm64": "^0.33.5", "@img/sharp-darwin-x64": "^0.33.5", "@img/sharp-linux-arm": "^0.33.5", "@img/sharp-linux-arm64": "^0.33.5", "@img/sharp-linux-x64": "^0.33.5", "@img/sharp-win32-x64": "^0.33.5" } }, "sha512-+12GQktMFc5Uqz6oVjJbj7Q+GD5QDorKEKtInALKD7VleJwLlFbMYIlm4586owIV5veFvb6bAVofKn9CnYWtvw=="],
+
+    "@anthropic-ai/claude-code": ["@anthropic-ai/claude-code@2.0.1", "", { "optionalDependencies": { "@img/sharp-darwin-arm64": "^0.33.5", "@img/sharp-darwin-x64": "^0.33.5", "@img/sharp-linux-arm": "^0.33.5", "@img/sharp-linux-arm64": "^0.33.5", "@img/sharp-linux-x64": "^0.33.5", "@img/sharp-win32-x64": "^0.33.5" }, "bin": { "claude": "cli.js" } }, "sha512-2SboYcdJ+dsE2K784dbJ4ohVWlAkLZhU7mZG1lebyG6TvGLXLhjc2qTEfCxSeelCjJHhIh/YkNpe06veB4IgBw=="],
 
     "@astrojs/compiler": ["@astrojs/compiler@2.12.0", "", {}, "sha512-7bCjW6tVDpUurQLeKBUN9tZ5kSv5qYrGmcn0sG0IwacL7isR2ZbyyA3AdZ4uxsuUFOS2SlgReTH7wkxO6zpqWA=="],
 
@@ -212,7 +214,7 @@
 
     "@keyv/serialize": ["@keyv/serialize@1.1.0", "", {}, "sha512-RlDgexML7Z63Q8BSaqhXdCYNBy/JQnqYIwxofUrNLGCblOMHp+xux2Q8nLMLlPpgHQPoU0Do8Z6btCpRBEqZ8g=="],
 
-    "@modelcontextprotocol/sdk": ["@modelcontextprotocol/sdk@1.18.1", "", { "dependencies": { "ajv": "^6.12.6", "content-type": "^1.0.5", "cors": "^2.8.5", "cross-spawn": "^7.0.5", "eventsource": "^3.0.2", "eventsource-parser": "^3.0.0", "express": "^5.0.1", "express-rate-limit": "^7.5.0", "pkce-challenge": "^5.0.0", "raw-body": "^3.0.0", "zod": "^3.23.8", "zod-to-json-schema": "^3.24.1" } }, "sha512-d//GE8/Yh7aC3e7p+kZG8JqqEAwwDUmAfvH1quogtbk+ksS6E0RR6toKKESPYYZVre0meqkJb27zb+dhqE9Sgw=="],
+    "@modelcontextprotocol/sdk": ["@modelcontextprotocol/sdk@1.18.2", "", { "dependencies": { "ajv": "^6.12.6", "content-type": "^1.0.5", "cors": "^2.8.5", "cross-spawn": "^7.0.5", "eventsource": "^3.0.2", "eventsource-parser": "^3.0.0", "express": "^5.0.1", "express-rate-limit": "^7.5.0", "pkce-challenge": "^5.0.0", "raw-body": "^3.0.0", "zod": "^3.23.8", "zod-to-json-schema": "^3.24.1" } }, "sha512-beedclIvFcCnPrYgHsylqiYJVJ/CI47Vyc4tY8no1/Li/O8U4BTlJfy6ZwxkYwx+Mx10nrgwSVrA7VBbhh4slg=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 
@@ -356,9 +358,9 @@
 
     "@vue/typescript-plugin": ["@vue/typescript-plugin@3.1.0", "", { "dependencies": { "@volar/typescript": "2.4.23", "@vue/language-core": "3.1.0", "@vue/shared": "^3.5.0", "path-browserify": "^1.0.1" } }, "sha512-7/1yeN+ZaHQJzCM80EXd1H9JHbNCmqL7jrtwc3bxL7AyArLvDq3RXnh6CLeIKDUb93rP5MTp1VCTDIyjT+5iAw=="],
 
-    "@zed-industries/agent-client-protocol": ["@zed-industries/agent-client-protocol@0.4.2", "", { "dependencies": { "zod": "^3.0.0" } }, "sha512-i131nVbxqDBkKVxt7ThqU3wHk96CKcfiHOn9kfKIB1SkI1NkyeZvSR+cXFttCUxqTR/JShrDbDLWqmUHcmajsg=="],
+    "@zed-industries/agent-client-protocol": ["@zed-industries/agent-client-protocol@0.4.3", "", { "dependencies": { "zod": "^3.0.0" } }, "sha512-6lcxHVdkm0YMvqBNJyddXA4T8qhVMeOVscXwioA8hRMLhroLigsspH8oQEbuL35r3g+b2LcmhVzu8EijUo4DYw=="],
 
-    "@zed-industries/claude-code-acp": ["@zed-industries/claude-code-acp@0.4.4", "", { "dependencies": { "@anthropic-ai/claude-code": "1.0.123", "@modelcontextprotocol/sdk": "1.18.1", "@zed-industries/agent-client-protocol": "0.4.2", "diff": "8.0.2", "express": "5.1.0", "minimist": "1.2.8", "uuid": "13.0.0" }, "bin": { "claude-code-acp": "dist/index.js" } }, "sha512-Q8ZIjZMXZ/yyvB4urtTpwxR3bhUF+EtlfzoiNTljJLcztqevnm8jMzcfS1GML/QS8rjQnea+9t+EXKPgjznN7A=="],
+    "@zed-industries/claude-code-acp": ["@zed-industries/claude-code-acp@0.5.2", "", { "dependencies": { "@anthropic-ai/claude-agent-sdk": "0.1.1", "@anthropic-ai/claude-code": "2.0.1", "@modelcontextprotocol/sdk": "1.18.2", "@zed-industries/agent-client-protocol": "0.4.3", "diff": "8.0.2", "express": "5.1.0", "minimist": "1.2.8", "uuid": "13.0.0" }, "bin": { "claude-code-acp": "dist/index.js" } }, "sha512-sypRuK0wTsLgZ/7Qd7SANC1wGCWjWcnEQwHiUPNzuLTIUsZ3g9dfoNzPeY9L2jY+cG7wbBO5sW1lo2iL8Ep1aQ=="],
 
     "abab": ["abab@2.0.6", "", {}, "sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA=="],
 
