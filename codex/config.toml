@@ -18,15 +18,7 @@ args = [
 
 [mcp_servers.figma-dev-mode-mcp-server]
 startup_timeout_ms = 5_000
-command="nix"
-args=[
-  "shell",
-  "nixpkgs#bun",
-  "--command",
-  "bunx",
-  "mcp-remote",
-  "http://127.0.0.1:3845/mcp",
-]
+url = "http://127.0.0.1:3845/mcp" 
 
 [mcp_servers.lsmcp-tsgo]
 command="nix"
