@@ -3,7 +3,7 @@
   "dependencies": {
     "@astrojs/language-server": "2.15.4",
     "@astrojs/ts-plugin": "1.10.4",
-    "@prisma/language-server": "6.16.2",
+    "@prisma/language-server": "6.16.3",
     "@tailwindcss/language-server": "0.14.26",
     "@vtsls/language-server": "0.2.9",
     "@vue/language-server": "3.1.0",
