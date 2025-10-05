@@ -126,7 +126,7 @@ packages:
   - name: astral-sh/uv@0.8.22
   - name: mikefarah/yq@v4.47.2
   - name: sheepla/srss@v0.1.0
-  - name: martinvonz/jj@v0.33.0
+  - name: martinvonz/jj@v0.34.0
   - name: fastfetch-cli/fastfetch@2.53.0
   - name: sxyazi/yazi@v25.5.31
   - name: typst/typst@v0.13.1
