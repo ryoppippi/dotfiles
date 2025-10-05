@@ -7,7 +7,7 @@
         "@astrojs/language-server": "2.15.4",
         "@astrojs/ts-plugin": "1.10.4",
         "@prisma/language-server": "6.16.3",
-        "@tailwindcss/language-server": "0.14.26",
+        "@tailwindcss/language-server": "0.14.27",
         "@vtsls/language-server": "0.2.9",
         "@vue/language-server": "3.1.0",
         "@zed-industries/claude-code-acp": "^0.5.0",
@@ -268,7 +268,7 @@
 
     "@standard-schema/spec": ["@standard-schema/spec@1.0.0", "", {}, "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="],
 
-    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.26", "", { "bin": { "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-kFTsuu0bJCIPp4zEPmlEAmSRCwBEgCa6Un8ijWM7TE7R0Ltx17xhikamHjqquQdhPl3tiV2+FyHht9uHbEXraA=="],
+    "@tailwindcss/language-server": ["@tailwindcss/language-server@0.14.27", "", { "bin": { "css-language-server": "bin/css-language-server", "tailwindcss-language-server": "bin/tailwindcss-language-server" } }, "sha512-AnBvbU27CuRyRJCaQ0MsPtrGMvkVAnD4651BUWA3OrOnD1gcmozFdleozMPp4/jiWW/Suk2DR1QAGXEj5UJ5SQ=="],
 
     "@tootallnate/once": ["@tootallnate/once@2.0.0", "", {}, "sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A=="],
 
