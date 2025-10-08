@@ -118,7 +118,7 @@ packages:
   - name: graelo/pumas@v0.3.1
   - name: sachaos/viddy@v1.3.0
   - name: hatoo/oha@v1.10.0
-  - name: abhimanyu003/sttr@v0.2.27
+  - name: abhimanyu003/sttr@v0.2.28
   - name: theryangeary/choose@v1.3.7
   - name: suzuki-shunsuke/cmdx@v2.0.2
   - name: nishanths/license@v5.0.4
