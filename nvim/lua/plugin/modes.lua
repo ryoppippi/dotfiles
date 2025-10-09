@@ -1,5 +1,5 @@
 return {
 	"mvllow/modes.nvim",
-	event = "BufReadPre",
+	event = "VeryLazy",
 	config = true,
 }
