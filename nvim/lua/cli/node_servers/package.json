@@ -4,7 +4,7 @@
     "@astrojs/language-server": "2.15.4",
     "@astrojs/ts-plugin": "1.10.4",
     "@prisma/language-server": "6.17.0",
-    "@tailwindcss/language-server": "0.14.27",
+    "@tailwindcss/language-server": "0.14.28",
     "@vtsls/language-server": "0.2.9",
     "@vue/language-server": "3.1.1",
     "@zed-industries/claude-code-acp": "^0.5.0",
