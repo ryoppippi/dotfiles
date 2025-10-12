@@ -6,6 +6,7 @@ This directory contains TypeScript-based configuration for Karabiner-Elements us
 
 - **karabiner.ts official documentation**: https://karabiner.ts.evanliu.dev/
 - **Karabiner-Elements**: https://karabiner-elements.pqrs.org/
+- **Tip**: You can also use context7 MCP to check karabiner.ts documentation directly with up-to-date information
 
 ## Overview
 
