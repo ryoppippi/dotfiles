@@ -10,7 +10,7 @@ export function toHideApp(name: string) {
 }
 
 /** Get the bundle identifier of the application by name */
-export async function extractIdentifer(appName: string): Promise<string> {
+export async function extractIdentifier(appName: string): Promise<string> {
   const appPath = $.path(`/Applications/${appName}.app`);
 
   if (!await appPath.exists()) {
@@ -22,13 +22,13 @@ export async function extractIdentifer(appName: string): Promise<string> {
     .text();
 
   /** output is like com.apple.Safari */
-  const identifer = output.match(/"(.*)"/)?.at(1)?.trim();
+  const identifier = output.match(/"(.*)"/)?.at(1)?.trim();
 
-  u.assert(identifer, u.isString, {
+  u.assert(identifier, u.isString, {
     message: `Failed to extract bundle identifier for ${appName}`,
   });
 
-  return identifer;
+  return identifier;
 }
 
 export async function getDeviceId(
