@@ -453,6 +453,38 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "Right option to super key in Macbook",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_option"
+                },
+                "to": [
+                  {
+                    "key_code": "right_command",
+                    "modifiers": [
+                      "right_option",
+                      "right_shift",
+                      "right_control"
+                    ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "device_unless",
+                    "identifiers": [
+                      {
+                        "product_id": 1,
+                        "vendor_id": 22854
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {
