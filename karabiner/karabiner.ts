@@ -3,8 +3,8 @@ import * as devices from "./devices.ts";
 import * as utils from "./utils.ts";
 
 const IDENTIFIERS = {
-  discord: await utils.extractIdentifer("Discord"),
-  chatgpt: await utils.extractIdentifer("ChatGPT"),
+  discord: await utils.extractIdentifier("Discord"),
+  chatgpt: await utils.extractIdentifier("ChatGPT"),
 } as const;
 
 k.writeToProfile("Default profile", [
