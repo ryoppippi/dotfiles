@@ -130,4 +130,15 @@ k.writeToProfile("Default profile", [
         .description(`Tap ${key} to ${arrow}`)
     ),
   ]),
+
+  k.rule(
+    "Right option to super key in Macbook",
+    devices.ifNotSelfMadeKeyboard,
+  ).manipulators([
+    k.map({ key_code: "right_option" })
+      .to({
+        key_code: "right_command",
+        modifiers: ["right_option", "right_shift", "right_control"],
+      }),
+  ]),
 ]);
