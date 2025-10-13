@@ -6,6 +6,6 @@
   "imports": {
     "@core/unknownutil": "jsr:@core/unknownutil@^3.18.1",
     "@david/dax": "jsr:@david/dax@^0.41.0",
-    "karabiner_ts": "https://deno.land/x/karabinerts@1.29.0/deno.ts"
+    "karabiner_ts": "npm:karabiner.ts@^1.35.1"
   }
 }
