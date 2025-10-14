@@ -7,15 +7,6 @@ model_reasoning_effort = "medium"
 [tools]
 web_search = true
 
-[mcp_servers.chrome-devtools]
-command = "nix"
-args = [
-  "shell",
-  "nixpkgs#bun",
-  "--command",
-  "bunx",
-  "chrome-devtools-mcp@latest"
-]
 
 [mcp_servers.figma-dev-mode-mcp-server]
 startup_timeout_ms = 5_000
@@ -29,12 +20,18 @@ url = "https://mcp.deepwiki.com/mcp"
 startup_timeout_ms = 5_000
 url = "https://mcp.context7.com/mcp"
 
+[mcp_servers.chrome-devtools]
+command = "aqua"
+args = [
+  "exec",
+  "bunx",
+  "chrome-devtools-mcp@latest"
+]
+
 [mcp_servers.lsmcp-tsgo]
-command="nix"
+command="aqua"
 args=[
-  "shell",
-  "nixpkgs#bun",
-  "--command",
+  "exec",
   "bunx",
   "-y",
   "@mizchi/lsmcp@latest",
