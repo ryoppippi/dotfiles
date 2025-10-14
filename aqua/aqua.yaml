@@ -37,7 +37,7 @@ packages:
   - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.2
   - name: antonmedv/fx@39.1.0
-  - name: rhysd/actionlint@v1.7.7
+  - name: rhysd/actionlint@v1.7.8
   - name: git-lfs/git-lfs@v3.7.0
   - name: starship/starship@v1.23.0
   - name: tinygo-org/tinygo@v0.39.0
