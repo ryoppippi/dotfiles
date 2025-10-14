@@ -16,7 +16,7 @@
     "stylelint-lsp": "2.0.1",
     "svelte-language-server": "0.17.21",
     "typescript-svelte-plugin": "0.3.50",
-    "unocss-language-server": "0.1.7",
+    "unocss-language-server": "0.1.8",
     "vscode-langservers-extracted": "4.10.0",
     "yaml-language-server": "1.19.2"
   },
