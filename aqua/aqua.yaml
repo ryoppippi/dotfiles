@@ -132,7 +132,7 @@ packages:
   - name: typst/typst@v0.13.1
   - name: pnpm/pnpm@v10.18.2
   - name: zigtools/zls@0.15.0
-  - name: secretlint/secretlint@v11.2.4
+  - name: secretlint/secretlint@v11.2.5
   - name: sst/opencode@v0.15.0
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
