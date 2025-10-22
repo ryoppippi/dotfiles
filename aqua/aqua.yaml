@@ -77,7 +77,7 @@ packages:
   - name: hhatto/gocloc@v0.7.0
   - name: tsl0922/ttyd@1.7.7
   - name: whalebrew/whalebrew@0.5.0
-  - name: sharkdp/pastel@v0.10.0
+  - name: sharkdp/pastel@v0.11.0
   - name: dalance/procs@v0.14.10
   - name: chriswalz/bit@v1.1.2
   - name: bcicen/ctop@v0.7.7
