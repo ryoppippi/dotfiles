@@ -30,7 +30,7 @@ packages:
   - name: tcnksm/ghr@v0.17.0
   - name: x-motemen/ghq@v1.8.0
   - name: ajeetdsouza/zoxide@v0.9.8
-  - name: sharkdp/bat@v0.25.0
+  - name: sharkdp/bat@v0.26.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazydocker@v0.24.1
   - name: sharkdp/hyperfine@v1.19.0
