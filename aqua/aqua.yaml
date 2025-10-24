@@ -83,7 +83,7 @@ packages:
   - name: bcicen/ctop@v0.7.7
   - name: sharkdp/hexyl@v0.16.0
   - name: orf/gping@gping-v1.20.1
-  - name: mozilla/sccache@v0.11.0
+  - name: mozilla/sccache@v0.12.0
   - name: pemistahl/grex@v1.4.5
   - name: charmbracelet/glow@v2.1.1
   - name: simeji/jid@v0.7.6
