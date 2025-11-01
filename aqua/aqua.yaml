@@ -130,13 +130,13 @@ packages:
   - name: fastfetch-cli/fastfetch@2.54.0
   - name: sxyazi/yazi@v25.5.31
   - name: typst/typst@v0.14.0
-  - name: pnpm/pnpm@v10.19.0
+  - name: pnpm/pnpm@v10.20.0
   - name: zigtools/zls@0.15.0
   - name: secretlint/secretlint@v11.2.5
   - name: sst/opencode@v0.15.23
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
-  - name: pnpm/pnpm@v10.19.0
+  - name: pnpm/pnpm@v10.20.0
   - name: suzuki-shunsuke/pinact@v3.4.2
   - name: openai/codex@rust-v0.53.0
   - name: nodejs/node@v24.11.0
