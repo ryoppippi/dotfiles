@@ -10,7 +10,7 @@
         "@tailwindcss/language-server": "0.14.29",
         "@vtsls/language-server": "0.2.9",
         "@vue/language-server": "3.1.2",
-        "@zed-industries/claude-code-acp": "^0.8.0",
+        "@zed-industries/claude-code-acp": "^0.9.0",
         "cssmodules-language-server": "1.5.1",
         "emmet-ls": "0.4.2",
         "gh-actions-language-server": "^0.0.3",
@@ -360,7 +360,7 @@
 
     "@vue/typescript-plugin": ["@vue/typescript-plugin@3.1.2", "", { "dependencies": { "@volar/typescript": "2.4.23", "@vue/language-core": "3.1.2", "@vue/shared": "^3.5.0", "path-browserify": "^1.0.1" } }, "sha512-2n+tiPR8RM7axxkGpYKMefW74MkGAcgqzrUN2TP3Vcv8I51UnwAz8HGI9lkABeK+Kp+yyi0DU3CBjJ3AKRNnkA=="],
 
-    "@zed-industries/claude-code-acp": ["@zed-industries/claude-code-acp@0.8.0", "", { "dependencies": { "@agentclientprotocol/sdk": "0.5.1", "@anthropic-ai/claude-agent-sdk": "0.1.27", "@anthropic-ai/claude-code": "2.0.27", "@modelcontextprotocol/sdk": "1.20.2", "diff": "8.0.2", "express": "5.1.0", "minimist": "1.2.8", "uuid": "13.0.0" }, "bin": { "claude-code-acp": "dist/index.js" } }, "sha512-MOBiRcEl4kRZToPUn8d5mW8zXByJl8RYiH3urWhSAVn9mdU5ETJd0+Cuw9C9AEc9Mlhw+oE13W5K5Y7dLR+4LQ=="],
+    "@zed-industries/claude-code-acp": ["@zed-industries/claude-code-acp@0.9.0", "", { "dependencies": { "@agentclientprotocol/sdk": "0.5.1", "@anthropic-ai/claude-agent-sdk": "0.1.27", "@anthropic-ai/claude-code": "2.0.27", "@modelcontextprotocol/sdk": "1.20.2", "diff": "8.0.2", "express": "5.1.0", "minimist": "1.2.8", "uuid": "13.0.0" }, "bin": { "claude-code-acp": "dist/index.js" } }, "sha512-WxsqhW5jYxGNpz0M3P98T8Lewg8d4dAQ3UN+vJ5JQQ8p9mKpYdYaP8Iy5sZWRU87uKRDNQn20WiXWjSfO7x0Eg=="],
 
     "abab": ["abab@2.0.6", "", {}, "sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA=="],
 
@@ -2201,8 +2201,6 @@
     "@jest/transform/write-file-atomic/signal-exit": ["signal-exit@3.0.7", "", {}, "sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ=="],
 
     "@modelcontextprotocol/sdk/ajv/json-schema-traverse": ["json-schema-traverse@0.4.1", "", {}, "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="],
-
-    "@vue/language-service/volar-service-emmet/@emmetio/css-parser": ["@emmetio/css-parser@github:ramya-rao-a/css-parser#370c480", { "dependencies": { "@emmetio/stream-reader": "^2.2.0", "@emmetio/stream-reader-utils": "^0.1.0" } }, "ramya-rao-a-css-parser-370c480"],
 
     "@vue/language-service/volar-service-emmet/@vscode/emmet-helper": ["@vscode/emmet-helper@2.11.0", "", { "dependencies": { "emmet": "^2.4.3", "jsonc-parser": "^2.3.0", "vscode-languageserver-textdocument": "^1.0.1", "vscode-languageserver-types": "^3.15.1", "vscode-uri": "^3.0.8" } }, "sha512-QLxjQR3imPZPQltfbWRnHU6JecWTF1QSWhx3GAKQpslx7y3Dp6sIIXhKjiUJ/BR9FX8PVthjr9PD6pNwOJfAzw=="],
 
