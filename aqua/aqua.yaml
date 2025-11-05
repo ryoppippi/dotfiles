@@ -133,7 +133,7 @@ packages:
   - name: pnpm/pnpm@v10.20.0
   - name: zigtools/zls@0.15.0
   - name: secretlint/secretlint@v11.2.5
-  - name: sst/opencode@v1.0.9
+  - name: sst/opencode@v1.0.10
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.20.0
