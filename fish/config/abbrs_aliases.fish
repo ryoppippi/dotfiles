@@ -110,6 +110,7 @@ abbr -a lcp leetcode t
 
 # ai
 abbr -a cl claude
+abbr -a cld claude --dangerously-skip-permissions
 abbr -a oc opencode
 abbr -a cx codex
 
