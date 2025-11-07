@@ -7,7 +7,7 @@
     "@tailwindcss/language-server": "0.14.29",
     "@vtsls/language-server": "0.2.9",
     "@vue/language-server": "3.1.3",
-    "@zed-industries/claude-code-acp": "^0.9.0",
+    "@zed-industries/claude-code-acp": "^0.10.0",
     "cssmodules-language-server": "1.5.1",
     "emmet-ls": "0.4.2",
     "gh-actions-language-server": "^0.0.3",
