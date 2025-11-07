@@ -9,7 +9,7 @@ set -q XDG_CACHE_HOME || set -gx XDG_CACHE_HOME $HOME/.cache
 # define fish config paths
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
-set -g FISH_CACHE_DIR $XDG_CACHE_HOME/fish
+set -g FISH_CACHE_DIR /tmp/fish-cache
 
 # add user config
 set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
