@@ -20,19 +20,23 @@ startup_timeout_ms = 5_000
 url = "https://mcp.context7.com/mcp"
 
 [mcp_servers.chrome-devtools]
-command = "aqua"
+command = "nix"
+enabled = false
 args = [
-  "exec",
+  "shell",
+  "nixpkgs#bun",
+  "--command",
   "bunx",
   "chrome-devtools-mcp@latest"
 ]
 
 [mcp_servers.lsmcp-tsgo]
-command="aqua"
+command="nix"
 args=[
-  "exec",
+  "shell",
+  "nixpkgs#bun",
+  "--command",
   "bunx",
-  "-y",
   "@mizchi/lsmcp@latest",
   "-p",
   "tsgo",
