@@ -8,7 +8,7 @@
     "@vtsls/language-server": "0.2.9",
     "@vue/language-server": "3.1.3",
     "@zed-industries/claude-code-acp": "^0.10.0",
-    "cssmodules-language-server": "1.5.1",
+    "cssmodules-language-server": "1.5.2",
     "emmet-ls": "0.4.2",
     "gh-actions-language-server": "^0.0.3",
     "sql-language-server": "1.7.1",
