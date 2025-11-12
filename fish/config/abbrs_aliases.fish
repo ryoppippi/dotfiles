@@ -76,8 +76,6 @@ abbr -a gcl 'git clone'
 abbr -a --set-cursor gcm git commit -m \"%\"
 abbr -a --set-cursor gcnm git commit -n -m \"%\"
 abbr -a --set-cursor gcam git commit --amend -m \"%\"
-abbr -a gcz 'git cz'
-abbr -a gcza 'git cza'
 abbr -a gp 'git push'
 abbr -a gpo 'git push origin'
 abbr -a gpf 'git pushf'
@@ -88,6 +86,44 @@ abbr -a gsw 'git switch'
 abbr -a --set-cursor gswf 'git switch feature/%'
 abbr -a gsm "command git switch main 2>/dev/null || command git switch master"
 abbr -a gpt 'git push --tags'
+# git abbreviations using --command option (fish 4.0+)
+abbr -a -c git a add # Stage files
+abbr -a -c git aa add -a # Stage all modified files
+abbr -a -c git ap add -p # Stage files interactively (patch mode)
+abbr -a -c git cm commit -m # Commit with message
+abbr -a -c git cma commit --amend -m # Amend commit with new message
+abbr -a -c git b branch # List/create branches
+abbr -a -c git bm branch -m # Rename branch
+abbr -a -c git bu rev-parse --abbrev-ref --symbolic-full-name @{u} # Show upstream branch
+abbr -a -c git bv branch -vv # List branches with tracking info
+abbr -a -c git br browse # Open repo in browser
+abbr -a -c git cl clone # Clone repository
+abbr -a -c git cp cherry-pick # Cherry-pick commits
+abbr -a -c git cpn cherry-pick -n # Cherry-pick without committing
+abbr -a -c git f fetch # Fetch from remote
+abbr -a -c git p push # Push to remote
+abbr -a -c git pf push --force-with-lease --force-if-includes # Safe force push
+abbr -a -c git pushf push --force-with-lease --force-if-includes # Safe force push (alias)
+abbr -a -c git rbm rebase origin/main # Rebase on origin/main
+abbr -a -c git rst reset # Reset HEAD
+abbr -a -c git rs restore # Restore working tree files
+abbr -a -c git st stash # Stash changes
+abbr -a -c git sts status -s -uno # Short status without untracked files
+abbr -a -c git sm submodule # Manage submodules
+abbr -a -c git smu submodule update --remote --init --recursive # Update submodules recursively
+abbr -a -c git sma submodule add # Add submodule
+abbr -a -c git sw switch # Switch branches
+abbr -a -c git swc switch -c # Create and switch to new branch
+abbr -a -c git po push origin # Push to origin
+abbr -a -c git difff diff --word-diff # Show word-level diff
+abbr -a -c git cid log -n 1 --format=%H # Show latest commit ID
+abbr -a -c git clb clean-local-branches # Delete merged local branches
+abbr -a -c git id show -s --format=%H # Show commit ID
+abbr -a -c git co checkout # Checkout branch/files
+abbr -a -c git cob checkout -b # Create and checkout new branch
+abbr -a -c git sha rev-parse HEAD # Show HEAD commit SHA
+abbr -a -c git root rev-parse --show-toplevel # Show repository root path
+abbr -a -c git pl pull # Pull from remote
 
 # gh
 abbr -a ghp 'gh poi'
