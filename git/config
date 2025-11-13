@@ -41,6 +41,8 @@
   pr-setup = config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr/*
   ; Show recent branches from reflog
   rb = "!git reflog -n 50 --pretty='format:%gs' | perl -anal -e '$seen{$1}++ or print $1 if /checkout:.*to (.+)/'"
+  ; Show the root directory of the repository
+  root = rev-parse --show-toplevel
   ; Show today's commit statistics (lines added/deleted)
   today-numstat = !"f(){ \
     git log \

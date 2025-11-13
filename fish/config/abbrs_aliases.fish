@@ -122,7 +122,6 @@ abbr -a -c git id show -s --format=%H # Show commit ID
 abbr -a -c git co checkout # Checkout branch/files
 abbr -a -c git cob checkout -b # Create and checkout new branch
 abbr -a -c git sha rev-parse HEAD # Show HEAD commit SHA
-abbr -a -c git root rev-parse --show-toplevel # Show repository root path
 abbr -a -c git pl pull # Pull from remote
 
 # gh
