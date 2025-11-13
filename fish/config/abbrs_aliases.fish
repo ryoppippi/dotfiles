@@ -86,6 +86,7 @@ abbr -a gsw 'git switch'
 abbr -a --set-cursor gswf 'git switch feature/%'
 abbr -a gsm "command git switch main 2>/dev/null || command git switch master"
 abbr -a gpt 'git push --tags'
+abbr -a gr 'git rebase'
 # git abbreviations using --command option (fish 4.0+)
 abbr -a -c git a add # Stage files
 abbr -a -c git aa add -a # Stage all modified files
