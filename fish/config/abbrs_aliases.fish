@@ -79,6 +79,7 @@ abbr -a --set-cursor gcam git commit --amend -m \"%\"
 abbr -a gp 'git push'
 abbr -a gpo 'git push origin'
 abbr -a gpf git push --force-with-lease
+abbr -a gpff git push --force
 abbr -a gpl 'git pull'
 abbr -a gf 'git fetch'
 abbr -a gsw 'git switch'
