@@ -1,1 +1,1 @@
-call git-commit-crafter agent
+call git-commit-crafter skill
