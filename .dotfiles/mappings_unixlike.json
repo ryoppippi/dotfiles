@@ -15,6 +15,7 @@
   "claude/commands": "~/.config/claude/commands",
   "claude/output-styles": "~/.config/claude/output-styles",
   "claude/agents": "~/.config/claude/agents",
+  "claude/skills": "~/.config/claude/skills",
   "claude/CLAUDE.md": "~/.config/claude/CLAUDE.md",
   "claude/settings.json": "~/.config/claude/settings.json",
   "codex/config.toml": "~/.config/codex/config.toml",

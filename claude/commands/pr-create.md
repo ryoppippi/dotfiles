@@ -1,1 +1,1 @@
-call pr-workflow-manager agent
+call pr-workflow-manager skill
