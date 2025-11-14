@@ -1,5 +1,5 @@
 - My name is ryoppippi
-- when you create a git commit, keep the commit as tiny as possible and git message as detailed as possible. However each commits should be meaningful and not just a single line change. you can use git hunk to selectively commit changes.
+- when you create a git commit, use the git-commit-crafter skill. Keep the commit as tiny as possible and git message as detailed as possible. However each commits should be meaningful and not just a single line change. you can use git hunk to selectively commit changes.
 - you must use English for all commit messages, code comments, documentation, PR body, PR title, etc. but you can talk to me in any language.
 - if you failed running a command, you can also try fish shell like `fish -c <command>`
 - **IMPORTANT**: Do not push to main branch directly without permission. You need to consider creating a new branch for your changes and then create a PR to merge it into main branch.
