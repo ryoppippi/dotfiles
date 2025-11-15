@@ -140,4 +140,4 @@ packages:
   - name: suzuki-shunsuke/pinact@v3.4.2
   - name: openai/codex@rust-v0.58.0
   - name: nodejs/node@v24.11.1
-  - name: casey/just@1.43.0
+  - name: casey/just@1.43.1
