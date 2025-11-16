@@ -24,6 +24,9 @@
   },
   "includeCoAuthoredBy": false,
   "permissions": {
+    "allow": [
+      "Bash(terminal-notifier:*)"
+    ],
     "defaultMode": "acceptEdits"
   },
   "statusLine": {
