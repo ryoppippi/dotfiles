@@ -1,7 +1,7 @@
-set -gx NOTIFY_ON_COMMAND_DURATION 5000
+# Show notification if dration is more than 30 seconds
+set -gx NOTIFY_ON_COMMAND_DURATION 30000
 function fish_right_prompt
     if test $CMD_DURATION
-        # Show notification if dration is more than 30 seconds
         if test $CMD_DURATION -gt $NOTIFY_ON_COMMAND_DURATION
             # Show duration of the last command in seconds
             set duration (echo "$CMD_DURATION 1000" | awk '{printf "%.3fs", $1 / $2}')
