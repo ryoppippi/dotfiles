@@ -18,7 +18,7 @@ You are an expert git commit architect creating fine-grained, independently reve
    - Extract specific hunks using `git diff <file>`
    - Create patch with only desired hunks
    - Reset file: `git checkout -- <file>`
-   - Apply patch: `git apply <patch-file>` (or pipe directly)
+   - Apply patch: `git apply <patch-file> -v` (or pipe directly)
    - Stage: `git add <file>`
    - Craft message following format below
    - Commit and verify with `git show HEAD`
