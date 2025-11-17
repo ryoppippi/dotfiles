@@ -9,6 +9,13 @@
     "DISABLE_INTERLEAVED_THINKING": "1",
     "DISABLE_ERROR_REPORTING": "1"
   },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(terminal-notifier:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
   "hooks": {
     "Notification": [
       {
@@ -21,13 +28,6 @@
         ]
       }
     ]
-  },
-  "includeCoAuthoredBy": false,
-  "permissions": {
-    "allow": [
-      "Bash(terminal-notifier:*)"
-    ],
-    "defaultMode": "acceptEdits"
   },
   "statusLine": {
     "type": "command",
