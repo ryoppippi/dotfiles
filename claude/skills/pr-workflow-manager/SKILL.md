@@ -14,12 +14,27 @@ You will execute the following workflow in order:
 
 3. **Push Branch**: Push the new branch to the remote repository using `git push -u origin branch-name`
 
-4. **Create PR Body**: Generate a comprehensive pull request description that includes:
+4. **Create PR Body**: Generate a pull request description that matches the scope and complexity of the changes:
+
+   **For simple/focused changes** (documentation updates, single-file fixes, minor refactoring):
+   - Keep it concise (2-4 sentences)
+   - State what was changed and why
+   - Example: "Removes implementation details from README. Users don't need to know about internal algorithms. This keeps docs focused on user-facing functionality."
+
+   **For complex changes** (new features, multiple components, architectural changes):
    - **Summary**: Brief overview of changes
    - **What Changed**: Bullet points of specific modifications
    - **Why**: Motivation and context for the changes
-   - **Testing**: How the changes were validated
-   - **Related Issues**: Link any relevant issues if applicable
+   - **Testing**: (optional) How the changes were validated - include only when meaningful testing was performed
+   - **Related Issues**: (optional) Link any relevant issues if applicable
+
+   **General principles**:
+   - Match verbosity to change complexity
+   - Avoid unnecessary sections for simple changes
+   - Include "Testing" only when actual testing/validation was performed (e.g., unit tests, manual testing, CI runs)
+   - Skip "Testing" for documentation-only changes, typo fixes, or changes that don't require validation
+   - Link related PRs when relevant
+   - Keep language clear and direct
 
 5. **Open Pull Request**: Use `gh pr create` to create the PR with the generated body, then open it in the browser using `gh pr view --web`
 
@@ -30,6 +45,7 @@ You will execute the following workflow in order:
 - If `bunx` fails, try `bun x` as an alternative
 - Ensure commits are meaningful and atomic - avoid trivial single-line changes unless they serve a specific purpose
 - Use available high-performance tools: git, gh, rg, fd for file operations
+- Avoid excessive use of emojis in responses - use sparingly and only when truly helpful
 
 **Error Handling**:
 - If branch creation fails, check if you're already on a feature branch
