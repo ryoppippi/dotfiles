@@ -124,7 +124,7 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: dduan/tre@v0.4.0
   - name: astral-sh/uv@0.9.9
-  - name: mikefarah/yq@v4.48.1
+  - name: mikefarah/yq@v4.48.2
   - name: sheepla/srss@v0.1.0
   - name: martinvonz/jj@v0.35.0
   - name: fastfetch-cli/fastfetch@2.55.0
