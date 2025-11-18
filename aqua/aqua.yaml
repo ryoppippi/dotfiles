@@ -84,7 +84,7 @@ packages:
   - name: sharkdp/hexyl@v0.16.0
   - name: orf/gping@gping-v1.20.1
   - name: mozilla/sccache@v0.12.0
-  - name: pemistahl/grex@v1.4.5
+  - name: pemistahl/grex@v1.4.6
   - name: charmbracelet/glow@v2.1.1
   - name: simeji/jid@v0.7.6
   - name: aquasecurity/trivy@v0.67.2
