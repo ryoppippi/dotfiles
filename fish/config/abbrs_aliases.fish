@@ -154,6 +154,7 @@ abbr -a clo claude --dangerously-skip-permissions --model opus
 abbr -a cls claude --dangerously-skip-permissions --model sonnet
 abbr -a oc opencode
 abbr -a cx codex
+abbr -a ca cursor-agent
 
 # misc
 abbr -a n -f _na
