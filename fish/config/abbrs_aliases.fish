@@ -76,6 +76,7 @@ abbr -a gcl 'git clone'
 abbr -a --set-cursor gcm git commit -m \"%\"
 abbr -a --set-cursor gcnm git commit -n -m \"%\"
 abbr -a --set-cursor gcam git commit --amend -m \"%\"
+abbr -a --set-cursor gcem git commit --allow-empty -m \"%\"
 abbr -a gp 'git push'
 abbr -a gpo 'git push origin'
 abbr -a gpf git push --force-with-lease
