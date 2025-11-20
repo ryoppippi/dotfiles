@@ -19,5 +19,6 @@
   "claude/CLAUDE.md": "~/.config/claude/CLAUDE.md",
   "claude/settings.json": "~/.config/claude/settings.json",
   "codex/config.toml": "~/.config/codex/config.toml",
-  "opencode": "~/.config/opencode"
+  "opencode": "~/.config/opencode",
+  "cursor/cli-config.json": "~/.config/cursor/cli-config.json"
 }
