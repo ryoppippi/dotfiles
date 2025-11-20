@@ -27,25 +27,4 @@ Codex is:
 
 **IMPORTANT**: When you need to analyze codebase structure or search for specific code patterns, use the ast-grep skill instead of ordinary grep/rg tools.
 
-ast-grep provides:
-- Structural code search using Abstract Syntax Tree (AST) patterns
-- More accurate pattern matching than text-based search
-- Language-aware code analysis with support for JavaScript/TypeScript, Python, Rust, Go, Java, C/C++, Ruby, PHP, and more
-- Metavariables (`$VAR` syntax) for flexible pattern matching
-- Contextual searching with logical combinations (AND, OR, NOT)
-
-Use ast-grep skill when:
-- Locating async functions lacking error handling
-- Finding React components using specific hooks
-- Identifying console.log calls within specific contexts
-- Discovering functions exceeding parameter limits
-- Searching for code patterns or language constructs
-- Finding functions, classes, or specific structural elements
-- Performing complex code queries beyond simple text matching
-- Analyzing code structure and relationships
-
-Best practices:
-- Provide specific details and concrete examples when requesting searches
-- Start broadly, then refine iteratively based on results
-- Request rule explanations to understand the search approach
-- If results don't match expectations, ask to display the generated rule or inspect AST structure
+use ast-grep skill to analyse your codebase
