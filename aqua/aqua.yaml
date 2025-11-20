@@ -137,7 +137,7 @@ packages:
   - name: yarnpkg/yarn@v1.22.22
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.22.0
-  - name: suzuki-shunsuke/pinact@v3.4.3
+  - name: suzuki-shunsuke/pinact@v3.4.4
   - name: openai/codex@rust-v0.60.1
   - name: nodejs/node@v24.11.0
   - name: casey/just@1.43.1
