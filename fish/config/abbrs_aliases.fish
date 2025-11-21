@@ -160,4 +160,3 @@ abbr -a ca cursor-agent
 
 # misc
 abbr -a n -f _na
-abbr --position anywhere rpp ryoppippi
