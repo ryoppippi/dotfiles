@@ -12,7 +12,12 @@ function npkill
     echo -n "Do you want to delete all node_modules directories? (y/n) "
     read -l answer
     if test "$answer" = y
-        find . -type d -name node_modules -prune -exec rm -rf {} +
+        # Use trash if available, otherwise fallback to rm
+        if command -v trash >/dev/null 2>&1
+            find . -type d -name node_modules -prune -exec trash {} +
+        else
+            find . -type d -name node_modules -prune -exec rm -rf {} +
+        end
         echo "All node_modules directories have been deleted."
     else
         echo "Operation cancelled."
