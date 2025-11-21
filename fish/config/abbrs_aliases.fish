@@ -153,6 +153,7 @@ abbr -a cld claude --dangerously-skip-permissions
 abbr -a clh claude --dangerously-skip-permissions --model haiku
 abbr -a clo claude --dangerously-skip-permissions --model opus
 abbr -a cls claude --dangerously-skip-permissions --model sonnet
+abbr -a cls1 claude --dangerously-skip-permissions --model sonnet[1m]
 abbr -a oc opencode
 abbr -a cx codex
 abbr -a ca cursor-agent
