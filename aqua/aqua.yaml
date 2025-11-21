@@ -33,7 +33,7 @@ packages:
   - name: sharkdp/bat@v0.26.0
   - name: stedolan/jq@jq-1.6
   - name: jesseduffield/lazydocker@v0.24.2
-  - name: sharkdp/hyperfine@v1.19.0
+  - name: sharkdp/hyperfine@v1.20.0
   - name: sheepla/pingu@v0.0.5
   - name: rhysd/vim-startuptime@v1.3.2
   - name: antonmedv/fx@39.2.0
