@@ -77,17 +77,19 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${username} = {
+          home-manager.users.${username} = {pkgs, ...}: {
             home.stateVersion = "25.11";
 
             programs.home-manager.enable = true;
 
-            home.packages = with nixpkgs.legacyPackages.${system}; [
+            home.packages = with pkgs; [
               # Essentials
               curl
               devenv
               htop
               fish
+              neovim
+              tmux
               # VCS
               gh
               git-lfs
