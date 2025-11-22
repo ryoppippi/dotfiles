@@ -35,8 +35,10 @@
   }: let
     username = "ryoppippi";
     system = "aarch64-darwin";
+    homedir = "/Users/${username}";
+    hostname = "${username}";
   in {
-    darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
       inherit system;
 
       modules = [
@@ -52,7 +54,7 @@
           system.stateVersion = 5;
 
           # Define user
-          users.users.${username}.home = "/Users/${username}";
+          users.users.${username}.home = homedir;
         }
 
         # Home Manager integration
