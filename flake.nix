@@ -126,10 +126,11 @@
             ];
 
             casks = [
-              "aerospace"
+              # "aerospace" 
               "alfred"
               "alt-tab"
               "appcleaner"
+              "aqua-voice"
               "arc"
               "audacity"
               "background-music"
