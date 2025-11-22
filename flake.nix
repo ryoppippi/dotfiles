@@ -113,7 +113,6 @@
               "leiningen"
               "llvm"
               "mysql-client"
-              "openjdk"
               "pam-reattach"
               "python@3.11"
               "python@3.9"
