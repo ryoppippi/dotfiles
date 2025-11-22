@@ -28,3 +28,40 @@ Codex is:
 **IMPORTANT**: When you need to analyze codebase structure or search for specific code patterns, use the ast-grep skill instead of ordinary grep/rg tools.
 
 use ast-grep skill to analyse your codebase
+
+## Nix Configuration Structure
+
+This dotfiles repository uses a modular Nix configuration:
+
+- **`flake.nix`** - Main entry point
+  - Defines inputs (nixpkgs, nix-darwin, home-manager, etc.)
+  - Imports modules from `nix/` directory
+  - Defines apps for switch/build/update commands
+  - Supports both macOS (darwinConfigurations) and Linux (homeConfigurations)
+
+- **`nix/home.nix`** - Home Manager configuration (cross-platform)
+  - Manages dotfiles via `home.file` with `mkOutOfStoreSymlink`
+  - All dotfiles symlinks point to `${dotfilesDir}` (defaults to `${homedir}/ghq/github.com/ryoppippi/dotfiles`)
+  - User package list
+  - Platform-specific packages via `pkgs.stdenv.isDarwin`
+
+- **`nix/darwin.nix`** - macOS system configuration (nix-darwin only)
+  - System settings (Touch ID, fish shell, etc.)
+  - Homebrew configuration (taps, brews, casks, masApps)
+
+- **`nix/overlays.nix`** - Package overlays
+  - AI tools from numtide/nix-ai-tools
+  - Claude Code from claude-code-overlay
+
+### When modifying Nix configuration:
+- Add/remove packages: edit `nix/home.nix`
+- Add/remove Homebrew packages (macOS): edit `nix/darwin.nix`
+- Add new dotfile symlinks: add to `home.file` in `nix/home.nix`
+- System settings (macOS): edit `nix/darwin.nix`
+- After changes: run `nix run .#switch` to apply
+
+### Dotfiles Management:
+- All dotfiles are managed via Home Manager's `home.file` configuration
+- No separate dotfiles CLI is used (removed rhysd/dotfiles)
+- Symlinks are automatically created/updated on `nix run .#switch`
+- Dotfiles remain mutable in the repository
