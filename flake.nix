@@ -285,6 +285,8 @@
               neovim
               tmux
               # VCS
+              git
+              bit
               gh
               git-lfs
               ghq
