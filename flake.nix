@@ -85,7 +85,7 @@
               zoxide
               bat
               jq
-              du-dust
+              dust
               duf
               delta
               tre
@@ -112,23 +112,19 @@
               gotestsum
               cobra-cli
               golines
-              goimports
               # Package managers
               pnpm
               yarn
-              yarn-berry
               # Shell & TUI
               starship
               direnv
               navi
               # Testing & security
-              trivy
               hadolint
               actionlint
               ruff
               uv
               # Container & Docker
-              dockle
               dive
               act
               # Database tools
