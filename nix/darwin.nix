@@ -7,6 +7,9 @@
 }: let
   fishPath = "${pkgs.fish}/bin/fish";
 in {
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Disable nix-darwin's Nix management (using Determinate Nix)
   nix.enable = false;
 
