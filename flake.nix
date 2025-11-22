@@ -43,7 +43,9 @@
 
       modules = [
         # Nix configuration
-        {
+        ({pkgs, ...}: let
+          fishPath = "${pkgs.fish}/bin/fish";
+        in {
           # Disable nix-darwin's Nix management (using Determinate Nix)
           nix.enable = false;
 
@@ -54,8 +56,21 @@
           system.stateVersion = 5;
 
           # Define user
-          users.users.${username}.home = homedir;
-        }
+          users.users.${username} = {
+            home = homedir;
+            shell = pkgs.fish;
+            ignoreShellProgramCheck = true;
+          };
+
+          # Add fish to system shells
+          environment.shells = [ pkgs.fish ];
+
+          # Set user shell on activation
+          system.activationScripts.postActivation.text = ''
+            echo "Setting login shell to fish..."
+            sudo chsh -s ${fishPath} ${username} || true
+          '';
+        })
 
         # Home Manager integration
         home-manager.darwinModules.home-manager
@@ -72,6 +87,7 @@
               curl
               devenv
               htop
+              fish
               # VCS
               gh
               git-lfs
@@ -174,6 +190,21 @@
               supabase-cli
               pscale
               cloudflared
+              # Additional CLI tools from Homebrew
+              aria2
+              autoconf
+              bison
+              clang-tools
+              cloc
+              cmatrix
+              ffmpeg
+              figlet
+              fortune
+              gawk
+              gnumake
+              mas
+              pv
+              switchaudio-osx
             ] ++ (with ai-tools.packages.${system}; [
               claude-code
               codex
