@@ -154,6 +154,7 @@
           echo "Build successful! Run 'nix run .#switch' to apply."
         '');
       };
+
     };
 
     # Apps for Linux

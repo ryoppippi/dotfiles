@@ -6,6 +6,12 @@
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
   ...
 }: {
+  imports = [
+    (import ./git-hooks.nix {
+      inherit pkgs lib config dotfilesDir;
+    })
+  ];
+
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
