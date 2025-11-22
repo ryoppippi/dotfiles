@@ -4,11 +4,16 @@
   lib,
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
+  claude-code-overlay ? null,
+  system ? null,
   ...
 }: {
   imports = [
     (import ./git-hooks.nix {
       inherit pkgs lib config dotfilesDir;
+    })
+    (import ./programs/claude-code.nix {
+      inherit pkgs lib config dotfilesDir claude-code-overlay system;
     })
   ];
 
@@ -26,13 +31,6 @@
 
     # IdeaVim configuration
     ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/ideavimrc";
-
-    # Claude configuration
-    ".config/claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/claude/settings.json";
-    ".config/claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/claude/CLAUDE.md";
-    ".config/claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/claude/commands";
-    ".config/claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/claude/agents";
-    ".config/claude/output-styles".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/claude/output-styles";
 
     # LazyGit configuration
     ".config/lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/lazygit";
