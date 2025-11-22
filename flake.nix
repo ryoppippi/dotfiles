@@ -107,6 +107,17 @@
         '');
       };
 
+      # Update ai-tools only
+      update-ai-tools = {
+        type = "app";
+        program = toString (nixpkgs.legacyPackages.${system}.writeShellScript "update-ai-tools" ''
+          set -e
+          echo "Updating ai-tools input..."
+          nix flake update ai-tools
+          echo "Done! Run 'nix run .#switch' to apply changes."
+        '');
+      };
+
       # Build darwin configuration (dry run)
       build = {
         type = "app";
