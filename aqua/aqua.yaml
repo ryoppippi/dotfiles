@@ -24,7 +24,6 @@ packages:
   - name: mattn/bsky@v0.0.73
   - name: mattn/zig-update@v0.0.4
   - name: nishanths/license@v5.0.4
-  - name: rhysd/dotfiles@v0.2.3
   - name: rhysd/vim-startuptime@v1.3.2
   - name: secretlint/secretlint@v11.2.5
   - name: sheepla/pingu@v0.0.5
