@@ -27,8 +27,6 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "opencode",
-        "codex",
         "bun",
         "deno"
       ],
