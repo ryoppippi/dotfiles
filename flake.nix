@@ -24,6 +24,11 @@
     ai-tools = {
       url = "github:numtide/nix-ai-tools";
     };
+
+    claude-code-overlay = {
+      url = "github:ryoppippi/claude-code-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
@@ -32,6 +37,7 @@
     nix-darwin,
     home-manager,
     ai-tools,
+    claude-code-overlay,
   }: let
     username = "ryoppippi";
     system = "aarch64-darwin";
@@ -43,7 +49,7 @@
 
       modules = [
         # Nix configuration
-        ({pkgs, ...}: let
+        ({pkgs, lib, ...}: let
           fishPath = "${pkgs.fish}/bin/fish";
         in {
           # Disable nix-darwin's Nix management (using Determinate Nix)
@@ -405,8 +411,9 @@
               mas
               pv
               switchaudio-osx
+            ] ++ [
+              claude-code-overlay.packages.${system}.default
             ] ++ (with ai-tools.packages.${system}; [
-              claude-code
               codex
               cursor-agent
               opencode
