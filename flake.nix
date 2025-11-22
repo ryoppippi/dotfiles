@@ -106,7 +106,6 @@
             brews = [
               "bluetoothconnector"
               "cmigemo"
-              "ffmpeg@4"
               "fig2dev"
               "gnuplot"
               "graphicsmagick"
