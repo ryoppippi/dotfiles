@@ -36,6 +36,15 @@
     },
     {
       "matchPackageNames": [
+        "ai-tools"
+      ],
+      "matchDatasources": [
+        "git-refs"
+      ],
+      "stabilityDays": 0
+    },
+    {
+      "matchPackageNames": [
         "node"
       ],
       "matchDatasources": [
