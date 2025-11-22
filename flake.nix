@@ -11,6 +11,11 @@
       url = "github:nixos/nixpkgs?ref=nixos-unstable";
     };
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,39 +30,53 @@
   outputs = inputs@{
     self,
     nixpkgs,
+    nix-darwin,
     home-manager,
     ai-tools,
   }: let
     username = "ryoppippi";
-    homedir = "/Users/${username}";
     system = "aarch64-darwin";
-
-    pkgs = import nixpkgs {
-      inherit system;
-    };
   in {
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
+      inherit system;
 
       modules = [
+        # Nix configuration
         {
-          home.stateVersion = "25.11";
+          # Disable nix-darwin's Nix management (using Determinate Nix)
+          nix.enable = false;
 
-          home.username = username;
-          home.homeDirectory = homedir;
+          # Enable Touch ID for sudo
+          security.pam.services.sudo_local.touchIdAuth = true;
 
-          programs.home-manager.enable = true;
+          # Set system state version
+          system.stateVersion = 5;
 
-          home.packages = with pkgs; [
-            curl
-          ] ++ (with ai-tools.packages.${system}; [
-            claude-code
-            codex
-            cursor-agent
-            opencode
-            copilot-cli
-            coderabbit-cli
-          ]);
+          # Define user
+          users.users.${username}.home = "/Users/${username}";
+        }
+
+        # Home Manager integration
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${username} = {
+            home.stateVersion = "25.11";
+
+            programs.home-manager.enable = true;
+
+            home.packages = with nixpkgs.legacyPackages.${system}; [
+              curl
+            ] ++ (with ai-tools.packages.${system}; [
+              claude-code
+              codex
+              cursor-agent
+              opencode
+              copilot-cli
+              coderabbit-cli
+            ]);
+          };
         }
       ];
     };
