@@ -104,6 +104,7 @@
             ];
 
             brews = [
+              "aquaproj/aqua/aqua"
               "bluetoothconnector"
               "cmigemo"
               "fig2dev"
