@@ -33,3 +33,8 @@ Temporary Items
 
 .claude
 result
+
+# devenv
+.devenv
+.devenv.flake.nix
+devenv.lock
