@@ -220,7 +220,6 @@
               "DuckDuckGo Privacy for Safari" = 1482920575;
               "Final Cut Pro" = 424389933;
               "FocusRecorder" = 6446467176;
-              "Gemini 2" = 1090488118;
               "Gifski" = 1351639930;
               "GIPHY CAPTURE" = 668208984;
               "Grammarly for Safari" = 1462114288;
