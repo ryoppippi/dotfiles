@@ -22,5 +22,53 @@ or
 curl -L https://raw.githubusercontent.com/ryoppippi/dotfiles/main/setup.sh | sh
 ```
 
+## Nix Configuration (macOS)
+
+This repository includes a Nix-based configuration using nix-darwin and home-manager.
+
+### Initial Setup
+
+1. Install [Determinate Nix](https://github.com/DeterminateSystems/nix-installer):
+   ```sh
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+   ```
+
+2. Apply the nix-darwin configuration:
+   ```sh
+   sudo nix run nix-darwin -- switch --flake .#ryoppippi
+   ```
+
+3. Reload your shell (Fish):
+   ```sh
+   exec fish
+   ```
+
+### Daily Usage
+
+After modifying packages or configuration in `flake.nix`:
+
+```sh
+# Apply changes
+nix run .#switch
+
+# Update dependencies
+nix run .#update
+
+# Test build without applying
+nix run .#build
+```
+
+### Available Nix Apps
+
+- `nix run .#switch` - Build and apply darwin configuration
+- `nix run .#update` - Update flake.lock dependencies
+- `nix run .#build` - Build configuration (dry run)
+
+### Managed by Nix
+
+- **AI Development Tools**: claude-code, codex, cursor-agent, opencode, copilot-cli, coderabbit-cli
+- **System Tools**: curl, htop, devenv
+- **System Configuration**: Touch ID for sudo, trusted binary caches
+
 ## Stats
 ![Alt](https://repobeats.axiom.co/api/embed/2cca1f5df8fc02943c2a6a52854ac73bd6703de1.svg "Repobeats analytics image")
