@@ -5,9 +5,6 @@
       "security"
     ]
   },
-  "extends": [
-    "github>aquaproj/aqua-renovate-config#2.9.0"
-  ],
   "labels": [
     "dependencies",
     "renovate"
@@ -27,28 +24,12 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "bun",
-        "deno"
-      ],
-      "stabilityDays": 0
-    },
-    {
-      "matchPackageNames": [
         "ai-tools"
       ],
       "matchDatasources": [
         "git-refs"
       ],
       "stabilityDays": 0
-    },
-    {
-      "matchPackageNames": [
-        "node"
-      ],
-      "matchDatasources": [
-        "node"
-      ],
-      "allowedVersions": "/^([2-9]\\d*[02468])(\\.\\d+)*$/"
     }
   ]
 }

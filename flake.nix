@@ -68,9 +68,116 @@
             programs.home-manager.enable = true;
 
             home.packages = with nixpkgs.legacyPackages.${system}; [
+              # Essentials
               curl
               devenv
               htop
+              # VCS
+              gh
+              git-lfs
+              ghq
+              lazygit
+              lazydocker
+              # Search & file utilities
+              ripgrep
+              fd
+              fzf
+              zoxide
+              bat
+              jq
+              du-dust
+              duf
+              delta
+              tre
+              vivid
+              pastel
+              hexyl
+              # Development languages
+              go
+              nodejs_24
+              bun
+              deno
+              tinygo
+              typst
+              # Build systems
+              just
+              ninja
+              # Language servers
+              lua-language-server
+              stylua
+              efm-langserver
+              # Go tooling
+              gotools
+              mockgen
+              gotestsum
+              cobra-cli
+              golines
+              goimports
+              # Package managers
+              pnpm
+              yarn
+              yarn-berry
+              # Shell & TUI
+              starship
+              direnv
+              navi
+              # Testing & security
+              trivy
+              hadolint
+              actionlint
+              ruff
+              uv
+              # Container & Docker
+              dockle
+              dive
+              act
+              # Database tools
+              trdsql
+              sqls
+              usql
+              # Performance & monitoring
+              hyperfine
+              bottom
+              ctop
+              oha
+              viddy
+              hwatch
+              # Miscellaneous utilities
+              sttr
+              silicon
+              fx
+              gist
+              glow
+              vhs
+              marp-cli
+              gitu
+              mmv
+              jid
+              gibo
+              genact
+              grex
+              gping
+              ghr
+              watchexec
+              rclone
+              ttyd
+              wasmer
+              fastfetch
+              yazi
+              jujutsu
+              xh
+              choose
+              ast-grep
+              t-rec
+              richgo
+              iferr
+              jwt-cli
+              fq
+              tokei
+              # Cloud tools
+              supabase-cli
+              pscale
+              cloudflared
             ] ++ (with ai-tools.packages.${system}; [
               claude-code
               codex
