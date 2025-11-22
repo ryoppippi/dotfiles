@@ -75,6 +75,9 @@ fish_add_path $HOME/.scripts/bin
 # wezterm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
 
+# Add home-manager packages to PATH
+fish_add_path ~/.local/state/home-manager/gcroots/current-home/home-path/bin
+
 # Secretive
 set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
