@@ -149,7 +149,6 @@
               "font-line-seed-jp"
               "font-udev-gothic"
               "font-udev-gothic-nf"
-              "ghostty"
               "google-chrome"
               "google-drive"
               "hammerspoon"
@@ -299,6 +298,7 @@
               bat
               eza
               wezterm
+              ghostty-bin
               jq
               dust
               duf
