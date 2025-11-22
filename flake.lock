@@ -52,11 +52,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1763849662,
-        "narHash": "sha256-82Z6eOzUet+mxnCPG+kEWBwPdniK5gI8mDxQZokIJS4=",
+        "lastModified": 1763850096,
+        "narHash": "sha256-y0opeRi3ldrUxZDQw0TpdY9fFCJ3nIkdmOqZ+J9hffk=",
         "owner": "ryoppippi",
         "repo": "claude-code-overlay",
-        "rev": "394f97599fb412a47b3c56915f1302fda504714f",
+        "rev": "7b76132f5c785365c3ccee79d2c65a8cf56e4694",
         "type": "github"
       },
       "original": {
