@@ -138,7 +138,6 @@ packages:
   - name: yarnpkg/berry@@yarnpkg/cli/4.9.3
   - name: pnpm/pnpm@v10.23.0
   - name: suzuki-shunsuke/pinact@v3.4.4
-  - name: openai/codex@rust-v0.61.0
   - name: nodejs/node@v24.11.0
   - name: casey/just@1.43.1
   - name: ast-grep/ast-grep@0.40.0
