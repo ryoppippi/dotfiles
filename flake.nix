@@ -297,6 +297,7 @@
               fzf
               zoxide
               bat
+              eza
               jq
               dust
               duf
