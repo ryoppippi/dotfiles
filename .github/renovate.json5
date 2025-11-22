@@ -30,6 +30,25 @@
         "git-refs"
       ],
       "stabilityDays": 0
+    },
+    {
+      "matchPackageNames": [
+        "claude-code-overlay"
+      ],
+      "matchDatasources": [
+        "git-refs"
+      ],
+      "stabilityDays": 0,
+      "schedule": ["every 1 hour"]
+    },
+    {
+      "matchPackageNames": [
+        "node"
+      ],
+      "matchDatasources": [
+        "node"
+      ],
+      "allowedVersions": "/^([2-9]\\d*[02468])(\\.\\d+)*$/"
     }
   ]
 }
