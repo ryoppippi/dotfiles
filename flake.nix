@@ -83,5 +83,40 @@
         }
       ];
     };
+
+    # Apps for common tasks
+    apps.${system} = {
+      # Apply darwin configuration
+      switch = {
+        type = "app";
+        program = toString (nixpkgs.legacyPackages.${system}.writeShellScript "darwin-switch" ''
+          set -e
+          echo "Building and switching to darwin configuration..."
+          sudo nix run nix-darwin -- switch --flake .#${hostname}
+        '');
+      };
+
+      # Update flake.lock
+      update = {
+        type = "app";
+        program = toString (nixpkgs.legacyPackages.${system}.writeShellScript "flake-update" ''
+          set -e
+          echo "Updating flake.lock..."
+          nix flake update
+          echo "Done! Run 'nix run .#switch' to apply changes."
+        '');
+      };
+
+      # Build darwin configuration (dry run)
+      build = {
+        type = "app";
+        program = toString (nixpkgs.legacyPackages.${system}.writeShellScript "darwin-build" ''
+          set -e
+          echo "Building darwin configuration..."
+          nix build .#darwinConfigurations.${hostname}.system
+          echo "Build successful! Run 'nix run .#switch' to apply."
+        '');
+      };
+    };
   };
 }
