@@ -15,12 +15,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ai-tools = {
+      url = "github:numtide/nix-ai-tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
     self,
     nixpkgs,
     home-manager,
+    ai-tools,
   }: let
     username = "ryoppippi";
     homedir = "/Users/${username}";
@@ -44,7 +50,14 @@
 
           home.packages = with pkgs; [
             curl
-          ];
+          ] ++ (with ai-tools.packages.${system}; [
+            claude-code
+            codex
+            cursor-agent
+            opencode
+            copilot-cli
+            coderabbit-cli
+          ]);
         }
       ];
     };
