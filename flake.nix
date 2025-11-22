@@ -91,8 +91,6 @@
               "clojure/tools"
               "danielbayley/alfred"
               "homebrew/bundle"
-              "homebrew/cask-fonts"
-              "homebrew/cask-versions"
               "homebrew/services"
               "koekeishiya/formulae"
               "kphrx/personal"
