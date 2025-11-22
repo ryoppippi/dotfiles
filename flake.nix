@@ -191,7 +191,6 @@
               "transmission@nightly"
               "visual-studio-code"
               "vlc"
-              "wezterm"
               "xquartz"
               "zed"
               "zerotier-one"
@@ -299,6 +298,7 @@
               zoxide
               bat
               eza
+              wezterm
               jq
               dust
               duf
