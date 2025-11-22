@@ -39,6 +39,7 @@
     ai-tools,
     claude-code-overlay,
   }: let
+    lib = nixpkgs.lib;
     username = "ryoppippi";
 
     # macOS configuration
@@ -54,6 +55,7 @@
     mkPkgs = system:
       import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
         overlays = [
           (import ./nix/overlays.nix {
             inherit ai-tools claude-code-overlay system;
@@ -87,7 +89,9 @@
           }:
             import ./nix/home.nix {
               inherit pkgs config lib;
+              inherit claude-code-overlay;
               homedir = darwinHomedir;
+              system = darwinSystem;
             };
         }
       ];
@@ -105,7 +109,9 @@
         }:
           import ./nix/home.nix {
             inherit pkgs config lib;
+            inherit claude-code-overlay;
             homedir = linuxHomedir;
+            system = linuxSystem;
           })
       ];
     };
