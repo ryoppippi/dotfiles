@@ -69,6 +69,7 @@
 
             home.packages = with nixpkgs.legacyPackages.${system}; [
               curl
+              devenv
               htop
             ] ++ (with ai-tools.packages.${system}; [
               claude-code

@@ -17,6 +17,13 @@
   "automerge": true,
   "branchConcurrentLimit": 0,
   "minimumReleaseAge": "3 days",
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
   "packageRules": [
     {
       "matchPackageNames": [
