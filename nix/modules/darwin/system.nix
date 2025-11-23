@@ -140,7 +140,6 @@ in
       "arc"
       "audacity"
       "background-music"
-      "balenaetcher"
       "blackhole-16ch"
       "blu-ray-player-pro"
       "bluesnooze"
