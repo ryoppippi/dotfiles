@@ -47,29 +47,15 @@ let
       exit 0
     fi
 
-    # Run treefmt via nix run .#fmt on staged files
-    echo "🎨 Formatting staged files..."
+    # Run treefmt (includes nixfmt, stylua, and secretlint) via nix run .#fmt
+    echo "🎨 Formatting and linting staged files..."
     cd ${dotfilesDir}
     echo "$files" | xargs -r ${pkgs.nix}/bin/nix run .#fmt -- || {
-      echo "❌ Formatting failed. Please fix the issues and try again."
+      echo "❌ Formatting/linting failed. Please fix the issues and try again."
       exit 1
     }
     # Re-add formatted files
     echo "$files" | xargs -r ${pkgs.git}/bin/git add
-
-    # Run secretlint on all tracked files (as original does)
-    echo "🔒 Checking for secrets..."
-    all_files=$(${pkgs.git}/bin/git ls-files)
-    if [ -n "$all_files" ]; then
-      if command -v secretlint &> /dev/null; then
-        secretlint $all_files || {
-          echo "❌ Secret check failed. Please remove sensitive data and try again."
-          exit 1
-        }
-      else
-        echo "⚠️  secretlint not found (install via aqua), skipping secret check"
-      fi
-    fi
 
     echo "✅ Pre-commit checks passed"
   '';
