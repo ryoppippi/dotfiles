@@ -95,6 +95,23 @@ Managed via `fish_add_path` in `fish/config.fish`. Includes Nix home-manager pat
 - **Rebase**: Auto-stash, auto-squash, and update refs enabled
 - **Default branch**: `main`
 
+### Git Hooks
+
+Git hooks are managed declaratively through Nix in `nix/git-hooks.nix`:
+
+- **Pre-commit hook**: Automatically formats and lints staged files using treefmt
+  - Runs `nix run .#fmt` on staged files
+  - Includes nixfmt, stylua, and secretlint
+  - Automatically re-adds formatted files to staging
+  - Skips during rebase/merge/cherry-pick operations
+
+- **Post-checkout/merge hooks**: Automatically applies Nix configuration changes
+  - Triggers `nix run .#switch` when Nix-related files change
+  - Monitors: `flake.nix`, `flake.lock`, `nix/`, `aqua/aqua.yaml`
+  - Skips in CI environments
+
+Hooks are automatically installed via Home Manager activation when running `nix run .#switch`.
+
 ## Karabiner Configuration
 
 Karabiner-Elements is configured using **TypeScript** via karabiner.ts library.
