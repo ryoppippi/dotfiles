@@ -41,6 +41,16 @@ in
     sudo chsh -s ${fishPath} ${username} || true
   '';
 
+  # Font configuration
+  fonts = {
+    packages = with pkgs; [
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono
+      udev-gothic
+      udev-gothic-nf
+    ];
+  };
+
   # Homebrew configuration
   homebrew = {
     enable = true;
