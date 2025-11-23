@@ -2,13 +2,8 @@
   "name": "node_servers",
   "dependencies": {
     "@secretlint/secretlint-rule-preset-recommend": "^8.2.3",
-    "@zed-industries/claude-code-acp": "^0.10.0",
-    "fixjson": "^1.1.1",
     "gh-actions-language-server": "^0.0.3",
-    "renovate": "^42.19.3",
     "secretlint": "^8.2.3",
-    "stylelint-lsp": "2.0.1",
-    "textlint": "^14.4.1",
     "typescript-svelte-plugin": "0.3.50",
     "unocss-language-server": "0.1.8"
   },

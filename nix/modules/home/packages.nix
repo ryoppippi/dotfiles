@@ -71,6 +71,7 @@
     sttr
     silicon
     fx
+    fixjson
     gist
     glow
     vhs
@@ -92,6 +93,7 @@
     choose
     ast-grep
     t-rec
+    renovate
     richgo
     iferr
     jwt-cli
@@ -104,6 +106,8 @@
     # Cloud tools
     pscale
     cloudflared
+    # AI tools
+    claude-code-acp
     # Additional CLI tools
     aria2
     autoconf
