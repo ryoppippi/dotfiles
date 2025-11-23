@@ -112,7 +112,7 @@
             program = toString (
               pkgs.writeShellScript "nvim-check" ''
                 exec ${pkgs.bash}/bin/bash \
-                  ${./nix/programs/neovim/check.sh} \
+                  ${./nix/modules/home/programs/neovim/check.sh} \
                   ${homedir}/ghq/github.com/ryoppippi/dotfiles \
                   ${pkgs.git}/bin/git \
                   ${pkgs.neovim}/bin/nvim
