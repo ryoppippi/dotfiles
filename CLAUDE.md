@@ -14,6 +14,8 @@ This repository uses **Nix Flake** for declarative system configuration on macOS
 
 ```bash
 # Apply Nix configuration changes
+# IMPORTANT: Always git add changes before running switch to avoid warnings
+git add .
 nix run .#switch
 
 # Update all flake dependencies
@@ -25,6 +27,8 @@ nix run .#update-ai-tools
 # Test build without applying
 nix run .#build
 ```
+
+**Note**: Always stage (`git add`) Nix configuration changes before running `nix run .#switch` to avoid "uncommitted changes" warnings.
 
 ### Flake Structure
 
