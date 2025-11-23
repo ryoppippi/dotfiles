@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - uses: ./.github/actions/setup-nix
+        with:
+          flakehub-token: ${{ secrets.FLAKEHUB_SECRET_TOKEN }}
 
       - name: Check flake
         run: nix flake check --all-systems --show-trace
@@ -30,6 +32,8 @@ jobs:
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - uses: ./.github/actions/setup-nix
+        with:
+          flakehub-token: ${{ secrets.FLAKEHUB_SECRET_TOKEN }}
 
       - name: Evaluate flake outputs
         run: |
@@ -50,6 +54,8 @@ jobs:
           fetch-depth: 0
 
       - uses: ./.github/actions/setup-nix
+        with:
+          flakehub-token: ${{ secrets.FLAKEHUB_SECRET_TOKEN }}
 
       - name: Check if flake.lock is up-to-date
         run: |
