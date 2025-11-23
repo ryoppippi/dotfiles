@@ -207,7 +207,6 @@ in
       "CotEditor" = 1024640650;
       "DevCleaner" = 1388020431;
       "Document Generator" = 1437883178;
-      "DuckDuckGo Privacy for Safari" = 1482920575;
       "Final Cut Pro" = 424389933;
       "FocusRecorder" = 6446467176;
       "Gifski" = 1351639930;
