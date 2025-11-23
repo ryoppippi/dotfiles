@@ -9,6 +9,7 @@
 }: let
   claudeConfigDir = "${config.xdg.configHome}/claude";
   claudeDotfilesDir = "${dotfilesDir}/claude";
+  helpers = import ../lib/activation-helpers.nix {inherit lib;};
 
   # Get claude-code directly from overlay
   base-claude-code = (claude-code-overlay.overlays.default pkgs pkgs).claude-code;
@@ -29,11 +30,12 @@ in {
 
   # Create direct symlinks to Claude Code configuration files (bypassing Nix store)
   home.activation.linkClaudeCodeConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    ${helpers.mkLinkForce}
     $DRY_RUN_CMD mkdir -p "${claudeConfigDir}"
-    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/settings.json" "${claudeConfigDir}/settings.json"
-    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/CLAUDE.md" "${claudeConfigDir}/CLAUDE.md"
-    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/commands" "${claudeConfigDir}/commands"
-    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/agents" "${claudeConfigDir}/agents"
-    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/output-styles" "${claudeConfigDir}/output-styles"
+    link_force "${claudeDotfilesDir}/settings.json" "${claudeConfigDir}/settings.json"
+    link_force "${claudeDotfilesDir}/CLAUDE.md" "${claudeConfigDir}/CLAUDE.md"
+    link_force "${claudeDotfilesDir}/commands" "${claudeConfigDir}/commands"
+    link_force "${claudeDotfilesDir}/agents" "${claudeConfigDir}/agents"
+    link_force "${claudeDotfilesDir}/output-styles" "${claudeConfigDir}/output-styles"
   '';
 }
