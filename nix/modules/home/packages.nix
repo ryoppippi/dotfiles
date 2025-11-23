@@ -93,7 +93,6 @@
     choose
     ast-grep
     t-rec
-    renovate
     richgo
     iferr
     jwt-cli
