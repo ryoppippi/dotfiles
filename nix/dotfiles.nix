@@ -56,5 +56,56 @@ in
 
     # Bat configuration
     link_force "${dotfilesDir}/bat" "${configHome}/bat"
+
+    # Scripts directory
+    link_force "${dotfilesDir}/my_scripts" "${homeDir}/.scripts"
+
+    # Finicky configuration (macOS only, but harmless on Linux)
+    link_force "${dotfilesDir}/finicky.js" "${homeDir}/.finicky.js"
+
+    # Xcode key bindings (macOS only, but harmless on Linux)
+    $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings"
+    link_force "${dotfilesDir}/xcode/Default.idekeybindings" "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
+
+    # Yabai window manager (macOS only, but harmless on Linux)
+    link_force "${dotfilesDir}/yabai" "${configHome}/yabai"
+
+    # Skhd hotkey daemon (macOS only, but harmless on Linux)
+    link_force "${dotfilesDir}/skhd" "${configHome}/skhd"
+
+    # Pip configuration
+    $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Application Support/pip"
+    link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/Library/Application Support/pip/pip.conf"
+    $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
+    link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"
+
+    # Docker configuration
+    $DRY_RUN_CMD mkdir -p "${homeDir}/.docker"
+    link_force "${dotfilesDir}/docker/config.json" "${homeDir}/.docker/config.json"
+
+    # EFM Language Server configuration
+    link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
+
+    # Jujutsu VCS configuration
+    link_force "${dotfilesDir}/jj" "${configHome}/jj"
+
+    # OpenCode configuration
+    link_force "${dotfilesDir}/opencode" "${configHome}/opencode"
+
+    # Cursor configuration
+    $DRY_RUN_CMD mkdir -p "${configHome}/cursor"
+    link_force "${dotfilesDir}/cursor/cli-config.json" "${configHome}/cursor/cli-config.json"
+
+    # Zsh configuration
+    link_force "${dotfilesDir}/zsh/zshrc" "${homeDir}/.zshrc"
+
+    # Bash configuration
+    link_force "${dotfilesDir}/bash/.bashrc" "${homeDir}/.bashrc"
+
+    # Git configuration
+    link_force "${dotfilesDir}/git" "${configHome}/git"
+
+    # Ghostty terminal configuration (macOS only, but harmless on Linux)
+    link_force "${dotfilesDir}/ghostty" "${configHome}/ghostty"
   '';
 }
