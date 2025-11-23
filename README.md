@@ -30,21 +30,36 @@ The configuration is organised into modular files:
    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
    ```
 
-2. Apply the nix-darwin configuration:
+2. Clone this repository:
+   ```sh
+   git clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
+   cd ~/ghq/github.com/ryoppippi/dotfiles
+   ```
+
+3. Apply the nix-darwin configuration (this will also install Homebrew automatically):
    ```sh
    sudo nix run nix-darwin -- switch --flake .#ryoppippi
    ```
 
-3. Reload your shell:
+4. Reload your shell:
    ```sh
    exec fish
    ```
 
 #### Linux
 
-1. Install Nix (if not already installed)
+1. Install Nix (if not already installed):
+   ```sh
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+   ```
 
-2. Apply Home Manager configuration:
+2. Clone this repository:
+   ```sh
+   git clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
+   cd ~/ghq/github.com/ryoppippi/dotfiles
+   ```
+
+3. Apply Home Manager configuration:
    ```sh
    nix run .#switch
    ```
