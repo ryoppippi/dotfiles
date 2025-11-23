@@ -20,6 +20,9 @@ in
       lua-language-server # Lua LSP
       efm-langserver # General purpose LSP
 
+      # Formatters
+      stylua # Lua formatter
+
       # Node.js-based language servers
       astro-language-server # Astro
       emmet-language-server # Emmet
