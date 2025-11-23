@@ -68,7 +68,6 @@ in
       # VCS
       git
       bit
-      gh
       git-lfs
       ghq
       lazygit
