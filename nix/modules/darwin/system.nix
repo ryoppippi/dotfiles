@@ -121,15 +121,7 @@ in
     enable = true;
     onActivation.cleanup = "zap";
 
-    taps = [
-      "apple/apple"
-      "clojure/tools"
-      "danielbayley/alfred"
-      "koekeishiya/formulae"
-      "kyoh86/tap"
-      "nikitabobko/tap"
-      "sdkman/tap"
-    ];
+    taps = [ ];
 
     brews = [
       "bluetoothconnector"
@@ -138,12 +130,9 @@ in
       "screenresolution"
       "swift-sh"
       "switchaudio-osx"
-      "kyoh86/tap/git-branches"
-      "kyoh86/tap/git-vertag"
     ];
 
     casks = [
-      # "aerospace"
       "alfred"
       "alt-tab"
       "appcleaner"
@@ -171,7 +160,6 @@ in
       "kap"
       "karabiner-elements"
       "keycastr"
-      "licecap"
       "lulu"
       "maestral"
       "microsoft-auto-update"
@@ -213,64 +201,47 @@ in
       "AdGuard for Safari" = 1440147259;
       "Aiko" = 1672085276;
       "Amphetamine" = 937984704;
-      "Be Focused" = 973134470;
       "Blackmagic Disk Speed Test" = 425264550;
-      "BlockComment" = 1246672247;
-      "Clean" = 418412301;
-      "Color Picker" = 1545870783;
       "Command X" = 6448461551;
       "Consent-O-Matic" = 1606897889;
       "CotEditor" = 1024640650;
       "DevCleaner" = 1388020431;
       "Document Generator" = 1437883178;
-      "Download Shuttle" = 847809913;
       "DuckDuckGo Privacy for Safari" = 1482920575;
       "Final Cut Pro" = 424389933;
       "FocusRecorder" = 6446467176;
       "Gifski" = 1351639930;
-      "GIPHY CAPTURE" = 668208984;
-      "Grammarly for Safari" = 1462114288;
       "Hex Fiend" = 1342896380;
       "Hush" = 1544743900;
       "iHosts" = 1102004240;
       "Keepa - Price Tracker" = 1533805339;
       "Keynote" = 409183694;
-      "Keyword Search" = 1558453954;
       "Kindle" = 302584613;
       "LadioCast" = 411213048;
       "LanguageTranslator" = 1218781096;
       "Leftovers" = 6746164364;
       "LINE" = 539883307;
-      "Mapture" = 1671995907;
-      "Mathpix Snipping Tool" = 1349670778;
       "Messenger" = 1480068668;
       "Microsoft Excel" = 462058435;
       "Microsoft Remote Desktop" = 1295203466;
       "Microsoft Word" = 462054704;
       "NamingTranslator" = 1218784832;
       "Pages" = 409201541;
-      "PicGIF Lite" = 844918735;
-      "PiPifier" = 1160374471;
       "Refined GitHub" = 1519867270;
       "Screegle" = 1591051659;
       "Seashore" = 1448648921;
       "Sequel Ace" = 1518036000;
       "Shareful" = 1522267256;
-      "Skitch" = 425955336;
       "Slack" = 803453959;
-      "Spaced" = 1666327168;
       "Spark" = 1176895641;
       "Speedtest" = 1153157709;
       "Squirrel" = 1669664068;
       "TabifyIndents" = 1179234554;
       "TestFlight" = 899247664;
       "The Unarchiver" = 425424353;
-      "Tunacan" = 980577198;
       "uBlacklist for Safari" = 1547912640;
       "Userscripts" = 1463298887;
       "Velja" = 1607635845;
-      "Vimari" = 1480933944;
-      "VisBug" = 1538509686;
       "WhatsApp" = 310633997;
       "Xcode" = 497799835;
     };
