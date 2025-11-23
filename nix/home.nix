@@ -182,6 +182,8 @@
       gnumake
       mas
       pv
+      # Image tools
+      imagemagick
     ]
     ++ (
       if pkgs.stdenv.isDarwin then
