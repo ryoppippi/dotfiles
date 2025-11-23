@@ -24,6 +24,9 @@ jobs:
           cd nix/node2nix
           nix-shell -p node2nix --run "node2nix -l package-lock.json"
 
+      - name: Format generated Nix files
+        run: nix run .#fmt
+
       - name: Check for changes
         id: check_changes
         run: |
