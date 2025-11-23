@@ -111,9 +111,14 @@
             type = "app";
             program = toString (
               pkgs.writeShellScript "nvim-check" ''
+                # Use DOTFILES_DIR env var, or fall back to default location, or current directory
+                : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
+                if [ ! -d "$DOTFILES_DIR" ]; then
+                  DOTFILES_DIR="$(pwd)"
+                fi
                 exec ${pkgs.bash}/bin/bash \
                   ${./nix/modules/home/programs/neovim/check.sh} \
-                  ${homedir}/ghq/github.com/ryoppippi/dotfiles \
+                  "$DOTFILES_DIR" \
                   ${pkgs.git}/bin/git \
                   ${pkgs.neovim}/bin/nvim
               ''
