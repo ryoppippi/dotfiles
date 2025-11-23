@@ -47,7 +47,7 @@
         dotfilesDir
         ;
     })
-    (import ./dotfiles.nix {
+    (import ./dotfiles {
       inherit
         pkgs
         lib
@@ -118,7 +118,6 @@
       direnv
       navi
       # Testing & security
-      ruff
       uv
       # Container & Docker
       dive

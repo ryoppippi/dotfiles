@@ -19,6 +19,10 @@ in
       # Language servers
       lua-language-server # Lua LSP
       efm-langserver # General purpose LSP
+      pyright # Python LSP
+
+      # Python tools
+      ruff # Python linter/formatter with built-in language server
 
       # Formatters & Linters (used by efm-langserver)
       stylua # Lua formatter
