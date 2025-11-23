@@ -64,7 +64,6 @@ in
       "homebrew/bundle"
       "homebrew/services"
       "koekeishiya/formulae"
-      "kphrx/personal"
       "kyoh86/tap"
       "libsql/sqld"
       "masutaka/tap"
