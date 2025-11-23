@@ -34,6 +34,15 @@
         ;
     })
 
+    # GitHub CLI configuration
+    (import ./gh.nix {
+      inherit
+        pkgs
+        lib
+        config
+        ;
+    })
+
     # Neovim configuration
     (import ./neovim {
       inherit
