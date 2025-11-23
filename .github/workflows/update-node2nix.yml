@@ -22,7 +22,7 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: ./.github/actions/setup-nix
 
       - name: Regenerate node2nix expressions
         run: |
