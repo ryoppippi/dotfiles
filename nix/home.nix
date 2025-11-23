@@ -39,7 +39,7 @@
         dotfilesDir
         ;
     })
-    (import ./programs/neovim.nix {
+    (import ./programs/neovim {
       inherit
         pkgs
         lib
