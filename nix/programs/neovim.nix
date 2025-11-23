@@ -16,6 +16,9 @@ in
 
     # These packages are only available when NeoVim is running
     extraPackages = with pkgs; [
+      # Runtime dependencies
+      sqlite # SQLite library for sqlite.lua plugin
+
       # Language servers
       lua-language-server # Lua LSP
       efm-langserver # General purpose LSP
