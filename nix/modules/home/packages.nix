@@ -89,7 +89,6 @@
     watchexec
     rclone
     ttyd
-    wasmer
     fastfetch
     yazi
     jujutsu
@@ -103,6 +102,7 @@
     fq
     tokei
     # Cloud tools
+    pscale
     cloudflared
     # Additional CLI tools
     aria2
