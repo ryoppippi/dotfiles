@@ -159,7 +159,6 @@
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-egrepify.nvim": { "branch": "master", "commit": "a8070970a661330c4e00450d25f874f6c2b00af9" },
   "telescope-env.nvim": { "branch": "master", "commit": "00a703cc7b713cdda0a981d88fddf3ce25502af5" },
-  "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
   "telescope-ghq.nvim": { "branch": "master", "commit": "2bd2e2d10f1a06fce9cce1e33ffe464c84ceb63b" },
   "telescope-github.nvim": { "branch": "master", "commit": "ee95c509901c3357679e9f2f9eaac3561c811736" },
