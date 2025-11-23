@@ -6,6 +6,7 @@
   ...
 }: let
   codexConfigDir = "${config.xdg.configHome}/codex";
+  codexDotfilesDir = "${dotfilesDir}/codex";
 
   # TOML format generator
   tomlFormat = pkgs.formats.toml {};
@@ -84,8 +85,12 @@ in {
   # Codex package with CODEX_HOME wrapper
   home.packages = [codex-wrapped];
 
-  # Codex configuration file (generated from Nix settings)
+  # Codex configuration files
   home.file = {
+    # Generated config.toml from Nix settings
     "${codexConfigDir}/config.toml".source = tomlFormat.generate "codex-config" settings;
+
+    # Global instructions for Codex agents
+    "${codexConfigDir}/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
 }
