@@ -139,9 +139,9 @@ in
     ];
 
     brews = [
-      "aqua"
       "bluetoothconnector"
       "leiningen"
+      "mas"
       "screenresolution"
       "swift-sh"
       "switchaudio-osx"

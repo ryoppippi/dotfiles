@@ -56,6 +56,8 @@
     # Testing & security
     typos
     uv
+    pinact
+    license-go
     # Container & Docker
     dive
     act
@@ -63,6 +65,8 @@
     trdsql
     sqls
     usql
+    xan
+    tv
     # Performance & monitoring
     hyperfine
     bottom
@@ -70,6 +74,7 @@
     oha
     viddy
     hwatch
+    gping
     # Miscellaneous utilities
     sttr
     silicon
@@ -84,7 +89,6 @@
     gibo
     genact
     grex
-    gping
     ghr
     watchexec
     rclone
@@ -101,6 +105,9 @@
     jwt-cli
     fq
     tokei
+    bsky-cli
+    oglens
+    sheep
     # Cloud tools
     pscale
     cloudflared
@@ -119,5 +126,6 @@
     pv
     # Image tools
     imagemagick
+    gyazo-cli
   ];
 }
