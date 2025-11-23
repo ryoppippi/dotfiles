@@ -77,6 +77,121 @@
             })
           ];
         };
+
+      # Common apps for both Darwin and Linux
+      mkCommonApps =
+        system: homedir: hostname:
+        let
+          pkgs = mkPkgs system;
+          isDarwin = pkgs.stdenv.isDarwin;
+          # Import node2nix packages including secretlint
+          nodePackages = import ./nix/node2nix {
+            inherit pkgs;
+            inherit (pkgs) system;
+            nodejs = pkgs.nodejs_24;
+          };
+          treefmtWrapper = treefmt-nix.lib.mkWrapper pkgs {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixfmt = {
+                enable = true;
+                package = pkgs.nixfmt-rfc-style;
+              };
+              stylua.enable = true;
+            };
+            settings.global.excludes = [
+              ".git/**"
+              "*.lock"
+            ];
+          };
+        in
+        {
+          # Check Neovim configuration and install plugins
+          nvim-check = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "nvim-check" ''
+                exec ${pkgs.bash}/bin/bash \
+                  ${./nix/programs/neovim/check.sh} \
+                  ${homedir}/ghq/github.com/ryoppippi/dotfiles \
+                  ${pkgs.git}/bin/git \
+                  ${pkgs.neovim}/bin/nvim
+              ''
+            );
+          };
+
+          # Build configuration (platform-specific)
+          build = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript (if isDarwin then "darwin-build" else "home-manager-build") ''
+                set -e
+                echo "Building ${if isDarwin then "darwin" else "Home Manager"} configuration..."
+                nix build .#${
+                  if isDarwin then
+                    "darwinConfigurations.${hostname}.system"
+                  else
+                    "homeConfigurations.${username}.activationPackage"
+                }
+                echo "Build successful! Run 'nix run .#switch' to apply."
+              ''
+            );
+          };
+
+          # Apply configuration (platform-specific)
+          switch = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
+                set -e
+                echo "Building and switching to ${if isDarwin then "darwin" else "Home Manager"} configuration..."
+                ${
+                  if isDarwin then
+                    "sudo nix run nix-darwin -- switch --flake .#${hostname}"
+                  else
+                    "nix run nixpkgs#home-manager -- switch --flake .#${username}"
+                }
+              ''
+            );
+          };
+
+          # Update flake.lock
+          update = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "flake-update" ''
+                set -e
+                echo "Updating flake.lock..."
+                nix flake update
+                echo "Done! Run 'nix run .#switch' to apply changes."
+              ''
+            );
+          };
+
+          # Update ai-tools only
+          update-ai-tools = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "update-ai-tools" ''
+                set -e
+                echo "Updating ai-tools input..."
+                nix flake update ai-tools
+                echo "Done! Run 'nix run .#switch' to apply changes."
+              ''
+            );
+          };
+
+          # Format code with treefmt
+          fmt = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "treefmt-with-secretlint" ''
+                export PATH="${nodePackages.nodeDependencies}/lib/node_modules/.bin:$PATH"
+                exec ${treefmtWrapper}/bin/treefmt "$@"
+              ''
+            );
+          };
+        };
     in
     {
       # macOS configuration with nix-darwin
@@ -136,149 +251,9 @@
       };
 
       # Apps for common tasks (macOS)
-      apps.${darwinSystem} = {
-        # Apply darwin configuration
-        switch = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-switch" ''
-              set -e
-              echo "Building and switching to darwin configuration..."
-              sudo nix run nix-darwin -- switch --flake .#${darwinHostname}
-            ''
-          );
-        };
-
-        # Update flake.lock
-        update = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "flake-update" ''
-              set -e
-              echo "Updating flake.lock..."
-              nix flake update
-              echo "Done! Run 'nix run .#switch' to apply changes."
-            ''
-          );
-        };
-
-        # Update ai-tools only
-        update-ai-tools = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "update-ai-tools" ''
-              set -e
-              echo "Updating ai-tools input..."
-              nix flake update ai-tools
-              echo "Done! Run 'nix run .#switch' to apply changes."
-            ''
-          );
-        };
-
-        # Build darwin configuration (dry run)
-        build = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-build" ''
-              set -e
-              echo "Building darwin configuration..."
-              nix build .#darwinConfigurations.${darwinHostname}.system
-              echo "Build successful! Run 'nix run .#switch' to apply."
-            ''
-          );
-        };
-
-        # Format code with treefmt
-        fmt =
-          let
-            pkgs = mkPkgs darwinSystem;
-            # Import node2nix packages including secretlint
-            nodePackages = import ./nix/node2nix {
-              inherit pkgs;
-              inherit (pkgs) system;
-              nodejs = pkgs.nodejs_24;
-            };
-            treefmtWrapper = treefmt-nix.lib.mkWrapper pkgs {
-              projectRootFile = "flake.nix";
-              programs = {
-                nixfmt = {
-                  enable = true;
-                  package = pkgs.nixfmt-rfc-style;
-                };
-                stylua.enable = true;
-              };
-              # Add secretlint to PATH for treefmt
-              settings.global.excludes = [
-                ".git/**"
-                "*.lock"
-              ];
-            };
-          in
-          {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "treefmt-with-secretlint" ''
-                export PATH="${nodePackages.nodeDependencies}/lib/node_modules/.bin:$PATH"
-                exec ${treefmtWrapper}/bin/treefmt "$@"
-              ''
-            );
-          };
-
-        # Check Neovim configuration and install plugins
-        nvim-check = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "nvim-check" ''
-              exec ${nixpkgs.legacyPackages.${darwinSystem}.bash}/bin/bash \
-                ${./nix/programs/neovim/check.sh} \
-                ${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles \
-                ${nixpkgs.legacyPackages.${darwinSystem}.git}/bin/git \
-                ${nixpkgs.legacyPackages.${darwinSystem}.neovim}/bin/nvim
-            ''
-          );
-        };
-      };
+      apps.${darwinSystem} = mkCommonApps darwinSystem darwinHomedir darwinHostname;
 
       # Apps for Linux
-      apps.${linuxSystem} = {
-        # Apply Home Manager configuration for Linux
-        switch = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-switch" ''
-              set -e
-              echo "Building and switching to Home Manager configuration..."
-              nix run nixpkgs#home-manager -- switch --flake .#${username}
-            ''
-          );
-        };
-
-        # Build Home Manager configuration (dry run)
-        build = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-build" ''
-              set -e
-              echo "Building Home Manager configuration..."
-              nix build .#homeConfigurations.${username}.activationPackage
-              echo "Build successful! Run 'nix run .#switch' to apply."
-            ''
-          );
-        };
-
-        # Check Neovim configuration and install plugins
-        nvim-check = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "nvim-check" ''
-              exec ${nixpkgs.legacyPackages.${linuxSystem}.bash}/bin/bash \
-                ${./nix/programs/neovim/check.sh} \
-                ${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles \
-                ${nixpkgs.legacyPackages.${linuxSystem}.git}/bin/git \
-                ${nixpkgs.legacyPackages.${linuxSystem}.neovim}/bin/nvim
-            ''
-          );
-        };
-      };
+      apps.${linuxSystem} = mkCommonApps linuxSystem linuxHomedir username;
     };
 }
