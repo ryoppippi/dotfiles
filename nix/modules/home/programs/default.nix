@@ -10,6 +10,9 @@
 }:
 {
   imports = [
+    # AI tools
+    ./ai-tools.nix
+
     # Claude Code configuration
     (import ./claude-code.nix {
       inherit
