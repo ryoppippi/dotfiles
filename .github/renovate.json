@@ -6,7 +6,7 @@
   "packageRules": [
     {
       "description": "NeoVim Node.js dependencies managed by node2nix",
-      "matchFiles": ["nix/node2nix/package.json"],
+      "matchFileNames": ["nix/node2nix/package.json"],
       "postUpgradeTasks": {
         "commands": [
           "cd nix/node2nix && npm install --package-lock-only --lockfile-version=2",
