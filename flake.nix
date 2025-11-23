@@ -99,10 +99,27 @@
               };
               stylua.enable = true;
             };
-            settings.global.excludes = [
-              ".git/**"
-              "*.lock"
-            ];
+            settings = {
+              global.excludes = [
+                ".git/**"
+                "*.lock"
+              ];
+              # Custom formatters/linters
+              formatter = {
+                secretlint = {
+                  command = "${nodePackages.nodeDependencies}/lib/node_modules/.bin/secretlint";
+                  includes = [ "*" ];
+                };
+                renovate-validator = {
+                  command = "${nodePackages.nodeDependencies}/lib/node_modules/.bin/renovate-config-validator";
+                  options = [ "--strict" ];
+                  includes = [
+                    ".github/renovate.json"
+                    ".github/renovate.json5"
+                  ];
+                };
+              };
+            };
           };
         in
         {
@@ -190,8 +207,7 @@
           fmt = {
             type = "app";
             program = toString (
-              pkgs.writeShellScript "treefmt-with-secretlint" ''
-                export PATH="${nodePackages.nodeDependencies}/lib/node_modules/.bin:$PATH"
+              pkgs.writeShellScript "treefmt-wrapper" ''
                 exec ${treefmtWrapper}/bin/treefmt "$@"
               ''
             );
