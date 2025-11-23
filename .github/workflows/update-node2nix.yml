@@ -18,6 +18,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: ./.github/actions/setup-nix
+        with:
+          flakehub-token: ${{ secrets.FLAKEHUB_SECRET_TOKEN }}
 
       - name: Regenerate node2nix expressions
         run: |

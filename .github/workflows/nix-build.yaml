@@ -11,25 +11,18 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            target: homeConfigurations.ryoppippi.activationPackage
-            name: Linux (Home Manager)
-          - os: macos-latest
-            target: darwinConfigurations.ryoppippi.system
-            name: macOS (nix-darwin)
-    runs-on: ${{ matrix.os }}
-    name: Build ${{ matrix.name }}
+    runs-on: macos-latest
+    name: Build macOS (nix-darwin)
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - uses: ./.github/actions/setup-nix
+        with:
+          flakehub-token: ${{ secrets.FLAKEHUB_SECRET_TOKEN }}
 
-      - name: Build ${{ matrix.name }} configuration
+      - name: Build macOS configuration
         run: |
-          nix build .#${{ matrix.target }} \
+          nix build .#darwinConfigurations.ryoppippi.system \
             --print-build-logs \
             --show-trace
