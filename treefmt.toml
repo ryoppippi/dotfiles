@@ -6,3 +6,23 @@ includes = ["*.nix"]
 command = "stylua"
 includes = ["*.lua"]
 excludes = ["nvim/lazy-lock.json"]
+
+[formatter.secretlint]
+command = "secretlint"
+includes = ["*"]
+excludes = [
+  "*.png",
+  "*.jpg",
+  "*.jpeg",
+  "*.gif",
+  "*.ico",
+  "*.pdf",
+  "*.woff",
+  "*.woff2",
+  "*.ttf",
+  "*.eot",
+  ".git/**",
+  "node_modules/**",
+  ".direnv/**",
+  "nix/node2nix/package-lock.json",
+]
