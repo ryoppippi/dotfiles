@@ -10,7 +10,6 @@ end
 lazy.setup({
 	spec = {
 		{ import = "plugin" },
-		{ import = "cli" },
 	},
 	dev = {
 		path = "~/ghq/github.com/ryoppippi/",
