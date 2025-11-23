@@ -10,8 +10,13 @@
   system ? null,
   ...
 }:
+let
+  # Import common helpers once
+  helpers = import ./lib/helpers { inherit lib; };
+in
 {
   imports = [
+    # Git hooks configuration
     (import ./git-hooks.nix {
       inherit
         pkgs
@@ -21,7 +26,9 @@
         treefmt-nix
         ;
     })
-    (import ./programs/claude-code.nix {
+
+    # Program configurations (Claude Code, Codex, Neovim, etc.)
+    (import ./programs {
       inherit
         pkgs
         lib
@@ -29,30 +36,18 @@
         dotfilesDir
         claude-code-overlay
         system
+        helpers
         ;
     })
-    (import ./programs/codex.nix {
-      inherit
-        pkgs
-        lib
-        config
-        dotfilesDir
-        ;
-    })
-    (import ./programs/neovim {
-      inherit
-        pkgs
-        lib
-        config
-        dotfilesDir
-        ;
-    })
+
+    # Dotfiles symlinks
     (import ./dotfiles {
       inherit
         pkgs
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
   ];
