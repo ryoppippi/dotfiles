@@ -126,8 +126,6 @@ in
       "artginzburg/tap"
       "clojure/tools"
       "danielbayley/alfred"
-      "homebrew/bundle"
-      "homebrew/services"
       "koekeishiya/formulae"
       "kyoh86/tap"
       "libsql/sqld"
