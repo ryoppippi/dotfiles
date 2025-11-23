@@ -25,7 +25,6 @@ packages:
   - name: mattn/zig-update@v0.0.4
   - name: nishanths/license@v5.0.4
   - name: rhysd/vim-startuptime@v1.3.2
-  - name: secretlint/secretlint@v11.2.5
   - name: sheepla/pingu@v0.0.5
   - name: sheepla/srss@v0.1.0
   - name: suzuki-shunsuke/cmdx@v2.0.2
