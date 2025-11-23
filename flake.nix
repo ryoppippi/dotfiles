@@ -2,8 +2,8 @@
   description = "ryoppippi's home-manager configuration";
 
   nixConfig = {
-    extra-substituters = ["https://numtide.cachix.org"];
-    extra-trusted-public-keys = ["numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="];
+    extra-substituters = [ "https://numtide.cachix.org" ];
+    extra-trusted-public-keys = [ "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=" ];
   };
 
   inputs = {
@@ -29,162 +29,211 @@
       url = "github:ryoppippi/claude-code-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    ai-tools,
-    claude-code-overlay,
-  }: let
-    lib = nixpkgs.lib;
-    username = "ryoppippi";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ai-tools,
+      claude-code-overlay,
+      treefmt-nix,
+      git-hooks,
+    }:
+    let
+      lib = nixpkgs.lib;
+      username = "ryoppippi";
 
-    # macOS configuration
-    darwinSystem = "aarch64-darwin";
-    darwinHomedir = "/Users/${username}";
-    darwinHostname = "${username}";
+      # macOS configuration
+      darwinSystem = "aarch64-darwin";
+      darwinHomedir = "/Users/${username}";
+      darwinHostname = "${username}";
 
-    # Linux configuration
-    linuxSystem = "x86_64-linux";
-    linuxHomedir = "/home/${username}";
+      # Linux configuration
+      linuxSystem = "x86_64-linux";
+      linuxHomedir = "/home/${username}";
 
-    # Create pkgs with overlays
-    mkPkgs = system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (import ./nix/overlays.nix {
-            inherit ai-tools claude-code-overlay system;
+      # Create pkgs with overlays
+      mkPkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [
+            (import ./nix/overlays.nix {
+              inherit ai-tools claude-code-overlay system;
+            })
+          ];
+        };
+    in
+    {
+      # macOS configuration with nix-darwin
+      darwinConfigurations.${darwinHostname} = nix-darwin.lib.darwinSystem {
+        system = darwinSystem;
+
+        modules = [
+          # Darwin-specific configuration
+          (import ./nix/darwin.nix {
+            pkgs = mkPkgs darwinSystem;
+            lib = nixpkgs.lib;
+            username = username;
+            homedir = darwinHomedir;
           })
+
+          # Home Manager integration for macOS
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} =
+              {
+                pkgs,
+                config,
+                lib,
+                ...
+              }:
+              import ./nix/home.nix {
+                inherit pkgs config lib;
+                inherit claude-code-overlay treefmt-nix git-hooks;
+                homedir = darwinHomedir;
+                system = darwinSystem;
+              };
+          }
         ];
       };
-  in {
-    # macOS configuration with nix-darwin
-    darwinConfigurations.${darwinHostname} = nix-darwin.lib.darwinSystem {
-      system = darwinSystem;
 
-      modules = [
-        # Darwin-specific configuration
-        (import ./nix/darwin.nix {
-          pkgs = mkPkgs darwinSystem;
-          lib = nixpkgs.lib;
-          username = username;
-          homedir = darwinHomedir;
-        })
-
-        # Home Manager integration for macOS
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${username} = {
-            pkgs,
-            config,
-            lib,
-            ...
-          }:
+      # Linux configuration with standalone Home Manager
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        pkgs = mkPkgs linuxSystem;
+        modules = [
+          (
+            {
+              pkgs,
+              config,
+              lib,
+              ...
+            }:
             import ./nix/home.nix {
               inherit pkgs config lib;
-              inherit claude-code-overlay;
-              homedir = darwinHomedir;
-              system = darwinSystem;
+              inherit claude-code-overlay treefmt-nix git-hooks;
+              homedir = linuxHomedir;
+              system = linuxSystem;
+            }
+          )
+        ];
+      };
+
+      # Apps for common tasks (macOS)
+      apps.${darwinSystem} = {
+        # Apply darwin configuration
+        switch = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-switch" ''
+              set -e
+              echo "Building and switching to darwin configuration..."
+              sudo nix run nix-darwin -- switch --flake .#${darwinHostname}
+            ''
+          );
+        };
+
+        # Update flake.lock
+        update = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "flake-update" ''
+              set -e
+              echo "Updating flake.lock..."
+              nix flake update
+              echo "Done! Run 'nix run .#switch' to apply changes."
+            ''
+          );
+        };
+
+        # Update ai-tools only
+        update-ai-tools = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "update-ai-tools" ''
+              set -e
+              echo "Updating ai-tools input..."
+              nix flake update ai-tools
+              echo "Done! Run 'nix run .#switch' to apply changes."
+            ''
+          );
+        };
+
+        # Build darwin configuration (dry run)
+        build = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-build" ''
+              set -e
+              echo "Building darwin configuration..."
+              nix build .#darwinConfigurations.${darwinHostname}.system
+              echo "Build successful! Run 'nix run .#switch' to apply."
+            ''
+          );
+        };
+
+        # Format code with treefmt
+        fmt =
+          let
+            treefmtWrapper = treefmt-nix.lib.mkWrapper (mkPkgs darwinSystem) {
+              projectRootFile = "flake.nix";
+              programs = {
+                nixfmt = {
+                  enable = true;
+                  package = (mkPkgs darwinSystem).nixfmt-rfc-style;
+                };
+                stylua.enable = true;
+              };
             };
-        }
-      ];
-    };
-
-    # Linux configuration with standalone Home Manager
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      pkgs = mkPkgs linuxSystem;
-      modules = [
-        ({
-          pkgs,
-          config,
-          lib,
-          ...
-        }:
-          import ./nix/home.nix {
-            inherit pkgs config lib;
-            inherit claude-code-overlay;
-            homedir = linuxHomedir;
-            system = linuxSystem;
-          })
-      ];
-    };
-
-    # Apps for common tasks (macOS)
-    apps.${darwinSystem} = {
-      # Apply darwin configuration
-      switch = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-switch" ''
-          set -e
-          echo "Building and switching to darwin configuration..."
-          sudo nix run nix-darwin -- switch --flake .#${darwinHostname}
-        '');
+          in
+          {
+            type = "app";
+            program = "${treefmtWrapper}/bin/treefmt";
+          };
       };
 
-      # Update flake.lock
-      update = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "flake-update" ''
-          set -e
-          echo "Updating flake.lock..."
-          nix flake update
-          echo "Done! Run 'nix run .#switch' to apply changes."
-        '');
-      };
+      # Apps for Linux
+      apps.${linuxSystem} = {
+        # Apply Home Manager configuration for Linux
+        switch = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-switch" ''
+              set -e
+              echo "Building and switching to Home Manager configuration..."
+              nix run nixpkgs#home-manager -- switch --flake .#${username}
+            ''
+          );
+        };
 
-      # Update ai-tools only
-      update-ai-tools = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "update-ai-tools" ''
-          set -e
-          echo "Updating ai-tools input..."
-          nix flake update ai-tools
-          echo "Done! Run 'nix run .#switch' to apply changes."
-        '');
-      };
-
-      # Build darwin configuration (dry run)
-      build = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "darwin-build" ''
-          set -e
-          echo "Building darwin configuration..."
-          nix build .#darwinConfigurations.${darwinHostname}.system
-          echo "Build successful! Run 'nix run .#switch' to apply."
-        '');
-      };
-
-    };
-
-    # Apps for Linux
-    apps.${linuxSystem} = {
-      # Apply Home Manager configuration for Linux
-      switch = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-switch" ''
-          set -e
-          echo "Building and switching to Home Manager configuration..."
-          nix run nixpkgs#home-manager -- switch --flake .#${username}
-        '');
-      };
-
-      # Build Home Manager configuration (dry run)
-      build = {
-        type = "app";
-        program = toString (nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-build" ''
-          set -e
-          echo "Building Home Manager configuration..."
-          nix build .#homeConfigurations.${username}.activationPackage
-          echo "Build successful! Run 'nix run .#switch' to apply."
-        '');
+        # Build Home Manager configuration (dry run)
+        build = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${linuxSystem}.writeShellScript "home-manager-build" ''
+              set -e
+              echo "Building Home Manager configuration..."
+              nix build .#homeConfigurations.${username}.activationPackage
+              echo "Build successful! Run 'nix run .#switch' to apply."
+            ''
+          );
+        };
       };
     };
-  };
 }
