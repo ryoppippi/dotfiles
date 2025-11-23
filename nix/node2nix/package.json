@@ -7,5 +7,6 @@
     "typescript-svelte-plugin": "0.3.50",
     "unocss-language-server": "0.1.8"
   },
-  "type": "module"
+  "type": "module",
+  "private": true
 }
