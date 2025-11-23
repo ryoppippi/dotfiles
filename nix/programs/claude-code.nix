@@ -27,12 +27,13 @@ in {
   # Claude Code package with CLAUDE_CONFIG_DIR wrapper
   home.packages = lib.mkAfter [claude-code-wrapped];
 
-  # Claude Code configuration files
-  home.file = {
-    "${claudeConfigDir}/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/settings.json";
-    "${claudeConfigDir}/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
-    "${claudeConfigDir}/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
-    "${claudeConfigDir}/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
-    "${claudeConfigDir}/output-styles".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
-  };
+  # Create direct symlinks to Claude Code configuration files (bypassing Nix store)
+  home.activation.linkClaudeCodeConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD mkdir -p "${claudeConfigDir}"
+    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/settings.json" "${claudeConfigDir}/settings.json"
+    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/CLAUDE.md" "${claudeConfigDir}/CLAUDE.md"
+    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/commands" "${claudeConfigDir}/commands"
+    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/agents" "${claudeConfigDir}/agents"
+    $DRY_RUN_CMD ln -sf "${claudeDotfilesDir}/output-styles" "${claudeConfigDir}/output-styles"
+  '';
 }
