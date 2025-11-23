@@ -7,15 +7,29 @@ on:
       - 'flake.nix'
       - '.github/workflows/nix-neovim.yaml'
   pull_request:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to test'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
 
 jobs:
   neovim-check:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
+        include:
+          - os: ubuntu-latest
+            condition: ubuntu
+          - os: macos-latest
+            condition: macos
     runs-on: ${{ matrix.os }}
+    if: github.event_name != 'workflow_dispatch' || inputs.os == 'both' || inputs.os == matrix.condition
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
