@@ -55,7 +55,7 @@ tools:
       - '%f:%l:%c: %tote: %m'
 
   ruff-format: &ruff-format
-    format-command: "ruff --fix -e -n --stdin-filename -"
+    format-command: "uv run ruff format --stdin-filename ${INPUT}"
     format-stdin: true
 
   swift-format-format: &swift-format-format
@@ -125,11 +125,11 @@ tools:
       - .github
 
   fixjson: &fixjson
-    format-command: bun x fixjson --stdin-filename ${INPUT}
+    format-command: fixjson --stdin-filename ${INPUT}
     format-stdin: true
 
   textlint: &textlint
-    lint-command: 'bun x textlint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-command: 'textlint -f unix --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
     lint-formats:

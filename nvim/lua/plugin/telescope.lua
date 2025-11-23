@@ -39,7 +39,11 @@ return {
 		cmd = { "Telescope" },
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				dir = vim.env.TELESCOPE_FZF_NATIVE, -- Nix-provided pre-built binary
+				config = le("fzf"),
+			},
 			{ "nvim-telescope/telescope-live-grep-args.nvim", config = le("live_grep_args") },
 			{ "nvim-telescope/telescope-symbols.nvim" },
 			{ "nvim-telescope/telescope-github.nvim", config = le("gh") },
@@ -57,9 +61,16 @@ return {
 			{
 				"danielfalk/smart-open.nvim",
 				dependencies = {
-					"kkharji/sqlite.lua",
-					{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-					"nvim-telescope/telescope-fzy-native.nvim",
+					{
+						"kkharji/sqlite.lua",
+						init = function()
+							vim.g.sqlite_clib_path = vim.env.SQLITE_CLIB_PATH
+						end,
+					},
+					{
+						"nvim-telescope/telescope-fzy-native.nvim",
+						dir = vim.env.TELESCOPE_FZY_NATIVE,
+					},
 				},
 				config = le("smart_open"),
 			},

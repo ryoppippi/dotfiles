@@ -1,36 +1,75 @@
-name: fish
+name: Fish Shell
+
 on:
   push:
     paths:
-      - fish/**
-      - .github/workflows/fish.yaml
+      - 'fish/**'
+      - '.github/workflows/fish.yaml'
   pull_request:
-    paths:
-      - aqua/
-      - .github/workflows/fish.yaml
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to test'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
+
 jobs:
-  fich-ci:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-    runs-on: ${{ matrix.os }}
-    env:
-      AQUA_CONFIG: aqua/aqua.yaml
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  fish-check-ubuntu:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'ubuntu'
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-      - uses: ./.github/actions/env-setup
-        with:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-          aqua_config: ${{ env.AQUA_CONFIG }}
-      - name: setup fish
-        uses: fish-actions/install-fish@4bb37a71daebb76c6fb7d83771cff31b8a78c28e # v1.2.0
-      - name: add path
-        run: dotfiles link .
-      - name: test fish/config.fish
-        run: sh -c "fish -c exit"
-      - name: install fisher plugins
-        run: sh -c "fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && git checkout . && fisher update && exit'"
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Test Fish configuration
+        run: |
+          # Create temporary config directory
+          TEMP_CONFIG=$(mktemp -d)
+          trap "rm -rf $TEMP_CONFIG" EXIT
+
+          export XDG_CONFIG_HOME="$TEMP_CONFIG"
+
+          # Copy fish config
+          mkdir -p "$XDG_CONFIG_HOME/fish"
+          cp -r fish/* "$XDG_CONFIG_HOME/fish/"
+
+          # Test fish can start and exit cleanly
+          echo "Testing fish shell startup..."
+          nix run nixpkgs#fish -- -c "exit"
+
+          echo "✅ Fish configuration is valid!"
+
+  fish-check-macos:
+    runs-on: macos-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'macos'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Test Fish configuration
+        run: |
+          # Create temporary config directory
+          TEMP_CONFIG=$(mktemp -d)
+          trap "rm -rf $TEMP_CONFIG" EXIT
+
+          export XDG_CONFIG_HOME="$TEMP_CONFIG"
+
+          # Copy fish config
+          mkdir -p "$XDG_CONFIG_HOME/fish"
+          cp -r fish/* "$XDG_CONFIG_HOME/fish/"
+
+          # Test fish can start and exit cleanly
+          echo "Testing fish shell startup..."
+          nix run nixpkgs#fish -- -c "exit"
+
+          echo "✅ Fish configuration is valid!"
 

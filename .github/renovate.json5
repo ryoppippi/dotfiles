@@ -5,9 +5,6 @@
       "security"
     ]
   },
-  "extends": [
-    "github>aquaproj/aqua-renovate-config#2.9.0"
-  ],
   "labels": [
     "dependencies",
     "renovate"
@@ -17,22 +14,39 @@
   "automerge": true,
   "branchConcurrentLimit": 0,
   "minimumReleaseAge": "3 days",
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
   "packageRules": [
     {
       "matchPackageNames": [
-        "opencode",
-        "codex",
-        "bun",
-        "deno"
+        "ai-tools"
       ],
-      "stabilityDays": 0
+      "matchDatasources": [
+        "git-refs"
+      ],
+      "minimumReleaseAge": null
+    },
+    {
+      "matchPackageNames": [
+        "claude-code-overlay"
+      ],
+      "matchDatasources": [
+        "git-refs"
+      ],
+      "minimumReleaseAge": null,
+      "schedule": ["* * * * *"]
     },
     {
       "matchPackageNames": [
         "node"
       ],
       "matchDatasources": [
-        "node"
+        "node-version"
       ],
       "allowedVersions": "/^([2-9]\\d*[02468])(\\.\\d+)*$/"
     }

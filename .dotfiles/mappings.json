@@ -1,9 +1,0 @@
-{
-  "starship.toml": "~/.config/starship.toml",
-  "wezterm": "~/.config/wezterm",
-  "lazygit": "~/.config/lazygit",
-  "git": "~/.config/git",
-  "ghostty": "~/.config/ghostty",
-  "ideavimrc": "~/.ideavimrc",
-  "my_scripts": "~/.scripts"
-}

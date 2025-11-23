@@ -5,7 +5,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		cond = not is_vscode(),
 		dependencies = {
-			"node_servers",
 			"b0o/schemastore.nvim",
 			"yioneko/nvim-vtsls",
 			---@diagnostic disable-next-line: missing-fields
@@ -68,7 +67,6 @@ return {
 
 				-- python
 				"pyright",
-				"ruff",
 
 				-- misc
 				"typos_lsp",
