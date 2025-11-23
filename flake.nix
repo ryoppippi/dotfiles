@@ -191,20 +191,37 @@
         # Format code with treefmt
         fmt =
           let
-            treefmtWrapper = treefmt-nix.lib.mkWrapper (mkPkgs darwinSystem) {
+            pkgs = mkPkgs darwinSystem;
+            # Import node2nix packages including secretlint
+            nodePackages = import ./nix/node2nix {
+              inherit pkgs;
+              inherit (pkgs) system;
+              nodejs = pkgs.nodejs_24;
+            };
+            treefmtWrapper = treefmt-nix.lib.mkWrapper pkgs {
               projectRootFile = "flake.nix";
               programs = {
                 nixfmt = {
                   enable = true;
-                  package = (mkPkgs darwinSystem).nixfmt-rfc-style;
+                  package = pkgs.nixfmt-rfc-style;
                 };
                 stylua.enable = true;
               };
+              # Add secretlint to PATH for treefmt
+              settings.global.excludes = [
+                ".git/**"
+                "*.lock"
+              ];
             };
           in
           {
             type = "app";
-            program = "${treefmtWrapper}/bin/treefmt";
+            program = toString (
+              pkgs.writeShellScript "treefmt-with-secretlint" ''
+                export PATH="${nodePackages.nodeDependencies}/lib/node_modules/.bin:$PATH"
+                exec ${treefmtWrapper}/bin/treefmt "$@"
+              ''
+            );
           };
       };
 
