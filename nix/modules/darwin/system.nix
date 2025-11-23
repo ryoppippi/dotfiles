@@ -123,15 +123,12 @@ in
 
     taps = [
       "apple/apple"
-      "artginzburg/tap"
       "clojure/tools"
       "danielbayley/alfred"
       "koekeishiya/formulae"
       "kyoh86/tap"
-      "libsql/sqld"
       "nikitabobko/tap"
       "sdkman/tap"
-      "tursodatabase/tap"
     ];
 
     brews = [
@@ -141,7 +138,6 @@ in
       "screenresolution"
       "swift-sh"
       "switchaudio-osx"
-      "artginzburg/tap/sudo-touchid"
       "kyoh86/tap/git-branches"
       "kyoh86/tap/git-vertag"
     ];
