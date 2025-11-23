@@ -1,0 +1,30 @@
+name: Nix Format
+
+on:
+  push:
+    paths:
+      - 'flake.nix'
+      - 'flake.lock'
+      - 'nix/**'
+      - 'treefmt.toml'
+      - '.github/workflows/nix-format.yaml'
+  pull_request:
+    paths:
+      - 'flake.nix'
+      - 'flake.lock'
+      - 'nix/**'
+      - 'treefmt.toml'
+      - '.github/workflows/nix-format.yaml'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Check formatting, dead code, and linting
+        run: |
+          nix run .#fmt -- --fail-on-change

@@ -1,0 +1,30 @@
+name: Nix Neovim
+
+on:
+  push:
+    paths:
+      - 'nvim/**'
+      - 'flake.nix'
+      - '.github/workflows/nix-neovim.yaml'
+  pull_request:
+    paths:
+      - 'nvim/**'
+      - 'flake.nix'
+      - '.github/workflows/nix-neovim.yaml'
+
+jobs:
+  neovim-check:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Check Neovim configuration
+        run: nix run .#nvim-check
