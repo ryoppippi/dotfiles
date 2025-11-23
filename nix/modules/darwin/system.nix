@@ -129,9 +129,7 @@ in
       "koekeishiya/formulae"
       "kyoh86/tap"
       "libsql/sqld"
-      "masutaka/tap"
       "nikitabobko/tap"
-      "opencode-ai/tap"
       "sdkman/tap"
       "tursodatabase/tap"
     ];
