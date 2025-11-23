@@ -6,12 +6,14 @@ on:
       - 'flake.nix'
       - 'flake.lock'
       - 'nix/**'
+      - 'nvim/**'
       - '.github/workflows/nix.yaml'
   pull_request:
     paths:
       - 'flake.nix'
       - 'flake.lock'
       - 'nix/**'
+      - 'nvim/**'
       - '.github/workflows/nix.yaml'
 
 jobs:
@@ -106,6 +108,52 @@ jobs:
 
           echo "Evaluating Linux configuration..."
           nix eval .#homeConfigurations.ryoppippi.activationPackage --apply 'x: "ok"'
+
+  # Check Neovim configuration and install plugins
+  neovim-check:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+
+      - name: Check Neovim configuration
+        run: |
+          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            nix run .#nvim-check
+          else
+            # For Linux, use the activation script logic directly
+            TEMP_NVIM_DIR=$(mktemp -d)
+            trap "rm -rf $TEMP_NVIM_DIR" EXIT
+
+            export XDG_CONFIG_HOME="$TEMP_NVIM_DIR/config"
+            export XDG_DATA_HOME="$TEMP_NVIM_DIR/data"
+            export XDG_STATE_HOME="$TEMP_NVIM_DIR/state"
+            export XDG_CACHE_HOME="$TEMP_NVIM_DIR/cache"
+
+            mkdir -p "$XDG_CONFIG_HOME/nvim"
+            cp -r nvim/* "$XDG_CONFIG_HOME/nvim/"
+
+            echo "📦 Installing Lazy.nvim..."
+            git clone --filter=blob:none \
+              https://github.com/folke/lazy.nvim.git \
+              "$XDG_DATA_HOME/nvim/lazy/lazy.nvim"
+
+            echo "📦 Installing Neovim plugins..."
+            nix run nixpkgs#neovim -- --headless "+Lazy! restore" +qa
+
+            echo "✅ Neovim configuration is valid and all plugins installed successfully!"
+          fi
 
   # Check for flake.lock updates
   flake-update-check:

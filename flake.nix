@@ -223,6 +223,41 @@
               ''
             );
           };
+
+        # Check Neovim configuration and install plugins
+        nvim-check = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.${darwinSystem}.writeShellScript "nvim-check" ''
+              set -e
+              echo "🔍 Testing Neovim configuration..."
+
+              # Copy nvim config to a temporary location for testing
+              TEMP_NVIM_DIR=$(mktemp -d)
+              trap "rm -rf $TEMP_NVIM_DIR" EXIT
+
+              export XDG_CONFIG_HOME="$TEMP_NVIM_DIR/config"
+              export XDG_DATA_HOME="$TEMP_NVIM_DIR/data"
+              export XDG_STATE_HOME="$TEMP_NVIM_DIR/state"
+              export XDG_CACHE_HOME="$TEMP_NVIM_DIR/cache"
+
+              mkdir -p "$XDG_CONFIG_HOME/nvim"
+              cp -r ${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles/nvim/* "$XDG_CONFIG_HOME/nvim/"
+
+              # Install Lazy.nvim
+              echo "📦 Installing Lazy.nvim..."
+              ${nixpkgs.legacyPackages.${darwinSystem}.git}/bin/git clone --filter=blob:none \
+                https://github.com/folke/lazy.nvim.git \
+                "$XDG_DATA_HOME/nvim/lazy/lazy.nvim"
+
+              # Restore plugins from lazy-lock.json
+              echo "📦 Installing Neovim plugins..."
+              ${nixpkgs.legacyPackages.${darwinSystem}.neovim}/bin/nvim --headless "+Lazy! restore" +qa
+
+              echo "✅ Neovim configuration is valid and all plugins installed successfully!"
+            ''
+          );
+        };
       };
 
       # Apps for Linux

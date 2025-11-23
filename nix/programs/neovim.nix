@@ -57,4 +57,43 @@ in
     ${helpers.mkLinkForce}
     link_force "${nvimDotfilesDir}" "${nvimConfigDir}"
   '';
+
+  # Install/restore Neovim plugins via Lazy.nvim
+  home.activation.installNeovimPlugins = lib.hm.dag.entryAfter [ "linkNvimConfig" ] ''
+    LAZY_DIR="$HOME/.local/share/nvim/lazy"
+    LAZY_NVIM_DIR="$LAZY_DIR/lazy.nvim"
+    LAZY_LOCK="${nvimDotfilesDir}/lazy-lock.json"
+    LAZY_LOCK_TIMESTAMP="$LAZY_DIR/.lazy-lock-timestamp"
+
+    # Install Lazy.nvim if not present
+    if [[ ! -d "$LAZY_NVIM_DIR" ]]; then
+      echo "📦 Installing Lazy.nvim..."
+      ${pkgs.git}/bin/git clone --filter=blob:none \
+        https://github.com/folke/lazy.nvim.git \
+        "$LAZY_NVIM_DIR"
+    fi
+
+    # Check if lazy-lock.json has been updated
+    SHOULD_RESTORE=0
+    if [[ ! -f "$LAZY_LOCK_TIMESTAMP" ]]; then
+      # First run or timestamp missing
+      SHOULD_RESTORE=1
+    elif [[ "$LAZY_LOCK" -nt "$LAZY_LOCK_TIMESTAMP" ]]; then
+      # lazy-lock.json is newer than our timestamp
+      SHOULD_RESTORE=1
+    fi
+
+    # Restore plugins if needed
+    if [[ $SHOULD_RESTORE -eq 1 ]]; then
+      if [[ -f "$LAZY_LOCK" ]]; then
+        echo "📦 Restoring Neovim plugins from lazy-lock.json..."
+        ${pkgs.neovim}/bin/nvim --headless "+Lazy! restore" +qa
+        echo "✅ Neovim plugins restored!"
+
+        # Update timestamp
+        mkdir -p "$LAZY_DIR"
+        touch "$LAZY_LOCK_TIMESTAMP"
+      fi
+    fi
+  '';
 }
