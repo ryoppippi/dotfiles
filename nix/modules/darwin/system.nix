@@ -207,7 +207,6 @@ in
       "symboliclinker"
       "syncthing"
       "touch-bar-simulator"
-      "transmission@nightly"
       "visual-studio-code"
       "vlc"
       "xquartz"
