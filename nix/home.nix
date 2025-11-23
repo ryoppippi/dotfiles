@@ -15,6 +15,9 @@
     (import ./programs/claude-code.nix {
       inherit pkgs lib config dotfilesDir claude-code-overlay system;
     })
+    (import ./programs/codex.nix {
+      inherit pkgs lib config dotfilesDir;
+    })
   ];
 
   home.stateVersion = "25.11";
