@@ -9,7 +9,7 @@ return {
 			log_path = vim.fn.stdpath("data") .. "/ai_keymap/keystrokes.jsonl",
 			visualize_cmd = { "bun", "run", "src/cli.ts" },
 			visualize_args = { "--dotfiles", vim.fn.expand("~/.config/nvim") },
-			suggest_args = { "--dotfiles", vim.fn.expand("~/.config/nvim"), "--model", "gpt-5" },
+			suggest_args = { "--dotfiles", vim.fn.expand("~/.config/nvim"), "--model", "gpt-4-turbo" },
 		})
 	end,
 }
