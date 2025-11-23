@@ -7,11 +7,12 @@ let
     ./gh-graph.nix
     ./gh-user-stars.nix
     ./gh-triage.nix
-    # Small Go CLI tools not in nixpkgs
+    # Small Go/Rust CLI tools not in nixpkgs
     ./sheep.nix
     ./gyazo-cli.nix
     ./oglens.nix
     ./tv.nix
+    ./similarity-ts.nix
   ];
 
   # Apply each overlay and merge results
