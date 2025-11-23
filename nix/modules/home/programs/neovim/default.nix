@@ -9,15 +9,42 @@
 let
   nvimDotfilesDir = "${dotfilesDir}/nvim";
   nvimConfigDir = "${config.xdg.configHome}/nvim";
+
+  # Pre-built plugins by Nix
+  treesitterGrammars = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+  telescopeFzfNative = pkgs.vimPlugins.telescope-fzf-native-nvim;
+  telescopeFzyNative = pkgs.vimPlugins.telescope-fzy-native-nvim;
+  sqlitePath = "${pkgs.sqlite.out}/lib/libsqlite3.dylib";
 in
 {
   programs.neovim = {
     enable = true;
 
+    # Set environment variables only for Neovim session
+    extraWrapperArgs = [
+      "--set"
+      "TREESITTER_GRAMMARS"
+      "${treesitterGrammars}"
+      "--set"
+      "TELESCOPE_FZF_NATIVE"
+      "${telescopeFzfNative}"
+      "--set"
+      "TELESCOPE_FZY_NATIVE"
+      "${telescopeFzyNative}"
+      "--set"
+      "SQLITE_CLIB_PATH"
+      "${sqlitePath}"
+    ];
+
     # These packages are only available when NeoVim is running
     extraPackages = with pkgs; [
-      # Runtime dependencies
-      sqlite # SQLite library for sqlite.lua plugin
+
+      # Pre-built plugins (to avoid build steps)
+      telescopeFzfNative # telescope-fzf-native.nvim pre-built by Nix
+      telescopeFzyNative # telescope-fzy-native.nvim pre-built by Nix
+
+      # Plugin build dependencies (lazy.nvim build steps)
+      cmake # some plugins requiring cmake
 
       # Language servers
       lua-language-server # Lua LSP
@@ -48,8 +75,6 @@ in
       yaml-language-server # YAML
     ];
 
-    # Don't manage init.lua - use the existing one from dotfiles
-    # extraLuaConfig is removed to avoid conflicts
   };
 
   # Create symlink to NeoVim configuration in dotfiles (bypassing Nix store)
