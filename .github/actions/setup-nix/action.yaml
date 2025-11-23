@@ -5,8 +5,6 @@ runs:
   steps:
     - name: Install Nix
       uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
-      shell: bash
 
     - name: Setup Magic Nix Cache
       uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
-      shell: bash
