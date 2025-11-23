@@ -67,7 +67,6 @@ return {
 
 				-- python
 				"pyright",
-				"ruff",
 
 				-- misc
 				"typos_lsp",

@@ -55,7 +55,7 @@ tools:
       - '%f:%l:%c: %tote: %m'
 
   ruff-format: &ruff-format
-    format-command: "ruff --fix -e -n --stdin-filename -"
+    format-command: "uv run ruff format --stdin-filename ${INPUT}"
     format-stdin: true
 
   swift-format-format: &swift-format-format
