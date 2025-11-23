@@ -89,8 +89,11 @@ in {
   home.file = {
     # Generated config.toml from Nix settings
     "${codexConfigDir}/config.toml".source = tomlFormat.generate "codex-config" settings;
-
-    # Global instructions for Codex agents
-    "${codexConfigDir}/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
+
+  # Create direct symlink to AGENTS.md in dotfiles (bypassing Nix store)
+  home.activation.linkCodexAgents = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD mkdir -p "${codexConfigDir}"
+    $DRY_RUN_CMD ln -sf "${codexDotfilesDir}/AGENTS.md" "${codexConfigDir}/AGENTS.md"
+  '';
 }
