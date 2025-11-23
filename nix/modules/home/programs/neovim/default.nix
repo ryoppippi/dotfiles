@@ -48,6 +48,7 @@ in
 
       # Language servers
       lua-language-server # Lua LSP
+      nixd # Nix LSP
       efm-langserver # General purpose LSP
       pyright # Python LSP
       typos-lsp # Spell checker LSP
@@ -66,8 +67,10 @@ in
       emmet-language-server # Emmet
       prisma-language-server # Prisma
       stylelint # CSS linter
+      stylelint-lsp # Stylelint LSP
       svelte-language-server # Svelte
       tailwindcss-language-server # Tailwind CSS
+      textlint # Natural language linter
       typescript-language-server # TypeScript
       vscode-langservers-extracted # HTML/CSS/JSON/ESLint
       vtsls # TypeScript LSP wrapper

@@ -111,7 +111,7 @@
                   includes = [ "*" ];
                 };
                 renovate-validator = {
-                  command = "${nodePackages.nodeDependencies}/lib/node_modules/.bin/renovate-config-validator";
+                  command = "${pkgs.renovate}/bin/renovate-config-validator";
                   options = [ "--strict" ];
                   includes = [
                     ".github/renovate.json"
