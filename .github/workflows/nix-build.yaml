@@ -23,7 +23,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build ${{ matrix.name }}
     steps:
-      - name: Free Disk Space
+      - name: Free Disk Space (Ubuntu only)
+        if: matrix.os == 'ubuntu-latest'
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # main
         with:
           tool-cache: false
