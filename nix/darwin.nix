@@ -4,9 +4,11 @@
   username,
   homedir,
   ...
-}: let
+}:
+let
   fishPath = "${pkgs.fish}/bin/fish";
-in {
+in
+{
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -30,7 +32,7 @@ in {
   };
 
   # Add fish to system shells
-  environment.shells = [pkgs.fish];
+  environment.shells = [ pkgs.fish ];
 
   # Set user shell on activation
   system.activationScripts.postActivation.text = ''

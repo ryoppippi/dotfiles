@@ -4,14 +4,16 @@
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   ...
-}: let
+}:
+let
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
-  helpers = import ./lib/activation-helpers.nix {inherit lib;};
-in {
+  helpers = import ./lib/activation-helpers.nix { inherit lib; };
+in
+{
   # Create direct symlinks to dotfiles (bypassing Nix store)
   # Run after linkGeneration to ensure Home Manager files are in place first
-  home.activation.linkDotfiles = lib.hm.dag.entryAfter ["linkGeneration"] ''
+  home.activation.linkDotfiles = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     ${helpers.mkLinkForce}
 
     # Hammerspoon configuration (macOS only, but harmless on Linux)

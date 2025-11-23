@@ -4,13 +4,14 @@
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   ...
-}: let
+}:
+let
   codexConfigDir = "${config.xdg.configHome}/codex";
   codexDotfilesDir = "${dotfilesDir}/codex";
-  helpers = import ../lib/activation-helpers.nix {inherit lib;};
+  helpers = import ../lib/activation-helpers.nix { inherit lib; };
 
   # TOML format generator
-  tomlFormat = pkgs.formats.toml {};
+  tomlFormat = pkgs.formats.toml { };
 
   # Codex configuration settings
   settings = {
@@ -62,7 +63,7 @@
 
       devenv = {
         command = "devenv";
-        args = ["mcp"];
+        args = [ "mcp" ];
       };
     };
 
@@ -75,16 +76,17 @@
   # Wrap Codex with CODEX_HOME environment variable
   codex-wrapped = pkgs.symlinkJoin {
     name = "codex-wrapped";
-    paths = [pkgs.codex];
-    buildInputs = [pkgs.makeWrapper];
+    paths = [ pkgs.codex ];
+    buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/codex \
         --set CODEX_HOME ${codexConfigDir}
     '';
   };
-in {
+in
+{
   # Codex package with CODEX_HOME wrapper
-  home.packages = [codex-wrapped];
+  home.packages = [ codex-wrapped ];
 
   # Codex configuration files
   home.file = {
@@ -93,7 +95,7 @@ in {
   };
 
   # Create direct symlink to AGENTS.md in dotfiles (bypassing Nix store)
-  home.activation.linkCodexAgents = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.linkCodexAgents = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ${helpers.mkLinkForce}
     $DRY_RUN_CMD mkdir -p "${codexConfigDir}"
     link_force "${codexDotfilesDir}/AGENTS.md" "${codexConfigDir}/AGENTS.md"
