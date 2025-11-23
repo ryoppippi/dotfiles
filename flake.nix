@@ -215,8 +215,11 @@
           # Home Manager integration for macOS
           home-manager.darwinModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              pkgs = mkPkgs darwinSystem;
+            };
             home-manager.users.${username} =
               {
                 pkgs,
