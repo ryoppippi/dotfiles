@@ -8,22 +8,20 @@
   programs.gh = {
     enable = true;
 
-    extensions = with pkgs; [
+    extensions = [
       # Extensions available in nixpkgs
-      gh-markdown-preview
-      gh-dash
-      gh-actions-cache
-      gh-poi
-      gh-copilot
-      gh-notify
+      pkgs.gh-markdown-preview
+      pkgs.gh-dash
+      pkgs.gh-actions-cache
+      pkgs.gh-poi
+      pkgs.gh-copilot
+      pkgs.gh-notify
+
+      # Custom extensions from overlay
+      pkgs.gh-do
+      pkgs.gh-graph
+      pkgs.gh-user-stars
+      pkgs.gh-triage
     ];
   };
-
-  # Install gh extensions not available in nixpkgs
-  home.activation.installGhExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ${pkgs.gh}/bin/gh extension install k1LoW/gh-do --force || true
-    $DRY_RUN_CMD ${pkgs.gh}/bin/gh extension install kawarimidoll/gh-graph --force || true
-    $DRY_RUN_CMD ${pkgs.gh}/bin/gh extension install korosuke613/gh-user-stars --force || true
-    $DRY_RUN_CMD ${pkgs.gh}/bin/gh extension install k1LoW/gh-triage --force || true
-  '';
 }
