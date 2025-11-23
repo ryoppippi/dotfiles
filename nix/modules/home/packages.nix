@@ -100,6 +100,7 @@
     bsky-cli
     oglens
     sheep
+    similarity-ts
     # Cloud tools
     pscale
     cloudflared
