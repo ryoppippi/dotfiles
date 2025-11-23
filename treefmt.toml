@@ -1,0 +1,8 @@
+[formatter.nix]
+command = "nixfmt"
+includes = ["*.nix"]
+
+[formatter.lua]
+command = "stylua"
+includes = ["*.lua"]
+excludes = ["nvim/lazy-lock.json"]
