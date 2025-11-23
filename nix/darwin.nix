@@ -51,6 +51,71 @@ in
     ];
   };
 
+  # macOS system defaults
+  system.defaults = {
+    # Dock settings
+    dock = {
+      autohide = true; # Automatically hide and show the Dock
+      tilesize = 45; # Icon size
+      persistent-apps = [ ]; # Remove all pinned applications
+      show-recents = false; # Don't show recent applications
+      mineffect = "scale"; # Minimise effect
+      orientation = "bottom"; # Dock position
+    };
+
+    # Finder settings
+    finder = {
+      AppleShowAllExtensions = true; # Show all file extensions
+      AppleShowAllFiles = true; # Show hidden files
+      ShowPathbar = true; # Show path bar
+      ShowStatusBar = true; # Show status bar
+      FXEnableExtensionChangeWarning = false; # Disable extension change warning
+      FXPreferredViewStyle = "Nlsv"; # List view by default
+    };
+
+    # Global macOS settings
+    NSGlobalDomain = {
+      # Appearance
+      AppleInterfaceStyle = "Dark"; # Dark mode
+      AppleShowAllExtensions = true; # Show all file extensions
+
+      # Keyboard
+      KeyRepeat = 2; # Fast key repeat (1-2 is very fast)
+      InitialKeyRepeat = 25; # Initial key repeat delay
+
+      # Disable auto-correct and substitutions
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      NSAutomaticSpellingCorrectionEnabled = false;
+
+      # Menu bar spacing (replaces Menu Bar Spacing app)
+      NSStatusItemSpacing = 2; # Space between menu bar items
+      NSStatusItemSelectionPadding = 2; # Padding for selected items
+    };
+
+    # Screenshot settings
+    screencapture = {
+      location = "~/Pictures/Screenshots";
+      type = "png";
+    };
+
+    # Trackpad settings
+    trackpad = {
+      Clicking = true; # Tap to click
+    };
+
+    # Custom preferences for settings not available in system.defaults
+    CustomUserPreferences = {
+      "com.apple.AppleMultitouchTrackpad" = {
+        # Click threshold: 0 = light, 1 = medium, 2 = firm
+        FirstClickThreshold = 0;
+        SecondClickThreshold = 0;
+      };
+    };
+  };
+
   # Homebrew configuration
   homebrew = {
     enable = true;
