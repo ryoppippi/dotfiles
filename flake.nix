@@ -199,8 +199,8 @@
         system = darwinSystem;
 
         modules = [
-          # Darwin-specific configuration
-          (import ./nix/darwin.nix {
+          # Darwin-specific system configuration
+          (import ./nix/modules/darwin/system.nix {
             pkgs = mkPkgs darwinSystem;
             lib = nixpkgs.lib;
             username = username;
@@ -219,11 +219,37 @@
                 lib,
                 ...
               }:
-              import ./nix/home.nix {
-                inherit pkgs config lib;
-                inherit claude-code-overlay treefmt-nix git-hooks;
-                homedir = darwinHomedir;
-                system = darwinSystem;
+              let
+                helpers = import ./nix/modules/lib/helpers { inherit lib; };
+              in
+              {
+                imports = [
+                  # Common home-manager configuration
+                  (import ./nix/modules/home {
+                    inherit
+                      pkgs
+                      config
+                      lib
+                      claude-code-overlay
+                      treefmt-nix
+                      git-hooks
+                      ;
+                    homedir = darwinHomedir;
+                    system = darwinSystem;
+                  })
+
+                  # macOS-specific home-manager configuration
+                  (import ./nix/modules/darwin {
+                    inherit
+                      pkgs
+                      config
+                      lib
+                      helpers
+                      ;
+                    homedir = darwinHomedir;
+                    dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                  })
+                ];
               };
           }
         ];
@@ -244,11 +270,37 @@
               lib,
               ...
             }:
-            import ./nix/home.nix {
-              inherit pkgs config lib;
-              inherit claude-code-overlay treefmt-nix git-hooks;
-              homedir = linuxHomedir;
-              system = linuxSystem;
+            let
+              helpers = import ./nix/modules/lib/helpers { inherit lib; };
+            in
+            {
+              imports = [
+                # Common home-manager configuration
+                (import ./nix/modules/home {
+                  inherit
+                    pkgs
+                    config
+                    lib
+                    claude-code-overlay
+                    treefmt-nix
+                    git-hooks
+                    ;
+                  homedir = linuxHomedir;
+                  system = linuxSystem;
+                })
+
+                # Linux-specific home-manager configuration
+                (import ./nix/modules/linux {
+                  inherit
+                    pkgs
+                    config
+                    lib
+                    helpers
+                    ;
+                  homedir = linuxHomedir;
+                  dotfilesDir = "${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                })
+              ];
             }
           )
         ];
