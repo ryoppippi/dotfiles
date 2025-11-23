@@ -28,7 +28,7 @@ jobs:
             condition: macos
     runs-on: ${{ matrix.os }}
     name: Build ${{ matrix.name }}
-    if: inputs.os == 'both' || inputs.os == matrix.condition
+    if: github.event.inputs.os == 'both' || github.event.inputs.os == matrix.condition
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
