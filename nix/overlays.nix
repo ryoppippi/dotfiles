@@ -5,8 +5,8 @@
 }:
 final: prev:
 let
-  # Import custom gh extensions overlay
-  ghExtensionsOverlay = import ./overlays/default.nix final prev;
+  # Import custom overlays (includes gh extensions and small Go CLI tools)
+  customOverlays = import ./overlays/default.nix final prev;
 in
 {
   # AI tools overlay (excluding claude-code which comes from claude-code-overlay)
@@ -18,5 +18,5 @@ in
     coderabbit-cli
     ;
 }
-// ghExtensionsOverlay # Custom gh extensions
+// customOverlays # Custom overlays (gh extensions + small Go CLI tools)
 // (claude-code-overlay.overlays.default final prev)
