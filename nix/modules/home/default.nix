@@ -20,7 +20,7 @@ in
     ./packages.nix
 
     # Git hooks configuration
-    (import ../git-hooks.nix {
+    (import ./git-hooks.nix {
       inherit
         pkgs
         lib
