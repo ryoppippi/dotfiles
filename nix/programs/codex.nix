@@ -3,12 +3,12 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 let
   codexConfigDir = "${config.xdg.configHome}/codex";
   codexDotfilesDir = "${dotfilesDir}/codex";
-  helpers = import ../lib/activation-helpers.nix { inherit lib; };
 
   # TOML format generator
   tomlFormat = pkgs.formats.toml { };
@@ -96,7 +96,7 @@ in
 
   # Create direct symlink to AGENTS.md in dotfiles (bypassing Nix store)
   home.activation.linkCodexAgents = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${helpers.mkLinkForce}
+    ${helpers.activation.mkLinkForce}
     $DRY_RUN_CMD mkdir -p "${codexConfigDir}"
     link_force "${codexDotfilesDir}/AGENTS.md" "${codexConfigDir}/AGENTS.md"
   '';

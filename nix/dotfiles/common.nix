@@ -3,17 +3,17 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 let
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
-  helpers = import ./lib/activation-helpers.nix { inherit lib; };
 in
 {
   # Common dotfile symlinks for all platforms
   home.activation.linkDotfilesCommon = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    ${helpers.mkLinkForce}
+    ${helpers.activation.mkLinkForce}
 
     # IdeaVim configuration
     link_force "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"

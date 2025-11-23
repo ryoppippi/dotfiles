@@ -5,12 +5,12 @@
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   claude-code-overlay,
   system,
+  helpers,
   ...
 }:
 let
   claudeConfigDir = "${config.xdg.configHome}/claude";
   claudeDotfilesDir = "${dotfilesDir}/claude";
-  helpers = import ../lib/activation-helpers.nix { inherit lib; };
 
   # Get claude-code directly from overlay
   base-claude-code = (claude-code-overlay.overlays.default pkgs pkgs).claude-code;
@@ -32,7 +32,7 @@ in
 
   # Create direct symlinks to Claude Code configuration files (bypassing Nix store)
   home.activation.linkClaudeCodeConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${helpers.mkLinkForce}
+    ${helpers.activation.mkLinkForce}
     $DRY_RUN_CMD mkdir -p "${claudeConfigDir}"
     link_force "${claudeDotfilesDir}/settings.json" "${claudeConfigDir}/settings.json"
     link_force "${claudeDotfilesDir}/CLAUDE.md" "${claudeConfigDir}/CLAUDE.md"
