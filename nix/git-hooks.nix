@@ -40,6 +40,15 @@ let
     #!/usr/bin/env bash
     set -e
 
+    # Skip during rebase/merge/cherry-pick (like lefthook does)
+    if [ -d "$(git rev-parse --git-path rebase-merge)" ] || \
+       [ -d "$(git rev-parse --git-path rebase-apply)" ] || \
+       [ -f "$(git rev-parse --git-path MERGE_HEAD)" ] || \
+       [ -f "$(git rev-parse --git-path CHERRY_PICK_HEAD)" ]; then
+      echo "⏭️  Skipping pre-commit hook during rebase/merge/cherry-pick"
+      exit 0
+    fi
+
     # Get list of staged files
     files=$(git diff --cached --name-only --diff-filter=ACM)
 
