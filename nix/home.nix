@@ -74,6 +74,19 @@
       lua-language-server
       stylua
       efm-langserver
+
+      # NeoVim language servers (Node.js-based)
+      astro-language-server # Astro
+      emmet-language-server # Emmet
+      prisma-language-server # Prisma
+      stylelint # CSS linter
+      svelte-language-server # Svelte
+      tailwindcss-language-server # Tailwind CSS
+      typescript-language-server # TypeScript
+      vscode-langservers-extracted # HTML/CSS/JSON/ESLint
+      vtsls # TypeScript LSP wrapper
+      vue-language-server # Vue.js
+      yaml-language-server # YAML
       # Go tooling
       gotools
       mockgen
