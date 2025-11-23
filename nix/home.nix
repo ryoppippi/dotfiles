@@ -118,8 +118,6 @@
       direnv
       navi
       # Testing & security
-      hadolint
-      actionlint
       ruff
       uv
       # Container & Docker

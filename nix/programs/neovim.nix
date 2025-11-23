@@ -20,8 +20,10 @@ in
       lua-language-server # Lua LSP
       efm-langserver # General purpose LSP
 
-      # Formatters
+      # Formatters & Linters (used by efm-langserver)
       stylua # Lua formatter
+      hadolint # Dockerfile linter
+      actionlint # GitHub Actions linter
 
       # Node.js-based language servers
       astro-language-server # Astro
