@@ -7,48 +7,52 @@
 }: let
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
+  helpers = import ./lib/activation-helpers.nix {inherit lib;};
 in {
   # Create direct symlinks to dotfiles (bypassing Nix store)
-  home.activation.linkDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  # Run after linkGeneration to ensure Home Manager files are in place first
+  home.activation.linkDotfiles = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    ${helpers.mkLinkForce}
+
     # Hammerspoon configuration (macOS only, but harmless on Linux)
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/hammerspoon" "${homeDir}/.hammerspoon"
+    link_force "${dotfilesDir}/hammerspoon" "${homeDir}/.hammerspoon"
 
     # Homebrew bundle file (macOS only, but harmless on Linux)
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/Brewfile" "${homeDir}/.Brewfile"
+    link_force "${dotfilesDir}/Brewfile" "${homeDir}/.Brewfile"
 
     # IdeaVim configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"
+    link_force "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"
 
     # LazyGit configuration
     $DRY_RUN_CMD mkdir -p "${configHome}"
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/lazygit" "${configHome}/lazygit"
+    link_force "${dotfilesDir}/lazygit" "${configHome}/lazygit"
 
     # Fish shell configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/fish" "${configHome}/fish"
+    link_force "${dotfilesDir}/fish" "${configHome}/fish"
 
     # Zsh environment
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/zshenv" "${homeDir}/.zshenv"
+    link_force "${dotfilesDir}/zshenv" "${homeDir}/.zshenv"
 
     # Aqua package manager configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
+    link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
 
     # Zed editor configuration
     $DRY_RUN_CMD mkdir -p "${configHome}/zed"
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/zed/settings.json" "${configHome}/zed/settings.json"
+    link_force "${dotfilesDir}/zed/settings.json" "${configHome}/zed/settings.json"
 
     # Karabiner Elements configuration (macOS only, but harmless on Linux)
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/karabiner" "${configHome}/karabiner"
+    link_force "${dotfilesDir}/karabiner" "${configHome}/karabiner"
 
     # WezTerm configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/wezterm" "${configHome}/wezterm"
+    link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
 
     # Bash profile
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/bash/.bash_profile" "${homeDir}/.bash_profile"
+    link_force "${dotfilesDir}/bash/.bash_profile" "${homeDir}/.bash_profile"
 
     # Starship prompt configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/starship.toml" "${configHome}/starship.toml"
+    link_force "${dotfilesDir}/starship.toml" "${configHome}/starship.toml"
 
     # Bat configuration
-    $DRY_RUN_CMD ln -sf "${dotfilesDir}/bat" "${configHome}/bat"
+    link_force "${dotfilesDir}/bat" "${configHome}/bat"
   '';
 }
