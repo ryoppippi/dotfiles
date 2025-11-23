@@ -118,6 +118,7 @@
       direnv
       navi
       # Testing & security
+      typos
       uv
       # Container & Docker
       dive
@@ -134,6 +135,7 @@
       viddy
       hwatch
       # Miscellaneous utilities
+      terminal-notifier
       sttr
       silicon
       fx
