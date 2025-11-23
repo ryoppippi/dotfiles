@@ -1,13 +1,17 @@
 name: Nix Build
 
 on:
-  push:
-    paths:
-      - 'flake.nix'
-      - 'flake.lock'
-      - 'nix/**'
-      - '.github/workflows/nix-build.yaml'
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to build'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
 
 jobs:
   build:
@@ -17,11 +21,14 @@ jobs:
           - os: ubuntu-latest
             target: homeConfigurations.ryoppippi.activationPackage
             name: Linux (Home Manager)
+            condition: ubuntu
           - os: macos-latest
             target: darwinConfigurations.ryoppippi.system
             name: macOS (nix-darwin)
+            condition: macos
     runs-on: ${{ matrix.os }}
     name: Build ${{ matrix.name }}
+    if: inputs.os == 'both' || inputs.os == matrix.condition
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
