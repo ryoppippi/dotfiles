@@ -20,16 +20,21 @@ on:
         default: 'both'
 
 jobs:
-  neovim-check:
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            condition: ubuntu
-          - os: macos-latest
-            condition: macos
-    runs-on: ${{ matrix.os }}
-    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == matrix.condition
+  neovim-check-ubuntu:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'ubuntu'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Check Neovim configuration
+        run: nix run .#nvim-check
+
+  neovim-check-macos:
+    runs-on: macos-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'macos'
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
