@@ -5,24 +5,55 @@
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
   claude-code-overlay ? null,
+  treefmt-nix ? null,
+  git-hooks ? null,
   system ? null,
   ...
-}: {
+}:
+{
   imports = [
     (import ./git-hooks.nix {
-      inherit pkgs lib config dotfilesDir;
+      inherit
+        pkgs
+        lib
+        config
+        dotfilesDir
+        treefmt-nix
+        ;
     })
     (import ./programs/claude-code.nix {
-      inherit pkgs lib config dotfilesDir claude-code-overlay system;
+      inherit
+        pkgs
+        lib
+        config
+        dotfilesDir
+        claude-code-overlay
+        system
+        ;
     })
     (import ./programs/codex.nix {
-      inherit pkgs lib config dotfilesDir;
+      inherit
+        pkgs
+        lib
+        config
+        dotfilesDir
+        ;
     })
     (import ./programs/neovim.nix {
-      inherit pkgs lib config dotfilesDir;
+      inherit
+        pkgs
+        lib
+        config
+        dotfilesDir
+        ;
     })
     (import ./dotfiles.nix {
-      inherit pkgs lib config dotfilesDir;
+      inherit
+        pkgs
+        lib
+        config
+        dotfilesDir
+        ;
     })
   ];
 
@@ -30,7 +61,8 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       # Essentials
       curl
@@ -72,8 +104,6 @@
       # Build systems
       just
       ninja
-      # Formatters
-      stylua
       # Go tooling
       gotools
       mockgen
@@ -157,16 +187,17 @@
       pv
     ]
     ++ (
-      if pkgs.stdenv.isDarwin
-      then [
-        # macOS-specific packages
-        ghostty-bin
-        chafa
-        blueutil
-        switchaudio-osx
-      ]
-      else [
-        # Linux-specific packages can be added here
-      ]
+      if pkgs.stdenv.isDarwin then
+        [
+          # macOS-specific packages
+          ghostty-bin
+          chafa
+          blueutil
+          switchaudio-osx
+        ]
+      else
+        [
+          # Linux-specific packages can be added here
+        ]
     );
 }
