@@ -1,0 +1,45 @@
+name: Nix Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to build'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.os == 'both' || github.event.inputs.os == 'ubuntu'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Build Linux (Home Manager) configuration
+        run: |
+          nix build .#homeConfigurations.ryoppippi.activationPackage \
+            --print-build-logs \
+            --show-trace
+
+  build-macos:
+    runs-on: macos-latest
+    if: github.event.inputs.os == 'both' || github.event.inputs.os == 'macos'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Build macOS (nix-darwin) configuration
+        run: |
+          nix build .#darwinConfigurations.ryoppippi.system \
+            --print-build-logs \
+            --show-trace

@@ -36,3 +36,9 @@ vim.g.loaded_ruby_provider = 0
 vim.g.did_indent_on = 1
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu = 1
+
+-- Add Nix-provided tree-sitter grammars to runtimepath
+local treesitter_grammars = vim.env.TREESITTER_GRAMMARS
+if treesitter_grammars then
+	vim.opt.runtimepath:append(treesitter_grammars)
+end

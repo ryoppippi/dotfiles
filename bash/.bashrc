@@ -69,12 +69,6 @@ eval "$(direnv hook bash)"
 # bat
 export BAT_THEME="TwoDark"
 
-# Wasmer
-export WASMER_DIR="$HOME/.wasmer"
-if [ -f $WASMER_DIR/wasmer.sh ];then
-  source $WASMER_DIR/wasmer.sh
-fi
-
 # ruby
 if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH=/opt/homebrew/opt/ruby/bin:$PATH

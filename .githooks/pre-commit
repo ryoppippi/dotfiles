@@ -1,9 +1,0 @@
-#!/bin/sh
-
-files=$(git ls-files)
-
-if [ -z "$files" ]; then
-  exit 0
-fi
-
-secretlint $files

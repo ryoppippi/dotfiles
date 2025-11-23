@@ -1,6 +1,5 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
 	event = { "BufReadPost", "VeryLazy" },
 	dependencies = {
 		{ "yioneko/nvim-yati", enabled = false },
@@ -16,7 +15,7 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			ignore_install = { "phpdoc" },
-			auto_install = true,
+			auto_install = false, -- Grammars are provided by Nix
 			sync_install = false,
 			highlight = {
 				enable = true,

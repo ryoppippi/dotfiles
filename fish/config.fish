@@ -75,15 +75,12 @@ fish_add_path $HOME/.scripts/bin
 # wezterm
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
 
+# Add home-manager packages to PATH
+fish_add_path ~/.local/state/home-manager/gcroots/current-home/home-path/bin
+
 # Secretive
 set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
-
-# claude code
-set -gx CLAUDE_CONFIG_DIR $XDG_CONFIG_HOME/claude
-
-# openai codex
-set -gx CODEX_HOME $XDG_CONFIG_HOME/codex
 
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
