@@ -7,10 +7,6 @@ on:
       - 'flake.nix'
       - '.github/workflows/nix-neovim.yaml'
   pull_request:
-    paths:
-      - 'nvim/**'
-      - 'flake.nix'
-      - '.github/workflows/nix-neovim.yaml'
 
 jobs:
   neovim-check:
