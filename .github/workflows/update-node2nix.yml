@@ -1,12 +1,7 @@
 name: Update node2nix packages
 
 on:
-  # Trigger on Renovate PRs
   pull_request:
-    paths:
-      - 'nix/node2nix/package.json'
-      - 'nix/node2nix/package-lock.json'
-  # Manual trigger
   workflow_dispatch:
 
 jobs:

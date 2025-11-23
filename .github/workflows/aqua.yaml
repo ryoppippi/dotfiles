@@ -6,9 +6,6 @@ on:
       - 'aqua/**'
       - '.github/workflows/aqua.yaml'
   pull_request:
-    paths:
-      - 'aqua/**'
-      - '.github/workflows/aqua.yaml'
 
 jobs:
   aqua-validate:

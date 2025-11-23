@@ -9,12 +9,6 @@ on:
       - 'treefmt.toml'
       - '.github/workflows/nix-format.yaml'
   pull_request:
-    paths:
-      - 'flake.nix'
-      - 'flake.lock'
-      - 'nix/**'
-      - 'treefmt.toml'
-      - '.github/workflows/nix-format.yaml'
 
 jobs:
   format:

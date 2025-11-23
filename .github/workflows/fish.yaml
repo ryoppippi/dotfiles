@@ -6,9 +6,6 @@ on:
       - 'fish/**'
       - '.github/workflows/fish.yaml'
   pull_request:
-    paths:
-      - 'fish/**'
-      - '.github/workflows/fish.yaml'
 
 jobs:
   fish-check:

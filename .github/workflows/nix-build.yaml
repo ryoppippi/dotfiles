@@ -8,11 +8,6 @@ on:
       - 'nix/**'
       - '.github/workflows/nix-build.yaml'
   pull_request:
-    paths:
-      - 'flake.nix'
-      - 'flake.lock'
-      - 'nix/**'
-      - '.github/workflows/nix-build.yaml'
 
 jobs:
   build:
