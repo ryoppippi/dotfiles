@@ -27,6 +27,7 @@ in
 
       # Formatters & Linters (used by efm-langserver)
       stylua # Lua formatter
+      swift-format # Swift formatter
       hadolint # Dockerfile linter
       actionlint # GitHub Actions linter
 
