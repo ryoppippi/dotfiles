@@ -3,18 +3,18 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 let
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
-  helpers = import ./lib/activation-helpers.nix { inherit lib; };
 in
 {
   # Linux-specific dotfile symlinks
   home.activation.linkDotfilesLinux = lib.hm.dag.entryAfter [ "linkGeneration" ] (
     lib.optionalString (!pkgs.stdenv.isDarwin) ''
-      ${helpers.mkLinkForce}
+      ${helpers.activation.mkLinkForce}
 
       # Pip configuration (Linux paths)
       $DRY_RUN_CMD mkdir -p "${configHome}/pip"

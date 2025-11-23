@@ -3,6 +3,7 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 {
@@ -14,6 +15,7 @@
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
 
@@ -24,6 +26,7 @@
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
     (import ./linux.nix {
@@ -32,6 +35,7 @@
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
   ];

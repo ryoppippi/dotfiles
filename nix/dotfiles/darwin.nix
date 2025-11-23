@@ -3,18 +3,18 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 let
   homeDir = config.home.homeDirectory;
   configHome = config.xdg.configHome;
-  helpers = import ./lib/activation-helpers.nix { inherit lib; };
 in
 {
   # macOS-specific dotfile symlinks
   home.activation.linkDotfilesDarwin = lib.hm.dag.entryAfter [ "linkGeneration" ] (
     lib.optionalString pkgs.stdenv.isDarwin ''
-        ${helpers.mkLinkForce}
+        ${helpers.activation.mkLinkForce}
 
       # Hammerspoon configuration
       link_force "${dotfilesDir}/hammerspoon" "${homeDir}/.hammerspoon"

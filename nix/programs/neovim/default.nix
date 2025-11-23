@@ -3,12 +3,12 @@
   lib,
   config,
   dotfilesDir,
+  helpers,
   ...
 }:
 let
   nvimDotfilesDir = "${dotfilesDir}/nvim";
   nvimConfigDir = "${config.xdg.configHome}/nvim";
-  helpers = import ../lib/activation-helpers.nix { inherit lib; };
 in
 {
   programs.neovim = {
@@ -54,7 +54,7 @@ in
 
   # Create symlink to NeoVim configuration in dotfiles (bypassing Nix store)
   home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${helpers.mkLinkForce}
+    ${helpers.activation.mkLinkForce}
     link_force "${nvimDotfilesDir}" "${nvimConfigDir}"
   '';
 
