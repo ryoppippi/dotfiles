@@ -31,21 +31,13 @@
     pastel
     hexyl
     # Development languages
-    go
     nodejs_24
     bun
     deno
-    tinygo
     typst
     # Build systems
     just
     ninja
-    # Go tooling
-    gotools
-    mockgen
-    gotestsum
-    cobra-cli
-    golines
     # Package managers
     pnpm
     yarn
