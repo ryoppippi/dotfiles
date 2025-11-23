@@ -18,53 +18,14 @@
     (import ./programs/codex.nix {
       inherit pkgs lib config dotfilesDir;
     })
+    (import ./dotfiles.nix {
+      inherit pkgs lib config dotfilesDir;
+    })
   ];
 
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
-
-  # Symlink dotfiles to their proper locations
-  home.file = {
-    # Hammerspoon configuration (macOS only, but harmless on Linux)
-    ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/hammerspoon";
-
-    # Homebrew bundle file (macOS only, but harmless on Linux)
-    ".Brewfile".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/Brewfile";
-
-    # IdeaVim configuration
-    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/ideavimrc";
-
-    # LazyGit configuration
-    ".config/lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/lazygit";
-
-    # Fish shell configuration
-    ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/fish";
-
-    # Zsh environment
-    ".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/zshenv";
-
-    # Aqua package manager configuration
-    ".config/aquaproj-aqua".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/aqua";
-
-    # Zed editor configuration
-    ".config/zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/zed/settings.json";
-
-    # Karabiner Elements configuration (macOS only, but harmless on Linux)
-    ".config/karabiner".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/karabiner";
-
-    # WezTerm configuration
-    ".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/wezterm";
-
-    # Bash profile
-    ".bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/bash/.bash_profile";
-
-    # Starship prompt configuration
-    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/starship.toml";
-
-    # Bat configuration
-    ".config/bat".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/bat";
-  };
 
   home.packages = with pkgs;
     [
