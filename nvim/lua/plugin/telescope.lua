@@ -39,7 +39,11 @@ return {
 		cmd = { "Telescope" },
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", config = le("fzf") },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				dir = vim.env.TELESCOPE_FZF_NATIVE, -- Nix-provided pre-built binary
+				config = le("fzf"),
+			},
 			{ "nvim-telescope/telescope-live-grep-args.nvim", config = le("live_grep_args") },
 			{ "nvim-telescope/telescope-symbols.nvim" },
 			{ "nvim-telescope/telescope-github.nvim", config = le("gh") },
@@ -59,57 +63,14 @@ return {
 				dependencies = {
 					{
 						"kkharji/sqlite.lua",
-						config = function()
-							-- Use Nix-provided sqlite library instead of building from source
-							-- Detect shared library extension based on platform
-							local uname = vim.loop.os_uname()
-							local ext = uname.sysname == "Darwin" and ".dylib" or ".so"
-
-							-- Find sqlite3 binary path and derive library path from it
-							local sqlite_bin = vim.fn.exepath("sqlite3")
-							if sqlite_bin ~= "" then
-								-- Resolve symlinks to get actual Nix store path
-								local handle = io.popen("readlink -f " .. vim.fn.shellescape(sqlite_bin))
-								if handle then
-									local resolved = handle:read("*l")
-									handle:close()
-
-									if resolved then
-										-- Extract Nix store path (e.g., /nix/store/xxx-sqlite-3.50.4-bin)
-										-- and look for the lib output in the same closure
-										local store_path = resolved:match("(/nix/store/[^/]+)")
-										if store_path then
-											-- Try to find libsqlite3 in sibling outputs
-											local parent = store_path:match("(.+)/[^/]+")
-											if parent then
-												local handle2 = io.popen(
-													"find "
-														.. vim.fn.shellescape(parent)
-														.. " -name 'libsqlite3"
-														.. ext
-														.. "' -type f 2>/dev/null | head -1"
-												)
-												if handle2 then
-													local lib_path = handle2:read("*l")
-													handle2:close()
-													if lib_path and lib_path ~= "" then
-														vim.g.sqlite_clib_path = lib_path
-													end
-												end
-											end
-										end
-									end
-								end
-							end
-
-							-- Fallback: let the system find it
-							if not vim.g.sqlite_clib_path then
-								vim.g.sqlite_clib_path = "libsqlite3" .. ext
-							end
+						init = function()
+							vim.g.sqlite_clib_path = vim.env.SQLITE_CLIB_PATH
 						end,
 					},
-					{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-					"nvim-telescope/telescope-fzy-native.nvim",
+					{
+						"nvim-telescope/telescope-fzy-native.nvim",
+						dir = vim.env.TELESCOPE_FZY_NATIVE,
+					},
 				},
 				config = le("smart_open"),
 			},
