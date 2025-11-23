@@ -1,0 +1,11 @@
+{
+  "name": "node_servers",
+  "dependencies": {
+    "@zed-industries/claude-code-acp": "^0.10.0",
+    "gh-actions-language-server": "^0.0.3",
+    "stylelint-lsp": "2.0.1",
+    "typescript-svelte-plugin": "0.3.50",
+    "unocss-language-server": "0.1.8"
+  },
+  "type": "module"
+}
