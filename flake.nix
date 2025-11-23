@@ -72,9 +72,11 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
-            (import ./nix/overlays.nix {
-              inherit ai-tools claude-code-overlay system;
+            (final: prev: {
+              _ai-tools = ai-tools;
+              _claude-code-overlay = claude-code-overlay;
             })
+            (import ./nix/overlays/default.nix)
           ];
         };
 
