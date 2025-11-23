@@ -31,6 +31,8 @@ jobs:
 
       - name: Check Neovim configuration
         run: nix run .#nvim-check
+        env:
+          DOTFILES_DIR: ${{ github.workspace }}
 
   neovim-check-macos:
     runs-on: macos-latest
@@ -43,3 +45,5 @@ jobs:
 
       - name: Check Neovim configuration
         run: nix run .#nvim-check
+        env:
+          DOTFILES_DIR: ${{ github.workspace }}
