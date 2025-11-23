@@ -15,8 +15,9 @@ in
   # Disable nix-darwin's Nix management (using Determinate Nix)
   nix.enable = false;
 
-  # Enable Touch ID for sudo
+  # Enable Touch ID for sudo (including tmux support via pam-reattach)
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.reattach = true;
 
   # Set system state version
   system.stateVersion = 5;
@@ -67,7 +68,6 @@ in
       "aqua"
       "bluetoothconnector"
       "leiningen"
-      "pam-reattach"
       "screenresolution"
       "swift-sh"
       "switchaudio-osx"
