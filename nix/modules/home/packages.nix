@@ -103,7 +103,6 @@
     fq
     tokei
     # Cloud tools
-    pscale
     cloudflared
     # Additional CLI tools
     aria2
