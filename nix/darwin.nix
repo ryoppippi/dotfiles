@@ -79,7 +79,6 @@ in
       "swift-format"
       "swift-sh"
       "switchaudio-osx"
-      "typos-lsp"
       "artginzburg/tap/sudo-touchid"
       "kyoh86/tap/git-branches"
       "kyoh86/tap/git-vertag"
