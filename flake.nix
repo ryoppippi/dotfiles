@@ -233,6 +233,10 @@
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs linuxSystem;
         modules = [
+          {
+            home.username = username;
+            home.homeDirectory = linuxHomedir;
+          }
           (
             {
               pkgs,
