@@ -14,6 +14,8 @@
     ghq
     lazygit
     lazydocker
+    git-branches
+    git-vertag
     # Search & file utilities
     ripgrep
     fd
