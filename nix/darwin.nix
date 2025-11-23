@@ -62,7 +62,7 @@ in {
     ];
 
     brews = [
-      "aquaproj/aqua/aqua"
+      "aqua"
       "bluetoothconnector"
       "cmigemo"
       "fig2dev"
