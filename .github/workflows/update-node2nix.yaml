@@ -23,9 +23,7 @@ jobs:
       - uses: ./.github/actions/setup-nix
 
       - name: Regenerate node2nix expressions
-        run: |
-          cd nix/node2nix
-          nix-shell -p node2nix --run "node2nix -l package-lock.json"
+        run: nix run .#update-node2nix
 
       - name: Format generated Nix files
         run: nix run .#fmt

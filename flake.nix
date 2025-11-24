@@ -232,6 +232,18 @@
               ''
             );
           };
+
+          # Regenerate node2nix expressions
+          update-node2nix = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "update-node2nix" ''
+                set -e
+                cd nix/node2nix
+                exec ${pkgs.node2nix}/bin/node2nix -l package-lock.json "$@"
+              ''
+            );
+          };
         };
     in
     {
