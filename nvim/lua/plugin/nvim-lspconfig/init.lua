@@ -10,7 +10,7 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			{
 				"ray-x/go.nvim",
-				build = ':lua require("go.install").update_all_sync()',
+				dir = vim.env.GO_NVIM, -- Nix-provided pre-built plugin
 				dependencies = {
 					"ray-x/guihua.lua",
 					"nvim-treesitter/nvim-treesitter",

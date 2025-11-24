@@ -14,6 +14,7 @@ let
   treesitterGrammars = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
   telescopeFzfNative = pkgs.vimPlugins.telescope-fzf-native-nvim;
   telescopeFzyNative = pkgs.vimPlugins.telescope-fzy-native-nvim;
+  goNvim = pkgs.vimPlugins.go-nvim;
   sqlitePath = "${pkgs.sqlite.out}/lib/libsqlite3.dylib";
 in
 {
@@ -32,6 +33,9 @@ in
       "TELESCOPE_FZY_NATIVE"
       "${telescopeFzyNative}"
       "--set"
+      "GO_NVIM"
+      "${goNvim}"
+      "--set"
       "SQLITE_CLIB_PATH"
       "${sqlitePath}"
     ];
@@ -42,6 +46,7 @@ in
       # Pre-built plugins (to avoid build steps)
       telescopeFzfNative # telescope-fzf-native.nvim pre-built by Nix
       telescopeFzyNative # telescope-fzy-native.nvim pre-built by Nix
+      goNvim # go.nvim pre-built by Nix
 
       # Plugin build dependencies (lazy.nvim build steps)
       cmake # some plugins requiring cmake
