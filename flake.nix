@@ -39,6 +39,11 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    gh-nippou = {
+      url = "github:ryoppippi/gh-nippou";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -51,6 +56,7 @@
       claude-code-overlay,
       treefmt-nix,
       git-hooks,
+      gh-nippou,
     }:
     let
       lib = nixpkgs.lib;
@@ -75,6 +81,7 @@
             (final: prev: {
               _ai-tools = ai-tools;
               _claude-code-overlay = claude-code-overlay;
+              gh-nippou = gh-nippou.packages.${system}.default;
             })
             (import ./nix/overlays/default.nix)
           ];
