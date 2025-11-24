@@ -1,5 +1,9 @@
 name: 'Setup Nix'
-description: 'Install Nix and configure Magic Nix Cache'
+description: 'Install Nix and configure Cachix'
+inputs:
+  cachix-auth-token:
+    description: 'Cachix authentication token'
+    required: false
 runs:
   using: 'composite'
   steps:
