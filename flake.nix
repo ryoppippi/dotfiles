@@ -135,7 +135,6 @@
                   command = "${pkgs.renovate}/bin/renovate-config-validator";
                   options = [ "--strict" ];
                   includes = [
-                    ".github/renovate.json"
                     ".github/renovate.json5"
                   ];
                 };
