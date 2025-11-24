@@ -8,7 +8,9 @@ runs:
   using: 'composite'
   steps:
     - name: Install Nix
-      uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
+      uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd # v31.8.4
+      with:
+        github_access_token: ${{ github.token }}
 
     - name: Setup Cachix (numtide)
       uses: cachix/cachix-action@0fc020193b5a1fa3ac4575aa3a7d3aa6a35435ad # v16
