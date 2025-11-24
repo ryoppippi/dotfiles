@@ -1,6 +1,5 @@
 ---@type LazySpec
 return {
-	{ import = "plugin.nvim-dap.servers" },
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
