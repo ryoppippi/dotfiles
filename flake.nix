@@ -144,20 +144,19 @@
           };
         in
         {
-          # Check Neovim configuration and install plugins
-          nvim-check = {
+          # Restore Neovim plugins from lock file
+          nvim-restore = {
             type = "app";
             program = toString (
-              pkgs.writeShellScript "nvim-check" ''
-                # Use DOTFILES_DIR env var, or fall back to default location, or current directory
+              pkgs.writeShellScript "nvim-restore" ''
                 : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
                 if [ ! -d "$DOTFILES_DIR" ]; then
                   DOTFILES_DIR="$(pwd)"
                 fi
                 exec ${pkgs.bash}/bin/bash \
                   ${./nix/modules/home/programs/neovim/check.sh} \
-                  "$DOTFILES_DIR" \
-                  ${pkgs.git}/bin/git \
+                  "$DOTFILES_DIR/nvim" \
+                  "$HOME/.local/share/nvim/lazy" \
                   ${pkgs.neovim}/bin/nvim
               ''
             );
