@@ -191,7 +191,6 @@ in
       "shortcat"
       "shottr"
       "skim"
-      "ssh-tunnel-manager"
       "stats"
       "steam"
       "suspicious-package"
