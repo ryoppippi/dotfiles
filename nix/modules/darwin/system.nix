@@ -7,12 +7,15 @@
 }:
 let
   fishPath = "${pkgs.fish}/bin/fish";
+  cachix = import ../../cachix.nix;
 in
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Disable nix-darwin's Nix management (using Determinate Nix)
+  # Note: Nix settings are managed via /etc/nix/nix.custom.conf instead
+  # This file should be manually configured with trusted-users and substituters
   nix.enable = false;
 
   # Enable Touch ID for sudo (including tmux support via pam-reattach)
