@@ -1,9 +1,17 @@
 {
   description = "ryoppippi's home-manager configuration";
 
+  # Note: cachix configuration is defined in nix/cachix.nix
+  # but nixConfig must be a literal set, so we inline it here
   nixConfig = {
-    extra-substituters = [ "https://numtide.cachix.org" ];
-    extra-trusted-public-keys = [ "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=" ];
+    extra-substituters = [
+      "https://numtide.cachix.org"
+      "https://devenv.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "numtide.cachix.org-1:2uk1h3hh8XGkFfQJSTgNTg/WRNsE+lTZYOB+VkZdvJo="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
   };
 
   inputs = {
