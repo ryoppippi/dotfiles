@@ -101,7 +101,7 @@ Managed via `fish_add_path` in `fish/config.fish`. Includes Nix home-manager pat
 
 ### Git Hooks
 
-Git hooks are managed declaratively through Nix in `nix/git-hooks.nix`:
+Git hooks are managed declaratively through Nix in `nix/modules/home/git-hooks.nix`:
 
 - **Pre-commit hook**: Automatically formats and lints staged files using treefmt
   - Runs `nix run .#fmt` on staged files
@@ -113,6 +113,7 @@ Git hooks are managed declaratively through Nix in `nix/git-hooks.nix`:
   - Triggers `nix run .#switch` when Nix-related files change
   - Monitors: `flake.nix`, `flake.lock`, `nix/`, `aqua/aqua.yaml`
   - Skips in CI environments
+  - Skips when just restoring files (e.g., `git checkout -- file.txt`)
 
 Hooks are automatically installed via Home Manager activation when running `nix run .#switch`.
 
