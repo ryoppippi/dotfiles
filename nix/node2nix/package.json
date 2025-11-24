@@ -1,7 +1,7 @@
 {
   "name": "node_servers",
   "dependencies": {
-    "@secretlint/secretlint-rule-preset-recommend": "^8.2.3",
+    "@secretlint/secretlint-rule-preset-recommend": "^11.0.0",
     "gh-actions-language-server": "^0.0.3",
     "secretlint": "^8.2.3",
     "typescript-svelte-plugin": "0.3.50",
