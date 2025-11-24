@@ -8,14 +8,41 @@ on:
       - '.github/workflows/nix-neovim.yaml'
   pull_request:
   workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to test'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  neovim-check:
-    runs-on: ubuntu-slim
+  neovim-check-ubuntu:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'ubuntu'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Check Neovim configuration
+        run: nix run .#nvim-check
+        env:
+          DOTFILES_DIR: ${{ github.workspace }}
+
+  neovim-check-macos:
+    runs-on: macos-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'macos'
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0

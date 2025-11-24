@@ -7,10 +7,48 @@ on:
       - '.github/workflows/fish.yaml'
   pull_request:
   workflow_dispatch:
+    inputs:
+      os:
+        description: 'Operating system to test'
+        required: true
+        type: choice
+        options:
+          - 'both'
+          - 'ubuntu'
+          - 'macos'
+        default: 'both'
 
 jobs:
-  fish-check:
-    runs-on: ubuntu-slim
+  fish-check-ubuntu:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'ubuntu'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Test Fish configuration
+        run: |
+          # Create temporary config directory
+          TEMP_CONFIG=$(mktemp -d)
+          trap "rm -rf $TEMP_CONFIG" EXIT
+
+          export XDG_CONFIG_HOME="$TEMP_CONFIG"
+
+          # Copy fish config
+          mkdir -p "$XDG_CONFIG_HOME/fish"
+          cp -r fish/* "$XDG_CONFIG_HOME/fish/"
+
+          # Test fish can start and exit cleanly
+          echo "Testing fish shell startup..."
+          nix run nixpkgs#fish -- -c "exit"
+
+          echo "✅ Fish configuration is valid!"
+
+  fish-check-macos:
+    runs-on: macos-latest
+    if: github.event_name != 'workflow_dispatch' || github.event.inputs.os == 'both' || github.event.inputs.os == 'macos'
     steps:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
