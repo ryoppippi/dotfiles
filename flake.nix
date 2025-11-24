@@ -199,14 +199,14 @@
             );
           };
 
-          # Update ai-tools only
+          # Update ai-tools and claude-code-overlay
           update-ai-tools = {
             type = "app";
             program = toString (
               pkgs.writeShellScript "update-ai-tools" ''
                 set -e
-                echo "Updating ai-tools input..."
-                nix flake update ai-tools
+                echo "Updating AI tools inputs..."
+                nix flake update ai-tools claude-code-overlay
                 echo "Done! Run 'nix run .#switch' to apply changes."
               ''
             );
