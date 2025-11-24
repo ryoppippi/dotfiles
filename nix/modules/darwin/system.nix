@@ -133,6 +133,7 @@ in
     ];
 
     casks = [
+      "1password"
       "alfred"
       "alt-tab"
       "appcleaner"
