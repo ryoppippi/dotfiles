@@ -12,6 +12,12 @@ let
     #!/usr/bin/env bash
     set -e
 
+    # For post-checkout hook: skip if just restoring files (flag=0)
+    # Arguments: $1=prev HEAD, $2=new HEAD, $3=flag (1=branch checkout, 0=file checkout)
+    if [ "$#" -eq 3 ] && [ "$3" = "0" ]; then
+      exit 0
+    fi
+
     # Check if environment variable is set
     check() {
       [ -n "''${!1}" ]
