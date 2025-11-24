@@ -12,7 +12,7 @@ let
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "numtide.cachix.org-1:2uk1h3hh8XGkFfQJSTgNTg/WRNsE+lTZYOB+VkZdvJo="
     "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    "ryoppippi-dotfiles.cachix.org-1:REPLACE_WITH_YOUR_PUBLIC_KEY"
+    "ryoppippi-dotfiles.cachix.org-1:tRpvQRopInNH1M44/YhltEovcmNf2/bX/EAX7rw1zog="
   ];
 in
 {
