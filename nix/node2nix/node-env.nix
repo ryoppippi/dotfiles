@@ -14,7 +14,7 @@
 
 let
   # Workaround to cope with utillinux in Nixpkgs 20.09 and util-linux in Nixpkgs master
-  utillinux = if pkgs ? util-linux then pkgs.util-linux else pkgs.utillinux;
+  utillinux = if pkgs ? utillinux then pkgs.utillinux else pkgs.util-linux;
 
   python = if nodejs ? python then nodejs.python else python2;
 
