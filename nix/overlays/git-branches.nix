@@ -1,20 +1,18 @@
 final: prev: {
-  git-branches = prev.stdenv.mkDerivation rec {
+  git-branches = prev.buildGoModule rec {
     pname = "git-branches";
     version = "0.1.0";
 
-    src = prev.fetchurl {
-      url = "https://github.com/kyoh86/git-branches/releases/download/v${version}/git-branches_${version}_darwin_arm64.tar.gz";
-      hash = "sha256-oA5CXs9m/0NFjLFujrOH+RbzVMJNRGtqJP3Hd6fXHaY=";
+    src = prev.fetchFromGitHub {
+      owner = "kyoh86";
+      repo = "git-branches";
+      rev = "v${version}";
+      hash = "sha256-IbqIU+tDhMhLpjRVtZMw+g0dBNXzM8Nao+Qn0nEWmAY=";
     };
 
-    sourceRoot = ".";
+    vendorHash = "sha256-NXCOGvRg4y9vq1gU2GRbFKM++nqcgwp8Rz1/FEGqvkM=";
 
-    installPhase = ''
-      runHook preInstall
-      install -D -m755 git-branches $out/bin/git-branches
-      runHook postInstall
-    '';
+    ldflags = [ "-s" "-w" ];
 
     meta = with prev.lib; {
       description = "Show each branch, upstream, author in git repository";
@@ -22,7 +20,6 @@ final: prev: {
       license = licenses.mit;
       maintainers = [ ];
       mainProgram = "git-branches";
-      platforms = [ "aarch64-darwin" ];
     };
   };
 }
