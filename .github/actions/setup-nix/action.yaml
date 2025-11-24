@@ -7,6 +7,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Set USER environment variable
+      shell: bash
+      run: |
+        if [ -z "$USER" ]; then
+          echo "USER=root" >> $GITHUB_ENV
+        fi
+
     - name: Install Nix
       uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd # v31.8.4
       with:
