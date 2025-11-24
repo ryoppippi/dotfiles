@@ -18,8 +18,8 @@ runs:
         name: numtide
         authToken: ''
 
-    - name: Setup Cachix (ryoppippi-dotfiles)
+    - name: Setup Cachix (ryoppippi)
       uses: cachix/cachix-action@0fc020193b5a1fa3ac4575aa3a7d3aa6a35435ad # v16
       with:
-        name: ryoppippi-dotfiles
+        name: ryoppippi
         authToken: ${{ inputs.cachix-auth-token }}
