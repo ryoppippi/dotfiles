@@ -45,6 +45,13 @@
     },
     {
       "matchPackageNames": [
+        "bun",
+        "deno"
+      ],
+      "minimumReleaseAge": null
+    },
+    {
+      "matchPackageNames": [
         "node"
       ],
       "matchDatasources": [
