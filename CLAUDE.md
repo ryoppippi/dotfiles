@@ -37,7 +37,7 @@ nix run .#build
   - `nixpkgs` - Main package source
   - `nix-darwin` - macOS system configuration
   - `home-manager` - User environment management
-  - `ai-tools` - AI development tools (codex, cursor-agent, opencode, copilot-cli, coderabbit-cli)
+  - `ai-tools` - AI development tools (codex, amp, cursor-agent, opencode, copilot-cli, coderabbit-cli)
   - `claude-code-overlay` - Claude Code package
 
 - **System configuration**: Lines 52-268 define nix-darwin settings including:
@@ -50,7 +50,7 @@ nix run .#build
   - Search/file utilities (rg, fd, fzf, bat, eza)
   - Development languages (go, bun, deno, nodejs)
   - Language servers (lua-language-server, efm-langserver)
-  - AI tools (claude-code, codex, cursor-agent, etc.)
+  - AI tools (claude-code, codex, amp, cursor-agent, etc.)
 
 ### Modifying Packages
 
@@ -79,6 +79,7 @@ Primary shell is Fish. Configuration is modularised:
 - Editors: `EDITOR=nvim`, `GIT_EDITOR=nvim`, `MANPAGER=nvim`
 - Claude Code: `CLAUDE_CONFIG_DIR=$XDG_CONFIG_HOME/claude`
 - Codex: `CODEX_HOME=$XDG_CONFIG_HOME/codex`
+- Amp: `AMP_HOME=$XDG_CONFIG_HOME/amp`
 - XDG paths properly configured
 
 ### Path Configuration
@@ -203,6 +204,7 @@ exec fish
 
 - **Claude config**: `claude/` (also `~/.config/claude/`)
 - **Codex config**: `codex/` (also `~/.config/codex/`)
+- **Amp config**: `amp/` (also `~/.config/amp/`)
 - **Cursor config**: `cursor/`
 - **Git config**: `git/config`, `git/ignore`
 - **Fish config**: `fish/config.fish`, `fish/config/*.fish`, `fish/user_functions/*.fish`
