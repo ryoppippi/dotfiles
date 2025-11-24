@@ -12,6 +12,25 @@ final: prev: {
 
     dontBuild = true;
 
+    patches = [
+      (final.writeText "gh-user-stars-tmpdir.patch" ''
+        --- a/gh-user-stars
+        +++ b/gh-user-stars
+        @@ -22,8 +22,9 @@
+
+         choose() {
+           number=$1
+        -  (loop_list_stars "''${1}" & echo $! >&3) 3>"''${extensionPath}/pid" | fzf --height 90% --layout=reverse
+        -  kill $(<"''${extensionPath}/pid") 2>/dev/null
+        +  pid_file="''${TMPDIR:-/tmp}/gh-user-stars-$$-$RANDOM.pid"
+        +  (loop_list_stars "''${1}" & echo $! >&3) 3>"''${pid_file}" | fzf --height 90% --layout=reverse
+        +  kill $(<"''${pid_file}") 2>/dev/null && rm -f "''${pid_file}"
+         }
+
+         while [ $# -gt 0 ]; do
+      '')
+    ];
+
     installPhase = ''
       runHook preInstall
       install -Dm755 gh-user-stars $out/bin/gh-user-stars
