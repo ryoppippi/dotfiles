@@ -9,6 +9,10 @@ on:
       - '.github/workflows/nix-flake.yaml'
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # Check flake syntax and structure
   check:
