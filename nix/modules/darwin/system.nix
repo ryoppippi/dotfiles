@@ -119,7 +119,7 @@ in
   # Homebrew configuration
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
 
     taps = [ ];
 
