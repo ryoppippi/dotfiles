@@ -41,9 +41,6 @@ in
     # WezTerm configuration
     link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
 
-    # Bat configuration
-    link_force "${dotfilesDir}/bat" "${configHome}/bat"
-
     # Scripts directory
     link_force "${dotfilesDir}/my_scripts" "${homeDir}/.scripts"
 

@@ -85,5 +85,8 @@
 
     # Zed editor configuration
     ./zed.nix
+
+    # Bat configuration
+    ./bat.nix
   ];
 }
