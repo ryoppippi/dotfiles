@@ -101,7 +101,6 @@
     gawk
     pv
     # Image tools
-    imagemagick
     gyazo-cli
   ];
 }
