@@ -52,7 +52,6 @@
     # Performance & monitoring
     hyperfine
     bottom
-    ctop
     oha
     viddy
     hwatch
