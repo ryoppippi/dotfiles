@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   rebase-prs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     # Only run for merge commits (auto-merge squash commits)
     if: github.event.head_commit.committer.name == 'GitHub'
     steps:
@@ -19,8 +19,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@df432ccc7b4c53ba6b52cd6130cc3e65be94e4d9 # v2.0.6
         with:
-          app-id: ${{ secrets.BOT_APP_ID }}
-          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+          private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
 
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -28,10 +28,8 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           fetch-depth: 0
 
-      - name: Configure git
-        run: |
-          git config user.name "ryoppippi-nix-updater[bot]"
-          git config user.email "ryoppippi-nix-updater[bot]@users.noreply.github.com"
+      - name: Set up git bot identity
+        uses: ./.github/actions/setup-git-bot
 
       - name: Rebase open flake update PRs
         env:
