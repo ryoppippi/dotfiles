@@ -89,9 +89,6 @@
     oglens
     sheep
     similarity-ts
-    # Cloud tools
-    pscale
-    cloudflared
     # Password managers
     _1password-cli
     # AI tools
