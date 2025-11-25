@@ -47,9 +47,6 @@ in
     # EFM Language Server configuration
     link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
 
-    # Jujutsu VCS configuration
-    link_force "${dotfilesDir}/jj" "${configHome}/jj"
-
     # OpenCode configuration
     link_force "${dotfilesDir}/opencode" "${configHome}/opencode"
 

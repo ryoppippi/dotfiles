@@ -88,5 +88,8 @@
 
     # Bat configuration
     ./bat.nix
+
+    # jj configuration
+    ./jj.nix
   ];
 }
