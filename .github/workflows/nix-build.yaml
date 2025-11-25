@@ -24,7 +24,7 @@ concurrency:
 jobs:
   # Check if Nix-related files changed
   changes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     outputs:
       nix: ${{ steps.filter.outputs.nix }}
     steps:

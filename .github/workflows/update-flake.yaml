@@ -42,7 +42,7 @@ env:
 
 jobs:
   discover:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     outputs:
       matrix: ${{ steps.discover.outputs.matrix }}
       has-updates: ${{ steps.discover.outputs.has-updates }}
@@ -62,7 +62,7 @@ jobs:
   update:
     needs: discover
     if: needs.discover.outputs.has-updates == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
@@ -104,7 +104,7 @@ jobs:
 
   summary:
     needs: [discover, update]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     if: always() && needs.discover.outputs.has-updates == 'true'
     steps:
       - name: Generate summary
