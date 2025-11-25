@@ -128,11 +128,7 @@ in
 
     brews = [
       "bluetoothconnector"
-      "leiningen"
       "mas"
-      "screenresolution"
-      "swift-sh"
-      "switchaudio-osx"
     ];
 
     casks = [
