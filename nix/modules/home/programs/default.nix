@@ -58,7 +58,13 @@
     })
 
     # Git configuration
-    ./git.nix
+    (import ./git {
+      inherit
+        pkgs
+        lib
+        config
+        ;
+    })
 
     # Neovim configuration
     (import ./neovim {
