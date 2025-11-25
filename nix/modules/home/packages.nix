@@ -34,7 +34,6 @@
     nodejs_24
     bun
     deno
-    typst
     # Build systems
     just
     # Package managers
@@ -52,9 +51,6 @@
     dive
     act
     # Database tools
-    trdsql
-    sqls
-    usql
     xan
     tv
     # Performance & monitoring
@@ -73,14 +69,12 @@
     gist
     glow
     vhs
-    marp-cli
     gitu
     mmv
     jid
     gibo
     genact
     grex
-    ghr
     watchexec
     rclone
     ttyd
@@ -91,8 +85,6 @@
     choose
     ast-grep
     t-rec
-    richgo
-    iferr
     jwt-cli
     fq
     tokei
