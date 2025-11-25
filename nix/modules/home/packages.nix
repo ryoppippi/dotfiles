@@ -24,7 +24,6 @@
     wezterm
     jq
     dust
-    duf
     delta
     tre
     vivid
