@@ -9,10 +9,9 @@ let
 
   # Replace the hardcoded 'delta' with the full Nix store path
   # This ensures lazygit uses the Nix-managed delta binary
-  lazygitConfigWithDeltaPath = builtins.replaceStrings
-    [ "pager: delta " ]
-    [ "pager: ${lib.getExe pkgs.delta} " ]
-    lazygitConfigYaml;
+  lazygitConfigWithDeltaPath =
+    builtins.replaceStrings [ "pager: delta " ] [ "pager: ${lib.getExe pkgs.delta} " ]
+      lazygitConfigYaml;
 in
 {
   programs.lazygit = {
