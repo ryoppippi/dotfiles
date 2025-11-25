@@ -71,9 +71,6 @@ in
     $DRY_RUN_CMD mkdir -p "${configHome}/cursor"
     link_force "${dotfilesDir}/cursor/cli-config.json" "${configHome}/cursor/cli-config.json"
 
-    # Git configuration
-    link_force "${dotfilesDir}/git" "${configHome}/git"
-
     # Pip fallback location (both platforms)
     $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
     link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"

@@ -57,6 +57,9 @@
         ;
     })
 
+    # Git configuration
+    ./git.nix
+
     # Neovim configuration
     (import ./neovim {
       inherit
