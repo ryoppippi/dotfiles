@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(__TERMINAL_NOTIFIER_PATH__:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__JQ_PATH__ -r '.message' | xargs -I {} __TERMINAL_NOTIFIER_PATH__ -message \"{}\" -title \"Claude Hook\" -group \"$(pwd):hook\" -execute \"$(which wezterm) cli activate-pane --pane-id $WEZTERM_PANE\" -activate com.github.wez.wezterm"
+          }
+        ]
+      }
+    ]
+  }
+}

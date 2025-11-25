@@ -29,56 +29,34 @@ let
   # Binary paths from Nix store
   bun = lib.getExe pkgs.bun;
   jq = lib.getExe pkgs.jq;
-  terminal-notifier = lib.getExe pkgs.terminal-notifier;
+  terminal-notifier = if pkgs.stdenv.isDarwin then lib.getExe pkgs.terminal-notifier else "";
 
-  # JSON format for prettified output
-  jsonFormat = pkgs.formats.json { };
+  # Generate settings JSON using Bun merge script
+  settingsJsonText = builtins.readFile (
+    pkgs.runCommand "claude-settings.json"
+      {
+        buildInputs = [ pkgs.bun ];
+        BASE_SETTINGS = ./settings.json;
+        DARWIN_SETTINGS = if pkgs.stdenv.isDarwin then ./settings-darwin.json else "";
+        BUN_PATH = bun;
+        TERMINAL_NOTIFIER_PATH = terminal-notifier;
+        JQ_PATH = jq;
+        IS_DARWIN = if pkgs.stdenv.isDarwin then "1" else "0";
+      }
+      ''
+        ${pkgs.bun}/bin/bun run ${./merge-settings.ts} > $out
+      ''
+  );
 
-  # Claude Code settings configuration
-  settings = {
-    "$schema" = "https://json.schemastore.org/claude-code-settings.json";
-    cleanupPeriodDays = 876000;
-    env = {
-      ENABLE_BACKGROUND_TASKS = "1";
-      FORCE_AUTO_BACKGROUND_TASKS = "1";
-      DISABLE_MICROCOMPACT = "1";
-      CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1";
-      DISABLE_INTERLEAVED_THINKING = "1";
-      DISABLE_ERROR_REPORTING = "1";
-    };
-    includeCoAuthoredBy = false;
-    permissions = {
-      allow = [
-        "Bash(${terminal-notifier}:*)"
-      ];
-      defaultMode = "acceptEdits";
-    };
-    hooks = {
-      Notification = [
-        {
-          matcher = "";
-          hooks = [
-            {
-              type = "command";
-              command = "${jq} -r '.message' | xargs -I {} ${terminal-notifier} -message \"{}\" -title \"Claude Hook\" -group \"$(pwd):hook\" -execute \"$(which wezterm) cli activate-pane --pane-id $WEZTERM_PANE\" -activate com.github.wez.wezterm";
-            }
-          ];
-        }
-      ];
-    };
-    statusLine = {
-      type = "command";
-      command = "${bun} $( ghq root )/github.com/ryoppippi/ccusage/apps/ccusage/src/index.ts statusline --cost-source both";
-    };
-    alwaysThinkingEnabled = false;
-  };
 in
 {
   # Claude Code package with CLAUDE_CONFIG_DIR wrapper
   home.packages = lib.mkAfter [ claude-code-wrapped ];
 
-  # Generate settings.json via Home Manager (prettified)
-  xdg.configFile."claude/settings.json".source = jsonFormat.generate "settings.json" settings;
+  # Generate settings.json from JSON file with path replacements
+  xdg.configFile."claude/settings.json" = {
+    text = settingsJsonText;
+  };
 
   # Create direct symlinks to Claude Code configuration files (bypassing Nix store)
   home.activation.linkClaudeCodeConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -89,5 +67,21 @@ in
     link_force "${claudeDotfilesDir}/agents" "${claudeConfigDir}/agents"
     link_force "${claudeDotfilesDir}/output-styles" "${claudeConfigDir}/output-styles"
     link_force "${claudeDotfilesDir}/skills" "${claudeConfigDir}/skills"
+  '';
+
+  # Validate Claude Code settings.json after generation
+  home.activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "linkClaudeCodeConfig" ] ''
+    SETTINGS_FILE="${claudeConfigDir}/settings.json"
+    SCHEMA_URL="https://json.schemastore.org/claude-code-settings.json"
+
+    if [ -f "$SETTINGS_FILE" ]; then
+      echo "🔍 Validating Claude Code settings.json..."
+      if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
+        echo "✅ Claude Code settings.json validation passed"
+      else
+        echo "❌ Claude Code settings.json validation failed" >&2
+        exit 1
+      fi
+    fi
   '';
 }

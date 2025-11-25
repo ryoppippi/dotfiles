@@ -14,7 +14,7 @@
     ./ai-tools.nix
 
     # Claude Code configuration
-    (import ./claude-code.nix {
+    (import ./claude-code {
       inherit
         pkgs
         lib

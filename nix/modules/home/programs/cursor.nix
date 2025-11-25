@@ -41,5 +41,8 @@ let
 in
 {
   # Cursor CLI configuration (prettified)
-  xdg.configFile."cursor/cli-config.json".source = jsonFormat.generate "cli-config.json" settings;
+  xdg.configFile."cursor/cli-config.json" = {
+    source = jsonFormat.generate "cli-config.json" settings;
+    force = true;
+  };
 }
