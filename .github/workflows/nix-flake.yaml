@@ -1,4 +1,4 @@
-name: Nix Flake
+name: 'CI: Flake check'
 
 on:
   push:

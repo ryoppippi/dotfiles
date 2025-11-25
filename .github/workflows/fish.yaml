@@ -1,4 +1,4 @@
-name: Fish Shell
+name: 'CI: Fish syntax check'
 
 on:
   push:

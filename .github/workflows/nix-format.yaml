@@ -1,4 +1,4 @@
-name: Nix Format
+name: 'CI: Format check'
 
 on:
   push:

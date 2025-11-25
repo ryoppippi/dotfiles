@@ -1,4 +1,4 @@
-name: Nix Neovim
+name: 'CI: Neovim plugins'
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Update Flake Inputs
+name: 'Bot: Update flake inputs'
 
 on:
   schedule:
@@ -47,10 +47,10 @@ jobs:
       matrix: ${{ steps.discover.outputs.matrix }}
       has-updates: ${{ steps.discover.outputs.has-updates }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - name: Setup Nix
-        uses: cachix/install-nix-action@v31
+        uses: ./.github/actions/setup-nix
 
       - name: Discover flake inputs
         id: discover
@@ -72,21 +72,20 @@ jobs:
     steps:
       - name: Generate GitHub App Token
         id: app-token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@bf559f85448f9380bcfa2899dbdc01eb5b37be3a # v3.0.0-beta.2
         with:
           app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
           private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Nix
-        uses: cachix/install-nix-action@v31
-
-      - name: Setup Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: Set up git
         run: |
