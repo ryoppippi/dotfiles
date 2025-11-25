@@ -92,6 +92,11 @@ jobs:
 
   build-macos:
     needs: changes
+    # Only run on pull_request, push to main, or workflow_dispatch with macos/both selected
+    if: |
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && (inputs.os == 'macos' || inputs.os == 'both'))
     runs-on: macos-latest
     steps:
       - name: Skip if no Nix changes
