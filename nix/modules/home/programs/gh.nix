@@ -14,7 +14,6 @@
       pkgs.gh-dash
       pkgs.gh-actions-cache
       pkgs.gh-poi
-      pkgs.gh-copilot
       pkgs.gh-notify
 
       # Custom extensions from overlay
