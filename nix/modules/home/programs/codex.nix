@@ -13,6 +13,9 @@ let
   # TOML format generator
   tomlFormat = pkgs.formats.toml { };
 
+  # Bun executable path from Nix
+  bunx = "${pkgs.bun}/bin/bunx";
+
   # Codex configuration settings
   settings = {
     model = "gpt-5.1-codex";
@@ -37,24 +40,16 @@ let
       };
 
       chrome-devtools = {
-        command = "nix";
+        command = bunx;
         enabled = false;
         args = [
-          "shell"
-          "nixpkgs#bun"
-          "--command"
-          "bunx"
           "chrome-devtools-mcp@latest"
         ];
       };
 
       lsmcp-tsgo = {
-        command = "nix";
+        command = bunx;
         args = [
-          "shell"
-          "nixpkgs#bun"
-          "--command"
-          "bunx"
           "@mizchi/lsmcp@latest"
           "-p"
           "tsgo"
