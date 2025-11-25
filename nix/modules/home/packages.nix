@@ -54,7 +54,6 @@
     bottom
     oha
     viddy
-    hwatch
     gping
     # Miscellaneous utilities
     sttr
