@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   # Check flake syntax and structure
-  check:
+  flake-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
