@@ -131,7 +131,7 @@ runs:
         set -euo pipefail
 
         branch="update-flake-${INPUT_NAME}"
-        pr_title="flake.lock: Update ${INPUT_NAME}"
+        pr_title="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
 
         # Create PR body
         if [ "$SKIP_DELAY" = "true" ]; then
@@ -157,12 +157,10 @@ runs:
         # Create branch
         git checkout -b "$branch"
 
-        # Commit
-        commit_message="flake.lock: Update ${INPUT_NAME}
+        # Commit (Renovate-style message with nix scope)
+        commit_message="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
 
-        ${CURRENT_VERSION} -> ${NEW_VERSION}"
-
-        git commit -m "$commit_message" --signoff
+        git commit -m "$commit_message"
 
         # Push (force to handle re-runs)
         git push --force origin "$branch"
