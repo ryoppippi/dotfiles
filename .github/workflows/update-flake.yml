@@ -10,6 +10,11 @@ on:
         description: 'Specific flake inputs to update (space-separated, empty for all)'
         required: false
         default: ''
+      minimum-release-age-days:
+        description: 'Minimum release age in days before updating'
+        required: false
+        type: number
+        default: 3
       skip-delay:
         description: 'Skip the minimum release age check for all inputs'
         required: false
@@ -95,7 +100,7 @@ jobs:
           input-name: ${{ matrix.name }}
           current-version: ${{ matrix.current_version }}
           skip-delay: ${{ github.event.inputs.skip-delay == 'true' && 'true' || matrix.skip_delay }}
-          minimum-release-age-days: ${{ env.MINIMUM_RELEASE_AGE_DAYS }}
+          minimum-release-age-days: ${{ github.event.inputs.minimum-release-age-days || env.MINIMUM_RELEASE_AGE_DAYS }}
           auto-merge: ${{ env.AUTO_MERGE }}
           pr-labels: ${{ env.PR_LABELS }}
           github-token: ${{ steps.app-token.outputs.token }}
