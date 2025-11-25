@@ -16,25 +16,25 @@ jobs:
     # Run on: 1) merge commits (auto-merge), or 2) manual trigger
     if: github.event_name == 'workflow_dispatch' || github.event.head_commit.committer.name == 'GitHub'
     steps:
-      - name: Generate GitHub App token
-        id: app-token
-        uses: actions/create-github-app-token@7e473efe3cb98aa54f8d4bac15400b15fad77d94 # v2.2.0
+      - name: Checkout repository (for local actions)
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Set up git bot identity
+        id: bot
+        uses: ./.github/actions/setup-git-bot
         with:
           app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
           private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
 
-      - name: Checkout repository
+      - name: Checkout repository (with bot token)
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ steps.bot.outputs.token }}
           fetch-depth: 0
-
-      - name: Set up git bot identity
-        uses: ./.github/actions/setup-git-bot
 
       - name: Rebase open flake update PRs
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
         run: |
           set -euo pipefail
 
