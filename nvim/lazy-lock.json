@@ -175,7 +175,7 @@
   "typst-preview.nvim": { "branch": "master", "commit": "e544812bba84b4f7976590f2b6c0dfbd099e1893" },
   "ugaterm.nvim": { "branch": "main", "commit": "19c489918a15926464d86a11d6bb4466f0838bb1" },
   "utf8.nvim": { "branch": "main", "commit": "954cbbadabe5cd19f202e918fec191d64eea7766" },
-  "vim-artemis": { "branch": "main", "commit": "ad7f79f77491b0af17d40d12a1a178d350d7d628" },
+  "vim-artemis": { "branch": "main", "commit": "8ed2f0c067b7d70263a785604d1a81e4ee446136" },
   "vim-askpass": { "branch": "main", "commit": "c40b7e296ad626ffebdf26793236a55c8e3517ca" },
   "vim-asterisk": { "branch": "master", "commit": "77e97061d6691637a034258cc415d98670698459" },
   "vim-gin": { "branch": "main", "commit": "e9200f66986ddd447220166d4467f9c92c8565a4" },
