@@ -41,9 +41,6 @@ in
     # WezTerm configuration
     link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
 
-    # Starship prompt configuration
-    link_force "${dotfilesDir}/starship.toml" "${configHome}/starship.toml"
-
     # Bat configuration
     link_force "${dotfilesDir}/bat" "${configHome}/bat"
 

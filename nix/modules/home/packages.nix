@@ -42,7 +42,6 @@
     pnpm
     yarn
     # Shell & TUI
-    starship
     direnv
     navi
     # Testing & security
