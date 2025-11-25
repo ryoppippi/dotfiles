@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is ryoppippi's personal dotfiles repository managed with `dotfiles` CLI (rhysd/dotfiles). The repository includes configurations for Fish shell, Neovim, Karabiner-Elements, Wezterm, Ghostty, and various development tools. System configuration is managed via **Nix Flake** using nix-darwin and home-manager.
+This is ryoppippi's personal dotfiles repository. The repository includes configurations for Fish shell, Neovim, Karabiner-Elements, Wezterm, and various development tools. System configuration is managed via **Nix Flake** using nix-darwin (macOS) and home-manager (cross-platform).
 
 ## Nix Configuration Management
 
-This repository uses **Nix Flake** for declarative system configuration on macOS (Apple Silicon).
+This repository uses **Nix Flake** for declarative system configuration on macOS (Apple Silicon) and Linux.
 
 ### Core Commands
 
@@ -32,31 +32,40 @@ nix run .#build
 
 ### Flake Structure
 
-- **Main config**: `flake.nix` - Defines system packages, Homebrew apps, and environment
+- **Main config**: `flake.nix` - Entry point defining inputs, outputs, and apps
 - **Inputs**:
   - `nixpkgs` - Main package source
   - `nix-darwin` - macOS system configuration
   - `home-manager` - User environment management
   - `ai-tools` - AI development tools (codex, amp, cursor-agent, opencode, copilot-cli, coderabbit-cli)
   - `claude-code-overlay` - Claude Code package
+  - `treefmt-nix` - Code formatting
+  - `git-hooks` - Git hooks management
+  - `gh-nippou` - GitHub daily report tool
 
-- **System configuration**: Lines 52-268 define nix-darwin settings including:
-  - Touch ID for sudo authentication
-  - Homebrew packages (taps, brews, casks, masApps)
-  - Fish shell as default shell
+- **Nix modules**: `nix/modules/`
+  - `home/` - Cross-platform home-manager configuration
+    - `default.nix` - Main home configuration
+    - `packages.nix` - User packages
+    - `dotfiles.nix` - Dotfile symlinks
+    - `git-hooks.nix` - Git hooks configuration
+    - `programs/` - Declarative program configurations (git, bat, ghostty, zed, jj, neovim, claude-code, codex, amp, cursor, gh, ai-tools)
+  - `darwin/` - macOS-specific configuration
+    - `system.nix` - nix-darwin system settings (Touch ID, Homebrew, etc.)
+    - `packages.nix` - macOS-specific packages
+    - `dotfiles.nix` - macOS-specific dotfile symlinks
+    - `programs/` - macOS-specific program configurations (docker)
+  - `linux/` - Linux-specific configuration
+  - `lib/` - Shared helper functions
 
-- **Home-manager packages**: Lines 280-420 define user packages managed by Nix including:
-  - VCS tools (git, gh, ghq, lazygit)
-  - Search/file utilities (rg, fd, fzf, bat, eza)
-  - Development languages (go, bun, deno, nodejs)
-  - Language servers (lua-language-server, efm-langserver)
-  - AI tools (claude-code, codex, amp, cursor-agent, etc.)
+- **Overlays**: `nix/overlays/` - Custom package overlays
 
 ### Modifying Packages
 
-1. Edit `flake.nix`:
-   - Add Nix packages to `home.packages` array (line 280+)
-   - Add Homebrew packages to appropriate sections (lines 106-266)
+1. Edit the appropriate Nix module:
+   - Cross-platform packages: `nix/modules/home/packages.nix`
+   - macOS-specific packages: `nix/modules/darwin/packages.nix`
+   - Homebrew packages: `nix/modules/darwin/system.nix`
 2. Run `nix run .#switch` to apply changes
 3. If updating flake inputs, run `nix run .#update` first
 
@@ -64,7 +73,6 @@ nix run .#build
 
 - **Nix (preferred)**: Most CLI tools and development packages
 - **Homebrew**: macOS-specific apps, casks, and tools not in nixpkgs
-- **Aqua**: Additional package management via `aqua/aqua.yaml`
 
 ## Shell Environment (Fish)
 
@@ -88,7 +96,8 @@ Managed via `fish_add_path` in `fish/config.fish`. Includes Nix home-manager pat
 
 ## Git Configuration
 
-- **Config file**: `git/config`
+Git is configured declaratively via Home Manager in `nix/modules/home/programs/git/`.
+
 - **Key aliases**:
   - `git com` - Checkout main/master branch automatically
   - `git apf` - Interactive add with fzf + delta preview
@@ -152,10 +161,8 @@ deno task watch   # Watch mode for development
 
 ## Terminal Emulators
 
-Two terminal emulators are configured:
-
 - **Wezterm**: `wezterm/wezterm.lua` (with modular configs in `wezterm/`)
-- **Ghostty**: `ghostty/config`
+- **Ghostty**: Configured declaratively via Home Manager in `nix/modules/home/programs/ghostty.nix`
 
 ## Development Tools
 
@@ -193,7 +200,6 @@ exec fish
 
 ## Git Workflow
 
-- **Current branch**: `nix`
 - **Main branch**: `main`
 - **Branch protection**: Do not push to main directly without permission
 - **Commit strategy**: Use git-commit-crafter skill for structured commits
@@ -202,18 +208,36 @@ exec fish
 
 ## File Locations
 
-- **Claude config**: `claude/` (also `~/.config/claude/`)
-- **Codex config**: `codex/` (also `~/.config/codex/`)
-- **Amp config**: `amp/` (also `~/.config/amp/`)
-- **Cursor config**: `cursor/`
-- **Git config**: `git/config`, `git/ignore`
+### Dotfiles in Repository
 - **Fish config**: `fish/config.fish`, `fish/config/*.fish`, `fish/user_functions/*.fish`
 - **Neovim**: `nvim/init.lua`, `nvim/lua/`
 - **Karabiner**: `karabiner/karabiner.ts` (TypeScript source)
 - **Wezterm**: `wezterm/wezterm.lua`
-- **Ghostty**: `ghostty/config`
-- **Aqua**: `aqua/aqua.yaml`
-- **Nix**: `flake.nix`, `flake.lock`
+- **Hammerspoon**: `hammerspoon/init.lua`
+- **Lazygit**: `lazygit/config.yml`
+- **efm-langserver**: `efm-langserver/config.yaml`
+- **OpenCode**: `opencode/opencode.jsonc`
+- **Bash**: `bash/.bashrc`, `bash/.bash_profile`
+- **Zsh**: `zsh/zshrc`, `zsh/zshenv`
+
+### AI Tool Configs (symlinked to `~/.config/`)
+- **Claude config**: `claude/`
+- **Codex config**: `codex/`
+
+### Nix Configuration
+- **Main entry**: `flake.nix`, `flake.lock`
+- **Modules**: `nix/modules/`
+- **Overlays**: `nix/overlays/`
+
+### Declarative Configs (managed by Home Manager)
+These are configured in `nix/modules/home/programs/`:
+- **Git**: `git/default.nix`, `git/aliases/`
+- **Ghostty**: `ghostty.nix`
+- **Bat**: `bat.nix`
+- **Zed**: `zed.nix`
+- **Jujutsu**: `jj.nix`
+- **Amp**: `amp.nix`
+- **Cursor**: `cursor.nix`
 
 ## Additional Notes
 
