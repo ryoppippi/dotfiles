@@ -41,9 +41,6 @@ in
       # Pip configuration (macOS paths)
       $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Application Support/pip"
       link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/Library/Application Support/pip/pip.conf"
-
-      # Ghostty terminal configuration
-      link_force "${dotfilesDir}/ghostty" "${configHome}/ghostty"
     ''
   );
 }

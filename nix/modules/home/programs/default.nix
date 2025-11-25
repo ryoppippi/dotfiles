@@ -79,5 +79,8 @@
 
     # Cursor CLI configuration
     ./cursor.nix
+
+    # Ghostty terminal configuration
+    ./ghostty.nix
   ];
 }
