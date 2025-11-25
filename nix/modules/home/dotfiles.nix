@@ -38,10 +38,6 @@ in
     # Aqua package manager configuration
     link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
 
-    # Zed editor configuration
-    $DRY_RUN_CMD mkdir -p "${configHome}/zed"
-    link_force "${dotfilesDir}/zed/settings.json" "${configHome}/zed/settings.json"
-
     # WezTerm configuration
     link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
 

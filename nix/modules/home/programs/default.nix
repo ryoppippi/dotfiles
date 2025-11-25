@@ -82,5 +82,8 @@
 
     # Ghostty terminal configuration
     ./ghostty.nix
+
+    # Zed editor configuration
+    ./zed.nix
   ];
 }
