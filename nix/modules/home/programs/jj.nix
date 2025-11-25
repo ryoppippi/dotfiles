@@ -2,13 +2,12 @@
   pkgs,
   lib,
   config,
+  helpers,
   ...
 }:
 let
-  # Share user configuration with Git
-  username = config.home.username;
-  githubId = "1560508";
-  email = "${githubId}+${username}@users.noreply.github.com";
+  # User configuration (shared with git)
+  user = helpers.mkUser config;
 in
 {
   # Jujutsu VCS configuration using Home Manager programs.jujutsu module
@@ -16,8 +15,8 @@ in
     enable = true;
     settings = {
       user = {
-        name = username;
-        inherit email;
+        name = user.username;
+        email = user.email;
       };
     };
   };

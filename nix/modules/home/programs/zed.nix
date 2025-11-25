@@ -4,9 +4,10 @@
   config,
   ...
 }:
-{
-  # Zed editor configuration
-  xdg.configFile."zed/settings.json".text = builtins.toJSON {
+let
+  jsonFormat = pkgs.formats.json { };
+
+  settings = {
     theme = "Kanagawa Wave";
     assistant = {
       default_model = {
@@ -32,4 +33,8 @@
       };
     };
   };
+in
+{
+  # Zed editor configuration (prettified)
+  xdg.configFile."zed/settings.json".source = jsonFormat.generate "settings.json" settings;
 }

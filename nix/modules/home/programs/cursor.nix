@@ -4,9 +4,10 @@
   config,
   ...
 }:
-{
-  # Cursor CLI configuration
-  xdg.configFile."cursor/cli-config.json".text = builtins.toJSON {
+let
+  jsonFormat = pkgs.formats.json { };
+
+  settings = {
     permissions = {
       allow = [
         "Shell(ls)"
@@ -37,4 +38,8 @@
       useHttp1ForAgent = false;
     };
   };
+in
+{
+  # Cursor CLI configuration (prettified)
+  xdg.configFile."cursor/cli-config.json".source = jsonFormat.generate "cli-config.json" settings;
 }

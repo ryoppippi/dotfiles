@@ -2,13 +2,12 @@
   pkgs,
   lib,
   config,
+  helpers,
   ...
 }:
 let
-  # User configuration
-  username = config.home.username;
-  githubId = "1560508";
-  email = "${githubId}+${username}@users.noreply.github.com";
+  # User configuration (shared with jj)
+  user = helpers.mkUser config;
 
   # Delta settings (shared with lazygit pager configuration)
   deltaSettings = {
@@ -46,8 +45,8 @@ in
 
     settings = {
       user = {
-        name = username;
-        email = email;
+        name = user.username;
+        email = user.email;
       };
 
       core = {

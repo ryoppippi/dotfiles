@@ -63,6 +63,7 @@
         pkgs
         lib
         config
+        helpers
         ;
     })
 
@@ -90,7 +91,14 @@
     ./bat.nix
 
     # jj configuration
-    ./jj.nix
+    (import ./jj.nix {
+      inherit
+        pkgs
+        lib
+        config
+        helpers
+        ;
+    })
 
     # Lazygit configuration
     (import ./lazygit {
