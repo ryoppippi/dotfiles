@@ -76,5 +76,8 @@
         helpers
         ;
     })
+
+    # Cursor CLI configuration
+    ./cursor.nix
   ];
 }

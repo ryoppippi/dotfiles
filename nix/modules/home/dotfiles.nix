@@ -63,10 +63,6 @@ in
     # OpenCode configuration
     link_force "${dotfilesDir}/opencode" "${configHome}/opencode"
 
-    # Cursor configuration
-    $DRY_RUN_CMD mkdir -p "${configHome}/cursor"
-    link_force "${dotfilesDir}/cursor/cli-config.json" "${configHome}/cursor/cli-config.json"
-
     # Pip fallback location (both platforms)
     $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
     link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"
