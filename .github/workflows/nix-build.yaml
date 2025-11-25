@@ -65,6 +65,31 @@ jobs:
             --print-build-logs \
             --show-trace
 
+  build-ubuntu-arm:
+    needs: changes
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Skip if no Nix changes
+        if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
+        run: echo "No Nix-related changes detected, skipping build"
+
+      - name: Checkout repository
+        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Setup Nix
+        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build Linux (Home Manager) configuration
+        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          nix build .#homeConfigurations.ryoppippi.activationPackage \
+            --print-build-logs \
+            --show-trace
+
   build-macos:
     needs: changes
     runs-on: macos-latest
