@@ -37,7 +37,6 @@
     typst
     # Build systems
     just
-    ninja
     # Package managers
     pnpm
     yarn
@@ -110,16 +109,12 @@
     claude-code-acp
     # Additional CLI tools
     aria2
-    autoconf
-    bison
-    clang-tools
     cloc
     cmatrix
     ffmpeg
     figlet
     fortune
     gawk
-    gnumake
     pv
     # Image tools
     imagemagick
