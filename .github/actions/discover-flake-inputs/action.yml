@@ -1,0 +1,122 @@
+name: 'Discover Flake Inputs'
+description: 'Discover Nix flake inputs and create a matrix for parallel updates'
+
+inputs:
+  inputs:
+    description: 'Space-separated list of specific inputs to update (empty for all)'
+    required: false
+    default: ''
+  skip-delay-inputs:
+    description: 'Space-separated list of inputs that should skip the release age check'
+    required: false
+    default: 'ai-tools claude-code-overlay'
+
+outputs:
+  matrix:
+    description: 'JSON matrix for GitHub Actions strategy'
+    value: ${{ steps.discover.outputs.matrix }}
+  has-updates:
+    description: 'Whether there are inputs to update'
+    value: ${{ steps.discover.outputs.has-updates }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Discover flake inputs
+      id: discover
+      shell: bash
+      env:
+        INPUTS: ${{ inputs.inputs }}
+        SKIP_DELAY_INPUTS: ${{ inputs.skip-delay-inputs }}
+      run: |
+        set -euo pipefail
+
+        echo "=== Discovery Configuration ==="
+        echo "INPUTS: ${INPUTS:-<all>}"
+        echo "Skip delay inputs: ${SKIP_DELAY_INPUTS}"
+        echo
+
+        # Convert skip delay inputs to array
+        IFS=' ' read -ra skip_delay_array <<< "$SKIP_DELAY_INPUTS"
+
+        # Function to check if input should skip delay
+        should_skip_delay() {
+          local input="$1"
+          for skip_input in "${skip_delay_array[@]}"; do
+            if [ "$input" = "$skip_input" ]; then
+              return 0
+            fi
+          done
+          return 1
+        }
+
+        # Initialise array for matrix items
+        declare -a matrix_items=()
+
+        echo "Discovering flake inputs..."
+
+        if [ ! -f "flake.lock" ]; then
+          echo "No flake.lock found"
+          echo "matrix={\"include\":[]}" >> "$GITHUB_OUTPUT"
+          echo "has-updates=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+
+        # Get flake metadata
+        if ! metadata=$(nix flake metadata --json --no-write-lock-file 2>/dev/null); then
+          echo "Failed to get flake metadata"
+          exit 1
+        fi
+
+        if [ -n "$INPUTS" ]; then
+          requested_inputs="$INPUTS"
+        else
+          # Get all direct inputs (not transitive dependencies)
+          requested_inputs=$(echo "$metadata" | jq -r '.locks.nodes.root.inputs | keys[]' | sort)
+        fi
+
+        for input in $requested_inputs; do
+          # Check if this input exists in the flake
+          if ! echo "$metadata" | jq -e ".locks.nodes.\"$input\"" >/dev/null 2>&1; then
+            echo "Warning: Input $input not found, skipping"
+            continue
+          fi
+
+          current_rev=$(echo "$metadata" | jq -r ".locks.nodes.\"$input\".locked.rev // \"unknown\"" | head -c 8)
+
+          # Determine if this input should skip delay
+          if should_skip_delay "$input"; then
+            skip_delay="true"
+          else
+            skip_delay="false"
+          fi
+
+          matrix_items+=("{\"name\":\"$input\",\"current_version\":\"$current_rev\",\"skip_delay\":$skip_delay}")
+          echo "  - $input ($current_rev) [skip_delay=$skip_delay]"
+        done
+
+        echo
+        echo "=== Discovery Results ==="
+
+        # Create matrix JSON
+        if [ ${#matrix_items[@]} -eq 0 ]; then
+          matrix='{"include":[]}'
+          has_updates="false"
+          echo "No items to update"
+        else
+          matrix_json='{"include":['
+          for i in "${!matrix_items[@]}"; do
+            if [ "$i" -gt 0 ]; then
+              matrix_json+=","
+            fi
+            matrix_json+="${matrix_items[$i]}"
+          done
+          matrix_json+="]}"
+
+          matrix="$matrix_json"
+          has_updates="true"
+          echo "Found ${#matrix_items[@]} input(s) to check"
+        fi
+
+        echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+        echo "has-updates=$has_updates" >> "$GITHUB_OUTPUT"

@@ -1,0 +1,42 @@
+name: 'Auto-merge PR'
+description: 'Enable auto-merge for a pull request with squash strategy'
+
+inputs:
+  pr-number:
+    description: 'Pull request number to auto-merge'
+    required: true
+  merge-method:
+    description: 'Merge method to use (squash, merge, rebase)'
+    required: false
+    default: 'squash'
+  github-token:
+    description: 'GitHub token for enabling auto-merge'
+    required: true
+
+outputs:
+  enabled:
+    description: 'Whether auto-merge was successfully enabled'
+    value: ${{ steps.auto-merge.outputs.enabled }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Enable auto-merge
+      id: auto-merge
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        PR_NUMBER: ${{ inputs.pr-number }}
+        MERGE_METHOD: ${{ inputs.merge-method }}
+      run: |
+        set -euo pipefail
+
+        echo "Enabling auto-merge for PR #$PR_NUMBER with $MERGE_METHOD strategy"
+
+        if gh pr merge "$PR_NUMBER" --auto --"$MERGE_METHOD"; then
+          echo "Auto-merge enabled successfully"
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "::warning::Failed to enable auto-merge. This may require branch protection rules to be configured."
+          echo "enabled=false" >> "$GITHUB_OUTPUT"
+        fi

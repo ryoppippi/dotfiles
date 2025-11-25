@@ -1,0 +1,205 @@
+name: 'Update Flake Input'
+description: 'Update a single Nix flake input with optional release age check and auto-merge'
+
+inputs:
+  input-name:
+    description: 'Name of the flake input to update'
+    required: true
+  current-version:
+    description: 'Current version/revision of the input'
+    required: true
+  skip-delay:
+    description: 'Skip the minimum release age check'
+    required: false
+    default: 'false'
+  minimum-release-age-days:
+    description: 'Minimum release age in days before updating (default: 3)'
+    required: false
+    default: '3'
+  auto-merge:
+    description: 'Enable auto-merge for the PR'
+    required: false
+    default: 'true'
+  pr-labels:
+    description: 'Comma-separated labels to add to the PR'
+    required: false
+    default: 'dependencies,automated'
+  github-token:
+    description: 'GitHub token for creating PRs and enabling auto-merge'
+    required: true
+
+outputs:
+  updated:
+    description: 'Whether the input was updated'
+    value: ${{ steps.update.outputs.updated }}
+  new-version:
+    description: 'New version/revision after update'
+    value: ${{ steps.update.outputs.new_version }}
+  pr-url:
+    description: 'URL of the created/updated PR'
+    value: ${{ steps.create-pr.outputs.pr_url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Update flake input
+      id: update
+      shell: bash
+      env:
+        INPUT_NAME: ${{ inputs.input-name }}
+        SKIP_DELAY: ${{ inputs.skip-delay }}
+        MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
+      run: |
+        set -euo pipefail
+
+        echo "=== Updating input: $INPUT_NAME ==="
+        echo "Skip delay: $SKIP_DELAY"
+        echo "Minimum release age: $MIN_AGE_DAYS days"
+
+        # Calculate minimum age in seconds
+        min_age_seconds=$((MIN_AGE_DAYS * 86400))
+
+        # Get current revision before update
+        current_rev=$(nix flake metadata --json --no-write-lock-file 2>/dev/null | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.rev // \"unknown\"")
+        echo "Current revision: $current_rev"
+
+        # Perform the update
+        echo "Running: nix flake update $INPUT_NAME"
+        if ! nix flake update "$INPUT_NAME"; then
+          echo "::error::Failed to update $INPUT_NAME"
+          exit 1
+        fi
+
+        # Check if there were actual changes
+        if git diff --quiet flake.lock; then
+          echo "No changes detected for $INPUT_NAME"
+          echo "updated=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+
+        # Get new revision info
+        new_metadata=$(nix flake metadata --json --no-write-lock-file 2>/dev/null)
+        new_rev=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.rev // \"unknown\"")
+        echo "New revision: $new_rev"
+
+        # Check release age unless skip_delay is true
+        if [ "$SKIP_DELAY" = "false" ]; then
+          echo "Checking release age (minimum: $MIN_AGE_DAYS days)..."
+
+          last_modified=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.lastModified // 0")
+
+          if [ "$last_modified" != "0" ] && [ "$last_modified" != "null" ]; then
+            current_time=$(date +%s)
+            age_seconds=$((current_time - last_modified))
+            age_days=$((age_seconds / 86400))
+
+            echo "Release age: $age_days days ($age_seconds seconds)"
+
+            if [ "$age_seconds" -lt "$min_age_seconds" ]; then
+              echo "Release is too new (less than $MIN_AGE_DAYS days old). Skipping update."
+              git checkout flake.lock
+              echo "updated=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "Release age check passed (>= $MIN_AGE_DAYS days old)"
+          else
+            echo "Warning: Could not determine lastModified timestamp, proceeding with update"
+          fi
+        else
+          echo "Skipping release age check (skip_delay=true)"
+        fi
+
+        echo "Update successful!"
+        echo "updated=true" >> "$GITHUB_OUTPUT"
+        echo "new_version=${new_rev:0:8}" >> "$GITHUB_OUTPUT"
+
+    - name: Create pull request
+      id: create-pr
+      if: steps.update.outputs.updated == 'true'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        INPUT_NAME: ${{ inputs.input-name }}
+        CURRENT_VERSION: ${{ inputs.current-version }}
+        NEW_VERSION: ${{ steps.update.outputs.new_version }}
+        SKIP_DELAY: ${{ inputs.skip-delay }}
+        AUTO_MERGE: ${{ inputs.auto-merge }}
+        PR_LABELS: ${{ inputs.pr-labels }}
+        MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
+      run: |
+        set -euo pipefail
+
+        branch="update-flake-${INPUT_NAME}"
+        pr_title="flake.lock: Update ${INPUT_NAME}"
+
+        # Create PR body
+        if [ "$SKIP_DELAY" = "true" ]; then
+          delay_note=":zap: This input is configured to skip the release age check."
+        else
+          delay_note=":hourglass: This update passed the ${MIN_AGE_DAYS}-day minimum release age check."
+        fi
+
+        pr_body="Automated update of flake input \`${INPUT_NAME}\`.
+
+        ## Changes
+        - **${INPUT_NAME}**: \`${CURRENT_VERSION}\` :arrow_right: \`${NEW_VERSION}\`
+
+        ## Notes
+        ${delay_note}
+
+        ---
+        This PR was automatically created by the flake update workflow."
+
+        # Stage changes
+        git add flake.lock
+
+        # Create branch
+        git checkout -b "$branch"
+
+        # Commit
+        commit_message="flake.lock: Update ${INPUT_NAME}
+
+        ${CURRENT_VERSION} -> ${NEW_VERSION}"
+
+        git commit -m "$commit_message" --signoff
+
+        # Push (force to handle re-runs)
+        git push --force origin "$branch"
+
+        # Check if PR exists
+        pr_number=$(gh pr list --head "$branch" --json number --jq '.[0].number // empty')
+
+        if [ -n "$pr_number" ]; then
+          echo "Updating existing PR #$pr_number"
+          gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
+        else
+          echo "Creating new PR"
+
+          # Build label arguments
+          label_args=""
+          IFS=',' read -ra labels <<< "$PR_LABELS"
+          for label in "${labels[@]}"; do
+            label=$(echo "$label" | xargs)
+            label_args="$label_args --label $label"
+          done
+
+          gh pr create \
+            --title "$pr_title" \
+            --body "$pr_body" \
+            --base main \
+            --head "$branch" \
+            $label_args
+
+          pr_number=$(gh pr list --head "$branch" --json number --jq '.[0].number')
+        fi
+
+        # Enable auto-merge if requested
+        if [ "$AUTO_MERGE" = "true" ] && [ -n "$pr_number" ]; then
+          echo "Enabling auto-merge for PR #$pr_number"
+          gh pr merge "$pr_number" --auto --squash || echo "Note: Auto-merge may require branch protection rules"
+        fi
+
+        pr_url=$(gh pr view "$pr_number" --json url --jq '.url')
+        echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+        echo "PR URL: $pr_url"
