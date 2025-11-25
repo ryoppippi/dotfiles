@@ -1,0 +1,11 @@
+name: 'Setup Git Bot'
+description: 'Configure git with bot identity for automated commits'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure git bot identity
+      shell: bash
+      run: |
+        git config user.name "ryoppippi-nix-updater[bot]"
+        git config user.email "2352678+ryoppippi-nix-updater[bot]@users.noreply.github.com"
