@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
   group: auto-rebase
@@ -12,8 +13,8 @@ concurrency:
 jobs:
   rebase-prs:
     runs-on: ubuntu-24.04-arm
-    # Only run for merge commits (auto-merge squash commits)
-    if: github.event.head_commit.committer.name == 'GitHub'
+    # Run on: 1) merge commits (auto-merge), or 2) manual trigger
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.committer.name == 'GitHub'
     steps:
       - name: Generate GitHub App token
         id: app-token
