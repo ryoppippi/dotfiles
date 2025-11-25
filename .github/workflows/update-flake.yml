@@ -104,7 +104,7 @@ jobs:
 
   summary:
     needs: [discover, update]
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-latest
     if: always() && needs.discover.outputs.has-updates == 'true'
     steps:
       - name: Generate summary

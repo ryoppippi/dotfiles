@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   rebase-prs:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-slim
     # Run on: 1) merge commits (auto-merge), or 2) manual trigger
     if: github.event_name == 'workflow_dispatch' || github.event.head_commit.committer.name == 'GitHub'
     steps:

@@ -11,7 +11,7 @@ on:
 
 jobs:
   renovate-validate:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
       - uses: suzuki-shunsuke/github-action-renovate-config-validator@c22827f47f4f4a5364bdba19e1fe36907ef1318e # v1.1.1
