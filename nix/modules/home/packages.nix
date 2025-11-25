@@ -98,7 +98,6 @@
     cmatrix
     ffmpeg
     figlet
-    fortune
     gawk
     pv
     # Image tools
