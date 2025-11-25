@@ -18,10 +18,6 @@ in
     # IdeaVim configuration
     link_force "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"
 
-    # LazyGit configuration
-    $DRY_RUN_CMD mkdir -p "${configHome}"
-    link_force "${dotfilesDir}/lazygit" "${configHome}/lazygit"
-
     # Fish shell configuration
     link_force "${dotfilesDir}/fish" "${configHome}/fish"
 

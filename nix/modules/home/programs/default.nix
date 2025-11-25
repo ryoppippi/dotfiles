@@ -91,5 +91,13 @@
 
     # jj configuration
     ./jj.nix
+
+    # Lazygit configuration
+    (import ./lazygit {
+      inherit
+        pkgs
+        lib
+        ;
+    })
   ];
 }
