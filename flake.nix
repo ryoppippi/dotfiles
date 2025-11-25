@@ -80,7 +80,10 @@
       darwinHostname = "${username}";
 
       # Linux configuration
-      linuxSystem = "x86_64-linux";
+      linuxSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       linuxHomedir = "/home/${username}";
 
       # Create pkgs with overlays
@@ -244,6 +247,59 @@
             );
           };
         };
+
+      # Helper to create Linux home configuration
+      mkLinuxHomeConfig =
+        linuxSystem:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = mkPkgs linuxSystem;
+          modules = [
+            {
+              home.username = username;
+              home.homeDirectory = linuxHomedir;
+            }
+            (
+              {
+                pkgs,
+                config,
+                lib,
+                ...
+              }:
+              let
+                helpers = import ./nix/modules/lib/helpers { inherit lib; };
+              in
+              {
+                imports = [
+                  # Common home-manager configuration
+                  (import ./nix/modules/home {
+                    inherit
+                      pkgs
+                      config
+                      lib
+                      claude-code-overlay
+                      treefmt-nix
+                      git-hooks
+                      ;
+                    homedir = linuxHomedir;
+                    system = linuxSystem;
+                  })
+
+                  # Linux-specific home-manager configuration
+                  (import ./nix/modules/linux {
+                    inherit
+                      pkgs
+                      config
+                      lib
+                      helpers
+                      ;
+                    homedir = linuxHomedir;
+                    dotfilesDir = "${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                  })
+                ];
+              }
+            )
+          ];
+        };
     in
     {
       # macOS configuration with nix-darwin
@@ -311,60 +367,15 @@
       };
 
       # Linux configuration with standalone Home Manager
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = mkPkgs linuxSystem;
-        modules = [
-          {
-            home.username = username;
-            home.homeDirectory = linuxHomedir;
-          }
-          (
-            {
-              pkgs,
-              config,
-              lib,
-              ...
-            }:
-            let
-              helpers = import ./nix/modules/lib/helpers { inherit lib; };
-            in
-            {
-              imports = [
-                # Common home-manager configuration
-                (import ./nix/modules/home {
-                  inherit
-                    pkgs
-                    config
-                    lib
-                    claude-code-overlay
-                    treefmt-nix
-                    git-hooks
-                    ;
-                  homedir = linuxHomedir;
-                  system = linuxSystem;
-                })
+      # Note: homeConfigurations uses the same key for all Linux systems
+      # because home-manager switch uses username, not system
+      homeConfigurations.${username} = mkLinuxHomeConfig "x86_64-linux";
 
-                # Linux-specific home-manager configuration
-                (import ./nix/modules/linux {
-                  inherit
-                    pkgs
-                    config
-                    lib
-                    helpers
-                    ;
-                  homedir = linuxHomedir;
-                  dotfilesDir = "${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles";
-                })
-              ];
-            }
-          )
-        ];
+      # Apps for common tasks
+      apps = {
+        ${darwinSystem} = mkCommonApps darwinSystem darwinHomedir darwinHostname;
+        "x86_64-linux" = mkCommonApps "x86_64-linux" linuxHomedir username;
+        "aarch64-linux" = mkCommonApps "aarch64-linux" linuxHomedir username;
       };
-
-      # Apps for common tasks (macOS)
-      apps.${darwinSystem} = mkCommonApps darwinSystem darwinHomedir darwinHostname;
-
-      # Apps for Linux
-      apps.${linuxSystem} = mkCommonApps linuxSystem linuxHomedir username;
     };
 }
