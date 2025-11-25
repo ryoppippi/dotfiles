@@ -54,10 +54,6 @@ in
     # Scripts directory
     link_force "${dotfilesDir}/my_scripts" "${homeDir}/.scripts"
 
-    # Docker configuration
-    $DRY_RUN_CMD mkdir -p "${homeDir}/.docker"
-    link_force "${dotfilesDir}/docker/config.json" "${homeDir}/.docker/config.json"
-
     # EFM Language Server configuration
     link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
 

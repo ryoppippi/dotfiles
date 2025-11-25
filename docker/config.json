@@ -1,7 +1,0 @@
-{
-  "auths": {},
-  "credsStore": "osxkeychain",
-  "currentContext": "orbstack",
-  "experimental": "enabled",
-  "stackOrchestrator": "swarm"
-}

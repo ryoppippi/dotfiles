@@ -22,5 +22,8 @@
         helpers
         ;
     })
+
+    # Docker configuration (OrbStack)
+    ./programs/docker.nix
   ];
 }
