@@ -18,47 +18,12 @@
   "branchConcurrentLimit": 0,
   "minimumReleaseAge": "3 days",
   "nix": {
-    "enabled": true
+    "enabled": false
   },
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["* 0,3,6,9,12,15,18,21 * * *"]
+    "enabled": false
   },
   "packageRules": [
-    {
-      "matchPackageNames": [
-        "ai-tools"
-      ],
-      "matchDatasources": [
-        "git-refs"
-      ],
-      "minimumReleaseAge": null
-    },
-    {
-      "matchPackageNames": [
-        "claude-code-overlay"
-      ],
-      "matchDatasources": [
-        "git-refs"
-      ],
-      "minimumReleaseAge": null
-    },
-    {
-      "matchPackageNames": [
-        "bun",
-        "deno"
-      ],
-      "minimumReleaseAge": null
-    },
-    {
-      "matchPackageNames": [
-        "node"
-      ],
-      "matchDatasources": [
-        "node-version"
-      ],
-      "allowedVersions": "/^([2-9]\\d*[02468])(\\.\\d+)*$/"
-    },
     {
       "description": "NeoVim Node.js dependencies managed by node2nix",
       "matchFileNames": ["nix/node2nix/package.json"],
