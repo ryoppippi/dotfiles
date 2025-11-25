@@ -47,9 +47,6 @@
     uv
     pinact
     license-go
-    # Container & Docker
-    dive
-    act
     # Database tools
     xan
     tv
