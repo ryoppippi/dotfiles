@@ -93,8 +93,6 @@ in
       oglens
       sheep
       similarity-ts
-      # AI tools
-      claude-code-acp
       # Additional CLI tools
       aria2
       cloc
