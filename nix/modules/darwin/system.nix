@@ -206,7 +206,6 @@ in
       "thebrowsercompany-dia"
       "touch-bar-simulator"
       "vlc"
-      "xquartz"
       "yaak"
       "zoom"
     ];
