@@ -219,7 +219,6 @@ in
       "xquartz"
       "yaak"
       "zed"
-      "zerotier-one"
       "zoom"
     ];
 
