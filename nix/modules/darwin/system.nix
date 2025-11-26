@@ -204,7 +204,6 @@ in
       "symboliclinker"
       "syncthing-app"
       "thebrowsercompany-dia"
-      "touch-bar-simulator"
       "vlc"
       "yaak"
       "zoom"
