@@ -366,10 +366,13 @@
         ];
       };
 
-      # Linux configuration with standalone Home Manager
-      # Note: homeConfigurations uses the same key for all Linux systems
-      # because home-manager switch uses username, not system
-      homeConfigurations.${username} = mkLinuxHomeConfig "x86_64-linux";
+      # Linux configurations with standalone Home Manager
+      homeConfigurations = {
+        # x86_64-linux configuration (for most Linux servers/desktops)
+        ${username} = mkLinuxHomeConfig "x86_64-linux";
+        # aarch64-linux configuration (for ARM Linux like Raspberry Pi, cloud VMs)
+        "${username}-aarch64" = mkLinuxHomeConfig "aarch64-linux";
+      };
 
       # Apps for common tasks
       apps = {

@@ -83,10 +83,10 @@ jobs:
         with:
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Build Linux (Home Manager) configuration
+      - name: Build Linux (Home Manager) configuration for aarch64
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          nix build .#homeConfigurations.ryoppippi.activationPackage \
+          nix build .#homeConfigurations.ryoppippi-aarch64.activationPackage \
             --print-build-logs \
             --show-trace
 
