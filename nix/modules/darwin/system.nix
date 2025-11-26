@@ -191,7 +191,6 @@ in
       "processing"
       "qlvideo"
       "quitter"
-      "raspberry-pi-imager"
       "sdformatter"
       "secretive"
       "shortcat"
