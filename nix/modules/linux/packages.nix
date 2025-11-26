@@ -8,7 +8,7 @@
     _1password-cli
     _1password-gui
 
-    # DB client (on macOS, managed via Homebrew cask)
-    beekeeper-studio
+    # Note: beekeeper-studio removed due to Electron EOL (insecure package)
+    # On macOS, it's managed via Homebrew cask
   ];
 }
