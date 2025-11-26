@@ -101,7 +101,6 @@
 
     # GUI applications (cross-platform)
     audacity
-    cool-retro-term
     discord
     vscode
     zed-editor
