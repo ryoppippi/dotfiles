@@ -174,7 +174,6 @@ in
       "imageoptim"
       "istherenet"
       "jetbrains-toolbox"
-      "glance-chamburr"
       "jettison"
       "kap"
       "karabiner-elements"
@@ -203,6 +202,12 @@ in
       "vlc"
       "yaak"
       "zoom"
+      {
+        name = "glance-chamburr";
+        args = {
+          no_quarantine = true;
+        };
+      }
     ];
 
     masApps = {
