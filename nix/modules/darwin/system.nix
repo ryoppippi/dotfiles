@@ -167,9 +167,8 @@ in
       "claude"
       "cloudflare-warp"
       "cool-retro-term"
+      "beekeeper-studio"
       "cyberduck"
-      "db-browser-for-sqlite"
-      "dbeaver-community"
       "deskpad"
       "discord"
       "figma"
@@ -256,7 +255,6 @@ in
       "Refined GitHub" = 1519867270;
       "Screegle" = 1591051659;
       "Seashore" = 1448648921;
-      "Sequel Ace" = 1518036000;
       "Shareful" = 1522267256;
       "Slack" = 803453959;
       "Spark" = 1176895641;
