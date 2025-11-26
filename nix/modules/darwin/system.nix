@@ -54,6 +54,10 @@ in
     ];
   };
 
+  # 1Password
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
+
   # macOS system defaults
   system.defaults = {
     # Dock settings
@@ -149,7 +153,6 @@ in
     ];
 
     casks = [
-      "1password"
       "alfred"
       "alt-tab"
       "appcleaner"

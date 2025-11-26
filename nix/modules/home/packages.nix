@@ -86,8 +86,6 @@
     oglens
     sheep
     similarity-ts
-    # Password managers
-    _1password-cli
     # AI tools
     claude-code-acp
     # Additional CLI tools
