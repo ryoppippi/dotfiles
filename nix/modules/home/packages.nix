@@ -46,7 +46,6 @@ in
       pnpm
       yarn
       # Shell & TUI
-      direnv
       navi
       # Testing & security
       typos

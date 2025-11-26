@@ -90,6 +90,9 @@
     # Bat configuration
     ./bat.nix
 
+    # Direnv configuration with nix-direnv
+    ./direnv.nix
+
     # jj configuration
     (import ./jj.nix {
       inherit
