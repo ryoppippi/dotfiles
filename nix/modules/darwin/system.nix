@@ -202,7 +202,6 @@ in
       "steam"
       "suspicious-package"
       "symboliclinker"
-      "syncthing-app"
       "thebrowsercompany-dia"
       "vlc"
       "yaak"
