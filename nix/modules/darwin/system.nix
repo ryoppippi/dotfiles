@@ -194,7 +194,6 @@ in
       "secretive"
       "shortcat"
       "shottr"
-      "skim"
       "stats"
       "steam"
       "suspicious-package"
