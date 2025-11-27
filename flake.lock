@@ -42,6 +42,48 @@
         "type": "github"
       }
     },
+    "brew-api": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764265637,
+        "narHash": "sha256-HoMMd+vuqwylR4LlQDz6F7/PB8a2lO1dZawVQDSU87c=",
+        "owner": "BatteredBunny",
+        "repo": "brew-api",
+        "rev": "1f2eb52706467af2c3d1dbc4e8435c1441a3a7b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BatteredBunny",
+        "repo": "brew-api",
+        "type": "github"
+      }
+    },
+    "brew-nix": {
+      "inputs": {
+        "brew-api": [
+          "brew-api"
+        ],
+        "nix-darwin": [
+          "nix-darwin"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1749403637,
+        "narHash": "sha256-V0zqpWFuZBATo0YWUf41GmPkD0/LfDH+LMu3766YLbY=",
+        "owner": "BatteredBunny",
+        "repo": "brew-nix",
+        "rev": "3cf0142d0629c12dd14f0075b3c8eca7704cef88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BatteredBunny",
+        "repo": "brew-nix",
+        "type": "github"
+      }
+    },
     "claude-code-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -254,6 +296,8 @@
     "root": {
       "inputs": {
         "ai-tools": "ai-tools",
+        "brew-api": "brew-api",
+        "brew-nix": "brew-nix",
         "claude-code-overlay": "claude-code-overlay",
         "gh-nippou": "gh-nippou",
         "git-hooks": "git-hooks",

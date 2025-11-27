@@ -56,6 +56,18 @@
       url = "github:ryoppippi/gh-nippou";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    brew-nix = {
+      url = "github:BatteredBunny/brew-nix";
+      inputs.brew-api.follows = "brew-api";
+      inputs.nix-darwin.follows = "nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    brew-api = {
+      url = "github:BatteredBunny/brew-api";
+      flake = false;
+    };
   };
 
   outputs =
@@ -69,6 +81,8 @@
       treefmt-nix,
       git-hooks,
       gh-nippou,
+      brew-nix,
+      brew-api,
     }:
     let
       lib = nixpkgs.lib;
@@ -89,6 +103,9 @@
       # Create pkgs with overlays
       mkPkgs =
         system:
+        let
+          isDarwin = builtins.match ".*-darwin" system != null;
+        in
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
@@ -99,6 +116,9 @@
               gh-nippou = gh-nippou.packages.${system}.default;
             })
             (import ./nix/overlays/default.nix)
+          ]
+          ++ lib.optionals isDarwin [
+            brew-nix.overlays.default
           ];
         };
 

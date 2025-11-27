@@ -151,11 +151,12 @@ in
       "mas"
     ];
 
+    # Some casks are managed via brew-nix (see nix/modules/darwin/packages.nix):
+    # alt-tab, appcleaner, deskpad, glance-chamburr, kap, marta,
+    # obs, postman, qlvideo, quitter, shottr, stats, suspicious-package, vlc
     casks = [
       "1password"
       "alfred"
-      "alt-tab"
-      "appcleaner"
       "aqua-voice"
       "arc"
       "background-music"
@@ -166,47 +167,30 @@ in
       "chatgpt"
       "claude"
       "cloudflare-warp"
-      "deskpad"
       "figma"
       "google-chrome"
       "google-drive"
       "hammerspoon"
-      "imageoptim"
+      "homerow"
+      "imageoptim" # brew-nix has tar.xz extraction issues
       "istherenet"
       "jetbrains-toolbox"
       "jettison"
-      "kap"
       "karabiner-elements"
       "lulu"
       "maestral"
-      "marta"
       "microsoft-auto-update"
-      "obs"
       "ollama-app"
       "openvpn-connect"
       "orbstack"
       "piphero"
-      "postman"
       "processing"
-      "qlvideo"
-      "quitter"
       "sdformatter"
-      "homerow"
       "secretive"
-      "shottr"
-      "stats"
       "steam"
-      "suspicious-package"
       "thebrowsercompany-dia"
-      "vlc"
       "yaak"
       "zoom"
-      {
-        name = "glance-chamburr";
-        args = {
-          no_quarantine = true;
-        };
-      }
     ];
 
     masApps = {
