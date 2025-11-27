@@ -143,6 +143,7 @@ in
       # Environment
       ".venv"
       ".envrc"
+      ".direnv"
 
       # macOS
       ".DS_Store"
