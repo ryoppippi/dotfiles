@@ -26,6 +26,7 @@
       beekeeper-studio
       bluesnooze
       deskpad
+      figma
       glance-chamburr
       hammerspoon
       istherenet
