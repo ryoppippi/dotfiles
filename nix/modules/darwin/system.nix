@@ -152,44 +152,37 @@ in
     ];
 
     # Some casks are managed via brew-nix (see nix/modules/darwin/packages.nix):
-    # alt-tab, appcleaner, deskpad, glance-chamburr, kap, marta,
-    # obs, postman, qlvideo, quitter, shottr, stats, suspicious-package, vlc
+    # alt-tab, appcleaner, beekeeper-studio, bluesnooze, deskpad, glance-chamburr,
+    # hammerspoon, istherenet, kap, maestral, marta, obs, postman, processing,
+    # qlvideo, quitter, shottr, stats, suspicious-package, vlc, yaak
     casks = [
       "1password"
       "alfred"
       "aqua-voice"
       "arc"
       "background-music"
-      "beekeeper-studio"
       "blackhole-16ch"
       "blu-ray-player-pro"
-      "bluesnooze"
       "chatgpt"
       "claude"
       "cloudflare-warp"
       "figma"
       "google-chrome"
       "google-drive"
-      "hammerspoon"
       "homerow"
       "imageoptim" # brew-nix has tar.xz extraction issues
-      "istherenet"
-      "jetbrains-toolbox"
       "jettison"
       "karabiner-elements"
       "lulu"
-      "maestral"
       "microsoft-auto-update"
       "ollama-app"
       "openvpn-connect"
       "orbstack"
       "piphero"
-      "processing"
       "sdformatter"
       "secretive"
       "steam"
       "thebrowsercompany-dia"
-      "yaak"
       "zoom"
     ];
 

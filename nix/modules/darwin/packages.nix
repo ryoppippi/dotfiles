@@ -23,16 +23,23 @@
     ++ (with pkgs.brewCasks; [
       alt-tab
       appcleaner
+      beekeeper-studio
+      bluesnooze
       deskpad
       glance-chamburr
+      hammerspoon
+      istherenet
       kap
+      maestral
       marta
       obs
       postman
+      processing
       qlvideo
       shottr
       stats
       vlc
+      yaak
     ])
     # brew-nix packages requiring hash override
     ++ [
