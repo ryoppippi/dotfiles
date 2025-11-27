@@ -176,7 +176,6 @@ in
       "ollama-app"
       "openvpn-connect"
       "orbstack"
-      "piphero"
       "sdformatter"
       "secretive"
       "steam"
