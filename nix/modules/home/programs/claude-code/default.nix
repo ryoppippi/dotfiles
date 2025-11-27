@@ -72,16 +72,14 @@ in
   # Validate Claude Code settings.json after generation
   home.activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "linkClaudeCodeConfig" ] ''
     SETTINGS_FILE="${claudeConfigDir}/settings.json"
-    SCHEMA_URL="https://json.schemastore.org/claude-code-settings.json"
+    SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
-    if [ -f "$SETTINGS_FILE" ]; then
-      echo "🔍 Validating Claude Code settings.json..."
-      if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
-        echo "✅ Claude Code settings.json validation passed"
-      else
-        echo "❌ Claude Code settings.json validation failed" >&2
-        exit 1
-      fi
+    echo "🔍 Validating Claude Code settings.json..."
+    if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
+      echo "✅ Claude Code settings.json validation passed"
+    else
+      echo "❌ Claude Code settings.json validation failed" >&2
+      exit 1
     fi
   '';
 }

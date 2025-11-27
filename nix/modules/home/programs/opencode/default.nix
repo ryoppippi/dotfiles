@@ -22,16 +22,14 @@ in
   # Validate OpenCode opencode.json after generation
   home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
-    SCHEMA_URL="https://opencode.ai/config.json"
+    SCHEMA_URL=$(${pkgs.jq}/bin/jq -r '.["$schema"]' "$SETTINGS_FILE")
 
-    if [ -f "$SETTINGS_FILE" ]; then
-      echo "🔍 Validating OpenCode opencode.json..."
-      if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
-        echo "✅ OpenCode opencode.json validation passed"
-      else
-        echo "❌ OpenCode opencode.json validation failed" >&2
-        exit 1
-      fi
+    echo "🔍 Validating OpenCode opencode.json..."
+    if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
+      echo "✅ OpenCode opencode.json validation passed"
+    else
+      echo "❌ OpenCode opencode.json validation failed" >&2
+      exit 1
     fi
   '';
 }
