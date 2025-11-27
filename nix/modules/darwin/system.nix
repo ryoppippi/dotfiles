@@ -54,9 +54,8 @@ in
     ];
   };
 
-  # 1Password
+  # 1Password CLI (GUI is managed via Homebrew cask for stability)
   programs._1password.enable = true;
-  programs._1password-gui.enable = true;
 
   # macOS system defaults
   system.defaults = {
@@ -153,6 +152,7 @@ in
     ];
 
     casks = [
+      "1password"
       "alfred"
       "alt-tab"
       "appcleaner"
