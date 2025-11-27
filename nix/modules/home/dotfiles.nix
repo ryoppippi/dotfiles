@@ -43,9 +43,6 @@ in
     # EFM Language Server configuration
     link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
 
-    # OpenCode configuration
-    link_force "${dotfilesDir}/opencode" "${configHome}/opencode"
-
     # Pip fallback location (both platforms)
     $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
     link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"

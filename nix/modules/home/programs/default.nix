@@ -110,5 +110,14 @@
         lib
         ;
     })
+
+    # OpenCode configuration
+    (import ./opencode {
+      inherit
+        pkgs
+        lib
+        config
+        ;
+    })
   ];
 }
