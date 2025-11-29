@@ -5,6 +5,11 @@
   ...
 }:
 {
+  # Create 'zed' command as alias to 'zeditor' (nixpkgs uses 'zeditor' to avoid naming conflicts)
+  home.packages = [
+    (pkgs.writeShellScriptBin "zed" ''exec zeditor "$@"'')
+  ];
+
   programs.zed-editor = {
     enable = true;
 
