@@ -1,3 +1,8 @@
+-- delete Neovim 0.11 builtin LSP keymaps
+for _, key in ipairs({ "gra", "gri", "grn", "grr", "grt" }) do
+	pcall(vim.keymap.del, "n", key)
+end
+
 ---@param mode string|string[]
 ---@param lhs string
 ---@param rhs string|function
