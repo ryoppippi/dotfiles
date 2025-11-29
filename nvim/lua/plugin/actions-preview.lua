@@ -4,12 +4,16 @@ return {
 	event = "LspAttach",
 	dependencies = {
 		"neovim/nvim-lspconfig",
-		"nvim-telescope/telescope.nvim",
+		"folke/snacks.nvim",
 	},
 	cond = not is_vscode(),
-	opts = function()
-		return {
-			telescope = require("telescope.themes").get_dropdown({ winblend = 10 }),
-		}
-	end,
+	opts = {
+		backend = { "snacks" },
+		snacks = {
+			layout = {
+				preset = "vertical",
+				layout = { height = 0.4 },
+			},
+		},
+	},
 }
