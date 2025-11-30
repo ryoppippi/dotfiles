@@ -3,48 +3,43 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
-  helpers,
   ...
 }:
 let
-  homeDir = config.home.homeDirectory;
-  configHome = config.xdg.configHome;
+  mkLink = config.lib.file.mkOutOfStoreSymlink;
 in
 {
   # Common dotfile symlinks for all platforms
-  home.activation.linkDotfilesCommon = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    ${helpers.activation.mkLinkForce}
-
+  home.file = {
     # IdeaVim configuration
-    link_force "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"
+    ".ideavimrc".source = mkLink "${dotfilesDir}/ideavimrc";
 
     # Fish shell configuration
-    link_force "${dotfilesDir}/fish" "${configHome}/fish"
+    ".config/fish".source = mkLink "${dotfilesDir}/fish";
 
     # Zsh environment
-    link_force "${dotfilesDir}/zshenv" "${homeDir}/.zshenv"
+    ".zshenv".source = mkLink "${dotfilesDir}/zshenv";
 
     # Zsh configuration
-    link_force "${dotfilesDir}/zsh/zshrc" "${homeDir}/.zshrc"
+    ".zshrc".source = mkLink "${dotfilesDir}/zsh/zshrc";
 
     # Bash configuration
-    link_force "${dotfilesDir}/bash/.bash_profile" "${homeDir}/.bash_profile"
-    link_force "${dotfilesDir}/bash/.bashrc" "${homeDir}/.bashrc"
+    ".bash_profile".source = mkLink "${dotfilesDir}/bash/.bash_profile";
+    ".bashrc".source = mkLink "${dotfilesDir}/bash/.bashrc";
 
     # Aqua package manager configuration
-    link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
+    ".config/aquaproj-aqua".source = mkLink "${dotfilesDir}/aqua";
 
     # WezTerm configuration
-    link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
+    ".config/wezterm".source = mkLink "${dotfilesDir}/wezterm";
 
     # Scripts directory
-    link_force "${dotfilesDir}/my_scripts" "${homeDir}/.scripts"
+    ".scripts".source = mkLink "${dotfilesDir}/my_scripts";
 
     # EFM Language Server configuration
-    link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
+    ".config/efm-langserver".source = mkLink "${dotfilesDir}/efm-langserver";
 
     # Pip fallback location (both platforms)
-    $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
-    link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"
-  '';
+    ".pip/pip.conf".source = mkLink "${dotfilesDir}/pip/pip.conf";
+  };
 }

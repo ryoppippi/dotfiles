@@ -285,9 +285,6 @@
                 lib,
                 ...
               }:
-              let
-                helpers = import ./nix/modules/lib/helpers { inherit lib; };
-              in
               {
                 imports = [
                   # Claude Code home-manager module from overlay
@@ -313,7 +310,6 @@
                       pkgs
                       config
                       lib
-                      helpers
                       ;
                     homedir = linuxHomedir;
                     dotfilesDir = "${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles";
@@ -353,9 +349,6 @@
                 lib,
                 ...
               }:
-              let
-                helpers = import ./nix/modules/lib/helpers { inherit lib; };
-              in
               {
                 imports = [
                   # Claude Code home-manager module from overlay
@@ -381,7 +374,6 @@
                       pkgs
                       config
                       lib
-                      helpers
                       ;
                     homedir = darwinHomedir;
                     dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
