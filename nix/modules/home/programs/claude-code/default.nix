@@ -3,33 +3,17 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
-  claude-code-overlay,
-  system,
-  helpers,
   ...
 }:
 let
   claudeConfigDir = "${config.xdg.configHome}/claude";
   claudeDotfilesDir = "${dotfilesDir}/claude";
 
-  # Get claude-code directly from overlay
-  base-claude-code = (claude-code-overlay.overlays.default pkgs pkgs).claude-code;
-
-  # Wrap Claude Code with CLAUDE_CONFIG_DIR environment variable
-  claude-code-wrapped = pkgs.symlinkJoin {
-    name = "claude-code-wrapped";
-    paths = [ base-claude-code ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/claude \
-        --set CLAUDE_CONFIG_DIR ${claudeConfigDir}
-    '';
-  };
-
   # Binary paths from Nix store
   bun = lib.getExe pkgs.bun;
   jq = lib.getExe pkgs.jq;
-  terminal-notifier = if pkgs.stdenv.isDarwin then lib.getExe pkgs.terminal-notifier else "";
+  terminal-notifier =
+    if pkgs.stdenv.isDarwin then lib.getExe' pkgs.terminal-notifier "terminal-notifier" else "";
 
   # Generate settings JSON using Bun merge script
   settingsJsonText = builtins.readFile (
@@ -47,38 +31,45 @@ let
         ${pkgs.bun}/bin/bun run ${./merge-settings.ts} > $out
       ''
   );
-
 in
 {
-  # Claude Code package with CLAUDE_CONFIG_DIR wrapper
-  home.packages = lib.mkAfter [ claude-code-wrapped ];
+  # Enable Claude Code via home-manager module
+  programs.claude-code = {
+    enable = true;
+    # Create ~/.local/bin/claude symlink (default: true on Linux, false on macOS)
+    enableLocalBinSymlink = true;
+  };
+
+  # Set CLAUDE_CONFIG_DIR environment variable (sourced via hm-session-vars.sh in fish)
+  home.sessionVariables = {
+    CLAUDE_CONFIG_DIR = claudeConfigDir;
+  };
 
   # Generate settings.json from JSON file with path replacements
   xdg.configFile."claude/settings.json" = {
     text = settingsJsonText;
   };
 
-  # Create direct symlinks to Claude Code configuration files (bypassing Nix store)
-  home.activation.linkClaudeCodeConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${helpers.activation.mkLinkForce}
-    $DRY_RUN_CMD mkdir -p "${claudeConfigDir}"
-    link_force "${claudeDotfilesDir}/CLAUDE.md" "${claudeConfigDir}/CLAUDE.md"
-    link_force "${claudeDotfilesDir}/commands" "${claudeConfigDir}/commands"
-    link_force "${claudeDotfilesDir}/agents" "${claudeConfigDir}/agents"
-    link_force "${claudeDotfilesDir}/output-styles" "${claudeConfigDir}/output-styles"
-    link_force "${claudeDotfilesDir}/skills" "${claudeConfigDir}/skills"
-  '';
+  # Symlink directories and files
+  home.file = {
+    ".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
+    ".claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
+    ".claude/skills".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/skills";
+    ".claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
+    ".claude/output-styles".source =
+      config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
+  };
 
   # Validate Claude Code settings.json after generation
-  home.activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "linkClaudeCodeConfig" ] ''
+  home.activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     SETTINGS_FILE="${claudeConfigDir}/settings.json"
     SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
-    echo "🔍 Validating Claude Code settings.json..."
+    echo "Validating Claude Code settings.json..."
     if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
-      echo "✅ Claude Code settings.json validation passed"
+      echo "Claude Code settings.json validation passed"
     else
-      echo "❌ Claude Code settings.json validation failed" >&2
+      echo "Claude Code settings.json validation failed" >&2
       exit 1
     fi
   '';

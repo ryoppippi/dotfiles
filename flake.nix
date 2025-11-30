@@ -290,6 +290,9 @@
               in
               {
                 imports = [
+                  # Claude Code home-manager module from overlay
+                  claude-code-overlay.homeManagerModules.default
+
                   # Common home-manager configuration
                   (import ./nix/modules/home {
                     inherit
@@ -355,6 +358,9 @@
               in
               {
                 imports = [
+                  # Claude Code home-manager module from overlay
+                  claude-code-overlay.homeManagerModules.default
+
                   # Common home-manager configuration
                   (import ./nix/modules/home {
                     inherit

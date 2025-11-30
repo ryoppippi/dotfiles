@@ -83,8 +83,14 @@ fi
 # eval "$(github-copilot-cli alias -- "$0")"
 
 # nix
-if [ -e " /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then 
+if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
+# home-manager session variables
+HM_SESSION_VARS="$HOME/.local/state/home-manager/gcroots/current-home/home-path/etc/profile.d/hm-session-vars.sh"
+if [ -f "$HM_SESSION_VARS" ]; then
+  . "$HM_SESSION_VARS"
 fi
 
 if [[ -t 0 ]]; then
