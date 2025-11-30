@@ -3,7 +3,6 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
-  helpers,
   ...
 }:
 let
@@ -67,32 +66,22 @@ let
       "hide_gpt-5.1-codex-max_migration_prompt" = true;
     };
   };
-
-  # Wrap Codex with CODEX_HOME environment variable
-  codex-wrapped = pkgs.symlinkJoin {
-    name = "codex-wrapped";
-    paths = [ pkgs.codex ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/codex \
-        --set CODEX_HOME ${codexConfigDir}
-    '';
-  };
 in
 {
-  # Codex package with CODEX_HOME wrapper
-  home.packages = [ codex-wrapped ];
+  # Codex package
+  home.packages = [ pkgs.codex ];
+
+  # Set CODEX_HOME environment variable (sourced via hm-session-vars.sh)
+  home.sessionVariables = {
+    CODEX_HOME = codexConfigDir;
+  };
 
   # Codex configuration files
   home.file = {
     # Generated config.toml from Nix settings
     "${codexConfigDir}/config.toml".source = tomlFormat.generate "codex-config" settings;
+    # Symlink AGENTS.md from dotfiles
+    "${codexConfigDir}/AGENTS.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
-
-  # Create direct symlink to AGENTS.md in dotfiles (bypassing Nix store)
-  home.activation.linkCodexAgents = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${helpers.activation.mkLinkForce}
-    $DRY_RUN_CMD mkdir -p "${codexConfigDir}"
-    link_force "${codexDotfilesDir}/AGENTS.md" "${codexConfigDir}/AGENTS.md"
-  '';
 }
