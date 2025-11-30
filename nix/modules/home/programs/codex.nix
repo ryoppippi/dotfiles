@@ -57,6 +57,7 @@ let
 
       devenv = {
         command = "devenv";
+        enabled = false;
         args = [ "mcp" ];
       };
     };
