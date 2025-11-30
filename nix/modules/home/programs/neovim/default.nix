@@ -3,6 +3,7 @@
   lib,
   config,
   dotfilesDir,
+  helpers,
   ...
 }:
 let
@@ -83,12 +84,15 @@ in
 
   };
 
-  # Symlink Neovim configuration from dotfiles
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink nvimDotfilesDir;
+  # Create symlink to NeoVim configuration in dotfiles (bypassing Nix store)
+  home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    ${helpers.activation.mkLinkForce}
+    link_force "${nvimDotfilesDir}" "${nvimConfigDir}"
+  '';
 
   # Restore Neovim plugins via Lazy.nvim when lock file changes
   # (Lazy.nvim itself is auto-installed by Lua config)
-  home.activation.restoreNeovimPlugins = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+  home.activation.restoreNeovimPlugins = lib.hm.dag.entryAfter [ "linkNvimConfig" ] ''
     LAZY_DIR="$HOME/.local/share/nvim/lazy"
     LAZY_LOCK="${nvimDotfilesDir}/lazy-lock.json"
     LAZY_LOCK_TIMESTAMP="$LAZY_DIR/.lazy-lock-timestamp"

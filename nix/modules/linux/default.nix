@@ -4,6 +4,7 @@
   lib,
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 {
@@ -18,6 +19,7 @@
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
   ];

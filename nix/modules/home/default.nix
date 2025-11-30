@@ -50,6 +50,7 @@ in
         lib
         config
         dotfilesDir
+        helpers
         ;
     })
   ];

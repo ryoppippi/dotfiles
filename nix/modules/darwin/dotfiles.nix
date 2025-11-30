@@ -3,37 +3,44 @@
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  helpers,
   ...
 }:
 let
-  mkLink = config.lib.file.mkOutOfStoreSymlink;
+  homeDir = config.home.homeDirectory;
+  configHome = config.xdg.configHome;
 in
 {
   # macOS-specific dotfile symlinks
-  home.file = lib.mkIf pkgs.stdenv.isDarwin {
-    # Hammerspoon configuration
-    ".hammerspoon".source = mkLink "${dotfilesDir}/hammerspoon";
+  home.activation.linkDotfilesDarwin = lib.hm.dag.entryAfter [ "linkGeneration" ] (
+    lib.optionalString pkgs.stdenv.isDarwin ''
+        ${helpers.activation.mkLinkForce}
 
-    # Homebrew bundle file
-    ".Brewfile".source = mkLink "${dotfilesDir}/Brewfile";
+      # Hammerspoon configuration
+      link_force "${dotfilesDir}/hammerspoon" "${homeDir}/.hammerspoon"
 
-    # Karabiner Elements configuration
-    ".config/karabiner".source = mkLink "${dotfilesDir}/karabiner";
+      # Homebrew bundle file
+      link_force "${dotfilesDir}/Brewfile" "${homeDir}/.Brewfile"
 
-    # Finicky configuration
-    ".finicky.js".source = mkLink "${dotfilesDir}/finicky.js";
+      # Karabiner Elements configuration
+      link_force "${dotfilesDir}/karabiner" "${configHome}/karabiner"
 
-    # Xcode key bindings
-    "Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings".source =
-      mkLink "${dotfilesDir}/xcode/Default.idekeybindings";
+      # Finicky configuration
+      link_force "${dotfilesDir}/finicky.js" "${homeDir}/.finicky.js"
 
-    # Yabai window manager
-    ".config/yabai".source = mkLink "${dotfilesDir}/yabai";
+      # Xcode key bindings
+      $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings"
+      link_force "${dotfilesDir}/xcode/Default.idekeybindings" "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
 
-    # Skhd hotkey daemon
-    ".config/skhd".source = mkLink "${dotfilesDir}/skhd";
+      # Yabai window manager
+      link_force "${dotfilesDir}/yabai" "${configHome}/yabai"
 
-    # Pip configuration (macOS paths)
-    "Library/Application Support/pip/pip.conf".source = mkLink "${dotfilesDir}/pip/pip.conf";
-  };
+      # Skhd hotkey daemon
+      link_force "${dotfilesDir}/skhd" "${configHome}/skhd"
+
+      # Pip configuration (macOS paths)
+      $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Application Support/pip"
+      link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/Library/Application Support/pip/pip.conf"
+    ''
+  );
 }
