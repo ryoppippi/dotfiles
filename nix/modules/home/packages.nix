@@ -89,6 +89,7 @@ in
       fq
       tokei
       bsky-cli
+      signal-cli
       oglens
       sheep
       similarity-ts

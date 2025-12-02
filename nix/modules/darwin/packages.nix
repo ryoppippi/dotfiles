@@ -38,6 +38,7 @@
       processing
       qlvideo
       shottr
+      signal
       stats
       vlc
       yaak
