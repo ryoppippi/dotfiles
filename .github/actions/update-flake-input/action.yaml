@@ -260,10 +260,11 @@ runs:
         # Generate package diff using closure comparison for all inputs
         echo ""
         echo "=== Generating package diff ==="
-        closure_diff=$(get_closure_diff "$INPUT_NAME" "github:${current_owner}/${current_repo}/${current_rev}" "github:${new_owner}/${new_repo}/${new_rev}" 2>&1) || true
+        closure_diff=$(get_closure_diff "$INPUT_NAME" "github:${current_owner}/${current_repo}/${current_rev}" "github:${new_owner}/${new_repo}/${new_rev}") || true
 
         if [ -n "$closure_diff" ]; then
           echo "Package diff generated successfully"
+          echo "$closure_diff"
           # Output to GitHub Step Summary
           {
             echo "## ${INPUT_NAME} Package Changes"
