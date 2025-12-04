@@ -39,10 +39,6 @@ inputs:
   github-token:
     description: 'GitHub token for creating PRs and enabling auto-merge'
     required: true
-  system:
-    description: 'Nix system for building closures (e.g., x86_64-linux, aarch64-linux)'
-    required: false
-    default: 'x86_64-linux'
 
 outputs:
   updated:
@@ -69,7 +65,6 @@ runs:
         SKIP_DELAY: ${{ inputs.skip-delay }}
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
         GH_TOKEN: ${{ inputs.github-token }}
-        NIX_SYSTEM: ${{ inputs.system }}
       run: |
         set -euo pipefail
 
@@ -87,84 +82,47 @@ runs:
         current_repo=$(echo "$current_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.repo // \"unknown\"")
         echo "Current revision: $current_rev"
 
-        # Function to get closure diff using nix store diff-closures
-        # Works for any flake input (nixpkgs, ai-tools, claude-code-overlay, etc.)
-        # Output is formatted as markdown table
-        get_closure_diff() {
-          local input_name="$1"
-          local old_ref="$2"
-          local new_ref="$3"
+        # Function to get package versions from a flake
+        get_package_versions() {
+          local flake_ref="$1"
+          local packages=""
 
-          # Determine homeConfiguration based on system
-          local home_config
-          if [ "$NIX_SYSTEM" = "aarch64-linux" ]; then
-            home_config="homeConfigurations.ryoppippi-aarch64.activationPackage"
-          else
-            home_config="homeConfigurations.ryoppippi.activationPackage"
-          fi
+          # Define packages to check for each input
+          case "$INPUT_NAME" in
+            ai-tools)
+              packages="claude-code codex amp cursor-agent gemini-cli opencode goose-cli"
+              ;;
+            claude-code-overlay)
+              packages="claude"
+              ;;
+            *)
+              echo ""
+              return
+              ;;
+          esac
 
-          echo "Building Home Manager closures for comparison (system: $NIX_SYSTEM)..." >&2
-
-          # Build old closure
-          echo "Building old closure..." >&2
-          if ! old_closure=$(nix build --no-link --print-out-paths \
-            --override-input "$input_name" "$old_ref" \
-            ".#$home_config" 2>&1); then
-            echo "Warning: Failed to build old closure: $old_closure" >&2
-            return
-          fi
-
-          # Build new closure
-          echo "Building new closure..." >&2
-          if ! new_closure=$(nix build --no-link --print-out-paths \
-            --override-input "$input_name" "$new_ref" \
-            ".#$home_config" 2>&1); then
-            echo "Warning: Failed to build new closure: $new_closure" >&2
-            return
-          fi
-
-          if [ -n "$old_closure" ] && [ -n "$new_closure" ]; then
-            echo "Comparing closures..." >&2
-            # Get raw diff output
-            raw_diff=$(nix store diff-closures "$old_closure" "$new_closure" 2>/dev/null) || true
-
-            if [ -n "$raw_diff" ]; then
-              # Convert to markdown table
-              # Input format: "package-name: old-version → new-version, +X.X KiB"
-              # or "package-name: ε → new-version, +X.X KiB" for new packages
-              # or "package-name: old-version → ε, -X.X KiB" for removed packages
-              echo "| Package | Old | New |"
-              echo "|---------|-----|-----|"
-              echo "$raw_diff" | while IFS= read -r line; do
-                # Skip empty lines
-                [ -z "$line" ] && continue
-
-                # Parse the line: "package-name: old → new, size"
-                if [[ "$line" =~ ^([^:]+):\ ([^→]+)\ →\ ([^,]+),\ (.+)$ ]]; then
-                  pkg="${BASH_REMATCH[1]}"
-                  old_ver="${BASH_REMATCH[2]}"
-                  new_ver="${BASH_REMATCH[3]}"
-
-                  # Clean up whitespace
-                  pkg=$(echo "$pkg" | xargs)
-                  old_ver=$(echo "$old_ver" | xargs)
-                  new_ver=$(echo "$new_ver" | xargs)
-
-                  # Replace ε with descriptive text
-                  [ "$old_ver" = "ε" ] && old_ver="(new)"
-                  [ "$new_ver" = "ε" ] && new_ver="(removed)"
-
-                  # Add arrow_up emoji if version changed (not new/removed)
-                  if [ "$old_ver" != "(new)" ] && [ "$new_ver" != "(removed)" ]; then
-                    echo "| \`$pkg\` | \`$old_ver\` | \`$new_ver\` :arrow_up: |"
-                  else
-                    echo "| \`$pkg\` | \`$old_ver\` | \`$new_ver\` |"
-                  fi
-                fi
-              done
+          local versions=""
+          for pkg in $packages; do
+            local version
+            version=$(nix eval --raw "${flake_ref}#packages.x86_64-linux.${pkg}.version" 2>/dev/null || echo "")
+            if [ -n "$version" ]; then
+              if [ -n "$versions" ]; then
+                versions="${versions}, ${pkg}=${version}"
+              else
+                versions="${pkg}=${version}"
+              fi
             fi
-          fi
+          done
+          echo "$versions"
         }
+
+        # Get current package versions for special inputs
+        current_pkg_versions=""
+        if [ "$INPUT_NAME" = "ai-tools" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
+          echo "Fetching current package versions..."
+          current_pkg_versions=$(get_package_versions "github:${current_owner}/${current_repo}/${current_rev}")
+          echo "Current package versions: $current_pkg_versions"
+        fi
 
         # Determine target revision for update
         target_rev=""
@@ -238,6 +196,52 @@ runs:
         new_repo=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.repo // \"unknown\"")
         echo "New revision: $new_rev"
 
+        # Get new package versions for special inputs
+        new_pkg_versions=""
+        pkg_version_diff=""
+        if [ "$INPUT_NAME" = "ai-tools" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
+          echo "Fetching new package versions..."
+          new_pkg_versions=$(get_package_versions "github:${new_owner}/${new_repo}/${new_rev}")
+          echo "New package versions: $new_pkg_versions"
+
+          # Build version diff for changed packages
+          if [ -n "$current_pkg_versions" ] && [ -n "$new_pkg_versions" ]; then
+            # Parse and compare versions
+            declare -A old_versions new_versions
+            IFS=', ' read -ra old_pairs <<< "$current_pkg_versions"
+            for pair in "${old_pairs[@]}"; do
+              key="${pair%%=*}"
+              val="${pair#*=}"
+              old_versions["$key"]="$val"
+            done
+            IFS=', ' read -ra new_pairs <<< "$new_pkg_versions"
+            for pair in "${new_pairs[@]}"; do
+              key="${pair%%=*}"
+              val="${pair#*=}"
+              new_versions["$key"]="$val"
+            done
+
+            # Find changed versions
+            changed_pkgs=""
+            for key in "${!new_versions[@]}"; do
+              old_val="${old_versions[$key]:-}"
+              new_val="${new_versions[$key]}"
+              if [ "$old_val" != "$new_val" ] && [ -n "$old_val" ]; then
+                if [ -n "$changed_pkgs" ]; then
+                  changed_pkgs="${changed_pkgs}, ${key} ${old_val} → ${new_val}"
+                else
+                  changed_pkgs="${key} ${old_val} → ${new_val}"
+                fi
+              fi
+            done
+
+            if [ -n "$changed_pkgs" ]; then
+              pkg_version_diff="$changed_pkgs"
+              echo "Package version changes: $pkg_version_diff"
+            fi
+          fi
+        fi
+
         # Verify release age for standard updates (when target_rev was not pre-determined)
         if [ -z "$target_rev" ] && [ "$SKIP_DELAY" = "false" ]; then
           echo "Verifying release age (minimum: $MIN_AGE_DAYS days)..."
@@ -270,32 +274,12 @@ runs:
           fi
         fi
 
-        # Generate package diff using closure comparison for all inputs
-        echo ""
-        echo "=== Generating package diff ==="
-        closure_diff=$(get_closure_diff "$INPUT_NAME" "github:${current_owner}/${current_repo}/${current_rev}" "github:${new_owner}/${new_repo}/${new_rev}") || true
-
-        if [ -n "$closure_diff" ]; then
-          echo "Package diff generated successfully"
-          echo "$closure_diff"
-          # Output to GitHub Step Summary
-          {
-            echo "## ${INPUT_NAME} Package Changes"
-            echo ""
-            echo "$closure_diff"
-          } >> "$GITHUB_STEP_SUMMARY"
-        fi
-
         echo "Update successful!"
         echo "updated=true" >> "$GITHUB_OUTPUT"
         echo "new_version=${new_rev:0:8}" >> "$GITHUB_OUTPUT"
-        # Store closure diff (truncated for output)
-        if [ -n "$closure_diff" ]; then
-          # Truncate to avoid GitHub output limits
-          echo "closure_diff<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$closure_diff" | head -100 >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
-        fi
+        echo "current_pkg_versions=${current_pkg_versions}" >> "$GITHUB_OUTPUT"
+        echo "new_pkg_versions=${new_pkg_versions}" >> "$GITHUB_OUTPUT"
+        echo "pkg_version_diff=${pkg_version_diff}" >> "$GITHUB_OUTPUT"
 
     - name: Create pull request
       id: create-pr
@@ -310,14 +294,20 @@ runs:
         AUTO_MERGE: ${{ inputs.auto-merge }}
         PR_LABELS: ${{ inputs.pr-labels }}
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
-        CLOSURE_DIFF: ${{ steps.update.outputs.closure_diff }}
+        CURRENT_PKG_VERSIONS: ${{ steps.update.outputs.current_pkg_versions }}
+        NEW_PKG_VERSIONS: ${{ steps.update.outputs.new_pkg_versions }}
+        PKG_VERSION_DIFF: ${{ steps.update.outputs.pkg_version_diff }}
       run: |
         set -euo pipefail
 
         branch="update-flake-${INPUT_NAME}"
 
-        # Build PR title
-        pr_title="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
+        # Build PR title with package version diff if available
+        if [ -n "$PKG_VERSION_DIFF" ]; then
+          pr_title="chore(nix): update ${INPUT_NAME} (${PKG_VERSION_DIFF})"
+        else
+          pr_title="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
+        fi
 
         # Create PR body
         if [ "$SKIP_DELAY" = "true" ]; then
@@ -326,18 +316,43 @@ runs:
           delay_note=":hourglass: This update passed the ${MIN_AGE_DAYS}-day minimum release age check."
         fi
 
-        # Build package versions section if closure diff is available
+        # Build package versions section if available
         pkg_versions_section=""
-        if [ -n "$CLOSURE_DIFF" ]; then
+        if [ -n "$NEW_PKG_VERSIONS" ]; then
           pkg_versions_section="
         ## Package Versions
+        | Package | Old | New |
+        |---------|-----|-----|"
 
-        <details>
-        <summary>Click to expand package changes</summary>
+          # Parse current and new versions into arrays
+          declare -A old_versions new_versions
+          if [ -n "$CURRENT_PKG_VERSIONS" ]; then
+            IFS=', ' read -ra old_pairs <<< "$CURRENT_PKG_VERSIONS"
+            for pair in "${old_pairs[@]}"; do
+              key="${pair%%=*}"
+              val="${pair#*=}"
+              old_versions["$key"]="$val"
+            done
+          fi
+          IFS=', ' read -ra new_pairs <<< "$NEW_PKG_VERSIONS"
+          for pair in "${new_pairs[@]}"; do
+            key="${pair%%=*}"
+            val="${pair#*=}"
+            new_versions["$key"]="$val"
+          done
 
-        ${CLOSURE_DIFF}
-
-        </details>"
+          # Build table rows
+          for key in "${!new_versions[@]}"; do
+            old_val="${old_versions[$key]:-N/A}"
+            new_val="${new_versions[$key]}"
+            if [ "$old_val" != "$new_val" ]; then
+              pkg_versions_section="${pkg_versions_section}
+        | ${key} | \`${old_val}\` | \`${new_val}\` :arrow_up: |"
+            else
+              pkg_versions_section="${pkg_versions_section}
+        | ${key} | \`${old_val}\` | \`${new_val}\` |"
+            fi
+          done
         fi
 
         pr_body="Automated update of flake input \`${INPUT_NAME}\`.
@@ -358,23 +373,14 @@ runs:
         # Create branch
         git checkout -b "$branch"
 
-        # Build commit message
-        commit_title="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
-
-        # Build commit body with package diff if available
-        commit_body=""
-        if [ -n "$CLOSURE_DIFF" ]; then
-          commit_body="Package changes:
-
-        ${CLOSURE_DIFF}"
-        fi
-
-        # Create commit with title and optional body
-        if [ -n "$commit_body" ]; then
-          git commit -m "$commit_title" -m "$commit_body"
+        # Build commit message with package version diff if available
+        if [ -n "$PKG_VERSION_DIFF" ]; then
+          commit_message="chore(nix): update ${INPUT_NAME} (${PKG_VERSION_DIFF})"
         else
-          git commit -m "$commit_title"
+          commit_message="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
         fi
+
+        git commit -m "$commit_message"
 
         # Push (force to handle re-runs)
         git push --force origin "$branch"
