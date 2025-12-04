@@ -94,23 +94,23 @@ runs:
 
           # Build old closure (use x86_64-linux for cross-platform compatibility)
           echo "Building old closure..." >&2
-          old_closure=$(nix build --no-link --print-out-paths \
+          if ! old_closure=$(nix build --no-link --print-out-paths \
             --system x86_64-linux \
             --override-input "$input_name" "$old_ref" \
-            ".#homeConfigurations.ryoppippi.activationPackage" 2>/dev/null) || {
-            echo "Warning: Failed to build old closure" >&2
+            ".#homeConfigurations.ryoppippi.activationPackage" 2>&1); then
+            echo "Warning: Failed to build old closure: $old_closure" >&2
             return
-          }
+          fi
 
           # Build new closure
           echo "Building new closure..." >&2
-          new_closure=$(nix build --no-link --print-out-paths \
+          if ! new_closure=$(nix build --no-link --print-out-paths \
             --system x86_64-linux \
             --override-input "$input_name" "$new_ref" \
-            ".#homeConfigurations.ryoppippi.activationPackage" 2>/dev/null) || {
-            echo "Warning: Failed to build new closure" >&2
+            ".#homeConfigurations.ryoppippi.activationPackage" 2>&1); then
+            echo "Warning: Failed to build new closure: $new_closure" >&2
             return
-          }
+          fi
 
           if [ -n "$old_closure" ] && [ -n "$new_closure" ]; then
             echo "Comparing closures..." >&2
