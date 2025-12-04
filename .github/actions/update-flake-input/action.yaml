@@ -8,6 +8,18 @@ inputs:
   current-version:
     description: 'Current version/revision of the input'
     required: true
+  owner:
+    description: 'GitHub owner of the input repository'
+    required: false
+    default: ''
+  repo:
+    description: 'GitHub repository name of the input'
+    required: false
+    default: ''
+  ref:
+    description: 'Git ref (branch/tag) of the input'
+    required: false
+    default: ''
   skip-delay:
     description: 'Skip the minimum release age check'
     required: false
@@ -47,8 +59,12 @@ runs:
       shell: bash
       env:
         INPUT_NAME: ${{ inputs.input-name }}
+        INPUT_OWNER: ${{ inputs.owner }}
+        INPUT_REPO: ${{ inputs.repo }}
+        INPUT_REF: ${{ inputs.ref }}
         SKIP_DELAY: ${{ inputs.skip-delay }}
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
+        GH_TOKEN: ${{ inputs.github-token }}
       run: |
         set -euo pipefail
 
@@ -108,11 +124,62 @@ runs:
           echo "Current package versions: $current_pkg_versions"
         fi
 
+        # Determine target revision for update
+        target_rev=""
+        if [ "$SKIP_DELAY" = "false" ] && [ -n "$INPUT_OWNER" ] && [ -n "$INPUT_REPO" ]; then
+          echo "Fetching commit from at least $MIN_AGE_DAYS days ago via GitHub API..."
+
+          # Calculate the cutoff date
+          cutoff_date=$(date -u -d "$MIN_AGE_DAYS days ago" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || \
+                        date -u -v-${MIN_AGE_DAYS}d +%Y-%m-%dT%H:%M:%SZ)
+          echo "Cutoff date: $cutoff_date"
+
+          # Build the API URL with optional branch filter
+          api_url="repos/${INPUT_OWNER}/${INPUT_REPO}/commits?until=${cutoff_date}&per_page=1"
+          if [ -n "$INPUT_REF" ]; then
+            api_url="${api_url}&sha=${INPUT_REF}"
+            echo "Filtering by branch: $INPUT_REF"
+          fi
+
+          # Fetch the most recent commit that is at least MIN_AGE_DAYS old
+          if commit_data=$(gh api "$api_url" --jq '.[0] | {sha: .sha, date: .commit.committer.date}' 2>/dev/null); then
+            target_rev=$(echo "$commit_data" | jq -r '.sha // empty')
+            commit_date=$(echo "$commit_data" | jq -r '.date // empty')
+
+            if [ -n "$target_rev" ]; then
+              echo "Found commit from $commit_date: ${target_rev:0:8}"
+
+              # Check if this is the same as current revision
+              if [ "${target_rev:0:40}" = "${current_rev:0:40}" ]; then
+                echo "Target revision is the same as current. No update needed."
+                echo "updated=false" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            else
+              echo "No commits found older than $MIN_AGE_DAYS days. Skipping update."
+              echo "updated=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          else
+            echo "Warning: Failed to fetch commits via GitHub API, falling back to standard update"
+          fi
+        fi
+
         # Perform the update
-        echo "Running: nix flake update $INPUT_NAME"
-        if ! nix flake update "$INPUT_NAME"; then
-          echo "::error::Failed to update $INPUT_NAME"
-          exit 1
+        if [ -n "$target_rev" ]; then
+          # Update to specific revision
+          echo "Running: nix flake update $INPUT_NAME --override-input $INPUT_NAME github:${INPUT_OWNER}/${INPUT_REPO}/${target_rev}"
+          if ! nix flake update "$INPUT_NAME" --override-input "$INPUT_NAME" "github:${INPUT_OWNER}/${INPUT_REPO}/${target_rev}"; then
+            echo "::error::Failed to update $INPUT_NAME to specific revision"
+            exit 1
+          fi
+        else
+          # Standard update (latest)
+          echo "Running: nix flake update $INPUT_NAME"
+          if ! nix flake update "$INPUT_NAME"; then
+            echo "::error::Failed to update $INPUT_NAME"
+            exit 1
+          fi
         fi
 
         # Check if there were actual changes
@@ -175,9 +242,9 @@ runs:
           fi
         fi
 
-        # Check release age unless skip_delay is true
-        if [ "$SKIP_DELAY" = "false" ]; then
-          echo "Checking release age (minimum: $MIN_AGE_DAYS days)..."
+        # Verify release age for standard updates (when target_rev was not pre-determined)
+        if [ -z "$target_rev" ] && [ "$SKIP_DELAY" = "false" ]; then
+          echo "Verifying release age (minimum: $MIN_AGE_DAYS days)..."
 
           last_modified=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.lastModified // 0")
 
@@ -200,7 +267,11 @@ runs:
             echo "Warning: Could not determine lastModified timestamp, proceeding with update"
           fi
         else
-          echo "Skipping release age check (skip_delay=true)"
+          if [ -n "$target_rev" ]; then
+            echo "Update to pre-validated revision (>= $MIN_AGE_DAYS days old)"
+          else
+            echo "Skipping release age check (skip_delay=true)"
+          fi
         fi
 
         echo "Update successful!"

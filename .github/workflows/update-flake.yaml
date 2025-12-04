@@ -96,6 +96,9 @@ jobs:
         with:
           input-name: ${{ matrix.name }}
           current-version: ${{ matrix.current_version }}
+          owner: ${{ matrix.owner }}
+          repo: ${{ matrix.repo }}
+          ref: ${{ matrix.ref }}
           skip-delay: ${{ github.event.inputs.skip-delay == 'true' && 'true' || matrix.skip_delay }}
           minimum-release-age-days: ${{ github.event.inputs.minimum-release-age-days || env.MINIMUM_RELEASE_AGE_DAYS }}
           auto-merge: ${{ env.AUTO_MERGE }}
