@@ -39,6 +39,10 @@ inputs:
   github-token:
     description: 'GitHub token for creating PRs and enabling auto-merge'
     required: true
+  system:
+    description: 'Nix system for building closures (e.g., x86_64-linux, aarch64-linux)'
+    required: false
+    default: 'x86_64-linux'
 
 outputs:
   updated:
@@ -65,6 +69,7 @@ runs:
         SKIP_DELAY: ${{ inputs.skip-delay }}
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
         GH_TOKEN: ${{ inputs.github-token }}
+        NIX_SYSTEM: ${{ inputs.system }}
       run: |
         set -euo pipefail
 
@@ -90,14 +95,21 @@ runs:
           local old_ref="$2"
           local new_ref="$3"
 
-          echo "Building Home Manager closures for comparison..." >&2
+          # Determine homeConfiguration based on system
+          local home_config
+          if [ "$NIX_SYSTEM" = "aarch64-linux" ]; then
+            home_config="homeConfigurations.ryoppippi-aarch64.activationPackage"
+          else
+            home_config="homeConfigurations.ryoppippi.activationPackage"
+          fi
 
-          # Build old closure (use x86_64-linux for cross-platform compatibility)
+          echo "Building Home Manager closures for comparison (system: $NIX_SYSTEM)..." >&2
+
+          # Build old closure
           echo "Building old closure..." >&2
           if ! old_closure=$(nix build --no-link --print-out-paths \
-            --system x86_64-linux \
             --override-input "$input_name" "$old_ref" \
-            ".#homeConfigurations.ryoppippi.activationPackage" 2>&1); then
+            ".#$home_config" 2>&1); then
             echo "Warning: Failed to build old closure: $old_closure" >&2
             return
           fi
@@ -105,9 +117,8 @@ runs:
           # Build new closure
           echo "Building new closure..." >&2
           if ! new_closure=$(nix build --no-link --print-out-paths \
-            --system x86_64-linux \
             --override-input "$input_name" "$new_ref" \
-            ".#homeConfigurations.ryoppippi.activationPackage" 2>&1); then
+            ".#$home_config" 2>&1); then
             echo "Warning: Failed to build new closure: $new_closure" >&2
             return
           fi
