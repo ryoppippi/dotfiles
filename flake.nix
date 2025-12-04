@@ -68,6 +68,11 @@
       url = "github:BatteredBunny/brew-api";
       flake = false;
     };
+
+    rs-arto = {
+      url = "github:lambdalisue/rs-arto";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -83,6 +88,7 @@
       gh-nippou,
       brew-nix,
       brew-api,
+      rs-arto,
     }:
     let
       lib = nixpkgs.lib;
@@ -114,6 +120,7 @@
               _ai-tools = ai-tools;
               _claude-code-overlay = claude-code-overlay;
               gh-nippou = gh-nippou.packages.${system}.default;
+              arto = rs-arto.packages.${system}.default;
             })
             (import ./nix/overlays/default.nix)
           ]

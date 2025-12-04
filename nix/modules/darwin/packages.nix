@@ -12,6 +12,7 @@
       mas
 
       # macOS GUI applications (not available on Linux in nixpkgs)
+      arto
       cyberduck
       keycastr
       monitorcontrol

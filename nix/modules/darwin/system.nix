@@ -144,8 +144,6 @@ in
     enable = true;
     onActivation.cleanup = "uninstall";
 
-    taps = [ "lambdalisue/arto" ];
-
     brews = [
       "bluetoothconnector"
       "mas"
@@ -160,7 +158,6 @@ in
       "alfred"
       "aqua-voice"
       "arc"
-      "arto"
       "background-music"
       "blackhole-16ch"
       "blu-ray-player-pro"

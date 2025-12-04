@@ -105,6 +105,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1763938834,
+        "narHash": "sha256-j8iB0Yr4zAvQLueCZ5abxfk6fnG/SJ5JnGUziETjwfg=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "d9e753122e51cee64eb8d2dddfe11148f339f5a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -304,7 +319,29 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
+        "rs-arto": "rs-arto",
         "treefmt-nix": "treefmt-nix_2"
+      }
+    },
+    "rs-arto": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764838461,
+        "narHash": "sha256-Dm2/SDqdF7WIS6ARj2HK1laMlGJzfwLcJ99VI2b8oUU=",
+        "owner": "lambdalisue",
+        "repo": "rs-arto",
+        "rev": "26e251b0fc1502e48246887e35f48b1b2288bb78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lambdalisue",
+        "repo": "rs-arto",
+        "type": "github"
       }
     },
     "systems": {
