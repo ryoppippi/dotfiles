@@ -83,6 +83,9 @@ runs:
           fi
 
           current_rev=$(echo "$metadata" | jq -r ".locks.nodes.\"$input\".locked.rev // \"unknown\"" | head -c 8)
+          owner=$(echo "$metadata" | jq -r ".locks.nodes.\"$input\".original.owner // \"unknown\"")
+          repo=$(echo "$metadata" | jq -r ".locks.nodes.\"$input\".original.repo // \"unknown\"")
+          ref=$(echo "$metadata" | jq -r ".locks.nodes.\"$input\".original.ref // \"\"")
 
           # Determine if this input should skip delay
           if should_skip_delay "$input"; then
@@ -91,8 +94,12 @@ runs:
             skip_delay="false"
           fi
 
-          matrix_items+=("{\"name\":\"$input\",\"current_version\":\"$current_rev\",\"skip_delay\":$skip_delay}")
-          echo "  - $input ($current_rev) [skip_delay=$skip_delay]"
+          matrix_items+=("{\"name\":\"$input\",\"current_version\":\"$current_rev\",\"skip_delay\":$skip_delay,\"owner\":\"$owner\",\"repo\":\"$repo\",\"ref\":\"$ref\"}")
+          if [ -n "$ref" ]; then
+            echo "  - $input ($current_rev) [skip_delay=$skip_delay, ref=$ref]"
+          else
+            echo "  - $input ($current_rev) [skip_delay=$skip_delay]"
+          fi
         done
 
         echo
