@@ -92,9 +92,10 @@ runs:
 
           echo "Building Home Manager closures for comparison..." >&2
 
-          # Build old closure
+          # Build old closure (use x86_64-linux for cross-platform compatibility)
           echo "Building old closure..." >&2
           old_closure=$(nix build --no-link --print-out-paths \
+            --system x86_64-linux \
             --override-input "$input_name" "$old_ref" \
             ".#homeConfigurations.ryoppippi.activationPackage" 2>/dev/null) || {
             echo "Warning: Failed to build old closure" >&2
@@ -104,6 +105,7 @@ runs:
           # Build new closure
           echo "Building new closure..." >&2
           new_closure=$(nix build --no-link --print-out-paths \
+            --system x86_64-linux \
             --override-input "$input_name" "$new_ref" \
             ".#homeConfigurations.ryoppippi.activationPackage" 2>/dev/null) || {
             echo "Warning: Failed to build new closure" >&2
