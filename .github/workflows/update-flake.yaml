@@ -104,6 +104,7 @@ jobs:
           auto-merge: ${{ env.AUTO_MERGE }}
           pr-labels: ${{ env.PR_LABELS }}
           github-token: ${{ steps.bot.outputs.token }}
+          system: aarch64-linux
 
   summary:
     needs: [discover, update]
