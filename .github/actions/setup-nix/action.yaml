@@ -23,7 +23,3 @@ runs:
       with:
         name: ryoppippi
         authToken: ${{ inputs.cachix-auth-token }}
-
-    - name: Warm up devshell cache
-      shell: bash
-      run: nix develop -c true
