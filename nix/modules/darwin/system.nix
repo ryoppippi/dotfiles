@@ -156,7 +156,6 @@ in
     casks = [
       "1password"
       "alfred"
-      "aqua-voice"
       "arc"
       "background-music"
       "blackhole-16ch"
