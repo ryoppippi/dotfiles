@@ -7,6 +7,7 @@
       ghostty-bin
       chafa
       blueutil
+      bluetooth-connector
       switchaudio-osx
       terminal-notifier
       mas

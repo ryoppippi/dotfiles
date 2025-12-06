@@ -12,6 +12,7 @@ let
     ./gh-triage.nix
     # Small Go/Rust CLI tools not in nixpkgs
     ./sheep.nix
+    ./bluetooth-connector.nix
     ./gyazo-cli.nix
     ./oglens.nix
     ./tv.nix

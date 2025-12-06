@@ -145,7 +145,6 @@ in
     onActivation.cleanup = "uninstall";
 
     brews = [
-      "bluetoothconnector"
       "mas"
     ];
 
