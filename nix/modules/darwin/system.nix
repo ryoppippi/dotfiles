@@ -161,7 +161,6 @@ in
       "background-music"
       "blackhole-16ch"
       "blu-ray-player-pro"
-      "chatgpt"
       "claude"
       "cloudflare-warp"
       "google-chrome"

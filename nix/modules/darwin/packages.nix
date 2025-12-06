@@ -25,6 +25,7 @@
       appcleaner
       beekeeper-studio
       bluesnooze
+      chatgpt
       deskpad
       figma
       glance-chamburr
