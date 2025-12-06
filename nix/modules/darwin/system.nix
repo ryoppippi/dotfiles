@@ -65,7 +65,7 @@ in
       tilesize = 45; # Icon size
       persistent-apps = [ ]; # Remove all pinned applications
       show-recents = false; # Don't show recent applications
-      mineffect = "scale"; # Minimise effect
+      mineffect = "genie";
       orientation = "bottom"; # Dock position
     };
 
