@@ -8,6 +8,7 @@
   treefmt-nix ? null,
   git-hooks ? null,
   system ? null,
+  nodePackages ? null,
   ...
 }:
 let
@@ -39,6 +40,7 @@ in
         claude-code-overlay
         system
         helpers
+        nodePackages
         ;
     })
 

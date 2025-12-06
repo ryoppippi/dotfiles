@@ -588,6 +588,78 @@ let
         sha512 = "37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==";
       };
     };
+    "@typescript/native-preview-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview";
+      packageName = "@typescript/native-preview";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.20251206.1.tgz";
+        sha512 = "wog5hWVS+bYjFTpxtr+8qxqjhTKpAvlDCivvW592zctOcO+e9iLbBBLU3nDZdXW06rEA2zwjOqEPbsUcM/mcEw==";
+      };
+    };
+    "@typescript/native-preview-darwin-arm64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-darwin-arm64";
+      packageName = "@typescript/native-preview-darwin-arm64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-darwin-arm64/-/native-preview-darwin-arm64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "Lcm+cO/0d+iUNzpequh8v8rm7FKLLxnMv4cg59jkmeMNm6zLe8UHFJVKd4KSUeTBp6DrF1BBXkahIwecR21YXA==";
+      };
+    };
+    "@typescript/native-preview-darwin-x64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-darwin-x64";
+      packageName = "@typescript/native-preview-darwin-x64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-darwin-x64/-/native-preview-darwin-x64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "RR3flM+2oRZP8HMh8mfUzOitUVBE3kbXBT1qqjQvU5GkFGKEU0DH2OZ35YV/ufVHBsRygXNbahw2heE08Jvk6A==";
+      };
+    };
+    "@typescript/native-preview-linux-arm-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-linux-arm";
+      packageName = "@typescript/native-preview-linux-arm";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-linux-arm/-/native-preview-linux-arm-7.0.0-dev.20251206.1.tgz";
+        sha512 = "NMndfbNZiYALizEJ6+5RJl5vp7TMjVa0mW4sBFP/W+AECf1D0NZ1jffHBdwRgHr6inehw93cL78XcNWm+l89QA==";
+      };
+    };
+    "@typescript/native-preview-linux-arm64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-linux-arm64";
+      packageName = "@typescript/native-preview-linux-arm64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-linux-arm64/-/native-preview-linux-arm64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "/KXFbcTuW/2k+CspZjraCVLNBnoDGFARYYaydKj/OrZwcGb1HgCT8X52ICzf0lHnc7W0slKAIzEtq8vonyCrAw==";
+      };
+    };
+    "@typescript/native-preview-linux-x64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-linux-x64";
+      packageName = "@typescript/native-preview-linux-x64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-linux-x64/-/native-preview-linux-x64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "qOKTazp43tE6imN/+y+s8MdtaJLnH98YILdr6V5pLVUxY1fiFnAX/LXv/zDd6ree6rEn102kLuaMGih7PNJqHw==";
+      };
+    };
+    "@typescript/native-preview-win32-arm64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-win32-arm64";
+      packageName = "@typescript/native-preview-win32-arm64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-win32-arm64/-/native-preview-win32-arm64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "6p2aDhxDr5lBGetFlZMNs3+W5lzUnAIR6BVnoPBc/oiNqWY929Sh2kA0poTx2piUvpi8xUs6k1MWjonZP5UbgQ==";
+      };
+    };
+    "@typescript/native-preview-win32-x64-7.0.0-dev.20251206.1" = {
+      name = "_at_typescript_slash_native-preview-win32-x64";
+      packageName = "@typescript/native-preview-win32-x64";
+      version = "7.0.0-dev.20251206.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@typescript/native-preview-win32-x64/-/native-preview-win32-x64-7.0.0-dev.20251206.1.tgz";
+        sha512 = "fsLQ21YABSaIrtuHLs+9fL2s3kc8bHF7UB4TatMwnFCzGvQJ7L1b5snfSjnSZeh3ETTeING8f9YHjiIf0h4jpA==";
+      };
+    };
     "@unocss/autocomplete-66.5.9" = {
       name = "_at_unocss_slash_autocomplete";
       packageName = "@unocss/autocomplete";
@@ -2059,6 +2131,14 @@ let
       sources."@textlint/types-15.4.0"
       sources."@types/estree-1.0.8"
       sources."@types/normalize-package-data-2.4.4"
+      sources."@typescript/native-preview-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-darwin-arm64-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-darwin-x64-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-linux-arm-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-linux-arm64-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-linux-x64-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-win32-arm64-7.0.0-dev.20251206.1"
+      sources."@typescript/native-preview-win32-x64-7.0.0-dev.20251206.1"
       (
         sources."@unocss/autocomplete-66.5.9"
         // {

@@ -6,6 +6,7 @@
   claude-code-overlay,
   system,
   helpers,
+  nodePackages ? null,
   ...
 }:
 {
@@ -71,6 +72,7 @@
         config
         dotfilesDir
         helpers
+        nodePackages
         ;
     })
 

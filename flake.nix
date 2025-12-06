@@ -312,6 +312,11 @@
                       ;
                     homedir = linuxHomedir;
                     system = linuxSystem;
+                    nodePackages = import ./nix/node2nix {
+                      inherit pkgs;
+                      inherit (pkgs) system;
+                      nodejs = pkgs.nodejs_24;
+                    };
                   })
 
                   # Linux-specific home-manager configuration
@@ -380,6 +385,11 @@
                       ;
                     homedir = darwinHomedir;
                     system = darwinSystem;
+                    nodePackages = import ./nix/node2nix {
+                      inherit pkgs;
+                      inherit (pkgs) system;
+                      nodejs = pkgs.nodejs_24;
+                    };
                   })
 
                   # macOS-specific home-manager configuration
