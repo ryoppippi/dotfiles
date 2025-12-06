@@ -1,0 +1,27 @@
+name: 'Bot: Update flake inputs (frequent)'
+
+on:
+  schedule:
+    # Run every 3 hours
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    uses: ./.github/workflows/_update-flake-reusable.yaml
+    with:
+      # Only update these specific inputs frequently
+      inputs: >-
+        ai-tools
+        claude-code-overlay
+      # No delay for frequent updates
+      skip-delay-inputs: >-
+        ai-tools
+        claude-code-overlay
+      minimum-release-age-days: '0'
+      skip-delay: true
+      summary-title: 'Frequent Update Summary'
+    secrets:
+      app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+      private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
+      cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}

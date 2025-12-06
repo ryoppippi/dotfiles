@@ -1,13 +1,13 @@
-name: 'Bot: Update flake inputs'
+name: 'Bot: Update flake inputs (stable)'
 
 on:
   schedule:
-    # Run every 3 hours
-    - cron: '0 */3 * * *'
+    # Run once daily at 06:00 UTC
+    - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
       inputs:
-        description: 'Specific flake inputs to update (space-separated, empty for all)'
+        description: 'Specific flake inputs to update (space-separated, empty for all stable inputs)'
         required: false
         default: ''
       minimum-release-age-days:
@@ -21,107 +21,19 @@ on:
         type: boolean
         default: false
 
-# Customisable parameters
-env:
-  # Minimum release age in days before updating
-  MINIMUM_RELEASE_AGE_DAYS: '3'
-
-  # Inputs that skip the release age check
-  # AI tools should be updated immediately without delay
-  # Use YAML folded style (>-) to write one input per line for readability
-  # They will be joined with spaces at runtime
-  SKIP_DELAY_INPUTS: >-
-    ai-tools
-    claude-code-overlay
-
-  # Labels to add to PRs (comma-separated)
-  PR_LABELS: 'dependencies,automated'
-
-  # Enable auto-merge for PRs
-  AUTO_MERGE: 'true'
-
 jobs:
-  discover:
-    runs-on: ubuntu-24.04-arm
-    outputs:
-      matrix: ${{ steps.discover.outputs.matrix }}
-      has-updates: ${{ steps.discover.outputs.has-updates }}
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-
-      - name: Discover flake inputs
-        id: discover
-        uses: ./.github/actions/discover-flake-inputs
-        with:
-          inputs: ${{ github.event.inputs.inputs }}
-          skip-delay-inputs: ${{ env.SKIP_DELAY_INPUTS }}
-
   update:
-    needs: discover
-    if: needs.discover.outputs.has-updates == 'true'
-    runs-on: ubuntu-24.04-arm
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - name: Checkout repository (for local actions)
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Set up git bot identity
-        id: bot
-        uses: ./.github/actions/setup-git-bot
-        with:
-          app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
-          private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
-
-      - name: Checkout repository (with bot token)
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          token: ${{ steps.bot.outputs.token }}
-
-      - name: Setup Nix
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
-      - name: Update flake input
-        id: update
-        uses: ./.github/actions/update-flake-input
-        with:
-          input-name: ${{ matrix.name }}
-          current-version: ${{ matrix.current_version }}
-          owner: ${{ matrix.owner }}
-          repo: ${{ matrix.repo }}
-          ref: ${{ matrix.ref }}
-          skip-delay: ${{ github.event.inputs.skip-delay == 'true' && 'true' || matrix.skip_delay }}
-          minimum-release-age-days: ${{ github.event.inputs.minimum-release-age-days || env.MINIMUM_RELEASE_AGE_DAYS }}
-          auto-merge: ${{ env.AUTO_MERGE }}
-          pr-labels: ${{ env.PR_LABELS }}
-          github-token: ${{ steps.bot.outputs.token }}
-
-  summary:
-    needs: [discover, update]
-    runs-on: ubuntu-24.04-arm
-    if: always() && needs.discover.outputs.has-updates == 'true'
-    steps:
-      - name: Generate summary
-        run: |
-          echo "## Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
-          echo "- Minimum release age: ${{ env.MINIMUM_RELEASE_AGE_DAYS }} days" >> $GITHUB_STEP_SUMMARY
-          echo "- Skip delay inputs: ${{ env.SKIP_DELAY_INPUTS }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Auto-merge: ${{ env.AUTO_MERGE }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          if [ "${{ contains(needs.update.result, 'failure') }}" = "true" ]; then
-            echo ":warning: Some updates failed. Check individual job logs for details." >> $GITHUB_STEP_SUMMARY
-          else
-            echo ":white_check_mark: All update jobs completed." >> $GITHUB_STEP_SUMMARY
-          fi
+    uses: ./.github/workflows/_update-flake-reusable.yaml
+    with:
+      inputs: ${{ github.event.inputs.inputs || '' }}
+      # Exclude inputs that are handled by the frequent workflow
+      exclude-inputs: >-
+        ai-tools
+        claude-code-overlay
+      minimum-release-age-days: ${{ github.event.inputs.minimum-release-age-days || '3' }}
+      skip-delay: ${{ github.event.inputs.skip-delay == 'true' }}
+      summary-title: 'Stable Update Summary'
+    secrets:
+      app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+      private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
+      cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}

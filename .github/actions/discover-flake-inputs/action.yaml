@@ -6,10 +6,14 @@ inputs:
     description: 'Space-separated list of specific inputs to update (empty for all)'
     required: false
     default: ''
+  exclude-inputs:
+    description: 'Space-separated list of inputs to exclude from discovery'
+    required: false
+    default: ''
   skip-delay-inputs:
     description: 'Space-separated list of inputs that should skip the release age check'
     required: false
-    default: 'ai-tools claude-code-overlay'
+    default: ''
 
 outputs:
   matrix:
@@ -27,17 +31,33 @@ runs:
       shell: bash
       env:
         INPUTS: ${{ inputs.inputs }}
+        EXCLUDE_INPUTS: ${{ inputs.exclude-inputs }}
         SKIP_DELAY_INPUTS: ${{ inputs.skip-delay-inputs }}
       run: |
         set -euo pipefail
 
         echo "=== Discovery Configuration ==="
         echo "INPUTS: ${INPUTS:-<all>}"
-        echo "Skip delay inputs: ${SKIP_DELAY_INPUTS}"
+        echo "Exclude inputs: ${EXCLUDE_INPUTS:-<none>}"
+        echo "Skip delay inputs: ${SKIP_DELAY_INPUTS:-<none>}"
         echo
 
+        # Convert exclude inputs to array
+        IFS=' ' read -ra exclude_array <<< "${EXCLUDE_INPUTS:-}"
+
         # Convert skip delay inputs to array
-        IFS=' ' read -ra skip_delay_array <<< "$SKIP_DELAY_INPUTS"
+        IFS=' ' read -ra skip_delay_array <<< "${SKIP_DELAY_INPUTS:-}"
+
+        # Function to check if input should be excluded
+        should_exclude() {
+          local input="$1"
+          for exclude_input in "${exclude_array[@]}"; do
+            if [ "$input" = "$exclude_input" ]; then
+              return 0
+            fi
+          done
+          return 1
+        }
 
         # Function to check if input should skip delay
         should_skip_delay() {
@@ -76,6 +96,12 @@ runs:
         fi
 
         for input in $requested_inputs; do
+          # Check if this input should be excluded
+          if [ ${#exclude_array[@]} -gt 0 ] && should_exclude "$input"; then
+            echo "  - $input (excluded)"
+            continue
+          fi
+
           # Check if this input exists in the flake
           if ! echo "$metadata" | jq -e ".locks.nodes.\"$input\"" >/dev/null 2>&1; then
             echo "Warning: Input $input not found, skipping"
