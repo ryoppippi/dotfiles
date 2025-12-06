@@ -45,6 +45,7 @@ return {
 				"astro",
 				"biome",
 				"eslint",
+				"oxlint",
 				"emmet_ls",
 				"tailwindcss",
 				"cssmodules_ls",
