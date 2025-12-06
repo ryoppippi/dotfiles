@@ -18,6 +18,14 @@ let
       exit 0
     fi
 
+    # Skip during rebase/merge/cherry-pick
+    if [ -d "$(git rev-parse --git-path rebase-merge)" ] || \
+       [ -d "$(git rev-parse --git-path rebase-apply)" ] || \
+       [ -f "$(git rev-parse --git-path MERGE_HEAD)" ] || \
+       [ -f "$(git rev-parse --git-path CHERRY_PICK_HEAD)" ]; then
+      exit 0
+    fi
+
     # Check if environment variable is set
     check() {
       [ -n "''${!1}" ]
