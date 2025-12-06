@@ -19,14 +19,13 @@ in
     # Common packages
     ./packages.nix
 
-    # Git hooks configuration
+    # Git hooks configuration (lefthook)
     (import ./git-hooks.nix {
       inherit
         pkgs
         lib
         config
         dotfilesDir
-        treefmt-nix
         ;
     })
 
