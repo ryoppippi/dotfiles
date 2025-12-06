@@ -176,7 +176,6 @@ in
       "secretive"
       "steam"
       "thebrowsercompany-dia"
-      "zoom"
     ];
 
     masApps = {

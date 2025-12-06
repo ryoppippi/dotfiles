@@ -45,6 +45,7 @@
       stats
       vlc
       yaak
+      zoom
     ])
     # brew-nix packages requiring hash override
     ++ [
