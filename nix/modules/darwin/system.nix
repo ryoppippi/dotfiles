@@ -162,7 +162,6 @@ in
       "blu-ray-player-pro"
       "claude"
       "cloudflare-warp"
-      "google-chrome"
       "google-drive"
       "imageoptim" # brew-nix has tar.xz extraction issues
       "jettison"

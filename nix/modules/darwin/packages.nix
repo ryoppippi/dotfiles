@@ -13,6 +13,7 @@
 
       # macOS GUI applications (not available on Linux in nixpkgs)
       arto
+      google-chrome
       cyberduck
       keycastr
       monitorcontrol
