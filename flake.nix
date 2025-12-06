@@ -47,11 +47,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     gh-nippou = {
       url = "github:ryoppippi/gh-nippou";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,7 +79,6 @@
       ai-tools,
       claude-code-overlay,
       treefmt-nix,
-      git-hooks,
       gh-nippou,
       brew-nix,
       brew-api,
@@ -308,7 +302,6 @@
                       lib
                       claude-code-overlay
                       treefmt-nix
-                      git-hooks
                       ;
                     homedir = linuxHomedir;
                     system = linuxSystem;
@@ -381,7 +374,6 @@
                       lib
                       claude-code-overlay
                       treefmt-nix
-                      git-hooks
                       ;
                     homedir = darwinHomedir;
                     system = darwinSystem;

@@ -6,7 +6,6 @@
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
   claude-code-overlay ? null,
   treefmt-nix ? null,
-  git-hooks ? null,
   system ? null,
   nodePackages ? null,
   ...
@@ -20,13 +19,15 @@ in
     # Common packages
     ./packages.nix
 
-    # Git hooks configuration (lefthook)
+    # Git hooks configuration (treefmt + rebase skip)
     (import ./git-hooks.nix {
       inherit
         pkgs
         lib
         config
         dotfilesDir
+        treefmt-nix
+        nodePackages
         ;
     })
 

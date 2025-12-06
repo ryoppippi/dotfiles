@@ -21,7 +21,6 @@ in
       ghq
       lazygit
       lazydocker
-      lefthook
       # Search & file utilities
       ripgrep
       fd
