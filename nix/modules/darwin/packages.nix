@@ -17,7 +17,6 @@
       keycastr
       monitorcontrol
       obsidian
-      raycast
     ]
     # brew-nix packages (Homebrew casks managed via Nix)
     # Note: imageoptim excluded due to tar.xz extraction issues with brew-nix
@@ -38,6 +37,7 @@
       postman
       processing
       qlvideo
+      raycast
       shottr
       signal
       stats
