@@ -166,7 +166,6 @@ in
       "cloudflare-warp"
       "google-chrome"
       "google-drive"
-      "homerow"
       "imageoptim" # brew-nix has tar.xz extraction issues
       "jettison"
       "karabiner-elements"

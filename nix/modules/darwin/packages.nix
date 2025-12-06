@@ -29,6 +29,7 @@
       figma
       glance-chamburr
       hammerspoon
+      homerow
       istherenet
       kap
       maestral
