@@ -169,7 +169,6 @@ in
       "jettison"
       "karabiner-elements"
       "lulu"
-      "ollama-app"
       "openvpn-connect"
       "orbstack"
       "sdformatter"

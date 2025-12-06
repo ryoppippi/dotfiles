@@ -36,6 +36,7 @@
       maestral
       marta
       obs
+      ollama-app
       postman
       processing
       qlvideo
