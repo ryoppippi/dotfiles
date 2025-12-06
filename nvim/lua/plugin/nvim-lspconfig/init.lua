@@ -6,7 +6,6 @@ return {
 		cond = not is_vscode(),
 		dependencies = {
 			"b0o/schemastore.nvim",
-			"yioneko/nvim-vtsls",
 			---@diagnostic disable-next-line: missing-fields
 			{
 				"ray-x/go.nvim",
@@ -52,7 +51,7 @@ return {
 				"unocss",
 				"html",
 				"stylelint_lsp",
-				"vtsls",
+				"tsgo",
 
 				-- go
 				"gopls",
