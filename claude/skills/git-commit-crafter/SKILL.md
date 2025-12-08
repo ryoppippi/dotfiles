@@ -155,3 +155,4 @@ affecting the service itself.
 - Match project's established scope naming and conventions
 - Include issue/PR references when applicable
 - Each commit must pass: "If I revert this, will it break other features?"
+- If the commit is just for apllying formatter use `chore(xxx): format` or just `chore: format`
