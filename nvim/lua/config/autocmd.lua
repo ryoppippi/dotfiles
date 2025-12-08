@@ -50,14 +50,62 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 	end,
 })
 
+-- Idle timer: fires User IdleTick event every 1000ms while cursor is idle
+local idle_timer_group = vim.api.nvim_create_augroup("idle_timer", { clear = true })
+local idle_timer = vim.uv.new_timer()
+
+local function stop_idle_timer()
+	if idle_timer:is_active() then
+		idle_timer:stop()
+	end
+end
+
+local function start_idle_timer()
+	stop_idle_timer()
+	idle_timer:start(
+		1000,
+		1000,
+		vim.schedule_wrap(function()
+			if vim.fn.mode() ~= "c" and vim.api.nvim_get_mode().blocking == false then
+				vim.api.nvim_exec_autocmds("User", { pattern = "IdleTick" })
+			end
+		end)
+	)
+end
+
+-- Start timer on CursorHold
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	pattern = "*",
+	group = idle_timer_group,
+	callback = start_idle_timer,
+	desc = "Start idle timer on CursorHold",
+})
+
+-- Stop timer when cursor moves or mode changes
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "InsertEnter", "InsertLeave", "CmdlineEnter" }, {
+	pattern = "*",
+	group = idle_timer_group,
+	callback = stop_idle_timer,
+	desc = "Stop idle timer on cursor move",
+})
+
+-- Check if file is modified on various events including IdleTick
+local function checktime_if_safe()
+	if vim.fn.mode() ~= "c" then
+		vim.cmd.checktime()
+	end
+end
+
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "CursorHold", "CursorHoldI", "WinEnter" }, {
 	pattern = "*",
-	callback = function()
-		if vim.fn.mode() ~= "c" then
-			vim.cmd.checktime()
-		end
-	end,
+	callback = checktime_if_safe,
 	desc = "check if file is modified",
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "IdleTick",
+	callback = checktime_if_safe,
+	desc = "check if file is modified on idle tick",
 })
 
 vim.api.nvim_create_autocmd("Filetype", {
