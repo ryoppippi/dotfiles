@@ -16,6 +16,7 @@ in
       tmux
       # VCS
       git
+      git-now
       bit
       git-lfs
       ghq
