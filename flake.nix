@@ -113,9 +113,9 @@
             (final: prev: {
               _ai-tools = ai-tools;
               _claude-code-overlay = claude-code-overlay;
-              gh-nippou = gh-nippou.packages.${system}.default;
               arto = rs-arto.packages.${system}.default;
             })
+            gh-nippou.overlays.default
             (import ./nix/overlays/default.nix)
           ]
           ++ lib.optionals isDarwin [
