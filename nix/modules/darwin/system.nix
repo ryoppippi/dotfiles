@@ -163,7 +163,6 @@ in
       "cloudflare-warp"
       "google-drive"
       "imageoptim" # brew-nix has tar.xz extraction issues
-      "jettison"
       "karabiner-elements"
       "lulu"
       "ollama-app"
