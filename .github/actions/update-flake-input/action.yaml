@@ -89,7 +89,7 @@ runs:
 
           # Define packages to check for each input
           case "$INPUT_NAME" in
-            ai-tools)
+            llm-agents)
               packages="claude-code codex amp cursor-agent gemini-cli opencode goose-cli"
               ;;
             claude-code-overlay)
@@ -118,7 +118,7 @@ runs:
 
         # Get current package versions for special inputs
         current_pkg_versions=""
-        if [ "$INPUT_NAME" = "ai-tools" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
+        if [ "$INPUT_NAME" = "llm-agents" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
           echo "Fetching current package versions..."
           current_pkg_versions=$(get_package_versions "github:${current_owner}/${current_repo}/${current_rev}")
           echo "Current package versions: $current_pkg_versions"
@@ -199,7 +199,7 @@ runs:
         # Get new package versions for special inputs
         new_pkg_versions=""
         pkg_version_diff=""
-        if [ "$INPUT_NAME" = "ai-tools" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
+        if [ "$INPUT_NAME" = "llm-agents" ] || [ "$INPUT_NAME" = "claude-code-overlay" ]; then
           echo "Fetching new package versions..."
           new_pkg_versions=$(get_package_versions "github:${new_owner}/${new_repo}/${new_rev}")
           echo "New package versions: $new_pkg_versions"

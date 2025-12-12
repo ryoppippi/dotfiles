@@ -37,7 +37,7 @@ nix run .#build
   - `nixpkgs` - Main package source
   - `nix-darwin` - macOS system configuration
   - `home-manager` - User environment management
-  - `ai-tools` - AI development tools (codex, amp, cursor-agent, opencode, copilot-cli, coderabbit-cli)
+  - `llm-agents` - AI development tools (codex, amp, cursor-agent, opencode, copilot-cli, coderabbit-cli)
   - `claude-code-overlay` - Claude Code package
   - `treefmt-nix` - Code formatting
   - `git-hooks` - Git hooks management

@@ -1,32 +1,12 @@
 {
   "nodes": {
-    "ai-tools": {
-      "inputs": {
-        "blueprint": "blueprint",
-        "nixpkgs": "nixpkgs",
-        "treefmt-nix": "treefmt-nix"
-      },
-      "locked": {
-        "lastModified": 1765508910,
-        "narHash": "sha256-rcNH6JgKo36ufvPJGUkZW4jktkVz0t8FBtPJv/gRUnQ=",
-        "owner": "numtide",
-        "repo": "nix-ai-tools",
-        "rev": "46c494b51cecf3476c20e54e772c6bc48f10e04d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-ai-tools",
-        "type": "github"
-      }
-    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
-          "ai-tools",
+          "llm-agents",
           "nixpkgs"
         ],
-        "systems": "systems"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1763308703,
@@ -138,7 +118,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -156,7 +136,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -179,7 +159,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix"
       },
       "locked": {
         "lastModified": 1765305806,
@@ -260,6 +240,26 @@
         "type": "github"
       }
     },
+    "llm-agents": {
+      "inputs": {
+        "blueprint": "blueprint",
+        "nixpkgs": "nixpkgs",
+        "treefmt-nix": "treefmt-nix_2"
+      },
+      "locked": {
+        "lastModified": 1765508910,
+        "narHash": "sha256-rcNH6JgKo36ufvPJGUkZW4jktkVz0t8FBtPJv/gRUnQ=",
+        "owner": "numtide",
+        "repo": "llm-agents.nix",
+        "rev": "46c494b51cecf3476c20e54e772c6bc48f10e04d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "llm-agents.nix",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -314,12 +314,12 @@
     },
     "root": {
       "inputs": {
-        "ai-tools": "ai-tools",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
         "claude-code-overlay": "claude-code-overlay",
         "gh-nippou": "gh-nippou",
         "home-manager": "home-manager",
+        "llm-agents": "llm-agents",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "rs-arto": "rs-arto",
@@ -395,7 +395,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
-          "ai-tools",
+          "gh-nippou",
           "nixpkgs"
         ]
       },
@@ -416,7 +416,7 @@
     "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
-          "gh-nippou",
+          "llm-agents",
           "nixpkgs"
         ]
       },

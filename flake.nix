@@ -6,13 +6,13 @@
   nixConfig = {
     extra-substituters = [
       "https://cache.nixos.org"
-      "https://numtide.cachix.org"
+      "https://cache.numtide.com"
       "https://devenv.cachix.org"
       "https://ryoppippi.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "numtide.cachix.org-1:2uk1h3hh8XGkFfQJSTgNTg/WRNsE+lTZYOB+VkZdvJo="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "ryoppippi.cachix.org-1:b2LbtWNvJeL/qb1B6TYOMK+apaCps4SCbzlPRfSQIms="
     ];
@@ -33,8 +33,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ai-tools = {
-      url = "github:numtide/nix-ai-tools";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
     };
 
     claude-code-overlay = {
@@ -76,7 +76,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
-      ai-tools,
+      llm-agents,
       claude-code-overlay,
       treefmt-nix,
       gh-nippou,
@@ -111,7 +111,7 @@
           config.allowUnfree = true;
           overlays = [
             (final: prev: {
-              _ai-tools = ai-tools;
+              _llm-agents = llm-agents;
               _claude-code-overlay = claude-code-overlay;
               arto = rs-arto.packages.${system}.default;
             })
@@ -233,14 +233,14 @@
             );
           };
 
-          # Update ai-tools and claude-code-overlay
+          # Update llm-agents and claude-code-overlay
           update-ai-tools = {
             type = "app";
             program = toString (
               pkgs.writeShellScript "update-ai-tools" ''
                 set -e
                 echo "Updating AI tools inputs..."
-                nix flake update ai-tools claude-code-overlay
+                nix flake update llm-agents claude-code-overlay
                 echo "Done! Run 'nix run .#switch' to apply changes."
               ''
             );

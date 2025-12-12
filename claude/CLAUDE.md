@@ -50,7 +50,7 @@ This dotfiles repository uses a modular Nix configuration:
   - Homebrew configuration (taps, brews, casks, masApps)
 
 - **`nix/overlays.nix`** - Package overlays
-  - AI tools from numtide/nix-ai-tools
+  - AI tools from numtide/llm-agents.nix
   - Claude Code from claude-code-overlay
 
 ### When modifying Nix configuration:

@@ -1,6 +1,6 @@
 final: prev: {
-  # AI tools from nix-ai-tools (https://github.com/numtide/nix-ai-tools)
-  inherit (prev._ai-tools.packages.${prev.system})
+  # AI tools from llm-agents.nix (https://github.com/numtide/llm-agents.nix)
+  inherit (prev._llm-agents.packages.${prev.system})
     amp
     codex
     cursor-agent
