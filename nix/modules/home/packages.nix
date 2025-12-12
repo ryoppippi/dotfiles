@@ -108,7 +108,6 @@ in
       # GUI applications (cross-platform)
       audacity
       vscode
-      zed-editor
     ]
     # Platform-specific GUI applications
     # discord only supports x86_64-linux, x86_64-darwin, aarch64-darwin (not aarch64-linux)
