@@ -164,7 +164,6 @@ in
       "google-drive"
       "imageoptim" # brew-nix has tar.xz extraction issues
       "karabiner-elements"
-      "lulu"
       "ollama-app"
       "openvpn-connect"
       "orbstack"
