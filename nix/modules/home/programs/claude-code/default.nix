@@ -65,11 +65,11 @@ in
     SETTINGS_FILE="${claudeConfigDir}/settings.json"
     SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
-    echo "Validating Claude Code settings.json..."
+    echo "🔍 Validating Claude Code settings.json..."
     if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
-      echo "Claude Code settings.json validation passed"
+      echo "✅ Claude Code settings.json validation passed"
     else
-      echo "Claude Code settings.json validation failed" >&2
+      echo "❌ Claude Code settings.json validation failed" >&2
       exit 1
     fi
   '';
