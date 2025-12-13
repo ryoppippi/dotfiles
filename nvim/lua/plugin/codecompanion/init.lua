@@ -13,6 +13,7 @@ return {
 		{ "cca", "CodeCompanionAction", mode = "ca" },
 	},
 	opts = {
+		ignore_warnings = true,
 		adapters = {
 			acp = {
 				claude_code = function()
@@ -45,7 +46,7 @@ return {
 				end,
 			},
 		},
-		strategies = {
+		interactions = {
 			chat = {
 				adapter = "copilot",
 				keymaps = {
