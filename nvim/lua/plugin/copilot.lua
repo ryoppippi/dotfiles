@@ -28,7 +28,7 @@ return {
 				accept_word = false,
 				accept_line = false,
 				next = "<C-n>",
-				prev = "",
+				prev = false,
 				dismiss = "<C-l>",
 			},
 		},
