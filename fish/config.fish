@@ -24,9 +24,7 @@ set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
 set -g FISH_CACHE_DIR /tmp/fish-cache
 
-# add user config
-set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
-# function load_user_config
+# load user config (functions/ is auto-loaded by Fish)
 for file in $FISH_CONFIG_DIR/config/*.fish
     source $file &
 end
