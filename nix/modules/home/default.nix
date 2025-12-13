@@ -8,6 +8,7 @@
   treefmt-nix ? null,
   system ? null,
   nodePackages ? null,
+  fish-na ? null,
   ...
 }:
 let
@@ -42,6 +43,7 @@ in
         system
         helpers
         nodePackages
+        fish-na
         ;
     })
 

@@ -68,6 +68,11 @@
       url = "github:lambdalisue/rs-arto";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fish-na = {
+      url = "github:ryoppippi/fish-na";
+      flake = false;
+    };
   };
 
   outputs =
@@ -83,6 +88,7 @@
       brew-nix,
       brew-api,
       rs-arto,
+      fish-na,
     }:
     let
       lib = nixpkgs.lib;
@@ -302,6 +308,7 @@
                       lib
                       claude-code-overlay
                       treefmt-nix
+                      fish-na
                       ;
                     homedir = linuxHomedir;
                     system = linuxSystem;
@@ -374,6 +381,7 @@
                       lib
                       claude-code-overlay
                       treefmt-nix
+                      fish-na
                       ;
                     homedir = darwinHomedir;
                     system = darwinSystem;

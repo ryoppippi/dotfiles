@@ -100,6 +100,22 @@
         "type": "github"
       }
     },
+    "fish-na": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765647715,
+        "narHash": "sha256-wh7HupHGYqo0dPc3bJMPPXuCxJN51dXPOeYkS6nm/Do=",
+        "owner": "ryoppippi",
+        "repo": "fish-na",
+        "rev": "0a58aa568dc0a6e4d2e58a640259f2da07b5691a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryoppippi",
+        "repo": "fish-na",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -317,6 +333,7 @@
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
         "claude-code-overlay": "claude-code-overlay",
+        "fish-na": "fish-na",
         "gh-nippou": "gh-nippou",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",

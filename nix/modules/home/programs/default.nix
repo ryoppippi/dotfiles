@@ -7,12 +7,18 @@
   system,
   helpers,
   nodePackages ? null,
+  fish-na,
   ...
 }:
 {
   imports = [
     # AI tools
     ./ai-tools.nix
+
+    # Fish shell plugin configuration
+    (import ./fish.nix {
+      inherit pkgs fish-na;
+    })
 
     # Claude Code configuration
     (import ./claude-code {
