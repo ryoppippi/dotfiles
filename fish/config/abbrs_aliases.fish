@@ -8,6 +8,7 @@ abbr la 'ls -hlA'
 abbr lt 'ls --tree'
 abbr lg 'ls -hlFg'
 abbr -a cdr 'cd (git root)'
+abbr -a cdf __fzf_cd
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
 abbr -a br brew
