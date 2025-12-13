@@ -16,8 +16,13 @@
     ./ai-tools.nix
 
     # Fish shell plugin configuration
-    (import ./fish.nix {
-      inherit pkgs fish-na;
+    (import ./fish {
+      inherit
+        pkgs
+        fish-na
+        lib
+        config
+        ;
     })
 
     # Claude Code configuration

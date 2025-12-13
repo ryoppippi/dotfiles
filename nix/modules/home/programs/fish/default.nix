@@ -1,0 +1,167 @@
+{
+  pkgs,
+  fish-na,
+  config,
+  lib,
+  ...
+}:
+let
+  # Define Fish plugins
+  fishPlugins = [
+    # Plugins from nixpkgs (cached and maintained)
+    {
+      name = "autopair-fish";
+      src = pkgs.fishPlugins.autopair-fish.src;
+    }
+    {
+      name = "bass";
+      src = pkgs.fishPlugins.bass.src;
+    }
+    {
+      name = "fzf";
+      src = pkgs.fishPlugins.fzf.src;
+    }
+    {
+      name = "fish-bd";
+      src = pkgs.fishPlugins.fish-bd.src;
+    }
+    {
+      name = "hydro";
+      src = pkgs.fishPlugins.hydro.src;
+    }
+    {
+      name = "spark";
+      src = pkgs.fishPlugins.spark.src;
+    }
+
+    # GHQ integration
+    {
+      name = "fish-ghq";
+      src = pkgs.fetchFromGitHub {
+        owner = "decors";
+        repo = "fish-ghq";
+        rev = "cafaaabe63c124bf0714f89ec715cfe9ece87fa2";
+        sha256 = "sha256-6b1zmjtemNLNPx4qsXtm27AbtjwIZWkzJAo21/aVZzM=";
+      };
+    }
+
+    # Mock command for testing
+    {
+      name = "fish-mock";
+      src = pkgs.fetchFromGitHub {
+        owner = "matchai";
+        repo = "fish-mock";
+        rev = "2a830f639183f7d1d1f2f9b5c00d971ab41c6b86";
+        sha256 = "sha256-tw4DD4DjMgz8/xIKMRFdJj9kFvNzZmY6HZYo+l9zknY=";
+      };
+    }
+
+    # Environment variable helper
+    {
+      name = "ev-fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "joehillen";
+        repo = "ev-fish";
+        rev = "a3d0658c40e33c40a7bddf558b958c01e0e11972";
+        sha256 = "sha256-t7FKKzD42hAZV7CpitrznRYLkCYok7Bqg1JXW7BaKyA=";
+      };
+    }
+
+    # Replay bash/zsh commands in fish
+    {
+      name = "replay.fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "jorgebucaran";
+        repo = "replay.fish";
+        rev = "d2ecacd37e5ad4858a91e81e4eb47fb0c4a8bf7a";
+        sha256 = "sha256-TzQ97h9tBRUg+A7DSKeTBWLQuThicbu19DHMwkmUXdg=";
+      };
+    }
+
+    # Abbreviation tips
+    {
+      name = "fish-abbreviation-tips";
+      src = pkgs.fetchFromGitHub {
+        owner = "gazorby";
+        repo = "fish-abbreviation-tips";
+        rev = "8ed76a62bb044ba4ad8e3e6832640178880df485";
+        sha256 = "sha256-F1t81VliD+v6WEWqj1c1ehFBXzqLyumx5vV46s/FZRU=";
+      };
+    }
+
+    # Bun + Deno + Node switcher
+    {
+      name = "bdf.fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "ryoppippi";
+        repo = "bdf.fish";
+        rev = "09d7dfc3e2e11196a5172e93406a8d7325f5a64f";
+        sha256 = "sha256-lXNHi7AIFd3h8nEPnTaCdNwfZrrnvWgRsybPH/X9peY=";
+      };
+    }
+
+    # PATH editor
+    {
+      name = "pathed.fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "yuys13";
+        repo = "pathed.fish";
+        rev = "6a76197905966f3e9fb45d08edb77e6f5bfc1e54";
+        sha256 = "sha256-9KmgxaiaCnDXyXXAnvtZ+4YiCqD+mSOg1ymi0adjc5Y=";
+      };
+    }
+
+    # Text expansion for fish
+    {
+      name = "puffer-fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "nickeb96";
+        repo = "puffer-fish";
+        rev = "83174b07e732c9d8ab42efc37f1a317eed05c2a0";
+        sha256 = "sha256-Dhx5+XRxJvlhdnFyimNxFyFiASrGU4ZwyefsDwtKnSg=";
+      };
+    }
+
+    # Nix environment support
+    {
+      name = "nix-env.fish";
+      src = pkgs.fetchFromGitHub {
+        owner = "lilyball";
+        repo = "nix-env.fish";
+        rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
+        sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
+      };
+    }
+
+    # Runtime version switcher
+    {
+      name = "fish-na";
+      src = fish-na;
+    }
+
+    # Customisable key bindings
+    {
+      name = "by-binds-yourself";
+      src = pkgs.fetchFromGitHub {
+        owner = "atusy";
+        repo = "by-binds-yourself";
+        rev = "c807ba84e9ffa00e81c0cbbb22b22e9dba3c8e8e";
+        sha256 = "sha256-WZaZvnOPil9CYjdUzjsM9b27TxP3AmxllbRCnxmHtzY=";
+      };
+    }
+  ];
+
+in
+{
+  # Install plugins to ~/.local/share/fish/vendor_conf.d
+  # This directory is automatically sourced by Fish
+  home.file = lib.listToAttrs (
+    map (plugin: {
+      name = ".local/share/fish/vendor_conf.d/${plugin.name}";
+      value = {
+        source = plugin.src;
+        recursive = true;
+      };
+    }) fishPlugins
+  );
+}
