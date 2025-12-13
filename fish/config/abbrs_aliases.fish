@@ -19,7 +19,6 @@ abbr -a rf 'rm -rf'
 abbr -a mkd 'mkdir -p'
 abbr -a mkdir 'mkdir -p'
 abbr -a src source
-abbr -a cdd __fzf_cd
 abbr -a o open
 abbr -a bunb 'bun --bun'
 abbr -a bunbx 'bunx --bun'
