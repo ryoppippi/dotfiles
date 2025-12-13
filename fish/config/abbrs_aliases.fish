@@ -60,8 +60,8 @@ abbr -a dr "deno run -A --unstable"
 abbr -a deno-cache-clear "rm -rf (deno info | string match --entire --regex 'DENO_DIR*' | string split ' ')[-1]"
 abbr -a dt "deno task"
 
-abbr -a cpf "pbcopy < "
-abbr -a paf "pbpaste > "
+abbr -a pbc pbcopy
+abbr -a pbp pbpaste
 
 # git configs
 type -q bit && alias git bit
