@@ -114,5 +114,8 @@
         config
         ;
     })
+
+    # Pip configuration
+    ./pip.nix
   ];
 }
