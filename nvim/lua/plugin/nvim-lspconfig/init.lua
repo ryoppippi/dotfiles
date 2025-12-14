@@ -30,6 +30,7 @@ return {
 			vim.lsp.enable({
 				-- general
 				"efm",
+				"oxfmt",
 
 				-- config files
 				"jsonls",
