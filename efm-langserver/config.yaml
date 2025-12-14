@@ -77,9 +77,18 @@ tools:
       - .swift-format
       - .git
 
+  oxfmt: &oxfmt
+    format-command: "./node_modules/.bin/oxfmt --stdin-filename ${INPUT}"
+    format-stdin: true
+    require-marker: true
+    root-markers:
+      - .oxfmtrc.jsonc
+      - .oxfmtrc.json
+      - package.json
+
   prettier: &prettier
     format-command: >
-      ./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT} 
+      ./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}
         # ${--range-start:charStart} \
         # ${--range-end:charEnd} \
         # ${--tab-width:tabSize} \
@@ -166,12 +175,16 @@ languages:
   astro:
     - <<: *prettier
   javascriptreact:
+    - <<: *oxfmt
     - <<: *prettier
   javascript.jsx:
+    - <<: *oxfmt
     - <<: *prettier
   typescriptreact:
+    - <<: *oxfmt
     - <<: *prettier
   typescript.tsx:
+    - <<: *oxfmt
     - <<: *prettier
   markdown:
     # - <<: *prettier
@@ -188,8 +201,10 @@ languages:
     - <<: *prettier
   ## scripts
   javascript:
+    - <<: *oxfmt
     - <<: *prettier
   typescript:
+    - <<: *oxfmt
     - <<: *prettier
   ## other
   graphql:
