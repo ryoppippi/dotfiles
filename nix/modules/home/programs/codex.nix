@@ -46,15 +46,6 @@ let
         ];
       };
 
-      lsmcp-tsgo = {
-        command = bunx;
-        args = [
-          "@mizchi/lsmcp@latest"
-          "-p"
-          "tsgo"
-        ];
-      };
-
       devenv = {
         command = "devenv";
         enabled = false;
