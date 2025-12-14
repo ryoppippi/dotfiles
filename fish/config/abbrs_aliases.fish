@@ -130,8 +130,10 @@ abbr -a -c git pl pull # Pull from remote
 abbr -a ghp 'gh poi'
 abbr -a -c gh pco 'pr checkout'
 abbr -a -c gh pcr 'pr create'
-abbr -a -c gh pbr 'pr view --web'
 abbr -a gh-fork-sync "gh repo list --limit 200 --fork --json nameWithOwner --jq '.[].nameWithOwner' | xargs -n1 gh repo sync"
+
+# git extended
+abbr -a -c git pbr 'browse-pr'
 
 # ghq
 abbr -a gg 'ghq get'

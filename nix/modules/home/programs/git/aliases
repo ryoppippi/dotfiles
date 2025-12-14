@@ -5,6 +5,8 @@
   fixit = commit --amend --no-edit
   ; Open the repository in a web browser
   browse = !gh repo view --web
+  ; Open the pull request in a web browser
+  browse-pr = !gh pr view --web
   ; Get the commit URL for the current HEAD
   brc = !"echo $(gh repo view --json url  --jq .url)/commit/$(git rev-parse HEAD)"
   ; Clone with submodules recursively
