@@ -142,7 +142,6 @@ in
     ignores = [
       # Environment
       ".venv"
-      ".envrc"
       ".direnv"
 
       # macOS
