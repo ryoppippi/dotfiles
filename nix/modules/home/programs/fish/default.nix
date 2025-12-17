@@ -45,17 +45,6 @@ let
       };
     }
 
-    # Mock command for testing
-    {
-      name = "fish-mock";
-      src = pkgs.fetchFromGitHub {
-        owner = "matchai";
-        repo = "fish-mock";
-        rev = "2a830f639183f7d1d1f2f9b5c00d971ab41c6b86";
-        sha256 = "sha256-tw4DD4DjMgz8/xIKMRFdJj9kFvNzZmY6HZYo+l9zknY=";
-      };
-    }
-
     # Environment variable helper
     {
       name = "ev-fish";
