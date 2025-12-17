@@ -51,7 +51,7 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "joehillen";
         repo = "ev-fish";
-        rev = "a3d0658c40e33c40a7bddf558b958c01e0e11972";
+        rev = "a3d0658c5e0563ff0f4ade9e83b20e01fea0a9e6";
         sha256 = "sha256-t7FKKzD42hAZV7CpitrznRYLkCYok7Bqg1JXW7BaKyA=";
       };
     }
@@ -62,7 +62,7 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "jorgebucaran";
         repo = "replay.fish";
-        rev = "d2ecacd37e5ad4858a91e81e4eb47fb0c4a8bf7a";
+        rev = "d2ecacd3fe7126e822ce8918389f3ad93b14c86c";
         sha256 = "sha256-TzQ97h9tBRUg+A7DSKeTBWLQuThicbu19DHMwkmUXdg=";
       };
     }
@@ -95,7 +95,7 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "yuys13";
         repo = "pathed.fish";
-        rev = "6a76197905966f3e9fb45d08edb77e6f5bfc1e54";
+        rev = "6a761979781c1f4eebb3d0269fab0b3b4fba2b49";
         sha256 = "sha256-9KmgxaiaCnDXyXXAnvtZ+4YiCqD+mSOg1ymi0adjc5Y=";
       };
     }
@@ -106,7 +106,7 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "nickeb96";
         repo = "puffer-fish";
-        rev = "83174b07e732c9d8ab42efc37f1a317eed05c2a0";
+        rev = "83174b07de60078be79985ef6123d903329622b8";
         sha256 = "sha256-Dhx5+XRxJvlhdnFyimNxFyFiASrGU4ZwyefsDwtKnSg=";
       };
     }
@@ -134,7 +134,7 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "atusy";
         repo = "by-binds-yourself";
-        rev = "c807ba84e9ffa00e81c0cbbb22b22e9dba3c8e8e";
+        rev = "c807ba8477f20624022b0146645696c1e48d2267";
         sha256 = "sha256-WZaZvnOPil9CYjdUzjsM9b27TxP3AmxllbRCnxmHtzY=";
       };
     }
