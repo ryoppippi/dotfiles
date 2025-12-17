@@ -1,0 +1,35 @@
+name: Nix Diff Check
+
+on:
+  pull_request:
+    paths:
+      - "flake.lock"
+      - "flake.nix"
+      - "nix/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  nix-diff:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+
+      - name: Run nix-diff
+        uses: natsukium/nix-diff-action@88dda3e67a3eca1b77a9c37d9b1670dc3578b473 # main
+        with:
+          skip-no-change: true
+          attributes: |
+            - displayName: darwin (aarch64)
+              attribute: darwinConfigurations.ryoppippi.system
+            - displayName: home-manager (x86_64-linux)
+              attribute: homeConfigurations.ryoppippi.activationPackage
+            - displayName: home-manager (aarch64-linux)
+              attribute: homeConfigurations.ryoppippi-aarch64.activationPackage
