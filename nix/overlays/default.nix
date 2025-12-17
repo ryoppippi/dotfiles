@@ -14,7 +14,6 @@ let
     ./sheep.nix
     ./git-now.nix
     ./bluetooth-connector.nix
-    ./oglens.nix
   ];
 
   # Apply each overlay and merge results

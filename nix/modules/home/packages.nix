@@ -91,7 +91,6 @@ in
       tokei
       bsky-cli
       signal-cli
-      oglens
       sheep
       # Additional CLI tools
       aria2
