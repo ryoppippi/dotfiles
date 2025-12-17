@@ -93,7 +93,6 @@ in
       signal-cli
       oglens
       sheep
-      similarity
       # Additional CLI tools
       aria2
       cloc
