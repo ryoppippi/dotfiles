@@ -17,7 +17,6 @@ let
     ./gyazo-cli.nix
     ./oglens.nix
     ./tv.nix
-    ./similarity-ts.nix
   ];
 
   # Apply each overlay and merge results
