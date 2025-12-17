@@ -17,27 +17,12 @@ let
 
   # Codex configuration settings
   settings = {
-    model = "gpt-5.2-codex";
+    model = "gpt-5.2";
     approval_policy = "on-request";
     model_reasoning_effort = "medium";
     web_search_request = true;
 
     mcp_servers = {
-      figma-dev-mode-mcp-server = {
-        startup_timeout_ms = 5000;
-        url = "http://127.0.0.1:3845/mcp";
-      };
-
-      deepwiki = {
-        startup_timeout_ms = 5000;
-        url = "https://mcp.deepwiki.com/mcp";
-      };
-
-      context7 = {
-        startup_timeout_ms = 5000;
-        url = "https://mcp.context7.com/mcp";
-      };
-
       chrome-devtools = {
         command = bunx;
         enabled = false;
@@ -46,10 +31,25 @@ let
         ];
       };
 
+      context7 = {
+        startup_timeout_ms = 5000;
+        url = "https://mcp.context7.com/mcp";
+      };
+
+      deepwiki = {
+        startup_timeout_ms = 5000;
+        url = "https://mcp.deepwiki.com/mcp";
+      };
+
       devenv = {
         command = "devenv";
         enabled = false;
         args = [ "mcp" ];
+      };
+
+      figma-dev-mode-mcp-server = {
+        startup_timeout_ms = 5000;
+        url = "http://127.0.0.1:3845/mcp";
       };
     };
 
@@ -71,7 +71,10 @@ in
   # Codex configuration files
   home.file = {
     # Generated config.toml from Nix settings
-    "${codexConfigDir}/config.toml".source = tomlFormat.generate "codex-config" settings;
+    "${codexConfigDir}/config.toml" = {
+      source = tomlFormat.generate "codex-config" settings;
+      force = true;
+    };
     # Symlink AGENTS.md from dotfiles
     "${codexConfigDir}/AGENTS.md".source =
       config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";

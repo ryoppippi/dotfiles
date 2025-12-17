@@ -16,7 +16,6 @@ let
     ./bluetooth-connector.nix
     ./gyazo-cli.nix
     ./oglens.nix
-    ./tv.nix
   ];
 
   # Apply each overlay and merge results
