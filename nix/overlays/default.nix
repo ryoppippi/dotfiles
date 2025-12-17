@@ -14,7 +14,6 @@ let
     ./sheep.nix
     ./git-now.nix
     ./bluetooth-connector.nix
-    ./gyazo-cli.nix
     ./oglens.nix
   ];
 

@@ -102,8 +102,6 @@ in
       figlet
       gawk
       pv
-      # Image tools
-      gyazo-cli
 
       # GUI applications (cross-platform)
       audacity
