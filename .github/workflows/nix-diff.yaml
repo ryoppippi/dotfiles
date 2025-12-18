@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/setup-nix
 
       - name: Run nix-diff
-        uses: natsukium/nix-diff-action@11fd795f34e50b653c05ffe329a773fd76c570e6 # main
+        uses: natsukium/nix-diff-action@1d30c9c0c9c0001ab275a9f056e6010820c9d043 # main
         with:
           skip-no-change: true
           attributes: |
