@@ -31,7 +31,6 @@ Temporary Items
 
 .mypy_cache/*
 
-.claude
 result
 
 # devenv
