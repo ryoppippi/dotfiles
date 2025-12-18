@@ -150,9 +150,10 @@ affecting the service itself.
 
 ## Key Principles
 
-- Always use English for commit messages
+- Always use **English** for commit messages with **UK English spelling** (e.g. "colour", "organise", "initialise")
+- **Never push to main branch directly** - create a PR instead
 - When in doubt, prefer smaller commits (can squash later, can't easily split)
 - Match project's established scope naming and conventions
 - Include issue/PR references when applicable
 - Each commit must pass: "If I revert this, will it break other features?"
-- If the commit is just for apllying formatter use `chore(xxx): format` or just `chore: format`
+- If the commit is just for applying formatter use `chore(xxx): format` or just `chore: format`
