@@ -58,6 +58,7 @@ in
     ".claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
     ".claude/output-styles".source =
       config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
+    ".claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/rules";
   };
 
   # Validate Claude Code settings.json after generation
