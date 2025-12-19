@@ -73,6 +73,11 @@
       url = "github:ryoppippi/fish-na";
       flake = false;
     };
+
+    gh-graph = {
+      url = "github:kawarimidoll/gh-graph";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -85,6 +90,7 @@
       claude-code-overlay,
       treefmt-nix,
       gh-nippou,
+      gh-graph,
       brew-nix,
       brew-api,
       rs-arto,
@@ -122,6 +128,7 @@
               arto = rs-arto.packages.${system}.default;
             })
             gh-nippou.overlays.default
+            gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
           ]
           ++ lib.optionals isDarwin [

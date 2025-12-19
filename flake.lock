@@ -168,9 +168,48 @@
         "type": "github"
       }
     },
-    "gh-nippou": {
+    "flake-parts_3": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_3"
+      },
+      "locked": {
+        "lastModified": 1765835352,
+        "narHash": "sha256-XswHlK/Qtjasvhd1nOa1e8MgZ8GS//jBoTqWtrS1Giw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "a34fae9c08a15ad73f295041fec82323541400a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "gh-graph": {
       "inputs": {
         "flake-parts": "flake-parts_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766144516,
+        "narHash": "sha256-rjObQGmEfr+uIV3/yF8uLG5HQBFPhS9YmUcUFfRFLSM=",
+        "owner": "kawarimidoll",
+        "repo": "gh-graph",
+        "rev": "03ad418b5f5dbfef5fb93c5563b82231d760bf24",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kawarimidoll",
+        "repo": "gh-graph",
+        "type": "github"
+      }
+    },
+    "gh-nippou": {
+      "inputs": {
+        "flake-parts": "flake-parts_3",
         "git-hooks": "git-hooks",
         "nixpkgs": [
           "nixpkgs"
@@ -342,6 +381,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib_3": {
+      "locked": {
+        "lastModified": 1765674936,
+        "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "2075416fcb47225d9b68ac469a5c4801a9c4dd85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1765864412,
@@ -364,6 +418,7 @@
         "brew-nix": "brew-nix",
         "claude-code-overlay": "claude-code-overlay",
         "fish-na": "fish-na",
+        "gh-graph": "gh-graph",
         "gh-nippou": "gh-nippou",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
