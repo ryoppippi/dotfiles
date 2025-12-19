@@ -67,7 +67,7 @@ return {
 				"sourcekit",
 
 				-- python
-				"pyright",
+				"basedpyright",
 
 				-- misc
 				"typos_lsp",
