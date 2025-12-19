@@ -9,16 +9,18 @@ function npkill
     # List all node_modules directories with their sizes
     find . -type d -name node_modules -prune -exec du -sh {} + | sort -rh
 
-    echo -n "Do you want to delete all node_modules directories? (y/n) "
+    echo -n "Do you want to move all node_modules directories to /tmp? (y/n) "
     read -l answer
     if test "$answer" = y
-        # Use trash if available, otherwise fallback to rm
-        if command -v trash >/dev/null 2>&1
-            find . -type d -name node_modules -prune -exec trash {} +
-        else
-            find . -type d -name node_modules -prune -exec rm -rf {} +
+        set -l timestamp (date +%Y%m%d_%H%M%S)
+        set -l counter 0
+        find . -type d -name node_modules -prune | while read -l dir
+            set counter (math $counter + 1)
+            set -l dest "/tmp/node_modules_$timestamp"_"$counter"
+            mv "$dir" "$dest"
+            echo "Moved: $dir -> $dest"
         end
-        echo "All node_modules directories have been deleted."
+        echo "All node_modules directories have been moved to /tmp."
     else
         echo "Operation cancelled."
     end
