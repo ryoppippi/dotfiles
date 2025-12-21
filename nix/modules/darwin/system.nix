@@ -57,6 +57,10 @@ in
   # 1Password CLI (GUI is managed via Homebrew cask for stability)
   programs._1password.enable = true;
 
+  # nix-index for command-not-found and comma
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
+
   # macOS system defaults
   system.defaults = {
     # Dock settings

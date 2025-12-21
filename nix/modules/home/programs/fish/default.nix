@@ -176,4 +176,13 @@ in
     # Source conf.d files from plugins
     ${confDFiles}
   '';
+
+  # Add nix-darwin system path (for comma, nix-locate, etc.)
+  xdg.configFile."fish/conf.d/01-nix-darwin-path.fish".text = ''
+    # Add nix-darwin system packages to PATH
+    # This includes comma, nix-locate, and other system-level packages
+    if test -d /run/current-system/sw/bin
+      fish_add_path /run/current-system/sw/bin
+    end
+  '';
 }

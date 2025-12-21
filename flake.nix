@@ -78,6 +78,11 @@
       url = "github:kawarimidoll/gh-graph";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -95,6 +100,7 @@
       brew-api,
       rs-arto,
       fish-na,
+      nix-index-database,
     }:
     let
       lib = nixpkgs.lib;
@@ -307,6 +313,9 @@
                   # Claude Code home-manager module from overlay
                   claude-code-overlay.homeManagerModules.default
 
+                  # nix-index-database for comma
+                  nix-index-database.hmModules.nix-index
+
                   # Common home-manager configuration
                   (import ./nix/modules/home {
                     inherit
@@ -356,6 +365,9 @@
             username = username;
             homedir = darwinHomedir;
           })
+
+          # nix-index-database for comma (system-level for nix-darwin)
+          nix-index-database.darwinModules.nix-index
 
           # Home Manager integration for macOS
           home-manager.darwinModules.home-manager
