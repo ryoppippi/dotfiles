@@ -41,12 +41,6 @@ let
         url = "https://mcp.deepwiki.com/mcp";
       };
 
-      devenv = {
-        command = "devenv";
-        enabled = false;
-        args = [ "mcp" ];
-      };
-
       figma-dev-mode-mcp-server = {
         startup_timeout_ms = 5000;
         url = "http://127.0.0.1:3845/mcp";
