@@ -7,8 +7,9 @@ command = "stylua"
 includes = ["*.lua"]
 excludes = ["nvim/lazy-lock.json"]
 
-[formatter.secretlint]
-command = "secretlint"
+[formatter.gitleaks]
+command = "gitleaks"
+options = ["detect", "--no-git", "--exit-code", "0"]
 includes = ["*"]
 excludes = [
   "*.png",

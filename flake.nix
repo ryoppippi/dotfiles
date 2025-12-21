@@ -148,7 +148,7 @@
         let
           pkgs = mkPkgs system;
           isDarwin = pkgs.stdenv.isDarwin;
-          # Import node2nix packages including secretlint
+          # Import node2nix packages for language servers
           nodePackages = import ./nix/node2nix {
             inherit pkgs;
             inherit (pkgs) system;
@@ -170,8 +170,14 @@
               ];
               # Custom formatters/linters
               formatter = {
-                secretlint = {
-                  command = "${nodePackages.nodeDependencies}/lib/node_modules/.bin/secretlint";
+                gitleaks = {
+                  command = "${pkgs.gitleaks}/bin/gitleaks";
+                  options = [
+                    "detect"
+                    "--no-git"
+                    "--exit-code"
+                    "0"
+                  ];
                   includes = [ "*" ];
                 };
                 renovate-validator = {

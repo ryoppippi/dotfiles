@@ -4,7 +4,6 @@
   config,
   dotfilesDir,
   treefmt-nix,
-  nodePackages,
   ...
 }:
 let
@@ -24,8 +23,14 @@ let
         "*.lock"
       ];
       formatter = {
-        secretlint = {
-          command = "${nodePackages.nodeDependencies}/lib/node_modules/.bin/secretlint";
+        gitleaks = {
+          command = "${pkgs.gitleaks}/bin/gitleaks";
+          options = [
+            "detect"
+            "--no-git"
+            "--exit-code"
+            "0"
+          ];
           includes = [ "*" ];
         };
       };
