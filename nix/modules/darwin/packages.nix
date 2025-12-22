@@ -13,7 +13,7 @@
       mas
 
       # macOS GUI applications (not available on Linux in nixpkgs)
-      arto
+      # arto # temporarily disabled - upstream pnpm hash mismatch
       google-chrome
       cyberduck
       keycastr

@@ -131,7 +131,7 @@
             (final: prev: {
               _llm-agents = llm-agents;
               _claude-code-overlay = claude-code-overlay;
-              arto = rs-arto.packages.${system}.default;
+              # arto = rs-arto.packages.${system}.default; # temporarily disabled - upstream pnpm hash mismatch
             })
             gh-nippou.overlays.default
             gh-graph.overlays.default
