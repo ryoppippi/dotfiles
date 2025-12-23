@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766089572,
+        "lastModified": 1766144516,
         "narHash": "sha256-rjObQGmEfr+uIV3/yF8uLG5HQBFPhS9YmUcUFfRFLSM=",
         "owner": "kawarimidoll",
         "repo": "gh-graph",
-        "rev": "3a63601b320b6b7fcd8d92521477b040288f9ee0",
+        "rev": "03ad418b5f5dbfef5fb93c5563b82231d760bf24",
         "type": "github"
       },
       "original": {
