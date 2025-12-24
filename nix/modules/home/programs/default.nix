@@ -3,7 +3,6 @@
   lib,
   config,
   dotfilesDir,
-  claude-code-overlay,
   system,
   helpers,
   nodePackages ? null,

@@ -4,7 +4,6 @@
   lib,
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
-  claude-code-overlay ? null,
   treefmt-nix ? null,
   system ? null,
   nodePackages ? null,
@@ -39,7 +38,6 @@ in
         lib
         config
         dotfilesDir
-        claude-code-overlay
         system
         helpers
         nodePackages

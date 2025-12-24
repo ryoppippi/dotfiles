@@ -13,11 +13,9 @@ jobs:
       # Only update these specific inputs frequently
       inputs: >-
         llm-agents
-        claude-code-overlay
       # No delay for frequent updates
       skip-delay-inputs: >-
         llm-agents
-        claude-code-overlay
       minimum-release-age-days: '0'
       skip-delay: true
       summary-title: 'Frequent Update Summary'

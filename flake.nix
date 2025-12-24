@@ -37,11 +37,6 @@
       url = "github:numtide/llm-agents.nix";
     };
 
-    claude-code-overlay = {
-      url = "github:ryoppippi/claude-code-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -92,7 +87,6 @@
       nix-darwin,
       home-manager,
       llm-agents,
-      claude-code-overlay,
       treefmt-nix,
       gh-nippou,
       gh-graph,
@@ -130,7 +124,6 @@
           overlays = [
             (final: prev: {
               _llm-agents = llm-agents;
-              _claude-code-overlay = claude-code-overlay;
               # arto = rs-arto.packages.${system}.default; # temporarily disabled - upstream pnpm hash mismatch
             })
             gh-nippou.overlays.default
@@ -258,14 +251,14 @@
             );
           };
 
-          # Update llm-agents and claude-code-overlay
+          # Update llm-agents
           update-ai-tools = {
             type = "app";
             program = toString (
               pkgs.writeShellScript "update-ai-tools" ''
                 set -e
                 echo "Updating AI tools inputs..."
-                nix flake update llm-agents claude-code-overlay
+                nix flake update llm-agents
                 echo "Done! Run 'nix run .#switch' to apply changes."
               ''
             );
@@ -316,9 +309,6 @@
               in
               {
                 imports = [
-                  # Claude Code home-manager module from overlay
-                  claude-code-overlay.homeManagerModules.default
-
                   # nix-index-database for comma
                   nix-index-database.hmModules.nix-index
 
@@ -328,7 +318,6 @@
                       pkgs
                       config
                       lib
-                      claude-code-overlay
                       treefmt-nix
                       fish-na
                       ;
@@ -395,16 +384,12 @@
               in
               {
                 imports = [
-                  # Claude Code home-manager module from overlay
-                  claude-code-overlay.homeManagerModules.default
-
                   # Common home-manager configuration
                   (import ./nix/modules/home {
                     inherit
                       pkgs
                       config
                       lib
-                      claude-code-overlay
                       treefmt-nix
                       fish-na
                       ;
