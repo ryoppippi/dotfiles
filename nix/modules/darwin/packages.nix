@@ -29,6 +29,7 @@
       beekeeper-studio
       bluesnooze
       chatgpt
+      cursor
       deskpad
       figma
       glance-chamburr
