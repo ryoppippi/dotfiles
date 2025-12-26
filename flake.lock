@@ -402,11 +402,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766296425,
-        "narHash": "sha256-OOA0bOV446YcSXOdzhQJ6Qf19apLboCIuqm38Tw7naE=",
+        "lastModified": 1766456568,
+        "narHash": "sha256-PEF00aIU67sbEjiPMGzecrudTBXTwWifeft0AkycdQM=",
         "owner": "lambdalisue",
         "repo": "rs-arto",
-        "rev": "32f8f69fb1f176b3adfe0ac80b745b4932dac806",
+        "rev": "bca4a9628d75dda709b8111159a9a738b5c888f2",
         "type": "github"
       },
       "original": {
