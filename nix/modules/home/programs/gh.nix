@@ -15,9 +15,9 @@
       pkgs.gh-actions-cache
       pkgs.gh-poi
       pkgs.gh-notify
+      pkgs.gh-do
 
       # Custom extensions from overlay
-      pkgs.gh-do
       pkgs.gh-graph
       pkgs.gh-nippou
       pkgs.gh-user-stars

@@ -5,7 +5,6 @@ let
     # AI tools
     ./ai-tools.nix
     # GitHub CLI extensions
-    ./gh-do.nix
     ./gh-user-stars.nix
     ./gh-triage.nix
     # Small Go/Rust CLI tools not in nixpkgs
