@@ -40,22 +40,6 @@ k.writeToProfile("Default profile", [
         }),
     ]),
 
-  k.rule("Toggle WezTerm by ctrl+,")
-    .manipulators([
-      k.withMapper(
-        [
-          utils.toHideApp("WezTerm"),
-          k.toApp("WezTerm"),
-        ] as const,
-      )((event, i) =>
-        k.withCondition(
-          ...[k.ifApp("wezterm")].map((c) => i === 0 ? c : c.unless()),
-        )([
-          k.map({ key_code: "comma", modifiers: { mandatory: ["control"] } })
-            .to(event),
-        ])
-      ),
-    ]),
 
   k.rule(
     "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
