@@ -112,6 +112,7 @@
   "nvim-luadev": { "branch": "master", "commit": "3ba0c02c378503739f1fdb95cff3ea2aad48db3e" },
   "nvim-navic": { "branch": "master", "commit": "7d914a39a1ef8f4e22c2c4381abeef7c556f5a13" },
   "nvim-nio": { "branch": "master", "commit": "21f5324bfac14e22ba26553caf69ec76ae8a7662" },
+  "nvim-pnpm-catalog-lens": { "branch": "main", "commit": "f279b64829e64ea1621c7e3f2502d0b60a4d0ea6" },
   "nvim-regexplainer": { "branch": "main", "commit": "1a667bfcf584dab1906a0595dfabb62c9286e2c4" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-clipping": { "branch": "master", "commit": "fa7c052cfcafa73099dbf2c1697dc56557dbde9f" },
