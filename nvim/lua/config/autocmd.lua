@@ -193,3 +193,24 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end)
 	end,
 })
+
+-- Close special buffers (quickfix, chat windows, etc.) when quitting the last normal window
+-- @author kawarimidoll
+-- @see https://zenn.dev/vim_jp/articles/ff6cd224fab0c7
+vim.api.nvim_create_autocmd("QuitPre", {
+	callback = function()
+		local dominated_by_special_buffers = vim.iter(vim.api.nvim_list_wins())
+			:map(function(win)
+				return vim.api.nvim_win_get_buf(win)
+			end)
+			:filter(function(buf)
+				return buf ~= vim.api.nvim_get_current_buf()
+			end)
+			:all(function(buf)
+				return vim.bo[buf].buftype ~= ""
+			end)
+		if dominated_by_special_buffers then
+			vim.cmd("only!")
+		end
+	end,
+})
