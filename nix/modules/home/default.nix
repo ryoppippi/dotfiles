@@ -4,7 +4,6 @@
   lib,
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
-  treefmt-nix ? null,
   system ? null,
   nodePackages ? null,
   fish-na ? null,
@@ -19,15 +18,12 @@ in
     # Common packages
     ./packages.nix
 
-    # Git hooks configuration (treefmt + rebase skip)
+    # Git hooks for auto-switching nix config on changes
+    # Note: pre-commit hook is managed by devShell via git-hooks.nix flakeModule
     (import ./git-hooks.nix {
       inherit
-        pkgs
         lib
-        config
         dotfilesDir
-        treefmt-nix
-        nodePackages
         ;
     })
 

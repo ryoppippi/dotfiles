@@ -19,9 +19,9 @@
   };
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -33,12 +33,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-    };
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -82,34 +85,23 @@
 
   outputs =
     inputs@{
-      self,
+      flake-parts,
       nixpkgs,
       nix-darwin,
       home-manager,
       llm-agents,
       treefmt-nix,
+      git-hooks,
       gh-nippou,
       gh-graph,
       brew-nix,
-      brew-api,
-      rs-arto,
       fish-na,
       nix-index-database,
+      ...
     }:
     let
-      lib = nixpkgs.lib;
       username = "ryoppippi";
-
-      # macOS configuration
-      darwinSystem = "aarch64-darwin";
       darwinHomedir = "/Users/${username}";
-      darwinHostname = "${username}";
-
-      # Linux configuration
-      linuxSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
       linuxHomedir = "/home/${username}";
 
       # Create pkgs with overlays
@@ -124,191 +116,14 @@
           overlays = [
             (final: prev: {
               _llm-agents = llm-agents;
-              # arto = rs-arto.packages.${system}.default; # temporarily disabled - upstream pnpm hash mismatch
             })
             gh-nippou.overlays.default
             gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
           ]
-          ++ lib.optionals isDarwin [
+          ++ nixpkgs.lib.optionals isDarwin [
             brew-nix.overlays.default
           ];
-        };
-
-      # Common apps for both Darwin and Linux
-      mkCommonApps =
-        system: homedir: hostname:
-        let
-          pkgs = mkPkgs system;
-          isDarwin = pkgs.stdenv.isDarwin;
-          # Import node2nix packages for language servers
-          nodePackages = import ./nix/node2nix {
-            inherit pkgs;
-            inherit (pkgs) system;
-            nodejs = pkgs.nodejs_24;
-          };
-          treefmtWrapper = treefmt-nix.lib.mkWrapper pkgs {
-            projectRootFile = "flake.nix";
-            programs = {
-              nixfmt = {
-                enable = true;
-                package = pkgs.nixfmt-rfc-style;
-              };
-              stylua.enable = true;
-            };
-            settings = {
-              global.excludes = [
-                ".git/**"
-                "*.lock"
-              ];
-              # Custom formatters/linters
-              formatter = {
-                oxfmt = {
-                  command = "${pkgs.oxfmt}/bin/oxfmt";
-                  options = [ "--no-error-on-unmatched-pattern" ];
-                  includes = [ "*" ];
-                  excludes = [
-                    # Template files with special syntax
-                    "nvim/template/**"
-                  ];
-                };
-                gitleaks = {
-                  command = "${pkgs.gitleaks}/bin/gitleaks";
-                  options = [
-                    "detect"
-                    "--no-git"
-                    "--exit-code"
-                    "0"
-                  ];
-                  includes = [ "*" ];
-                  excludes = [
-                    "*.png"
-                    "*.jpg"
-                    "*.jpeg"
-                    "*.gif"
-                    "*.ico"
-                    "*.pdf"
-                    "*.woff"
-                    "*.woff2"
-                    "*.ttf"
-                    "*.eot"
-                    "node_modules/**"
-                    ".direnv/**"
-                    "nix/node2nix/package-lock.json"
-                  ];
-                };
-                renovate-validator = {
-                  command = "${pkgs.renovate}/bin/renovate-config-validator";
-                  options = [ "--strict" ];
-                  includes = [
-                    ".github/renovate.json5"
-                  ];
-                };
-              };
-            };
-          };
-        in
-        {
-          # Restore Neovim plugins from lock file
-          nvim-restore = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "nvim-restore" ''
-                : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
-                if [ ! -d "$DOTFILES_DIR" ]; then
-                  DOTFILES_DIR="$(pwd)"
-                fi
-                exec ${pkgs.bash}/bin/bash \
-                  ${./nix/modules/home/programs/neovim/check.sh} \
-                  "$DOTFILES_DIR/nvim" \
-                  "$HOME/.local/share/nvim/lazy" \
-                  ${pkgs.neovim}/bin/nvim
-              ''
-            );
-          };
-
-          # Build configuration (platform-specific)
-          build = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript (if isDarwin then "darwin-build" else "home-manager-build") ''
-                set -e
-                echo "Building ${if isDarwin then "darwin" else "Home Manager"} configuration..."
-                nix build .#${
-                  if isDarwin then
-                    "darwinConfigurations.${hostname}.system"
-                  else
-                    "homeConfigurations.${username}.activationPackage"
-                }
-                echo "Build successful! Run 'nix run .#switch' to apply."
-              ''
-            );
-          };
-
-          # Apply configuration (platform-specific)
-          switch = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
-                set -e
-                echo "Building and switching to ${if isDarwin then "darwin" else "Home Manager"} configuration..."
-                ${
-                  if isDarwin then
-                    "sudo nix run nix-darwin -- switch --flake .#${hostname}"
-                  else
-                    "nix run nixpkgs#home-manager -- switch --flake .#${username}"
-                }
-              ''
-            );
-          };
-
-          # Update flake.lock
-          update = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "flake-update" ''
-                set -e
-                echo "Updating flake.lock..."
-                nix flake update
-                echo "Done! Run 'nix run .#switch' to apply changes."
-              ''
-            );
-          };
-
-          # Update llm-agents
-          update-ai-tools = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "update-ai-tools" ''
-                set -e
-                echo "Updating AI tools inputs..."
-                nix flake update llm-agents
-                echo "Done! Run 'nix run .#switch' to apply changes."
-              ''
-            );
-          };
-
-          # Format code with treefmt
-          fmt = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "treefmt-wrapper" ''
-                exec ${treefmtWrapper}/bin/treefmt "$@"
-              ''
-            );
-          };
-
-          # Regenerate node2nix expressions
-          update-node2nix = {
-            type = "app";
-            program = toString (
-              pkgs.writeShellScript "update-node2nix" ''
-                set -e
-                cd nix/node2nix
-                exec ${pkgs.node2nix}/bin/node2nix -l package-lock.json "$@"
-              ''
-            );
-          };
         };
 
       # Helper to create Linux home configuration
@@ -333,16 +148,13 @@
               in
               {
                 imports = [
-                  # nix-index-database for comma
                   nix-index-database.hmModules.nix-index
 
-                  # Common home-manager configuration
                   (import ./nix/modules/home {
                     inherit
                       pkgs
                       config
                       lib
-                      treefmt-nix
                       fish-na
                       ;
                     homedir = linuxHomedir;
@@ -354,7 +166,6 @@
                     };
                   })
 
-                  # Linux-specific home-manager configuration
                   (import ./nix/modules/linux {
                     inherit
                       pkgs
@@ -371,91 +182,279 @@
           ];
         };
     in
-    {
-      # macOS configuration with nix-darwin
-      darwinConfigurations.${darwinHostname} = nix-darwin.lib.darwinSystem {
-        system = darwinSystem;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-        modules = [
-          # Darwin-specific system configuration
-          (import ./nix/modules/darwin/system.nix {
-            pkgs = mkPkgs darwinSystem;
-            lib = nixpkgs.lib;
-            username = username;
-            homedir = darwinHomedir;
-          })
+      imports = [
+        treefmt-nix.flakeModule
+        git-hooks.flakeModule
+      ];
 
-          # nix-index-database for comma (system-level for nix-darwin)
-          nix-index-database.darwinModules.nix-index
-
-          # Home Manager integration for macOS
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = false;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              pkgs = mkPkgs darwinSystem;
-            };
-            home-manager.users.${username} =
-              {
-                pkgs,
-                config,
-                lib,
-                ...
-              }:
-              let
-                helpers = import ./nix/modules/lib/helpers { inherit lib; };
-              in
-              {
-                imports = [
-                  # Common home-manager configuration
-                  (import ./nix/modules/home {
-                    inherit
-                      pkgs
-                      config
-                      lib
-                      treefmt-nix
-                      fish-na
-                      ;
-                    homedir = darwinHomedir;
-                    system = darwinSystem;
-                    nodePackages = import ./nix/node2nix {
-                      inherit pkgs;
-                      inherit (pkgs) system;
-                      nodejs = pkgs.nodejs_24;
-                    };
-                  })
-
-                  # macOS-specific home-manager configuration
-                  (import ./nix/modules/darwin {
-                    inherit
-                      pkgs
-                      config
-                      lib
-                      helpers
-                      ;
-                    homedir = darwinHomedir;
-                    dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
-                  })
-                ];
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
+        let
+          localPkgs = mkPkgs system;
+          isDarwin = localPkgs.stdenv.isDarwin;
+          homedir = if isDarwin then darwinHomedir else linuxHomedir;
+          hostname = username;
+        in
+        {
+          # Treefmt configuration
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixfmt = {
+                enable = true;
+                package = localPkgs.nixfmt-rfc-style;
               };
-          }
-        ];
-      };
+              stylua.enable = true;
+            };
+            settings = {
+              global.excludes = [
+                ".git/**"
+                "*.lock"
+              ];
+              formatter = {
+                oxfmt = {
+                  command = "${localPkgs.oxfmt}/bin/oxfmt";
+                  options = [ "--no-error-on-unmatched-pattern" ];
+                  includes = [ "*" ];
+                  excludes = [
+                    "nvim/template/**"
+                  ];
+                };
+                gitleaks = {
+                  command = "${localPkgs.gitleaks}/bin/gitleaks";
+                  options = [
+                    "detect"
+                    "--no-git"
+                    "--exit-code"
+                    "0"
+                  ];
+                  includes = [ "*" ];
+                  excludes = [
+                    "*.png"
+                    "*.jpg"
+                    "*.jpeg"
+                    "*.gif"
+                    "*.ico"
+                    "*.pdf"
+                    "*.woff"
+                    "*.woff2"
+                    "*.ttf"
+                    "*.eot"
+                    "node_modules/**"
+                    ".direnv/**"
+                    "nix/node2nix/package-lock.json"
+                  ];
+                };
+                renovate-validator = {
+                  command = "${localPkgs.renovate}/bin/renovate-config-validator";
+                  options = [ "--strict" ];
+                  includes = [
+                    ".github/renovate.json5"
+                  ];
+                };
+              };
+            };
+          };
 
-      # Linux configurations with standalone Home Manager
-      homeConfigurations = {
-        # x86_64-linux configuration (for most Linux servers/desktops)
-        ${username} = mkLinuxHomeConfig "x86_64-linux";
-        # aarch64-linux configuration (for ARM Linux like Raspberry Pi, cloud VMs)
-        "${username}-aarch64" = mkLinuxHomeConfig "aarch64-linux";
-      };
+          # Git hooks configuration
+          pre-commit = {
+            check.enable = false;
+            settings.hooks = {
+              treefmt = {
+                enable = true;
+                package = config.treefmt.build.wrapper;
+              };
+            };
+          };
 
-      # Apps for common tasks
-      apps = {
-        ${darwinSystem} = mkCommonApps darwinSystem darwinHomedir darwinHostname;
-        "x86_64-linux" = mkCommonApps "x86_64-linux" linuxHomedir username;
-        "aarch64-linux" = mkCommonApps "aarch64-linux" linuxHomedir username;
+          # Apps
+          apps = {
+            nvim-restore = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript "nvim-restore" ''
+                  : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
+                  if [ ! -d "$DOTFILES_DIR" ]; then
+                    DOTFILES_DIR="$(pwd)"
+                  fi
+                  exec ${localPkgs.bash}/bin/bash \
+                    ${./nix/modules/home/programs/neovim/check.sh} \
+                    "$DOTFILES_DIR/nvim" \
+                    "$HOME/.local/share/nvim/lazy" \
+                    ${localPkgs.neovim}/bin/nvim
+                ''
+              );
+            };
+
+            build = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript (if isDarwin then "darwin-build" else "home-manager-build") ''
+                  set -e
+                  echo "Building ${if isDarwin then "darwin" else "Home Manager"} configuration..."
+                  nix build .#${
+                    if isDarwin then
+                      "darwinConfigurations.${hostname}.system"
+                    else
+                      "homeConfigurations.${username}.activationPackage"
+                  }
+                  echo "Build successful! Run 'nix run .#switch' to apply."
+                ''
+              );
+            };
+
+            switch = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
+                  set -e
+                  echo "Building and switching to ${if isDarwin then "darwin" else "Home Manager"} configuration..."
+                  ${
+                    if isDarwin then
+                      "sudo nix run nix-darwin -- switch --flake .#${hostname}"
+                    else
+                      "nix run nixpkgs#home-manager -- switch --flake .#${username}"
+                  }
+                ''
+              );
+            };
+
+            update = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript "flake-update" ''
+                  set -e
+                  echo "Updating flake.lock..."
+                  nix flake update
+                  echo "Done! Run 'nix run .#switch' to apply changes."
+                ''
+              );
+            };
+
+            update-ai-tools = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript "update-ai-tools" ''
+                  set -e
+                  echo "Updating AI tools inputs..."
+                  nix flake update llm-agents
+                  echo "Done! Run 'nix run .#switch' to apply changes."
+                ''
+              );
+            };
+
+            fmt = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript "treefmt-wrapper" ''
+                  exec ${config.treefmt.build.wrapper}/bin/treefmt "$@"
+                ''
+              );
+            };
+
+            update-node2nix = {
+              type = "app";
+              program = toString (
+                localPkgs.writeShellScript "update-node2nix" ''
+                  set -e
+                  cd nix/node2nix
+                  exec ${localPkgs.node2nix}/bin/node2nix -l package-lock.json "$@"
+                ''
+              );
+            };
+          };
+
+          # DevShell with pre-commit hooks
+          devShells.default = localPkgs.mkShell {
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
+        };
+
+      flake = {
+        # macOS configuration with nix-darwin
+        darwinConfigurations.${username} = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+
+          modules = [
+            (import ./nix/modules/darwin/system.nix {
+              pkgs = mkPkgs "aarch64-darwin";
+              lib = nixpkgs.lib;
+              inherit username;
+              homedir = darwinHomedir;
+            })
+
+            nix-index-database.darwinModules.nix-index
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = false;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                pkgs = mkPkgs "aarch64-darwin";
+              };
+              home-manager.users.${username} =
+                {
+                  pkgs,
+                  config,
+                  lib,
+                  ...
+                }:
+                let
+                  helpers = import ./nix/modules/lib/helpers { inherit lib; };
+                in
+                {
+                  imports = [
+                    (import ./nix/modules/home {
+                      inherit
+                        pkgs
+                        config
+                        lib
+                        fish-na
+                        ;
+                      homedir = darwinHomedir;
+                      system = "aarch64-darwin";
+                      nodePackages = import ./nix/node2nix {
+                        inherit pkgs;
+                        inherit (pkgs) system;
+                        nodejs = pkgs.nodejs_24;
+                      };
+                    })
+
+                    (import ./nix/modules/darwin {
+                      inherit
+                        pkgs
+                        config
+                        lib
+                        helpers
+                        ;
+                      homedir = darwinHomedir;
+                      dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                    })
+                  ];
+                };
+            }
+          ];
+        };
+
+        # Linux configurations with standalone Home Manager
+        homeConfigurations = {
+          ${username} = mkLinuxHomeConfig "x86_64-linux";
+          "${username}-aarch64" = mkLinuxHomeConfig "aarch64-linux";
+        };
       };
     };
 }

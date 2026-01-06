@@ -6,7 +6,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -37,3 +37,6 @@ result
 .devenv
 .devenv.flake.nix
 devenv.lock
+
+# git-hooks.nix
+.pre-commit-config.yaml
