@@ -167,18 +167,6 @@
                   command = "${pkgs.oxfmt}/bin/oxfmt";
                   options = [ "--no-error-on-unmatched-pattern" ];
                   includes = [ "*" ];
-                  excludes = [
-                    # Nix (handled by nixfmt)
-                    "*.nix"
-                    # Lua (handled by stylua)
-                    "*.lua"
-                    # Lock files
-                    "*.lock"
-                    "nvim/lazy-lock.json"
-                    # Directories
-                    "node_modules/**"
-                    ".direnv/**"
-                  ];
                 };
                 gitleaks = {
                   command = "${pkgs.gitleaks}/bin/gitleaks";
