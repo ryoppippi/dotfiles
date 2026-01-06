@@ -1,0 +1,6 @@
+{
+	"$schema": "https://oxc.rs/schemas/oxfmtrc.json",
+	"useTabs": true,
+	"semi": true,
+	"singleQuote": true
+}
