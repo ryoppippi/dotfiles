@@ -154,7 +154,7 @@ in
 
     # Some casks are managed via brew-nix (see nix/modules/darwin/packages.nix):
     # alt-tab, appcleaner, beekeeper-studio, bluesnooze, deskpad, glance-chamburr,
-    # hammerspoon, istherenet, kap, maestral, marta, obs, postman, processing,
+    # istherenet, kap, maestral, marta, obs, postman, processing,
     # qlvideo, quitter, shottr, stats, suspicious-package, vlc, yaak
     casks = [
       "1password"

@@ -16,9 +16,6 @@ in
     lib.optionalString pkgs.stdenv.isDarwin ''
         ${helpers.activation.mkLinkForce}
 
-      # Hammerspoon configuration
-      link_force "${dotfilesDir}/hammerspoon" "${homeDir}/.hammerspoon"
-
       # Homebrew bundle file
       link_force "${dotfilesDir}/Brewfile" "${homeDir}/.Brewfile"
 

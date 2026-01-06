@@ -33,7 +33,6 @@
       deskpad
       figma
       glance-chamburr
-      hammerspoon
       homerow
       istherenet
       kap
