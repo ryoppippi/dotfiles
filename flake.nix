@@ -265,6 +265,11 @@
                     ".github/renovate.json5"
                   ];
                 };
+                fish-indent = {
+                  command = "${localPkgs.fish}/bin/fish_indent";
+                  options = [ "--write" ];
+                  includes = [ "*.fish" ];
+                };
               };
             };
           };
