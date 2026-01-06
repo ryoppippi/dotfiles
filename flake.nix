@@ -217,6 +217,7 @@
                 package = localPkgs.nixfmt-rfc-style;
               };
               stylua.enable = true;
+              shfmt.enable = true;
             };
             settings = {
               global.excludes = [
