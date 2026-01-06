@@ -1,4 +1,3 @@
-
 set GH_Q_DEFAULT_USER ""
 
 function gh-q

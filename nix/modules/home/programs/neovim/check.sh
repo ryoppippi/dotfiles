@@ -11,7 +11,7 @@ NVIM_BIN="${3:-nvim}"
 LAZY_LOCK="$NVIM_DOTFILES_DIR/lazy-lock.json"
 LAZY_LOCK_TIMESTAMP="$LAZY_DIR/.lazy-lock-timestamp"
 
-if [[ -f "$LAZY_LOCK" ]]; then
+if [[ -f $LAZY_LOCK ]]; then
   echo "📦 Restoring Neovim plugins from lazy-lock.json..."
   "$NVIM_BIN" --headless "+Lazy! restore" +qa
   mkdir -p "$LAZY_DIR"

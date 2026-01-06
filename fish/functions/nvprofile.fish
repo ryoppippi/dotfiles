@@ -1,4 +1,3 @@
-
 function nvprofile
     touch /tmp/startup.log
     rm /tmp/startup.log

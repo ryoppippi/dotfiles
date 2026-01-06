@@ -8,7 +8,7 @@ function git_switch_branch --description "Switch git branch using fzf"
         sed 's|^origin/||' | \
         sort -u | \
         fzf --height=40% --reverse --prompt="Switch to branch: ")
-    
+
     if test -n "$branch"
         git switch $branch
         commandline -f repaint
