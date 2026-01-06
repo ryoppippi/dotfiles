@@ -3,9 +3,9 @@ name: Nix Diff Check
 on:
   pull_request:
     paths:
-      - "flake.lock"
-      - "flake.nix"
-      - "nix/**"
+      - 'flake.lock'
+      - 'flake.nix'
+      - 'nix/**'
 
 permissions:
   contents: read

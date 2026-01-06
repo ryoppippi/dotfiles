@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 
 gui:
-  nerdFontsVersion: "3"
+  nerdFontsVersion: '3'
   skipRewordInEditorWarning: true
 git:
   allBranchesLogCmds:

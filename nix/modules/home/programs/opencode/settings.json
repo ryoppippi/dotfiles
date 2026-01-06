@@ -1,5 +1,5 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "theme": "kanagawa",
-  "autoupdate": false
+	"$schema": "https://opencode.ai/config.json",
+	"theme": "kanagawa",
+	"autoupdate": false
 }

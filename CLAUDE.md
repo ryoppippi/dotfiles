@@ -33,14 +33,14 @@ nix run .#build                # Test build
 
 ## Dotfiles Locations
 
-| Config | Location | Notes |
-|--------|----------|-------|
-| Fish | `fish/` | Modular config in `fish/config/` |
-| Neovim | `nvim/` | Lua-based, uses Lazy.nvim |
-| Karabiner | `karabiner/` | TypeScript source, see `karabiner/CLAUDE.md` |
-| Wezterm | `wezterm/` | Lua config |
-| Git | `nix/modules/home/programs/git/` | Declarative via Home Manager |
-| Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative |
+| Config    | Location                                | Notes                                        |
+| --------- | --------------------------------------- | -------------------------------------------- |
+| Fish      | `fish/`                                 | Modular config in `fish/config/`             |
+| Neovim    | `nvim/`                                 | Lua-based, uses Lazy.nvim                    |
+| Karabiner | `karabiner/`                            | TypeScript source, see `karabiner/CLAUDE.md` |
+| Wezterm   | `wezterm/`                              | Lua config                                   |
+| Git       | `nix/modules/home/programs/git/`        | Declarative via Home Manager                 |
+| Ghostty   | `nix/modules/home/programs/ghostty.nix` | Declarative                                  |
 
 ## Git Workflow
 

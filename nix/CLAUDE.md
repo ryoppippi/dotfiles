@@ -28,14 +28,14 @@ nix run .#build
 
 ## Common Tasks
 
-| Task | Location |
-|------|----------|
-| Add/remove packages | `modules/home/packages.nix` |
-| macOS packages | `modules/darwin/packages.nix` |
-| Homebrew packages | `modules/darwin/system.nix` |
-| Dotfile symlinks | `modules/home/dotfiles.nix` |
-| macOS system settings | `modules/darwin/system.nix` |
-| Program configs | `modules/home/programs/` |
+| Task                  | Location                      |
+| --------------------- | ----------------------------- |
+| Add/remove packages   | `modules/home/packages.nix`   |
+| macOS packages        | `modules/darwin/packages.nix` |
+| Homebrew packages     | `modules/darwin/system.nix`   |
+| Dotfile symlinks      | `modules/home/dotfiles.nix`   |
+| macOS system settings | `modules/darwin/system.nix`   |
+| Program configs       | `modules/home/programs/`      |
 
 ## Important
 

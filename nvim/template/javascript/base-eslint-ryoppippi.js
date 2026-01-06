@@ -1,9 +1,9 @@
-import { ryoppippi } from "@ryoppippi/eslint-config";
+import { ryoppippi } from '@ryoppippi/eslint-config';
 
 export default ryoppippi({
-  type: 'app', // or 'lib'
-  svelte: true,
-  typescript: {
-    tsconfigPath: "./tsconfig.json",
-  },
+	type: 'app', // or 'lib'
+	svelte: true,
+	typescript: {
+		tsconfigPath: './tsconfig.json',
+	},
 });

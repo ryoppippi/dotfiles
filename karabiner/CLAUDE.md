@@ -41,12 +41,14 @@ k.writeToProfile("Default profile", [
 ### Common Patterns
 
 #### 1. Simple Key Remapping
+
 ```typescript
 k.map({ key_code: "caps_lock" })
   .to({ key_code: "escape" })
 ```
 
 #### 2. Key with Modifiers
+
 ```typescript
 k.map({
   key_code: "h",
@@ -56,6 +58,7 @@ k.map({
 ```
 
 #### 3. Tap vs Hold (Dual-Function Keys)
+
 ```typescript
 k.map({ key_code: "tab" })
   .toIfAlone({ key_code: "tab" })
@@ -67,6 +70,7 @@ k.map({ key_code: "tab" })
 ```
 
 #### 4. Multiple Actions with toIfAlone
+
 ```typescript
 k.map({ key_code: "left_control" })
   .to({ key_code: "left_control", lazy: true })
@@ -77,6 +81,7 @@ k.map({ key_code: "left_control" })
 ```
 
 #### 5. Using withMapper for Multiple Similar Mappings
+
 ```typescript
 k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
   {
@@ -95,12 +100,14 @@ k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
 ```
 
 #### 6. Conditional Rules (Device-specific)
+
 ```typescript
 k.rule("Rule name", devices.ifNotSelfMadeKeyboard)
   .manipulators([...])
 ```
 
 #### 7. App-specific Rules
+
 ```typescript
 k.rule(
   "Rule name",
@@ -110,6 +117,7 @@ k.rule(
 ```
 
 #### 8. Using withCondition
+
 ```typescript
 k.withCondition(
   k.ifApp("wezterm").unless()
@@ -122,6 +130,7 @@ k.withCondition(
 ## Important Methods
 
 ### Map Methods
+
 - `.map()` - Define key mapping
 - `.to()` - Target key/action
 - `.toIfAlone()` - Action when tapped (not held)
@@ -130,17 +139,20 @@ k.withCondition(
 - `.parameters()` - Set timing parameters
 
 ### Utility Methods
+
 - `k.withMapper()` - Map over multiple key combinations
 - `k.withCondition()` - Apply conditions to manipulators
 - `k.ifApp()` - App-specific condition
 - `k.toApp()` - Send to specific app
 
 ### Modifier Options
+
 - `mandatory`: Must be pressed
 - `optional`: Can be pressed with any modifier
 - Common modifiers: `"command"`, `"option"`, `"shift"`, `"control"`, `"fn"`
 
 ### Parameters
+
 - `lazy: true` - Lazy modifier evaluation
 - `repeat: true/false` - Allow key repeat
 - `"basic.to_if_held_down_threshold_milliseconds"` - Hold threshold timing
@@ -148,7 +160,9 @@ k.withCondition(
 ## Common Use Cases
 
 ### Super Key (Hyper Key)
+
 A super key combines multiple modifiers (cmd+option+shift+ctrl):
+
 ```typescript
 k.map({ key_code: "right_option" })
   .to({
@@ -158,6 +172,7 @@ k.map({ key_code: "right_option" })
 ```
 
 ### Language Toggle on Tap
+
 ```typescript
 k.map({ key_code: "left_command", modifiers: { optional: ["any"] } })
   .to({ key_code: "left_command", lazy: true })
@@ -165,6 +180,7 @@ k.map({ key_code: "left_command", modifiers: { optional: ["any"] } })
 ```
 
 ### Vim-style Arrow Keys
+
 ```typescript
 k.map({
   key_code: "h",

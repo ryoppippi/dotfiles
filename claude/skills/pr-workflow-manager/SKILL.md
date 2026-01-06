@@ -9,8 +9,8 @@ You will execute the following workflow in order:
 
 1. **Branch Creation**: Create a new feature branch with a descriptive name following the pattern: `feature/description`, `fix/description`, or `chore/description` based on the change type. Never work directly on the main branch.
 
-2. **Commit Changes**: 
-    call git-commit-crafter skill to create commits!
+2. **Commit Changes**:
+   call git-commit-crafter skill to create commits!
 
 3. **Push Branch**: Push the new branch to the remote repository using `git push -u origin branch-name`
 
@@ -39,6 +39,7 @@ You will execute the following workflow in order:
 5. **Open Pull Request**: Use `gh pr create` to create the PR with the generated body, then open it in the browser using `gh pr view --web`
 
 **Important Guidelines**:
+
 - Always create a new branch; never push directly to main without explicit permission
 - All commit messages, PR titles, and PR bodies must be in English
 - If a command fails, try using fish shell: `fish -c <command>`
@@ -48,12 +49,14 @@ You will execute the following workflow in order:
 - Avoid excessive use of emojis in responses - use sparingly and only when truly helpful
 
 **Error Handling**:
+
 - If branch creation fails, check if you're already on a feature branch
 - If push fails, ensure you have the correct remote permissions
 - If PR creation fails, verify you're not creating a duplicate PR
 - Always provide clear feedback about what step is being executed
 
 **Quality Checks**:
+
 - Before committing, review changes to ensure no debug code or temporary files are included
 - Verify the PR body is comprehensive and provides sufficient context for reviewers
 - Confirm the target branch is correct (usually main or develop)

@@ -1,12 +1,12 @@
 version: 2
 log-level: 1
 root-markers:
-- .git/
-- package.json
+  - .git/
+  - package.json
 
 tools:
   stylua: &stylua
-    format-command: "stylua -s --color Never -"
+    format-command: 'stylua -s --color Never -'
     format-stdin: true
     require-marker: true
     root-markers:
@@ -17,14 +17,14 @@ tools:
     lint-command: 'golint - '
     lint-stdin: true
     lint-formats:
-      - '%.%#:%l:%c: %m' 
+      - '%.%#:%l:%c: %m'
     require-marker: true
     root-markers:
       - go.mod
       - go.sum
 
   gofmt: &gofmt
-    format-command: "gofmt"
+    format-command: 'gofmt'
     format-stdin: true
     require-marker: true
     root-markers:
@@ -32,7 +32,7 @@ tools:
       - go.sum
 
   golines: &golines
-    format-command: "golines"
+    format-command: 'golines'
     format-stdin: true
     require-marker: true
     root-markers:
@@ -40,7 +40,7 @@ tools:
       - go.sum
 
   goimports: &goimports
-    format-command: "goimports"
+    format-command: 'goimports'
     format-stdin: true
     require-marker: true
     root-markers:
@@ -55,18 +55,18 @@ tools:
       - '%f:%l:%c: %tote: %m'
 
   ruff-format: &ruff-format
-    format-command: "uv run ruff format --stdin-filename ${INPUT}"
+    format-command: 'uv run ruff format --stdin-filename ${INPUT}'
     format-stdin: true
 
   swift-format-format: &swift-format-format
-    format-command: "swift-format"
+    format-command: 'swift-format'
     format-stdin: false
     root-markers:
       - .swift-format
       - .git
 
   swift-format-lint: &swift-format-lint
-    lint-command: "swift-format lint --assume-filename"
+    lint-command: 'swift-format lint --assume-filename'
     lint-stdin: false
     lint-ignore-exit-code: true
     lint-formats:
@@ -99,11 +99,11 @@ tools:
       - .prettierrc.toml
 
   fish_indent: &fish_indent
-    format-command: "fish_indent"
+    format-command: 'fish_indent'
     format-stdin: true
 
   fish_diagnostics: &fish_diagnostics
-    lint-command: "fish --no-execute ${INPUT}"
+    lint-command: 'fish --no-execute ${INPUT}'
     lint-stdin: true
     lint-ignore-exit-code: true
     lint-formats:
@@ -120,7 +120,7 @@ tools:
     lint-command: "bash -c \"[[ '${INPUT}' =~ \\\\.github/workflows/ ]]\" && actionlint -oneline -no-color -"
     lint-stdin: true
     lint-formats:
-      - "%f:%l:%c: %m"
+      - '%f:%l:%c: %m'
     root-markers:
       - .github
 

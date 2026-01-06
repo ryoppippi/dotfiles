@@ -167,6 +167,10 @@
                   command = "${pkgs.oxfmt}/bin/oxfmt";
                   options = [ "--no-error-on-unmatched-pattern" ];
                   includes = [ "*" ];
+                  excludes = [
+                    # Template files with special syntax
+                    "nvim/template/**"
+                  ];
                 };
                 gitleaks = {
                   command = "${pkgs.gitleaks}/bin/gitleaks";

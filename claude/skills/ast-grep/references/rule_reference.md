@@ -10,9 +10,9 @@ ast-grep rules are declarative specifications for matching and filtering Abstrac
 
 ast-grep rules are categorized into three types:
 
-* **Atomic Rules**: Match individual AST nodes based on intrinsic properties like code patterns (`pattern`), node type (`kind`), or text content (`regex`).
-* **Relational Rules**: Define conditions based on a target node's position or relationship to other nodes (e.g., `inside`, `has`, `precedes`, `follows`).
-* **Composite Rules**: Combine other rules using logical operations (AND, OR, NOT) to form complex matching criteria (e.g., `all`, `any`, `not`, `matches`).
+- **Atomic Rules**: Match individual AST nodes based on intrinsic properties like code patterns (`pattern`), node type (`kind`), or text content (`regex`).
+- **Relational Rules**: Define conditions based on a target node's position or relationship to other nodes (e.g., `inside`, `has`, `precedes`, `follows`).
+- **Composite Rules**: Combine other rules using logical operations (AND, OR, NOT) to form complex matching criteria (e.g., `all`, `any`, `not`, `matches`).
 
 ## Anatomy of an ast-grep Rule Object
 
@@ -28,21 +28,21 @@ For rules using metavariables that depend on prior matching, explicit `all` comp
 
 ### Rule Object Properties
 
-| Property | Type | Category | Purpose | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `pattern` | String or Object | Atomic | Matches AST node by code pattern. | `pattern: console.log($ARG)` |
-| `kind` | String | Atomic | Matches AST node by its kind name. | `kind: call_expression` |
-| `regex` | String | Atomic | Matches node's text by Rust regex. | `regex: ^[a-z]+$` |
-| `nthChild` | number, string, Object | Atomic | Matches nodes by their index within parent's children. | `nthChild: 1` |
-| `range` | RangeObject | Atomic | Matches node by character-based start/end positions. | `range: { start: { line: 0, column: 0 }, end: { line: 0, column: 10 } }` |
-| `inside` | Object | Relational | Target node must be inside node matching sub-rule. | `inside: { pattern: class $C { $$$ }, stopBy: end }` |
-| `has` | Object | Relational | Target node must have descendant matching sub-rule. | `has: { pattern: await $EXPR, stopBy: end }` |
-| `precedes` | Object | Relational | Target node must appear before node matching sub-rule. | `precedes: { pattern: return $VAL }` |
-| `follows` | Object | Relational | Target node must appear after node matching sub-rule. | `follows: { pattern: import $M from '$P' }` |
-| `all` | Array<Rule> | Composite | Matches if all sub-rules match. | `all: [ { kind: call_expression }, { pattern: foo($A) } ]` |
-| `any` | Array<Rule> | Composite | Matches if any sub-rules match. | `any: [ { pattern: foo() }, { pattern: bar() } ]` |
-| `not` | Object | Composite | Matches if sub-rule does not match. | `not: { pattern: console.log($ARG) }` |
-| `matches` | String | Composite | Matches if predefined utility rule matches. | `matches: my-utility-rule-id` |
+| Property   | Type                   | Category   | Purpose                                                | Example                                                                  |
+| :--------- | :--------------------- | :--------- | :----------------------------------------------------- | :----------------------------------------------------------------------- |
+| `pattern`  | String or Object       | Atomic     | Matches AST node by code pattern.                      | `pattern: console.log($ARG)`                                             |
+| `kind`     | String                 | Atomic     | Matches AST node by its kind name.                     | `kind: call_expression`                                                  |
+| `regex`    | String                 | Atomic     | Matches node's text by Rust regex.                     | `regex: ^[a-z]+$`                                                        |
+| `nthChild` | number, string, Object | Atomic     | Matches nodes by their index within parent's children. | `nthChild: 1`                                                            |
+| `range`    | RangeObject            | Atomic     | Matches node by character-based start/end positions.   | `range: { start: { line: 0, column: 0 }, end: { line: 0, column: 10 } }` |
+| `inside`   | Object                 | Relational | Target node must be inside node matching sub-rule.     | `inside: { pattern: class $C { $$$ }, stopBy: end }`                     |
+| `has`      | Object                 | Relational | Target node must have descendant matching sub-rule.    | `has: { pattern: await $EXPR, stopBy: end }`                             |
+| `precedes` | Object                 | Relational | Target node must appear before node matching sub-rule. | `precedes: { pattern: return $VAL }`                                     |
+| `follows`  | Object                 | Relational | Target node must appear after node matching sub-rule.  | `follows: { pattern: import $M from '$P' }`                              |
+| `all`      | Array<Rule>            | Composite  | Matches if all sub-rules match.                        | `all: [ { kind: call_expression }, { pattern: foo($A) } ]`               |
+| `any`      | Array<Rule>            | Composite  | Matches if any sub-rules match.                        | `any: [ { pattern: foo() }, { pattern: bar() } ]`                        |
+| `not`      | Object                 | Composite  | Matches if sub-rule does not match.                    | `not: { pattern: console.log($ARG) }`                                    |
+| `matches`  | String                 | Composite  | Matches if predefined utility rule matches.            | `matches: my-utility-rule-id`                                            |
 
 ## Atomic Rules
 
@@ -60,16 +60,17 @@ pattern: console.log($ARG)
 
 **Object Pattern**: Offers granular control for ambiguous patterns or specific contexts.
 
-* `selector`: Pinpoints a specific part of the parsed pattern to match.
+- `selector`: Pinpoints a specific part of the parsed pattern to match.
+
   ```yaml
   pattern:
     selector: field_definition
     context: class { $F }
   ```
 
-* `context`: Provides surrounding code context for correct parsing.
+- `context`: Provides surrounding code context for correct parsing.
 
-* `strictness`: Modifies the pattern's matching algorithm (`cst`, `smart`, `ast`, `relaxed`, `signature`).
+- `strictness`: Modifies the pattern's matching algorithm (`cst`, `smart`, `ast`, `relaxed`, `signature`).
   ```yaml
   pattern:
     context: foo($BAR)
@@ -92,12 +93,12 @@ The `regex` rule matches the entire text content of an AST node using a Rust reg
 
 The `nthChild` rule finds nodes by their 1-based index within their parent's children list, counting only named nodes by default.
 
-* `number`: Matches the exact nth child. Example: `nthChild: 1`
-* `string`: Matches positions using An+B formula. Example: `2n+1`
-* `Object`: Provides granular control:
-  * `position`: `number` or An+B string.
-  * `reverse`: `true` to count from the end.
-  * `ofRule`: An ast-grep rule to filter the sibling list before counting.
+- `number`: Matches the exact nth child. Example: `nthChild: 1`
+- `string`: Matches positions using An+B formula. Example: `2n+1`
+- `Object`: Provides granular control:
+  - `position`: `number` or An+B string.
+  - `reverse`: `true` to count from the end.
+  - `ofRule`: An ast-grep rule to filter the sibling list before counting.
 
 ### range: Position-Based Node Matching
 
@@ -129,8 +130,8 @@ has:
 
 ### precedes and follows: Sequential Node Matching
 
-* `precedes`: Target node must appear before a node matching the `precedes` sub-rule.
-* `follows`: Target node must appear after a node matching the `follows` sub-rule.
+- `precedes`: Target node must appear before a node matching the `precedes` sub-rule.
+- `follows`: Target node must appear after a node matching the `follows` sub-rule.
 
 Both include `stopBy` but not `field`.
 
@@ -138,9 +139,9 @@ Both include `stopBy` but not `field`.
 
 **stopBy**: Controls search termination for relational rules.
 
-* `"neighbor"` (default): Stops when immediate surrounding node doesn't match.
-* `"end"`: Searches to the end of the direction (root for `inside`, leaf for `has`).
-* `Rule object`: Stops when a surrounding node matches the provided rule (inclusive).
+- `"neighbor"` (default): Stops when immediate surrounding node doesn't match.
+- `"end"`: Searches to the end of the direction (root for `inside`, leaf for `has`).
+- `Rule object`: Stops when a surrounding node matches the provided rule (inclusive).
 
 **field**: Specifies a sub-node within the target node that should match the relational rule. Only for `inside` and `has`.
 
@@ -192,10 +193,10 @@ Metavariables are placeholders in patterns to match dynamic content in the AST.
 
 Captures a single named node in the AST.
 
-* **Valid**: `$META`, `$META_VAR`, `$_`
-* **Invalid**: `$invalid`, `$123`, `$KEBAB-CASE`
-* **Example**: `console.log($GREETING)` matches `console.log('Hello World')`.
-* **Reuse**: `$A == $A` matches `a == a` but not `a == b`.
+- **Valid**: `$META`, `$META_VAR`, `$_`
+- **Invalid**: `$invalid`, `$123`, `$KEBAB-CASE`
+- **Example**: `console.log($GREETING)` matches `console.log('Hello World')`.
+- **Reuse**: `$A == $A` matches `a == a` but not `a == b`.
 
 ### $$VAR: Single Unnamed Node Capture
 
@@ -215,20 +216,20 @@ rule:
 
 Matches zero or more AST nodes (non-greedy). Useful for variable numbers of arguments or statements.
 
-* **Example**: `console.log($$$)` matches `console.log()`, `console.log('hello')`, and `console.log('debug:', key, value)`.
-* **Example**: `function $FUNC($$$ARGS) { $$$ }` matches functions with varying parameters/statements.
+- **Example**: `console.log($$$)` matches `console.log()`, `console.log('hello')`, and `console.log('debug:', key, value)`.
+- **Example**: `function $FUNC($$$ARGS) { $$$ }` matches functions with varying parameters/statements.
 
-### Non-Capturing Metavariables (_VAR)
+### Non-Capturing Metavariables (\_VAR)
 
 Metavariables starting with an underscore (`_`) are not captured. They can match different content even if named identically, optimizing performance.
 
-* **Example**: `$_FUNC($_FUNC)` matches `test(a)` and `testFunc(1 + 1)`.
+- **Example**: `$_FUNC($_FUNC)` matches `test(a)` and `testFunc(1 + 1)`.
 
 ### Important Considerations for Metavariable Detection
 
-* **Syntax Matching**: Only exact metavariable syntax (e.g., `$A`, `$$B`, `$$$C`) is recognized.
-* **Exclusive Content**: Metavariable text must be the only text within an AST node.
-* **Non-working**: `obj.on$EVENT`, `"Hello $WORLD"`, `a $OP b`, `$jq`.
+- **Syntax Matching**: Only exact metavariable syntax (e.g., `$A`, `$$B`, `$$$C`) is recognized.
+- **Exclusive Content**: Metavariable text must be the only text within an AST node.
+- **Non-working**: `obj.on$EVENT`, `"Hello $WORLD"`, `a $OP b`, `$jq`.
 
 The ast-grep playground is useful for debugging patterns and visualizing metavariables.
 

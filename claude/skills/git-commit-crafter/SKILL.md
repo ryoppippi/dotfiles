@@ -56,17 +56,20 @@ git diff <file> | git apply -v
 **Common Issues**:
 
 1. **Trailing Whitespace**: Patches may fail due to whitespace differences
+
    ```bash
    git apply --whitespace=fix -v patch_file.patch
    ```
 
 2. **Partial Failures**: When some hunks fail, use `--reject` to apply what works
+
    ```bash
    git apply --reject -v patch_file.patch
    # Manually resolve conflicts in generated .rej files
    ```
 
 3. **Context Mismatch**: If patch was created from different base, try with more context
+
    ```bash
    git apply --ignore-whitespace -v patch_file.patch
    ```
@@ -114,6 +117,7 @@ git apply --reject -v patch_file.patch
 **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
 
 **Body should explain**:
+
 - WHAT changed and WHY
 - Problem context and solution rationale
 - Implementation decisions

@@ -14,8 +14,8 @@
  *   bun update.ts
  */
 
-import { $ } from "bun";
-import { join } from "node:path";
+import { $ } from 'bun';
+import { join } from 'node:path';
 
 interface Plugin {
 	name: string;
@@ -24,7 +24,7 @@ interface Plugin {
 	currentRev: string;
 }
 
-const CONFIG_FILE = join(import.meta.dir, "default.nix");
+const CONFIG_FILE = join(import.meta.dir, 'default.nix');
 
 /**
  * Fetch the latest commit SHA from GitHub API.
@@ -61,7 +61,8 @@ function parsePlugins(content: string): Plugin[] {
 	const plugins: Plugin[] = [];
 
 	// Match plugin blocks with fetchFromGitHub
-	const pluginRegex = /name\s*=\s*"([^"]+)"[^}]*?src\s*=\s*pkgs\.fetchFromGitHub\s*\{[^}]*?owner\s*=\s*"([^"]+)"[^}]*?repo\s*=\s*"([^"]+)"[^}]*?rev\s*=\s*"([^"]+)"/gs;
+	const pluginRegex =
+		/name\s*=\s*"([^"]+)"[^}]*?src\s*=\s*pkgs\.fetchFromGitHub\s*\{[^}]*?owner\s*=\s*"([^"]+)"[^}]*?repo\s*=\s*"([^"]+)"[^}]*?rev\s*=\s*"([^"]+)"/gs;
 
 	let match: RegExpExecArray | null;
 	while ((match = pluginRegex.exec(content)) !== null) {
@@ -90,7 +91,7 @@ function updatePluginInContent(
 	// Replace sha256 (find the sha256 line after this plugin's owner/repo)
 	const sha256Pattern = new RegExp(
 		`(owner\\s*=\\s*"${plugin.owner}"[^}]*?repo\\s*=\\s*"${plugin.repo}"[^}]*?sha256\\s*=\\s*")sha256-[^"]+(")`,
-		"s",
+		's',
 	);
 
 	updated = updated.replace(sha256Pattern, `$1${newHash}$2`);
@@ -100,7 +101,7 @@ function updatePluginInContent(
 
 // Main execution
 async function main() {
-	console.log("Fish Plugin Updater\n");
+	console.log('Fish Plugin Updater\n');
 	console.log(`Reading ${CONFIG_FILE}...\n`);
 
 	const content = await Bun.file(CONFIG_FILE).text();
@@ -129,12 +130,7 @@ async function main() {
 			const newHash = await fetchHash(plugin.owner, plugin.repo, latestRev);
 			console.log(`  Hash: ${newHash}`);
 
-			updatedContent = updatePluginInContent(
-				updatedContent,
-				plugin,
-				latestRev,
-				newHash,
-			);
+			updatedContent = updatePluginInContent(updatedContent, plugin, latestRev, newHash);
 
 			console.log(`  ✓ Updated\n`);
 			updateCount++;
@@ -144,7 +140,7 @@ async function main() {
 	}
 
 	if (updateCount === 0) {
-		console.log("✓ All plugins are up to date!");
+		console.log('✓ All plugins are up to date!');
 		return;
 	}
 
