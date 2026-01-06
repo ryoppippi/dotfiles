@@ -68,6 +68,7 @@ return {
 
 				-- python
 				"basedpyright",
+				"ty",
 
 				-- misc
 				"typos_lsp",
