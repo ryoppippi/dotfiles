@@ -163,6 +163,23 @@
               ];
               # Custom formatters/linters
               formatter = {
+                oxfmt = {
+                  command = "${pkgs.oxfmt}/bin/oxfmt";
+                  options = [ "--no-error-on-unmatched-pattern" ];
+                  includes = [ "*" ];
+                  excludes = [
+                    # Nix (handled by nixfmt)
+                    "*.nix"
+                    # Lua (handled by stylua)
+                    "*.lua"
+                    # Lock files
+                    "*.lock"
+                    "nvim/lazy-lock.json"
+                    # Directories
+                    "node_modules/**"
+                    ".direnv/**"
+                  ];
+                };
                 gitleaks = {
                   command = "${pkgs.gitleaks}/bin/gitleaks";
                   options = [
@@ -172,6 +189,21 @@
                     "0"
                   ];
                   includes = [ "*" ];
+                  excludes = [
+                    "*.png"
+                    "*.jpg"
+                    "*.jpeg"
+                    "*.gif"
+                    "*.ico"
+                    "*.pdf"
+                    "*.woff"
+                    "*.woff2"
+                    "*.ttf"
+                    "*.eot"
+                    "node_modules/**"
+                    ".direnv/**"
+                    "nix/node2nix/package-lock.json"
+                  ];
                 };
                 renovate-validator = {
                   command = "${pkgs.renovate}/bin/renovate-config-validator";
