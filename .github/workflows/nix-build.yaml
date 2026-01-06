@@ -43,6 +43,7 @@ jobs:
   build-ubuntu:
     needs: changes
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Skip if no Nix changes
         if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
@@ -68,6 +69,7 @@ jobs:
   build-ubuntu-arm:
     needs: changes
     runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
     steps:
       - name: Skip if no Nix changes
         if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
@@ -98,6 +100,7 @@ jobs:
       (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
       (github.event_name == 'workflow_dispatch' && (inputs.os == 'macos' || inputs.os == 'both'))
     runs-on: macos-latest
+    timeout-minutes: 30
     steps:
       - name: Skip if no Nix changes
         if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
