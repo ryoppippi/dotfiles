@@ -2,12 +2,6 @@ name: 'CI: Format check'
 
 on:
   push:
-    paths:
-      - 'flake.nix'
-      - 'flake.lock'
-      - 'nix/**'
-      - 'treefmt.toml'
-      - '.github/workflows/nix-format.yaml'
   pull_request:
 
 concurrency:
