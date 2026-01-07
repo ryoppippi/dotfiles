@@ -91,7 +91,7 @@ nix run .#build
 
 - `nix run .#switch` - Build and apply darwin + Home Manager configuration
 - `nix run .#update` - Update flake.lock dependencies
-- `nix run .#update-ai-tools` - Update llm-agents and claude-code-overlay inputs
+- `nix run .#update-ai-tools` - Update llm-agents input
 - `nix run .#build` - Build configuration (dry run)
 
 #### Linux
