@@ -6,16 +6,6 @@ on:
       - main
   pull_request:
   workflow_dispatch:
-    inputs:
-      os:
-        description: 'Operating system to build'
-        required: true
-        type: choice
-        options:
-          - 'both'
-          - 'ubuntu'
-          - 'macos'
-        default: 'both'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -89,36 +79,5 @@ jobs:
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           nix build .#homeConfigurations.ryoppippi-aarch64.activationPackage \
-            --print-build-logs \
-            --show-trace
-
-  build-macos:
-    needs: changes
-    # Only run on pull_request, push to main, or workflow_dispatch with macos/both selected
-    if: |
-      github.event_name == 'pull_request' ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-      (github.event_name == 'workflow_dispatch' && (inputs.os == 'macos' || inputs.os == 'both'))
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: Skip if no Nix changes
-        if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
-        run: echo "No Nix-related changes detected, skipping build"
-
-      - name: Checkout repository
-        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Setup Nix
-        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
-        uses: ./.github/actions/setup-nix
-        with:
-          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
-      - name: Build macOS (nix-darwin) configuration
-        if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
-        run: |
-          nix build .#darwinConfigurations.ryoppippi.system \
             --print-build-logs \
             --show-trace
