@@ -1,4 +1,4 @@
-name: 'CI: Format check'
+name: 'CI: Lint'
 
 on:
   push:
@@ -9,8 +9,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  format:
+  lint:
     runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -19,6 +20,8 @@ jobs:
         with:
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Check formatting, dead code, and linting
-        run: |
-          nix run .#fmt -- --fail-on-change
+      - name: Check flake
+        run: nix flake check --all-systems --show-trace
+
+      - name: Check formatting
+        run: nix run .#fmt -- --fail-on-change
