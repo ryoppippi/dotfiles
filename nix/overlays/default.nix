@@ -4,6 +4,7 @@ let
   overlayFiles = [
     # AI tools
     ./ai-tools.nix
+    ./claude-code.nix
     # GitHub CLI extensions
     ./gh-user-stars.nix
     ./gh-triage.nix

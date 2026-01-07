@@ -35,6 +35,11 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
+    claude-code-overlay = {
+      url = "github:ryoppippi/claude-code-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,6 +95,7 @@
       nix-darwin,
       home-manager,
       llm-agents,
+      claude-code-overlay,
       treefmt-nix,
       git-hooks,
       gh-nippou,
@@ -116,6 +122,7 @@
           overlays = [
             (final: prev: {
               _llm-agents = llm-agents;
+              _claude-code-overlay = claude-code-overlay;
             })
             gh-nippou.overlays.default
             gh-graph.overlays.default
@@ -149,6 +156,7 @@
               {
                 imports = [
                   nix-index-database.hmModules.nix-index
+                  claude-code-overlay.homeManagerModules.default
 
                   (import ./nix/modules/home {
                     inherit
@@ -425,6 +433,8 @@
                 in
                 {
                   imports = [
+                    claude-code-overlay.homeManagerModules.default
+
                     (import ./nix/modules/home {
                       inherit
                         pkgs

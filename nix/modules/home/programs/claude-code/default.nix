@@ -33,12 +33,11 @@ let
   );
 in
 {
-  # Install Claude Code package (now from llm-agents.nix via overlay)
-  home.packages = [ pkgs.claude-code ];
-
-  # Create ~/.local/bin/claude symlink (useful for Linux to avoid "claude command not found" warning)
-  home.file.".local/bin/claude" = {
-    source = "${pkgs.claude-code}/bin/claude";
+  # Enable Claude Code via home-manager module
+  programs.claude-code = {
+    enable = true;
+    # Create ~/.local/bin/claude symlink (default: true on Linux, false on macOS)
+    enableLocalBinSymlink = true;
   };
 
   # Set CLAUDE_CONFIG_DIR environment variable (sourced via hm-session-vars.sh in fish)
