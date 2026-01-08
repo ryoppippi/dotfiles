@@ -1,4 +1,4 @@
-{ lib }:
+{ ... }:
 {
   # Helper function to safely create symlinks in activation scripts
   # Removes existing files/directories/links before creating new symlinks

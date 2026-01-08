@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   git-now = prev.stdenv.mkDerivation rec {
     pname = "git-now";
     version = "0.1.1.0";

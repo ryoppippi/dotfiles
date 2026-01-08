@@ -1,4 +1,4 @@
-final: prev: {
+final: _prev: {
   gh-user-stars = final.stdenv.mkDerivation rec {
     pname = "gh-user-stars";
     version = "unstable-2024-05-19";

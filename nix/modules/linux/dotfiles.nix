@@ -7,8 +7,7 @@
   ...
 }:
 let
-  homeDir = config.home.homeDirectory;
-  configHome = config.xdg.configHome;
+  inherit (config.xdg) configHome;
 in
 {
   # Linux-specific dotfile symlinks

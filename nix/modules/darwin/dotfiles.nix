@@ -7,8 +7,8 @@
   ...
 }:
 let
-  homeDir = config.home.homeDirectory;
-  configHome = config.xdg.configHome;
+  inherit (config.home) homeDirectory;
+  inherit (config.xdg) configHome;
 in
 {
   # macOS-specific dotfile symlinks
@@ -17,17 +17,17 @@ in
         ${helpers.activation.mkLinkForce}
 
       # Homebrew bundle file
-      link_force "${dotfilesDir}/Brewfile" "${homeDir}/.Brewfile"
+      link_force "${dotfilesDir}/Brewfile" "${homeDirectory}/.Brewfile"
 
       # Karabiner Elements configuration
       link_force "${dotfilesDir}/karabiner" "${configHome}/karabiner"
 
       # Finicky configuration
-      link_force "${dotfilesDir}/finicky.js" "${homeDir}/.finicky.js"
+      link_force "${dotfilesDir}/finicky.js" "${homeDirectory}/.finicky.js"
 
       # Xcode key bindings
-      $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings"
-      link_force "${dotfilesDir}/xcode/Default.idekeybindings" "${homeDir}/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
+      $DRY_RUN_CMD mkdir -p "${homeDirectory}/Library/Developer/Xcode/UserData/KeyBindings"
+      link_force "${dotfilesDir}/xcode/Default.idekeybindings" "${homeDirectory}/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
 
       # Yabai window manager
       link_force "${dotfilesDir}/yabai" "${configHome}/yabai"
@@ -36,8 +36,8 @@ in
       link_force "${dotfilesDir}/skhd" "${configHome}/skhd"
 
       # Pip configuration (macOS paths)
-      $DRY_RUN_CMD mkdir -p "${homeDir}/Library/Application Support/pip"
-      link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/Library/Application Support/pip/pip.conf"
+      $DRY_RUN_CMD mkdir -p "${homeDirectory}/Library/Application Support/pip"
+      link_force "${dotfilesDir}/pip/pip.conf" "${homeDirectory}/Library/Application Support/pip/pip.conf"
     ''
   );
 }

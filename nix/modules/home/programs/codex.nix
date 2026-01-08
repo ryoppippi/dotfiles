@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   ...

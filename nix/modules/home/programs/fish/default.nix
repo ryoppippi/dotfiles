@@ -1,7 +1,6 @@
 {
   pkgs,
   fish-na,
-  config,
   lib,
   ...
 }:
@@ -11,27 +10,27 @@ let
     # Plugins from nixpkgs (cached and maintained)
     {
       name = "autopair-fish";
-      src = pkgs.fishPlugins.autopair-fish.src;
+      inherit (pkgs.fishPlugins.autopair-fish) src;
     }
     {
       name = "bass";
-      src = pkgs.fishPlugins.bass.src;
+      inherit (pkgs.fishPlugins.bass) src;
     }
     {
       name = "fzf";
-      src = pkgs.fishPlugins.fzf.src;
+      inherit (pkgs.fishPlugins.fzf) src;
     }
     {
       name = "fish-bd";
-      src = pkgs.fishPlugins.fish-bd.src;
+      inherit (pkgs.fishPlugins.fish-bd) src;
     }
     {
       name = "hydro";
-      src = pkgs.fishPlugins.hydro.src;
+      inherit (pkgs.fishPlugins.hydro) src;
     }
     {
       name = "spark";
-      src = pkgs.fishPlugins.spark.src;
+      inherit (pkgs.fishPlugins.spark) src;
     }
 
     # GHQ integration
