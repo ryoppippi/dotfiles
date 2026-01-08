@@ -291,6 +291,8 @@
                 enable = true;
                 package = config.treefmt.build.wrapper;
               };
+              deadnix.enable = true;
+              statix.enable = true;
             };
           };
 
