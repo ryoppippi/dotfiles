@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
@@ -7,8 +6,8 @@
   ...
 }:
 let
-  homeDir = config.home.homeDirectory;
-  configHome = config.xdg.configHome;
+  inherit (config.home) homeDirectory;
+  inherit (config.xdg) configHome;
 in
 {
   # Common dotfile symlinks for all platforms
@@ -16,20 +15,20 @@ in
     ${helpers.activation.mkLinkForce}
 
     # IdeaVim configuration
-    link_force "${dotfilesDir}/ideavimrc" "${homeDir}/.ideavimrc"
+    link_force "${dotfilesDir}/ideavimrc" "${homeDirectory}/.ideavimrc"
 
     # Fish shell configuration
     link_force "${dotfilesDir}/fish" "${configHome}/fish"
 
     # Zsh environment
-    link_force "${dotfilesDir}/zshenv" "${homeDir}/.zshenv"
+    link_force "${dotfilesDir}/zshenv" "${homeDirectory}/.zshenv"
 
     # Zsh configuration
-    link_force "${dotfilesDir}/zsh/zshrc" "${homeDir}/.zshrc"
+    link_force "${dotfilesDir}/zsh/zshrc" "${homeDirectory}/.zshrc"
 
     # Bash configuration
-    link_force "${dotfilesDir}/bash/.bash_profile" "${homeDir}/.bash_profile"
-    link_force "${dotfilesDir}/bash/.bashrc" "${homeDir}/.bashrc"
+    link_force "${dotfilesDir}/bash/.bash_profile" "${homeDirectory}/.bash_profile"
+    link_force "${dotfilesDir}/bash/.bashrc" "${homeDirectory}/.bashrc"
 
     # Aqua package manager configuration
     link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
@@ -38,13 +37,13 @@ in
     link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
 
     # Scripts directory
-    link_force "${dotfilesDir}/my_scripts" "${homeDir}/.scripts"
+    link_force "${dotfilesDir}/my_scripts" "${homeDirectory}/.scripts"
 
     # EFM Language Server configuration
     link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
 
     # Pip fallback location (both platforms)
-    $DRY_RUN_CMD mkdir -p "${homeDir}/.pip"
-    link_force "${dotfilesDir}/pip/pip.conf" "${homeDir}/.pip/pip.conf"
+    $DRY_RUN_CMD mkdir -p "${homeDirectory}/.pip"
+    link_force "${dotfilesDir}/pip/pip.conf" "${homeDirectory}/.pip/pip.conf"
   '';
 }

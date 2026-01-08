@@ -1,4 +1,4 @@
-final: prev: {
+final: _prev: {
   gh-triage = final.buildGoModule rec {
     pname = "gh-triage";
     version = "0.5.0";

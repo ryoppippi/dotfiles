@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   bluetooth-connector = prev.stdenv.mkDerivation rec {
     pname = "BluetoothConnector";
     version = "2.1.0";

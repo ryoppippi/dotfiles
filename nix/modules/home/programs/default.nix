@@ -3,7 +3,6 @@
   lib,
   config,
   dotfilesDir,
-  system,
   helpers,
   nodePackages ? null,
   fish-na,

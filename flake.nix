@@ -120,7 +120,7 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
-            (final: prev: {
+            (_final: _prev: {
               _llm-agents = llm-agents;
               _claude-code-overlay = claude-code-overlay;
             })
@@ -205,7 +205,6 @@
       perSystem =
         {
           config,
-          pkgs,
           system,
           ...
         }:

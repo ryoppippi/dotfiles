@@ -1,4 +1,4 @@
-final: prev: {
+_final: prev: {
   sheep = prev.buildGoModule rec {
     pname = "sheep";
     version = "0.4.0";

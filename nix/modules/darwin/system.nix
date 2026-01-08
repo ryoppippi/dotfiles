@@ -1,13 +1,11 @@
 {
   pkgs,
-  lib,
   username,
   homedir,
   ...
 }:
 let
   fishPath = "${pkgs.fish}/bin/fish";
-  cachix = import ../../cachix.nix;
 in
 {
   # Allow unfree packages
