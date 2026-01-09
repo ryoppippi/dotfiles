@@ -92,8 +92,6 @@ local keys = {
 		end),
 	},
 	-- ]]
-	-- added by claude code
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 }
 
 -- activate tab
