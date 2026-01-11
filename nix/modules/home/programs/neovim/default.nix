@@ -46,10 +46,12 @@ in
         telescopeFzfNative # telescope-fzf-native.nvim pre-built by Nix
         telescopeFzyNative # telescope-fzy-native.nvim pre-built by Nix
       ]
-      # node2nix packages (tsgo, etc.)
-      ++ lib.optionals (nodePackages != null) [
-        nodePackages.nodeDependencies
-      ]
+      # buildNpmPackage packages (language servers from npm)
+      ++ lib.optionals (nodePackages != null) (with nodePackages; [
+        gh-actions-language-server
+        typescript-svelte-plugin
+        unocss-language-server
+      ])
       ++ (with pkgs; [
 
         # Plugin build dependencies (lazy.nvim build steps)
