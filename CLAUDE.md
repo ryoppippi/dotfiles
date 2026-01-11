@@ -80,6 +80,7 @@ Configuration: `nix/modules/home/agent-skills.nix`
 ### Adding a local skill
 
 Add to `skills.explicit` in `agent-skills.nix`:
+
 ```nix
 skills.explicit.my-skill = "${dotfilesDir}/claude/skills/my-skill";
 ```
@@ -94,9 +95,11 @@ nix run .#switch                  # Apply changes
 ### Current skills
 
 **External:**
+
 - **ast-grep**: [ast-grep/claude-skill](https://github.com/ast-grep/claude-skill)
 
 **Local (in `claude/skills/`):**
+
 - git-commit-crafter
 - pr-workflow-manager
 
