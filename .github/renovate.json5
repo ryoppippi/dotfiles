@@ -16,23 +16,5 @@
 	lockFileMaintenance: {
 		enabled: false,
 	},
-	packageRules: [
-		{
-			description: 'NeoVim Node.js dependencies managed by node2nix',
-			matchFileNames: ['nix/node2nix/package.json'],
-			postUpgradeTasks: {
-				commands: [
-					'cd nix/node2nix && npm install --package-lock-only --lockfile-version=2',
-					'cd nix/node2nix && nix run nixpkgs#node2nix -- -l package-lock.json',
-				],
-				fileFilters: [
-					'nix/node2nix/package-lock.json',
-					'nix/node2nix/node-packages.nix',
-					'nix/node2nix/node-env.nix',
-					'nix/node2nix/default.nix',
-				],
-				executionMode: 'update',
-			},
-		},
-	],
+	packageRules: [],
 }

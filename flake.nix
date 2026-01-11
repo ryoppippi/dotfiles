@@ -167,11 +167,7 @@
                       ;
                     homedir = linuxHomedir;
                     system = linuxSystem;
-                    nodePackages = import ./nix/node2nix {
-                      inherit pkgs;
-                      inherit (pkgs) system;
-                      nodejs = pkgs.nodejs_24;
-                    };
+                    nodePackages = import ./nix/packages/node { inherit pkgs; };
                   })
 
                   (import ./nix/modules/linux {
@@ -263,7 +259,7 @@
                     "*.eot"
                     "node_modules/**"
                     ".direnv/**"
-                    "nix/node2nix/package-lock.json"
+                    "nix/packages/node/**/package-lock.json"
                   ];
                 };
                 renovate-validator = {
@@ -380,13 +376,12 @@
               );
             };
 
-            update-node2nix = {
+            update-node-packages = {
               type = "app";
               program = toString (
-                localPkgs.writeShellScript "update-node2nix" ''
+                localPkgs.writeShellScript "update-node-packages" ''
                   set -e
-                  cd nix/node2nix
-                  exec ${localPkgs.node2nix}/bin/node2nix -l package-lock.json "$@"
+                  exec ${localPkgs.bash}/bin/bash nix/packages/node/update.sh "$@"
                 ''
               );
             };
@@ -445,11 +440,7 @@
                         ;
                       homedir = darwinHomedir;
                       system = "aarch64-darwin";
-                      nodePackages = import ./nix/node2nix {
-                        inherit pkgs;
-                        inherit (pkgs) system;
-                        nodejs = pkgs.nodejs_24;
-                      };
+                      nodePackages = import ./nix/packages/node { inherit pkgs; };
                     })
 
                     (import ./nix/modules/darwin {

@@ -1,0 +1,92 @@
+name: 'Bot: Update npm packages for Neovim'
+
+on:
+  schedule:
+    # Run once weekly on Monday at 07:00 UTC
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository (for local actions)
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Set up git bot identity
+        id: bot
+        uses: ./.github/actions/setup-git-bot
+        with:
+          app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+          private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
+
+      - name: Checkout repository (with bot token)
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          token: ${{ steps.bot.outputs.token }}
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Update npm packages
+        id: update
+        run: |
+          bash nix/packages/node/update.sh
+
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No updates available"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Updates available"
+          fi
+
+      - name: Build and test
+        if: steps.update.outputs.has_changes == 'true'
+        run: |
+          nix build .#darwinConfigurations.ryoppippi.system --show-trace
+
+      - name: Create Pull Request
+        if: steps.update.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
+        run: |
+          BRANCH_NAME="chore/update-node-packages-$(date +%Y%m%d)"
+
+          # Create branch and commit
+          git checkout -b "$BRANCH_NAME"
+          git add -A
+          git commit -m "chore(nix): update npm packages for Neovim"
+          git push -u origin "$BRANCH_NAME"
+
+          # Create PR
+          gh pr create \
+            --title "chore(nix): update npm packages for Neovim" \
+            --body "$(cat <<'EOF'
+          ## Summary
+          - Updates npm packages managed via buildNpmPackage
+
+          ## Packages
+          - gh-actions-language-server
+          - typescript-svelte-plugin
+          - unocss-language-server
+
+          ---
+          _This PR was automatically created by the update-node-packages workflow._
+          EOF
+          )" \
+            --label "dependencies,automated"
+
+          # Enable auto-merge
+          gh pr merge "$BRANCH_NAME" --auto --squash
