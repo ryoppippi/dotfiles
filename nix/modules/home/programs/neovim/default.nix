@@ -51,7 +51,6 @@ in
         with nodePackages;
         [
           gh-actions-language-server
-          typescript-svelte-plugin
           unocss-language-server
         ]
       )

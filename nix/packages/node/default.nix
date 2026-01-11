@@ -66,16 +66,6 @@ in
     mainProgram = "gh-actions-language-server";
   };
 
-  typescript-svelte-plugin = mkNpmPackage {
-    pname = "typescript-svelte-plugin";
-    version = "0.3.50";
-    hash = "sha256-QE9dp4Mh6ttNrc2vLVaoEwYZWHGIK22pFQvEpX7+3jY=";
-    npmDepsHash = "sha256-ojwxXkTfgQpSjnB2qlBtpTETRI3m8N/heDqsFLO/Wi4=";
-    description = "A TypeScript plugin for Svelte intellisense";
-    homepage = "https://github.com/sveltejs/language-tools";
-    mainProgram = "typescript-svelte-plugin";
-  };
-
   unocss-language-server = mkNpmPackage {
     pname = "unocss-language-server";
     version = "0.1.8";
