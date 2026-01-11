@@ -87,21 +87,7 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      blueprint,
-      nix-darwin,
-      home-manager,
-      llm-agents,
-      claude-code-overlay,
-      treefmt-nix,
-      gh-nippou,
-      gh-graph,
-      brew-nix,
-      fish-na,
-      nix-index-database,
-      ...
-    }:
+    inputs:
     let
       username = "ryoppippi";
       systems = [
@@ -113,7 +99,7 @@
       # Helper to generate attrs for all systems
       forAllSystems = f: inputs.nixpkgs.lib.genAttrs systems f;
 
-      # Create pkgs with overlays for a given system
+      # Create pkgs for a given system
       mkPkgs = system: import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
