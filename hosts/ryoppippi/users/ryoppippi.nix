@@ -7,7 +7,8 @@
   ...
 }:
 let
-  homedir = "/Users/ryoppippi";
+  username = config.home.username;
+  homedir = "/Users/${username}";
   dotfilesDir = "${homedir}/ghq/github.com/ryoppippi/dotfiles";
   system = pkgs.stdenv.hostPlatform.system;
   helpers = import ../../../nix/modules/lib/helpers { inherit lib; };
@@ -44,7 +45,4 @@ in
         ;
     })
   ];
-
-  home.username = "ryoppippi";
-  home.homeDirectory = homedir;
 }
