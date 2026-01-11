@@ -49,6 +49,57 @@ nix run .#build                # Test build
 - Use **Conventional Commits** with UK English spelling
 - Commits are GPG-signed with SSH
 
+## External Skills (agent-skills-nix)
+
+Claude Code skills are managed via [agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix).
+
+Configuration: `nix/modules/home/agent-skills.nix`
+
+### Adding a new external skill
+
+1. Add flake input in `flake.nix`:
+   ```nix
+   my-skill = {
+     url = "github:owner/repo";
+     flake = false;
+   };
+   ```
+2. Add source in `agent-skills.nix`:
+   ```nix
+   sources.my-skill = {
+     path = my-skill;
+     subdir = "path/to/skills";
+   };
+   ```
+3. Enable the skill:
+   ```nix
+   skills.enable = [ "skill-id" ];
+   ```
+4. Run `git add . && nix run .#switch`
+
+### Adding a local skill
+
+Add to `skills.explicit` in `agent-skills.nix`:
+```nix
+skills.explicit.my-skill = "${dotfilesDir}/claude/skills/my-skill";
+```
+
+### Updating external skills
+
+```bash
+nix flake update ast-grep-skill  # Update specific skill
+nix run .#switch                  # Apply changes
+```
+
+### Current skills
+
+**External:**
+- **ast-grep**: [ast-grep/claude-skill](https://github.com/ast-grep/claude-skill)
+
+**Local (in `claude/skills/`):**
+- git-commit-crafter
+- pr-workflow-manager
+
 ## System Info
 
 - **Platform**: aarch64-darwin (Apple Silicon)
