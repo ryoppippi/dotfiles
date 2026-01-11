@@ -21,7 +21,7 @@ jobs:
           cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: Check flake
-        run: nix flake check --all-systems --show-trace
+        run: nix flake check --all-systems --accept-flake-config --show-trace
 
       - name: Check formatting
-        run: nix run .#fmt -- --fail-on-change
+        run: nix fmt -- --fail-on-change

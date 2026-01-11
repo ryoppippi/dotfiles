@@ -27,6 +27,8 @@ jobs:
               - 'flake.nix'
               - 'flake.lock'
               - 'nix/**'
+              - 'modules/**'
+              - 'hosts/**'
               - '.github/workflows/nix-build.yaml'
               - '.github/actions/setup-nix/**'
 
@@ -52,7 +54,8 @@ jobs:
       - name: Build Linux (Home Manager) configuration
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          nix build .#homeConfigurations.ryoppippi.activationPackage \
+          nix build '.#legacyPackages.x86_64-linux.homeConfigurations."ryoppippi@linux-aarch64".activationPackage' \
+            --accept-flake-config \
             --print-build-logs \
             --show-trace
 
@@ -78,6 +81,7 @@ jobs:
       - name: Build Linux (Home Manager) configuration for aarch64
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          nix build .#homeConfigurations.ryoppippi-aarch64.activationPackage \
+          nix build '.#legacyPackages.aarch64-linux.homeConfigurations."ryoppippi@linux-aarch64".activationPackage' \
+            --accept-flake-config \
             --print-build-logs \
             --show-trace
