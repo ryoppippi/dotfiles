@@ -4,7 +4,6 @@
   lib,
   config,
   inputs,
-  perSystem,
   ...
 }:
 let

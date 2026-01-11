@@ -21,8 +21,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    blueprint.url = "github:numtide/blueprint";
-    blueprint.inputs.nixpkgs.follows = "nixpkgs";
+    blueprint = {
+      url = "github:numtide/blueprint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -85,7 +87,21 @@
   };
 
   outputs =
-    inputs:
+    inputs@{
+      nixpkgs,
+      blueprint,
+      nix-darwin,
+      home-manager,
+      llm-agents,
+      claude-code-overlay,
+      treefmt-nix,
+      gh-nippou,
+      gh-graph,
+      brew-nix,
+      fish-na,
+      nix-index-database,
+      ...
+    }:
     let
       username = "ryoppippi";
       systems = [
