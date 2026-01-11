@@ -11,7 +11,7 @@ let
   homedir = "/home/${username}";
   dotfilesDir = "${homedir}/ghq/github.com/ryoppippi/dotfiles";
   system = pkgs.stdenv.hostPlatform.system;
-  helpers = import ../../../nix/modules/lib/helpers { inherit lib; };
+  helpers = import ../../../modules/lib/helpers { inherit lib; };
   nodePackages = import ../../../nix/packages/node { inherit pkgs; };
 in
 {
@@ -20,7 +20,7 @@ in
     inputs.nix-index-database.hmModules.nix-index
 
     # Common home configuration
-    (import ../../../nix/modules/home {
+    (import ../../../modules/home {
       inherit
         pkgs
         config
@@ -35,7 +35,7 @@ in
     })
 
     # Linux-specific home configuration
-    (import ../../../nix/modules/linux {
+    (import ../../../modules/linux {
       inherit
         pkgs
         config

@@ -136,7 +136,7 @@
                   DOTFILES_DIR="$(pwd)"
                 fi
                 exec ${pkgs.bash}/bin/bash \
-                  ${./nix/modules/home/programs/neovim/check.sh} \
+                  ${./modules/home/programs/neovim/check.sh} \
                   "$DOTFILES_DIR/nvim" \
                   "$HOME/.local/share/nvim/lazy" \
                   ${pkgs.neovim}/bin/nvim

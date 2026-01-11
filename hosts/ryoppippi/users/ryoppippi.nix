@@ -11,7 +11,7 @@ let
   homedir = "/Users/${username}";
   dotfilesDir = "${homedir}/ghq/github.com/ryoppippi/dotfiles";
   system = pkgs.stdenv.hostPlatform.system;
-  helpers = import ../../../nix/modules/lib/helpers { inherit lib; };
+  helpers = import ../../../modules/lib/helpers { inherit lib; };
   nodePackages = import ../../../nix/packages/node { inherit pkgs; };
 in
 {
@@ -19,7 +19,7 @@ in
     inputs.claude-code-overlay.homeManagerModules.default
 
     # Common home configuration
-    (import ../../../nix/modules/home {
+    (import ../../../modules/home {
       inherit
         pkgs
         config
@@ -34,7 +34,7 @@ in
     })
 
     # Darwin-specific home configuration
-    (import ../../../nix/modules/darwin {
+    (import ../../../modules/darwin {
       inherit
         pkgs
         config
