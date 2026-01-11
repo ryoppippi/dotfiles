@@ -7,6 +7,8 @@
   system ? null,
   nodePackages ? null,
   fish-na ? null,
+  ast-grep-skill ? null,
+  local-skills ? null,
   ...
 }:
 let
@@ -17,6 +19,15 @@ in
   imports = [
     # Common packages
     ./packages.nix
+
+    # Agent skills for Claude Code (skills from flake inputs)
+    (import ./agent-skills.nix {
+      inherit
+        ast-grep-skill
+        local-skills
+        config
+        ;
+    })
 
     # Git hooks for auto-switching nix config on changes
     # Note: pre-commit hook is managed by devShell via git-hooks.nix flakeModule

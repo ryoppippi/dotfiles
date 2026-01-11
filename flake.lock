@@ -1,5 +1,42 @@
 {
   "nodes": {
+    "agent-skills": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767105052,
+        "narHash": "sha256-nzeEIvgWseoKZ2Ep8nssNYAO0kmtOfhsIvo9Dz5cb68=",
+        "owner": "Kyure-A",
+        "repo": "agent-skills-nix",
+        "rev": "318e2dd549f57ab1f506abd38f39ce4fc81b673e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kyure-A",
+        "repo": "agent-skills-nix",
+        "type": "github"
+      }
+    },
+    "ast-grep-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763947069,
+        "narHash": "sha256-LCI06qz9skVqSsXc88djK6YixABB+GnvoZcSce1m5Aw=",
+        "owner": "ast-grep",
+        "repo": "claude-skill",
+        "rev": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ast-grep",
+        "repo": "claude-skill",
+        "type": "github"
+      }
+    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
@@ -336,6 +373,27 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "agent-skills",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766387499,
+        "narHash": "sha256-AjK3/UKDzeXFeYNLVBaJ3+HLE9he1g5UrlNd4/BM3eA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "527ad07e6625302b648ed3b28c34b62a79bd103e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -492,6 +550,8 @@
     },
     "root": {
       "inputs": {
+        "agent-skills": "agent-skills",
+        "ast-grep-skill": "ast-grep-skill",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
         "claude-code-overlay": "claude-code-overlay",
@@ -500,7 +560,7 @@
         "gh-graph": "gh-graph",
         "gh-nippou": "gh-nippou",
         "git-hooks": "git-hooks_2",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",

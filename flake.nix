@@ -86,6 +86,24 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Agent skills framework for managing Claude Code skills
+    agent-skills = {
+      url = "github:Kyure-A/agent-skills-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Claude Code skills (flake = false for non-flake repos)
+    ast-grep-skill = {
+      url = "github:ast-grep/claude-skill";
+      flake = false;
+    };
+
+    # Local skills from this dotfiles repo
+    local-skills = {
+      url = "path:./claude/skills";
+      flake = false;
+    };
   };
 
   outputs =
@@ -103,6 +121,9 @@
       brew-nix,
       fish-na,
       nix-index-database,
+      agent-skills,
+      ast-grep-skill,
+      local-skills,
       ...
     }:
     let
@@ -157,6 +178,7 @@
                 imports = [
                   nix-index-database.hmModules.nix-index
                   claude-code-overlay.homeManagerModules.default
+                  agent-skills.homeManagerModules.default
 
                   (import ./nix/modules/home {
                     inherit
@@ -164,6 +186,8 @@
                       config
                       lib
                       fish-na
+                      ast-grep-skill
+                      local-skills
                       ;
                     homedir = linuxHomedir;
                     system = linuxSystem;
@@ -430,6 +454,7 @@
                 {
                   imports = [
                     claude-code-overlay.homeManagerModules.default
+                    agent-skills.homeManagerModules.default
 
                     (import ./nix/modules/home {
                       inherit
@@ -437,6 +462,8 @@
                         config
                         lib
                         fish-na
+                        ast-grep-skill
+                        local-skills
                         ;
                       homedir = darwinHomedir;
                       system = "aarch64-darwin";

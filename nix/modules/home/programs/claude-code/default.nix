@@ -50,15 +50,15 @@ in
     text = settingsJsonText;
   };
 
-  # Symlink directories and files
-  home.file = {
-    ".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
-    ".claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
-    ".claude/skills".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/skills";
-    ".claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
-    ".claude/output-styles".source =
+  # Symlink directories and files to ~/.config/claude/
+  # Note: All skills (external and local) are managed by agent-skills module
+  xdg.configFile = {
+    "claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
+    "claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
+    "claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
+    "claude/output-styles".source =
       config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
-    ".claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/rules";
+    "claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/rules";
   };
 
   # Validate Claude Code settings.json after generation
