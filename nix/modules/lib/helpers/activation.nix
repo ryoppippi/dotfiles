@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   # Helper function to safely create symlinks in activation scripts
   # Removes existing files/directories/links before creating new symlinks
   # to avoid circular symlink issues when target directory already exists

@@ -53,23 +53,25 @@ let
   };
 in
 {
-  # Codex package
-  home.packages = [ pkgs.codex ];
+  home = {
+    # Codex package
+    packages = [ pkgs.codex ];
 
-  # Set CODEX_HOME environment variable (sourced via hm-session-vars.sh)
-  home.sessionVariables = {
-    CODEX_HOME = codexConfigDir;
-  };
-
-  # Codex configuration files
-  home.file = {
-    # Generated config.toml from Nix settings
-    "${codexConfigDir}/config.toml" = {
-      source = tomlFormat.generate "codex-config" settings;
-      force = true;
+    # Set CODEX_HOME environment variable (sourced via hm-session-vars.sh)
+    sessionVariables = {
+      CODEX_HOME = codexConfigDir;
     };
-    # Symlink AGENTS.md from dotfiles
-    "${codexConfigDir}/AGENTS.md".source =
-      config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
+
+    # Codex configuration files
+    file = {
+      # Generated config.toml from Nix settings
+      "${codexConfigDir}/config.toml" = {
+        source = tomlFormat.generate "codex-config" settings;
+        force = true;
+      };
+      # Symlink AGENTS.md from dotfiles
+      "${codexConfigDir}/AGENTS.md".source =
+        config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
+    };
   };
 }
