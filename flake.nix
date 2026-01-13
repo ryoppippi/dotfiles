@@ -177,7 +177,6 @@
               {
                 imports = [
                   nix-index-database.hmModules.nix-index
-                  claude-code-overlay.homeManagerModules.default
                   agent-skills.homeManagerModules.default
 
                   (import ./nix/modules/home {
@@ -453,7 +452,6 @@
                 in
                 {
                   imports = [
-                    claude-code-overlay.homeManagerModules.default
                     agent-skills.homeManagerModules.default
 
                     (import ./nix/modules/home {
