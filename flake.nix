@@ -57,9 +57,11 @@
 
     brew-nix = {
       url = "github:BatteredBunny/brew-nix";
-      inputs.brew-api.follows = "brew-api";
-      inputs.nix-darwin.follows = "nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        brew-api.follows = "brew-api";
+        nix-darwin.follows = "nix-darwin";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     brew-api = {
@@ -229,7 +231,7 @@
         }:
         let
           localPkgs = mkPkgs system;
-          isDarwin = localPkgs.stdenv.isDarwin;
+          inherit (localPkgs.stdenv) isDarwin;
           homedir = if isDarwin then darwinHomedir else linuxHomedir;
           hostname = username;
         in
@@ -426,7 +428,7 @@
           modules = [
             (import ./nix/modules/darwin/system.nix {
               pkgs = mkPkgs "aarch64-darwin";
-              lib = nixpkgs.lib;
+              inherit (nixpkgs) lib;
               inherit username;
               homedir = darwinHomedir;
             })
@@ -435,51 +437,53 @@
 
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                pkgs = mkPkgs "aarch64-darwin";
-              };
-              home-manager.users.${username} =
-                {
-                  pkgs,
-                  config,
-                  lib,
-                  ...
-                }:
-                let
-                  helpers = import ./nix/modules/lib/helpers { inherit lib; };
-                in
-                {
-                  imports = [
-                    agent-skills.homeManagerModules.default
-
-                    (import ./nix/modules/home {
-                      inherit
-                        pkgs
-                        config
-                        lib
-                        fish-na
-                        ast-grep-skill
-                        local-skills
-                        ;
-                      homedir = darwinHomedir;
-                      system = "aarch64-darwin";
-                      nodePackages = import ./nix/packages/node { inherit pkgs; };
-                    })
-
-                    (import ./nix/modules/darwin {
-                      inherit
-                        pkgs
-                        config
-                        lib
-                        helpers
-                        ;
-                      homedir = darwinHomedir;
-                      dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
-                    })
-                  ];
+              home-manager = {
+                useGlobalPkgs = false;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  pkgs = mkPkgs "aarch64-darwin";
                 };
+                users.${username} =
+                  {
+                    pkgs,
+                    config,
+                    lib,
+                    ...
+                  }:
+                  let
+                    helpers = import ./nix/modules/lib/helpers { inherit lib; };
+                  in
+                  {
+                    imports = [
+                      agent-skills.homeManagerModules.default
+
+                      (import ./nix/modules/home {
+                        inherit
+                          pkgs
+                          config
+                          lib
+                          fish-na
+                          ast-grep-skill
+                          local-skills
+                          ;
+                        homedir = darwinHomedir;
+                        system = "aarch64-darwin";
+                        nodePackages = import ./nix/packages/node { inherit pkgs; };
+                      })
+
+                      (import ./nix/modules/darwin {
+                        inherit
+                          pkgs
+                          config
+                          lib
+                          helpers
+                          ;
+                        homedir = darwinHomedir;
+                        dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                      })
+                    ];
+                  };
+              };
             }
           ];
         };

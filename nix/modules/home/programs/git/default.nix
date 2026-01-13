@@ -44,7 +44,7 @@ in
     settings = {
       user = {
         name = user.username;
-        email = user.email;
+        inherit (user) email;
       };
 
       core = {

@@ -1,8 +1,8 @@
 { pkgs, lib, ... }:
 let
   # Check if we're on a platform that supports certain packages
+  inherit (pkgs.stdenv) isDarwin;
   isX86Linux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
-  isDarwin = pkgs.stdenv.isDarwin;
 in
 {
   home.packages =
