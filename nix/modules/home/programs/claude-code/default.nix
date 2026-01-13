@@ -33,12 +33,8 @@ let
   );
 in
 {
-  # Enable Claude Code via home-manager module
-  programs.claude-code = {
-    enable = true;
-    # Create ~/.local/bin/claude symlink (default: true on Linux, false on macOS)
-    enableLocalBinSymlink = true;
-  };
+  # Claude Code package from overlay
+  home.packages = [ pkgs.claude-code ];
 
   # Set CLAUDE_CONFIG_DIR environment variable (sourced via hm-session-vars.sh in fish)
   home.sessionVariables = {
