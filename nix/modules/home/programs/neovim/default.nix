@@ -50,7 +50,6 @@ in
       ++ lib.optionals (nodePackages != null) (
         with nodePackages;
         [
-          gh-actions-language-server
           unocss-language-server
         ]
       )

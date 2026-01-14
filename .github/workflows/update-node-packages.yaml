@@ -78,7 +78,6 @@ jobs:
           - Updates npm packages managed via buildNpmPackage
 
           ## Packages
-          - gh-actions-language-server
           - unocss-language-server
 
           ---

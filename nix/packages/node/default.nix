@@ -56,16 +56,6 @@ let
     };
 in
 {
-  gh-actions-language-server = mkNpmPackage {
-    pname = "gh-actions-language-server";
-    version = "0.0.3";
-    hash = "sha256-vTRClb1oyqH1u4Rvqu9xoCNcWeMBn9aIZ6Vj1sZYcrY=";
-    npmDepsHash = "sha256-mu4ZmokeQzQMRzDobMzXkdAlOTNm/ahHYERi1n+By3c=";
-    description = "GitHub Actions Language Server";
-    homepage = "https://github.com/actions/languageservices";
-    mainProgram = "gh-actions-language-server";
-  };
-
   unocss-language-server = mkNpmPackage {
     pname = "unocss-language-server";
     version = "0.1.8";
