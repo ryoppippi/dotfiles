@@ -69,8 +69,8 @@
       flake = false;
     };
 
-    rs-arto = {
-      url = "github:lambdalisue/rs-arto";
+    arto = {
+      url = "github:arto-app/arto";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
