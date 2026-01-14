@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  config,
+  helpers,
   ...
 }:
 let
@@ -50,4 +52,13 @@ in
       ) ghosttySettings
     );
   };
+
+  # Ghostty on macOS also looks for config in Application Support
+  # Create a symlink to ensure it finds our XDG config
+  home.activation.linkGhosttyConfig = lib.mkIf pkgs.stdenv.isDarwin (
+    lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      ${helpers.activation.mkLinkForce}
+      link_force "${config.xdg.configHome}/ghostty/config" "${config.home.homeDirectory}/Library/Application Support/com.mitchellh.ghostty/config"
+    ''
+  );
 }

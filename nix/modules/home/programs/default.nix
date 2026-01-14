@@ -89,7 +89,14 @@
     ./cursor.nix
 
     # Ghostty terminal configuration
-    ./ghostty.nix
+    (import ./ghostty.nix {
+      inherit
+        pkgs
+        lib
+        config
+        helpers
+        ;
+    })
 
     # Bat configuration
     ./bat.nix
