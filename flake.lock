@@ -110,11 +110,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1768271716,
-        "narHash": "sha256-r7K5l0xEMKA23L4dCnEW0L84Q27swMW6X3kh5b8q8WU=",
+        "lastModified": 1768348994,
+        "narHash": "sha256-bNDaWMhk0JaLLfW5Iru4QyDgKmP1tl26Xas7hXL8hv0=",
         "owner": "ryoppippi",
         "repo": "claude-code-overlay",
-        "rev": "5da8264c376c0a2caf7806273b3bdae0244e47b2",
+        "rev": "524b8210ad8e975d7874e207ea69737578d6b1f1",
         "type": "github"
       },
       "original": {
