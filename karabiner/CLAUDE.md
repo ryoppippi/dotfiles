@@ -174,19 +174,18 @@ k.map({ key_code: "right_option" })
 ### Language Toggle on Tap
 
 ```typescript
-k.map({ key_code: "left_command", modifiers: { optional: ["any"] } })
-  .to({ key_code: "left_command", lazy: true })
-  .toIfAlone({ key_code: "japanese_eisuu" })
+k.map({ key_code: 'left_command', modifiers: { optional: ['any'] } })
+     .to({ key_code: 'left_command', lazy: true })
+ .toIfAlone({ key_code: 'japanese_eisuu' });
 ```
 
 ### Vim-style Arrow Keys
 
 ```typescript
 k.map({
-  key_code: "h",
-  modifiers: { mandatory: ["fn"] }
-})
-  .to({ key_code: "left_arrow" })
+   key_code: 'h',
+        modifiers: { mandatory: ['fn'] },
+}).to({ key_code: 'left_arrow' });
 ```
 
 ## Tips
