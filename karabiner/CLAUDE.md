@@ -29,12 +29,10 @@ deno task watch
 ### Basic Structure
 
 ```typescript
-k.writeToProfile("Default profile", [
-  k.rule("Rule description")
-    .manipulators([
-      k.map({ key_code: "key_name" })
-        .to({ key_code: "target_key" })
-    ]),
+k.writeToProfile('Default profile', [
+	k
+		.rule('Rule description')
+		.manipulators([k.map({ key_code: 'key_name' }).to({ key_code: 'target_key' })]),
 ]);
 ```
 
@@ -43,60 +41,54 @@ k.writeToProfile("Default profile", [
 #### 1. Simple Key Remapping
 
 ```typescript
-k.map({ key_code: "caps_lock" })
-  .to({ key_code: "escape" })
+k.map({ key_code: 'caps_lock' }).to({ key_code: 'escape' });
 ```
 
 #### 2. Key with Modifiers
 
 ```typescript
 k.map({
-  key_code: "h",
-  modifiers: { mandatory: ["fn"] }
-})
-  .to({ key_code: "left_arrow" })
+	key_code: 'h',
+	modifiers: { mandatory: ['fn'] },
+}).to({ key_code: 'left_arrow' });
 ```
 
 #### 3. Tap vs Hold (Dual-Function Keys)
 
 ```typescript
-k.map({ key_code: "tab" })
-  .toIfAlone({ key_code: "tab" })
-  .toIfHeldDown({ key_code: "tab", repeat: true })
-  .to({
-    key_code: "left_command",
-    modifiers: ["left_option", "left_shift", "left_control"],
-  })
+k.map({ key_code: 'tab' })
+	.toIfAlone({ key_code: 'tab' })
+	.toIfHeldDown({ key_code: 'tab', repeat: true })
+	.to({
+		key_code: 'left_command',
+		modifiers: ['left_option', 'left_shift', 'left_control'],
+	});
 ```
 
 #### 4. Multiple Actions with toIfAlone
 
 ```typescript
-k.map({ key_code: "left_control" })
-  .to({ key_code: "left_control", lazy: true })
-  .toIfAlone([
-    { key_code: "japanese_eisuu" },
-    { key_code: "escape" },
-  ])
+k.map({ key_code: 'left_control' })
+	.to({ key_code: 'left_control', lazy: true })
+	.toIfAlone([{ key_code: 'japanese_eisuu' }, { key_code: 'escape' }]);
 ```
 
 #### 5. Using withMapper for Multiple Similar Mappings
 
 ```typescript
-k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>(
-  {
-    "h": "left_arrow",
-    "j": "down_arrow",
-    "k": "up_arrow",
-    "l": "right_arrow",
-  } as const,
-)((key, arrow) =>
-  k.map({
-    key_code: key,
-    modifiers: { mandatory: ["fn"] },
-  })
-    .to({ key_code: arrow })
-)
+k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>({
+	h: 'left_arrow',
+	j: 'down_arrow',
+	k: 'up_arrow',
+	l: 'right_arrow',
+} as const)((key, arrow) =>
+	k
+		.map({
+			key_code: key,
+			modifiers: { mandatory: ['fn'] },
+		})
+		.to({ key_code: arrow }),
+);
 ```
 
 #### 6. Conditional Rules (Device-specific)
@@ -119,12 +111,9 @@ k.rule(
 #### 8. Using withCondition
 
 ```typescript
-k.withCondition(
-  k.ifApp("wezterm").unless()
-)([
-  k.map({ key_code: "comma", modifiers: { mandatory: ["control"] } })
-    .to(event)
-])
+k.withCondition(k.ifApp('wezterm').unless())([
+	k.map({ key_code: 'comma', modifiers: { mandatory: ['control'] } }).to(event),
+]);
 ```
 
 ## Important Methods
@@ -164,27 +153,26 @@ k.withCondition(
 A super key combines multiple modifiers (cmd+option+shift+ctrl):
 
 ```typescript
-k.map({ key_code: "right_option" })
-  .to({
-    key_code: "right_command",
-    modifiers: ["right_option", "right_shift", "right_control"],
-  })
+k.map({ key_code: 'right_option' }).to({
+	key_code: 'right_command',
+	modifiers: ['right_option', 'right_shift', 'right_control'],
+});
 ```
 
 ### Language Toggle on Tap
 
 ```typescript
 k.map({ key_code: 'left_command', modifiers: { optional: ['any'] } })
-     .to({ key_code: 'left_command', lazy: true })
- .toIfAlone({ key_code: 'japanese_eisuu' });
+	.to({ key_code: 'left_command', lazy: true })
+	.toIfAlone({ key_code: 'japanese_eisuu' });
 ```
 
 ### Vim-style Arrow Keys
 
 ```typescript
 k.map({
-   key_code: 'h',
-        modifiers: { mandatory: ['fn'] },
+	key_code: 'h',
+	modifiers: { mandatory: ['fn'] },
 }).to({ key_code: 'left_arrow' });
 ```
 
