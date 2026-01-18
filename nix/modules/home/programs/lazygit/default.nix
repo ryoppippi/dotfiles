@@ -14,11 +14,8 @@ let
       lazygitConfigYaml;
 in
 {
-  programs.lazygit = {
-    enable = true;
-  };
-
-  # Override the generated config with our YAML (schema + delta path replaced)
+  # lazygit package is installed via packages.nix
+  # We only manage the config file here with custom delta path substitution
   xdg.configFile."lazygit/config.yml" = {
     text = lazygitConfigWithDeltaPath;
   };
