@@ -21,27 +21,6 @@
         "type": "github"
       }
     },
-    "arto": {
-      "inputs": {
-        "crane": "crane",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768710791,
-        "narHash": "sha256-s38LmrIT0Lm5+y4D0igqH/G2Z0hlnOxWBryiIdAlGxU=",
-        "owner": "arto-app",
-        "repo": "arto",
-        "rev": "6755d6935dfd5a996cd1a8f5ca3e0d38f7416ef6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "arto-app",
-        "repo": "arto",
-        "type": "github"
-      }
-    },
     "ast-grep-skill": {
       "flake": false,
       "locked": {
@@ -139,21 +118,6 @@
       "original": {
         "owner": "ryoppippi",
         "repo": "claude-code-overlay",
-        "type": "github"
-      }
-    },
-    "crane": {
-      "locked": {
-        "lastModified": 1766774972,
-        "narHash": "sha256-8qxEFpj4dVmIuPn9j9z6NTbU+hrcGjBOvaxTzre5HmM=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "01bc1d404a51a0a07e9d8759cd50a7903e218c82",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
         "type": "github"
       }
     },
@@ -584,7 +548,6 @@
     "root": {
       "inputs": {
         "agent-skills": "agent-skills",
-        "arto": "arto",
         "ast-grep-skill": "ast-grep-skill",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",

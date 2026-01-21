@@ -69,11 +69,6 @@
       flake = false;
     };
 
-    arto = {
-      url = "github:arto-app/arto";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     fish-na = {
       url = "github:ryoppippi/fish-na";
       flake = false;

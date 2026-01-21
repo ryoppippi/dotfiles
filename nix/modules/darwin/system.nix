@@ -31,6 +31,12 @@ in
     activationScripts.postActivation.text = ''
       echo "Setting login shell to fish..."
       sudo chsh -s ${fishPath} ${username} || true
+
+      # Remove quarantine attribute from Arto.app (third-party tap)
+      if [ -e "/Applications/Arto.app" ]; then
+        echo "Removing quarantine from Arto.app..."
+        xattr -dr com.apple.quarantine /Applications/Arto.app 2>/dev/null || true
+      fi
     '';
 
     # macOS system defaults
@@ -137,7 +143,7 @@ in
   };
 
   programs = {
-    # 1Password CLI (GUI is managed via Homebrew cask for stability)
+    # 1Password CLI (GUI is managed via Homebrew cask - requires /Applications)
     _1password.enable = true;
 
     # nix-index for command-not-found and comma
@@ -150,15 +156,16 @@ in
     enable = true;
     onActivation.cleanup = "uninstall";
 
+    taps = [
+      "arto-app/tap"
+    ];
+
     brews = [
       "mas"
     ];
 
-    # Some casks are managed via brew-nix (see nix/modules/darwin/packages.nix):
-    # alt-tab, appcleaner, beekeeper-studio, bluesnooze, deskpad, glance-chamburr,
-    # istherenet, kap, maestral, marta, obs, postman, processing,
-    # qlvideo, quitter, shottr, stats, suspicious-package, vlc, yaak
     casks = [
+      "arto-app/tap/arto"
       "1password"
       "alfred"
       "arc"
