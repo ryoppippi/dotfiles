@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768094682,
-        "narHash": "sha256-fa9z+6GXJvnV8JTCWa5IvGdQLQ6Hu5E7MvzohxAja4w=",
+        "lastModified": 1768710791,
+        "narHash": "sha256-s38LmrIT0Lm5+y4D0igqH/G2Z0hlnOxWBryiIdAlGxU=",
         "owner": "arto-app",
         "repo": "arto",
-        "rev": "da01687b2406c9d3f8eeff6b3560080bd0fde6f1",
+        "rev": "6755d6935dfd5a996cd1a8f5ca3e0d38f7416ef6",
         "type": "github"
       },
       "original": {
