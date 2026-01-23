@@ -98,7 +98,7 @@
 
     # Local skills from this dotfiles repo
     local-skills = {
-      url = "path:./claude/skills";
+      url = "path:./agents/skills";
       flake = false;
     };
   };

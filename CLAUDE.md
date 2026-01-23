@@ -27,6 +27,7 @@ nix run .#build                # Test build
 ├── nvim/               # Neovim config
 ├── karabiner/          # Karabiner-Elements (TypeScript)
 ├── wezterm/            # Wezterm terminal
+├── agents/skills/      # Shared AI agent skills (Claude, Codex)
 ├── claude/             # Claude Code config (user memory)
 └── .claude/rules/      # Path-specific rules
 ```
@@ -79,11 +80,7 @@ Configuration: `nix/modules/home/agent-skills.nix`
 
 ### Adding a local skill
 
-Add to `skills.explicit` in `agent-skills.nix`:
-
-```nix
-skills.explicit.my-skill = "${dotfilesDir}/claude/skills/my-skill";
-```
+Create a new skill directory in `agents/skills/` with a `SKILL.md` file, then enable it in `agent-skills.nix`.
 
 ### Updating external skills
 
@@ -98,7 +95,7 @@ nix run .#switch                  # Apply changes
 
 - **ast-grep**: [ast-grep/claude-skill](https://github.com/ast-grep/claude-skill)
 
-**Local (in `claude/skills/`):**
+**Local (in `agents/skills/`):**
 
 - git-commit-crafter
 - pr-workflow-manager

@@ -419,11 +419,11 @@
     "local-skills": {
       "flake": false,
       "locked": {
-        "path": "./claude/skills",
+        "path": "./agents/skills",
         "type": "path"
       },
       "original": {
-        "path": "./claude/skills",
+        "path": "./agents/skills",
         "type": "path"
       },
       "parent": []
