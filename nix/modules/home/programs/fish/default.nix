@@ -33,17 +33,6 @@ let
       inherit (pkgs.fishPlugins.spark) src;
     }
 
-    # GHQ integration
-    {
-      name = "fish-ghq";
-      src = pkgs.fetchFromGitHub {
-        owner = "decors";
-        repo = "fish-ghq";
-        rev = "cafaaabe63c124bf0714f89ec715cfe9ece87fa2";
-        sha256 = "sha256-6b1zmjtemNLNPx4qsXtm27AbtjwIZWkzJAo21/aVZzM=";
-      };
-    }
-
     # Environment variable helper
     {
       name = "ev-fish";

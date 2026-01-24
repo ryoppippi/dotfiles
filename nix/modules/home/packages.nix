@@ -17,6 +17,7 @@ in
       # VCS
       git
       git-now
+      git-wt
       bit
       git-lfs
       ghq
@@ -92,6 +93,7 @@ in
       bsky-cli
       signal-cli
       sheep
+      roots
       # Additional CLI tools
       aria2
       cloc

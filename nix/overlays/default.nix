@@ -12,6 +12,8 @@ let
     ./sheep.nix
     ./git-now.nix
     ./bluetooth-connector.nix
+    ./roots.nix
+    ./git-wt.nix
   ];
 
   # Apply each overlay and merge results
