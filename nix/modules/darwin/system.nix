@@ -190,7 +190,6 @@ in
       "Accelerate" = 1459809092;
       "Actions" = 1586435171;
       "AdGuard for Safari" = 1440147259;
-      "Aiko" = 1672085276;
       "Amphetamine" = 937984704;
       "Blackmagic Disk Speed Test" = 425264550;
       "Command X" = 6448461551;
