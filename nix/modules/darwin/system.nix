@@ -135,8 +135,6 @@ in
   # Font configuration
   fonts = {
     packages = with pkgs; [
-      jetbrains-mono
-      nerd-fonts.jetbrains-mono
       udev-gothic
       udev-gothic-nf
     ];
