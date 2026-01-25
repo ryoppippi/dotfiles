@@ -24,11 +24,11 @@
     "ast-grep-skill": {
       "flake": false,
       "locked": {
-        "lastModified": 1763947069,
-        "narHash": "sha256-LCI06qz9skVqSsXc88djK6YixABB+GnvoZcSce1m5Aw=",
+        "lastModified": 1769044697,
+        "narHash": "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=",
         "owner": "ast-grep",
         "repo": "claude-skill",
-        "rev": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c",
+        "rev": "577f4d4507678f2c8cee150fae25e6ce309f70b1",
         "type": "github"
       },
       "original": {
