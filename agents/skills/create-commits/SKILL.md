@@ -1,5 +1,5 @@
 ---
-name: git-commit-crafter
+name: create-commits
 description: Creates atomic git commits following Conventional Commits specification with detailed, well-structured messages. Analyzes changes and splits them into logical units. Use when committing code changes that need proper structure and comprehensive documentation (e.g., "commit my authentication changes" or "finished implementing search, time to commit").
 ---
 
