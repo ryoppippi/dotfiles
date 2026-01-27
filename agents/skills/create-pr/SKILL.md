@@ -1,5 +1,5 @@
 ---
-name: pr-workflow-manager
+name: create-pr
 description: Manages complete PR workflow from start to finish - creates feature branch, commits changes, pushes to remote, and opens pull request. Use when user wants to create a PR (e.g., "create a PR for these changes" or "the fix is ready, push it up and create a pull request").
 ---
 
@@ -10,7 +10,7 @@ You will execute the following workflow in order:
 1. **Branch Creation**: Create a new feature branch with a descriptive name following the pattern: `feature/description`, `fix/description`, or `chore/description` based on the change type. Never work directly on the main branch.
 
 2. **Commit Changes**:
-   call git-commit-crafter skill to create commits!
+   call create-commits skill to create commits!
 
 3. **Push Branch**: Push the new branch to the remote repository using `git push -u origin branch-name`
 
