@@ -31,12 +31,8 @@ in
       };
     };
 
-    # Enable specific skills by ID
-    skills.enable = [
-      "ast-grep"
-      "git-commit-crafter"
-      "pr-workflow-manager"
-    ];
+    # Enable all skills from all sources
+    skills.enableAll = true;
 
     # Deploy to skills directories
     targets = {
