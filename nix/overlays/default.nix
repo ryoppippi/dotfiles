@@ -14,6 +14,7 @@ let
     ./bluetooth-connector.nix
     ./roots.nix
     ./git-wt.nix
+    ./audio-priority-bar.nix
   ];
 
   # Apply each overlay and merge results
