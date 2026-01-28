@@ -94,7 +94,7 @@ set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.Sec
 test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
 
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
-if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
+if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
     echo '' >$CONFIG_CACHE
 
