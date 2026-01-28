@@ -167,7 +167,6 @@ in
       "1password"
       "alfred"
       "arc"
-      "background-music"
       "blackhole-16ch"
       "blu-ray-player-pro"
       "claude"
