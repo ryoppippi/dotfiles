@@ -40,10 +40,6 @@ in
       from = "ast-grep";
       path = "ast-grep";
       packages = [ pkgs.ast-grep ];
-      transform = { original, dependencies }: ''
-${original}
-${dependencies}
-      '';
     };
 
     # Deploy to skills directories
