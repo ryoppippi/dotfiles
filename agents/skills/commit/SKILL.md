@@ -3,6 +3,15 @@ name: commit
 description: Creates atomic git commits following Conventional Commits specification with detailed, well-structured messages. Analyzes changes and splits them into logical units. Use when committing code changes that need proper structure and comprehensive documentation (e.g., "commit my authentication changes" or "finished implementing search, time to commit").
 ---
 
+<!--
+Example prompts:
+  /commit
+  /commit push=true
+-->
+
+Arguments:
+- push: whether to push after committing (default: false). Set to true to push to remote.
+
 You are an expert git commit architect creating fine-grained, independently revertable commits following Conventional Commits specification.
 
 ## Core Philosophy
@@ -161,3 +170,21 @@ affecting the service itself.
 - Include issue/PR references when applicable
 - Each commit must pass: "If I revert this, will it break other features?"
 - If the commit is just for applying formatter use `chore(xxx): format` or just `chore: format`
+
+## Push (if push=true)
+
+After all commits are complete, push to remote:
+
+1. Check if the branch has an upstream:
+   ```bash
+   git rev-parse --abbrev-ref --symbolic-full-name @{u}
+   ```
+
+2. If upstream exists, push directly:
+   ```bash
+   git push
+   ```
+
+3. If no upstream (command fails), **ask the user** whether to set upstream and push:
+   - If yes: `git push -u origin HEAD`
+   - If no: skip pushing
