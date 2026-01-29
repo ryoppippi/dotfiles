@@ -359,6 +359,9 @@
                     else
                       "nix run nixpkgs#home-manager -- switch --flake .#${username}"
                   }
+                  echo "Clearing fish cache..."
+                  rm -rf "$TMPDIR/fish-cache"
+                  echo "Done!"
                 ''
               );
             };
