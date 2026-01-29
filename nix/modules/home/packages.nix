@@ -85,7 +85,6 @@ in
       jujutsu
       xh
       choose
-      ast-grep
       t-rec
       jwt-cli
       fq

@@ -23,6 +23,7 @@ in
     # Agent skills for Claude Code (skills from flake inputs)
     (import ./agent-skills.nix {
       inherit
+        pkgs
         ast-grep-skill
         local-skills
         config

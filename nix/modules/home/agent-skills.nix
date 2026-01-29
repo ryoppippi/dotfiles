@@ -3,6 +3,7 @@
 #
 # All skills (external and local) are managed here via agent-skills-nix.
 {
+  pkgs,
   ast-grep-skill,
   local-skills,
   config,
@@ -31,8 +32,19 @@ in
       };
     };
 
-    # Enable all skills from all sources
-    skills.enableAll = true;
+    # Enable all local skills
+    skills.enableAll = [ "local" ];
+
+    # Explicit skill with package dependency
+    skills.explicit.ast-grep = {
+      from = "ast-grep";
+      path = "ast-grep";
+      packages = [ pkgs.ast-grep ];
+      transform = { original, dependencies }: ''
+${original}
+${dependencies}
+      '';
+    };
 
     # Deploy to skills directories
     targets = {
