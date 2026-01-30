@@ -26,9 +26,8 @@ jobs:
         uses: natsukium/nix-diff-action@d28a975f105e136b812a2c8d727b7066c579a2f6 # main
         with:
           skip-no-change: true
+          # Note: darwinConfigurations cannot be built on Linux runners
           attributes: |
-            - displayName: darwin (aarch64)
-              attribute: darwinConfigurations.ryoppippi.system
             - displayName: home-manager (x86_64-linux)
               attribute: homeConfigurations.ryoppippi.activationPackage
             - displayName: home-manager (aarch64-linux)
