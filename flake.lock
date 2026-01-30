@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769729732,
-        "narHash": "sha256-5kVQ3b+52ysmz1sqoqR8x5EoBNaMGWd+VCTLkhUMcgc=",
+        "lastModified": 1769129391,
+        "narHash": "sha256-1nhkR85DawBH7/cik7mVvY8HpPsFMDsQ/DEp3IVA2pE=",
         "owner": "Kyure-A",
         "repo": "agent-skills-nix",
-        "rev": "69be4507425fcc2939bb892955654a965c69e63d",
+        "rev": "89afbe1f27b6a7b017cfebf29abbfb2242e2429b",
         "type": "github"
       },
       "original": {
