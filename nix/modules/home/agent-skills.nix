@@ -6,7 +6,6 @@
   pkgs,
   ast-grep-skill,
   local-skills,
-  config,
   ...
 }:
 let
