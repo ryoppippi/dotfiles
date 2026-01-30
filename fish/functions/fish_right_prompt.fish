@@ -1,7 +1,7 @@
 # Show notification if dration is more than 30 seconds
 set -gx NOTIFY_ON_COMMAND_DURATION 30000
 # Programs to exclude from notifications (TUI tools only)
-set -gx NOTIFY_EXCLUDE_PROGRAMS vim nvim lazygit claude codex yazi gitu bottom ctop top viddy tmux jid jnv fx less man
+set -gx NOTIFY_EXCLUDE_PROGRAMS vim nvim lazygit claude codex yazi bottom ctop top viddy tmux jid jnv fx less man
 
 function fish_right_prompt
     if test $CMD_DURATION

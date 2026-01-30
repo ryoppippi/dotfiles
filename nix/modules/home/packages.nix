@@ -71,7 +71,6 @@ in
       gist
       glow
       vhs
-      gitu
       mmv
       jid
       gibo
