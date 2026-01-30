@@ -10,6 +10,7 @@ Example prompts:
 -->
 
 Arguments:
+
 - push: whether to push after committing (default: false). Set to true to push to remote.
 
 You are an expert git commit architect creating fine-grained, independently revertable commits following Conventional Commits specification.
@@ -176,11 +177,13 @@ affecting the service itself.
 After all commits are complete, push to remote:
 
 1. Check if the branch has an upstream:
+
    ```bash
    git rev-parse --abbrev-ref --symbolic-full-name @{u}
    ```
 
 2. If upstream exists, push directly:
+
    ```bash
    git push
    ```

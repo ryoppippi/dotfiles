@@ -11,6 +11,7 @@ Example prompts:
 Let's fix whatever error we can find in CI using the `gh` CLI.
 
 ## Steps
+
 - Figure out which PR we have for the current branch
 - Figure out which action is broken
 - If nothing is broken, bail.
