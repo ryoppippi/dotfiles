@@ -12,43 +12,61 @@ Cross-platform software keyboard remapper for Linux, macOS and Windows.
 
 ## Files
 
-| File | Description |
-|------|-------------|
-| `kanata.kbd` | Main Kanata configuration |
+| File          | Description                                    |
+| ------------- | ---------------------------------------------- |
+| `common.kbd`  | Shared rules (Enter app-specific, F5→F19)      |
+| `macbook.kbd` | MacBook internal keyboard (includes common)    |
+| `claw44.kbd`  | CLAW44 external keyboard (includes common)     |
 
-## Current Rules
+## Configuration Structure
 
-1. **Ctrl tap** → eisuu + ESC, hold → Ctrl
-2. **ESC** → eisuu + ESC
-3. **Cmd+Q hold** to quit (tap sends q)
-4. **Discord/ChatGPT**: Enter sends Enter, others send Shift+Enter
+Two separate kanata instances run for each keyboard:
+- **MacBook** (`macos-dev-names-include ("Apple Internal Keyboard / Trackpad")`)
+- **CLAW44** (`macos-dev-names-include ("/ Trackpad")`) - Note: CLAW44 appears as "/ Trackpad" with vendor_id 22854
+
+### MacBook Rules
+
+1. **Caps Lock** → Ctrl (tap: eisuu + ESC, hold: Ctrl)
+2. **Ctrl tap** → eisuu + ESC, hold → Ctrl
+3. **ESC** → eisuu + ESC
+4. **Cmd+Q hold** to quit (tap sends q)
 5. **Cmd tap** → Kana/Eisuu toggle
 6. **Tab hold** → Hyper key (cmd+opt+shift+ctrl)
 7. **Fn+hjkl** → Arrow keys
 8. **Right Option** → Super key
+9. **F3→F17, F4→F18, F5→F19, F6→F16, F9→next**
+10. **Backslash ↔ Backspace** swap
+11. **Discord/ChatGPT**: Enter → Shift+Enter
 
-## Device Exclusion
+### CLAW44 Rules
 
-CLAW44 keyboard is excluded via `macos-dev-names-exclude`.
+1. **F5→F19** (for Aqua Voice)
+2. **Discord/ChatGPT**: Enter → Shift+Enter
 
 ## Service Management
 
 ### macOS
 
-Services are managed via nix-darwin launchd:
-- `com.github.jtroo.kanata` - Main kanata daemon (root)
-- `com.devsunb.kanata-vk-agent` - App-specific virtual key agent (user)
+Two kanata daemons run via nix-darwin launchd:
+- `com.github.jtroo.kanata.macbook` - MacBook keyboard (port 5829)
+- `com.github.jtroo.kanata.claw44` - CLAW44 keyboard (port 5830)
+- `com.devsunb.kanata-vk-agent` - App-specific virtual key agent
 
 ```bash
 # Check service status
 sudo launchctl list | grep kanata
 
-# Restart Kanata daemon
-sudo launchctl kickstart -k system/com.github.jtroo.kanata
+# Restart MacBook kanata
+sudo launchctl kickstart -k system/com.github.jtroo.kanata.macbook
+
+# Restart CLAW44 kanata
+sudo launchctl kickstart -k system/com.github.jtroo.kanata.claw44
 
 # View logs
-tail -f /var/log/kanata.out.log
-tail -f /var/log/kanata.err.log
+tail -f /var/log/kanata-macbook.out.log
+tail -f /var/log/kanata-macbook.err.log
+tail -f /var/log/kanata-claw44.out.log
+tail -f /var/log/kanata-claw44.err.log
 tail -f /tmp/kanata-vk-agent.out.log
 ```
 
@@ -70,7 +88,14 @@ journalctl --user -u kanata -f
 Always validate config before applying:
 
 ```bash
-kanata --check --cfg ~/ghq/github.com/ryoppippi/dotfiles/kanata/kanata.kbd
+kanata --check --cfg ~/ghq/github.com/ryoppippi/dotfiles/kanata/macbook.kbd
+kanata --check --cfg ~/ghq/github.com/ryoppippi/dotfiles/kanata/claw44.kbd
+```
+
+## List Available Devices
+
+```bash
+sudo kanata --list
 ```
 
 ## Nix Integration
@@ -86,7 +111,7 @@ kanata --check --cfg ~/ghq/github.com/ryoppippi/dotfiles/kanata/kanata.kbd
 See `nix/modules/darwin/services/kanata.nix`:
 - Installs Karabiner-DriverKit-VirtualHIDDevice automatically
 - Activates the driver on each `nix run .#switch`
-- Sets up launchd daemons for kanata and kanata-vk-agent
+- Sets up launchd daemons for both keyboards and kanata-vk-agent
 
 ## Virtual Keys (App-Specific Rules)
 
@@ -94,7 +119,7 @@ kanata-vk-agent monitors the frontmost app and presses/releases virtual keys via
 
 ### How It Works
 
-1. Define virtual keys with bundle IDs in `kanata.kbd`:
+1. Define virtual keys with bundle IDs in `common.kbd`:
    ```lisp
    (defvirtualkeys
      com.hnc.Discord nop0
@@ -106,14 +131,14 @@ kanata-vk-agent monitors the frontmost app and presses/releases virtual keys via
    ```lisp
    (defalias
      enter-app (switch
-       ((input virtual com.hnc.Discord)) ret break
-       ((input virtual com.openai.chat)) ret break
-       () S-ret break
+       ((input virtual com.hnc.Discord)) S-ret break
+       ((input virtual com.openai.chat)) S-ret break
+       () ret break
      )
    )
    ```
 
-3. kanata-vk-agent is configured in launchd with `-b` flag listing bundle IDs
+3. kanata-vk-agent connects to both kanata instances (ports 5829,5830) with `-p` flag
 
 ### Finding Bundle IDs
 
@@ -123,6 +148,12 @@ kanata-vk-agent -f
 ```
 
 ## Key Concepts
+
+### Include
+
+```lisp
+(include common.kbd)  ;; Include shared configuration
+```
 
 ### Layers
 

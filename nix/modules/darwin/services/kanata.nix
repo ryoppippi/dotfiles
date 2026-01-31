@@ -24,32 +24,61 @@ in
     # Create symlink to kanata in /Applications for Input Monitoring permission
     echo "Creating kanata symlink in /Applications..."
     ln -sf ${pkgs.kanata}/bin/kanata /Applications/kanata
+
+    # Restart kanata services in correct order (MacBook first, then CLAW44)
+    # This prevents "device already open" errors
+    echo "Restarting kanata services..."
+    /bin/launchctl kickstart -k system/com.github.jtroo.kanata.claw44 2>/dev/null || true
+    sleep 1
+    /bin/launchctl kickstart -k system/com.github.jtroo.kanata.macbook 2>/dev/null || true
+    sleep 1
+    /bin/launchctl kickstart -k system/com.github.jtroo.kanata.claw44 2>/dev/null || true
   '';
 
-  launchd.daemons.kanata = {
+  # MacBook internal keyboard
+  launchd.daemons.kanata-macbook = {
     serviceConfig = {
-      Label = "com.github.jtroo.kanata";
+      Label = "com.github.jtroo.kanata.macbook";
       ProgramArguments = [
         "${pkgs.kanata}/bin/kanata"
         "--cfg"
-        "${dotfilesDir}/kanata/kanata.kbd"
+        "${dotfilesDir}/kanata/macbook.kbd"
         "--port"
         "5829"
       ];
       RunAtLoad = true;
       KeepAlive = true;
-      StandardOutPath = "/var/log/kanata.out.log";
-      StandardErrorPath = "/var/log/kanata.err.log";
+      StandardOutPath = "/var/log/kanata-macbook.out.log";
+      StandardErrorPath = "/var/log/kanata-macbook.err.log";
     };
   };
 
+  # CLAW44 external keyboard
+  launchd.daemons.kanata-claw44 = {
+    serviceConfig = {
+      Label = "com.github.jtroo.kanata.claw44";
+      ProgramArguments = [
+        "${pkgs.kanata}/bin/kanata"
+        "--cfg"
+        "${dotfilesDir}/kanata/claw44.kbd"
+        "--port"
+        "5830"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/var/log/kanata-claw44.out.log";
+      StandardErrorPath = "/var/log/kanata-claw44.err.log";
+    };
+  };
+
+  # Virtual key agent for app-specific rules
   launchd.agents.kanata-vk-agent = {
     serviceConfig = {
       Label = "com.devsunb.kanata-vk-agent";
       ProgramArguments = [
         "${pkgs.kanata-vk-agent}/bin/kanata-vk-agent"
         "-p"
-        "5829"
+        "5829,5830"
         "-b"
         "com.hnc.Discord,com.openai.chat"
       ];
