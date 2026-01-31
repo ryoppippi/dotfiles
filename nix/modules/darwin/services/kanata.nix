@@ -21,9 +21,11 @@ in
       /Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate 2>/dev/null || true
     fi
 
-    # Create symlink to kanata in /Applications for Input Monitoring permission
+    # Create symlinks in /Applications for permission management
     echo "Creating kanata symlink in /Applications..."
     ln -sf ${pkgs.kanata}/bin/kanata /Applications/kanata
+    echo "Creating kanata-vk-agent symlink in /Applications..."
+    ln -sf ${pkgs.kanata-vk-agent}/bin/kanata-vk-agent /Applications/kanata-vk-agent
 
     # Restart kanata services in correct order (MacBook first, then CLAW44)
     # This prevents "device already open" errors
