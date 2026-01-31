@@ -431,6 +431,11 @@
               homedir = darwinHomedir;
             })
 
+            (import ./nix/modules/darwin/services/kanata.nix {
+              pkgs = mkPkgs "aarch64-darwin";
+              homedir = darwinHomedir;
+            })
+
             nix-index-database.darwinModules.nix-index
 
             home-manager.darwinModules.home-manager

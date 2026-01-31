@@ -1,0 +1,72 @@
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+)
+
+;; Virtual keys for app-specific rules (controlled by kanata-vk-agent)
+;; Names must match bundle IDs used by kanata-vk-agent
+(defvirtualkeys
+  com.hnc.Discord nop0
+  com.openai.chat nop0
+)
+
+;; MacBook keyboard layout
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt
+)
+
+(defalias
+  ;; Rule 1: Tap Ctrl -> eisuu + ESC, Hold -> Ctrl
+  lctl-esc (tap-hold-press 200 200 (macro eisu esc) lctl)
+
+  ;; Rule 2: ESC -> eisuu + ESC
+  esc-eisuu (macro eisu esc)
+
+  ;; Rule 3: Hold Cmd+Q to quit (tap sends q, hold sends cmd+q)
+  q-quit (tap-hold 500 500 q M-q)
+
+  ;; Rule 4: App-specific Enter (kanata-vk-agent switches vk)
+  ;; Discord/ChatGPT: Shift+Enter, others: normal Enter
+  enter-app (switch
+    ((input virtual com.hnc.Discord)) S-ret break
+    ((input virtual com.openai.chat)) S-ret break
+    () ret break
+  )
+
+  ;; Rule 5: Tap CMD -> Kana/Eisuu toggle
+  lmet-eisuu (tap-hold-press 100 100 eisu lmet)
+  rmet-kana (tap-hold-press 100 100 kana rmet)
+
+  ;; Rule 6: Tab -> Hyper when held (cmd+opt+shift+ctrl)
+  tab-hyper (tap-hold-press 200 200 tab (multi lmet lalt lsft lctl))
+
+  ;; Rule 7: Fn layer for arrow keys
+  fn-layer (layer-while-held arrows)
+
+  ;; Rule 8: Right Option -> Super (cmd+opt+shift+ctrl)
+  ralt-super (multi rmet ralt rsft rctl)
+)
+
+(deflayer default
+  @esc-eisuu f1  f2   f17  f18  f19  f16  f7   f8   next f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tab-hyper @q-quit w e  r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    @enter-app
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  @fn-layer @lctl-esc lalt @lmet-eisuu spc       @rmet-kana @ralt-super
+)
+
+;; Fn + h/j/k/l -> Arrow keys
+(deflayer arrows
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    left down up   rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _
+)

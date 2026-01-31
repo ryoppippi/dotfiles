@@ -174,7 +174,6 @@ in
       "cloudflare-warp"
       "google-drive"
       "imageoptim" # brew-nix has tar.xz extraction issues
-      "karabiner-elements"
       "ollama-app"
       "openvpn-connect"
       "orbstack"

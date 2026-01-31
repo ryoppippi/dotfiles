@@ -22,6 +22,15 @@
         helpers
         ;
     })
+
+    # Kanata service
+    (import ./services/kanata.nix {
+      inherit
+        pkgs
+        config
+        homedir
+        ;
+    })
   ];
 
   # nix-index for command-not-found and comma

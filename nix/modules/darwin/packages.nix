@@ -4,6 +4,8 @@
     with pkgs;
     [
       # macOS-specific packages
+      kanata
+      kanata-vk-agent
       ghostty-bin
       chafa
       blueutil
