@@ -6,6 +6,7 @@ let
     "https://numtide.cachix.org"
     "https://devenv.cachix.org"
     "https://ryoppippi.cachix.org"
+    "https://pre-commit-hooks.cachix.org"
   ];
 
   publicKeys = [
@@ -13,6 +14,7 @@ let
     "numtide.cachix.org-1:2uk1h3hh8XGkFfQJSTgNTg/WRNsE+lTZYOB+VkZdvJo="
     "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     "ryoppippi.cachix.org-1:b2LbtWNvJeL/qb1B6TYOMK+apaCps4SCbzlPRfSQIms="
+    "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
   ];
 in
 {
