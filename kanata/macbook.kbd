@@ -17,10 +17,10 @@
 
 (defalias
   ;; Caps Lock -> Ctrl (tap: eisuu + ESC, hold: Ctrl)
-  caps-ctrl (tap-hold-press 200 200 (macro eisu esc) lctl)
+  caps-ctrl (tap-hold-release 200 200 (macro eisu esc) lctl)
 
   ;; Tap Ctrl -> eisuu + ESC, Hold -> Ctrl
-  lctl-esc (tap-hold-press 200 200 (macro eisu esc) lctl)
+  lctl-esc (tap-hold-release 200 200 (macro eisu esc) lctl)
 
   ;; ESC -> eisuu + ESC
   esc-eisuu (macro eisu esc)
@@ -29,8 +29,9 @@
   q-quit (tap-hold 500 500 q M-q)
 
   ;; Tap CMD -> Kana/Eisuu toggle
-  lmet-eisuu (tap-hold-press 100 100 eisu lmet)
-  rmet-kana (tap-hold-press 100 100 kana rmet)
+  ;; tap-hold-release: tap fires immediately on key release (more responsive)
+  lmet-eisuu (tap-hold-release 200 200 eisu lmet)
+  rmet-kana (tap-hold-release 200 200 kana rmet)
 
   ;; Tab -> Hyper when held (cmd+opt+shift+ctrl)
   tab-hyper (tap-hold-press 200 200 tab (multi lmet lalt lsft lctl))
