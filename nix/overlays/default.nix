@@ -15,6 +15,7 @@ let
     ./roots.nix
     ./git-wt.nix
     ./audio-priority-bar.nix
+    ./kanata-vk-agent.nix
   ];
 
   # Apply each overlay and merge results
