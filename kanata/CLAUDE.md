@@ -12,15 +12,16 @@ Cross-platform software keyboard remapper for Linux, macOS and Windows.
 
 ## Files
 
-| File          | Description                                    |
-| ------------- | ---------------------------------------------- |
-| `common.kbd`  | Shared rules (Enter app-specific, F5→F19)      |
-| `macbook.kbd` | MacBook internal keyboard (includes common)    |
-| `claw44.kbd`  | CLAW44 external keyboard (includes common)     |
+| File          | Description                                 |
+| ------------- | ------------------------------------------- |
+| `common.kbd`  | Shared rules (Enter app-specific, F5→F19)   |
+| `macbook.kbd` | MacBook internal keyboard (includes common) |
+| `claw44.kbd`  | CLAW44 external keyboard (includes common)  |
 
 ## Configuration Structure
 
 Two separate kanata instances run for each keyboard:
+
 - **MacBook** (`macos-dev-names-include ("Apple Internal Keyboard / Trackpad")`)
 - **CLAW44** (`macos-dev-names-include ("/ Trackpad")`) - Note: CLAW44 appears as "/ Trackpad" with vendor_id 22854
 
@@ -48,6 +49,7 @@ Two separate kanata instances run for each keyboard:
 ### macOS
 
 Two kanata daemons run via nix-darwin launchd:
+
 - `com.github.jtroo.kanata.macbook` - MacBook keyboard (port 5829)
 - `com.github.jtroo.kanata.claw44` - CLAW44 keyboard (port 5830)
 - `com.devsunb.kanata-vk-agent` - App-specific virtual key agent
@@ -109,6 +111,7 @@ sudo kanata --list
 ### Service Configuration
 
 See `nix/modules/darwin/services/kanata.nix`:
+
 - Installs Karabiner-DriverKit-VirtualHIDDevice automatically
 - Activates the driver on each `nix run .#switch`
 - Sets up launchd daemons for both keyboards and kanata-vk-agent
@@ -120,6 +123,7 @@ kanata-vk-agent monitors the frontmost app and presses/releases virtual keys via
 ### How It Works
 
 1. Define virtual keys with bundle IDs in `common.kbd`:
+
    ```lisp
    (defvirtualkeys
      com.hnc.Discord nop0
@@ -128,6 +132,7 @@ kanata-vk-agent monitors the frontmost app and presses/releases virtual keys via
    ```
 
 2. Use `switch` with `input virtual` to check active app:
+
    ```lisp
    (defalias
      enter-app (switch
