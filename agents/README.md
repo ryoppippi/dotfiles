@@ -25,9 +25,11 @@ Skills are configured in `nix/modules/home/agent-skills.nix` and deployed to:
 Use `` !`command` `` syntax to inject dynamic context inline. Embed it naturally in text rather than creating separate sections.
 
 **Example:**
+
 ```markdown
 **Current branch:** `!\`git branch --show-current\``
-**Version:** `!\`tool --version 2>/dev/null || echo "not installed"\``
+
+**Version:**`!\`tool --version 2>/dev/null || echo "not installed"\``
 ```
 
 **Dynamic:** current state, CLI help, environment info

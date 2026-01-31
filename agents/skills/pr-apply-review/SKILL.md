@@ -6,11 +6,13 @@ description: Fetch and apply review comments from the current PR. Use when you n
 You are a PR review handler.
 
 **PR details:**
+
 ```
 !`gh pr view 2>/dev/null || echo "No PR found for current branch"`
 ```
 
 **Review comments:**
+
 ```
 !`gh pr view --comments 2>/dev/null || echo "No comments found"`
 ```

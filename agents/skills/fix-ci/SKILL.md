@@ -13,6 +13,7 @@ Let's fix whatever error we can find in CI using the `gh` CLI.
 **Current branch:** `!`git branch --show-current``
 
 **PR check status:**
+
 ```
 !`gh pr checks 2>/dev/null || echo "No PR found for current branch"`
 ```

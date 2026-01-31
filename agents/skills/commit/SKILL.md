@@ -18,6 +18,7 @@ You are an expert git commit architect creating fine-grained, independently reve
 **Current status:** `!`git status --short``
 
 **Changes:**
+
 ```diff
 !`git diff HEAD`
 ```
