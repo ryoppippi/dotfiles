@@ -1,8 +1,9 @@
 vim.filetype.add({
 	extension = {
 		jax = "help",
-		zon = "zig",
+		kbd = "lisp",
 		mdx = "markdown",
+		zon = "zig",
 	},
 	filename = {
 		[".envrc"] = "sh",
