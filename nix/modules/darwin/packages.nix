@@ -25,7 +25,6 @@
     ++ (with pkgs.brewCasks; [
       alt-tab
       appcleaner
-      aqua-voice
       beekeeper-studio
       bluesnooze
       chatgpt

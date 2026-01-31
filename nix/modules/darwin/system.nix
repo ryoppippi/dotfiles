@@ -166,6 +166,7 @@ in
       "arto-app/tap/arto"
       "1password"
       "alfred"
+      "aqua-voice"
       "arc"
       "blackhole-16ch"
       "blu-ray-player-pro"
