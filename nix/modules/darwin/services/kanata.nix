@@ -71,21 +71,39 @@ in
     };
   };
 
-  # Virtual key agent for app-specific rules
-  launchd.agents.kanata-vk-agent = {
+  # Virtual key agent for MacBook keyboard
+  launchd.agents.kanata-vk-agent-macbook = {
     serviceConfig = {
-      Label = "com.devsunb.kanata-vk-agent";
+      Label = "com.devsunb.kanata-vk-agent.macbook";
       ProgramArguments = [
         "${pkgs.kanata-vk-agent}/bin/kanata-vk-agent"
         "-p"
-        "5829,5830"
+        "5829"
         "-b"
         "com.hnc.Discord,com.openai.chat"
       ];
       RunAtLoad = true;
       KeepAlive = true;
-      StandardOutPath = "/tmp/kanata-vk-agent.out.log";
-      StandardErrorPath = "/tmp/kanata-vk-agent.err.log";
+      StandardOutPath = "/tmp/kanata-vk-agent-macbook.out.log";
+      StandardErrorPath = "/tmp/kanata-vk-agent-macbook.err.log";
+    };
+  };
+
+  # Virtual key agent for CLAW44 keyboard
+  launchd.agents.kanata-vk-agent-claw44 = {
+    serviceConfig = {
+      Label = "com.devsunb.kanata-vk-agent.claw44";
+      ProgramArguments = [
+        "${pkgs.kanata-vk-agent}/bin/kanata-vk-agent"
+        "-p"
+        "5830"
+        "-b"
+        "com.hnc.Discord,com.openai.chat"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/tmp/kanata-vk-agent-claw44.out.log";
+      StandardErrorPath = "/tmp/kanata-vk-agent-claw44.err.log";
     };
   };
 }
