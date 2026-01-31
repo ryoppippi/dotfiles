@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
   # Check if we're on a platform that supports certain packages
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv) isDarwin isLinux;
   isX86Linux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
 in
 {
@@ -109,5 +109,9 @@ in
     # discord only supports x86_64-linux, x86_64-darwin, aarch64-darwin (not aarch64-linux)
     ++ lib.optionals (isDarwin || isX86Linux) [
       discord
+    ]
+    # Linux-only GUI applications
+    ++ lib.optionals isLinux [
+      telegram-desktop
     ];
 }
