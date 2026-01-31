@@ -96,15 +96,12 @@
       flake = false;
     };
 
-    # Local skills from this dotfiles repo
-    local-skills = {
-      url = "path:./agents/skills";
-      flake = false;
-    };
+    nix-filter.url = "github:numtide/nix-filter";
   };
 
   outputs =
     inputs@{
+      self,
       flake-parts,
       nixpkgs,
       nix-darwin,
@@ -120,13 +117,18 @@
       nix-index-database,
       agent-skills,
       ast-grep-skill,
-      local-skills,
+      nix-filter,
       ...
     }:
     let
       username = "ryoppippi";
       darwinHomedir = "/Users/${username}";
       linuxHomedir = "/home/${username}";
+
+      local-skills = nix-filter {
+        root = self;
+        include = [ "agents/skills" ];
+      };
 
       # Create pkgs with overlays
       mkPkgs =
@@ -183,8 +185,8 @@
                       lib
                       fish-na
                       ast-grep-skill
-                      local-skills
                       ;
+                    inherit local-skills;
                     homedir = linuxHomedir;
                     system = linuxSystem;
                     nodePackages = import ./nix/packages/node { inherit pkgs; };
@@ -467,8 +469,8 @@
                           lib
                           fish-na
                           ast-grep-skill
-                          local-skills
                           ;
+                        inherit local-skills;
                         homedir = darwinHomedir;
                         system = "aarch64-darwin";
                         nodePackages = import ./nix/packages/node { inherit pkgs; };

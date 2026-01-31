@@ -27,14 +27,13 @@ in
       # Local: skills from this dotfiles repo
       local = {
         path = local-skills;
-        subdir = ".";
+        subdir = "agents/skills";
       };
     };
 
     # Enable all local skills
     skills.enableAll = [ "local" ];
 
-    # Explicit skill with package dependency
     skills.explicit.ast-grep = {
       from = "ast-grep";
       path = "ast-grep";
