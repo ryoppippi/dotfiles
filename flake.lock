@@ -403,11 +403,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769899433,
-        "narHash": "sha256-x2Ro7fhhR1s7reOv72STBllgjTmDTgKopEXqty/H7wE=",
+        "lastModified": 1769901155,
+        "narHash": "sha256-f8z6J25reakOz6nWVxY8ToAn5fvbC5oyz6qofhD+KAo=",
         "owner": "ryoppippi",
         "repo": "kanata-darwin-nix",
-        "rev": "25410a1fe0e595ffc066662083e89dfef4567fb5",
+        "rev": "56de3207d4ffdedf6197dba52096c47290f8d578",
         "type": "github"
       },
       "original": {
