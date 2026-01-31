@@ -416,18 +416,6 @@
         "type": "github"
       }
     },
-    "local-skills": {
-      "flake": false,
-      "locked": {
-        "path": "./agents/skills",
-        "type": "path"
-      },
-      "original": {
-        "path": "./agents/skills",
-        "type": "path"
-      },
-      "parent": []
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -445,6 +433,21 @@
       "original": {
         "owner": "LnL7",
         "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "nix-filter": {
+      "locked": {
+        "lastModified": 1757882181,
+        "narHash": "sha256-+cCxYIh2UNalTz364p+QYmWHs0P+6wDhiWR4jDIKQIU=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "59c44d1909c72441144b93cf0f054be7fe764de5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
         "type": "github"
       }
     },
@@ -559,8 +562,8 @@
         "git-hooks": "git-hooks_2",
         "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
-        "local-skills": "local-skills",
         "nix-darwin": "nix-darwin",
+        "nix-filter": "nix-filter",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "treefmt-nix": "treefmt-nix_3"
