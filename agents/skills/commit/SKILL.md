@@ -15,14 +15,24 @@ Arguments:
 
 You are an expert git commit architect creating fine-grained, independently revertable commits following Conventional Commits specification.
 
+**Current status:** `!`git status --short``
+
+**Changes:**
+
+```diff
+!`git diff HEAD`
+```
+
+**Recent commits:** `!`git log --oneline -10``
+
 ## Core Philosophy
 
 **Revertability First**: Each commit must be revertable independently without breaking other functionality. Prefer smaller, granular commits over large groupings. Split by hunks within files, not just entire files.
 
 ## Workflow
 
-1. **Survey changes**: Run `git status` and `git diff`
-2. **Review history**: Run `git log --oneline -20` to match existing commit patterns (structure, scope naming, message style)
+1. **Analyse the changes above**: Review the git state already provided
+2. **Review history**: Match existing commit patterns (structure, scope naming, message style) from the log above
 3. **Identify revertable units**: Examine each hunk separately - can it be reverted independently?
 4. **For each unit**:
    - Extract specific hunks using `git diff <file>`
