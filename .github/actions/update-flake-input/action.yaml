@@ -152,6 +152,20 @@ runs:
                 echo "updated=false" >> "$GITHUB_OUTPUT"
                 exit 0
               fi
+
+              # Check if target is older than current (would be a downgrade)
+              if [ -n "$current_rev" ] && [ "$current_rev" != "unknown" ]; then
+                current_commit_date=$(gh api "repos/${INPUT_OWNER}/${INPUT_REPO}/commits/${current_rev}" --jq '.commit.committer.date' 2>/dev/null || echo "")
+                if [ -n "$current_commit_date" ] && [ -n "$commit_date" ]; then
+                  current_ts=$(date -d "$current_commit_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$current_commit_date" +%s 2>/dev/null || echo "0")
+                  target_ts=$(date -d "$commit_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$commit_date" +%s 2>/dev/null || echo "0")
+                  if [ "$target_ts" -lt "$current_ts" ]; then
+                    echo "Target revision (${target_rev:0:8} from $commit_date) is older than current (${current_rev:0:8} from $current_commit_date). Skipping to avoid downgrade."
+                    echo "updated=false" >> "$GITHUB_OUTPUT"
+                    exit 0
+                  fi
+                fi
+              fi
             else
               echo "No commits found older than $MIN_AGE_DAYS days. Skipping update."
               echo "updated=false" >> "$GITHUB_OUTPUT"
