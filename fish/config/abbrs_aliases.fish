@@ -148,6 +148,7 @@ abbr -a lcp leetcode t
 # ai
 abbr -a cl claude
 abbr -a cld claude --dangerously-skip-permissions
+abbr -a cldc claude --dangerously-skip-permissions --continue
 abbr -a clh claude --dangerously-skip-permissions --model haiku
 abbr -a clo claude --dangerously-skip-permissions --model opus
 abbr -a cls claude --dangerously-skip-permissions --model sonnet
