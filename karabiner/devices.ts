@@ -1,4 +1,4 @@
-import * as k from 'karabiner_ts';
+import * as k from 'karabiner.ts';
 import { getDeviceId } from './utils.ts';
 
 export const CLAW44 =

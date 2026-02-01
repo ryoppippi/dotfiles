@@ -1,44 +1,45 @@
-import * as k from 'karabiner_ts';
-import * as u from '@core/unknownutil';
-import { $ } from '@david/dax';
+import * as k from 'karabiner.ts';
+import { z } from 'zod';
+import { $ } from 'bun';
 
-/** Hide the application by name */
 export function toHideApp(name: string) {
 	return k.to$(
 		`osascript -e 'tell application "System Events" to set visible of process "${name}" to false'`,
 	);
 }
 
-/** Get the bundle identifier of the application by name */
-export async function extractIdentifier(appName: string): Promise<string> {
-	const appPath = $.path(`/Applications/${appName}.app`);
+async function findAppPath(appName: string): Promise<string | undefined> {
+	const output =
+		await $`mdfind "kMDItemKind == 'Application' && kMDItemFSName == '${appName}.app'"`.text();
+	return output.trim().split('\n').at(0) || undefined;
+}
 
-	if (!(await appPath.exists())) {
+export async function extractIdentifier(appName: string): Promise<string> {
+	const appPath = await findAppPath(appName);
+
+	if (appPath == null) {
 		throw new Error(`Application ${appName} not found`);
 	}
 
-	/* output is like `kMDItemCFBundleIdentifier = "com.apple.Safari"` */
 	const output = await $`mdls -name kMDItemCFBundleIdentifier ${appPath}`.text();
 
-	/** output is like com.apple.Safari */
 	const identifier = output
 		.match(/"(.*)"/)
 		?.at(1)
 		?.trim();
 
-	u.assert(identifier, u.isString, {
-		message: `Failed to extract bundle identifier for ${appName}`,
+	return z.string().parse(identifier, {
+		error: () => `Failed to extract bundle identifier for ${appName}`,
 	});
-
-	return identifier;
 }
 
 export async function getDeviceId(
 	deviceName: string,
 ): Promise<Readonly<k.DeviceIdentifier | undefined>> {
-	const output = await $`hidutil list -n`.lines();
+	const output = await $`hidutil list -n`.text();
+	const lines = output.trim().split('\n').filter(Boolean);
 
-	const devices = output.map((line) => JSON.parse(line));
+	const devices = lines.map((line) => JSON.parse(line));
 
 	const _devices = new Map(
 		devices.map((device) => [
@@ -46,17 +47,11 @@ export async function getDeviceId(
 			{
 				product_id: device.ProductID as number,
 				vendor_id: device.VendorID as number,
-				// location_id: device.LocationID as number,
 			} as const satisfies k.DeviceIdentifier,
 		]),
 	);
 
-	const info = _devices.get(deviceName);
-
-	if (u.isNullish(info)) {
-		return undefined;
-	}
-	return info;
+	return _devices.get(deviceName);
 }
 
 export const ifTrackpadTouched = k.ifVar('multitouch_extension_finger_count_total', 0).unless();
