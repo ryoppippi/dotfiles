@@ -1,0 +1,18 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "karabiner-config",
+      "dependencies": {
+        "karabiner.ts": "^1.36.0",
+        "zod": "^4.3.6",
+      },
+    },
+  },
+  "packages": {
+    "karabiner.ts": ["karabiner.ts@1.36.0", "", {}, "sha512-iXg3/yZ46XodUXu2+TrIkrtbR71UFXR1dhDwpF8R6vCgd5i2r2+H7evfwQZM970oPd04PWdJk5AhvJY/582M7Q=="],
+
+    "zod": ["zod@4.3.6", "", {}, "sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg=="],
+  }
+}

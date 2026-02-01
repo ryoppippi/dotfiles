@@ -10,6 +10,7 @@
 						"description": "Tap Ctrl -> japanese_eisuu + ESC",
 						"manipulators": [
 							{
+								"type": "basic",
 								"from": {
 									"key_code": "left_control",
 									"modifiers": {
@@ -29,8 +30,7 @@
 									{
 										"key_code": "escape"
 									}
-								],
-								"type": "basic"
+								]
 							}
 						]
 					},
@@ -38,6 +38,7 @@
 						"description": "Tap ESC -> japanese_eisuu + esc",
 						"manipulators": [
 							{
+								"type": "basic",
 								"from": {
 									"key_code": "escape"
 								},
@@ -48,8 +49,7 @@
 									{
 										"key_code": "escape"
 									}
-								],
-								"type": "basic"
+								]
 							}
 						]
 					},
@@ -57,6 +57,7 @@
 						"description": "Quit application by holding command-q",
 						"manipulators": [
 							{
+								"type": "basic",
 								"from": {
 									"key_code": "q",
 									"modifiers": {
@@ -70,8 +71,7 @@
 										"modifiers": ["command"],
 										"repeat": false
 									}
-								],
-								"type": "basic"
+								]
 							}
 						]
 					},
@@ -79,12 +79,7 @@
 						"description": "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
 						"manipulators": [
 							{
-								"conditions": [
-									{
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
-										"type": "frontmost_application_if"
-									}
-								],
+								"type": "basic",
 								"from": {
 									"key_code": "return_or_enter",
 									"modifiers": {
@@ -96,15 +91,15 @@
 										"key_code": "return_or_enter"
 									}
 								],
-								"type": "basic"
-							},
-							{
 								"conditions": [
 									{
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
-										"type": "frontmost_application_if"
+										"type": "frontmost_application_if",
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
 									}
-								],
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "return_or_enter",
 									"modifiers": {
@@ -116,15 +111,15 @@
 										"key_code": "return_or_enter"
 									}
 								],
-								"type": "basic"
-							},
-							{
 								"conditions": [
 									{
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
-										"type": "frontmost_application_if"
+										"type": "frontmost_application_if",
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
 									}
-								],
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "return_or_enter"
 								},
@@ -134,7 +129,12 @@
 										"modifiers": ["shift"]
 									}
 								],
-								"type": "basic"
+								"conditions": [
+									{
+										"type": "frontmost_application_if",
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
+									}
+								]
 							}
 						]
 					},
@@ -142,26 +142,12 @@
 						"description": "Tap CMD to toggle Kana/Eisuu",
 						"manipulators": [
 							{
-								"conditions": [
-									{
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										],
-										"type": "device_unless"
-									}
-								],
-								"description": "Tap left_command alone to switch to japanese_eisuu",
+								"type": "basic",
 								"from": {
 									"key_code": "left_command",
 									"modifiers": {
 										"optional": ["any"]
 									}
-								},
-								"parameters": {
-									"basic.to_if_held_down_threshold_milliseconds": 100
 								},
 								"to": [
 									{
@@ -174,29 +160,29 @@
 										"key_code": "japanese_eisuu"
 									}
 								],
-								"type": "basic"
-							},
-							{
+								"description": "Tap left_command alone to switch to japanese_eisuu",
+								"parameters": {
+									"basic.to_if_held_down_threshold_milliseconds": 100
+								},
 								"conditions": [
 									{
+										"type": "device_unless",
 										"identifiers": [
 											{
 												"product_id": 1,
 												"vendor_id": 22854
 											}
-										],
-										"type": "device_unless"
+										]
 									}
-								],
-								"description": "Tap right_command alone to switch to japanese_kana",
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "right_command",
 									"modifiers": {
 										"optional": ["any"]
 									}
-								},
-								"parameters": {
-									"basic.to_if_held_down_threshold_milliseconds": 100
 								},
 								"to": [
 									{
@@ -209,7 +195,21 @@
 										"key_code": "japanese_kana"
 									}
 								],
-								"type": "basic"
+								"description": "Tap right_command alone to switch to japanese_kana",
+								"parameters": {
+									"basic.to_if_held_down_threshold_milliseconds": 100
+								},
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
 							}
 						]
 					},
@@ -217,26 +217,10 @@
 						"description": "Hold tab to super key, tap tab to tab in Macbook",
 						"manipulators": [
 							{
-								"conditions": [
-									{
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										],
-										"type": "device_unless"
-									}
-								],
+								"type": "basic",
 								"from": {
 									"key_code": "tab"
 								},
-								"to": [
-									{
-										"key_code": "left_command",
-										"modifiers": ["left_option", "left_shift", "left_control"]
-									}
-								],
 								"to_if_alone": [
 									{
 										"key_code": "tab",
@@ -249,7 +233,23 @@
 										"repeat": true
 									}
 								],
-								"type": "basic"
+								"to": [
+									{
+										"key_code": "left_command",
+										"modifiers": ["left_option", "left_shift", "left_control"]
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
 							}
 						]
 					},
@@ -257,18 +257,7 @@
 						"description": "toggle fn + h/j/k/l to arrow keys",
 						"manipulators": [
 							{
-								"conditions": [
-									{
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										],
-										"type": "device_unless"
-									}
-								],
-								"description": "Tap h to left_arrow",
+								"type": "basic",
 								"from": {
 									"key_code": "h",
 									"modifiers": {
@@ -280,21 +269,21 @@
 										"key_code": "left_arrow"
 									}
 								],
-								"type": "basic"
-							},
-							{
+								"description": "Tap h to left_arrow",
 								"conditions": [
 									{
+										"type": "device_unless",
 										"identifiers": [
 											{
 												"product_id": 1,
 												"vendor_id": 22854
 											}
-										],
-										"type": "device_unless"
+										]
 									}
-								],
-								"description": "Tap j to down_arrow",
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "j",
 									"modifiers": {
@@ -306,21 +295,21 @@
 										"key_code": "down_arrow"
 									}
 								],
-								"type": "basic"
-							},
-							{
+								"description": "Tap j to down_arrow",
 								"conditions": [
 									{
+										"type": "device_unless",
 										"identifiers": [
 											{
 												"product_id": 1,
 												"vendor_id": 22854
 											}
-										],
-										"type": "device_unless"
+										]
 									}
-								],
-								"description": "Tap k to up_arrow",
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "k",
 									"modifiers": {
@@ -332,21 +321,21 @@
 										"key_code": "up_arrow"
 									}
 								],
-								"type": "basic"
-							},
-							{
+								"description": "Tap k to up_arrow",
 								"conditions": [
 									{
+										"type": "device_unless",
 										"identifiers": [
 											{
 												"product_id": 1,
 												"vendor_id": 22854
 											}
-										],
-										"type": "device_unless"
+										]
 									}
-								],
-								"description": "Tap l to right_arrow",
+								]
+							},
+							{
+								"type": "basic",
 								"from": {
 									"key_code": "l",
 									"modifiers": {
@@ -358,7 +347,18 @@
 										"key_code": "right_arrow"
 									}
 								],
-								"type": "basic"
+								"description": "Tap l to right_arrow",
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
 							}
 						]
 					},
@@ -366,17 +366,7 @@
 						"description": "Right option to super key in Macbook",
 						"manipulators": [
 							{
-								"conditions": [
-									{
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										],
-										"type": "device_unless"
-									}
-								],
+								"type": "basic",
 								"from": {
 									"key_code": "right_option"
 								},
@@ -386,11 +376,28 @@
 										"modifiers": ["right_option", "right_shift", "right_control"]
 									}
 								],
-								"type": "basic"
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
 							}
 						]
 					}
-				]
+				],
+				"parameters": {
+					"basic.to_if_alone_timeout_milliseconds": 1000,
+					"basic.to_if_held_down_threshold_milliseconds": 500,
+					"basic.to_delayed_action_delay_milliseconds": 500,
+					"basic.simultaneous_threshold_milliseconds": 50,
+					"mouse_motion_to_scroll.speed": 100
+				}
 			},
 			"devices": [
 				{

@@ -18,10 +18,10 @@ This directory contains TypeScript-based configuration for Karabiner-Elements us
 
 ```bash
 # Build once
-deno task build
+bun run build
 
 # Watch mode (auto-rebuild on changes)
-deno task watch
+bun run watch
 ```
 
 ## Key Concepts

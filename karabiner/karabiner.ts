@@ -1,4 +1,4 @@
-import * as k from 'karabiner_ts';
+import * as k from 'karabiner.ts';
 import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
