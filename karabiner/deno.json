@@ -1,0 +1,11 @@
+{
+	"tasks": {
+		"build": "deno run --allow-env --allow-read --allow-write --allow-run karabiner.ts",
+		"watch": "deno run --watch --allow-env --allow-read --allow-write --allow-run karabiner.ts"
+	},
+	"imports": {
+		"@core/unknownutil": "jsr:@core/unknownutil@^3.18.1",
+		"@david/dax": "jsr:@david/dax@^0.41.0",
+		"karabiner_ts": "npm:karabiner.ts@^1.35.1"
+	}
+}

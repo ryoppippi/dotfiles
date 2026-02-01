@@ -1,0 +1,645 @@
+{
+	"global": {
+		"show_in_menu_bar": false
+	},
+	"profiles": [
+		{
+			"complex_modifications": {
+				"rules": [
+					{
+						"description": "Tap Ctrl -> japanese_eisuu + ESC",
+						"manipulators": [
+							{
+								"from": {
+									"key_code": "left_control",
+									"modifiers": {
+										"optional": ["any"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "left_control",
+										"lazy": true
+									}
+								],
+								"to_if_alone": [
+									{
+										"key_code": "japanese_eisuu"
+									},
+									{
+										"key_code": "escape"
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Tap ESC -> japanese_eisuu + esc",
+						"manipulators": [
+							{
+								"from": {
+									"key_code": "escape"
+								},
+								"to": [
+									{
+										"key_code": "japanese_eisuu"
+									},
+									{
+										"key_code": "escape"
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Quit application by holding command-q",
+						"manipulators": [
+							{
+								"from": {
+									"key_code": "q",
+									"modifiers": {
+										"mandatory": ["command"],
+										"optional": ["caps_lock"]
+									}
+								},
+								"to_if_held_down": [
+									{
+										"key_code": "q",
+										"modifiers": ["command"],
+										"repeat": false
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
+						"manipulators": [
+							{
+								"conditions": [
+									{
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
+										"type": "frontmost_application_if"
+									}
+								],
+								"from": {
+									"key_code": "return_or_enter",
+									"modifiers": {
+										"mandatory": ["shift"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "return_or_enter"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
+										"type": "frontmost_application_if"
+									}
+								],
+								"from": {
+									"key_code": "return_or_enter",
+									"modifiers": {
+										"mandatory": ["command"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "return_or_enter"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"],
+										"type": "frontmost_application_if"
+									}
+								],
+								"from": {
+									"key_code": "return_or_enter"
+								},
+								"to": [
+									{
+										"key_code": "return_or_enter",
+										"modifiers": ["shift"]
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Tap CMD to toggle Kana/Eisuu",
+						"manipulators": [
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap left_command alone to switch to japanese_eisuu",
+								"from": {
+									"key_code": "left_command",
+									"modifiers": {
+										"optional": ["any"]
+									}
+								},
+								"parameters": {
+									"basic.to_if_held_down_threshold_milliseconds": 100
+								},
+								"to": [
+									{
+										"key_code": "left_command",
+										"lazy": true
+									}
+								],
+								"to_if_alone": [
+									{
+										"key_code": "japanese_eisuu"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap right_command alone to switch to japanese_kana",
+								"from": {
+									"key_code": "right_command",
+									"modifiers": {
+										"optional": ["any"]
+									}
+								},
+								"parameters": {
+									"basic.to_if_held_down_threshold_milliseconds": 100
+								},
+								"to": [
+									{
+										"key_code": "right_command",
+										"lazy": true
+									}
+								],
+								"to_if_alone": [
+									{
+										"key_code": "japanese_kana"
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Hold tab to super key, tap tab to tab in Macbook",
+						"manipulators": [
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"from": {
+									"key_code": "tab"
+								},
+								"to": [
+									{
+										"key_code": "left_command",
+										"modifiers": ["left_option", "left_shift", "left_control"]
+									}
+								],
+								"to_if_alone": [
+									{
+										"key_code": "tab",
+										"lazy": true
+									}
+								],
+								"to_if_held_down": [
+									{
+										"key_code": "tab",
+										"repeat": true
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "toggle fn + h/j/k/l to arrow keys",
+						"manipulators": [
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap h to left_arrow",
+								"from": {
+									"key_code": "h",
+									"modifiers": {
+										"mandatory": ["fn"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "left_arrow"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap j to down_arrow",
+								"from": {
+									"key_code": "j",
+									"modifiers": {
+										"mandatory": ["fn"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "down_arrow"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap k to up_arrow",
+								"from": {
+									"key_code": "k",
+									"modifiers": {
+										"mandatory": ["fn"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "up_arrow"
+									}
+								],
+								"type": "basic"
+							},
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"description": "Tap l to right_arrow",
+								"from": {
+									"key_code": "l",
+									"modifiers": {
+										"mandatory": ["fn"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "right_arrow"
+									}
+								],
+								"type": "basic"
+							}
+						]
+					},
+					{
+						"description": "Right option to super key in Macbook",
+						"manipulators": [
+							{
+								"conditions": [
+									{
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										],
+										"type": "device_unless"
+									}
+								],
+								"from": {
+									"key_code": "right_option"
+								},
+								"to": [
+									{
+										"key_code": "right_command",
+										"modifiers": ["right_option", "right_shift", "right_control"]
+									}
+								],
+								"type": "basic"
+							}
+						]
+					}
+				]
+			},
+			"devices": [
+				{
+					"fn_function_keys": [
+						{
+							"from": {
+								"key_code": "f1"
+							},
+							"to": [
+								{
+									"consumer_key_code": "display_brightness_decrement"
+								}
+							]
+						},
+						{
+							"from": {
+								"key_code": "f2"
+							},
+							"to": [
+								{
+									"consumer_key_code": "display_brightness_increment"
+								}
+							]
+						}
+					],
+					"identifiers": {
+						"is_keyboard": true,
+						"product_id": 825,
+						"vendor_id": 1241
+					},
+					"manipulate_caps_lock_led": false,
+					"simple_modifications": [
+						{
+							"from": {
+								"key_code": "end"
+							},
+							"to": [
+								{
+									"key_code": "fn"
+								}
+							]
+						}
+					]
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"product_id": 635,
+						"vendor_id": 1452
+					},
+					"simple_modifications": [
+						{
+							"from": {
+								"key_code": "backslash"
+							},
+							"to": [
+								{
+									"key_code": "delete_or_backspace"
+								}
+							]
+						},
+						{
+							"from": {
+								"key_code": "delete_or_backspace"
+							},
+							"to": [
+								{
+									"key_code": "backslash"
+								}
+							]
+						}
+					]
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"product_id": 1,
+						"vendor_id": 22854
+					},
+					"simple_modifications": [
+						{
+							"from": {
+								"key_code": "caps_lock"
+							},
+							"to": [
+								{
+									"key_code": "caps_lock"
+								}
+							]
+						},
+						{
+							"from": {
+								"key_code": "page_up"
+							},
+							"to": [
+								{
+									"key_code": "fn"
+								}
+							]
+						}
+					]
+				},
+				{
+					"fn_function_keys": [
+						{
+							"from": {
+								"key_code": "f11"
+							},
+							"to": [
+								{
+									"key_code": "f11"
+								}
+							]
+						}
+					],
+					"identifiers": {
+						"is_pointing_device": true,
+						"product_id": 1,
+						"vendor_id": 22854
+					},
+					"ignore": false
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true,
+						"product_id": 832,
+						"vendor_id": 1452
+					},
+					"simple_modifications": [
+						{
+							"from": {
+								"key_code": "backslash"
+							},
+							"to": [
+								{
+									"key_code": "delete_or_backspace"
+								}
+							]
+						},
+						{
+							"from": {
+								"key_code": "delete_or_backspace"
+							},
+							"to": [
+								{
+									"key_code": "backslash"
+								}
+							]
+						}
+					]
+				},
+				{
+					"identifiers": {
+						"is_keyboard": true
+					},
+					"simple_modifications": [
+						{
+							"from": {
+								"key_code": "backslash"
+							},
+							"to": [
+								{
+									"key_code": "delete_or_backspace"
+								}
+							]
+						},
+						{
+							"from": {
+								"key_code": "delete_or_backspace"
+							},
+							"to": [
+								{
+									"key_code": "backslash"
+								}
+							]
+						}
+					]
+				}
+			],
+			"fn_function_keys": [
+				{
+					"from": {
+						"key_code": "f3"
+					},
+					"to": [
+						{
+							"key_code": "f17"
+						}
+					]
+				},
+				{
+					"from": {
+						"key_code": "f4"
+					},
+					"to": [
+						{
+							"key_code": "f18"
+						}
+					]
+				},
+				{
+					"from": {
+						"key_code": "f5"
+					},
+					"to": [
+						{
+							"key_code": "f19"
+						}
+					]
+				},
+				{
+					"from": {
+						"key_code": "f6"
+					},
+					"to": [
+						{
+							"key_code": "f16"
+						}
+					]
+				},
+				{
+					"from": {
+						"key_code": "f9"
+					},
+					"to": [
+						{
+							"consumer_key_code": "fastforward"
+						}
+					]
+				}
+			],
+			"name": "Default profile",
+			"selected": true,
+			"simple_modifications": [
+				{
+					"from": {
+						"key_code": "caps_lock"
+					},
+					"to": [
+						{
+							"key_code": "left_control"
+						}
+					]
+				}
+			],
+			"virtual_hid_keyboard": {
+				"country_code": 0,
+				"keyboard_type_v2": "ansi"
+			}
+		}
+	]
+}

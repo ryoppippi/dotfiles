@@ -98,10 +98,6 @@
 
     nix-filter.url = "github:numtide/nix-filter";
 
-    kanata-darwin-nix = {
-      url = "github:ryoppippi/kanata-darwin-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -123,7 +119,6 @@
       agent-skills,
       ast-grep-skill,
       nix-filter,
-      kanata-darwin-nix,
       ...
     }:
     let
@@ -156,7 +151,6 @@
           ]
           ++ nixpkgs.lib.optionals isDarwin [
             brew-nix.overlays.default
-            kanata-darwin-nix.overlays.default
           ];
         };
 
@@ -437,16 +431,6 @@
               pkgs = mkPkgs "aarch64-darwin";
               inherit (nixpkgs) lib;
               inherit username;
-              homedir = darwinHomedir;
-            })
-
-            {
-              nixpkgs.overlays = [ kanata-darwin-nix.overlays.default ];
-            }
-
-            kanata-darwin-nix.darwinModules.default
-
-            (import ./nix/modules/darwin/services/kanata.nix {
               homedir = darwinHomedir;
             })
 
