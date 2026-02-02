@@ -30,3 +30,21 @@ The following tools are preferred and available globally:
 - **Find**: Use `fd` instead of find
 - **JSON**: Use `jq` for JSON processing
 - **Shell**: Fish shell is the primary shell
+
+## Missing Tools
+
+**Always use [comma](https://github.com/nix-community/comma) first** when a tool is not installed:
+
+```bash
+, <command>           # Run any command from nixpkgs without installing
+, cowsay "Hello"      # Example: run cowsay without installing it
+, htop                # Example: run htop temporarily
+```
+
+Comma automatically finds and runs the package containing the command.
+
+**Priority order** for running unavailable tools:
+
+1. `, <command>` (comma) - preferred, simplest
+2. `nix run nixpkgs#<package>` - when you need a specific package name
+3. `nix-shell -p <package> --run "<command>"` - last resort
