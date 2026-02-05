@@ -2,17 +2,13 @@
 # https://github.com/Kyure-A/agent-skills-nix
 #
 # All skills (external and local) are managed here via agent-skills-nix.
+# Skills are deployed to ~/.agents (standard location) and ~/.config/claude/skills
 {
   pkgs,
   ast-grep-skill,
   local-skills,
   ...
 }:
-let
-  # Relative path from home directory to XDG config
-  # agent-skills dest is relative to $HOME
-  xdgConfigRel = ".config";
-in
 {
   programs.agent-skills = {
     enable = true;
@@ -40,14 +36,16 @@ in
       packages = [ pkgs.ast-grep ];
     };
 
-    # Deploy to skills directories
+    # Deploy to standard skills directories
     targets = {
-      claude = {
-        dest = "${xdgConfigRel}/claude/skills";
+      # Standard ~/.agents directory
+      agents = {
+        dest = ".agents";
         structure = "link";
       };
-      codex = {
-        dest = "${xdgConfigRel}/codex/skills";
+      # Claude Code user config
+      claude = {
+        dest = ".config/claude/skills";
         structure = "link";
       };
     };
