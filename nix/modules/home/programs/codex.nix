@@ -16,7 +16,7 @@ let
 
   # Codex configuration settings
   settings = {
-    model = "gpt-5.2-codex";
+    model = "gpt-5.3-codex";
     approval_policy = "on-request";
     model_reasoning_effort = "medium";
     web_search_request = true;
