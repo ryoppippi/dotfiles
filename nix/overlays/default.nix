@@ -13,7 +13,6 @@ let
     ./git-now.nix
     ./bluetooth-connector.nix
     ./roots.nix
-    ./git-wt.nix
     ./audio-priority-bar.nix
   ];
 
