@@ -10,19 +10,17 @@ in
     [
       # Essentials
       curl
-      devenv
       htop
       fish
       tmux
       # VCS
+      bit
       git
       git-now
       git-wt
-      bit
       git-lfs
       ghq
       lazygit
-      lazydocker
       # Search & file utilities
       ripgrep
       fd
@@ -34,72 +32,18 @@ in
       jq
       dust
       delta
-      tre
       vivid
-      pastel
-      hexyl
-      # Development languages
+      # Development languages & package managers
+      devenv
       nodejs_24
       bun
       deno
-      # Build systems
-      just
-      # Package managers
       pnpm
-      yarn
-      # Shell & TUI
-      navi
-      # Testing & security
-      typos
       uv
-      pinact
-      license-go
-      # Database tools
-      xan
-      tv
-      # Performance & monitoring
-      hyperfine
-      bottom
-      oha
-      viddy
-      gping
       # Miscellaneous utilities
-      sttr
-      silicon
-      fx
       fixjson
-      gist
-      glow
-      vhs
-      mmv
-      jid
-      gibo
-      genact
-      grex
-      watchexec
-      rclone
-      ttyd
-      fastfetch
-      yazi
-      jujutsu
-      xh
-      choose
-      t-rec
-      jwt-cli
-      fq
-      tokei
-      bsky-cli
-      signal-cli
       sheep
       roots
-      # Additional CLI tools
-      aria2
-      cloc
-      cmatrix
-      ffmpeg
-      figlet
-      gawk
-      pv
 
       # GUI applications (cross-platform)
       audacity
