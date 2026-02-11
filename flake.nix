@@ -339,7 +339,7 @@
                 localPkgs.writeShellScript (if isDarwin then "darwin-build" else "home-manager-build") ''
                   set -e
                   echo "Building ${if isDarwin then "darwin" else "Home Manager"} configuration..."
-                  nix build .#${
+                  ${localPkgs.nix-output-monitor}/bin/nom build .#${
                     if isDarwin then
                       "darwinConfigurations.${hostname}.system"
                     else
@@ -354,13 +354,13 @@
               type = "app";
               program = toString (
                 localPkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
-                  set -e
+                  set -eo pipefail
                   echo "Building and switching to ${if isDarwin then "darwin" else "Home Manager"} configuration..."
                   ${
                     if isDarwin then
-                      "sudo nix run nix-darwin -- switch --flake .#${hostname}"
+                      "sudo nix run nix-darwin -- switch --flake .#${hostname} |& ${localPkgs.nix-output-monitor}/bin/nom"
                     else
-                      "nix run nixpkgs#home-manager -- switch --flake .#${username}"
+                      "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${localPkgs.nix-output-monitor}/bin/nom"
                   }
                   echo "Clearing fish cache..."
                   rm -rf "$TMPDIR/fish-cache"
