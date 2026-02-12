@@ -20,6 +20,7 @@ let
     approval_policy = "on-request";
     model_reasoning_effort = "medium";
     web_search_request = true;
+    project_doc_fallback_filenames = [ "CLAUDE.md" ];
 
     mcp_servers = {
       chrome-devtools = {

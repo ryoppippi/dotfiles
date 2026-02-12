@@ -33,6 +33,7 @@ in
       dust
       delta
       vivid
+      trash-cli
       # Development languages & package managers
       devenv
       nodejs_24
