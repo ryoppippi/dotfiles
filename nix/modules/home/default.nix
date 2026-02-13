@@ -3,7 +3,7 @@
   config,
   lib,
   homedir,
-  dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
+  dotfilesDir ? "${homedir}/ghq/github.com/asktt1770/dotfiles",
   system ? null,
   nodePackages ? null,
   fish-na ? null,

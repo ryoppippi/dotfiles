@@ -122,7 +122,7 @@
       ...
     }:
     let
-      username = "ryoppippi";
+      username = "asktt1770";
       darwinHomedir = "/Users/${username}";
       linuxHomedir = "/home/${username}";
 
@@ -201,7 +201,7 @@
                       helpers
                       ;
                     homedir = linuxHomedir;
-                    dotfilesDir = "${linuxHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                    dotfilesDir = "${linuxHomedir}/ghq/github.com/asktt1770/dotfiles";
                   })
                 ];
               }
@@ -320,7 +320,7 @@
               type = "app";
               program = toString (
                 localPkgs.writeShellScript "nvim-restore" ''
-                  : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
+                  : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/asktt1770/dotfiles}"
                   if [ ! -d "$DOTFILES_DIR" ]; then
                     DOTFILES_DIR="$(pwd)"
                   fi
@@ -480,7 +480,7 @@
                           helpers
                           ;
                         homedir = darwinHomedir;
-                        dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
+                        dotfilesDir = "${darwinHomedir}/ghq/github.com/asktt1770/dotfiles";
                       })
                     ];
                   };

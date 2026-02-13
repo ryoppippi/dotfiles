@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
+  dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/asktt1770/dotfiles",
   helpers,
   ...
 }:
