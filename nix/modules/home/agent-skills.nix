@@ -38,9 +38,9 @@
 
     # Deploy to standard skills directories
     targets = {
-      # Standard ~/.agents directory
+      # Standard ~/.agents/skills directory
       agents = {
-        dest = ".agents";
+        dest = ".agents/skills";
         structure = "link";
       };
       # Claude Code user config
