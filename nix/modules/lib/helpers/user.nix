@@ -1,7 +1,7 @@
 { config }:
 let
   inherit (config.home) username;
-  githubId = "1560508";
+  githubId = "75629350";
   email = "${githubId}+${username}@users.noreply.github.com";
 in
 {

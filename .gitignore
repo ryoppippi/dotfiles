@@ -40,3 +40,6 @@ devenv.lock
 
 # git-hooks.nix
 .pre-commit-config.yaml
+
+# Obsidian (vault workspace state; machine-specific)
+.obsidian/workspace.json
