@@ -18,6 +18,7 @@ in
 
   # Enable Touch ID for sudo (including tmux support via pam-reattach)
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
   security.pam.services.sudo_local.reattach = true;
 
   system = {
