@@ -5,10 +5,29 @@
 
 ---
 
+## このドキュメントの位置づけ
+
+- **PC 初期化前**: バックアップとアプリ一覧の洗い出しは `docs/pc-initialization-backup-checklist.md` に従う。
+- **PC 初期化後**: 本ドキュメントの手順で、Nix と dotfiles に則って **環境の構築・各種アプリのインストール・アプリ／システムの設定** を一括で行う。
+- 本手順の「5. nix-darwin で設定を適用する」により、**アプリのインストール**（Homebrew Casks、Nix パッケージ、Mac App Store）と **macOS／アプリの設定**（Dock、Finder、キーボード、シェル等）が dotfiles の定義どおりに適用される。詳細な一覧は `docs/ryoppippi-apps-list.md` を参照。
+
+---
+
 ## 前提
 
-- Mac を初期化し、セットアップアシスタントで **ユーザー名 `asktt1770`** でログインできる状態になっていること。
+- Mac を初期化し、セットアップアシスタントで **ユーザー名 `asktt1770`** でログインできる状態になっていること。初期化の実行手順やセットアップアシスタントでの操作は、必要に応じて「0. PC 初期化（必要な場合）」を参照。
 - GitHub で ryoppippi さんの [dotfiles](https://github.com/ryoppippi/dotfiles) を **フォーク** し、自分のリポジトリ（**https://github.com/asktt1770/dotfiles**）を用意していること。フォークと asktt1770 用の書き換えは `docs/fork-and-customize-asktt1770.md` を参照。
+
+---
+
+## 0. PC 初期化（必要な場合）
+
+Mac をクリーンな状態からセットアップする場合のみ行う。
+
+1. **初期化前**: `docs/pc-initialization-backup-checklist.md` に従い、バックアップとアプリ一覧の確認を行う。
+2. **初期化の実行**: システム設定 → 一般 → 転送またはリセット → 「すべてのコンテンツと設定を消去」など、利用する方法で Mac を初期化する。
+3. **セットアップアシスタント**: 言語・地域・Apple ID・ユーザー作成などに従い、**ユーザー名を `asktt1770`**（または自分のユーザー名）にしてログインできる状態にする。Apple ID や iCloud は Nix では管理されないため、ここで自分でサインインする。
+4. 続いて本ドキュメントの「1. Xcode Command Line Tools」から進める。
 
 ---
 
@@ -110,6 +129,18 @@ sudo nix run nix-darwin -- switch --flake .#asktt1770
 nix run .#switch
 ```
 
+### 5.1 適用で入るもの・設定されるもの（ryoppippi さん dotfiles に則った環境）
+
+`nix run .#switch` により、以下が **自動でインストール・設定** されます。
+
+| 種別 | 内容 |
+|------|------|
+| **アプリのインストール** | Homebrew Casks（1Password、Arc、Cursor、Karabiner-Elements、Raycast 等）、brew-nix の Cask、Nix パッケージ（Ghostty、Obsidian、Chrome 等）、Mac App Store アプリ（mas）。一覧は `docs/ryoppippi-apps-list.md` を参照。 |
+| **macOS のシステム設定** | Dock（自動非表示・サイズ等）、Finder（拡張子表示・隠しファイル・リストビュー等）、キーボード・トラックパッド、スクリーンショット保存先、ダークモードなど（`nix/modules/darwin/system.nix` の `defaults`）。 |
+| **シェル・開発環境** | ログインシェルが fish に変更され、fish 設定・Neovim・Git・CLI ツール（ghq、lazygit、fzf 等）が Home Manager でインストール・設定される。 |
+
+※ **Apple ID・iCloud・各アプリへのログイン** は Nix に含まれないため、適用後に手動でサインインする。詳しくは「8. 手動で行う設定」を参照。
+
 ---
 
 ## 6. シェルを fish に切り替える
@@ -133,6 +164,21 @@ exec fish
 
 ---
 
+## 8. 手動で行う設定（Nix で管理されないもの）
+
+dotfiles の適用後も、次は **自分で行う** 必要があります。
+
+| 項目 | 内容 |
+|------|------|
+| **Apple ID・iCloud** | セットアップアシスタントまたは「システム設定」でサインイン。Nix の設定には含まれない。 |
+| **アプリへのログイン** | 1Password、ブラウザ、Slack、GitHub（Web）など、各アプリでアカウントにサインインする。 |
+| **SSH 鍵・Git 認証** | `~/.ssh/` の秘密鍵は Nix で配布しない。初期化前にバックアップした鍵を戻すか、新規作成して GitHub 等に登録する。 |
+| **その他** | パスワードマネージャのマスターパスワード、2FA の再設定、クラウドストレージの同期設定など。 |
+
+詳細は `docs/migration-to-ryoppippi-checklist.md` の「結論: Apple ID やアカウント設定は適用されない」および `docs/pc-initialization-backup-checklist.md` のフェーズ 3〜4 を参照。
+
+---
+
 ## トラブル時
 
 - **「command not found: nix」**  
@@ -149,6 +195,13 @@ exec fish
 
 ## チェックリスト（実施時に使う）
 
+**PC 初期化を行う場合**
+
+- [ ] 初期化前に `docs/pc-initialization-backup-checklist.md` でバックアップ・アプリ一覧を確認した
+- [ ] Mac を初期化し、セットアップアシスタントでユーザー名 `asktt1770` でログインできる状態にした
+
+**dotfiles の導入**
+
 - [ ] Xcode Command Line Tools インストール
 - [ ] Determinate Nix インストール
 - [ ] 自分の dotfiles フォークを `~/ghq/github.com/asktt1770/dotfiles` に clone
@@ -156,3 +209,21 @@ exec fish
 - [ ] `nix/modules/lib/helpers/user.nix`: githubId を自分の ID に変更
 - [ ] `sudo nix run nix-darwin -- switch --flake .#asktt1770` 実行
 - [ ] `exec fish` で fish に切り替え
+
+**適用後の確認・手動設定**
+
+- [ ] アプリがインストールされていることを確認（必要なら `docs/ryoppippi-apps-list.md` と照合）
+- [ ] macOS の Dock・Finder・キーボード等の設定が意図どおりか確認
+- [ ] Apple ID・iCloud および各アプリへのログインを手動で行った
+- [ ] SSH 鍵・Git 認証を復元または再設定した
+
+---
+
+## 参照ドキュメント
+
+| ドキュメント | 内容 |
+|--------------|------|
+| `docs/pc-initialization-backup-checklist.md` | 初期化前のバックアップ・アプリ一覧の洗い出し |
+| `docs/fork-and-customize-asktt1770.md` | フォークと username / dotfilesDir / githubId の書き換え |
+| `docs/ryoppippi-apps-list.md` | dotfiles で管理しているアプリ・パッケージ一覧 |
+| `docs/migration-to-ryoppippi-checklist.md` | 移行時の注意点とフォークの同期方法 |

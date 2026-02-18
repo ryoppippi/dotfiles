@@ -52,7 +52,7 @@ jobs:
       - name: Build Linux (Home Manager) configuration
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          nix build .#homeConfigurations.ryoppippi.activationPackage \
+          nix build .#homeConfigurations.asktt1770.activationPackage \
             --print-build-logs \
             --show-trace
 
@@ -78,6 +78,6 @@ jobs:
       - name: Build Linux (Home Manager) configuration for aarch64
         if: needs.changes.outputs.nix == 'true' || github.event_name == 'workflow_dispatch'
         run: |
-          nix build .#homeConfigurations.ryoppippi-aarch64.activationPackage \
+          nix build .#homeConfigurations.asktt1770-aarch64.activationPackage \
             --print-build-logs \
             --show-trace

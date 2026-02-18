@@ -99,6 +99,6 @@ if [[ -t 0 ]]; then
 fi
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/ryoppippi/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 

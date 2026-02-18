@@ -55,7 +55,7 @@ jobs:
       - name: Build and test
         if: steps.update.outputs.has_changes == 'true'
         run: |
-          nix build .#darwinConfigurations.ryoppippi.system --show-trace
+          nix build .#darwinConfigurations.asktt1770.system --show-trace
 
       - name: Create Pull Request
         if: steps.update.outputs.has_changes == 'true'

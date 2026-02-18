@@ -1,5 +1,5 @@
 function dotfiles-pull --description "Pull latest changes from dotfiles repository"
-    set -l dotfiles_dir (ghq root)/github.com/ryoppippi/dotfiles
+    set -l dotfiles_dir (ghq root)/github.com/asktt1770/dotfiles
 
     if not test -d $dotfiles_dir
         echo "Dotfiles directory not found: $dotfiles_dir" >&2

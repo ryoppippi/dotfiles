@@ -70,21 +70,21 @@
 
 ## 3. macOS 用 Nix パッケージ（darwin/packages.nix）
 
-| パッケージ | 用途 |
-|------------|------|
-| ghostty-bin | ターミナル |
-| chafa | ターミナル画像 |
-| blueutil | Bluetooth CLI |
-| bluetooth-connector | Bluetooth |
-| switchaudio-osx | オーディオ切替 |
-| terminal-notifier | 通知 |
-| mas | App Store CLI |
-| audio-priority-bar | オーディオ |
-| google-chrome | ブラウザ |
-| cyberduck | FTP/SFTP |
-| keycastr | キー表示 |
-| monitorcontrol | モニタ輝度 |
-| obsidian | ノート |
+| パッケージ               | 用途            |
+| ------------------- | ------------- |
+| ghostty-bin         | ターミナル         |
+| chafa               | ターミナル画像       |
+| blueutil            | Bluetooth CLI |
+| bluetooth-connector | Bluetooth     |
+| switchaudio-osx     | オーディオ切替       |
+| terminal-notifier   | 通知            |
+| mas                 | App Store CLI |
+| audio-priority-bar  | オーディオ         |
+| google-chrome       | ブラウザ          |
+| cyberduck           | FTP/SFTP      |
+| keycastr            | キー表示          |
+| monitorcontrol      | モニタ輝度         |
+| obsidian            | ノート           |
 
 ---
 

@@ -29,6 +29,6 @@ jobs:
           # Note: darwinConfigurations cannot be built on Linux runners
           attributes: |
             - displayName: home-manager (x86_64-linux)
-              attribute: homeConfigurations.ryoppippi.activationPackage
+              attribute: homeConfigurations.asktt1770.activationPackage
             - displayName: home-manager (aarch64-linux)
-              attribute: homeConfigurations.ryoppippi-aarch64.activationPackage
+              attribute: homeConfigurations.asktt1770-aarch64.activationPackage
