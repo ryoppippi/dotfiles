@@ -14,7 +14,6 @@
       audio-priority-bar
 
       # macOS GUI applications (not available on Linux in nixpkgs)
-      google-chrome
       cyberduck
       keycastr
       monitorcontrol
