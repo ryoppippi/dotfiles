@@ -51,9 +51,8 @@ in
       vscode
     ]
     # Platform-specific GUI applications
-    # discord only supports x86_64-linux, x86_64-darwin, aarch64-darwin (not aarch64-linux)
+    # telegram-desktop only supports x86_64-linux, x86_64-darwin, aarch64-darwin (not aarch64-linux)
     ++ lib.optionals (isDarwin || isX86Linux) [
-      discord
       telegram-desktop
     ];
 }
