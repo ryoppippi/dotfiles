@@ -21,3 +21,5 @@ Steps:
    1.1 if you cannot access the link, go directly to https://react.dev/learn/you-might-not-need-an-effect and read the content there.
 2. Analyze the specified scope for useEffect anti-patterns
 3. If fix=true, apply the fixes. If fix=false, propose the fixes without applying.
+4. If you REALLY REALLY need to use useEffect, add a comment in the code explaining why it's necessary and link to the relevant section of the guidelines.
+5. Remember, useEffect is a escape hatch. If you cannot find alternative solutions, it's a kind of your loser's choice. But always try to find alternatives first before resorting to useEffect.
