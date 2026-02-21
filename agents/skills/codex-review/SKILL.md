@@ -36,8 +36,10 @@ codex exec review --commit <SHA>
 
 ### Review with custom instructions
 
+`[PROMPT]` is a positional argument that **cannot** be combined with `--uncommitted`, `--base`, or `--commit`. Use it alone for a free-form review prompt:
+
 ```bash
-codex exec review --uncommitted "Focus on error handling and edge cases"
+codex exec review "Focus on error handling and edge cases"
 ```
 
 ## Workflow
@@ -56,4 +58,4 @@ codex exec review --uncommitted "Focus on error handling and edge cases"
 
 ## Help
 
-!`codex review --help`
+!`codex exec review --help`
