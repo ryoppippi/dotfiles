@@ -210,7 +210,6 @@ in
       "LanguageTranslator" = 1218781096;
       "Leftovers" = 6746164364;
       "LINE" = 539883307;
-      "Messenger" = 1480068668;
       "Microsoft Excel" = 462058435;
       "Microsoft Remote Desktop" = 1295203466;
       "Microsoft Word" = 462054704;
