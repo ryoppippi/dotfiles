@@ -16,9 +16,9 @@ let
 
   # Codex configuration settings
   settings = {
-    model = "gpt-5.3-codex";
+    model = "gpt-5.3-codex-spark";
     approval_policy = "on-request";
-    model_reasoning_effort = "medium";
+    model_reasoning_effort = "high";
     web_search_request = true;
     project_doc_fallback_filenames = [ "CLAUDE.md" ];
 
@@ -30,11 +30,6 @@ let
           "chrome-devtools-mcp@latest"
         ];
       };
-    };
-
-    notice = {
-      hide_gpt5_1_migration_prompt = true;
-      "hide_gpt-5.1-codex-max_migration_prompt" = true;
     };
   };
 in
