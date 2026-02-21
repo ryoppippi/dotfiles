@@ -19,25 +19,25 @@ Use `codex exec review` with the appropriate flags:
 ### Review uncommitted changes (staged, unstaged, and untracked)
 
 ```bash
-./codex exec review --uncommitted
+codex exec review --uncommitted
 ```
 
 ### Review changes against a base branch
 
 ```bash
-./codex exec review --base main
+codex exec review --base main
 ```
 
 ### Review a specific commit
 
 ```bash
-./codex exec review --commit <SHA>
+codex exec review --commit <SHA>
 ```
 
 ### Review with custom instructions
 
 ```bash
-./codex exec review --uncommitted "Focus on error handling and edge cases"
+codex exec review --uncommitted "Focus on error handling and edge cases"
 ```
 
 ## Workflow
