@@ -130,6 +130,8 @@ in
         enabled = true;
         autoupdate = true;
       };
+
+      wt.remover = "trash";
     };
 
     # Include aliases from Nix store (preserves original formatting)
