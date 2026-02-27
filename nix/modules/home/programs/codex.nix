@@ -36,7 +36,7 @@ in
 {
   home = {
     # Codex package
-    packages = [ pkgs.codex ];
+    packages = [ pkgs.llm-agents.codex ];
 
     # Set CODEX_HOME environment variable (sourced via hm-session-vars.sh)
     sessionVariables = {

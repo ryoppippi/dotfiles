@@ -141,8 +141,8 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
+            llm-agents.overlays.default
             (_final: _prev: {
-              _llm-agents = llm-agents;
               _claude-code-overlay = claude-code-overlay;
             })
             gh-nippou.overlays.default

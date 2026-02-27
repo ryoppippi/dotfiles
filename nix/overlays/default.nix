@@ -2,8 +2,6 @@ final: prev:
 let
   # Import all overlay files in this directory
   overlayFiles = [
-    # AI tools
-    ./ai-tools.nix
     ./claude-code.nix
     # GitHub CLI extensions
     ./gh-user-stars.nix

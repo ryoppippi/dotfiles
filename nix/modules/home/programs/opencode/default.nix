@@ -12,7 +12,7 @@ let
 in
 {
   # OpenCode package
-  home.packages = lib.mkAfter [ pkgs.opencode ];
+  home.packages = lib.mkAfter [ pkgs.llm-agents.opencode ];
 
   # Generate opencode.json from settings file
   xdg.configFile."opencode/opencode.json" = {
