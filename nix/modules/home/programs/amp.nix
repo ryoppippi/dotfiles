@@ -36,7 +36,7 @@ let
   };
 in
 {
-  home.packages = [ pkgs.amp ];
+  home.packages = [ pkgs.llm-agents.amp ];
 
   home.file = {
     "${ampConfigDir}/settings.json".source = jsonFormat.generate "amp-settings" settings;
