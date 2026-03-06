@@ -1,16 +1,16 @@
 final: _prev: {
   gh-triage = final.buildGoModule rec {
     pname = "gh-triage";
-    version = "0.5.0";
+    version = "0.11.0";
 
     src = final.fetchFromGitHub {
       owner = "k1LoW";
       repo = "gh-triage";
       rev = "v${version}";
-      hash = "sha256-/Ok+zxVPXrgcd7louZClXclJfTU2GPCUkJdJMRvI6YA=";
+      hash = "sha256-aa98DfXxyOuk1Q7yYGKNqYqTa9tuNP57hYwNqIYxPeo=";
     };
 
-    vendorHash = "sha256-uoc7xZOqkXquAYfAvTyNEfGRLUGzTFVhieRZl4yMCFg=";
+    vendorHash = "sha256-uBPwtlOpdWvGg+ZZNu8b1XCn2vDN5J6qwFeZFGC5V4s=";
 
     ldflags = [
       "-s"
