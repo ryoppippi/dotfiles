@@ -4,6 +4,7 @@ let
   overlayFiles = [
     ./claude-code.nix
     # GitHub CLI extensions
+    ./gh-poi.nix
     ./gh-user-stars.nix
     ./gh-triage.nix
     # Small Go/Rust CLI tools not in nixpkgs
