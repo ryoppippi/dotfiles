@@ -238,6 +238,7 @@ in
 
       # Claude Code
       "**/.claude/settings.local.json"
+      "**/.claude/worktrees"
       "**/CLAUDE.local.md"
     ];
   };
