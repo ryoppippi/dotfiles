@@ -221,7 +221,6 @@ in
       "Shareful" = 1522267256;
       "Slack" = 803453959;
       "Spark" = 1176895641;
-      "Speedtest" = 1153157709;
       "Squirrel" = 1669664068;
       "TabifyIndents" = 1179234554;
       "TestFlight" = 899247664;
