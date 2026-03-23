@@ -37,6 +37,17 @@ vim.api.nvim_create_user_command("ToggleCursorline", function()
 	vim.wo.cursorcolumn = not vim.wo.cursorcolumn
 end, { nargs = 0, force = true })
 
+vim.api.nvim_create_user_command("CopyPath", function(opts)
+	local path
+	if opts.bang then
+		path = vim.fn.expand("%:p")
+	else
+		path = vim.fn.expand("%:.")
+	end
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
+end, { nargs = 0, bang = true, force = true })
+
 vim.api.nvim_create_user_command("QuickLook", function()
 	-- get current buffer absolute path
 	local path = vim.fn.expand("%:p")

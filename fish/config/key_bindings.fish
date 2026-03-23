@@ -11,3 +11,5 @@ function fish_hybrid_key_bindings --description \
 end
 
 #set -g fish_key_bindings fish_hybrid_key_bindings
+
+bind \ey 'set -l p (pwd); echo -n $p | pbcopy; echo "Copied: $p"; commandline -f repaint'
