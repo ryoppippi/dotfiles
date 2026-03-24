@@ -29,6 +29,7 @@ let
       DISABLE_ERROR_REPORTING = "1";
     };
     includeCoAuthoredBy = false;
+    teammateMode = "tmux";
     statusLine = {
       type = "command";
       command = "${bun} $( ghq root )/github.com/ryoppippi/ccusage/apps/ccusage/src/index.ts statusline --cost-source both";

@@ -133,5 +133,13 @@
 
     # Pip configuration
     ./pip.nix
+
+    # WezTerm tmux shim for Claude Code Agent Team
+    (import ./wezterm-tmux-shim {
+      inherit
+        pkgs
+        lib
+        ;
+    })
   ];
 }

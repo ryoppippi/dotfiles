@@ -12,7 +12,7 @@ in
       curl
       htop
       fish
-      tmux
+      # tmux is provided by wezterm-tmux-shim (falls back to real tmux outside WezTerm)
       # VCS
       bit
       git
