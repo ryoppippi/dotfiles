@@ -52,6 +52,24 @@ async function getTabIdForPane(paneId: string): Promise<string | undefined> {
 	return p ? String(p.tab_id) : undefined;
 }
 
+async function resolveTabIdFromTarget(target: string): Promise<string | undefined> {
+	if (target.includes(':')) {
+		const afterColon = target.split(':').pop()!;
+		if (afterColon.includes('.')) {
+			const paneId = stripPanePrefix(afterColon.split('.').pop()!);
+			return getTabIdForPane(paneId);
+		}
+		if (afterColon.startsWith('%')) {
+			return getTabIdForPane(stripPanePrefix(afterColon));
+		}
+		return afterColon;
+	}
+	if (target.startsWith('%')) {
+		return getTabIdForPane(stripPanePrefix(target));
+	}
+	return target;
+}
+
 // --- Command handlers ---
 
 async function handleSplitWindow(args: string[]) {
@@ -169,7 +187,7 @@ async function handleListPanes(args: string[]) {
 
 	let tabId: string | undefined;
 	if (target) {
-		tabId = target.includes(':') ? await getTabIdForPane(WEZTERM_PANE!) : target;
+		tabId = await resolveTabIdFromTarget(target);
 	} else {
 		tabId = await getTabIdForPane(WEZTERM_PANE!);
 	}
@@ -313,9 +331,7 @@ async function handleKillSession(args: string[]) {
 	}
 
 	const tabId = target
-		? target.includes(':')
-			? await getTabIdForPane(WEZTERM_PANE!)
-			: target
+		? await resolveTabIdFromTarget(target)
 		: await getTabIdForPane(WEZTERM_PANE!);
 
 	const panes = await getPaneList();
