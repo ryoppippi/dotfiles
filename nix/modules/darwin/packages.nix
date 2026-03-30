@@ -34,7 +34,6 @@
       glance-chamburr
       homerow
       istherenet
-      kap
       maestral
       marta
       obs
