@@ -95,7 +95,7 @@
       # Standard ~/.agents/skills directory
       agents = {
         dest = ".agents/skills";
-        structure = "link";
+        structure = "copy-tree";
       };
       # Claude Code user config
       claude = {
