@@ -82,7 +82,7 @@ let
   darwinSettings = lib.optionalAttrs pkgs.stdenv.isDarwin {
     permissions = {
       allow = [ "Bash(${terminal-notifier}:*)" ];
-      defaultMode = "acceptEdits";
+      defaultMode = "auto";
     };
     hooks = {
       Notification = [
