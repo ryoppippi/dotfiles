@@ -1,5 +1,5 @@
 approval_policy = "on-request"
-model = "gpt-5.4"
+model = "gpt-5.3-codex-spark"
 model_reasoning_effort = "high"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 web_search_request = true
@@ -12,3 +12,9 @@ enabled = false
 
 [plugins."github@openai-curated"]
 enabled = true
+
+[projects."/Users/ryoppippi/playgroud/claude-code-2-1-88"]
+trust_level = "trusted"
+
+[projects."/Users/ryoppippi/ghq/github.com/rorkai/rorkai"]
+trust_level = "trusted"
