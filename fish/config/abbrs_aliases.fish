@@ -146,12 +146,11 @@ abbr -a lcp leetcode t
 
 # ai
 abbr -a cl claude
-abbr -a cld claude --dangerously-skip-permissions
-abbr -a cldc claude --dangerously-skip-permissions --continue
+abbr -a clc claude --continue
 abbr -a clh claude --dangerously-skip-permissions --model haiku
-abbr -a clo claude --dangerously-skip-permissions --model opus
-abbr -a cls claude --dangerously-skip-permissions --model sonnet
-abbr -a cls1 claude --dangerously-skip-permissions --model sonnet[1m]
+abbr -a clo claude --model opus
+abbr -a cls claude --model sonnet
+abbr -a cls1 claude --model sonnet[1m]
 abbr -a oc opencode
 abbr -a cx codex
 abbr -a ca cursor-agent
