@@ -27,6 +27,8 @@ let
 
       DISABLE_INTERLEAVED_THINKING = "1";
       DISABLE_ERROR_REPORTING = "1";
+
+      CLAUDE_CODE_NO_FLICKER = "1";
     };
     includeCoAuthoredBy = false;
     statusLine = {
