@@ -8,30 +8,33 @@ let
   fishPath = "${pkgs.fish}/bin/fish";
 in
 {
-  # Nix store garbage collection (weekly on Sunday 9:00, runs as root)
-  launchd.daemons.nix-gc = {
-    command = "${pkgs.nix}/bin/nix-collect-garbage --delete-older-than 7d";
-    serviceConfig = {
-      RunAtLoad = false;
-      StartCalendarInterval = [
-        {
-          Weekday = 0;
-          Hour = 9;
-          Minute = 0;
-        }
-      ];
-      StandardOutPath = "/var/log/nix-gc.log";
-      StandardErrorPath = "/var/log/nix-gc.log";
-    };
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Disable nix-darwin's Nix management (using Determinate Nix)
-  # Note: Nix settings are managed via /etc/nix/nix.custom.conf instead
-  # This file should be manually configured with trusted-users and substituters
-  nix.enable = false;
+  nix = {
+    gc = {
+      automatic = true;
+      interval = {
+        Hour = 12;
+        Minute = 0;
+      };
+      options = "--delete-older-than +5";
+    };
+    settings = {
+      extra-experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      always-allow-substitutes = true;
+      bash-prompt-prefix = "(nix:$name) ";
+      max-jobs = "auto";
+      extra-nix-path = "nixpkgs=flake:nixpkgs";
+      trusted-users = [
+        "root"
+        username
+      ];
+    };
+  };
 
   # Enable Touch ID for sudo (including tmux support via pam-reattach)
   security.pam.services.sudo_local.touchIdAuth = true;
