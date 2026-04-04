@@ -5,7 +5,6 @@
     with pkgs;
     [
       # CLI tools
-      ghostty-bin
       chafa
       blueutil
       bluetooth-connector
