@@ -12,7 +12,6 @@ abbr -a cdf __fzf_cd
 abbr -a sed gsed
 abbr -a sc "source $FISH_CONFIG"
 abbr -a br brew
-abbr -a wt wezterm
 abbr -a bri 'brew install'
 abbr -a clr clear
 abbr -a rr 'rm -r'

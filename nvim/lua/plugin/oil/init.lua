@@ -53,7 +53,6 @@ return {
 				["<CR>"] = "actions.select",
 				["-"] = "actions.parent",
 				["<C-p>"] = "actions.preview",
-				["gp"] = custom_actions.weztermPreview,
 				["g<leader>"] = custom_actions.openWithQuickLook,
 				["<esc>"] = "actions.close",
 				["q"] = nil,

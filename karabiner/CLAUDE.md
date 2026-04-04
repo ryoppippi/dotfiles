@@ -108,14 +108,6 @@ k.rule(
   .manipulators([...])
 ```
 
-#### 8. Using withCondition
-
-```typescript
-k.withCondition(k.ifApp('wezterm').unless())([
-	k.map({ key_code: 'comma', modifiers: { mandatory: ['control'] } }).to(event),
-]);
-```
-
 ## Important Methods
 
 ### Map Methods
