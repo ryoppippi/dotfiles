@@ -18,7 +18,7 @@ in
         Hour = 12;
         Minute = 0;
       };
-      options = "--delete-older-than +5";
+      options = "--delete-older-than 7d";
     };
     settings = {
       extra-experimental-features = [
