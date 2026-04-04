@@ -26,7 +26,6 @@ nix run .#build                # Test build
 ├── fish/               # Fish shell config
 ├── nvim/               # Neovim config
 ├── kanata/             # Kanata keyboard remapper
-├── wezterm/            # Wezterm terminal
 ├── agents/skills/      # Shared AI agent skills (Claude, Codex)
 ├── claude/             # Claude Code config (user memory)
 └── .claude/rules/      # Path-specific rules
@@ -39,7 +38,6 @@ nix run .#build                # Test build
 | Fish    | `fish/`                                 | Modular config in `fish/config/`          |
 | Neovim  | `nvim/`                                 | Lua-based, uses Lazy.nvim                 |
 | Kanata  | `kanata/`                               | Keyboard remapper, see `kanata/CLAUDE.md` |
-| Wezterm | `wezterm/`                              | Lua config                                |
 | Git     | `nix/modules/home/programs/git/`        | Declarative via Home Manager              |
 | Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative                               |
 

@@ -33,9 +33,6 @@ in
     # Aqua package manager configuration
     link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
 
-    # WezTerm configuration
-    link_force "${dotfilesDir}/wezterm" "${configHome}/wezterm"
-
     # Scripts directory
     link_force "${dotfilesDir}/my_scripts" "${homeDirectory}/.scripts"
 
