@@ -23,6 +23,7 @@
     # brew-nix packages (Homebrew casks managed via Nix)
     ++ (with pkgs.brewCasks; [
       alt-tab
+      cmux
       appcleaner
       beekeeper-studio
       bluesnooze
