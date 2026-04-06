@@ -29,6 +29,7 @@ jobs:
       # Exclude inputs that are handled by the frequent workflow
       exclude-inputs: >-
         llm-agents
+        nixpkgs-neovim
       minimum-release-age-days: ${{ github.event.inputs.minimum-release-age-days || '3' }}
       skip-delay: ${{ github.event.inputs.skip-delay == 'true' }}
       summary-title: 'Stable Update Summary'
