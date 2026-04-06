@@ -626,11 +626,11 @@
     },
     "nixpkgs-neovim": {
       "locked": {
-        "lastModified": 1775111091,
-        "narHash": "sha256-gip1kskGdhWg6NhJIzF6XpDTRKC8k11kLEtbnk8e5PY=",
+        "lastModified": 1775197918,
+        "narHash": "sha256-AeJ9shPLU3PZRJ7r6IzLdYAQewvmSWBE2Rx1N+3LXrg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d627f3795454b9019ee08daa88c8cba7d8b8ee55",
+        "rev": "3369cd31c97b71fba7c647125d8edb138a2a6b16",
         "type": "github"
       },
       "original": {
