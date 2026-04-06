@@ -37,3 +37,7 @@ nix profile install .#my-package
 ```
 
 This avoids the overhead of setting up a full dev shell in CI.
+
+## Misc
+
+- prefer `flake-parts` over `flake-utils` for better modularity and maintainability
