@@ -1,9 +1,10 @@
 approval_policy = "on-request"
-model = "gpt-5.3-codex-spark"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 web_search_request = true
 personality = "pragmatic"
+service_tier = "fast"
 
 [mcp_servers.chrome-devtools]
 args = ["chrome-devtools-mcp@latest"]
@@ -12,3 +13,6 @@ enabled = false
 
 [plugins."github@openai-curated"]
 enabled = true
+
+[projects."/Users/ryoppippi/ghq/github.com/rorkai/rorkai"]
+trust_level = "trusted"
