@@ -25,6 +25,7 @@ in
     (import ./agent-skills.nix {
       inherit
         pkgs
+        lib
         ast-grep-skill
         agent-browser-skill
         local-skills
