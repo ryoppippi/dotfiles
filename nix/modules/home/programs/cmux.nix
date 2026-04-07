@@ -24,6 +24,7 @@ let
 
     automation = {
       claudeCodeIntegration = true;
+      socketControlMode = "full";
     };
 
     notifications = {
