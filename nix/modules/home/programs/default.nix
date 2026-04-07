@@ -98,6 +98,11 @@
         ;
     })
 
+    # cmux terminal configuration
+    (import ./cmux.nix {
+      inherit pkgs;
+    })
+
     # Bat configuration
     ./bat.nix
 
