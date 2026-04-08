@@ -25,13 +25,13 @@ codex exec review --uncommitted
 ### Review changes against a base branch
 
 ```bash
-codex exec review --base main
+codex exec review --base main --modl gpt-5.3-codex-spark
 ```
 
 ### Review a specific commit
 
 ```bash
-codex exec review --commit <SHA>
+codex exec review --commit <SHA> --modl gpt-5.3-codex-spark
 ```
 
 ### Review with custom instructions
@@ -59,3 +59,8 @@ codex exec review "Focus on error handling and edge cases"
 ## Help
 
 !`codex exec review --help`
+
+## Models
+
+- `gpt-5.3-codex-spark`: Best for code reviews, provides detailed feedback and suggestions. it is really fast model
+- `gpt-5.4`: for more comlex reviews, provides deeper analysis and more comprehensive feedback, but is slower than gpt-5.3-codex-spark
