@@ -4,6 +4,7 @@ model_reasoning_effort = "high"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 web_search_request = true
 personality = "pragmatic"
+service_tier = "fast"
 
 [mcp_servers.chrome-devtools]
 args = ["chrome-devtools-mcp@latest"]
