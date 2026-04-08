@@ -1,5 +1,5 @@
 approval_policy = "on-request"
-model = "gpt-5.3-codex-spark"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 web_search_request = true
