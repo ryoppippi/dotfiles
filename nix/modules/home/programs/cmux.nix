@@ -1,3 +1,6 @@
+# docs
+# https://cmux.com/docs/configuration
+
 { pkgs, ... }:
 let
   jsonFormat = pkgs.formats.json { };
