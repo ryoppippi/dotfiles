@@ -25,13 +25,13 @@ codex exec review --uncommitted
 ### Review changes against a base branch
 
 ```bash
-codex exec review --base main --modl gpt-5.3-codex-spark
+codex exec review --base main --modl !`jq -r '(.models | [.[] | select(.slug | test("spark"))][0] // .[0]).slug' "$CODEX_HOME/models_cache.json"`
 ```
 
 ### Review a specific commit
 
 ```bash
-codex exec review --commit <SHA> --modl gpt-5.3-codex-spark
+codex exec review --commit <SHA> --modl !`jq -r '(.models | [.[] | select(.slug | test("spark"))][0] // .[0]).slug' "$CODEX_HOME/models_cache.json"`
 ```
 
 ### Review with custom instructions
@@ -60,7 +60,8 @@ codex exec review "Focus on error handling and edge cases"
 
 !`codex exec review --help`
 
-## Models
+## Available Models
 
-- `gpt-5.3-codex-spark`: Best for code reviews, provides detailed feedback and suggestions. it is really fast model
-- `gpt-5.4`: for more comlex reviews, provides deeper analysis and more comprehensive feedback, but is slower than gpt-5.3-codex-spark
+!`jq -r '.models[] | "- \(.slug): \(.description)"' "$CODEX_HOME/models_cache.json"`
+
+Prefer Spark models for speed. Use the latest non-Spark model for deeper analysis.
