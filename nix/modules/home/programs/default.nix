@@ -100,7 +100,7 @@
 
     # cmux terminal configuration
     (import ./cmux.nix {
-      inherit pkgs lib;
+      inherit pkgs;
     })
 
     # Bat configuration

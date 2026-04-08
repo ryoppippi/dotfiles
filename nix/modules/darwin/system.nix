@@ -193,6 +193,7 @@ in
       "cleanshot"
       "claude"
       "codex-app"
+      "cmux"
       "cloudflare-warp"
       "discord"
       "google-chrome"

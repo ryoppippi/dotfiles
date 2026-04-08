@@ -1,15 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   jsonFormat = pkgs.formats.json { };
-
-  cmuxApp = pkgs.brewCasks.cmux.overrideAttrs (_: {
-    meta.priority = 10;
-  });
-
-  cmuxCli = pkgs.runCommand "cmux-cli" { } ''
-    mkdir -p $out/bin
-    ln -s ${cmuxApp}/Applications/cmux.app/Contents/Resources/bin/cmux $out/bin/cmux
-  '';
 
   cmuxSettings = {
     "$schema" =
@@ -80,11 +71,6 @@ let
   };
 in
 {
-  home.packages = lib.mkIf pkgs.stdenv.isDarwin [
-    cmuxApp
-    cmuxCli
-  ];
-
   xdg.configFile."cmux/settings.json" = {
     source = jsonFormat.generate "cmux-settings.json" cmuxSettings;
     force = true;
