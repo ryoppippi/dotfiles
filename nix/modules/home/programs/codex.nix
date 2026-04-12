@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   ...
@@ -8,23 +9,45 @@ let
   codexConfigDir = "${config.xdg.configHome}/codex";
   codexDotfilesDir = "${dotfilesDir}/codex";
 
+  tomlFormat = pkgs.formats.toml { };
+
+  settings = {
+    model = "gpt-5.4";
+    approval_policy = "on-request";
+    model_reasoning_effort = "high";
+    web_search_request = true;
+    personality = "pragmatic";
+    service_tier = "fast";
+    project_doc_fallback_filenames = [ "CLAUDE.md" ];
+
+    mcp_servers = {
+      chrome-devtools = {
+        command = "bunx";
+        enabled = false;
+        args = [ "chrome-devtools-mcp@latest" ];
+      };
+    };
+
+    plugins."github@openai-curated" = {
+      enabled = true;
+    };
+  };
 in
 {
   home = {
-    # Codex package
     packages = [ pkgs.llm-agents.codex ];
 
-    # Set CODEX_HOME environment variable (sourced via hm-session-vars.sh)
     sessionVariables = {
       CODEX_HOME = codexConfigDir;
     };
 
-    # Codex configuration files (mutable symlinks to dotfiles)
-    file = {
-      "${codexConfigDir}/config.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/config.toml";
-      "${codexConfigDir}/AGENTS.md".source =
-        config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
-    };
+    activation.writeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "${codexConfigDir}"
+      cp --no-preserve=mode,ownership ${tomlFormat.generate "codex-config" settings} "${codexConfigDir}/config.toml"
+      chmod 644 "${codexConfigDir}/config.toml"
+    '';
+
+    file."${codexConfigDir}/AGENTS.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
 }
