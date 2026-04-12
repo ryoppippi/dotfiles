@@ -38,7 +38,7 @@ Comma automatically finds and runs the package containing the command.
 1. `direnv exec . <command>` - when you need environment variables from direnv
 2. `, <command>` (comma) - preferred, simplest
 3. `nix run nixpkgs#<package>` - when you need a specific package name
-4. `nix-shell -p <package> --run "<command>"` - last resort
+4. `nix shell nixpkgs#<package> --command <command>` - last resort
 
 ## Tips
 
