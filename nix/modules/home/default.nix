@@ -22,6 +22,11 @@ in
     # Common packages
     ./packages.nix
 
+    # Git hooks for auto-switching nix config and treefmt on pre-commit
+    (import ./git-hooks.nix {
+      inherit lib dotfilesDir;
+    })
+
     # Agent skills for Claude Code (skills from flake inputs)
     (import ./agent-skills.nix {
       inherit
