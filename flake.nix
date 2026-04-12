@@ -104,6 +104,11 @@
       flake = false;
     };
 
+    tgrab-skill = {
+      url = "github:ryoppippi/tgrab";
+      flake = false;
+    };
+
     nix-filter.url = "github:numtide/nix-filter";
 
   };
@@ -128,6 +133,7 @@
       agent-skills,
       ast-grep-skill,
       agent-browser-skill,
+      tgrab-skill,
       nix-filter,
       ...
     }:
@@ -201,6 +207,7 @@
                       fish-na
                       ast-grep-skill
                       agent-browser-skill
+                      tgrab-skill
                       ;
                     inherit local-skills;
                     homedir = linuxHomedir;
@@ -513,6 +520,7 @@
                           fish-na
                           ast-grep-skill
                           agent-browser-skill
+                          tgrab-skill
                           ;
                         inherit local-skills;
                         homedir = darwinHomedir;

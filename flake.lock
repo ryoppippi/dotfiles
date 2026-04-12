@@ -676,6 +676,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-neovim": "nixpkgs-neovim",
+        "tgrab-skill": "tgrab-skill",
         "treefmt-nix": "treefmt-nix_3"
       }
     },
@@ -691,6 +692,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tgrab-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776034105,
+        "narHash": "sha256-K2KQEf7VWGuwudt6dxayHkBZ7Z2jJxAs4AifdPamN9E=",
+        "owner": "ryoppippi",
+        "repo": "tgrab",
+        "rev": "d6c5747a8f54f97c83fdd946da9c3bb64b3e4434",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryoppippi",
+        "repo": "tgrab",
         "type": "github"
       }
     },

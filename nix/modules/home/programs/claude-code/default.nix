@@ -34,6 +34,7 @@ let
     };
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
+    effortLevel = "high";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
     hooks = {
@@ -109,8 +110,14 @@ in
       CLAUDE_CONFIG_DIR = claudeConfigDir;
     };
 
+    activation.writeClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "${claudeConfigDir}"
+      cp --no-preserve=mode,ownership ${jsonFormat.generate "claude-settings.json" settings} "${claudeConfigDir}/settings.json"
+      chmod 644 "${claudeConfigDir}/settings.json"
+    '';
+
     # Validate Claude Code settings.json after generation
-    activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "writeClaudeSettings" ] ''
       SETTINGS_FILE="${claudeConfigDir}/settings.json"
       SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
@@ -126,7 +133,6 @@ in
   # Symlink directories and files to ~/.config/claude/
   # Note: All skills (external and local) are managed by agent-skills module
   xdg.configFile = {
-    "claude/settings.json".source = jsonFormat.generate "claude-settings.json" settings;
     "claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
     "claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
     "claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";

@@ -9,16 +9,6 @@ When fetching web content, try methods in this order. Move to the next if the cu
 
 ## Social Media Posts & YouTube Transcripts (tgrab)
 
-For X/Twitter, Bluesky, and YouTube, use [tgrab](https://github.com/ryoppippi/tgrab):
+For X/Twitter, Bluesky, and YouTube, use the `/tgrab` skill.
 
-```sh
-nix run github:ryoppippi/tgrab -- <url>
-```
-
-| Service            | Example                                                                   |
-| ------------------ | ------------------------------------------------------------------------- |
-| YouTube transcript | `nix run github:ryoppippi/tgrab -- https://www.youtube.com/watch?v=...`   |
-| Twitter / X post   | `nix run github:ryoppippi/tgrab -- https://x.com/user/status/...`         |
-| Bluesky post       | `nix run github:ryoppippi/tgrab -- https://bsky.app/profile/.../post/...` |
-
-**Important**: Always fetch via a subagent to keep the main conversation clean.
+See the skill for full usage details (supported URL patterns, language options, output format).
