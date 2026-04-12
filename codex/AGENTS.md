@@ -45,6 +45,11 @@ Comma automatically finds and runs the package containing the command.
 
 **Priority order** for running unavailable tools:
 
-1. `, <command>` (comma) - preferred, simplest
-2. `nix run nixpkgs#<package>` - when you need a specific package name
-3. `nix-shell -p <package> --run "<command>"` - last resort
+1. `direnv exec . <command>` - when you need environment variables from direnv
+2. `, <command>` (comma) - preferred, simplest
+3. `nix run nixpkgs#<package>` - when you need a specific package name
+4. `nix-shell -p <package> --run "<command>"` - last resort
+
+## Tips
+
+- if you use `gh do` command, you can pass github credentials via environment variables. See `gh do --help` for more details.
