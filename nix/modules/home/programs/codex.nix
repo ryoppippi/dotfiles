@@ -10,6 +10,7 @@ let
   codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
+  bunx = "${pkgs.bun}/bin/bunx";
 
   settings = {
     model = "gpt-5.4";
@@ -22,7 +23,7 @@ let
 
     mcp_servers = {
       chrome-devtools = {
-        command = "bunx";
+        command = bunx;
         enabled = false;
         args = [ "chrome-devtools-mcp@latest" ];
       };
