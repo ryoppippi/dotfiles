@@ -7,20 +7,18 @@ When fetching web content, try methods in this order. Move to the next if the cu
 3. **agent-browser skill** - Use `/agent-browser` skill for browser-based fetching.
 4. **Chrome MCP** - Use `mcp__claude-in-chrome__*` tools to navigate and read the page.
 
-## Social Media Posts (FxEmbed)
+## Social Media Posts & YouTube Transcripts (agent-fetcher)
 
-X/Twitter and Bluesky block direct fetching. Use [FxEmbed](https://github.com/FxEmbed/FxEmbed) proxy domains to read posts:
+For X/Twitter, Bluesky, and YouTube, use [agent-fetcher](https://github.com/ryoppippi/agent-fetcher):
 
-| Original domain | Replace with                       |
-| --------------- | ---------------------------------- |
-| `x.com`         | `fixupx.com` (or `xfixup.com`)     |
-| `twitter.com`   | `fxtwitter.com` (or `twittpr.com`) |
-| `bsky.app`      | `fxbsky.app`                       |
-
-```
-https://x.com/user/status/123           -> https://fixupx.com/user/status/123
-https://twitter.com/user/status/123     -> https://fxtwitter.com/user/status/123
-https://bsky.app/profile/user/post/abc  -> https://fxbsky.app/profile/user/post/abc
+```sh
+nix run github:ryoppippi/agent-fetcher -- <url>
 ```
 
-**Important**: FxEmbed responses contain embedded images and metadata that pollute the main context. Always fetch via a subagent using `curl -sL` to keep the main conversation clean.
+| Service            | Example                                                                           |
+| ------------------ | --------------------------------------------------------------------------------- |
+| YouTube transcript | `nix run github:ryoppippi/agent-fetcher -- https://www.youtube.com/watch?v=...`   |
+| Twitter / X post   | `nix run github:ryoppippi/agent-fetcher -- https://x.com/user/status/...`         |
+| Bluesky post       | `nix run github:ryoppippi/agent-fetcher -- https://bsky.app/profile/.../post/...` |
+
+**Important**: Always fetch via a subagent to keep the main conversation clean.
