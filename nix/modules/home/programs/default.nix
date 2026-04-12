@@ -43,17 +43,6 @@
         ;
     })
 
-    # Amp configuration
-    (import ./amp.nix {
-      inherit
-        pkgs
-        lib
-        config
-        dotfilesDir
-        helpers
-        ;
-    })
-
     # GitHub CLI configuration
     (import ./gh.nix {
       inherit

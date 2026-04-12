@@ -90,7 +90,7 @@ runs:
           # Define packages to check for each input
           case "$INPUT_NAME" in
             llm-agents)
-              packages="claude-code codex amp cursor-agent gemini-cli opencode goose-cli"
+              packages="claude-code codex cursor-agent gemini-cli opencode goose-cli"
               ;;
             *)
               echo ""
