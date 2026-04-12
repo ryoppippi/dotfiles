@@ -50,6 +50,22 @@ Comma automatically finds and runs the package containing the command.
 3. `nix run nixpkgs#<package>` - when you need a specific package name
 4. `nix shell nixpkgs#<package> --command <command>` - last resort
 
+## Social Media Posts & YouTube Transcripts
+
+For X/Twitter, Bluesky, and YouTube, use [tgrab](https://github.com/ryoppippi/tgrab):
+
+```sh
+nix run github:ryoppippi/tgrab -- <url>
+```
+
+| Service            | Example                                                                   |
+| ------------------ | ------------------------------------------------------------------------- |
+| YouTube transcript | `nix run github:ryoppippi/tgrab -- https://www.youtube.com/watch?v=...`   |
+| Twitter / X post   | `nix run github:ryoppippi/tgrab -- https://x.com/user/status/...`         |
+| Bluesky post       | `nix run github:ryoppippi/tgrab -- https://bsky.app/profile/.../post/...` |
+
+Always fetch via a subagent to keep the main conversation clean.
+
 ## Tips
 
 - if you use `gh do` command, you can pass github credentials via environment variables. See `gh do --help` for more details.

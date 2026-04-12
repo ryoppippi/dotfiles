@@ -7,18 +7,18 @@ When fetching web content, try methods in this order. Move to the next if the cu
 3. **agent-browser skill** - Use `/agent-browser` skill for browser-based fetching.
 4. **Chrome MCP** - Use `mcp__claude-in-chrome__*` tools to navigate and read the page.
 
-## Social Media Posts & YouTube Transcripts (agent-fetcher)
+## Social Media Posts & YouTube Transcripts (tgrab)
 
-For X/Twitter, Bluesky, and YouTube, use [agent-fetcher](https://github.com/ryoppippi/agent-fetcher):
+For X/Twitter, Bluesky, and YouTube, use [tgrab](https://github.com/ryoppippi/tgrab):
 
 ```sh
-nix run github:ryoppippi/agent-fetcher -- <url>
+nix run github:ryoppippi/tgrab -- <url>
 ```
 
-| Service            | Example                                                                           |
-| ------------------ | --------------------------------------------------------------------------------- |
-| YouTube transcript | `nix run github:ryoppippi/agent-fetcher -- https://www.youtube.com/watch?v=...`   |
-| Twitter / X post   | `nix run github:ryoppippi/agent-fetcher -- https://x.com/user/status/...`         |
-| Bluesky post       | `nix run github:ryoppippi/agent-fetcher -- https://bsky.app/profile/.../post/...` |
+| Service            | Example                                                                   |
+| ------------------ | ------------------------------------------------------------------------- |
+| YouTube transcript | `nix run github:ryoppippi/tgrab -- https://www.youtube.com/watch?v=...`   |
+| Twitter / X post   | `nix run github:ryoppippi/tgrab -- https://x.com/user/status/...`         |
+| Bluesky post       | `nix run github:ryoppippi/tgrab -- https://bsky.app/profile/.../post/...` |
 
 **Important**: Always fetch via a subagent to keep the main conversation clean.
