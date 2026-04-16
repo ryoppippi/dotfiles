@@ -14,10 +14,12 @@ jobs:
       inputs: >-
         llm-agents
         nix-claude-code
+        nix-bun
       # No delay for frequent updates
       skip-delay-inputs: >-
         llm-agents
         nix-claude-code
+        nix-bun
       minimum-release-age-days: '0'
       skip-delay: true
       summary-title: 'Frequent Update Summary'

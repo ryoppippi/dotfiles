@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-bun = {
+      url = "github:ryoppippi/nix-bun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -123,6 +128,7 @@
       home-manager,
       llm-agents,
       nix-claude-code,
+      nix-bun,
       treefmt-nix,
       git-hooks,
       gh-nippou,
@@ -161,6 +167,7 @@
             (_final: _prev: {
               _nix-claude-code = nix-claude-code;
             })
+            nix-bun.overlays.default
             gh-nippou.overlays.default
             gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
