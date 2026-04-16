@@ -63,3 +63,7 @@ Always fetch via a subagent to keep the main conversation clean. See the tgrab R
 ## Tips
 
 - if you use `gh do` command, you can pass github credentials via environment variables. See `gh do --help` for more details.
+
+## Shell
+
+- Always use `fish` shell for interactive commands `fish -c "<command>"` instead of `zsh -c "<command>"` or `bash -c "<command>"`.
