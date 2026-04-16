@@ -15,7 +15,7 @@ let
   settings = {
     model = "gpt-5.4";
     approval_policy = "on-request";
-    model_reasoning_effort = "high";
+    model_reasoning_effort = "xhigh";
     web_search_request = true;
     personality = "pragmatic";
     service_tier = "fast";
