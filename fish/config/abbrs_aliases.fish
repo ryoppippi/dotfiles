@@ -123,6 +123,7 @@ abbr -a -c git co checkout # Checkout branch/files
 abbr -a -c git cob checkout -b # Create and checkout new branch
 abbr -a -c git sha rev-parse HEAD # Show HEAD commit SHA
 abbr -a -c git pl pull # Pull from remote
+abbr -a -c git wtd wt -D # delete worktree created by git-wt
 
 # gh
 abbr -a ghp 'gh poi'
