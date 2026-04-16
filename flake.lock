@@ -699,11 +699,11 @@
     "tgrab-skill": {
       "flake": false,
       "locked": {
-        "lastModified": 1776034105,
-        "narHash": "sha256-K2KQEf7VWGuwudt6dxayHkBZ7Z2jJxAs4AifdPamN9E=",
+        "lastModified": 1776043059,
+        "narHash": "sha256-b5aTJEBk0s4+kRtKRFAkVfSaYF4KItmDtFTcons4b9Y=",
         "owner": "ryoppippi",
         "repo": "tgrab",
-        "rev": "d6c5747a8f54f97c83fdd946da9c3bb64b3e4434",
+        "rev": "bf5e8d3b3dc71cea03852af2bfcfc5d529ae91b5",
         "type": "github"
       },
       "original": {
