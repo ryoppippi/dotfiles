@@ -1,6 +1,7 @@
 {
   config,
   helpers,
+  pkgs,
   ...
 }:
 let
@@ -131,7 +132,9 @@ in
         autoupdate = true;
       };
 
-      wt.remover = "trash";
+      wt = {
+        remover = "${pkgs.trash-cli}/bin/trash";
+      };
     };
 
     # Include aliases from Nix store (preserves original formatting)

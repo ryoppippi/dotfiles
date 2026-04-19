@@ -18,7 +18,6 @@ export GOBIN=$GOPATH/bin
 export POETRY_PATH="$HOME/.poetry/bin"
 export NODEBREWBIN="$HOME/.nodebrew/current/bin"
 export BUNBIN="$HOME/.bun/bin"
-# export CARGOBIN="$HOME/.cargo/bin"
 export NIMBLEBIN="$HOME/.nimble/bin"
 export GNUBIN="/usr/local/opt/coreutils/libexec/gnubin"
 export XCODEBIN="/Applications/Xcode.app/Contents/Developer/usr/bin"
@@ -33,7 +32,7 @@ export ZIG_PATH="$HOME/zig"
 export CODONBIN="$HOME/.codon/bin"
 
 PATH=${HOMEBREW_ARM_BIN}:${HOMEBREW_X86_64_BIN}:${LOCALBIN}:/usr/bin:/bin:/opt/local/sbin:${PATH}
-PATH=${SCRIPTS_PATH}:${AQUA_BIN_PATH}:${BUNBIN}:${ZIG_PATH}:${BUNBIN}:${NODEBREWBIN}:${CODONBIN}:${GOBIN}:${GOPATH}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${CARGOBIN}:${NIMBLEBIN}:${GNUBIN}:${PATH}:${XCODEBIN}
+PATH=${SCRIPTS_PATH}:${AQUA_BIN_PATH}:${BUNBIN}:${ZIG_PATH}:${BUNBIN}:${NODEBREWBIN}:${CODONBIN}:${GOBIN}:${GOPATH}:${POETRY_PATH}:${CUSTOM_SCRIPTS_PATH}:${CURLBIN}:${NIMBLEBIN}:${GNUBIN}:${PATH}:${XCODEBIN}
 
 # aqua
 export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
@@ -63,8 +62,6 @@ eval "$(zoxide init bash)"
 
 # direnv
 eval "$(direnv hook bash)"
-
-# . "$HOME/.cargo/env"
 
 # bat
 export BAT_THEME="TwoDark"
