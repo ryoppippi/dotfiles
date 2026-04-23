@@ -82,6 +82,9 @@ let
   darwinSettings = lib.optionalAttrs pkgs.stdenv.isDarwin {
     permissions = {
       defaultMode = "auto";
+      allow = [
+        "Bash(jq -r:*)"
+      ];
     };
   };
 
