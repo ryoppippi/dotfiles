@@ -35,9 +35,7 @@
       maestral
       marta
       obs
-      postman
       processing
-      raycast
       signal
       stats
       vlc
