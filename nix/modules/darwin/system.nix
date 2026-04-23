@@ -202,7 +202,6 @@ in
       "ollama-app"
       "openvpn-connect"
       "orbstack"
-      "postman"
       "raycast"
       "sdformatter"
       "secretive"
