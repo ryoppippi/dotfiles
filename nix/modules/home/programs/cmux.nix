@@ -69,6 +69,8 @@ let
 
         focusBrowserAddressBar = "cmd+l";
         openBrowser = "cmd+shift+o";
+
+        triggerFlash = "cmd+ctrl+h";
       };
     };
   };
