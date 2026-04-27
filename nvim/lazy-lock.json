@@ -54,7 +54,6 @@
   "highlight-undo.nvim": { "branch": "main", "commit": "ee32e12693d70e66f954d09a504a7371d110fc27" },
   "hlargs.nvim": { "branch": "main", "commit": "0b29317c944fb1f76503ce4540d6dceffbb5ccd2" },
   "hlchunk.nvim": { "branch": "main", "commit": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc" },
-  "img-clip.nvim": { "branch": "main", "commit": "28a32d811d69042f4fa5c3d5fa35571df2bc1623" },
   "inc-rename.nvim": { "branch": "main", "commit": "0074b551a17338ccdcd299bd86687cc651bcb33d" },
   "kanagawa.nvim": { "branch": "master", "commit": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99" },
   "lackluster.nvim": { "branch": "main", "commit": "70dd682e564784893b984deb51dd5ddd263c8cc7" },
