@@ -83,7 +83,6 @@
   "nvim-block-paste": { "branch": "master", "commit": "4964c784e9630880ab234f152afe49024aca3e31" },
   "nvim-bqf": { "branch": "main", "commit": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7" },
   "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
-  "nvim-comment-frame": { "branch": "main", "commit": "5719db5d3b15b451f89db409ce9164a716ecbef6" },
   "nvim-dansa": { "branch": "main", "commit": "4bbca1c7e6ade1db407b7ba0ab8363be7c174ac9" },
   "nvim-early-retirement": { "branch": "main", "commit": "3b05315a61c8f01bb893249f9e044fc359122c9d" },
   "nvim-file-location": { "branch": "main", "commit": "26ede92a734f2b133b362104da66c4942137d988" },
