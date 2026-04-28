@@ -206,7 +206,6 @@ in
       "sdformatter"
       "secretive"
       "steam"
-      "thebrowsercompany-dia"
     ];
 
     masApps = {
