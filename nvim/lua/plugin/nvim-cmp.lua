@@ -1,9 +1,5 @@
 local has = require("core.plugin").has
 
-local feedkey = function(key, mode)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 return {
 	"https://github.com/hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
@@ -46,9 +42,6 @@ return {
 		-- Setup dependencies
 		local cmp = require("cmp")
 
-		local luasnip_status, luasnip = pcall(require, "luasnip")
-		local denippet = vimx.fn.denippet
-
 		local has_words_before = function()
 			if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then
 				return false
@@ -58,33 +51,17 @@ return {
 		end
 
 		local snippet_jumpable = function(dir)
-			if luasnip_status then
-				return tb(luasnip.jumpable(dir))
-			elseif denippet ~= nil then
-				return tb(denippet.jumpable(dir))
-			end
-			return false
+			return vim.snippet.active({ direction = dir })
 		end
 
 		local snippet_jump = function(dir)
-			if luasnip_status then
-				luasnip.jump(dir)
-			elseif denippet ~= nil then
-				denippet.jump(dir)
-			end
+			vim.snippet.jump(dir)
 		end
 
 		local setup_opt = {
 			snippet = {
-				-- REQUIRED - you must specify a snippet engine
 				expand = function(args)
-					if luasnip_status then
-						luasnip.lsp_expand(args.body)
-					elseif denippet ~= nil then
-						if args.body ~= "" then
-							denippet.anonymous(args.body)
-						end
-					end
+					vim.snippet.expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -94,18 +71,14 @@ return {
 				}),
 				["<C-y>"] = cmp.config.disable,
 				["<C-j>"] = cmp.mapping(function(fallback)
-					if denippet ~= nil and tb(denippet.choosable()) then
-						feedkey("<Plug>(denippet-choice-next)", "i")
-					elseif cmp.visible() then
+					if cmp.visible() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					else
 						fallback()
 					end
 				end),
 				["<C-k>"] = cmp.mapping(function(fallback)
-					if denippet ~= nil and tb(denippet.choosable()) then
-						feedkey("<Plug>(denippet-choice-prev)", "i")
-					elseif cmp.visible() then
+					if cmp.visible() then
 						cmp.select_prev_item()
 					else
 						fallback()
@@ -166,8 +139,6 @@ return {
 			},
 			sources = cmp.config.sources({
 				-- { name = "rg" },
-				{ name = "luasnip", priority = 20 },
-				{ name = "denippet", priority = 20 },
 				{ name = "nvim_lsp", priority = 100, trigger_characters = { "-", ".", "/", ":" } },
 				{ name = "async_path", priority = 100 },
 				{ name = "emoji", insert = true, priority = 50 },
@@ -194,8 +165,6 @@ return {
 			buffer = "[Buffer]",
 			async_path = "[Path]",
 			nvim_lua = "[Lua]",
-			ultisnips = "[UltiSnips]",
-			luasnip = "[LuaSnip]",
 			treesitter = "[TS]",
 			spell = "[Spell]",
 			calc = "[Calc]",
@@ -244,7 +213,6 @@ return {
 				{ name = "git" },
 				{ name = "ghq" },
 				-- { name = "rg" },
-				{ name = "luasnip" },
 				{ name = "nvim_lsp" },
 				{ name = "async_path" },
 				{ name = "emoji", insert = true },
