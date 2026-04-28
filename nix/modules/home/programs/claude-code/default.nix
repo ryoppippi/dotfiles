@@ -34,6 +34,7 @@ let
     };
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
+    useAutoModeDuringPlan = true;
     effortLevel = "high";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
