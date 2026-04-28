@@ -133,7 +133,6 @@
   "starry.nvim": { "branch": "master", "commit": "67031d569823d99bfefc424170b746611a499be5" },
   "stickybuf.nvim": { "branch": "master", "commit": "0c1e5f1a3eb36eea2cea57083828269cc62c58e4" },
   "substitute.nvim": { "branch": "main", "commit": "0d2077398552f069abccbd964a26dd7cd26882cd" },
-  "svelte_inspector.vim": { "branch": "main", "commit": "1bd5604855934973c5ec4d50ec738f9c9da31f96" },
   "telescope-any": { "branch": "master", "commit": "0e79dd6131c8a7282899679cd9ffa14e74d2c973" },
   "telescope-changes.nvim": { "branch": "master", "commit": "7ed65f3698be4b5f7a9cdeb88a657bfa866dcb3c" },
   "telescope-egrepify.nvim": { "branch": "master", "commit": "cd9342b95c1a8cff2e41ba5041ae3912f47595cc" },
