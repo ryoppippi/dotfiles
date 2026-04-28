@@ -31,7 +31,6 @@
   "denippet-autoimport-vscode": { "branch": "main", "commit": "81c09c53a61e4b42234fee43ce26f0ceb196b9b7" },
   "denippet.vim": { "branch": "main", "commit": "9a19bb6ddcdeb7a60860ac27e180d6d400ab10c7" },
   "deno-cache": { "branch": "main", "commit": "f8b7e3fe123ba8312d3d3d51eeeb4a54f5dc8d1e" },
-  "denops-docker.vim": { "branch": "main", "commit": "eb444081a06d0cc1c1e64c6559bad3ed5b815014" },
   "denops-lazy.nvim": { "branch": "main", "commit": "6e45635cb65d083f5c0787abf45eeda864f6747c" },
   "denops.vim": { "branch": "main", "commit": "1df7a022d6e9cb3f6a3db43235e0f174ccd79e03" },
   "detect-language.nvim": { "branch": "main", "commit": "670b2d78deb01b268ee8675c66b9f5256054109a" },
