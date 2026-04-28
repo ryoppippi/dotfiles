@@ -43,25 +43,29 @@
     # Enable all local skills
     skills.enableAll = [ "local" ];
 
-    skills.explicit.ast-grep = {
-      from = "ast-grep";
-      path = "ast-grep";
-      packages = [ pkgs.ast-grep ];
-      transform =
-        { original, dependencies }:
-        let
-          patched =
-            builtins.replaceStrings
-              [ "| ast-grep " "ast-grep scan " "ast-grep run " ]
-              [ "| ./ast-grep " "./ast-grep scan " "./ast-grep run " ]
-              original;
-        in
-        ''
-          ${patched}
+    skills.explicit.ast-grep =
+      let
+        astGrepBin = lib.getExe pkgs.ast-grep;
+      in
+      {
+        from = "ast-grep";
+        path = "ast-grep";
+        packages = [ pkgs.ast-grep ];
+        transform =
+          { original, dependencies }:
+          let
+            patched =
+              builtins.replaceStrings
+                [ "| ast-grep " "ast-grep scan " "ast-grep run " ]
+                [ "| ${astGrepBin} " "${astGrepBin} scan " "${astGrepBin} run " ]
+                original;
+          in
+          ''
+            ${patched}
 
-          ${dependencies}
-        '';
-    };
+            ${dependencies}
+          '';
+      };
 
     skills.explicit.tgrab = {
       from = "tgrab";
@@ -80,12 +84,16 @@
           { original, ... }:
           builtins.replaceStrings
             [
-              "Bash(npx agent-browser:*), Bash(agent-browser:*)"
-              "./agent-browser"
+              "Bash(agent-browser:*), Bash(npx agent-browser:*)"
+              "Install: `npm i -g agent-browser && agent-browser install`\n\n"
+              "agent-browser skills "
+              "`agent-browser`"
             ]
             [
               "Bash(${agentBrowserBin}:*)"
-              agentBrowserBin
+              ""
+              "${agentBrowserBin} skills "
+              "`${agentBrowserBin}`"
             ]
             original;
       };
