@@ -35,7 +35,6 @@
       maestral
       marta
       obs
-      processing
       signal
       stats
       vlc
