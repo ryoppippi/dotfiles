@@ -29,7 +29,7 @@
     # Stash unstaged changes so treefmt only sees staged content,
     # preventing accidentally staging unrelated files
     STASH_NEEDED=false
-    if ! git diff --quiet || ! git ls-files --others --exclude-standard --quiet; then
+    if ! git diff --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
       git stash --quiet --keep-index --include-untracked
       STASH_NEEDED=true
     fi
