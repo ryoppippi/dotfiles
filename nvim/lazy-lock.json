@@ -24,7 +24,6 @@
   "context_filetype.vim": { "branch": "master", "commit": "ffb1ec4b2b3b34d77dd1a1b3610f2533eb69506c" },
   "convert-git-url.nvim": { "branch": "main", "commit": "fd97c92a627175546f8572088b2b240b92f2790d" },
   "copilot.lua": { "branch": "master", "commit": "3b95c93d804077dd409d62a6da53a8c92ac8f415" },
-  "cord.nvim": { "branch": "master", "commit": "0be090969e978f7442870ef227e09eff7bf3480d" },
   "crates.nvim": { "branch": "main", "commit": "694357861ec9ebf12475ddcdd04ea45a0923c32d" },
   "cronex.nvim": { "branch": "main", "commit": "a2e7c6c705c8e695cc1f2ccd06c71d3b04b2ab66" },
   "denippet-autoimport-vscode": { "branch": "main", "commit": "81c09c53a61e4b42234fee43ce26f0ceb196b9b7" },
