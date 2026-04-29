@@ -1,22 +1,89 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 let
-  # Read the YAML config file from the same directory (relative path for pure eval)
-  lazygitConfigYaml = builtins.readFile ./config.yml;
+  delta = lib.getExe pkgs.delta;
+  trash = lib.getExe pkgs.trash-cli;
+  gitLogFormat = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate'';
 
-  # Replace the hardcoded 'delta' with the full Nix store path
-  # This ensures lazygit uses the Nix-managed delta binary
-  lazygitConfigWithDeltaPath =
-    builtins.replaceStrings [ "pager: delta " ] [ "pager: ${lib.getExe pkgs.delta} " ]
-      lazygitConfigYaml;
+  schemaUrl = "https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json";
+  lazygitConfigFile = "${config.xdg.configHome}/lazygit/config.yml";
 in
 {
-  # lazygit package is installed via packages.nix
-  # We only manage the config file here with custom delta path substitution
-  xdg.configFile."lazygit/config.yml" = {
-    text = lazygitConfigWithDeltaPath;
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui = {
+        nerdFontsVersion = "3";
+        skipRewordInEditorWarning = true;
+      };
+      git = {
+        allBranchesLogCmds = [ "${gitLogFormat} --all" ];
+        branchLogCmd = "${gitLogFormat} {{branchName}} --";
+        overrideGpg = true;
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "${delta} --color-only --paging=never";
+          }
+        ];
+      };
+      customCommands = [
+        {
+          key = "n";
+          context = "files";
+          description = "git now";
+          command = "git now";
+        }
+        {
+          key = "I";
+          context = "localBranches";
+          description = "gh poi";
+          command = "gh poi";
+        }
+        {
+          key = "d";
+          context = "worktrees";
+          description = "Move worktree to trash";
+          loadingText = "Trashing worktree";
+          output = "log";
+          prompts = [
+            {
+              type = "confirm";
+              title = "Trash worktree";
+              body = ''
+                Move worktree to trash?
+
+                Path:   {{.SelectedWorktree.Path}}
+                Branch: {{.SelectedWorktree.Branch}}
+              '';
+            }
+          ];
+          command = ''
+            {{- if .SelectedWorktree.IsMain -}}
+            echo "Cannot trash the main worktree" >&2; exit 1
+            {{- else if .SelectedWorktree.IsCurrent -}}
+            echo "Cannot trash the current worktree" >&2; exit 1
+            {{- else -}}
+            ${trash} -- {{.SelectedWorktree.Path | quote}} && git worktree prune
+            {{- end -}}
+          '';
+        }
+      ];
+    };
   };
+
+  home.activation.validateLazygitSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    SETTINGS_FILE="${lazygitConfigFile}"
+
+    echo "🔍 Validating lazygit config.yml..."
+    if ${pkgs.check-jsonschema}/bin/check-jsonschema --default-filetype yaml --schemafile "${schemaUrl}" "$SETTINGS_FILE" 2>&1; then
+      echo "✅ lazygit config.yml validation passed"
+    else
+      echo "⚠️  lazygit config.yml validation failed (non-blocking, schema may be outdated)" >&2
+    fi
+  '';
 }

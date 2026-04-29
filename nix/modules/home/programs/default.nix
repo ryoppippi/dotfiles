@@ -113,6 +113,7 @@
       inherit
         pkgs
         lib
+        config
         ;
     })
 

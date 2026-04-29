@@ -20,7 +20,6 @@ in
       git-wt
       git-lfs
       ghq
-      lazygit
       # Search & file utilities
       ripgrep
       fd
