@@ -411,14 +411,18 @@
                   if [ "$IS_AI_AGENT" = true ]; then
                     ${
                       if isDarwin then
-                        "sudo nix run nix-darwin -- switch --flake .#${hostname}"
+                        "sudo ${
+                          nix-darwin.packages.${system}.darwin-rebuild
+                        }/bin/darwin-rebuild switch --flake .#${hostname}"
                       else
                         "nix run nixpkgs#home-manager -- switch --flake .#${username}"
                     }
                   else
                     ${
                       if isDarwin then
-                        "sudo nix run nix-darwin -- switch --flake .#${hostname} |& ${localPkgs.nix-output-monitor}/bin/nom"
+                        "sudo ${
+                          nix-darwin.packages.${system}.darwin-rebuild
+                        }/bin/darwin-rebuild switch --flake .#${hostname} |& ${localPkgs.nix-output-monitor}/bin/nom"
                       else
                         "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${localPkgs.nix-output-monitor}/bin/nom"
                     }
