@@ -6,16 +6,31 @@ set -q XDG_CONFIG_HOME || set -gx XDG_CONFIG_HOME $HOME/.config
 set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 set -q XDG_CACHE_HOME || set -gx XDG_CACHE_HOME $HOME/.cache
 
+if test "$TERM" = '$TERM'
+    if set -q CMUX_BUNDLE_ID
+        set -gx TERM xterm-256color
+    else
+        set -gx TERM xterm-ghostty
+    end
+end
+
 # Source home-manager session variables
 set -l HM_SESSION_VARS "$HOME/.local/state/home-manager/gcroots/current-home/home-path/etc/profile.d/hm-session-vars.sh"
 if test -f $HM_SESSION_VARS
-    for line in (grep '^export ' $HM_SESSION_VARS)
-        set -l kv (string replace 'export ' '' $line)
-        set -l key (string split -m1 '=' $kv)[1]
-        set -l value (string split -m1 '=' $kv)[2]
-        # Remove surrounding quotes if present
-        set value (string trim -c '"' $value)
-        set -gx $key $value
+    set -l hm_session_keys
+    for line in (string match -r '^export [A-Za-z_][A-Za-z0-9_]*=' <$HM_SESSION_VARS)
+        set -l assignment (string replace -r '^export ' '' -- $line)
+        set -a hm_session_keys (string split -m1 '=' -- $assignment)[1]
+    end
+
+    if test (count $hm_session_keys) -gt 0
+        for line in (bash --noprofile --norc -c 'source "$1" >/dev/null; env' bash $HM_SESSION_VARS)
+            set -l key (string split -m1 '=' -- $line)[1]
+            if contains -- $key $hm_session_keys
+                set -l value (string split -m1 '=' -- $line)[2]
+                set -gx $key $value
+            end
+        end
     end
 end
 
