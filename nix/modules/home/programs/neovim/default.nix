@@ -21,6 +21,11 @@ in
   programs.neovim = {
     enable = true;
 
+    # Keep legacy provider defaults (Neovim 0.11 era) — silences the
+    # home-manager warning that fires when home.stateVersion < "26.05".
+    withRuby = true;
+    withPython3 = true;
+
     # Set environment variables only for Neovim session
     extraWrapperArgs = [
       "--set"
