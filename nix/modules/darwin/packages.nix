@@ -23,6 +23,7 @@
       alt-tab
       appcleaner
       beekeeper-studio
+      betterdisplay
       bluesnooze
       chatgpt
       cursor
