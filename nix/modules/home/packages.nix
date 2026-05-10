@@ -10,7 +10,6 @@ in
     [
       # Essentials
       curl
-      htop
       fish
       tmux
       # VCS
