@@ -16,7 +16,6 @@
       # GUI applications (available in nixpkgs)
       cyberduck
       keycastr
-      monitorcontrol
       obsidian
     ]
     # brew-nix packages (Homebrew casks managed via Nix)
