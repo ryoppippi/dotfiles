@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/setup-nix
 
       - name: Run nix-diff
-        uses: natsukium/nix-diff-action@b5c316c6cafc8470037d7f330b178aaeeba96ba4 # main
+        uses: natsukium/nix-diff-action@8d9494c17302af7ad79d4e3b2ccac805637195a1 # main
         with:
           skip-no-change: true
           # Note: darwinConfigurations cannot be built on Linux runners
