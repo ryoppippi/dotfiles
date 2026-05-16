@@ -45,7 +45,6 @@ in
 
       # GUI applications (cross-platform)
       audacity
-      vscode
     ]
     # Platform-specific GUI applications
     # telegram-desktop only supports x86_64-linux, x86_64-darwin, aarch64-darwin (not aarch64-linux)
