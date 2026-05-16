@@ -15,6 +15,8 @@ pnpm vitest -t "returns 0 for an empty cart"
 
 ## Test Modifiers
 
+When Vitest globals are enabled in the project config, use `describe`, `it`, `expect`, `vi`, `beforeEach`, and `assert` directly without importing them from `vitest`. If globals are not enabled, import only the APIs the file uses.
+
 Use built-in modifiers instead of commenting out or deleting tests:
 
 - `it.todo("description")` — Placeholder for a test you plan to write. Use this to sketch out behaviours before implementing.
@@ -32,7 +34,6 @@ See https://vitest.dev/api/test for the full API.
 ## TDD Example
 
 ```typescript
-import { describe, it, expect } from 'vitest';
 import { calculateTotal } from './cart';
 
 describe('calculateTotal', () => {
@@ -50,5 +51,130 @@ describe('calculateTotal', () => {
 		const items = [{ price: 10 }, { price: 20 }];
 		expect(calculateTotal(items)).toBe(30);
 	});
+});
+```
+
+## Readability Examples
+
+Avoid `try`/`catch` for expected failures.
+
+Bad:
+
+```typescript
+it('rejects invalid config', async () => {
+	try {
+		await loadConfig('bad.json');
+		expect.fail('expected loadConfig to throw');
+	} catch (error) {
+		expect(error).toBeInstanceOf(Error);
+	}
+});
+```
+
+Good:
+
+```typescript
+it('rejects invalid config', async () => {
+	await expect(loadConfig('bad.json')).rejects.toThrow(Error);
+});
+```
+
+Avoid `if` branches inside test bodies. Split behaviours or use `it.each`.
+
+Bad:
+
+```typescript
+it('formats output', () => {
+	const output = formatReport(mode);
+
+	if (mode === 'json') {
+		expect(JSON.parse(output)).toEqual(expected);
+	} else {
+		expect(output).toContain('Total');
+	}
+});
+```
+
+Good:
+
+```typescript
+it('formats JSON output', () => {
+	const output = formatReport('json');
+
+	expect(JSON.parse(output)).toEqual(expected);
+});
+
+it('formats table output', () => {
+	const output = formatReport('table');
+
+	expect(output).toContain('Total');
+});
+```
+
+Use `it.each` only when cases share one behaviour.
+
+Good:
+
+```typescript
+it.each([
+	['daily', '2026-05-16'],
+	['monthly', '2026-05'],
+])('groups %s rows by period', (reportType, expectedPeriod) => {
+	const rows = groupUsage(reportType, usage);
+
+	expect(rows[0]?.period).toBe(expectedPeriod);
+});
+```
+
+Avoid wrapper/helper functions that hide the behaviour and assertions.
+
+Bad:
+
+```typescript
+function expectReport(input: UsageEntry[], expected: ReportRow[]) {
+	expect(renderDaily(input)).toEqual(expected);
+}
+
+it('renders daily totals', () => {
+	expectReport(
+		[{ timestamp: '2026-05-16T10:00:00Z', inputTokens: 100 }],
+		[{ date: '2026-05-16', inputTokens: 100 }],
+	);
+});
+```
+
+Good:
+
+```typescript
+it('renders daily totals', () => {
+	const input = [{ timestamp: '2026-05-16T10:00:00Z', inputTokens: 100 }];
+
+	expect(renderDaily(input)).toEqual([{ date: '2026-05-16', inputTokens: 100 }]);
+});
+```
+
+Helpers are fine when they create noisy data or fixtures. Keep the assertion in the test unless the helper's name is more explicit than the assertion it hides.
+
+Use `assert` to make test preconditions explicit and to narrow nullable values. Do not use non-null assertions (`!`) to silence TypeScript when the test can fail with a useful message.
+
+Bad:
+
+```typescript
+it('returns the first row', () => {
+	const rows = getRows();
+
+	expect(rows[0]!.id).toBe('row-1');
+});
+```
+
+Good:
+
+```typescript
+it('returns the first row', () => {
+	const rows = getRows();
+	const firstRow = rows[0];
+	assert.isDefined(firstRow, 'expected at least one row');
+
+	expect(firstRow.id).toBe('row-1');
 });
 ```
