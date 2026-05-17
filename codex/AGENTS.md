@@ -33,22 +33,7 @@ The following tools are preferred and available globally:
 
 ## Missing Tools
 
-**Always use [comma](https://github.com/nix-community/comma) first** when a tool is not installed:
-
-```bash
-, <command>           # Run any command from nixpkgs without installing
-, cowsay "Hello"      # Example: run cowsay without installing it
-, htop                # Example: run htop temporarily
-```
-
-Comma automatically finds and runs the package containing the command.
-
-**Priority order** for running unavailable tools:
-
-1. `direnv exec . <command>` - when you need environment variables from direnv
-2. `, <command>` (comma) - preferred, simplest
-3. `nix run nixpkgs#<package>` - when you need a specific package name
-4. `nix shell nixpkgs#<package> --command <command>` - last resort
+Use the `missing-tools` skill when a command is unavailable, a shell reports `command not found`, or a tool must be run without installing it globally.
 
 ## Social Media Posts & YouTube Transcripts
 
