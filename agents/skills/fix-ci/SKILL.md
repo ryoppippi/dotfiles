@@ -1,6 +1,6 @@
 ---
 name: fix-ci
-description: Automatically diagnose and fix CI failures using the gh CLI. Fetches logs from broken GitHub Actions, analyses errors, and applies fixes.
+description: Diagnoses and fixes CI failures with the gh CLI. Use when GitHub Actions checks are red and the failing logs need to be fetched, analysed, and resolved.
 ---
 
 <!--
