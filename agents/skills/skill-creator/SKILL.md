@@ -1,0 +1,85 @@
+---
+name: skill-creator
+description: Guides agent-skill creation and updates following Anthropic's SKILL.md best practices. Use when adding or editing skills under `agents/skills/`, writing SKILL.md frontmatter, references, or skill routing.
+---
+
+# Skill Creator
+
+Use this skill when creating or updating local skills under `agents/skills/` in this dotfiles repo. They are deployed to `~/.agents/skills/` and `~/.config/claude/skills/` via `nix/modules/home/agent-skills.nix` (auto-enabled by `skills.enableAll = [ "local" ]`).
+
+## Workflow
+
+1. Decide whether a new skill is needed. Add one only when repeated work needs a specialised workflow, local references, command sequences, or policy that should trigger on demand. Otherwise extend an existing skill.
+2. Create or update `agents/skills/<skill-name>/SKILL.md` with YAML frontmatter and concise Markdown.
+3. Keep `SKILL.md` focused on workflow and navigation. Move detailed examples, APIs, or long checklists into `references/*.md` linked directly from `SKILL.md`.
+4. Add scripts under `scripts/` only for deterministic operations that are better executed than rewritten.
+5. Run `git add . && nix run .#switch` to deploy. `agent-skills.nix` enables every directory under `local` automatically — no allow-list edit needed.
+
+## Frontmatter
+
+Required fields (see `https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices`):
+
+```yaml
+---
+name: skill-name
+description: One or two sentences. What the skill does and when to use it.
+---
+```
+
+Constraints:
+
+- `name`: max 64 chars, lowercase letters / numbers / hyphens only, no `anthropic` or `claude`.
+- `description`: max 1024 chars, non-empty, **third person**, no XML tags. Include both **what** and **when**. Frontmatter is always loaded, so keep it tight — aim for ~20-35 words (~100-250 chars).
+
+Good:
+
+```yaml
+description: Creates atomic Conventional Commits. Use when committing code changes, splitting hunks into revertable units, or writing detailed commit messages.
+```
+
+Bad:
+
+```yaml
+# Vague
+description: Helps with commits.
+# First person
+description: I can help you write commits.
+# Way too long, no clear trigger
+description: This skill is a comprehensive commit assistant that analyses changes and produces beautifully formatted commit messages following all the best practices...
+```
+
+## Body
+
+Keep the body procedural and repo-specific:
+
+- Commands to run, with exact flags.
+- Files or references to read.
+- Local conventions that are easy to miss.
+- Validation expected after changes.
+- Small good/bad examples that prevent common mistakes.
+
+Avoid explaining generic concepts the model already knows. Aim for under 500 lines; split larger content into `references/`.
+
+## Dynamic context
+
+Use `` !`command` `` inside fenced blocks to inject live state (current branch, tool version, detected test runner). Prefer dynamic blocks for environment info; keep static text for workflow steps and best practices.
+
+Reference: <https://code.claude.com/docs/en/skills#inject-dynamic-context>
+
+## References
+
+Use reference files for conditional or long-form detail:
+
+```text
+agents/skills/example-skill/
+├── SKILL.md
+└── references/
+    ├── api.md
+    └── examples.md
+```
+
+Link reference files directly from `SKILL.md` and state when to read each one. Keep links one level deep — agents may only preview nested references.
+
+## Token budget
+
+Skill metadata (name + description across all skills) is preloaded into the system prompt. If Codex or Claude reports descriptions were trimmed to fit the skills context budget, shorten descriptions first, then disable unused skills in `agent-skills.nix`.
