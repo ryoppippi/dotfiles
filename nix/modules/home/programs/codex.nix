@@ -15,11 +15,25 @@ let
   settings = {
     model = "gpt-5.5";
     approval_policy = "on-request";
+    allow_login_shell = false;
     model_reasoning_effort = "high";
     web_search_request = true;
     personality = "pragmatic";
     service_tier = "fast";
     project_doc_fallback_filenames = [ "CLAUDE.md" ];
+
+    shell_environment_policy = {
+      "inherit" = "all";
+      experimental_use_profile = false;
+    };
+
+    features = {
+      goals = true;
+      multi_agent = true;
+      terminal_resize_reflow = true;
+    };
+
+    notice.fast_default_opt_out = true;
 
     mcp_servers = {
       chrome-devtools = {
