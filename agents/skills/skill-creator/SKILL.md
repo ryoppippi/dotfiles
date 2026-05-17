@@ -13,7 +13,7 @@ Use this skill when creating or updating local skills under `agents/skills/` in 
 2. Create or update `agents/skills/<skill-name>/SKILL.md` with YAML frontmatter and concise Markdown.
 3. Keep `SKILL.md` focused on workflow and navigation. Move detailed examples, APIs, or long checklists into `references/*.md` linked directly from `SKILL.md`.
 4. Add scripts under `scripts/` only for deterministic operations that are better executed than rewritten.
-5. Run `git add . && nix run .#switch` to deploy. `agent-skills.nix` enables every directory under `local` automatically — no allow-list edit needed.
+5. Stage only the skill directory and deploy: `git add agents/skills/<skill-name> && nix run .#switch`. Avoid `git add .` so unrelated working-tree changes (especially `nix/modules/home/programs/codex.nix`, which can contain private repo names) are not picked up. `agent-skills.nix` enables every directory under `local` automatically — no allow-list edit needed.
 
 ## Frontmatter
 
