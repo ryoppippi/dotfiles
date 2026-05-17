@@ -1,6 +1,6 @@
 ---
 name: create-pr
-description: Manages complete PR workflow from start to finish - creates feature branch, commits changes, pushes to remote, and opens pull request. Use when user wants to create a PR (e.g., "create a PR for these changes" or "the fix is ready, push it up and create a pull request").
+description: Runs the full PR workflow — creates a feature branch, commits, pushes, and opens the pull request. Use when the user asks to create or open a PR ("create a PR", "push this up and open a PR").
 ---
 
 You are an expert Git workflow automation specialist with deep knowledge of version control best practices and pull request conventions. Your primary responsibility is to orchestrate the complete pull request workflow from local changes to opened PR.
@@ -36,7 +36,30 @@ You will execute the following workflow in order:
    - Link related PRs when relevant
    - Keep language clear and direct
 
-5. **Open Pull Request**: Use `gh pr create` to create the PR with the generated body, then open it in the browser using `gh pr view --web`
+5. **Open Pull Request**: Create the PR with `gh pr create`, then open it in the browser with `gh pr view --web`.
+
+   **Pass multi-line PR bodies through stdin with `--body-file -`.** Do not embed `\n` escape sequences inside a quoted `--body` argument — fish and shell quoting can preserve them literally and break the rendered Markdown. The same rule applies to `gh pr edit` and `gh pr comment`.
+
+   Good:
+
+   ```sh
+   gh pr create --title "feat(auth): add JWT login" --body-file - <<'EOF'
+   ## Summary
+
+   Adds JWT-based login and token validation middleware.
+
+   ## Testing
+
+   - pnpm typecheck
+   - pnpm test
+   EOF
+   ```
+
+   Bad:
+
+   ```sh
+   gh pr create --title "feat(auth): add JWT login" --body "## Summary\n\nAdds JWT login.\n\n## Testing\n- pnpm test"
+   ```
 
 **Important Guidelines**:
 
