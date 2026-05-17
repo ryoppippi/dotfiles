@@ -1,6 +1,6 @@
 ---
 name: react-server-components
-description: Review React code for proper Server/Client Component boundaries based on Next.js and React documentation. Identifies misplaced 'use client' directives and suggests optimal component splitting.
+description: Reviews React Server/Client Component boundaries against Next.js and React docs. Use when auditing `'use client'` placement or splitting components for proper RSC behaviour.
 ---
 
 <!--

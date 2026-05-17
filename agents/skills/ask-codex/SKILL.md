@@ -1,6 +1,6 @@
 ---
 name: ask-codex
-description: Consult Codex CLI for a second opinion on implementation plans, code reviews, or problem-solving. Use when you want an independent perspective from a different AI agent before making significant decisions.
+description: Consults Codex CLI for a second opinion on implementation plans, code reviews, or problem-solving. Use when an independent perspective from a different agent is needed before a significant decision.
 ---
 
 <!--

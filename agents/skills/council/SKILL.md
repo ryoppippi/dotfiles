@@ -1,6 +1,6 @@
 ---
 name: council
-description: Spawns multiple parallel task agents to deeply explore and analyse a codebase area of interest. Gathers comprehensive insights by combining diverse perspectives from multiple agents.
+description: Spawns parallel task agents to explore a codebase area. Use when researching unfamiliar code, auditing a subsystem, or gathering diverse perspectives before a design decision.
 ---
 
 <!--
