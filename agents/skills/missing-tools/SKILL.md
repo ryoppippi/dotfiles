@@ -21,17 +21,23 @@ Use this workflow when a command is unavailable in the current shell.
    , <command>
    ```
 
+   When comma may fetch from GitHub, also use the `nix-github-rate-limit` skill.
+
 3. Use `nix run` when a specific nixpkgs package is needed:
 
    ```sh
    nix run nixpkgs#<package> -- <args>
    ```
 
+   When the command may fetch from GitHub, also use the `nix-github-rate-limit` skill.
+
 4. Use `nix shell` as the last resort:
 
    ```sh
    nix shell nixpkgs#<package> --command <command>
    ```
+
+   When the command may fetch from GitHub, also use the `nix-github-rate-limit` skill.
 
 ## Notes
 

@@ -14,6 +14,13 @@ nix run .#update               # Update dependencies
 nix run .#build                # Test build
 ```
 
+## Command Privacy and Secret Handling
+
+- Before running any command, make sure the command text, shell history, process list, terminal output, tool invocation log, and coding-agent transcript will not contain raw secrets.
+- Never put raw secrets, tokens, API keys, passwords, private keys, session cookies, or credential-bearing environment variable values directly in command strings.
+- Use command substitution, existing credential helpers, or existing variable references instead, such as `$(gh auth token)`, `$(ghtkn get)`, or `$GITHUB_TOKEN`, so terminal history and agent transcripts do not contain the secret value.
+- Do not echo, print, log, summarise, commit, or paste secret values. If a raw secret is accidentally exposed, rotate or revoke it; deleting shell history is not sufficient.
+
 ## Project Structure
 
 ```
