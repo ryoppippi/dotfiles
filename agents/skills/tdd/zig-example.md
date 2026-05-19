@@ -42,24 +42,51 @@ test "never returns negative total" {
 
 // Step 2: Implement one at a time (Red → Green → Refactor)
 test "returns zero for empty slice" {
-    const items = &[_]Item{};
-    try testing.expectEqual(@as(i64, 0), calculateTotal(items));
+    try testing.expectEqual(@as(i64, 0), calculateTotal(&[_]Item{}));
 }
 
 test "sums item prices" {
-    const items = &[_]Item{
-        .{ .price = 10 },
-        .{ .price = 20 },
-    };
-    try testing.expectEqual(@as(i64, 30), calculateTotal(items));
+    try testing.expectEqual(
+        @as(i64, 30),
+        calculateTotal(&[_]Item{
+            .{ .price = 10 },
+            .{ .price = 20 },
+        }),
+    );
 }
 
 // Test expected errors
 test "rejects negative price" {
-    const items = &[_]Item{
-        .{ .price = -5 },
-    };
-    try testing.expectError(error.NegativePrice, calculateTotal(items));
+    try testing.expectError(
+        error.NegativePrice,
+        calculateTotal(&[_]Item{
+            .{ .price = -5 },
+        }),
+    );
+}
+```
+
+## Readability Examples
+
+Do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
+
+Avoid hoisting test values into variables only to reuse or name them. Prefer writing concrete inputs and expected values directly in the assertion when they stay readable.
+
+Bad:
+
+```zig
+test "returns zero for empty slice" {
+    const items = &[_]Item{};
+
+    try testing.expectEqual(@as(i64, 0), calculateTotal(items));
+}
+```
+
+Good:
+
+```zig
+test "returns zero for empty slice" {
+    try testing.expectEqual(@as(i64, 0), calculateTotal(&[_]Item{}));
 }
 ```
 

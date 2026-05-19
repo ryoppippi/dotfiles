@@ -48,8 +48,7 @@ describe('calculateTotal', () => {
 	});
 
 	it('sums item prices', () => {
-		const items = [{ price: 10 }, { price: 20 }];
-		expect(calculateTotal(items)).toBe(30);
+		expect(calculateTotal([{ price: 10 }, { price: 20 }])).toBe(30);
 	});
 });
 ```
@@ -153,7 +152,29 @@ it('renders daily totals', () => {
 });
 ```
 
-Helpers are fine when they create noisy data or fixtures. Keep the assertion in the test unless the helper's name is more explicit than the assertion it hides.
+Do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
+
+Helpers are fine when they create genuinely noisy data or fixtures. Keep the assertion in the test unless the helper's name is more explicit than the assertion it hides.
+
+Avoid hoisting test values into variables only to reuse or name them. Prefer writing concrete inputs and expected values directly in the assertion when they stay readable.
+
+Bad:
+
+```typescript
+const emptyCart: CartItem[] = [];
+
+it('returns 0 for an empty cart', () => {
+	expect(calculateTotal(emptyCart)).toBe(0);
+});
+```
+
+Good:
+
+```typescript
+it('returns 0 for an empty cart', () => {
+	expect(calculateTotal([])).toBe(0);
+});
+```
 
 Use `assert` to make test preconditions explicit and to narrow nullable values. Do not use non-null assertions (`!`) to silence TypeScript when the test can fail with a useful message.
 

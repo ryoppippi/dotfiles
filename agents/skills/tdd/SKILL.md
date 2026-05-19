@@ -74,5 +74,5 @@ For other runners, adapt the general patterns:
 - The test name is documentation — make it descriptive
 - If you cannot name a test clearly, the behaviour is not well understood yet
 - Prefer testing public interfaces over internal implementation details
-- DO NOT DRY tests - duplication in tests are ok if it improves readability and clarity of intent. Refactor only when there is a clear benefit.
+- DO NOT DRY tests. Duplication is usually the right trade-off when it keeps each test readable on its own. Refactor test duplication only when the duplication is noisy and removing it makes the behaviour clearer.
 - Do not hoist test values into shared variables just to reuse them. Write concrete values directly inside each test so the behaviour is readable in place.

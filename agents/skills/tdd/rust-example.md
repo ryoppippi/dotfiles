@@ -54,17 +54,44 @@ mod tests {
 
     #[test]
     fn sums_item_prices() {
-        let items = vec![Item { price: 10 }, Item { price: 20 }];
-        assert_eq!(calculate_total(&items), 30);
+        assert_eq!(
+            calculate_total(&[Item { price: 10 }, Item { price: 20 }]),
+            30
+        );
     }
 
     // Use #[should_panic] for expected failure cases
     #[test]
     #[should_panic(expected = "price must be non-negative")]
     fn rejects_negative_price() {
-        let items = vec![Item { price: -5 }];
-        calculate_total(&items);
+        calculate_total(&[Item { price: -5 }]);
     }
+}
+```
+
+## Readability Examples
+
+Do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
+
+Avoid hoisting test values into variables only to reuse or name them. Prefer writing concrete inputs and expected values directly in the assertion when they stay readable.
+
+Bad:
+
+```rust
+#[test]
+fn returns_zero_for_empty_cart() {
+    let items: &[Item] = &[];
+
+    assert_eq!(calculate_total(items), 0);
+}
+```
+
+Good:
+
+```rust
+#[test]
+fn returns_zero_for_empty_cart() {
+    assert_eq!(calculate_total(&[]), 0);
 }
 ```
 
