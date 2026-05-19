@@ -33,7 +33,7 @@ let
       terminal_resize_reflow = true;
     };
 
-    notice.fast_default_opt_out = true;
+    notice.fast_default_opt_out = false;
 
     mcp_servers = {
       chrome-devtools = {
