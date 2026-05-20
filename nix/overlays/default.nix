@@ -8,7 +8,6 @@ let
     ./gh-user-stars.nix
     ./gh-triage.nix
     # Small Go/Rust CLI tools not in nixpkgs
-    ./sheep.nix
     ./git-now.nix
     ./bluetooth-connector.nix
     ./roots.nix

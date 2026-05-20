@@ -40,7 +40,6 @@ in
       uv
       # Miscellaneous utilities
       fixjson
-      sheep
       roots
 
       # GUI applications (cross-platform)
