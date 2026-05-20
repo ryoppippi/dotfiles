@@ -1,0 +1,126 @@
+name: 'Bot: Update custom overlay packages'
+
+on:
+  schedule:
+    # Run weekly on Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository (for local actions)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up git bot identity
+        id: bot
+        uses: ./.github/actions/setup-git-bot
+        with:
+          app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+          private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
+
+      - name: Checkout repository (with bot token)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ steps.bot.outputs.token }}
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Run nix-update on overlay packages
+        id: update
+        run: |
+          set -eo pipefail
+
+          # Tagged-release packages: follow the latest GitHub release tag.
+          # Unstable-commit packages: follow the default branch HEAD.
+          tagged=(git-now roots gh-triage)
+          branch=(gh-user-stars)
+
+          updated=()
+
+          for pkg in "${tagged[@]}"; do
+            echo "::group::nix-update $pkg"
+            nix run nixpkgs#nix-update -- --flake "$pkg" || true
+            echo "::endgroup::"
+            if ! git diff --quiet -- nix/overlays; then
+              updated+=("$pkg")
+            fi
+            git add nix/overlays
+          done
+
+          for pkg in "${branch[@]}"; do
+            echo "::group::nix-update $pkg (branch)"
+            nix run nixpkgs#nix-update -- --flake --version=branch "$pkg" || true
+            echo "::endgroup::"
+            if ! git diff --quiet -- nix/overlays; then
+              updated+=("$pkg")
+            fi
+            git add nix/overlays
+          done
+
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No overlay updates available"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "updated_list<<EOF"
+              printf '%s\n' "${updated[@]}"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build and test
+        if: steps.update.outputs.has_changes == 'true'
+        run: |
+          nix build .#darwinConfigurations.ryoppippi.system --show-trace
+
+      - name: Create Pull Request
+        id: pr
+        if: steps.update.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
+          UPDATED_LIST: ${{ steps.update.outputs.updated_list }}
+        run: |
+          set -eo pipefail
+          BRANCH_NAME="chore/update-overlays-$(date +%Y%m%d-%H%M%S)"
+
+          git checkout -b "$BRANCH_NAME"
+          git commit -m "chore(nix): update custom overlay packages"
+          git push -u origin "$BRANCH_NAME"
+
+          updated_md=$(echo "$UPDATED_LIST" | sed '/^$/d; s/^/- /')
+
+          body=$(cat <<EOF
+          ## Summary
+
+          Updates custom overlay packages via \`nix-update\`.
+
+          ### Updated
+          ${updated_md}
+
+          ---
+          _This PR was automatically created by the update-overlays workflow._
+          EOF
+          )
+
+          pr_url=$(gh pr create \
+            --title "chore(nix): update custom overlay packages" \
+            --body "$body" \
+            --label "dependencies,automated")
+
+          echo "pr_number=${pr_url##*/}" >> "$GITHUB_OUTPUT"
+
+      - name: Enable auto-merge
+        if: steps.update.outputs.has_changes == 'true'
+        uses: ./.github/actions/auto-merge-pr
+        with:
+          pr-number: ${{ steps.pr.outputs.pr_number }}
+          github-token: ${{ steps.bot.outputs.token }}
