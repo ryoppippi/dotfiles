@@ -15,7 +15,8 @@ let
   settings = {
     model = "gpt-5.5";
     approval_policy = "on-request";
-    allow_login_shell = false;
+    approvals_reviewer = "auto_review";
+    allow_login_shell = true;
     model_reasoning_effort = "high";
     web_search_request = true;
     personality = "pragmatic";
