@@ -1,11 +1,13 @@
 {
   pkgs,
+  lib,
   config,
   homedir,
   ...
 }:
 let
   dotfilesDir = "${homedir}/ghq/github.com/ryoppippi/dotfiles";
+  kanata = lib.getExe pkgs.kanata;
 in
 {
   systemd.user.services.kanata = {
@@ -15,7 +17,7 @@ in
     };
 
     Service = {
-      ExecStart = "${pkgs.kanata}/bin/kanata --cfg ${dotfilesDir}/kanata/kanata.kbd";
+      ExecStart = "${kanata} --cfg ${dotfilesDir}/kanata/kanata.kbd";
       Restart = "on-failure";
       RestartSec = 5;
     };

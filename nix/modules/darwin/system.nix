@@ -1,11 +1,12 @@
 {
   pkgs,
+  lib,
   username,
   homedir,
   ...
 }:
 let
-  fishPath = "${pkgs.fish}/bin/fish";
+  fishPath = lib.getExe pkgs.fish;
 in
 {
   # Allow unfree packages

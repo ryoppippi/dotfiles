@@ -1,6 +1,7 @@
 {
   config,
   helpers,
+  lib,
   pkgs,
   ...
 }:
@@ -22,6 +23,7 @@ let
   # Aliases file path (copied to Nix store to preserve original formatting)
   # Nix's toGitINI quotes all values, which breaks some tools like 'bit'
   aliasesFile = ./aliases;
+  trash = lib.getExe pkgs.trash-cli;
 in
 {
   # Delta pager configuration (used by git)
@@ -133,7 +135,7 @@ in
       };
 
       wt = {
-        remover = "${pkgs.trash-cli}/bin/trash";
+        remover = trash;
       };
     };
 

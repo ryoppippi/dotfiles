@@ -10,7 +10,7 @@ let
   codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
-  bunx = "${pkgs.bun}/bin/bunx";
+  bunx = lib.getExe' pkgs.bun "bunx";
 
   settings = {
     model = "gpt-5.5";

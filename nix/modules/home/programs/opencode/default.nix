@@ -6,6 +6,8 @@
 }:
 let
   opencodeConfigDir = "${config.xdg.configHome}/opencode";
+  checkJsonschema = lib.getExe pkgs.check-jsonschema;
+  jq = lib.getExe pkgs.jq;
 
   # Read settings from external JSON file
   settingsJsonText = builtins.readFile ./settings.json;
@@ -22,10 +24,10 @@ in
   # Validate OpenCode opencode.json after generation
   home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
-    SCHEMA_URL=$(${pkgs.jq}/bin/jq -r '.["$schema"]' "$SETTINGS_FILE")
+    SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
     echo "🔍 Validating OpenCode opencode.json..."
-    if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
+    if ${checkJsonschema} --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
       echo "✅ OpenCode opencode.json validation passed"
     else
       echo "❌ OpenCode opencode.json validation failed" >&2

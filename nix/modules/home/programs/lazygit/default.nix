@@ -5,6 +5,7 @@
   ...
 }:
 let
+  checkJsonschema = lib.getExe pkgs.check-jsonschema;
   delta = lib.getExe pkgs.delta;
   trash = lib.getExe pkgs.trash-cli;
   gitLogFormat = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate'';
@@ -80,7 +81,7 @@ in
     SETTINGS_FILE="${lazygitConfigFile}"
 
     echo "🔍 Validating lazygit config.yml..."
-    if ${pkgs.check-jsonschema}/bin/check-jsonschema --default-filetype yaml --schemafile "${schemaUrl}" "$SETTINGS_FILE" 2>&1; then
+    if ${checkJsonschema} --default-filetype yaml --schemafile "${schemaUrl}" "$SETTINGS_FILE" 2>&1; then
       echo "✅ lazygit config.yml validation passed"
     else
       echo "⚠️  lazygit config.yml validation failed (non-blocking, schema may be outdated)" >&2

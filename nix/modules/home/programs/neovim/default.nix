@@ -16,6 +16,8 @@ let
   telescopeFzfNative = pkgs.vimPlugins.telescope-fzf-native-nvim;
   telescopeFzyNative = pkgs.vimPlugins.telescope-fzy-native-nvim;
   sqlitePath = "${pkgs.sqlite.out}/lib/libsqlite3.dylib";
+  bash = lib.getExe pkgs.bash;
+  nvim = lib.getExe pkgs.neovim;
 in
 {
   programs.neovim = {
@@ -111,11 +113,11 @@ in
 
     # Only restore if lock file has been updated
     if [[ ! -f "$LAZY_LOCK_TIMESTAMP" ]] || [[ "$LAZY_LOCK" -nt "$LAZY_LOCK_TIMESTAMP" ]]; then
-      ${pkgs.bash}/bin/bash \
+      ${bash} \
         ${./check.sh} \
         "${nvimDotfilesDir}" \
         "$LAZY_DIR" \
-        ${pkgs.neovim}/bin/nvim
+        ${nvim}
     fi
   '';
 }

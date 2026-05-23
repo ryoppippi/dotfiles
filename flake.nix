@@ -258,9 +258,19 @@
         }:
         let
           localPkgs = mkPkgs system;
+          inherit (localPkgs) lib;
           inherit (localPkgs.stdenv) isDarwin;
           homedir = if isDarwin then darwinHomedir else linuxHomedir;
           hostname = username;
+          bash = lib.getExe localPkgs.bash;
+          darwinRebuild = lib.getExe nix-darwin.packages.${system}.darwin-rebuild;
+          fishIndent = lib.getExe' localPkgs.fish "fish_indent";
+          gitleaks = lib.getExe localPkgs.gitleaks;
+          neovim = lib.getExe localPkgs.neovim;
+          nom = lib.getExe localPkgs.nix-output-monitor;
+          oxfmt = lib.getExe localPkgs.oxfmt;
+          renovateConfigValidator = lib.getExe' localPkgs.renovate "renovate-config-validator";
+          treefmt = lib.getExe config.treefmt.build.wrapper;
 
           # Detect AI agent environments to skip nix-output-monitor
           isAgentCheck = ''
@@ -293,7 +303,7 @@
               ];
               formatter = {
                 oxfmt = {
-                  command = "${localPkgs.oxfmt}/bin/oxfmt";
+                  command = oxfmt;
                   options = [ "--no-error-on-unmatched-pattern" ];
                   includes = [ "*" ];
                   excludes = [
@@ -302,7 +312,7 @@
                   ];
                 };
                 gitleaks = {
-                  command = "${localPkgs.gitleaks}/bin/gitleaks";
+                  command = gitleaks;
                   options = [
                     "detect"
                     "--no-git"
@@ -327,14 +337,14 @@
                   ];
                 };
                 renovate-validator = {
-                  command = "${localPkgs.renovate}/bin/renovate-config-validator";
+                  command = renovateConfigValidator;
                   options = [ "--strict" ];
                   includes = [
                     ".github/renovate.json5"
                   ];
                 };
                 fish-indent = {
-                  command = "${localPkgs.fish}/bin/fish_indent";
+                  command = fishIndent;
                   options = [ "--write" ];
                   includes = [ "*.fish" ];
                 };
@@ -365,11 +375,11 @@
                   if [ ! -d "$DOTFILES_DIR" ]; then
                     DOTFILES_DIR="$(pwd)"
                   fi
-                  exec ${localPkgs.bash}/bin/bash \
+                  exec ${bash} \
                     ${./nix/modules/home/programs/neovim/check.sh} \
                     "$DOTFILES_DIR/nvim" \
                     "$HOME/.local/share/nvim/lazy" \
-                    ${localPkgs.neovim}/bin/nvim
+                    ${neovim}
                 ''
               );
             };
@@ -389,7 +399,7 @@
                         "homeConfigurations.${username}.activationPackage"
                     }
                   else
-                    ${localPkgs.nix-output-monitor}/bin/nom build .#${
+                    ${nom} build .#${
                       if isDarwin then
                         "darwinConfigurations.${hostname}.system"
                       else
@@ -411,20 +421,16 @@
                   if [ "$IS_AI_AGENT" = true ]; then
                     ${
                       if isDarwin then
-                        "sudo ${
-                          nix-darwin.packages.${system}.darwin-rebuild
-                        }/bin/darwin-rebuild switch --flake .#${hostname}"
+                        "sudo ${darwinRebuild} switch --flake .#${hostname}"
                       else
                         "nix run nixpkgs#home-manager -- switch --flake .#${username}"
                     }
                   else
                     ${
                       if isDarwin then
-                        "sudo ${
-                          nix-darwin.packages.${system}.darwin-rebuild
-                        }/bin/darwin-rebuild switch --flake .#${hostname} |& ${localPkgs.nix-output-monitor}/bin/nom"
+                        "sudo ${darwinRebuild} switch --flake .#${hostname} |& ${nom}"
                       else
-                        "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${localPkgs.nix-output-monitor}/bin/nom"
+                        "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${nom}"
                     }
                   fi
                   echo "Clearing fish cache..."
@@ -462,7 +468,7 @@
               type = "app";
               program = toString (
                 localPkgs.writeShellScript "treefmt-wrapper" ''
-                  exec ${config.treefmt.build.wrapper}/bin/treefmt "$@"
+                  exec ${treefmt} "$@"
                 ''
               );
             };
@@ -472,7 +478,7 @@
               program = toString (
                 localPkgs.writeShellScript "update-node-packages" ''
                   set -e
-                  exec ${localPkgs.bash}/bin/bash nix/packages/node/update.sh "$@"
+                  exec ${bash} nix/packages/node/update.sh "$@"
                 ''
               );
             };

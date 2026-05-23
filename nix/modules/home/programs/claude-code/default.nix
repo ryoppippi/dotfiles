@@ -11,6 +11,7 @@ let
 
   # Binary paths from Nix store
   bun = lib.getExe pkgs.bun;
+  checkJsonschema = lib.getExe pkgs.check-jsonschema;
   jq = lib.getExe pkgs.jq;
   jsonFormat = pkgs.formats.json { };
 
@@ -126,7 +127,7 @@ in
       SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
       echo "🔍 Validating Claude Code settings.json..."
-      if ${pkgs.check-jsonschema}/bin/check-jsonschema --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
+      if ${checkJsonschema} --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
         echo "✅ Claude Code settings.json validation passed"
       else
         echo "⚠️  Claude Code settings.json validation failed (non-blocking, schema may be outdated)" >&2
