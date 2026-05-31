@@ -32,7 +32,6 @@ nix run .#build                # Test build
 │   └── linux/          # Linux
 ├── fish/               # Fish shell config
 ├── nvim/               # Neovim config
-├── kanata/             # Kanata keyboard remapper
 ├── agents/skills/      # Shared AI agent skills (Claude, Codex)
 ├── claude/             # Claude Code config (user memory)
 └── .claude/rules/      # Path-specific rules
@@ -40,13 +39,12 @@ nix run .#build                # Test build
 
 ## Dotfiles Locations
 
-| Config  | Location                                | Notes                                     |
-| ------- | --------------------------------------- | ----------------------------------------- |
-| Fish    | `fish/`                                 | Modular config in `fish/config/`          |
-| Neovim  | `nvim/`                                 | Lua-based, uses Lazy.nvim                 |
-| Kanata  | `kanata/`                               | Keyboard remapper, see `kanata/CLAUDE.md` |
-| Git     | `nix/modules/home/programs/git/`        | Declarative via Home Manager              |
-| Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative                               |
+| Config  | Location                                | Notes                            |
+| ------- | --------------------------------------- | -------------------------------- |
+| Fish    | `fish/`                                 | Modular config in `fish/config/` |
+| Neovim  | `nvim/`                                 | Lua-based, uses Lazy.nvim        |
+| Git     | `nix/modules/home/programs/git/`        | Declarative via Home Manager     |
+| Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative                      |
 
 ## Git Workflow
 
