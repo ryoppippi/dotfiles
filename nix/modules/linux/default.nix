@@ -27,6 +27,7 @@
     (import ./services/kanata.nix {
       inherit
         pkgs
+        lib
         config
         homedir
         ;
