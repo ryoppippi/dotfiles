@@ -108,34 +108,45 @@ test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
-    echo '' >$CONFIG_CACHE
+
+    # Build the cache in a per-process temp file and only swap it into place
+    # once it is fully written. Appending directly to $CONFIG_CACHE means an
+    # interrupted shell (closed/killed mid-generation) leaves a truncated cache
+    # that every later shell keeps sourcing — silently dropping direnv/zoxide/etc.
+    # Writing to $CONFIG_CACHE_TMP then `mv` makes the swap atomic, so a partial
+    # build never poisons the real cache.
+    set -l CONFIG_CACHE_TMP $CONFIG_CACHE.tmp.$fish_pid
+    echo '' >$CONFIG_CACHE_TMP
 
     # homebrew
     if test (uname -m) = arm64
-        echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE
-        echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE
+        echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE_TMP
+        echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE_TMP
     else
-        echo $(/usr/local/bin/brew shellenv) >>$CONFIG_CACHE
+        echo $(/usr/local/bin/brew shellenv) >>$CONFIG_CACHE_TMP
     end
 
     # xcode
-    echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
-    echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
+    echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE_TMP
+    echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE_TMP
 
     # ruby
-    echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
-    echo "fish_add_path $(ensure_installed gem environment gemdir)/bin" >>$CONFIG_CACHE
+    echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE_TMP
+    echo "fish_add_path $(ensure_installed gem environment gemdir)/bin" >>$CONFIG_CACHE_TMP
 
     # tools
-    ensure_installed direnv hook fish >>$CONFIG_CACHE
-    ensure_installed zoxide init fish >>$CONFIG_CACHE
-    # starship init fish >>$CONFIG_CACHE
+    ensure_installed direnv hook fish >>$CONFIG_CACHE_TMP
+    ensure_installed zoxide init fish >>$CONFIG_CACHE_TMP
+    # starship init fish >>$CONFIG_CACHE_TMP
 
     # set vivid colors
-    echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE
+    echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE_TMP
 
     # jj
-    ensure_installed jj util completion fish >>$CONFIG_CACHE
+    ensure_installed jj util completion fish >>$CONFIG_CACHE_TMP
+
+    # Atomically replace the cache only after a complete build.
+    mv -f $CONFIG_CACHE_TMP $CONFIG_CACHE
 
     set_color brmagenta --bold --underline
     echo "config cache updated"
