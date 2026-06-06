@@ -123,6 +123,9 @@ in
 
       # Custom preferences for settings not available in system.defaults
       CustomUserPreferences = {
+        "com.apple.dock" = {
+          appswitcher-all-displays = true; # Show app switcher on all displays
+        };
         "com.apple.AppleMultitouchTrackpad" = {
           # Click threshold: 0 = light, 1 = medium, 2 = firm
           FirstClickThreshold = 0;
