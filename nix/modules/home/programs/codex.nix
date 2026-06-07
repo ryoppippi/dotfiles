@@ -10,7 +10,6 @@ let
   codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
-  bunx = lib.getExe' pkgs.bun "bunx";
 
   settings = {
     model = "gpt-5.5";
@@ -35,14 +34,6 @@ let
     };
 
     notice.fast_default_opt_out = false;
-
-    mcp_servers = {
-      chrome-devtools = {
-        command = bunx;
-        enabled = false;
-        args = [ "chrome-devtools-mcp@latest" ];
-      };
-    };
 
     plugins."github@openai-curated" = {
       enabled = true;
