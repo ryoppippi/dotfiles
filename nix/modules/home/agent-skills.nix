@@ -5,6 +5,7 @@
 # Skills are deployed to ~/.agents (standard location) and ~/.config/claude/skills
 {
   pkgs,
+  config,
   lib,
   ast-grep-skill,
   agent-browser-skill,
@@ -74,7 +75,7 @@
 
     skills.explicit.agent-browser =
       let
-        agentBrowserBin = lib.getExe pkgs.llm-agents.agent-browser;
+        agentBrowserBin = "${config.home.homeDirectory}/.agents/skills/agent-browser/agent-browser";
       in
       {
         from = "agent-browser";
