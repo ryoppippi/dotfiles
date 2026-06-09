@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs.llm-agents; [
     cursor-agent
-    gork
+    grok
     opencode
     copilot-cli
     coderabbit-cli
