@@ -91,7 +91,6 @@ in
       fetch = {
         writeCommitGraph = true;
         prune = true;
-        pruneTags = true;
         all = true;
       };
 
@@ -122,6 +121,11 @@ in
       pull.rebase = true;
 
       remote.pushDefault = "origin";
+
+      # Prune tags only against origin; a global fetch.pruneTags deletes local
+      # tags that are missing from any other fetched remote (e.g. PR fork
+      # remotes, which lack release tags)
+      remote.origin.pruneTags = true;
 
       column.ui = "auto";
 
