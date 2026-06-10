@@ -50,9 +50,6 @@ on:
       private-key:
         description: 'GitHub App private key for bot identity'
         required: true
-      cachix-auth-token:
-        description: 'Cachix authentication token'
-        required: true
 
 jobs:
   discover:
@@ -102,8 +99,6 @@ jobs:
 
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
-        with:
-          cachix-auth-token: ${{ secrets.cachix-auth-token }}
 
       - name: Update flake input
         id: update
