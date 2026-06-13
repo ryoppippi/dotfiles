@@ -49,7 +49,7 @@ nix run .#build                # Test build
 ## Git Workflow
 
 - **Main branch**: `main`
-- **Never push to main directly** - create a PR
+- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**. Do NOT open a pull request unless explicitly asked.
 - Use **Conventional Commits** with UK English spelling
 - Commits are GPG-signed with SSH
 
