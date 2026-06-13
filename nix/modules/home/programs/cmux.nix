@@ -14,6 +14,7 @@ let
       appearance = "dark";
       warnBeforeQuit = true;
       minimalMode = false;
+      reorderOnNotification = false;
     };
 
     automation = {
