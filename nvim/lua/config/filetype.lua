@@ -3,6 +3,7 @@ vim.filetype.add({
 		jax = "help",
 		kbd = "lisp",
 		mdx = "markdown",
+		nu = "nu",
 		zon = "zig",
 	},
 	filename = {

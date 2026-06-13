@@ -70,6 +70,9 @@ return {
 				"basedpyright",
 				"ty",
 
+				-- nushell
+				"nushell",
+
 				-- misc
 				"typos_lsp",
 				"sqls",
