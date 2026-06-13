@@ -52,6 +52,11 @@
         from = "ast-grep";
         path = "ast-grep";
         packages = [ pkgs.ast-grep ];
+        # Opt out of auto command rewriting: this skill rewrites bare names to
+        # absolute Nix store paths via transform below, not to ./name. Leaving
+        # rewriteCommands on would mangle the frontmatter name and prose, and
+        # double-prefix command paths (.//nix/store/...).
+        rewriteCommands = false;
         transform =
           { original, dependencies }:
           let
@@ -81,6 +86,9 @@
         from = "agent-browser";
         path = "agent-browser";
         packages = [ pkgs.llm-agents.agent-browser ];
+        # Opt out of auto command rewriting: this skill rewrites bare names to
+        # an absolute path under ~/.agents via transform below, not to ./name.
+        rewriteCommands = false;
         transform =
           { original, ... }:
           builtins.replaceStrings
