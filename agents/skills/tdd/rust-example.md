@@ -71,7 +71,7 @@ mod tests {
 
 ## Readability Examples
 
-Do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
+KISS > DRY: do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
 
 Avoid hoisting test values into variables only to reuse or name them. Prefer writing concrete inputs and expected values directly in the assertion when they stay readable.
 

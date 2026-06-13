@@ -21,7 +21,7 @@ Use the `tdd` skill when the task is a logic change or bug fix that should start
 - Name tests after observable behaviour, not implementation details.
 - Avoid `try`/`catch` for expected failures. Use `expect(...).toThrow()`, `await expect(...).rejects`, or explicit Result failure assertions.
 - Avoid `if` branches inside test bodies. Split behaviours into separate tests or use `it.each` for table-driven cases.
-- Do not over-DRY tests. Keep repeated setup inline when it makes the behaviour easier to read.
+- KISS > DRY: do not over-DRY tests. Keep repeated setup inline when it makes the behaviour easier to read.
 - Keep assertions in the test unless a helper name is clearer than the assertion it hides.
 - Use `assert` to make preconditions explicit and narrow nullable values instead of using non-null assertions.
 

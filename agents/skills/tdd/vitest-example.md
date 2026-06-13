@@ -152,7 +152,7 @@ it('renders daily totals', () => {
 });
 ```
 
-Do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
+KISS > DRY: do not DRY tests by default. Repeating values, setup, and assertions is fine when it keeps each test readable without jumping to shared context.
 
 Helpers are fine when they create genuinely noisy data or fixtures. Keep the assertion in the test unless the helper's name is more explicit than the assertion it hides.
 
