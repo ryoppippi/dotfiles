@@ -60,6 +60,31 @@ Keep the body procedural and repo-specific:
 
 Avoid explaining generic concepts the model already knows. Aim for under 500 lines; split larger content into `references/`.
 
+## Documentation references
+
+Don't paste large chunks of external docs into the skill — they go stale and cost tokens. Point at the authoritative source instead:
+
+- **Public docs**: include the canonical docs URL (e.g. `https://vitest.dev/api/`) so the agent can fetch the current version when needed.
+- **Installed libraries**: if the skill is about a package present in `node_modules/`, instruct the agent to read the docs the package ships locally — they match the installed version and need no network. Many packages now publish docs on npm for exactly this (see <https://ryoppippi.com/blog/2025-12-14-publish-docs-on-npm-en>).
+
+  ```markdown
+  For API details, read `node_modules/<package-name>/README.md`
+  (or `node_modules/<package-name>/docs/**/*.md` if the package ships a docs folder).
+  ```
+
+  Find them with `fd README.md node_modules/<package-name>` or `fd -e md . node_modules/<package-name>/docs`.
+
+- **Relevant repo files** (local skills only): if concrete files in this repo are the source of truth for the skill, list them by path so the agent reads the real thing instead of a stale copy. The `vitest-testing` skill's **Key Files** section is the model — it names `vitest.setup.ts`, `test-db.ts`, etc. by path.
+
+## Overlap between skills
+
+When two skills cover related ground, prefer the lightest fix that removes the duplication:
+
+1. **Cross-link** — if each skill is still distinct but they touch, link them by name rather than copying text. E.g. `vitest-testing` says "Use the `tdd` skill when …". The shared detail lives in one skill; the other points to it.
+2. **Merge** — only when the skills are genuinely the same workflow and neither earns its own trigger. Fold one into the other and delete the empty directory.
+
+Never paste the same instructions into two skills — pick a single home and link to it.
+
 ## Dynamic context
 
 Use `` !`command` `` inside fenced blocks to inject live state (current branch, tool version, detected test runner). Prefer dynamic blocks for environment info; keep static text for workflow steps and best practices.
@@ -68,7 +93,12 @@ Reference: <https://code.claude.com/docs/en/skills#inject-dynamic-context>
 
 ## References
 
-Keep `SKILL.md` itself under ~500 lines (Anthropic guidance) and ideally a tight, scannable workflow. Move conditional or long-form detail into `references/*.md` so it loads only when the agent follows the link.
+Two thresholds for `SKILL.md` length:
+
+- **~150 lines — consider splitting.** Once the body passes this, it is usually no longer a tight, scannable workflow. Move conditional or long-form detail into `references/*.md`. The `vitest-testing` skill is the model: a ~50-line `SKILL.md` that routes to ten focused `references/*.md` files.
+- **~500 lines — hard ceiling** (Anthropic guidance). Never exceed this; split aggressively before you get here.
+
+Reference files load only when the agent follows the link, so splitting keeps the always-loaded surface small without losing detail.
 
 ```text
 agents/skills/example-skill/
@@ -103,36 +133,7 @@ Stop splitting when:
 
 ## Scripts
 
-Pre-written scripts under `scripts/` are the right tool when an operation is deterministic and repeated. They are **executed**, not loaded — only the script's stdout enters the context, so a 300-line script costs the same as a 5-line one for the agent.
-
-Use a script when:
-
-- The operation has many fragile flags or pipe stages that the agent could get subtly wrong.
-- The same logic is needed across many invocations of the skill.
-- You want a stable, testable artifact (lint, validate, format, deploy).
-- The output is structured (JSON, a patch, a count) and the agent should consume it, not regenerate it.
-
-Skip a script when the work is one or two ordinary shell commands or when each invocation needs different logic; just document the commands in `SKILL.md`.
-
-Layout:
-
-```text
-agents/skills/example-skill/
-├── SKILL.md
-├── references/
-│   └── api.md
-└── scripts/
-    ├── validate.sh
-    └── analyse.py
-```
-
-Rules:
-
-- Make execution intent explicit in `SKILL.md`: write `Run scripts/validate.sh` (execute) vs `See scripts/validate.sh for the algorithm` (read as reference). Default to execute.
-- Mark scripts executable (`chmod +x`) and use a real shebang (`#!/usr/bin/env bash` / `#!/usr/bin/env python3`).
-- Handle errors inside the script instead of punting back to the agent. Print a precise, actionable message (`Field 'foo' missing. Available: bar, baz.`) so the agent can fix the input and retry.
-- No magic constants — justify timeouts, retry counts, and thresholds in a comment.
-- Use forward slashes in every documented path. They work on every platform.
+When an operation is deterministic and repeated, add a script under `scripts/` — it is executed, not loaded, so only its stdout costs tokens. For when to use one and the rules (execution intent, shebangs, error handling, no magic constants), read [`references/scripts.md`](references/scripts.md).
 
 ## Token budget
 
