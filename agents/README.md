@@ -7,7 +7,7 @@ Shared skills for AI agents (Claude Code, Codex, etc.) managed via [agent-skills
 Skills are configured in `nix/modules/home/agent-skills.nix` and deployed to:
 
 - `~/.config/claude/skills/`
-- `~/.config/codex/skills/`
+- `~/.codex/skills/`
 
 ## Adding a New Skill
 

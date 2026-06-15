@@ -6,7 +6,8 @@
   ...
 }:
 let
-  codexConfigDir = "${config.xdg.configHome}/codex";
+  codexConfigDir = "${config.home.homeDirectory}/.codex";
+  codexHomeDir = "${config.xdg.configHome}/codex";
   codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
@@ -29,6 +30,7 @@ let
 
     features = {
       goals = true;
+      js_repl = true;
       multi_agent = true;
       terminal_resize_reflow = true;
     };
@@ -45,8 +47,18 @@ in
     packages = [ pkgs.llm-agents.codex ];
 
     sessionVariables = {
-      CODEX_HOME = codexConfigDir;
+      CODEX_HOME = codexHomeDir;
     };
+
+    activation.linkCodexHome = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ -e "${codexHomeDir}" ] && [ ! -L "${codexHomeDir}" ]; then
+        echo "Refusing to replace non-symlink ${codexHomeDir}" >&2
+        exit 1
+      fi
+
+      mkdir -p "$(dirname "${codexHomeDir}")" "${codexConfigDir}"
+      ln -sfn "${codexConfigDir}" "${codexHomeDir}"
+    '';
 
     activation.writeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "${codexConfigDir}"
