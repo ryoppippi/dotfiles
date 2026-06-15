@@ -4,7 +4,7 @@ Use these tools instead of their standard alternatives:
 
 | Tool             | Replaces | Description         |
 | ---------------- | -------- | ------------------- |
-| `fish`           | bash     | Shell               |
+| `fish`           | bash     | Environment shell   |
 | `rg`             | grep     | Fast search         |
 | `fd`             | find     | File finder         |
 | `bat`            | cat      | Syntax highlighting |
@@ -17,7 +17,15 @@ Use these tools instead of their standard alternatives:
 
 ## Shell Fallback
 
-If a bash command fails, try: `fish -c <command>`
+Fish is the environment bootstrap shell, not necessarily the syntax shell.
+
+Use `fish -lc '<simple command>'` for simple commands so PATH and exported environment are initialised consistently.
+
+If a command depends on bash/zsh syntax, run that shell from Fish so the environment is inherited, for example:
+
+```sh
+fish -lc 'bash -lc "<posix command>"'
+```
 
 If `bunx <command>` fails, try: `bun x <command>`
 

@@ -60,4 +60,7 @@ Always fetch via a subagent to keep the main conversation clean. See the tgrab R
 
 ## Shell
 
-- Always use `fish` shell for interactive commands `fish -c "<command>"` instead of `zsh -c "<command>"` or `bash -c "<command>"`.
+- Fish is the environment bootstrap shell, not necessarily the syntax shell.
+- Use `fish -lc '<simple command>'` for simple commands so PATH and exported environment are initialised consistently.
+- Do not force Fish to parse complex POSIX shell syntax. If a command uses bash/zsh-specific syntax, fragile quoting, heredocs, arrays, inline environment assignments, or command substitutions, run the appropriate shell from Fish so the environment is inherited, for example `fish -lc 'bash -lc "<posix command>"'`.
+- For complex multi-line commands, prefer an existing script or create a temporary script with the right shebang, then invoke it via `fish -lc 'bash ./script.sh'` or the appropriate interpreter.

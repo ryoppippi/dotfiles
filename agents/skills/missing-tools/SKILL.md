@@ -44,8 +44,14 @@ Use this workflow when a command is unavailable in the current shell.
 - Never install missing tools globally. Do not use commands such as `npm install -g`, `npm i -g`, `pnpm add -g`, `yarn global add`, `bun add -g`, `uv tool install`, `brew install`, or language-specific global installers to resolve a missing command.
 - Prefer `direnv exec .` first because project-local dev shells often already provide the right tool version and environment variables.
 - Comma automatically finds and runs the nixpkgs package containing the requested command.
-- Use fish for shell wrapping in this dotfiles environment:
+- Fish is the environment bootstrap shell in this dotfiles environment. Use it for simple shell wrapping so PATH and exported environment are initialised:
 
   ```sh
-  fish -c '<command>'
+  fish -lc '<simple command>'
+  ```
+
+- If a command is brittle under Fish syntax, run the appropriate syntax shell from Fish so the environment is inherited:
+
+  ```sh
+  fish -lc 'bash -lc "<posix command>"'
   ```
