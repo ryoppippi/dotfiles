@@ -6,8 +6,8 @@
   ...
 }:
 let
-  codexConfigDir = "${config.home.homeDirectory}/.codex";
-  codexHomeDir = "${config.xdg.configHome}/codex";
+  codexHomeDir = "${config.home.homeDirectory}/.codex";
+  codexXdgDir = "${config.xdg.configHome}/codex";
   codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
@@ -56,17 +56,17 @@ in
         exit 1
       fi
 
-      mkdir -p "$(dirname "${codexHomeDir}")" "${codexConfigDir}"
-      ln -sfn "${codexConfigDir}" "${codexHomeDir}"
+      mkdir -p "$(dirname "${codexHomeDir}")" "${codexXdgDir}"
+      ln -sfn "${codexXdgDir}" "${codexHomeDir}"
     '';
 
     activation.writeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "${codexConfigDir}"
-      cp --no-preserve=mode,ownership ${tomlFormat.generate "codex-config" settings} "${codexConfigDir}/config.toml"
-      chmod 644 "${codexConfigDir}/config.toml"
+      mkdir -p "${codexXdgDir}"
+      cp --no-preserve=mode,ownership ${tomlFormat.generate "codex-config" settings} "${codexXdgDir}/config.toml"
+      chmod 644 "${codexXdgDir}/config.toml"
     '';
 
-    file."${codexConfigDir}/AGENTS.md".source =
+    file."${codexXdgDir}/AGENTS.md".source =
       config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
 }
