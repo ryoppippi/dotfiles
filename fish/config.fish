@@ -157,6 +157,10 @@ if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
 end
 source $CONFIG_CACHE
 
+if not status is-interactive; and command -q direnv
+    direnv export fish | source
+end
+
 # neovim
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
