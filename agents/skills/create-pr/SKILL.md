@@ -65,7 +65,7 @@ You will execute the following workflow in order:
 
 - Always create a new branch; never push directly to main without explicit permission
 - All commit messages, PR titles, and PR bodies must be in English
-- Fish is the environment bootstrap shell, not necessarily the syntax shell. Use `fish -lc '<simple command>'` for simple commands; if a command depends on bash/zsh syntax, run that shell from Fish so PATH and exported environment are inherited.
+- Use `zsh -lc '<simple command>'` for normal commands. If Zsh cannot find a user tool, resolve its absolute path with `fish -lc 'command -v <tool>'`; use Fish directly only for simple commands without shell-specific syntax.
 - If `bunx` fails, try `bun x` as an alternative
 - Ensure commits are meaningful and atomic - avoid trivial single-line changes unless they serve a specific purpose
 - Use available high-performance tools: git, gh, rg, fd for file operations

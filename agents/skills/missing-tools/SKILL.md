@@ -44,14 +44,16 @@ Use this workflow when a command is unavailable in the current shell.
 - Never install missing tools globally. Do not use commands such as `npm install -g`, `npm i -g`, `pnpm add -g`, `yarn global add`, `bun add -g`, `uv tool install`, `brew install`, or language-specific global installers to resolve a missing command.
 - Prefer `direnv exec .` first because project-local dev shells often already provide the right tool version and environment variables.
 - Comma automatically finds and runs the nixpkgs package containing the requested command.
-- Fish is the environment bootstrap shell in this dotfiles environment. Use it for simple shell wrapping so PATH and exported environment are initialised:
+- Use a Zsh login shell for normal agent commands because the dotfiles-managed Zsh environment loads direnv without requiring Fish syntax:
 
   ```sh
-  fish -lc '<simple command>'
+  zsh -lc '<simple command>'
   ```
 
-- If a command is brittle under Fish syntax, run the appropriate syntax shell from Fish so the environment is inherited:
+- Some user tools are only on Fish's PATH. If Zsh cannot find a command, resolve its absolute path through Fish and invoke that path from Zsh:
 
   ```sh
-  fish -lc 'bash -lc "<posix command>"'
+  fish -lc 'command -v <tool>'
   ```
+
+- Use `fish -lc '<simple command>'` directly only when the command has no shell-specific syntax. Use Bash explicitly for Bash-specific syntax or a script with the appropriate shebang for complex commands.

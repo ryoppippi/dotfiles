@@ -29,7 +29,7 @@ The following tools are preferred and available globally:
 - **Search**: Use `rg` (ripgrep) instead of grep
 - **Find**: Use `fd` instead of find
 - **JSON**: Use `jq` for JSON processing
-- **Shell**: Fish shell is the primary shell
+- **Shell**: Use Zsh for agent commands; Fish remains the interactive shell and PATH fallback
 
 ## Missing Tools
 
@@ -65,7 +65,7 @@ Always fetch via a subagent to keep the main conversation clean. See the tgrab R
 
 ## Shell
 
-- Fish is the environment bootstrap shell, not necessarily the syntax shell.
-- Use `fish -lc '<simple command>'` for simple commands so PATH and exported environment are initialised consistently.
-- Do not force Fish to parse complex POSIX shell syntax. If a command uses bash/zsh-specific syntax, fragile quoting, heredocs, arrays, inline environment assignments, or command substitutions, run the appropriate shell from Fish so the environment is inherited, for example `fish -lc 'bash -lc "<posix command>"'`.
-- For complex multi-line commands, prefer an existing script or create a temporary script with the right shebang, then invoke it via `fish -lc 'bash ./script.sh'` or the appropriate interpreter.
+- Use `zsh -lc '<simple command>'` for agent commands. The dotfiles-managed Zsh environment loads direnv without requiring Fish syntax.
+- Some user tools are only on Fish's PATH. If Zsh cannot find a command, resolve it with `fish -lc 'command -v <tool>'`, then invoke the absolute path from Zsh. Running a single simple command directly with `fish -lc` is also acceptable when it contains no shell-specific syntax.
+- If a command uses Bash-specific syntax, fragile quoting, heredocs, arrays, inline environment assignments, or command substitutions, use Bash explicitly rather than asking Fish to parse it.
+- For complex multi-line commands, prefer an existing script or create a temporary script with the right shebang, then invoke it with the appropriate interpreter.
