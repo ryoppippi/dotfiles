@@ -46,7 +46,6 @@ abbr -a dcd "docker compose down"
 abbr -a dcr "docker compose restart"
 
 # nix
-abbr -a ns nix-shell
 abbr -a ngc nix-collect-garbage
 abbr -a nrn --set-cursor nix run nixpkgs#\%
 
