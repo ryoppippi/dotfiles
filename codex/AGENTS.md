@@ -35,6 +35,11 @@ The following tools are preferred and available globally:
 
 Use the `missing-tools` skill when a command is unavailable, a shell reports `command not found`, or a tool must be run without installing it globally.
 
+## Git Worktrees
+
+- Use the `git-wt` skill for all worktree lifecycle operations
+- Prefer `git wt` over raw `git worktree add`, `remove`, `move`, or `prune`
+
 ## Command Privacy and Secret Handling
 
 - Before running any command, consider whether the command text, shell history, process list, terminal output, tool invocation log, or coding-agent transcript could contain a secret.

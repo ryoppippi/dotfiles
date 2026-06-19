@@ -32,3 +32,8 @@ Personal preferences that apply to all projects.
 - Prefer reading secrets at execution time from an existing credential helper, keychain-backed CLI, password manager, or already-present environment. Use command substitution such as `$(gh auth token)`, `$(ghtkn get)`, or existing variable references such as `$GITHUB_TOKEN` instead of pasting token values.
 - Keep literal command text safe to store in shell history and agent transcripts. Use placeholders such as `<token>` only in explanatory text, never real secret values.
 - Do not echo, print, log, summarise, commit, or paste secret values. If a raw secret is accidentally exposed, tell the user it should be rotated or revoked; deleting shell history is not sufficient.
+
+## Git Worktrees
+
+- Use the `git-wt` skill for all worktree lifecycle operations
+- Prefer `git wt` over raw `git worktree add`, `remove`, `move`, or `prune`
