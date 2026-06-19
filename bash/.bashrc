@@ -86,7 +86,11 @@ fi
 
 # home-manager session variables
 HM_SESSION_VARS="$HOME/.local/state/home-manager/gcroots/current-home/home-path/etc/profile.d/hm-session-vars.sh"
+if [ ! -f "$HM_SESSION_VARS" ]; then
+  HM_SESSION_VARS="/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+fi
 if [ -f "$HM_SESSION_VARS" ]; then
+  unset __HM_SESS_VARS_SOURCED
   . "$HM_SESSION_VARS"
 fi
 
@@ -98,4 +102,3 @@ fi
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ryoppippi/.lmstudio/bin"
 # End of LM Studio CLI section
-

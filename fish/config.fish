@@ -16,6 +16,9 @@ end
 
 # Source home-manager session variables
 set -l HM_SESSION_VARS "$HOME/.local/state/home-manager/gcroots/current-home/home-path/etc/profile.d/hm-session-vars.sh"
+if not test -f $HM_SESSION_VARS
+    set HM_SESSION_VARS "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+end
 if test -f $HM_SESSION_VARS
     set -l hm_session_keys
     for line in (string match -r '^export [A-Za-z_][A-Za-z0-9_]*=' <$HM_SESSION_VARS)
@@ -24,7 +27,7 @@ if test -f $HM_SESSION_VARS
     end
 
     if test (count $hm_session_keys) -gt 0
-        for line in (bash --noprofile --norc -c 'source "$1" >/dev/null; env' bash $HM_SESSION_VARS)
+        for line in (env -u __HM_SESS_VARS_SOURCED bash --noprofile --norc -c 'source "$1" >/dev/null; env' bash $HM_SESSION_VARS)
             set -l key (string split -m1 '=' -- $line)[1]
             if contains -- $key $hm_session_keys
                 set -l value (string split -m1 '=' -- $line)[2]
