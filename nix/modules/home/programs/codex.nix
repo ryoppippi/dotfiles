@@ -25,7 +25,7 @@ let
 
     shell_environment_policy = {
       "inherit" = "all";
-      experimental_use_profile = false;
+      experimental_use_profile = true;
     };
 
     features = {
@@ -43,6 +43,19 @@ let
   };
 in
 {
+  launchd.agents.codex-home = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "/bin/launchctl"
+        "setenv"
+        "CODEX_HOME"
+        codexHomeDir
+      ];
+      RunAtLoad = true;
+    };
+  };
+
   home = {
     packages = [ pkgs.llm-agents.codex ];
 
@@ -50,23 +63,23 @@ in
       CODEX_HOME = codexHomeDir;
     };
 
-    activation.linkCodexHome = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ -e "${codexHomeDir}" ] && [ ! -L "${codexHomeDir}" ]; then
-        echo "Refusing to replace non-symlink ${codexHomeDir}" >&2
+    activation.linkCodexXdgDir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ -e "${codexXdgDir}" ] && [ ! -L "${codexXdgDir}" ]; then
+        echo "Refusing to replace non-symlink ${codexXdgDir}" >&2
         exit 1
       fi
 
-      mkdir -p "$(dirname "${codexHomeDir}")" "${codexXdgDir}"
-      ln -sfn "${codexXdgDir}" "${codexHomeDir}"
+      mkdir -p "${codexHomeDir}" "$(dirname "${codexXdgDir}")"
+      ln -sfn "${codexHomeDir}" "${codexXdgDir}"
     '';
 
     activation.writeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "${codexXdgDir}"
-      cp --no-preserve=mode,ownership ${tomlFormat.generate "codex-config" settings} "${codexXdgDir}/config.toml"
-      chmod 644 "${codexXdgDir}/config.toml"
+      mkdir -p "${codexHomeDir}"
+      cp --no-preserve=mode,ownership ${tomlFormat.generate "codex-config" settings} "${codexHomeDir}/config.toml"
+      chmod 644 "${codexHomeDir}/config.toml"
     '';
 
-    file."${codexXdgDir}/AGENTS.md".source =
+    file."${codexHomeDir}/AGENTS.md".source =
       config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
   };
 }
