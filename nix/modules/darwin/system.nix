@@ -235,7 +235,6 @@ in
       "LINE" = 539883307;
       "LadioCast" = 411213048;
       "LanguageTranslator" = 1218781096;
-      "Leftovers" = 6746164364;
       "Microsoft Excel" = 462058435;
       "Microsoft Remote Desktop" = 1295203466;
       "Microsoft Word" = 462054704;
