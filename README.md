@@ -26,26 +26,31 @@ The configuration is organised into modular files:
 
 #### macOS
 
-1. Install [Nix](https://nixos.org/download/):
+1. Open the Mac App Store and sign in with your Apple Account. The initial
+   activation installs configured App Store applications and requires an
+   authenticated account.
+
+2. Install [Nix](https://nixos.org/download/):
 
    ```sh
     curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
    ```
 
-2. Clone this repository:
+3. Clone this repository:
 
    ```sh
    git clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
    cd ~/ghq/github.com/ryoppippi/dotfiles
    ```
 
-3. Apply the nix-darwin configuration (this will also install Homebrew automatically):
+4. Apply the nix-darwin configuration (this will also install Homebrew automatically):
 
    ```sh
    sudo nix run nix-darwin -- switch --flake .#ryoppippi
    ```
 
-4. Reload your shell:
+5. Reload your shell:
+
    ```sh
    exec fish
    ```
