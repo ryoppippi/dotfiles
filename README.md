@@ -30,6 +30,14 @@ The configuration is organised into modular files:
    activation installs configured App Store applications and requires an
    authenticated account.
 
+   ```sh
+   open -a "App Store"
+   ```
+
+   > [!NOTE]
+   > Signing in must be done manually in the App Store window. macOS no longer
+   > allows signing in from the command line.
+
 2. Install [Nix](https://nixos.org/download/):
 
    ```sh
