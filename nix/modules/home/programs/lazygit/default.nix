@@ -77,7 +77,7 @@ in
     };
   };
 
-  home.activation.validateLazygitSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.validateLazygitSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     SETTINGS_FILE="${lazygitConfigFile}"
 
     echo "🔍 Validating lazygit config.yml..."

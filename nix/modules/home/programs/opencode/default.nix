@@ -11,6 +11,7 @@ let
 
   # Read settings from external JSON file
   settingsJsonText = builtins.readFile ./settings.json;
+  tuiSettingsJsonText = builtins.readFile ./tui.json;
 in
 {
   # OpenCode package
@@ -20,9 +21,12 @@ in
   xdg.configFile."opencode/opencode.json" = {
     text = settingsJsonText;
   };
+  xdg.configFile."opencode/tui.json" = {
+    text = tuiSettingsJsonText;
+  };
 
   # Validate OpenCode opencode.json after generation
-  home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
     SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 
