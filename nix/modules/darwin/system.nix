@@ -84,8 +84,20 @@ in
         tilesize = 45; # Icon size
         persistent-apps = [ ]; # Remove all pinned applications
         persistent-others = [
-          { folder = "${homedir}/Downloads"; }
-          { folder = "${homedir}/Dropbox/Screenshots"; }
+          {
+            folder = {
+              path = "${homedir}/Dropbox/Screenshots";
+              arrangement = "date-added";
+              showas = "fan";
+            };
+          }
+          {
+            folder = {
+              path = "${homedir}/Dropbox/Downloads";
+              arrangement = "date-added";
+              showas = "fan";
+            };
+          }
         ];
         show-recents = false; # Don't show recent applications
         mineffect = "genie";
