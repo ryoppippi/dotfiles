@@ -280,6 +280,8 @@
               fi
             done
           '';
+          nixBuildFlags = lib.optionalString isDarwin " --accept-flake-config --print-build-logs --show-trace";
+          darwinBuildFlags = lib.optionalString isDarwin " --option accept-flake-config true --print-build-logs --show-trace";
         in
         {
           # Treefmt configuration
@@ -394,14 +396,14 @@
                         "darwinConfigurations.${hostname}.system"
                       else
                         "homeConfigurations.${username}.activationPackage"
-                    }
+                    }${nixBuildFlags}
                   else
                     ${nom} build .#${
                       if isDarwin then
                         "darwinConfigurations.${hostname}.system"
                       else
                         "homeConfigurations.${username}.activationPackage"
-                    }
+                    }${nixBuildFlags}
                   fi
                   echo "Build successful! Run 'nix run .#switch' to apply."
                 ''
@@ -418,14 +420,14 @@
                   if [ "$IS_AI_AGENT" = true ]; then
                     ${
                       if isDarwin then
-                        "sudo ${darwinRebuild} switch --flake .#${hostname}"
+                        "sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags}"
                       else
                         "nix run nixpkgs#home-manager -- switch --flake .#${username}"
                     }
                   else
                     ${
                       if isDarwin then
-                        "sudo ${darwinRebuild} switch --flake .#${hostname} |& ${nom}"
+                        "sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} |& ${nom}"
                       else
                         "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${nom}"
                     }
