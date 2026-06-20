@@ -102,7 +102,13 @@ fish_add_path $HOME/.scripts
 fish_add_path $HOME/.scripts/bin
 
 # Add home-manager packages to PATH
-fish_add_path ~/.local/state/home-manager/gcroots/current-home/home-path/bin
+# Prefer the standalone home-manager gcroots (Linux / `home-manager switch`),
+# falling back to the nix-darwin module profile (`/etc/profiles/per-user`).
+set -l HM_PATH_BIN "$HOME/.local/state/home-manager/gcroots/current-home/home-path/bin"
+if not test -d $HM_PATH_BIN
+    set HM_PATH_BIN "/etc/profiles/per-user/$USER/bin"
+end
+fish_add_path $HM_PATH_BIN
 
 # Secretive
 set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
