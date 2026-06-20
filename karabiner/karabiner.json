@@ -76,7 +76,7 @@
 						]
 					},
 					{
-						"description": "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT",
+						"description": "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -94,7 +94,7 @@
 								"conditions": [
 									{
 										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
+										"bundle_identifiers": ["com.hnc.Discord"]
 									}
 								]
 							},
@@ -114,7 +114,7 @@
 								"conditions": [
 									{
 										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
+										"bundle_identifiers": ["com.hnc.Discord"]
 									}
 								]
 							},
@@ -132,7 +132,7 @@
 								"conditions": [
 									{
 										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord", "com.openai.chat"]
+										"bundle_identifiers": ["com.hnc.Discord"]
 									}
 								]
 							}

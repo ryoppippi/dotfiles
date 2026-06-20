@@ -40,6 +40,7 @@ in
       uv
       # Miscellaneous utilities
       fixjson
+      gifski
       roots
 
       # GUI applications (cross-platform)

@@ -4,7 +4,6 @@ import * as utils from './utils.ts';
 
 const IDENTIFIERS = {
 	discord: await utils.extractIdentifier('Discord'),
-	chatgpt: await utils.extractIdentifier('ChatGPT'),
 } as const;
 
 k.writeToProfile('Default profile', [
@@ -36,8 +35,8 @@ k.writeToProfile('Default profile', [
 
 	k
 		.rule(
-			'Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord and ChatGPT',
-			k.ifApp({ bundle_identifiers: [IDENTIFIERS.discord, IDENTIFIERS.chatgpt] }),
+			'Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord',
+			k.ifApp({ bundle_identifiers: [IDENTIFIERS.discord] }),
 		)
 		.manipulators([
 			k

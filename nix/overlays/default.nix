@@ -8,7 +8,6 @@ let
     ./gh-triage.nix
     # Small Go/Rust CLI tools not in nixpkgs
     ./git-now.nix
-    ./bluetooth-connector.nix
     ./roots.nix
     ./audio-priority-bar.nix
   ];

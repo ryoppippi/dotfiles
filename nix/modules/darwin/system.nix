@@ -241,7 +241,6 @@ in
       "openvpn-connect"
       "orbstack"
       "raycast"
-      "sdformatter"
       "secretive"
       "steam"
     ];
@@ -254,12 +253,9 @@ in
       "Blackmagic Disk Speed Test" = 425264550;
       "Command X" = 6448461551;
       "Consent-O-Matic" = 1606897889;
-      "CotEditor" = 1024640650;
       "DevCleaner" = 1388020431;
       "Document Generator" = 1437883178;
-      "FocusRecorder" = 6446467176;
       "Gifski" = 1351639930;
-      "Hex Fiend" = 1342896380;
       "Hush" = 1544743900;
       "Keepa - Price Tracker" = 1533805339;
       "Keynote" = 361285480;
@@ -270,8 +266,6 @@ in
       "NamingTranslator" = 1218784832;
       "Pages" = 361309726;
       "Refined GitHub" = 1519867270;
-      "Screegle" = 1591051659;
-      "Seashore" = 1448648921;
       "Shareful" = 1522267256;
       "Slack" = 803453959;
       "Spark" = 1176895641;
@@ -282,7 +276,6 @@ in
       "Velja" = 1607635845;
       "WhatsApp" = 310633997;
       "Xcode" = 497799835;
-      "iHosts" = 1102004240;
       "uBlacklist for Safari" = 1547912640;
     };
   };
