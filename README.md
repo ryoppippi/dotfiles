@@ -26,9 +26,21 @@ The configuration is organised into modular files:
 
 #### macOS
 
-1. Open the Mac App Store and sign in with your Apple Account. The initial
-   activation installs configured App Store applications and requires an
-   authenticated account.
+1. Install [Nix](https://nixos.org/download/):
+
+   ```sh
+    curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
+   ```
+
+2. Clone this repository:
+
+   ```sh
+   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
+   cd ~/ghq/github.com/ryoppippi/dotfiles
+   ```
+
+3. Sign in to the Mac App Store with your Apple Account. The next step installs
+   configured App Store applications and requires an authenticated account.
 
    ```sh
    open -a "App Store"
@@ -37,19 +49,6 @@ The configuration is organised into modular files:
    > [!NOTE]
    > Signing in must be done manually in the App Store window. macOS no longer
    > allows signing in from the command line.
-
-2. Install [Nix](https://nixos.org/download/):
-
-   ```sh
-    curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
-   ```
-
-3. Clone this repository:
-
-   ```sh
-   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
-   cd ~/ghq/github.com/ryoppippi/dotfiles
-   ```
 
 4. Apply the nix-darwin configuration (this will also install Homebrew automatically):
 
