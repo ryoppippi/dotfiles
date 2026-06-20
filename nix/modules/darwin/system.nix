@@ -37,10 +37,11 @@ in
     };
   };
 
-  # Enable Touch ID and Apple Watch for sudo (including tmux support via pam-reattach)
-  security.pam.services.sudo_local.touchIdAuth = true;
-  security.pam.services.sudo_local.watchIdAuth = true;
-  security.pam.services.sudo_local.reattach = true;
+  security.pam.services.sudo_local.text = ''
+    auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
+    auth       sufficient     ${pkgs.pam-watchid}/lib/pam_watchid.so
+    auth       sufficient     pam_tid.so
+  '';
 
   system = {
     # Set system state version
