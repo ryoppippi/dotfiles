@@ -30,7 +30,6 @@
       deskpad
       figma
       glance-chamburr
-      homerow
       istherenet
       maestral
       marta

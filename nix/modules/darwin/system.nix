@@ -232,7 +232,6 @@ in
       "CotEditor" = 1024640650;
       "DevCleaner" = 1388020431;
       "Document Generator" = 1437883178;
-      "Final Cut Pro" = 424389933;
       "FocusRecorder" = 6446467176;
       "Gifski" = 1351639930;
       "Hex Fiend" = 1342896380;
@@ -243,9 +242,7 @@ in
       "LINE" = 539883307;
       "LadioCast" = 411213048;
       "LanguageTranslator" = 1218781096;
-      "Microsoft Excel" = 462058435;
       "Microsoft Remote Desktop" = 1295203466;
-      "Microsoft Word" = 462054704;
       "NamingTranslator" = 1218784832;
       "Pages" = 409201541;
       "Refined GitHub" = 1519867270;
