@@ -54,17 +54,10 @@ source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
 # general bin paths
 fish_add_path $HOME/.local/bin
-fish_add_path /usr/local/opt/coreutils/libexec/gnubin
-fish_add_path /usr/local/opt/curl/bin
 
 # c / c++
 # c++
 # export CPPFLAGS=-I/opt/X11/include
-# export LDFLAGS="$LDFLAGS -L/usr/local/opt/zlib/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/binutils/lib -L/opt/homebrew/lib"
-# export CFLAGS="-I/usr/local/opt/zlib/include -I$(xcrun --show-sdk-path) $CFLAGS"
-# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include -I$(xcrun --show-sdk-path) -I/usr/local/opt/binutils/include -I/opt/homebrew/include"
-# export LDFLAGS="$LDFLAGS -L/usr/local/opt/openblas/lib -L/usr/local/opt/lapack/lib"
-# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openblas/include -I/usr/local/opt/lapack/include"
 set -gx USE_CCACHE 1
 set -gx CCACHE_DIR $HOME/.ccache
 
@@ -128,12 +121,8 @@ if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     echo '' >$CONFIG_CACHE_TMP
 
     # homebrew
-    if test (uname -m) = arm64
-        echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE_TMP
-        echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE_TMP
-    else
-        echo $(/usr/local/bin/brew shellenv) >>$CONFIG_CACHE_TMP
-    end
+    echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE_TMP
+    echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE_TMP
 
     # xcode
     echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE_TMP
