@@ -49,6 +49,21 @@ in
     # Set primary user for homebrew
     primaryUser = username;
 
+    activationScripts.homebrew.text = lib.mkBefore ''
+      if ! /usr/sbin/pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
+        /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      fi
+
+      xcodebuild=/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
+      if [ -x "$xcodebuild" ] && ! "$xcodebuild" -license check >/dev/null 2>&1; then
+        "$xcodebuild" -license accept
+      fi
+
+      if [ -t 0 ]; then
+        /usr/bin/sudo --user=${username} --set-home /usr/bin/sudo --validate
+      fi
+    '';
+
     # Set user shell on activation
     activationScripts.postActivation.text = ''
       echo "Setting login shell to fish..."
@@ -182,9 +197,7 @@ in
   homebrew = {
     enable = true;
     onActivation = {
-      # nix-darwin still emits Homebrew Bundle's removed --force-cleanup flag for this mode.
-      cleanup = "none";
-      extraFlags = [ "--cleanup" ];
+      cleanup = "uninstall";
     };
 
     taps = [
