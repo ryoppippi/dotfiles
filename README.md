@@ -35,8 +35,8 @@ The configuration is organised into modular files:
 2. Get this repository with ghq:
 
    ```sh
-   nix run nixpkgs#ghq -- get github.com/ryoppippi/dotfiles
-   cd "$(nix run nixpkgs#ghq -- root)/github.com/ryoppippi/dotfiles"
+   nix shell nixpkgs#ghq nixpkgs#git --command ghq get github.com/ryoppippi/dotfiles
+   cd "$(nix shell nixpkgs#ghq --command ghq root)/github.com/ryoppippi/dotfiles"
    ```
 
 3. Open the Mac App Store:
@@ -68,8 +68,8 @@ The configuration is organised into modular files:
 2. Get this repository with ghq:
 
    ```sh
-   nix run nixpkgs#ghq -- get github.com/ryoppippi/dotfiles
-   cd "$(nix run nixpkgs#ghq -- root)/github.com/ryoppippi/dotfiles"
+   nix shell nixpkgs#ghq nixpkgs#git --command ghq get github.com/ryoppippi/dotfiles
+   cd "$(nix shell nixpkgs#ghq --command ghq root)/github.com/ryoppippi/dotfiles"
    ```
 
 3. Apply Home Manager configuration:
