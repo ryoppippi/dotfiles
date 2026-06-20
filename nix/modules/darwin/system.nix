@@ -68,6 +68,10 @@ in
         autohide = true; # Automatically hide and show the Dock
         tilesize = 45; # Icon size
         persistent-apps = [ ]; # Remove all pinned applications
+        persistent-others = [
+          { folder = "${homedir}/Downloads"; }
+          { folder = "${homedir}/Dropbox/Screenshots"; }
+        ];
         show-recents = false; # Don't show recent applications
         mineffect = "genie";
         orientation = "bottom"; # Dock position
