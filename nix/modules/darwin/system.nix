@@ -181,7 +181,11 @@ in
   # Homebrew configuration
   homebrew = {
     enable = true;
-    onActivation.cleanup = "uninstall";
+    onActivation = {
+      # nix-darwin still emits Homebrew Bundle's removed --force-cleanup flag for this mode.
+      cleanup = "none";
+      extraFlags = [ "--cleanup" ];
+    };
 
     taps = [
       "arto-app/tap"
