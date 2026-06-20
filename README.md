@@ -53,7 +53,7 @@ The configuration is organised into modular files:
 4. Apply the nix-darwin configuration (this will also install Homebrew automatically):
 
    ```sh
-   sudo nix run nix-darwin -- switch --flake .#ryoppippi
+   nix --accept-flake-config run .#switch
    ```
 
 5. Reload your shell:
@@ -78,6 +78,7 @@ The configuration is organised into modular files:
    ```
 
 3. Apply Home Manager configuration:
+
    ```sh
    nix run .#switch
    ```

@@ -282,6 +282,19 @@
           '';
           nixBuildFlags = lib.optionalString isDarwin " --accept-flake-config --print-build-logs --show-trace";
           darwinBuildFlags = lib.optionalString isDarwin " --option accept-flake-config true --print-build-logs --show-trace";
+          sudoKeepAlive = lib.optionalString isDarwin ''
+            if [ -t 0 ]; then
+              sudo -v
+              (
+                while kill -0 "$$" 2>/dev/null; do
+                  sudo -n -v || exit 0
+                  sleep 60
+                done
+              ) &
+              SUDO_KEEPALIVE_PID=$!
+              trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true' EXIT
+            fi
+          '';
         in
         {
           # Treefmt configuration
@@ -416,6 +429,7 @@
                 localPkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
                   set -eo pipefail
                   ${isAgentCheck}
+                  ${sudoKeepAlive}
                   echo "Building and switching to ${if isDarwin then "darwin" else "Home Manager"} configuration..."
                   if [ "$IS_AI_AGENT" = true ]; then
                     ${
