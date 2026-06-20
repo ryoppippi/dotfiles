@@ -29,7 +29,7 @@ The configuration is organised into modular files:
 1. Install [Nix](https://nixos.org/download/):
 
    ```sh
-   curl --proto '=https' --tlsv1.2 -sSf -L https://install.nixos.org | sh -s -- install
+    curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
    ```
 
 2. Clone this repository:
