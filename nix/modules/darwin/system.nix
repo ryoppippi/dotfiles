@@ -237,14 +237,14 @@ in
       "Hex Fiend" = 1342896380;
       "Hush" = 1544743900;
       "Keepa - Price Tracker" = 1533805339;
-      "Keynote" = 409183694;
+      "Keynote" = 361285480;
       "Kindle" = 302584613;
       "LINE" = 539883307;
       "LadioCast" = 411213048;
       "LanguageTranslator" = 1218781096;
       "Microsoft Remote Desktop" = 1295203466;
       "NamingTranslator" = 1218784832;
-      "Pages" = 409201541;
+      "Pages" = 361309726;
       "Refined GitHub" = 1519867270;
       "Screegle" = 1591051659;
       "Seashore" = 1448648921;
