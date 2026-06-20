@@ -23,6 +23,7 @@ in
   };
   xdg.configFile."opencode/tui.json" = {
     text = tuiSettingsJsonText;
+    force = true;
   };
 
   # Validate OpenCode opencode.json after generation
