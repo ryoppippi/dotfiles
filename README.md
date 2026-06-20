@@ -48,6 +48,7 @@ The configuration is organised into modular files:
 4. Apply the nix-darwin configuration (this will also install Homebrew automatically):
 
    ```sh
+   sudo xcodebuild -license accept
    nix --accept-flake-config run .#switch
    ```
 
@@ -56,6 +57,18 @@ The configuration is organised into modular files:
    ```sh
    exec fish
    ```
+
+#### GitHub API rate limit
+
+If Nix reports a GitHub API rate limit, load a GitHub token into
+`GITHUB_TOKEN` from a credential helper or password manager, then retry with
+authenticated GitHub access. Do not paste the token directly into the command
+or commit it to this repository.
+
+```sh
+NIX_CONFIG="access-tokens = github.com=$GITHUB_TOKEN" \
+  nix --accept-flake-config run .#switch
+```
 
 #### Linux
 
