@@ -12,69 +12,73 @@ let
 
   schemaUrl = "https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json";
   lazygitConfigFile = "${config.xdg.configHome}/lazygit/config.yml";
-in
-{
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      gui = {
-        nerdFontsVersion = "3";
-        skipRewordInEditorWarning = true;
-      };
-      git = {
-        allBranchesLogCmds = [ "${gitLogFormat} --all" ];
-        branchLogCmd = "${gitLogFormat} {{branchName}} --";
-        overrideGpg = true;
-        pagers = [
-          {
-            colorArg = "always";
-            pager = "${delta} --color-only --paging=never";
-          }
-        ];
-      };
-      customCommands = [
+  yamlFormat = pkgs.formats.yaml { };
+  lazygitSettings = {
+    gui = {
+      nerdFontsVersion = "3";
+      skipRewordInEditorWarning = true;
+    };
+    git = {
+      allBranchesLogCmds = [ "${gitLogFormat} --all" ];
+      branchLogCmd = "${gitLogFormat} {{branchName}} --";
+      overrideGpg = true;
+      pagers = [
         {
-          key = "n";
-          context = "files";
-          description = "git now";
-          command = "git now";
-        }
-        {
-          key = "I";
-          context = "localBranches";
-          description = "gh poi";
-          command = "gh poi";
-        }
-        {
-          key = "d";
-          context = "worktrees";
-          description = "Move worktree to trash";
-          loadingText = "Trashing worktree";
-          output = "log";
-          prompts = [
-            {
-              type = "confirm";
-              title = "Trash worktree";
-              body = ''
-                Move worktree to trash?
-
-                Path:   {{.SelectedWorktree.Path}}
-                Branch: {{.SelectedWorktree.Branch}}
-              '';
-            }
-          ];
-          command = ''
-            {{- if .SelectedWorktree.IsMain -}}
-            echo "Cannot trash the main worktree" >&2; exit 1
-            {{- else if .SelectedWorktree.IsCurrent -}}
-            echo "Cannot trash the current worktree" >&2; exit 1
-            {{- else -}}
-            ${trash} -- {{.SelectedWorktree.Path | quote}} && git worktree prune
-            {{- end -}}
-          '';
+          colorArg = "always";
+          pager = "${delta} --color-only --paging=never";
         }
       ];
     };
+    customCommands = [
+      {
+        key = "n";
+        context = "files";
+        description = "git now";
+        command = "git now";
+      }
+      {
+        key = "I";
+        context = "localBranches";
+        description = "gh poi";
+        command = "gh poi";
+      }
+      {
+        key = "d";
+        context = "worktrees";
+        description = "Move worktree to trash";
+        loadingText = "Trashing worktree";
+        output = "log";
+        prompts = [
+          {
+            type = "confirm";
+            title = "Trash worktree";
+            body = ''
+              Move worktree to trash?
+
+              Path:   {{.SelectedWorktree.Path}}
+              Branch: {{.SelectedWorktree.Branch}}
+            '';
+          }
+        ];
+        command = ''
+          {{- if .SelectedWorktree.IsMain -}}
+          echo "Cannot trash the main worktree" >&2; exit 1
+          {{- else if .SelectedWorktree.IsCurrent -}}
+          echo "Cannot trash the current worktree" >&2; exit 1
+          {{- else -}}
+          ${trash} -- {{.SelectedWorktree.Path | quote}} && git worktree prune
+          {{- end -}}
+        '';
+      }
+    ];
+  };
+in
+{
+  programs.lazygit.enable = true;
+
+  xdg.configFile."lazygit/config.yml" = {
+    source = yamlFormat.generate "lazygit-config" lazygitSettings;
+    force = true;
   };
 
   home.activation.validateLazygitSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
