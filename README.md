@@ -32,11 +32,11 @@ The configuration is organised into modular files:
     curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
    ```
 
-2. Clone this repository:
+2. Get this repository with ghq:
 
    ```sh
-   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
-   cd ~/ghq/github.com/ryoppippi/dotfiles
+   nix run nixpkgs#ghq -- get github.com/ryoppippi/dotfiles
+   cd "$(nix run nixpkgs#ghq -- root)/github.com/ryoppippi/dotfiles"
    ```
 
 3. Open the Mac App Store:
@@ -65,11 +65,11 @@ The configuration is organised into modular files:
    curl --proto '=https' --tlsv1.2 -sSf -L https://install.nixos.org | sh -s -- install
    ```
 
-2. Clone this repository:
+2. Get this repository with ghq:
 
    ```sh
-   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
-   cd ~/ghq/github.com/ryoppippi/dotfiles
+   nix run nixpkgs#ghq -- get github.com/ryoppippi/dotfiles
+   cd "$(nix run nixpkgs#ghq -- root)/github.com/ryoppippi/dotfiles"
    ```
 
 3. Apply Home Manager configuration:
