@@ -39,16 +39,11 @@ The configuration is organised into modular files:
    cd ~/ghq/github.com/ryoppippi/dotfiles
    ```
 
-3. Sign in to the Mac App Store with your Apple Account. The next step installs
-   configured App Store applications and requires an authenticated account.
+3. Open the Mac App Store:
 
    ```sh
-   open -a "App Store"
+   open -a "App Store" # Sign in with your Apple Account before continuing.
    ```
-
-   > [!NOTE]
-   > Signing in must be done manually in the App Store window. macOS no longer
-   > allows signing in from the command line.
 
 4. Apply the nix-darwin configuration (this will also install Homebrew automatically):
 
