@@ -39,7 +39,7 @@ The configuration is organised into modular files:
 3. Clone this repository:
 
    ```sh
-   git clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
+   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
    cd ~/ghq/github.com/ryoppippi/dotfiles
    ```
 
@@ -66,7 +66,7 @@ The configuration is organised into modular files:
 2. Clone this repository:
 
    ```sh
-   git clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
+   nix run nixpkgs#git -- clone https://github.com/ryoppippi/dotfiles.git ~/ghq/github.com/ryoppippi/dotfiles
    cd ~/ghq/github.com/ryoppippi/dotfiles
    ```
 
