@@ -253,7 +253,6 @@ in
       "Keynote" = 361285480;
       "Kindle" = 302584613;
       "LINE" = 539883307;
-      "LadioCast" = 411213048;
       "LanguageTranslator" = 1218781096;
       "Microsoft Remote Desktop" = 1295203466;
       "NamingTranslator" = 1218784832;
@@ -264,7 +263,6 @@ in
       "Shareful" = 1522267256;
       "Slack" = 803453959;
       "Spark" = 1176895641;
-      "Squirrel" = 1669664068;
       "TabifyIndents" = 1179234554;
       "TestFlight" = 899247664;
       "The Unarchiver" = 425424353;
