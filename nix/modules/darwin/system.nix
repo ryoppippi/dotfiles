@@ -215,6 +215,7 @@ in
 
     taps = [
       "arto-app/tap"
+      "typewhisper/tap"
     ];
 
     brews = [
@@ -244,6 +245,7 @@ in
       "raycast"
       "secretive"
       "steam"
+      "typewhisper/tap/typewhisper"
     ];
 
     masApps = {
