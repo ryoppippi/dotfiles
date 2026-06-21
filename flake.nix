@@ -112,6 +112,11 @@
 
     nix-filter.url = "github:numtide/nix-filter";
 
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -138,6 +143,7 @@
       agent-browser-skill,
       tgrab-skill,
       nix-filter,
+      hunk,
       ...
     }:
     let
@@ -212,6 +218,7 @@
                       ast-grep-skill
                       agent-browser-skill
                       tgrab-skill
+                      hunk
                       ;
                     inherit local-skills;
                     homedir = linuxHomedir;
@@ -573,6 +580,7 @@
                           ast-grep-skill
                           agent-browser-skill
                           tgrab-skill
+                          hunk
                           ;
                         inherit local-skills;
                         homedir = darwinHomedir;

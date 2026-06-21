@@ -65,6 +65,8 @@
         ;
     })
 
+    ./hunk.nix
+
     # Neovim configuration
     (import ./neovim {
       inherit
