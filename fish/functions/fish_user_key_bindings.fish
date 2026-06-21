@@ -15,9 +15,11 @@ end
 
 function fish_user_key_bindings
     bind \cx\ck fkill
+    bind \cx\cu cmux-copy-url
     bind \cb git_switch_branch
     bind \cg __ghq_roots
     if bind -M insert >/dev/null 2>&1
+        bind -M insert \cx\cu cmux-copy-url
         bind -M insert \cg __ghq_roots
     end
 
