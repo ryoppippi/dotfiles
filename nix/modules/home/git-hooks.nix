@@ -75,6 +75,11 @@
       echo "Nix configuration changed. Applying changes..."
       nix run .#switch
     fi
+
+    if git diff HEAD^..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
+      echo "TypeWhisper dictionary changed. Syncing..."
+      ./typewhisper/dict-sync.ts || true
+    fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-commit"
 
@@ -98,6 +103,11 @@
       echo "Nix configuration changed. Applying changes..."
       nix run .#switch
     fi
+
+    if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
+      echo "TypeWhisper dictionary changed. Syncing..."
+      ./typewhisper/dict-sync.ts || true
+    fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-checkout"
 
@@ -108,6 +118,11 @@
     if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^(flake.nix|flake.lock|nix/|aqua/aqua.yaml)'; then
       echo "Nix configuration changed. Applying changes..."
       nix run .#switch
+    fi
+
+    if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
+      echo "TypeWhisper dictionary changed. Syncing..."
+      ./typewhisper/dict-sync.ts || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-merge"
@@ -126,6 +141,11 @@
     if git diff ORIG_HEAD..HEAD --name-only 2>/dev/null | grep -qE '^(flake.nix|flake.lock|nix/|aqua/aqua.yaml)'; then
       echo "Nix configuration changed after rebase. Applying changes..."
       nix run .#switch
+    fi
+
+    if git diff ORIG_HEAD..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
+      echo "TypeWhisper dictionary changed after rebase. Syncing..."
+      ./typewhisper/dict-sync.ts || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-rewrite"

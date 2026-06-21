@@ -1,0 +1,38 @@
+{
+	"terms": [
+		"Ryotaro Kimura",
+		"natsukium",
+		"ryoppippi",
+		"ccusage",
+		"sitemcp",
+		"rork",
+		"ありすえ",
+		"tomoya",
+		"nix",
+		"zig",
+		"neovim",
+		"vim",
+		"direnv",
+		"tanstack",
+		"wezterm",
+		"doppler",
+		"dotfiles",
+		"かなこ",
+		"プルリク",
+		"プルリクエスト",
+		"ないものねだり",
+		"codex",
+		"elevenlabs",
+		"sentry"
+	],
+	"corrections": [
+		{ "original": "プルリクエスト", "replacement": "PR", "caseSensitive": false },
+		{ "original": "プロリクエスト", "replacement": "PR", "caseSensitive": false },
+		{ "original": "クロード", "replacement": "Claude", "caseSensitive": false },
+		{ "original": "アンソロピック", "replacement": "Anthropic", "caseSensitive": false },
+		{ "original": "ローク", "replacement": "Rork", "caseSensitive": false },
+		{ "original": "りょっぴっぴ", "replacement": "ryoppippi", "caseSensitive": false },
+		{ "original": "カーソル", "replacement": "Cursor", "caseSensitive": false },
+		{ "original": "オブシディアン", "replacement": "Obsidian", "caseSensitive": false }
+	]
+}
