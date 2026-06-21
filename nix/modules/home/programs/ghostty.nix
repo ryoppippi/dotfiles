@@ -22,6 +22,8 @@ let
     cursor-style = "block";
     cursor-style-blink = false;
 
+    keybind = [ "cmd+u=text:\\x18\\x15" ];
+
     mouse-hide-while-typing = true;
 
     working-directory = "inherit";
