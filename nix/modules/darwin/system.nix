@@ -146,6 +146,11 @@ in
         type = "png";
       };
 
+      screensaver = {
+        askForPassword = true;
+        askForPasswordDelay = 0;
+      };
+
       # Trackpad settings
       trackpad = {
         Clicking = false; # Tap to click disabled
