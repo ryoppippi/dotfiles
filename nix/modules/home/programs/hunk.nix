@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
-  programs.hunk.enable = true;
+  home.packages = [ pkgs.llm-agents.hunk ];
 }

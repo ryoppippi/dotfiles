@@ -11,7 +11,6 @@
   agent-browser-skill ? null,
   tgrab-skill ? null,
   local-skills ? null,
-  hunk,
   ...
 }:
 let
@@ -20,8 +19,6 @@ let
 in
 {
   imports = [
-    hunk.homeManagerModules.default
-
     # Common packages
     ./packages.nix
 
