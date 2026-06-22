@@ -123,6 +123,9 @@ in
         # Appearance
         AppleInterfaceStyle = "Dark"; # Dark mode
         AppleShowAllExtensions = true; # Show all file extensions
+        AppleShowScrollBars = "Automatic";
+        AppleScrollerPagingBehavior = false;
+        NSTableViewDefaultSizeMode = 2;
 
         # Keyboard
         KeyRepeat = 2; # Fast key repeat (1-2 is very fast)
@@ -163,6 +166,10 @@ in
 
       # Custom preferences for settings not available in system.defaults
       CustomUserPreferences = {
+        NSGlobalDomain = {
+          AppleAccentColor = -1;
+          AppleReduceDesktopTinting = false;
+        };
         "com.apple.WindowManager" = {
           EnableStandardClickToShowDesktop = false;
           EnableTilingByEdge = false;
