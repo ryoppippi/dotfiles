@@ -82,6 +82,8 @@ in
       # Dock settings
       dock = {
         autohide = true; # Automatically hide and show the Dock
+        launchanim = true;
+        magnification = false;
         tilesize = 45; # Icon size
         persistent-apps = [ ]; # Remove all pinned applications
         persistent-others = [
@@ -101,6 +103,7 @@ in
           }
         ];
         show-recents = false; # Don't show recent applications
+        show-process-indicators = true;
         mineffect = "genie";
         orientation = "bottom"; # Dock position
       };
@@ -160,6 +163,18 @@ in
 
       # Custom preferences for settings not available in system.defaults
       CustomUserPreferences = {
+        "com.apple.WindowManager" = {
+          EnableStandardClickToShowDesktop = false;
+          EnableTilingByEdge = false;
+          EnableTopTilingByEdge = false;
+          EnableTilingOptionAccelerator = false;
+          EnableTiledWindowMargins = false;
+          GloballyEnabled = false;
+          StageManagerHideDesktopIcons = true;
+          StageManagerHideWidgets = true;
+          StandardHideDesktopIcons = true;
+          StandardHideWidgets = true;
+        };
         "com.apple.dock" = {
           appswitcher-all-displays = true; # Show app switcher on all displays
         };
