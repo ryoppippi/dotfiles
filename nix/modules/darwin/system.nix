@@ -106,6 +106,9 @@ in
         show-process-indicators = true;
         mineffect = "genie";
         orientation = "bottom"; # Dock position
+        showAppExposeGestureEnabled = true;
+        showDesktopGestureEnabled = true;
+        showMissionControlGestureEnabled = true;
       };
 
       # Finder settings
@@ -132,6 +135,9 @@ in
         InitialKeyRepeat = 25; # Initial key repeat delay
 
         # Trackpad speed (0.0 = slowest, 3.0 = fastest)
+        AppleEnableSwipeNavigateWithScrolls = true;
+        "com.apple.swipescrolldirection" = true;
+        "com.apple.trackpad.forceClick" = true;
         "com.apple.trackpad.scaling" = 1.3;
 
         # Disable auto-correct and substitutions
@@ -159,9 +165,24 @@ in
 
       # Trackpad settings
       trackpad = {
-        Clicking = false; # Tap to click disabled
-        TrackpadRightClick = true; # Two-finger secondary click
-        TrackpadThreeFingerDrag = false; # Disable three-finger drag
+        Clicking = false;
+        ActuationStrength = 1;
+        ActuateDetents = true;
+        FirstClickThreshold = 0;
+        ForceSuppressed = false;
+        SecondClickThreshold = 0;
+        TrackpadFourFingerHorizSwipeGesture = 2;
+        TrackpadFourFingerPinchGesture = 2;
+        TrackpadFourFingerVertSwipeGesture = 2;
+        TrackpadPinch = true;
+        TrackpadRightClick = true;
+        TrackpadRotate = true;
+        TrackpadThreeFingerDrag = false;
+        TrackpadThreeFingerHorizSwipeGesture = 2;
+        TrackpadThreeFingerTapGesture = 0;
+        TrackpadThreeFingerVertSwipeGesture = 2;
+        TrackpadTwoFingerDoubleTapGesture = true;
+        TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
       };
 
       # Custom preferences for settings not available in system.defaults
@@ -184,23 +205,6 @@ in
         };
         "com.apple.dock" = {
           appswitcher-all-displays = true; # Show app switcher on all displays
-        };
-        "com.apple.AppleMultitouchTrackpad" = {
-          # Click threshold: 0 = light, 1 = medium, 2 = firm
-          FirstClickThreshold = 0;
-          SecondClickThreshold = 0;
-          # Force Click and haptic feedback
-          ActuateDetents = 1; # Haptic feedback enabled
-          ForceSuppressed = 0; # Force Click enabled
-          # Tracking speed (0.0-3.0, default ~1.0)
-          TrackpadThreeFingerTapGesture = 0; # Disable three-finger tap for Look up
-        };
-        "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
-          # Same settings for Bluetooth trackpad
-          FirstClickThreshold = 0;
-          SecondClickThreshold = 0;
-          ActuateDetents = 1;
-          ForceSuppressed = 0;
         };
       };
     };
