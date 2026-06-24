@@ -170,6 +170,22 @@
         "type": "github"
       }
     },
+    "cmux-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782289054,
+        "narHash": "sha256-QNASRiXkIZ6T9kkmu1N/FSkHez7uazyXD77v3yYkOmw=",
+        "owner": "manaflow-ai",
+        "repo": "cmux",
+        "rev": "e4b590a404444db29141b1221d61986e41960f88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manaflow-ai",
+        "repo": "cmux",
+        "type": "github"
+      }
+    },
     "fish-na": {
       "flake": false,
       "locked": {
@@ -702,6 +718,7 @@
         "ast-grep-skill": "ast-grep-skill",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
+        "cmux-skill": "cmux-skill",
         "fish-na": "fish-na",
         "flake-parts": "flake-parts",
         "gh-graph": "gh-graph",

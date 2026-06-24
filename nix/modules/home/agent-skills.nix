@@ -10,6 +10,7 @@
   ast-grep-skill,
   agent-browser-skill,
   tgrab-skill,
+  cmux-skill,
   local-skills,
   ...
 }:
@@ -32,6 +33,10 @@
       # External: tgrab skill
       tgrab = {
         path = tgrab-skill;
+        subdir = "skills";
+      };
+      cmux = {
+        path = cmux-skill;
         subdir = "skills";
       };
       # Local: skills from this dotfiles repo
@@ -76,6 +81,11 @@
     skills.explicit.tgrab = {
       from = "tgrab";
       path = "tgrab";
+    };
+
+    skills.explicit.cmux-browser = {
+      from = "cmux";
+      path = "cmux-browser";
     };
 
     skills.explicit.agent-browser =

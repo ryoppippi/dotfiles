@@ -110,6 +110,11 @@
       flake = false;
     };
 
+    cmux-skill = {
+      url = "github:manaflow-ai/cmux";
+      flake = false;
+    };
+
     nix-filter.url = "github:numtide/nix-filter";
 
   };
@@ -137,6 +142,7 @@
       ast-grep-skill,
       agent-browser-skill,
       tgrab-skill,
+      cmux-skill,
       nix-filter,
       ...
     }:
@@ -212,6 +218,7 @@
                       ast-grep-skill
                       agent-browser-skill
                       tgrab-skill
+                      cmux-skill
                       ;
                     inherit local-skills;
                     homedir = linuxHomedir;
@@ -573,6 +580,7 @@
                           ast-grep-skill
                           agent-browser-skill
                           tgrab-skill
+                          cmux-skill
                           ;
                         inherit local-skills;
                         homedir = darwinHomedir;

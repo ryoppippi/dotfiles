@@ -10,6 +10,7 @@
   ast-grep-skill ? null,
   agent-browser-skill ? null,
   tgrab-skill ? null,
+  cmux-skill ? null,
   local-skills ? null,
   ...
 }:
@@ -35,6 +36,7 @@ in
         ast-grep-skill
         agent-browser-skill
         tgrab-skill
+        cmux-skill
         local-skills
         config
         ;
