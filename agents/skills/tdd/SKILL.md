@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Guides t-wada Red-Green-Refactor TDD. Use when implementing features, fixing bugs, or refactoring logic with strict test-first development.
+description: Guides execute-inspect-adjust development and t-wada Red-Green-Refactor TDD. Use for exploratory implementation or when stable behaviour needs an executable test-first contract.
 ---
 
 <!--
@@ -10,7 +10,25 @@ Example prompts:
   /tdd fix the cart total calculation bug
 -->
 
-You are following strict t-wada style Test-Driven Development. All code changes that involve logic (bug fixes, new features, refactors) **must** follow Red-Green-Refactor. No exceptions.
+Use execution as the primary design feedback. A literal language REPL is optional: a shell command, focused script, scratch file, watch mode, or interactive debugger works when it provides a short feedback loop.
+
+TDD is a disciplined form of the same execute-inspect-adjust loop: the test automates the stimulus and observation so the feedback is repeatable. Introduce a Red-Green-Refactor cycle when a behaviour is worth preserving as an automated contract. One-off scripts, data inspection and transformation, unfamiliar APIs, operational tooling, and prototypes do not require a test for every iteration.
+
+## Exploration Loop
+
+1. State the question the next execution should answer.
+2. Create the smallest runnable experiment that can answer it.
+3. Run it with a focused, representative input.
+4. Inspect relevant values, output, errors, side effects, and timing.
+5. Adjust one assumption or implementation choice.
+6. Repeat until the behaviour and interface are understood.
+7. Remove abandoned probes and incidental complexity.
+8. Move stable contracts and regressions into the TDD cycle below.
+9. Run the completed entry point end to end with representative input.
+
+Keep each execution cheap and focused. Prefer observing real values over reasoning from an unfamiliar API or data shape. Use temporary files, fixtures, dry-run modes, or disposable resources for side effects, and never experiment against production data or irreversible operations without explicit authorisation and safeguards.
+
+Treat one-off code as production code when failure can lose data, change external state, or turn into a repeated workflow. Harden validation, error handling, idempotency, and observability in proportion to that risk.
 
 **Project test environment:**
 
@@ -32,7 +50,7 @@ Repeat until the feature or fix is complete.
 
 ## Rules
 
-- **Never write production code without a failing test that demands it.** If there is no red test, there is no reason to write code.
+- **Within a selected TDD cycle, do not write production code without a failing test that demands it.** This rule applies to the behaviour under test, not to every exploratory code change.
 - **One behaviour per test.** Each test should verify exactly one thing. Name it after the behaviour, not the implementation (e.g. `it("returns 0 for an empty cart")` not `it("test calculateTotal")`).
 - **Keep the green step as small as possible.** Fake it, then make it real. Triangulate with additional tests when needed.
 - **Run the affected test suite after every green and every refactor step.** Prefer running only changed/affected tests during the cycle for speed. Never skip this.
