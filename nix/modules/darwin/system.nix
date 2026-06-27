@@ -263,6 +263,7 @@ in
       "cleanshot"
       "claude"
       "codex-app"
+      "cotypist"
       "cmux"
       "cloudflare-warp"
       "discord"
