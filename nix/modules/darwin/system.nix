@@ -256,7 +256,6 @@ in
     casks = [
       "1password"
       "alfred"
-      "aqua-voice"
       "arc"
       "arto-app/tap/arto"
       "blackhole-16ch"
