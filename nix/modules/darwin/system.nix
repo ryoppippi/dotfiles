@@ -266,6 +266,7 @@ in
       "cmux"
       "cloudflare-warp"
       "discord"
+      "dockdoor"
       "google-chrome"
       "google-drive"
       "karabiner-elements"
