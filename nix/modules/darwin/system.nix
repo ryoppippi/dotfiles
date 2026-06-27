@@ -258,6 +258,7 @@ in
       "alfred"
       "arc"
       "arto-app/tap/arto"
+      "audacity"
       "blackhole-16ch"
       "blu-ray-player-pro"
       "cleanshot"
@@ -277,6 +278,7 @@ in
       "raycast"
       "secretive"
       "steam"
+      "telegram"
       "typewhisper/tap/typewhisper"
     ];
 
