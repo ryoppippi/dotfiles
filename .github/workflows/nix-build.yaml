@@ -44,8 +44,10 @@ jobs:
       - name: Install tirith
         run: nix profile install --inputs-from . nixpkgs#tirith
 
+      # Exclude binary PDFs: tirith reads them as pasted text and reports
+      # false-positive HIGH findings (ANSI escapes, control/confusable chars).
       - name: Scan repository
-        run: tirith scan . --exclude '.git/**' --ci --fail-on high
+        run: tirith scan . --exclude '.git/**' --exclude '*.pdf' --ci --fail-on high
 
   build-ubuntu:
     needs: [changes, security]
