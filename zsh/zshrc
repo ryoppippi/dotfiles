@@ -3,3 +3,8 @@ source ~/.bash_profile
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
+# tirith: pre-execution command security hooks
+if (( $+commands[tirith] )); then
+    eval "$(tirith init --shell zsh)"
+fi
+

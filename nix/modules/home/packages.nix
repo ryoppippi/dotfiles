@@ -19,6 +19,8 @@ in
       git-wt
       git-lfs
       ghq
+      # Security
+      tirith
       # Search & file utilities
       ripgrep
       fd
