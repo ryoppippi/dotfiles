@@ -21,6 +21,8 @@ in
       ghq
       # Security
       tirith
+      # Code review TUI
+      tuicr
       # Search & file utilities
       ripgrep
       fd
