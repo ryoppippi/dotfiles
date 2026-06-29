@@ -46,8 +46,19 @@ jobs:
 
       # Exclude binary PDFs: tirith reads them as pasted text and reports
       # false-positive HIGH findings (ANSI escapes, control/confusable chars).
+      #
+      # tirith exit codes: 0 = clean, 1 = high/critical findings (block the
+      # gate), 2 = only findings below the --fail-on threshold (allow). The
+      # gate must fail only on code 1, so 0 and 2 are treated as passing.
       - name: Scan repository
-        run: tirith scan . --exclude '.git/**' --exclude '*.pdf' --ci --fail-on high
+        run: |
+          set +e
+          tirith scan . --exclude '.git/**' --exclude '*.pdf' --ci --fail-on high
+          rc=$?
+          if [ "$rc" -eq 0 ] || [ "$rc" -eq 2 ]; then
+            exit 0
+          fi
+          exit "$rc"
 
   build-ubuntu:
     needs: [changes, security]
