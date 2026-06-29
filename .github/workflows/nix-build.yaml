@@ -30,8 +30,25 @@ jobs:
               - '.github/workflows/nix-build.yaml'
               - '.github/actions/setup-nix/**'
 
+  # Security gate: scan the repo for hidden content and config poisoning
+  # before any build runs. Build jobs depend on this passing.
+  security:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - uses: ./.github/actions/setup-nix
+
+      - name: Install tirith
+        run: nix profile install --inputs-from . nixpkgs#tirith
+
+      - name: Scan repository
+        run: tirith scan . --exclude '.git/**' --ci --fail-on high
+
   build-ubuntu:
-    needs: changes
+    needs: [changes, security]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -55,7 +72,7 @@ jobs:
             --show-trace
 
   build-ubuntu-arm:
-    needs: changes
+    needs: [changes, security]
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 30
     steps:
