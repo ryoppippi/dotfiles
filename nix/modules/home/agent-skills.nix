@@ -124,7 +124,7 @@
       {
         from = "agent-browser";
         path = "agent-browser";
-        # packages = [ pkgs.llm-agents.agent-browser ];
+        packages = [ pkgs.llm-agents.agent-browser ];
         # Opt out of auto command rewriting: this skill rewrites bare names to
         # an absolute path under ~/.agents via transform below, not to ./name.
         rewriteCommands = false;
