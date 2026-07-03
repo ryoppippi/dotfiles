@@ -131,6 +131,7 @@ in
         NSTableViewDefaultSizeMode = 2;
 
         # Keyboard
+        ApplePressAndHoldEnabled = true;
         KeyRepeat = 2; # Fast key repeat (1-2 is very fast)
         InitialKeyRepeat = 25; # Initial key repeat delay
 
