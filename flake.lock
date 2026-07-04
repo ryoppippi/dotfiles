@@ -107,11 +107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781801538,
-        "narHash": "sha256-6zUToQ0ydSgpgrMk3GEEVOpWgn9SwVlrP+7tFb9gpOU=",
+        "lastModified": 1782887713,
+        "narHash": "sha256-PAKRRRdYX8xpx97RC/8+yyp8rieqh2bIRyoX+Od6OmQ=",
         "owner": "BatteredBunny",
         "repo": "brew-nix",
-        "rev": "7614a09c5a86ef717c7cbcd3f4fffeacfb66b30b",
+        "rev": "660963f901ed34c4b7f3cff86c1efe5cd7d13c71",
         "type": "github"
       },
       "original": {
