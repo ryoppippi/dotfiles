@@ -2,10 +2,6 @@ import * as k from 'karabiner.ts';
 import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
-const IDENTIFIERS = {
-	discord: await utils.extractIdentifier('Discord'),
-} as const;
-
 k.writeToProfile('Default profile', [
 	k.rule('Tap Ctrl -> japanese_eisuu + ESC').manipulators([
 		k
@@ -32,31 +28,6 @@ k.writeToProfile('Default profile', [
 				repeat: false,
 			}),
 	]),
-
-	k
-		.rule(
-			'Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord',
-			k.ifApp({ bundle_identifiers: [IDENTIFIERS.discord] }),
-		)
-		.manipulators([
-			k
-				.map({
-					key_code: 'return_or_enter',
-					modifiers: { mandatory: ['shift'] },
-				})
-				.to({ key_code: 'return_or_enter' }),
-
-			k
-				.map({
-					key_code: 'return_or_enter',
-					modifiers: { mandatory: ['command'] },
-				})
-				.to({ key_code: 'return_or_enter' }),
-
-			k
-				.map({ key_code: 'return_or_enter' })
-				.to({ key_code: 'return_or_enter', modifiers: ['shift'] }),
-		]),
 
 	k.rule('Tap CMD to toggle Kana/Eisuu', devices.ifNotSelfMadeKeyboard).manipulators([
 		k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>({

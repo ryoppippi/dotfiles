@@ -76,69 +76,6 @@
 						]
 					},
 					{
-						"description": "Swap Enter & Shift+Enter and CMD+Enter -> Enter on Discord",
-						"manipulators": [
-							{
-								"type": "basic",
-								"from": {
-									"key_code": "return_or_enter",
-									"modifiers": {
-										"mandatory": ["shift"]
-									}
-								},
-								"to": [
-									{
-										"key_code": "return_or_enter"
-									}
-								],
-								"conditions": [
-									{
-										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord"]
-									}
-								]
-							},
-							{
-								"type": "basic",
-								"from": {
-									"key_code": "return_or_enter",
-									"modifiers": {
-										"mandatory": ["command"]
-									}
-								},
-								"to": [
-									{
-										"key_code": "return_or_enter"
-									}
-								],
-								"conditions": [
-									{
-										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord"]
-									}
-								]
-							},
-							{
-								"type": "basic",
-								"from": {
-									"key_code": "return_or_enter"
-								},
-								"to": [
-									{
-										"key_code": "return_or_enter",
-										"modifiers": ["shift"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "frontmost_application_if",
-										"bundle_identifiers": ["com.hnc.Discord"]
-									}
-								]
-							}
-						]
-					},
-					{
 						"description": "Tap CMD to toggle Kana/Eisuu",
 						"manipulators": [
 							{
