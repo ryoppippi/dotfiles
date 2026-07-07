@@ -84,6 +84,11 @@ return {
 
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function(args)
+				-- With commit.verbose=true, merge commit buffers contain the full
+				-- merge diff, and parsing it makes the editor slow to open
+				if args.match == "gitcommit" then
+					return
+				end
 				if vim.api.nvim_buf_line_count(args.buf) <= 50000 then
 					pcall(vim.treesitter.start, args.buf)
 				end
