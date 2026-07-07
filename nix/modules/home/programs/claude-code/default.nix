@@ -31,7 +31,7 @@ let
     includeCoAuthoredBy = false;
     statusLine = {
       type = "command";
-      command = "${bun} $( ghq root )/github.com/ryoppippi/ccusage/apps/ccusage/src/index.ts statusline --cost-source both";
+      command = "${bun} x ccusage statusline --cost-source both";
     };
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
