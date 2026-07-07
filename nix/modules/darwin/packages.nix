@@ -33,6 +33,7 @@ in
       betterdisplay
       bluesnooze
       cursor
+      dockdoor
       figma
       istherenet
       maestral
