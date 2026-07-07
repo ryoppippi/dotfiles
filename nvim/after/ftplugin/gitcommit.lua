@@ -11,7 +11,12 @@ local commit_bufnr = vim.api.nvim_get_current_buf()
 local commit_win_id = vim.fn.win_getid()
 local abs_buffer_filename = vim.fn.expand("%:p")
 
-vim.b.is_pre_commit_pass = not tb(vim.fn.executable(pre_commit_path))
+-- git itself skips the pre-commit hook for merge commits (it only runs
+-- pre-merge-commit), and after a merge the index holds every merged file,
+-- so running the hook here would lint the whole merge and block the editor
+local is_merge_commit = vim.fn.fnamemodify(abs_buffer_filename, ":t") == "MERGE_MSG"
+
+vim.b.is_pre_commit_pass = is_merge_commit or not tb(vim.fn.executable(pre_commit_path))
 vim.b.is_commit_msg_pass = not tb(vim.fn.executable(commit_msg_path))
 
 local cquit_if_not_passed = function()
@@ -21,7 +26,7 @@ local cquit_if_not_passed = function()
 end
 
 vim.schedule(function()
-	if tb(vim.fn.executable(pre_commit_path)) then
+	if not is_merge_commit and tb(vim.fn.executable(pre_commit_path)) then
 		vim.b.is_pre_commit_pass = false
 
 		-- create buffer
