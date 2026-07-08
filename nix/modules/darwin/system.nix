@@ -12,6 +12,17 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # nix-darwin's HTML manual builder passes `--sidebar-depth` to
+  # `nixos-render-docs manual html`, but the current nixpkgs revision ships a
+  # `nixos-render-docs` that rejects that flag, so `darwin-manual-html` fails
+  # to build. This is an upstream incompatibility (present even on nix-darwin
+  # HEAD). Man pages use a different, working subcommand, so keep those and
+  # only drop the HTML manual (`documentation.doc`). The uninstaller
+  # internally re-evaluates a full darwin system with default options, which
+  # rebuilds the broken manual, so disable it too.
+  documentation.doc.enable = false;
+  system.tools.darwin-uninstaller.enable = false;
+
   nix = {
     gc = {
       automatic = true;
