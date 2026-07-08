@@ -2,15 +2,24 @@
   pkgs,
   lib,
   config,
-  dotfilesDir ? "${config.home.homeDirectory}/ghq/github.com/ryoppippi/dotfiles",
   ...
 }:
 let
   codexHomeDir = "${config.home.homeDirectory}/.codex";
   codexXdgDir = "${config.xdg.configHome}/codex";
-  codexDotfilesDir = "${dotfilesDir}/codex";
 
   tomlFormat = pkgs.formats.toml { };
+
+  # Global instructions are assembled from the Codex-specific file plus the
+  # shared fragments in agents/shared/, which are the single source of truth
+  # also imported by claude/CLAUDE.md. Codex has no import mechanism, so the
+  # final AGENTS.md is generated at switch time instead of symlinked.
+  agentsMdText = lib.concatMapStringsSep "\n" builtins.readFile [
+    ../../../../codex/AGENTS.md
+    ../../../../agents/shared/code-comments.md
+    ../../../../agents/shared/command-privacy.md
+    ../../../../agents/shared/git-worktrees.md
+  ];
 
   settings = {
     model = "gpt-5.5";
@@ -79,7 +88,6 @@ in
       chmod 644 "${codexHomeDir}/config.toml"
     '';
 
-    file."${codexHomeDir}/AGENTS.md".source =
-      config.lib.file.mkOutOfStoreSymlink "${codexDotfilesDir}/AGENTS.md";
+    file."${codexHomeDir}/AGENTS.md".text = agentsMdText;
   };
 }
