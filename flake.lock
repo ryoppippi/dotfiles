@@ -24,11 +24,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782575918,
-        "narHash": "sha256-YzRp956W8ci29lYgsXCBSt8SsIcWBv+67/i9HWSl0Q0=",
+        "lastModified": 1783255035,
+        "narHash": "sha256-csxkmV7a0zdhWi24Bz23/GQi1zOimCNTDFyS/ezm7sw=",
         "owner": "Kyure-A",
         "repo": "agent-skills-nix",
-        "rev": "79eba8b513730982ab2a00dfbccd4fae84321b9c",
+        "rev": "46337bfdd6ccfcc08766c933a02fff3338ffe30f",
         "type": "github"
       },
       "original": {
@@ -427,11 +427,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782100728,
-        "narHash": "sha256-YTyPsWf6ieaU6j/gJ+i7ERXKC7DEJC8BxUcAubx2SVQ=",
+        "lastModified": 1782702263,
+        "narHash": "sha256-8/MG4Su7PhnynrmsVO61IeAfrK7GuUEu+E+gwbhy1QQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f3dc0b85833c6c9946ad1349ab810d07e0bdf761",
+        "rev": "789a35fbdeb3c46b260096daa0b321c11be527ea",
         "type": "github"
       },
       "original": {
