@@ -67,6 +67,9 @@
 
     ./hunk.nix
 
+    # Java (OpenJDK with JAVA_HOME)
+    ./java.nix
+
     # Neovim configuration
     (import ./neovim {
       inherit
