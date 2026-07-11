@@ -17,6 +17,7 @@ in
       git
       git-now
       git-wt
+      git-wtpr
       git-lfs
       ghq
       # Security
