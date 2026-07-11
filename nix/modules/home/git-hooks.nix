@@ -78,7 +78,7 @@
 
     if git diff HEAD^..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
       echo "TypeWhisper dictionary changed. Syncing..."
-      ./typewhisper/dict-sync.ts || true
+      ./typewhisper/dict-sync.nu || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-commit"
@@ -106,7 +106,7 @@
 
     if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
       echo "TypeWhisper dictionary changed. Syncing..."
-      ./typewhisper/dict-sync.ts || true
+      ./typewhisper/dict-sync.nu || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-checkout"
@@ -122,7 +122,7 @@
 
     if git diff HEAD@{1}..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
       echo "TypeWhisper dictionary changed. Syncing..."
-      ./typewhisper/dict-sync.ts || true
+      ./typewhisper/dict-sync.nu || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-merge"
@@ -145,7 +145,7 @@
 
     if git diff ORIG_HEAD..HEAD --name-only 2>/dev/null | grep -qE '^typewhisper/dictionary\.json'; then
       echo "TypeWhisper dictionary changed after rebase. Syncing..."
-      ./typewhisper/dict-sync.ts || true
+      ./typewhisper/dict-sync.nu || true
     fi
     HOOK_EOF
           chmod +x "$DOTFILES_DIR/.git/hooks/post-rewrite"
