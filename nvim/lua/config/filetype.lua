@@ -1,5 +1,6 @@
 vim.filetype.add({
 	extension = {
+		bb = "clojure",
 		jax = "help",
 		kbd = "lisp",
 		mdx = "markdown",
