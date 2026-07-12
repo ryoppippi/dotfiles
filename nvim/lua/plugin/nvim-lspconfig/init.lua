@@ -46,7 +46,7 @@ return {
 				"biome",
 				"eslint",
 				"oxlint",
-				"emmet_ls",
+				"emmet_language_server",
 				"tailwindcss",
 				"cssmodules_ls",
 				"unocss",

@@ -16,7 +16,7 @@ regenerate_package_lock() {
   echo "  Regenerating package-lock.json"
   local tmp_dir
   tmp_dir=$(mktemp -d)
-  trap 'rm -rf "$tmp_dir"' RETURN ERR
+  trap 'rm -rf "$tmp_dir"' ERR
 
   pushd "$tmp_dir" >/dev/null
   npm pack "$npm_name" --pack-destination . 2>/dev/null
@@ -25,6 +25,8 @@ regenerate_package_lock() {
   popd >/dev/null
 
   cp "$tmp_dir/package-lock.json" "$lock_file"
+  rm -rf "$tmp_dir"
+  trap - ERR
 }
 
 # Extract package list from default.nix (pname and npmName pairs)

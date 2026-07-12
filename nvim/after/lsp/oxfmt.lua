@@ -1,6 +1,5 @@
 ---@type vim.lsp.Config
 return {
-	cmd = { "oxfmt", "--lsp" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",

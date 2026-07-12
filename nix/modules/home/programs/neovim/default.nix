@@ -70,6 +70,8 @@ in
       ++ lib.optionals (nodePackages != null) (
         with nodePackages;
         [
+          cssmodules-language-server
+          gh-actions-language-server
           unocss-language-server
         ]
       )
@@ -82,7 +84,6 @@ in
         lua-language-server # Lua LSP
         nixd # Nix LSP
         efm-langserver # General purpose LSP
-        pyright # Python LSP
         typos-lsp # Spell checker LSP
         nushell # Nushell (`nu --lsp` language server)
 
@@ -98,13 +99,10 @@ in
         astro-language-server # Astro
         emmet-language-server # Emmet
         prisma-language-server # Prisma
-        stylelint # CSS linter
-        stylelint-lsp # Stylelint LSP
         svelte-language-server # Svelte
         tailwindcss-language-server # Tailwind CSS
         textlint # Natural language linter
         vscode-langservers-extracted # HTML/CSS/JSON/ESLint
-        vue-language-server # Vue.js
         yaml-language-server # YAML
       ]);
 

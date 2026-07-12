@@ -2,6 +2,7 @@ local lsp_utils = require("plugin.nvim-lspconfig.utils")
 
 ---@type vim.lsp.Config
 return {
+	cmd = lsp_utils.node_modules_cmd("svelteserver", { "--stdio" }),
 	on_attach = function(client, _)
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			pattern = { "*.js", "*.ts" },
