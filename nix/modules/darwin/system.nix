@@ -217,6 +217,7 @@ in
         };
         "com.apple.dock" = {
           appswitcher-all-displays = true; # Show app switcher on all displays
+          wvous-br-corner = 1;
         };
       };
     };
