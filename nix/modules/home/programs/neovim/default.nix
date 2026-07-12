@@ -12,7 +12,20 @@ let
   nvimConfigDir = "${config.xdg.configHome}/nvim";
 
   # Pre-built plugins by Nix
-  treesitterGrammars = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+  #
+  # nvim-treesitter's `withAllGrammars` ships no compiled `parser/*.so` on the
+  # main branch (it only carries the plugin source + `runtime/queries`), so
+  # loading it alone leaves every non-builtin language without a parser. Join
+  # the per-language `grammarPlugins` (each provides `parser/<lang>.so`) and
+  # graft the plugin's `runtime/queries` in as `queries/` so both the parsers
+  # and the matching highlight queries resolve from a single runtimepath entry.
+  treesitterGrammars = pkgs.symlinkJoin {
+    name = "nvim-treesitter-grammars-with-queries";
+    paths = builtins.attrValues pkgs.vimPlugins.nvim-treesitter.grammarPlugins;
+    postBuild = ''
+      ln -s ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
+    '';
+  };
   telescopeFzfNative = pkgs.vimPlugins.telescope-fzf-native-nvim;
   telescopeFzyNative = pkgs.vimPlugins.telescope-fzy-native-nvim;
   sqlitePath = "${pkgs.sqlite.out}/lib/libsqlite3.dylib";
@@ -71,6 +84,7 @@ in
         efm-langserver # General purpose LSP
         pyright # Python LSP
         typos-lsp # Spell checker LSP
+        nushell # Nushell (`nu --lsp` language server)
 
         # Python tools
         ruff # Python linter/formatter with built-in language server

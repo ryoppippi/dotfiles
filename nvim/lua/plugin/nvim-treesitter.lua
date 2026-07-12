@@ -78,6 +78,16 @@ return {
 		{ "haringsrob/nvim_context_vt" },
 	},
 	config = function()
+		-- Add the Nix-provided tree-sitter grammars (parsers + queries) to the
+		-- runtimepath here rather than in an early config module: lazy.nvim
+		-- rebuilds the runtimepath during `lazy.setup`, so any append made
+		-- before that runs is dropped. Appending inside this plugin's config
+		-- (which loads after lazy owns the runtimepath) makes the entry stick.
+		local treesitter_grammars = vim.env.TREESITTER_GRAMMARS
+		if treesitter_grammars then
+			vim.opt.runtimepath:append(treesitter_grammars)
+		end
+
 		require("nvim-treesitter").setup({
 			auto_install = false,
 		})
