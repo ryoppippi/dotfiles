@@ -24,14 +24,6 @@ in
   system.tools.darwin-uninstaller.enable = false;
 
   nix = {
-    gc = {
-      automatic = true;
-      interval = {
-        Hour = 12;
-        Minute = 0;
-      };
-      options = "--delete-older-than 7d";
-    };
     settings = {
       extra-experimental-features = [
         "nix-command"
