@@ -287,6 +287,7 @@ in
     ];
 
     masApps = {
+      "1Password for Safari" = 1569813296;
       "Accelerate" = 1459809092;
       "Actions" = 1586435171;
       "AdGuard for Safari" = 1440147259;
