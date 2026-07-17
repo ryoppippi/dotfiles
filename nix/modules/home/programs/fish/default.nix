@@ -17,6 +17,10 @@ let
       inherit (pkgs.fishPlugins.bass) src;
     }
     {
+      name = "forgit";
+      inherit (pkgs.fishPlugins.forgit) src;
+    }
+    {
       name = "fzf";
       inherit (pkgs.fishPlugins.fzf) src;
     }
