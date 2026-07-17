@@ -13,7 +13,6 @@ in
       fish
       tmux
       # VCS
-      bit
       git
       git-now
       git-wt
