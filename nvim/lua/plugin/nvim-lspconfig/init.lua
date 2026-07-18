@@ -8,6 +8,12 @@ return {
 			"b0o/schemastore.nvim",
 		},
 		config = function()
+			-- Guard for Neovim < 0.12 so the config keeps working until the
+			-- 0.12 migration is applied via `nix run .#switch`
+			if vim.lsp.linked_editing_range then
+				vim.lsp.linked_editing_range.enable()
+			end
+
 			vim.lsp.config(
 				"*",
 				(function()
