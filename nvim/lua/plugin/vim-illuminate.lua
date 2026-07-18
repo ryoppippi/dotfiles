@@ -1,9 +1,12 @@
 return {
 	"RRethy/vim-illuminate",
-	init = function()
-		vim.g.Illuminate_delay = 500
-		require("core.plugin").on_attach(function(client, _)
-			require("illuminate").on_attach(client)
-		end)
+	event = "BufReadPost",
+	config = function()
+		require("illuminate").configure({
+			delay = 500,
+			-- lsp only, matching the previous on_attach-per-client behaviour:
+			-- buffers without an LSP client stay unhighlighted
+			providers = { "lsp" },
+		})
 	end,
 }
