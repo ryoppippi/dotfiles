@@ -1,10 +1,5 @@
 local o = {}
 
----@return boolean 'is cmp installed?'
-function o.has_cmp()
-	return require("core.plugin").has("nvim-cmp")
-end
-
 ---Typescript inlay hints confis
 o.typescriptInlayHints = {
 	parameterNames = {
