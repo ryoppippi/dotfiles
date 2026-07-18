@@ -73,9 +73,6 @@ return {
 			end,
 		},
 		{ "David-Kunz/treesitter-unit" },
-
-		-- UI
-		{ "haringsrob/nvim_context_vt" },
 	},
 	config = function()
 		-- Add the Nix-provided tree-sitter grammars (parsers + queries) to the
