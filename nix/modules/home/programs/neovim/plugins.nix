@@ -90,7 +90,6 @@
   "vim-manpager" = "vim-manpager";
   "vim-matchup" = "vim-matchup";
   "vim-prettyprint" = "vim-prettyprint";
-  "vim-quickrun" = "vim-quickrun";
   "vim-repeat" = "vim-repeat";
   "vim-startuptime" = "vim-startuptime";
   "vim-table-mode" = "vim-table-mode";
