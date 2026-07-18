@@ -6,16 +6,6 @@ return {
 		cond = not is_vscode(),
 		dependencies = {
 			"b0o/schemastore.nvim",
-			---@diagnostic disable-next-line: missing-fields
-			{
-				"ray-x/go.nvim",
-				dir = vim.env.GO_NVIM, -- Nix-provided pre-built plugin
-				dependencies = {
-					"ray-x/guihua.lua",
-					"nvim-treesitter/nvim-treesitter",
-					"neovim/nvim-lspconfig",
-				},
-			},
 		},
 		config = function()
 			vim.lsp.config(
