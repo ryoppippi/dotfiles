@@ -15,8 +15,9 @@ read-only from the Nix store via **lazy2nix**
 - `nix run .#lazy2nix` regenerates the plugin sources from the runtime
   plugin table: nixpkgs-packaged plugins map to `vimPlugins` attributes
   (`nixpkgs-plugins.nix`), the rest are pinned `fetchFromGitHub` sources at
-  the commit `lazy-lock.json` last recorded (`pinned-plugins.json`). Run it
-  after adding or removing plugin specs.
+  the commit `lazy-lock.json` last recorded (`pinned-plugins.json`). The
+  pre-commit hook runs it automatically when staged changes touch plugin
+  specs; run it manually only if the hook warned that it failed.
 - Nix-served plugins are provided via a linkFarm exposed as
   `$LAZY_NIX_PLUGINS` and resolved through lazy.nvim's `dev.path`. nixpkgs
   ones update with `nix run .#update`; pinned ones stay at their pinned
