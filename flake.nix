@@ -15,9 +15,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    # Pin nixpkgs for Neovim 0.11.x — remove once ready to migrate to 0.12
-    nixpkgs-neovim.url = "github:nixos/nixpkgs/832efc09b4caf6b4569fbf9dc01bec3082a00611";
-
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nix-darwin = {
@@ -124,7 +121,6 @@
       self,
       flake-parts,
       nixpkgs,
-      nixpkgs-neovim,
       nix-darwin,
       nix-homebrew,
       home-manager,
@@ -174,10 +170,6 @@
             gh-nippou.overlays.default
             gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
-            # Pin Neovim 0.11.x — remove once ready to migrate to 0.12
-            (_final: _prev: {
-              neovim-unwrapped = (import nixpkgs-neovim { inherit system; }).neovim-unwrapped;
-            })
           ]
           ++ nixpkgs.lib.optionals isDarwin [
             brew-nix.overlays.default
