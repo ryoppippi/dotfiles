@@ -2,7 +2,7 @@ require("core.plugin").init()
 local lazy = require("lazy")
 
 -- Nix linkFarm of plugins served read-only from the Nix store; see
--- nix/modules/home/programs/neovim/plugins.nix
+-- nix/modules/home/programs/neovim/lazy2nix/
 local nix_plugins = vim.env.LAZY_NIX_PLUGINS
 
 if vim.env.NVIM_COLORSCHEME == nil then
