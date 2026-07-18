@@ -28,20 +28,15 @@ let
   };
   # Plugins served from the Nix store instead of lazy.nvim's git clones
   #
-  # plugins.nix maps lazy.nvim plugin directory names to nixpkgs vimPlugins
-  # attributes; each mapped plugin is linked into one farm whose entry names
-  # lazy.nvim's `dev.path` resolves directly. Plugins absent from the map
-  # (not packaged in nixpkgs, or intentionally excluded) keep being cloned
-  # by lazy.nvim at the lazy-lock.json commit (`dev.fallback = true` on the
-  # Lua side). The farm must NOT be derived from lazy-lock.json: lazy.nvim
-  # drops dev-served plugins from the lock file on the next lock update, so
-  # keying the farm off the lock would unserve everything after one restore.
-  lazyNixPlugins = pkgs.linkFarm "lazy-nix-plugins" (
-    lib.mapAttrsToList (name: attr: {
-      inherit name;
-      path = pkgs.vimPlugins.${attr};
-    }) (import ./plugins.nix)
-  );
+  # lazy2nix generates the plugin sources (see lazy2nix/default.nix); each
+  # plugin is linked into one farm whose entry names lazy.nvim's `dev.path`
+  # resolves directly. Plugins excluded in lazy2nix/config.json keep being
+  # cloned by lazy.nvim at the lazy-lock.json commit (`dev.fallback = true`
+  # on the Lua side). The farm must NOT be derived from lazy-lock.json:
+  # lazy.nvim drops dev-served plugins from the lock file on the next lock
+  # update, so keying the farm off the lock would unserve everything after
+  # one restore.
+  lazyNixPlugins = pkgs.linkFarm "lazy-nix-plugins" (import ./lazy2nix { inherit pkgs lib; }).plugins;
 
   bash = lib.getExe pkgs.bash;
   # the wrapped neovim, NOT pkgs.neovim: the activation-time `Lazy! restore`

@@ -1,0 +1,18 @@
+{
+	"$comment": "lazy2nix configuration. `exclude` lists plugins that must stay git-managed by lazy.nvim (their spec pins or build steps must keep applying). `overrides` forces a nixpkgs vimPlugins attribute when pname matching cannot find it.",
+	"exclude": [
+		"kanagawa.nvim",
+		"mini.ai",
+		"mini.extra",
+		"mini.jump",
+		"mini.move",
+		"mini.splitjoin",
+		"mini.surround",
+		"mini.trailspace",
+		"nvim-treesitter-context",
+		"other.nvim",
+		"rustaceanvim",
+		"term-edit.nvim"
+	],
+	"overrides": {}
+}
