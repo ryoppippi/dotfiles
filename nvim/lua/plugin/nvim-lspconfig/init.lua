@@ -47,6 +47,9 @@ return {
 				-- go
 				"gopls",
 
+				-- rust
+				"rust_analyzer",
+
 				-- lua
 				"lua_ls",
 
