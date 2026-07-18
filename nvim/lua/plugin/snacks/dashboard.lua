@@ -14,7 +14,7 @@ return {
 			{ icon = "󰒲", desc = "Lazy", key = "z", action = ":Lazy" },
 			{ icon = "󰈙", desc = "Oil", key = ".", action = ":Oil" },
 			{ icon = "", desc = "Dotfiles", key = "d", action = ":Config" },
-			{ icon = "󰈙", desc = "Files", key = "f", action = ":Telescope smart_open" },
+			{ icon = "󰈙", desc = "Files", key = "f", action = ":lua Snacks.picker.smart()" },
 			{ icon = "", desc = "Restore Session", key = "s", section = "session" },
 			{ icon = "󰅚", desc = "Quit", key = "q", action = ":qa" },
 		},

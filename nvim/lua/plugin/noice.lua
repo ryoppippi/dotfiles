@@ -7,9 +7,6 @@ return {
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
-	init = function()
-		require("plugin.telescope").le("noice")
-	end,
 	opts = function()
 		return
 		---@type NoiceConfig

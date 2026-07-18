@@ -3,9 +3,11 @@ return {
 	cond = not is_vscode(),
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
+		"folke/snacks.nvim",
 		"echasnovski/mini.icons",
 	},
-	config = true,
+	opts = {
+		picker = "snacks",
+	},
 	cmd = "Octo",
 }

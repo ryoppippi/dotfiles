@@ -38,7 +38,6 @@ return {
 
 		local has = require("core.plugin").has
 		local has_snacks = has("snacks.nvim")
-		local has_telescope = has("telescope.nvim")
 		local has_glance = has("glance.nvim")
 		local has_action_preview = has("actions-preview.nvim")
 		local has_inc_rename = has("inc-rename.nvim")
@@ -58,10 +57,6 @@ return {
 				Snacks.picker.lsp_definitions()
 				return
 			end
-			if has_telescope then
-				vim.cmd([[Telescope lsp_definitions]])
-				return
-			end
 			vim.lsp.buf.type_definition()
 		end, opts("jump to definition"))
 		keyset("n", "gt", function()
@@ -71,10 +66,6 @@ return {
 			end
 			if has_snacks then
 				Snacks.picker.lsp_type_definitions()
-				return
-			end
-			if has_telescope then
-				vim.cmd([[Telescope lsp_type_definitions]])
 				return
 			end
 			vim.lsp.buf.type_definition()
@@ -88,10 +79,6 @@ return {
 				Snacks.picker.lsp_implementations()
 				return
 			end
-			if has_telescope then
-				vim.cmd([[Telescope lsp_implementations]])
-				return
-			end
 			vim.lsp.buf.implementation()
 		end, opts("jump to implementation"))
 		keyset("n", "gr", function()
@@ -101,10 +88,6 @@ return {
 			end
 			if has_snacks then
 				Snacks.picker.lsp_references()
-				return
-			end
-			if has_telescope then
-				vim.cmd([[Telescope lsp_references]])
 				return
 			end
 			vim.lsp.buf.references()
