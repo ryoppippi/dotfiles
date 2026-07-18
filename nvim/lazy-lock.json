@@ -23,7 +23,6 @@
   "term-edit.nvim": { "branch": "master", "commit": "b190a91178ef98beefac2ec0823db047978ea327" },
   "troublesum.nvim": { "branch": "master", "commit": "b00301bb565bfcb6fcfa41f2012e43a0528da65b" },
   "ts-error-translator.nvim": { "branch": "main", "commit": "558abff11b9e8f4cefc0de09df780c56841c7a4b" },
-  "ugaterm.nvim": { "branch": "main", "commit": "19c489918a15926464d86a11d6bb4466f0838bb1" },
   "vim-log-highlighting": { "branch": "master", "commit": "1037e26f3120e6a6a2c0c33b14a84336dee2a78f" },
   "vim-partedit": { "branch": "master", "commit": "a4ed06ff7759343d205b4a5be08a5bb49ee878c3" },
   "vim-sonictemplate": { "branch": "master", "commit": "050450414ca69885df7c26936821d74678ff4904" },

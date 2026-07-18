@@ -39,6 +39,21 @@ return {
 	end,
 	keys = {
 		{ "gb", "GitBrowse", mode = "ca" },
+		{
+			"<c-z>",
+			function()
+				Snacks.terminal.toggle(nil, {
+					win = {
+						position = "float",
+						width = 0.8,
+						height = 0.8,
+						wo = { winblend = 20 },
+					},
+				})
+			end,
+			mode = { "n", "t" },
+			desc = "Toggle floating terminal",
+		},
 		-- Picker [[
 		{
 			",<cr>",
