@@ -11,5 +11,11 @@ return {
 		end
 		return return_events
 	end,
-	config = true,
+	opts = {
+		servers = {
+			"astro",
+			"svelte",
+			"tsgo",
+		},
+	},
 }
