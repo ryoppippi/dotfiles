@@ -36,7 +36,6 @@
   "lackluster.nvim": { "branch": "main", "commit": "70dd682e564784893b984deb51dd5ddd263c8cc7" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lsp-format.nvim": { "branch": "master", "commit": "42d1d3e407c846d95f84ea3767e72ed6e08f7495" },
-  "lsp_lines": { "branch": "main", "commit": "a92c755f182b89ea91bd8a6a2227208026f27b4d" },
   "mark-code-action.nvim": { "branch": "main", "commit": "7129ba61349bcb03defb5a482aa5677fecca1462" },
   "marks.nvim": { "branch": "master", "commit": "f353e8c08c50f39e99a9ed474172df7eddd89b72" },
   "mini.ai": { "branch": "stable", "commit": "bfb26d9072670c3aaefab0f53024b2f3729c8083" },
