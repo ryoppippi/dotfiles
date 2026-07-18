@@ -173,11 +173,11 @@
     "cmux-skill": {
       "flake": false,
       "locked": {
-        "lastModified": 1784011131,
-        "narHash": "sha256-ZuudybHbPdppJNY+vP8vDllYpDBmVaReNn5jpeesfG0=",
+        "lastModified": 1784097130,
+        "narHash": "sha256-h+4pPwuJwLe0io242WYzmmyF4iZCv8ZaBIDQHppbnwY=",
         "owner": "manaflow-ai",
         "repo": "cmux",
-        "rev": "9ce376b2fea00e9607cd625f5a58b2eaca76f09f",
+        "rev": "2dc5237c59e06b8f1007533cd4d14b13e702e553",
         "type": "github"
       },
       "original": {
