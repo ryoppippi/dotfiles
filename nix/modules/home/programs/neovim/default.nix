@@ -26,9 +26,6 @@ let
       ln -s ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
     '';
   };
-  telescopeFzfNative = pkgs.vimPlugins.telescope-fzf-native-nvim;
-  telescopeFzyNative = pkgs.vimPlugins.telescope-fzy-native-nvim;
-  sqlitePath = "${pkgs.sqlite.out}/lib/libsqlite3.dylib";
   bash = lib.getExe pkgs.bash;
   nvim = lib.getExe pkgs.neovim;
 in
@@ -46,28 +43,12 @@ in
       "--set"
       "TREESITTER_GRAMMARS"
       "${treesitterGrammars}"
-      "--set"
-      "TELESCOPE_FZF_NATIVE"
-      "${telescopeFzfNative}"
-      "--set"
-      "TELESCOPE_FZY_NATIVE"
-      "${telescopeFzyNative}"
-      "--set"
-      "SQLITE_CLIB_PATH"
-      "${sqlitePath}"
     ];
 
     # These packages are only available when NeoVim is running
     extraPackages =
-      with pkgs;
-      [
-
-        # Pre-built plugins (to avoid build steps)
-        telescopeFzfNative # telescope-fzf-native.nvim pre-built by Nix
-        telescopeFzyNative # telescope-fzy-native.nvim pre-built by Nix
-      ]
       # buildNpmPackage packages (language servers from npm)
-      ++ lib.optionals (nodePackages != null) (
+      lib.optionals (nodePackages != null) (
         with nodePackages;
         [
           cssmodules-language-server
