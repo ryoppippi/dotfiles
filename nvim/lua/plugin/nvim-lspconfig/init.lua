@@ -14,6 +14,10 @@ return {
 					local opts = {}
 					opts.capabilities = vim.lsp.protocol.make_client_capabilities()
 					opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+					local ok, blink = pcall(require, "blink.cmp")
+					if ok then
+						opts.capabilities = blink.get_lsp_capabilities(opts.capabilities)
+					end
 					return opts
 				end)()
 			)

@@ -60,7 +60,7 @@ return {
 					"oil.nvim",
 					"nui.nvim",
 					"noice.nvim",
-					"nvim-cmp",
+					"blink.cmp",
 					"nvim-lspconfig",
 					"snacks.nvim",
 					"oil.nvim",
