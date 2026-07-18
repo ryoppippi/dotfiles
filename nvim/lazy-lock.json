@@ -13,7 +13,6 @@
   "mini.trailspace": { "branch": "stable", "commit": "f8083ca969e1b2098480c10f3c3c4d2ce3586680" },
   "modes.nvim": { "branch": "main", "commit": "2badf8771dbb2d1e1066fd6a5dddaad2fc836e72" },
   "modesearch.vim": { "branch": "master", "commit": "71f123cadbb86e0cbacc12f472d18684fc3308a8" },
-  "nvim-dansa": { "branch": "main", "commit": "4bbca1c7e6ade1db407b7ba0ab8363be7c174ac9" },
   "nvim-insx": { "branch": "main", "commit": "fbba86031f3927ecbc11556217b4976a149c29c6" },
   "nvim-treesitter-clipping": { "branch": "master", "commit": "fa7c052cfcafa73099dbf2c1697dc56557dbde9f" },
   "nvim-treesitter-context": { "branch": "master", "commit": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636" },

@@ -46,6 +46,7 @@
   "gitignore.nvim" = "gitignore-nvim";
   "gitsigns.nvim" = "gitsigns-nvim";
   "glance.nvim" = "glance-nvim";
+  "guess-indent.nvim" = "guess-indent-nvim";
   "highlight-undo.nvim" = "highlight-undo-nvim";
   "hlargs.nvim" = "hlargs-nvim";
   "hlchunk.nvim" = "hlchunk-nvim";
