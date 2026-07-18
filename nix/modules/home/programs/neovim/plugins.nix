@@ -33,7 +33,6 @@
   "bufferline.nvim" = "bufferline-nvim";
   "bufresize.nvim" = "bufresize-nvim";
   "colorful-winsep.nvim" = "colorful-winsep-nvim";
-  "Comment.nvim" = "comment-nvim";
   "context_filetype.vim" = "context_filetype-vim";
   "copilot.lua" = "copilot-lua";
   "crates.nvim" = "crates-nvim";
@@ -53,7 +52,6 @@
   "inc-rename.nvim" = "inc-rename-nvim";
   "lackluster.nvim" = "lackluster-nvim";
   "lazy.nvim" = "lazy-nvim";
-  "lsp_lines" = "lsp_lines-nvim";
   "lsp-format.nvim" = "lsp-format-nvim";
   "marks.nvim" = "marks-nvim";
   "mini.icons" = "mini-icons";

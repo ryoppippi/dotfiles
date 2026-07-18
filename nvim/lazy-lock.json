@@ -23,7 +23,6 @@
   "nvim-file-location": { "branch": "main", "commit": "26ede92a734f2b133b362104da66c4942137d988" },
   "nvim-gtd": { "branch": "main", "commit": "f046db08e31ca79769c7f4f82f67f611e8cf97a6" },
   "nvim-insx": { "branch": "main", "commit": "fbba86031f3927ecbc11556217b4976a149c29c6" },
-  "nvim-linkedit": { "branch": "main", "commit": "ce2c7fb46f90cef5df52ca3adaeefb2473125bb1" },
   "nvim-regexplainer": { "branch": "main", "commit": "5524915648a545e331b2fa7a3c80d32f0c14e8bd" },
   "nvim-treesitter-clipping": { "branch": "master", "commit": "fa7c052cfcafa73099dbf2c1697dc56557dbde9f" },
   "nvim-treesitter-context": { "branch": "master", "commit": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636" },

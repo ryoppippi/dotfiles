@@ -25,13 +25,10 @@ end
 
 local function keymap(bufnr)
 	vim.keymap.set({ "n", "v", "x" }, "<leader>l", function()
-		local state, lsp_lines = pcall(require, "lsp_lines")
-		if state then
-			lsp_lines.toggle()
-		end
 		M.showInlayHint = not M.showInlayHint
+		vim.diagnostic.config({ virtual_lines = M.showInlayHint })
 		vim.lsp.inlay_hint.enable(M.showInlayHint, { bufnr })
-	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & lsp_lines" })
+	end, { buffer = bufnr, silent = true, noremap = true, desc = "toggle inlay hints & virtual lines" })
 end
 
 ---@type OnAttachCallback

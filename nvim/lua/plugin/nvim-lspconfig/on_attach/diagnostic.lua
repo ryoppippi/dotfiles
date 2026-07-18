@@ -23,6 +23,7 @@ return {
 			update_in_insert = false,
 			severity_sort = true,
 			virtual_text = false,
+			virtual_lines = true,
 			float = { sformat = diagnostic_formatter },
 		})
 	end,
