@@ -66,7 +66,6 @@
   "noice.nvim": { "branch": "main", "commit": "7bfd942445fb63089b59f97ca487d605e715f155" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-FeMaco.lua": { "branch": "main", "commit": "96bbf843595dbe865838b3f2484b73557f34700c" },
-  "nvim-aibo": { "branch": "main", "commit": "09bdb7c9549e2af76eb695986a5e6d4ede9a30b7" },
   "nvim-block-paste": { "branch": "master", "commit": "4964c784e9630880ab234f152afe49024aca3e31" },
   "nvim-bqf": { "branch": "main", "commit": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7" },
   "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
