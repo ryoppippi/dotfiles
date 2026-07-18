@@ -6,7 +6,6 @@ local lazy = require("lazy")
 local nix_plugins = vim.env.LAZY_NIX_PLUGINS
 
 if vim.env.NVIM_COLORSCHEME == nil then
-	-- vim.env.NVIM_COLORSCHEME = "lackluster"
 	vim.env.NVIM_COLORSCHEME = "kanagawa-dragon"
 end
 

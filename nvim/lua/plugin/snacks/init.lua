@@ -180,13 +180,6 @@ return {
 			desc = "Resume",
 		},
 		{
-			",t",
-			function()
-				Snacks.picker.todo_comments()
-			end,
-			desc = "TODO",
-		},
-		{
 			",i",
 			function()
 				Snacks.picker.icons()
