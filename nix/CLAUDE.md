@@ -22,6 +22,9 @@ nix run .#update
 # Update AI tools only
 nix run .#update-ai-tools
 
+# Regenerate Nix-served Neovim plugin sources (after changing plugin specs)
+nix run .#lazy2nix
+
 # Test build without applying
 nix run .#build
 ```
