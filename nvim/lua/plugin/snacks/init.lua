@@ -21,8 +21,24 @@ return {
 		vim.api.nvim_create_user_command("Lazygit", function()
 			Snacks.lazygit()
 		end, { nargs = 0 })
+
+		-- Yank a permalink to the current line(s) instead of opening the
+		-- browser, matching the old `GinBrowse -n --permalink ++yank` habit
+		vim.api.nvim_create_user_command("GitBrowse", function(cmd)
+			Snacks.gitbrowse({
+				what = "permalink",
+				line_start = cmd.range > 0 and cmd.line1 or nil,
+				line_end = cmd.range > 0 and cmd.line2 or nil,
+				open = function(url)
+					vim.fn.setreg("+", url)
+					Snacks.notify(url, { title = "Yanked permalink" })
+				end,
+				notify = false,
+			})
+		end, { nargs = 0, range = true })
 	end,
 	keys = {
+		{ "gb", "GitBrowse", mode = "ca" },
 		-- Picker [[
 		{
 			",<cr>",
