@@ -56,7 +56,6 @@ return {
 					"lazy.nvim",
 					"nvim-insx",
 					"plenary.nvim",
-					"vim-artemis",
 					"oil.nvim",
 					"nui.nvim",
 					"noice.nvim",

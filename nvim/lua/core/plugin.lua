@@ -3,6 +3,14 @@
 local M = {}
 
 function M.init()
+	-- prefer the Nix-provided lazy.nvim so a fresh machine needs no network
+	local nix_plugins = vim.env.LAZY_NIX_PLUGINS
+	local nix_lazypath = nix_plugins and nix_plugins .. "/lazy.nvim" or nil
+	if nix_lazypath and vim.uv.fs_stat(nix_lazypath) then
+		vim.opt.runtimepath:prepend(nix_lazypath)
+		return
+	end
+
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not vim.uv.fs_stat(lazypath) then
 		vim.fn.system({

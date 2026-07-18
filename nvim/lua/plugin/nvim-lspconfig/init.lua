@@ -75,7 +75,6 @@ return {
 
 				-- misc
 				"typos_lsp",
-				"sqls",
 				"clojure_lsp",
 				"r_language_server",
 			})

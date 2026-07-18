@@ -34,15 +34,6 @@ return {
 					SatelliteBar = { bg = theme.ui.special },
 					-- }}
 
-					-- RainbowDelimiter {{
-					RainbowDelimiterRed = { fg = theme.syn.preproc },
-					RainbowDelimiterYellow = { fg = theme.syn.special2 },
-					RainbowDelimiterBlue = { fg = theme.syn.fun },
-					RainbowDelimiterOrange = { fg = theme.syn.number },
-					RainbowDelimiterGreen = { fg = theme.syn.string },
-					RainbowDelimiterViolet = { fg = theme.syn.statement },
-					RainbowDelimiterCyan = { fg = theme.syn.type },
-					-- }}
 					-- Copilot {{
 					CopilotAnnotation = { bg = theme.ui.bg_p1, italic = true },
 					CopilotSuggestion = { bg = theme.ui.bg_p2, italic = true },

@@ -72,7 +72,6 @@ return {
 				end)
 			end,
 		},
-		{ "David-Kunz/treesitter-unit" },
 	},
 	config = function()
 		-- Add the Nix-provided tree-sitter grammars (parsers + queries) to the

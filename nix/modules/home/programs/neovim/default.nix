@@ -26,8 +26,24 @@ let
       ln -s ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
     '';
   };
+  # Plugins served from the Nix store instead of lazy.nvim's git clones
+  #
+  # lazy2nix generates the plugin sources (see lazy2nix/default.nix); each
+  # plugin is linked into one farm whose entry names lazy.nvim's `dev.path`
+  # resolves directly. Plugins excluded in lazy2nix/config.json keep being
+  # cloned by lazy.nvim at the lazy-lock.json commit (`dev.fallback = true`
+  # on the Lua side). The farm must NOT be derived from lazy-lock.json:
+  # lazy.nvim drops dev-served plugins from the lock file on the next lock
+  # update, so keying the farm off the lock would unserve everything after
+  # one restore.
+  lazyNixPlugins = pkgs.linkFarm "lazy-nix-plugins" (import ./lazy2nix { inherit pkgs lib; }).plugins;
+
   bash = lib.getExe pkgs.bash;
-  nvim = lib.getExe pkgs.neovim;
+  # the wrapped neovim, NOT pkgs.neovim: the activation-time `Lazy! restore`
+  # needs the wrapper's LAZY_NIX_PLUGINS (otherwise lazy.nvim treats every
+  # Nix-served plugin as a missing git plugin, clones all of them at HEAD and
+  # rewrites lazy-lock.json) and the wrapper's extraPackages on PATH
+  nvim = lib.getExe config.programs.neovim.finalPackage;
 in
 {
   programs.neovim = {
@@ -43,6 +59,9 @@ in
       "--set"
       "TREESITTER_GRAMMARS"
       "${treesitterGrammars}"
+      "--set"
+      "LAZY_NIX_PLUGINS"
+      "${lazyNixPlugins}"
     ];
 
     # These packages are only available when NeoVim is running
