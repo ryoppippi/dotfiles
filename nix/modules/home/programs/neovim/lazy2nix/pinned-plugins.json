@@ -35,6 +35,12 @@
 		"rev": "71f123cadbb86e0cbacc12f472d18684fc3308a8",
 		"hash": "sha256-bhlGusBmYqSbYjN8uICHRkA/HyGEQUslO5S/1mCI3ts="
 	},
+	"moonbit.nvim": {
+		"owner": "moonbit-community",
+		"repo": "moonbit.nvim",
+		"rev": "907c8240d3d2f96fa8e8569c73973e8604a7b1e6",
+		"hash": "sha256-jDJ1ACAT86oeyimQ+/k9rEHSAqoJe7u8hpcW3jQoGjk="
+	},
 	"nvim-insx": {
 		"owner": "hrsh7th",
 		"repo": "nvim-insx",
