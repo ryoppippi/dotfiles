@@ -79,10 +79,12 @@ in
 
         # Plugin build dependencies (lazy.nvim build steps)
         cmake # some plugins requiring cmake
+        tree-sitter # CLI needed by nvim-treesitter to install grammars absent from the Nix farm (e.g. moonbit)
 
         # Language servers
         lua-language-server # Lua LSP
         nixd # Nix LSP
+        moonbit-bin.moonbit.latest # MoonBit toolchain (bundles the language server)
         efm-langserver # General purpose LSP
         typos-lsp # Spell checker LSP
         nushell # Nushell (`nu --lsp` language server)

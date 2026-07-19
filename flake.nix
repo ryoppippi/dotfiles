@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    moonbit-overlay = {
+      url = "github:moonbit-community/moonbit-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -127,6 +132,7 @@
       llm-agents,
       nix-claude-code,
       nix-bun,
+      moonbit-overlay,
       treefmt-nix,
       git-hooks,
       gh-nippou,
@@ -167,6 +173,7 @@
               _nix-claude-code = nix-claude-code;
             })
             nix-bun.overlays.default
+            moonbit-overlay.overlays.default
             gh-nippou.overlays.default
             gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
