@@ -483,6 +483,27 @@
         "type": "github"
       }
     },
+    "moonbit-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix_3"
+      },
+      "locked": {
+        "lastModified": 1784526220,
+        "narHash": "sha256-UXIwpIhu94EeCjhpqn77JiKNeRme0gvcawkG9gWFQFE=",
+        "owner": "moonbit-community",
+        "repo": "moonbit-overlay",
+        "rev": "4f9e6314a848b4ee7b6be0a54d1f1e564e4750ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moonbit-community",
+        "repo": "moonbit-overlay",
+        "type": "github"
+      }
+    },
     "nix-bun": {
       "inputs": {
         "nixpkgs": [
@@ -688,6 +709,7 @@
         "git-hooks": "git-hooks_2",
         "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
+        "moonbit-overlay": "moonbit-overlay",
         "nix-bun": "nix-bun",
         "nix-claude-code": "nix-claude-code",
         "nix-darwin": "nix-darwin",
@@ -696,7 +718,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "tgrab-skill": "tgrab-skill",
-        "treefmt-nix": "treefmt-nix_3"
+        "treefmt-nix": "treefmt-nix_4"
       }
     },
     "systems": {
@@ -773,6 +795,27 @@
       }
     },
     "treefmt-nix_3": {
+      "inputs": {
+        "nixpkgs": [
+          "moonbit-overlay",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780220602,
+        "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "db947814a175b7ca6ded66e21383d938df01c227",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_4": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"

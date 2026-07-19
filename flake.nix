@@ -162,7 +162,7 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
-            llm-agents.overlays.default
+            llm-agents.overlays.shared-nixpkgs
             (_final: _prev: {
               _nix-claude-code = nix-claude-code;
             })
