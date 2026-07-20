@@ -150,7 +150,7 @@ abbr -a clc claude --continue
 abbr -a clh claude --dangerously-skip-permissions --model haiku
 abbr -a clo claude --model opus
 abbr -a cls claude --model sonnet
-abbr -a cls1 claude --model sonnet[1m]
+abbr -a clf clause --model fable
 abbr -a oc opencode
 abbr -a cx codex
 abbr -a ca cursor-agent
