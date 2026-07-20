@@ -70,7 +70,7 @@ let
               type = "command";
               command = builtins.concatStringsSep " " [
                 "input=$(cat);"
-                "skill=$(echo \"$input\" | ${jq} -r '.tool_input.skillName // \"\"');"
+                "skill=$(echo \"$input\" | ${jq} -r '.tool_input.skill // .tool_input.skillName // \"\"');"
                 "if [ \"$skill\" = \"codex-review\" ]; then"
                 "touch /tmp/.claude-codex-review-done;"
                 "fi; exit 0"
