@@ -9,13 +9,21 @@ Use this workflow when a command is unavailable in the current shell.
 
 ## Priority Order
 
-1. Try the current project's direnv environment:
+1. When running a script with a shebang, prioritise `nix shell` with the package that provides its interpreter before the usual order:
+
+   ```sh
+   nix shell nixpkgs#<package> --command ./<script>
+   ```
+
+   Read the shebang to select the interpreter package. This ensures the script runs with its declared runtime rather than an unrelated command found on `PATH`.
+
+2. Try the current project's direnv environment:
 
    ```sh
    direnv exec . <command>
    ```
 
-2. Use [comma](https://github.com/nix-community/comma) for tools from nixpkgs:
+3. Use [comma](https://github.com/nix-community/comma) for tools from nixpkgs:
 
    ```sh
    , <command>
@@ -23,7 +31,7 @@ Use this workflow when a command is unavailable in the current shell.
 
    When comma may fetch from GitHub, also use the `nix-github-rate-limit` skill.
 
-3. Use `nix run` when a specific nixpkgs package is needed:
+4. Use `nix run` when a specific nixpkgs package is needed:
 
    ```sh
    nix run nixpkgs#<package> -- <args>
@@ -31,7 +39,7 @@ Use this workflow when a command is unavailable in the current shell.
 
    When the command may fetch from GitHub, also use the `nix-github-rate-limit` skill.
 
-4. Use `nix shell` as the last resort:
+5. Use `nix shell` as the last resort:
 
    ```sh
    nix shell nixpkgs#<package> --command <command>
