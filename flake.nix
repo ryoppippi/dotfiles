@@ -117,8 +117,6 @@
       flake = false;
     };
 
-    nix-filter.url = "github:numtide/nix-filter";
-
   };
 
   outputs =
@@ -145,7 +143,6 @@
       agent-browser-skill,
       tgrab-skill,
       cmux-skill,
-      nix-filter,
       ...
     }:
     let
@@ -153,9 +150,9 @@
       darwinHomedir = "/Users/${username}";
       linuxHomedir = "/home/${username}";
 
-      local-skills = nix-filter {
-        root = self;
-        include = [ "agents/skills" ];
+      local-skills = nixpkgs.lib.fileset.toSource {
+        root = ./.;
+        fileset = ./agents/skills;
       };
 
       # Create pkgs with overlays
