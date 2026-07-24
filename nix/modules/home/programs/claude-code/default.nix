@@ -33,7 +33,7 @@ let
       type = "command";
       command = "${bun} x ccusage statusline --cost-source both";
     };
-    model = "fable";
+    model = "opus";
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
     useAutoModeDuringPlan = true;
