@@ -96,14 +96,6 @@ in
         hadolint # Dockerfile linter
         actionlint # GitHub Actions linter
       ])
-      # moonbit-overlay only ships binaries for x86_64-linux, x86_64-darwin and
-      # aarch64-darwin — evaluating moonbit-bin on aarch64-linux throws.
-      ++ lib.optionals (pkgs.stdenv.hostPlatform.system != "aarch64-linux") (
-        with pkgs;
-        [
-          moonbit-bin.moonbit.latest # MoonBit toolchain (bundles the language server)
-        ]
-      )
       ++ (with pkgs; [
 
         # Node.js-based language servers

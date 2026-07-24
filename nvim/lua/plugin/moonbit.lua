@@ -7,7 +7,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	-- The default opts already enable the native language server (`moon lsp`,
-	-- provided by the Nix-installed MoonBit toolchain) and auto-install the
-	-- tree-sitter grammar, which is not packaged in nixpkgs
+	-- provided by a MoonBit toolchain installed outside Nix) and auto-install
+	-- the tree-sitter grammar, which is not packaged in nixpkgs
 	opts = {},
 }
