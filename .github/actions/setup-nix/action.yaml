@@ -3,6 +3,14 @@ description: 'Install Nix with the Numtide binary cache configured'
 runs:
   using: 'composite'
   steps:
+    # Ubuntu 24.04 runner images restrict unprivileged user-namespace creation
+    # via AppArmor by default, which breaks bubblewrap-based sandboxing (e.g.
+    # grok's Linux wrapper) invoked from within a Nix build.
+    - name: Allow unprivileged user namespaces
+      if: runner.os == 'Linux'
+      shell: bash
+      run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 2>/dev/null || true
+
     - name: Install Nix
       uses: nixbuild/nix-quick-install-action@9f63be77f412a248c9d9a65a4c82cf066cdf8f0c # v35
       with:
