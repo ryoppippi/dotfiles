@@ -1,6 +1,6 @@
 ---
 name: git-wtpr
-description: Opens a GitHub pull request in a git-wt worktree from a PR number or URL. Use when creating or switching to a worktree for a specific PR.
+description: Opens or deletes a git-wt worktree for a GitHub pull request. Use when creating, switching to, or removing a PR worktree.
 ---
 
 # Git Worktrees for Pull Requests (git-wtpr)
@@ -13,6 +13,7 @@ worktree is needed.
 
 ```sh
 git wtpr <number|url> [git-wt flags...]
+git wtpr <number|url> -d | -D
 ```
 
 Examples:
@@ -20,6 +21,7 @@ Examples:
 ```sh
 git wtpr 25
 git wtpr https://github.com/owner/repo/pull/3984
+git wtpr 25 -D                                    # remove that PR worktree
 ```
 
 Interactive use (with `git-wtpr --init fish`) **cds into the worktree**,
@@ -38,6 +40,10 @@ Confirm availability with `command -v git-wtpr` or `git-wtpr --help`.
 
 Status goes to stderr. The worktree path is the last stdout line.
 
+With `-d` (safe) or `-D` (force) the PR worktree and its branch are
+deleted instead — the PR is still resolved to get the branch name, but
+step 3 is skipped.
+
 ## Workflow for agents
 
 1. Run from the correct repository clone (not a random directory).
@@ -45,8 +51,9 @@ Status goes to stderr. The worktree path is the last stdout line.
    calls, so capture the printed path and use it as the working directory.
 3. Verify inside the worktree: `git branch --show-current` and
    `git status --short`.
-4. For general worktree lifecycle (list, delete, rename), use the `git-wt`
-   skill — `git wtpr` only opens PR worktrees.
+4. To clean up afterwards, run `git wtpr <pr> -D` from the same clone (or
+   `git wt -D <branch>`). For other lifecycle operations (list, rename),
+   use the `git-wt` skill.
 
 ## Related
 

@@ -2,6 +2,7 @@
 #
 # Usage:
 #   git wtpr <number|url> [git-wt flags...]
+#   git wtpr <number|url> -d | -D
 #   git-wtpr --init <bash|zsh|fish>
 #   git-wtpr --help
 
@@ -11,12 +12,14 @@ git-wtpr — open a GitHub pull request in a git-wt worktree
 
 Usage:
   git wtpr <number|url> [git-wt flags...]
+  git wtpr <number|url> -d | -D
   git-wtpr --init <bash|zsh|fish>
   git-wtpr -h | --help
 
 Examples:
   git wtpr 25
   git wtpr https://github.com/owner/repo/pull/3984
+  git wtpr 25 -D
 
 With shell integration (git-wtpr --init fish|bash|zsh), the default is
 to cd into the worktree — same as git wt. Pass --nocd only when you
@@ -24,6 +27,10 @@ want the path printed without changing directory.
 
 Resolves the PR with gh, fetches refs/pull/<n>/head, then creates or
 switches to a worktree via git-wt using the PR head branch name.
+
+With -d (safe) or -D (force) the PR worktree and its branch are deleted
+instead: the PR is still resolved to get the branch name, but nothing
+is fetched.
 
 Protected head branch names (main, master) become pr-<number> so the
 default branch is never used as a worktree name.
@@ -115,6 +122,8 @@ def --wrapped main [...args: string] {
 		exit 2
 	}
 
+	let delete_mode = ($wt_args | any {|a| $a in ['-d', '-D']})
+
 	let in_repo = (^git rev-parse --git-dir | complete)
 	if $in_repo.exit_code != 0 {
 		error make {msg: 'not inside a git repository'}
@@ -146,10 +155,18 @@ def --wrapped main [...args: string] {
 		$branch = $"pr-($info.number)"
 	}
 
-	let remote = (resolve-remote)
-
 	print --stderr $"git-wtpr: PR #($info.number) — ($info.title)"
 	print --stderr $"git-wtpr: branch ($branch) — head ($info.headRefName)"
+
+	if $delete_mode {
+		# Deleting needs the branch name only: fetching would be pointless, and
+		# git-wt takes no start-point in delete mode.
+		print --stderr $"git-wtpr: deleting worktree ($branch)"
+		^git-wt ...($wt_args | append $branch)
+		exit $env.LAST_EXIT_CODE
+	}
+
+	let remote = (resolve-remote)
 	print --stderr $"git-wtpr: fetching ($remote) pull/($info.number)/head"
 
 	# Inherit stdio so fetch progress stays on stderr
