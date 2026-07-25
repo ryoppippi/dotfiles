@@ -97,17 +97,19 @@ def --wrapped main [...args: string] {
 		return
 	}
 
-	mut pr = null
+	# Empty string, not null, as the "not found yet" sentinel: a `mut` bound to
+	# null is typed `nothing`, so assigning the string arg is a type error.
+	mut pr = ''
 	mut wt_args = []
 	for arg in $args {
-		if $pr == null and (is-pr-selector $arg) {
+		if ($pr | is-empty) and (is-pr-selector $arg) {
 			$pr = $arg
 		} else {
 			$wt_args = ($wt_args | append $arg)
 		}
 	}
 
-	if $pr == null {
+	if ($pr | is-empty) {
 		print --stderr 'git-wtpr: missing PR number or URL'
 		print --stderr (usage)
 		exit 2
