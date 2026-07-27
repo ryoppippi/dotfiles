@@ -1,18 +1,12 @@
-_final: prev:
-let
-  inherit (prev) lib stdenv;
-in
-{
-  # `bun build --compile` appends the JS bundle after the ELF image, so
-  # `patchelf --shrink-rpath` in fixupPhase truncates the payload and leaves a
-  # binary that exits silently (`hunk --version` prints nothing, so the
-  # versionCheck hook fails the build). nixpkgs' own hunk package disables
-  # fixup for the same reason; upstream llm-agents.nix only sets `dontStrip`.
-  llm-agents =
-    prev.llm-agents
-    // lib.optionalAttrs stdenv.hostPlatform.isLinux {
-      hunk = prev.llm-agents.hunk.overrideAttrs (_: {
-        dontFixup = true;
-      });
+_final: prev: {
+  # hunk is built with `bun build --compile`. bun 1.3.14 miscomputes where its
+  # own runtime image ends once patchelf has rewritten the ELF, so on Linux it
+  # emits a standalone executable that embeds the runtime twice and segfaults
+  # on startup. nix-bun tracks the latest bun, so `pkgs.bun` is 1.3.14; build
+  # this one package with nixpkgs' bun until upstream bun fixes `--compile`.
+  llm-agents = prev.llm-agents // {
+    hunk = prev.llm-agents.hunk.override {
+      bun = prev.bun-nixpkgs;
     };
+  };
 }

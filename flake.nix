@@ -163,6 +163,11 @@
             (_final: _prev: {
               _nix-claude-code = nix-claude-code;
             })
+            # Keep nixpkgs' bun reachable after nix-bun takes over `bun`;
+            # see nix/overlays/hunk.nix for why one package still needs it.
+            (_final: prev: {
+              bun-nixpkgs = prev.bun;
+            })
             nix-bun.overlays.default
             gh-nippou.overlays.default
             gh-graph.overlays.default
