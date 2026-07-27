@@ -11,6 +11,8 @@ let
     ./git-wtpr.nix
     ./roots.nix
     ./audio-priority-bar.nix
+    # Build fixes for packages coming from flake inputs
+    ./hunk.nix
   ];
 
   # Apply each overlay and merge results
