@@ -9,13 +9,13 @@
 # (`open .`, `open -a Xcode foo.swift`, `open file.pdf`) goes to the real binary
 # untouched, which leaves Velja in charge of system-wide routing.
 def --wrapped main [...args] {
-	if ($args | is-empty) {
-		exec /usr/bin/open
-	}
+    if ($args | is-empty) {
+        exec /usr/bin/open
+    }
 
-	if ($args | all {|arg| $arg =~ '^https?://' }) {
-		exec browser-open ...$args
-	} else {
-		exec /usr/bin/open ...$args
-	}
+    if ($args | all {|arg| $arg =~ '^https?://' }) {
+        exec browser-open ...$args
+    } else {
+        exec /usr/bin/open ...$args
+    }
 }

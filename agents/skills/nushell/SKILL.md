@@ -56,7 +56,7 @@ Functional style is the default. In review, treat each of these as a defect to f
 Also:
 
 - Give every script a `def main`.
-- Type custom command signatures — parameter types, `--flag`, and the return type. They document intent and are checked at parse time.
+- Type custom command signatures — parameter types, `--flag`, and the return type. They document intent and are checked at parse time. `nufmt` strips a redundant `: any`; leave it stripped.
 - Timestamps are `datetime`, durations are `duration`. Compare and subtract them directly instead of formatting to strings. Convert explicitly to UTC (`| date to-timezone UTC`) when the value crosses a boundary that expects it.
 - Fail loudly with `error make` rather than returning a sentinel value.
 
