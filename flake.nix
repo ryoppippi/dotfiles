@@ -75,11 +75,6 @@
       flake = false;
     };
 
-    gh-graph = {
-      url = "github:kawarimidoll/gh-graph";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -128,7 +123,6 @@
       treefmt-nix,
       git-hooks,
       gh-nippou,
-      gh-graph,
       brew-nix,
       fish-na,
       nix-index-database,
@@ -165,7 +159,6 @@
             })
             nix-bun.overlays.default
             gh-nippou.overlays.default
-            gh-graph.overlays.default
             (import ./nix/overlays/default.nix)
           ]
           ++ nixpkgs.lib.optionals isDarwin [
