@@ -99,7 +99,7 @@
     })
 
     # cmux terminal configuration
-    (import ./cmux.nix {
+    (import ./cmux {
       inherit pkgs;
     })
 
