@@ -70,6 +70,8 @@ jobs:
                 print $"PR #($pr.number) rebased"
               }
               _ => {
+                # The conflict details are on stderr, which `complete` captured.
+                print $rebase.stderr
                 print $"::warning::Rebase failed for PR #($pr.number), aborting"
                 git rebase --abort
               }

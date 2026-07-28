@@ -138,7 +138,7 @@ jobs:
         # checking the repository out.
         run: |
           # Configuration that was left at its default is not worth a summary line.
-          def optional-line [label: string, value: string]: nothing -> string {
+          def optional-line [label: string, value: string] {
             match $value {
               '' => null
               $set => $"- ($label): ($set)"
