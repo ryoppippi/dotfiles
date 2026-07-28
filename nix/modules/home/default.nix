@@ -25,7 +25,7 @@ in
 
     # Git hooks for auto-switching nix config and treefmt on pre-commit
     (import ./git-hooks.nix {
-      inherit lib dotfilesDir;
+      inherit pkgs lib dotfilesDir;
     })
 
     # Agent skills for Claude Code (skills from flake inputs)
