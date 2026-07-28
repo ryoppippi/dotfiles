@@ -2,7 +2,7 @@
 
 The per-dimension checklist for `skill-maintenance`. The authoring rules these
 checks enforce live in the `skill-creator` skill — read it for the _why_ and the
-fix patterns; this file is the _what to verify_. `scripts/audit.sh` already
+fix patterns; this file is the _what to verify_. `scripts/audit.nu` already
 covers the countable parts (lengths, references/ and scripts/ presence); the rest
 are judgement calls.
 

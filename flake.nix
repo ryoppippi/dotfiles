@@ -254,6 +254,7 @@
           gitleaks = lib.getExe localPkgs.gitleaks;
           neovim = lib.getExe localPkgs.neovim;
           nom = lib.getExe localPkgs.nix-output-monitor;
+          nu = lib.getExe localPkgs.nushell;
           nufmt = lib.getExe localPkgs.nufmt;
           oxfmt = lib.getExe localPkgs.oxfmt;
           renovateConfigValidator = lib.getExe' localPkgs.renovate "renovate-config-validator";
@@ -504,7 +505,7 @@
               program = toString (
                 localPkgs.writeShellScript "update-node-packages" ''
                   set -e
-                  exec ${bash} nix/packages/node/update.sh "$@"
+                  exec ${nu} nix/packages/node/update.nu "$@"
                 ''
               );
             };
