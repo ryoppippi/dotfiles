@@ -46,6 +46,13 @@ nix run .#build                # Test build
 | Git     | `nix/modules/home/programs/git/`        | Declarative via Home Manager     |
 | Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative                      |
 
+## Scripting Language Choice
+
+- **Nushell** — the default for any new script. Use the `nushell` skill.
+- **Bun Shell or Python** — needs libraries.
+- **Bash** — the environment is not ours: Nix build phases, `writeShellApplication`, bootstrap, git hooks.
+- **Fish** — interactive config only (`fish/functions/`, abbreviations, completions), never a new script.
+
 ## Git Workflow
 
 - **Main branch**: `main`
