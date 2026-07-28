@@ -36,19 +36,21 @@ jobs:
         with:
           node-version: 'lts/*'
 
+      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+        with:
+          version: '0.114.1'
+
       - name: Update npm packages
         id: update
+        shell: nu {0}
         run: |
           bash nix/packages/node/update.sh
 
-          # Check if there are any changes
-          if git diff --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No updates available"
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Updates available"
-          fi
+          # `git diff --quiet` exits 1 when something changed, which Nushell
+          # surfaces as a command failure, so the exit code has to be inspected.
+          let updated = (git diff --quiet | complete | get exit_code) != 0
+          print (if $updated { 'Updates available' } else { 'No updates available' })
+          $"has_changes=($updated)\n" | save --append $env.GITHUB_OUTPUT
 
       - name: Build and test
         if: steps.update.outputs.has_changes == 'true'
@@ -60,22 +62,12 @@ jobs:
 
       - name: Create Pull Request
         if: steps.update.outputs.has_changes == 'true'
+        shell: nu {0}
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
         run: |
-          BRANCH_NAME="chore/update-node-packages-$(date +%Y%m%d)"
-
-          # Create branch and commit
-          git checkout -b "$BRANCH_NAME"
-          git add -A
-          git commit -m "chore(nix): update npm packages for Neovim"
-          git push -u origin "$BRANCH_NAME"
-
-          # Create PR
-          gh pr create \
-            --title "chore(nix): update npm packages for Neovim" \
-            --body "$(cat <<'EOF'
-          ## Summary
+          const TITLE = 'chore(nix): update npm packages for Neovim'
+          const BODY = "## Summary
           - Updates npm packages managed via buildNpmPackage
 
           ## Packages
@@ -84,10 +76,13 @@ jobs:
           - unocss-language-server
 
           ---
-          _This PR was automatically created by the update-node-packages workflow._
-          EOF
-          )" \
-            --label "dependencies,automated"
+          _This PR was automatically created by the update-node-packages workflow._"
 
-          # Enable auto-merge
-          gh pr merge "$BRANCH_NAME" --auto --squash
+          let branch = $"chore/update-node-packages-((date now) | format date '%Y%m%d')"
+
+          git checkout -b $branch
+          git add --all
+          git commit -m $TITLE
+          git push -u origin $branch
+          gh pr create --title $TITLE --body $BODY --base main --head $branch --label dependencies --label automated
+          gh pr merge $branch --auto --squash

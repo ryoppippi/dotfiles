@@ -120,7 +120,12 @@ jobs:
     runs-on: ubuntu-24.04-arm
     if: always() && needs.discover.outputs.has-updates == 'true'
     steps:
+      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+        with:
+          version: '0.114.1'
+
       - name: Generate summary
+        shell: nu {0}
         env:
           SUMMARY_TITLE: ${{ inputs.summary-title }}
           INPUTS: ${{ inputs.inputs }}
@@ -129,25 +134,35 @@ jobs:
           MINIMUM_RELEASE_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
           AUTO_MERGE: ${{ inputs.auto-merge }}
           UPDATE_RESULT: ${{ needs.update.result }}
+        # This job only writes the run summary, so keeping the script inline avoids
+        # checking the repository out.
         run: |
-          echo "## $SUMMARY_TITLE" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
-          if [ -n "$INPUTS" ]; then
-            echo "- Inputs: $INPUTS" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [ -n "$EXCLUDE_INPUTS" ]; then
-            echo "- Excluded: $EXCLUDE_INPUTS" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [ -n "$SKIP_DELAY_INPUTS" ]; then
-            echo "- Skip delay: $SKIP_DELAY_INPUTS" >> $GITHUB_STEP_SUMMARY
-          fi
-          echo "- Minimum release age: $MINIMUM_RELEASE_AGE_DAYS days" >> $GITHUB_STEP_SUMMARY
-          echo "- Auto-merge: $AUTO_MERGE" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          # Configuration that was left at its default is not worth a summary line.
+          def optional-line [label: string, value: string] {
+            match $value {
+              '' => null
+              $set => $"- ($label): ($set)"
+            }
+          }
 
-          if [ "$UPDATE_RESULT" = "failure" ]; then
-            echo ":warning: Some updates failed. Check individual job logs for details." >> $GITHUB_STEP_SUMMARY
-          else
-            echo ":white_check_mark: All update jobs completed." >> $GITHUB_STEP_SUMMARY
-          fi
+          let outcome = match $env.UPDATE_RESULT {
+            'failure' => ':warning: Some updates failed. Check individual job logs for details.'
+            _ => ':white_check_mark: All update jobs completed.'
+          }
+
+          [
+            $"## ($env.SUMMARY_TITLE)"
+            ''
+            '### Configuration'
+            (optional-line 'Inputs' $env.INPUTS)
+            (optional-line 'Excluded' $env.EXCLUDE_INPUTS)
+            (optional-line 'Skip delay' $env.SKIP_DELAY_INPUTS)
+            $"- Minimum release age: ($env.MINIMUM_RELEASE_AGE_DAYS) days"
+            $"- Auto-merge: ($env.AUTO_MERGE)"
+            ''
+            $outcome
+            ''
+          ]
+          | compact
+          | str join "\n"
+          | save --append $env.GITHUB_STEP_SUMMARY

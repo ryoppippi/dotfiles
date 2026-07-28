@@ -31,49 +31,62 @@ jobs:
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
 
+      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+        with:
+          version: '0.114.1'
+
       - name: Run nix-update on overlay packages
         id: update
+        shell: nu {0}
         run: |
-          set -eo pipefail
+          const OVERLAY_DIR = 'nix/overlays'
+          # Packages that follow the latest GitHub release tag.
+          const TAGGED_PACKAGES = [git-now roots gh-triage]
+          # Packages that follow their default branch HEAD instead of a release.
+          const BRANCH_PACKAGES = [gh-user-stars]
 
-          # Tagged-release packages: follow the latest GitHub release tag.
-          # Unstable-commit packages: follow the default branch HEAD.
-          tagged=(git-now roots gh-triage)
-          branch=(gh-user-stars)
+          # `git diff --quiet` exits 1 when the path differs, which Nushell surfaces as
+          # a command failure, so the exit code has to be inspected instead of raised.
+          def has-changes [path: string, --cached]: nothing -> bool {
+            let scope = if $cached { ['--cached'] } else { [] }
+            (git diff ...$scope --quiet -- $path | complete | get exit_code) != 0
+          }
 
-          updated=()
+          # nix-update fails for packages whose upstream has nothing newer, which is a
+          # normal outcome rather than a reason to stop the run.
+          def update-package [package: string, extra_args: list<string>]: nothing -> bool {
+            print $"::group::nix-update ($package)"
+            try { nix run nixpkgs#nix-update -- --flake ...$extra_args $package } catch {
+              print $"::warning::nix-update failed for ($package)"
+            }
+            print '::endgroup::'
 
-          for pkg in "${tagged[@]}"; do
-            echo "::group::nix-update $pkg"
-            nix run nixpkgs#nix-update -- --flake "$pkg" || true
-            echo "::endgroup::"
-            if ! git diff --quiet -- nix/overlays; then
-              updated+=("$pkg")
-            fi
-            git add nix/overlays
-          done
+            let updated = (has-changes $OVERLAY_DIR)
+            # Stage as we go so the next package is compared against a clean tree.
+            git add $OVERLAY_DIR
+            $updated
+          }
 
-          for pkg in "${branch[@]}"; do
-            echo "::group::nix-update $pkg (branch)"
-            nix run nixpkgs#nix-update -- --flake --version=branch "$pkg" || true
-            echo "::endgroup::"
-            if ! git diff --quiet -- nix/overlays; then
-              updated+=("$pkg")
-            fi
-            git add nix/overlays
-          done
+          let targets = [
+            ...($TAGGED_PACKAGES | each { |package| { name: $package, args: [] } })
+            ...($BRANCH_PACKAGES | each { |package| { name: $package, args: ['--version=branch'] } })
+          ]
 
-          if git diff --cached --quiet; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            echo "No overlay updates available"
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-            {
-              echo "updated_list<<EOF"
-              printf '%s\n' "${updated[@]}"
-              echo "EOF"
-            } >> "$GITHUB_OUTPUT"
-          fi
+          let updated = (
+            $targets
+            | each { |target| { name: $target.name, updated: (update-package $target.name $target.args) } }
+            | where updated
+            | get name
+          )
+
+          if not (has-changes $OVERLAY_DIR --cached) {
+            print 'No overlay updates available'
+            "has_changes=false\n" | save --append $env.GITHUB_OUTPUT
+            exit 0
+          }
+
+          print $"Updated: ($updated | str join ', ')"
+          $"has_changes=true\nupdated_packages=($updated | to json --raw)\n" | save --append $env.GITHUB_OUTPUT
 
       - name: Build and test
         if: steps.update.outputs.has_changes == 'true'
@@ -86,38 +99,36 @@ jobs:
       - name: Create Pull Request
         id: pr
         if: steps.update.outputs.has_changes == 'true'
+        shell: nu {0}
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
-          UPDATED_LIST: ${{ steps.update.outputs.updated_list }}
+          UPDATED_PACKAGES: ${{ steps.update.outputs.updated_packages }}
         run: |
-          set -eo pipefail
-          BRANCH_NAME="chore/update-overlays-$(date +%Y%m%d-%H%M%S)"
+          const TITLE = 'chore(nix): update custom overlay packages'
 
-          git checkout -b "$BRANCH_NAME"
-          git commit -m "chore(nix): update custom overlay packages"
-          git push -u origin "$BRANCH_NAME"
+          let body = [
+            '## Summary'
+            ''
+            'Updates custom overlay packages via `nix-update`.'
+            ''
+            '### Updated'
+            ...($env.UPDATED_PACKAGES | from json | each { |package| $"- ($package)" })
+            ''
+            '---'
+            '_This PR was automatically created by the update-overlays workflow._'
+          ] | str join "\n"
 
-          updated_md=$(echo "$UPDATED_LIST" | sed '/^$/d; s/^/- /')
+          # A timestamp keeps consecutive runs on separate branches, since each run is
+          # a standalone pull request rather than an update of the previous one.
+          let branch = $"chore/update-overlays-((date now) | format date '%Y%m%d-%H%M%S')"
 
-          body=$(cat <<EOF
-          ## Summary
+          git checkout -b $branch
+          git commit -m $TITLE
+          git push -u origin $branch
+          gh pr create --title $TITLE --body $body --base main --head $branch --label dependencies --label automated
 
-          Updates custom overlay packages via \`nix-update\`.
-
-          ### Updated
-          ${updated_md}
-
-          ---
-          _This PR was automatically created by the update-overlays workflow._
-          EOF
-          )
-
-          pr_url=$(gh pr create \
-            --title "chore(nix): update custom overlay packages" \
-            --body "$body" \
-            --label "dependencies,automated")
-
-          echo "pr_number=${pr_url##*/}" >> "$GITHUB_OUTPUT"
+          let number = (gh pr list --head $branch --json number | from json | get 0.number)
+          $"pr_number=($number)\n" | save --append $env.GITHUB_OUTPUT
 
       - name: Enable auto-merge
         if: steps.update.outputs.has_changes == 'true'

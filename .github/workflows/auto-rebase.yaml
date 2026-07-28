@@ -32,58 +32,68 @@ jobs:
           token: ${{ steps.bot.outputs.token }}
           fetch-depth: 0
 
+      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+        with:
+          version: '0.114.1'
+
       - name: Rebase open flake update PRs
+        shell: nu {0}
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
         run: |
-          set -euo pipefail
+          const BRANCH_PREFIX = 'update-flake-'
 
-          echo "=== Finding open flake update PRs ==="
+          def commits-behind-main [branch: string]: nothing -> int {
+            git rev-list --count $"origin/($branch)..origin/main" | str trim | into int
+          }
 
-          # Get all open PRs with update-flake- branches
-          prs=$(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("update-flake-")) | "\(.number) \(.headRefName)"')
+          def rebase-pr [pr: record] {
+            print $"=== PR #($pr.number) \(($pr.headRefName)) ==="
+            git fetch origin $pr.headRefName
 
-          if [ -z "$prs" ]; then
-            echo "No open flake update PRs found"
-            exit 0
-          fi
+            let behind = (commits-behind-main $pr.headRefName)
+            if $behind == 0 {
+              print 'Already up to date, skipping'
+              return
+            }
 
-          echo "Found PRs to rebase:"
-          echo "$prs"
+            print $"($behind) commit\(s) behind main, rebasing"
+            git checkout -B $pr.headRefName $"origin/($pr.headRefName)"
 
-          # Process each PR
-          echo "$prs" | while read -r pr_number branch_name; do
-            echo ""
-            echo "=== Processing PR #$pr_number (branch: $branch_name) ==="
+            # A conflicting rebase must not fail the run: the remaining branches can
+            # still be rebased, and this one is left for a human to resolve.
+            let rebase = (git rebase origin/main | complete)
+            print $rebase.stdout
+            match $rebase.exit_code {
+              0 => {
+                git push --force origin $pr.headRefName
+                print $"PR #($pr.number) rebased"
+              }
+              _ => {
+                # The conflict details are on stderr, which `complete` captured.
+                print $rebase.stderr
+                print $"::warning::Rebase failed for PR #($pr.number), aborting"
+                git rebase --abort
+              }
+            }
 
-            # Fetch the branch
-            git fetch origin "$branch_name"
-
-            # Check if branch is behind main
-            behind_count=$(git rev-list --count "origin/$branch_name..origin/main")
-
-            if [ "$behind_count" -eq 0 ]; then
-              echo "Branch is up to date, skipping"
-              continue
-            fi
-
-            echo "Branch is $behind_count commits behind main, rebasing..."
-
-            # Checkout and rebase
-            git checkout -B "$branch_name" "origin/$branch_name"
-
-            if git rebase origin/main; then
-              echo "Rebase successful, force pushing..."
-              git push --force origin "$branch_name"
-              echo "✅ PR #$pr_number rebased successfully"
-            else
-              echo "⚠️ Rebase failed for PR #$pr_number, aborting"
-              git rebase --abort
-            fi
-
-            # Return to main
             git checkout main
-          done
+          }
 
-          echo ""
-          echo "=== Rebase complete ==="
+          let prs = (
+            gh pr list --state open --json number,headRefName
+            | from json
+            | where { |pr| $pr.headRefName | str starts-with $BRANCH_PREFIX }
+          )
+
+          if ($prs | is-empty) {
+            print 'No open flake update PRs found'
+            exit 0
+          }
+
+          print $"Found ($prs | length) flake update PR\(s):"
+          print ($prs | select number headRefName)
+
+          for pr in $prs { rebase-pr $pr }
+
+          print '=== Rebase complete ==='
