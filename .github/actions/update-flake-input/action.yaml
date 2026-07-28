@@ -54,9 +54,13 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+      with:
+        version: '0.114.1'
+
     - name: Update flake input
       id: update
-      shell: bash
+      shell: nu {0}
       env:
         INPUT_NAME: ${{ inputs.input-name }}
         INPUT_OWNER: ${{ inputs.owner }}
@@ -66,239 +70,200 @@ runs:
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
         GH_TOKEN: ${{ inputs.github-token }}
       run: |
-        set -euo pipefail
-
-        echo "=== Updating input: $INPUT_NAME ==="
-        echo "Skip delay: $SKIP_DELAY"
-        echo "Minimum release age: $MIN_AGE_DAYS days"
-
-        # Calculate minimum age in seconds
-        min_age_seconds=$((MIN_AGE_DAYS * 86400))
-
-        # Get current revision before update
-        current_metadata=$(nix flake metadata --json --no-write-lock-file 2>/dev/null)
-        current_rev=$(echo "$current_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.rev // \"unknown\"")
-        current_owner=$(echo "$current_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.owner // \"unknown\"")
-        current_repo=$(echo "$current_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.repo // \"unknown\"")
-        echo "Current revision: $current_rev"
-
-        # Function to get package versions from a flake
-        get_package_versions() {
-          local flake_ref="$1"
-          local packages=""
-
-          # Define packages to check for each input
-          case "$INPUT_NAME" in
-            llm-agents)
-              packages="claude-code codex cursor-agent gemini-cli opencode goose-cli"
-              ;;
-            nix-bun)
-              packages="bun"
-              ;;
-            *)
-              echo ""
-              return
-              ;;
-          esac
-
-          local versions=""
-          for pkg in $packages; do
-            local version
-            version=$(nix eval --raw "${flake_ref}#packages.x86_64-linux.${pkg}.version" 2>/dev/null || echo "")
-            if [ -n "$version" ]; then
-              if [ -n "$versions" ]; then
-                versions="${versions}, ${pkg}=${version}"
-              else
-                versions="${pkg}=${version}"
-              fi
-            fi
-          done
-          echo "$versions"
+        const GITHUB_DATE = '%Y-%m-%dT%H:%M:%SZ'
+        # Packages worth naming in the PR title; other inputs get no version details.
+        const TRACKED_PACKAGES = {
+          llm-agents: [claude-code codex cursor-agent gemini-cli opencode goose-cli]
+          nix-bun: [bun]
         }
 
-        # Get current package versions for special inputs
-        current_pkg_versions=""
-        if [ "$INPUT_NAME" = "llm-agents" ] || [ "$INPUT_NAME" = "nix-bun" ]; then
-          echo "Fetching current package versions..."
-          current_pkg_versions=$(get_package_versions "github:${current_owner}/${current_repo}/${current_rev}")
-          echo "Current package versions: $current_pkg_versions"
-        fi
+        def github-output [outputs: record] {
+          $outputs | items { |key, value| $"($key)=($value)\n" } | str join | save --append $env.GITHUB_OUTPUT
+        }
 
-        # Determine target revision for update
-        target_rev=""
-        if [ "$SKIP_DELAY" = "false" ] && [ -n "$INPUT_OWNER" ] && [ -n "$INPUT_REPO" ]; then
-          echo "Fetching commit from at least $MIN_AGE_DAYS days ago via GitHub API..."
+        # The `locked` fields of an input as flake.lock currently records them.
+        def locked-input [name: string]: nothing -> record {
+          nix flake metadata --json --no-write-lock-file
+          | from json
+          | get locks.nodes
+          | get -o $name
+          | default {}
+          | get -o locked
+          | default {}
+        }
 
-          # Calculate the cutoff date
-          cutoff_date=$(date -u -d "$MIN_AGE_DAYS days ago" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || \
-                        date -u -v-${MIN_AGE_DAYS}d +%Y-%m-%dT%H:%M:%SZ)
-          echo "Cutoff date: $cutoff_date"
+        def flake-ref [locked: record]: nothing -> string {
+          $"github:($locked.owner? | default '')/($locked.repo? | default '')/($locked.rev? | default '')"
+        }
 
-          # Build the API URL with optional branch filter
-          api_url="repos/${INPUT_OWNER}/${INPUT_REPO}/commits?until=${cutoff_date}&per_page=1"
-          if [ -n "$INPUT_REF" ]; then
-            api_url="${api_url}&sha=${INPUT_REF}"
-            echo "Filtering by branch: $INPUT_REF"
-          fi
+        # An input may drop or rename a package, so a failed eval means "not exposed
+        # by this revision" rather than an error worth stopping for.
+        def package-version [flake_ref: string, package: string]: nothing -> string {
+          try { nix eval --raw $"($flake_ref)#packages.x86_64-linux.($package).version" } catch { '' }
+        }
 
-          # Fetch the most recent commit that is at least MIN_AGE_DAYS old
-          if commit_data=$(gh api "$api_url" --jq '.[0] | {sha: .sha, date: .commit.committer.date}' 2>/dev/null); then
-            target_rev=$(echo "$commit_data" | jq -r '.sha // empty')
-            commit_date=$(echo "$commit_data" | jq -r '.date // empty')
+        # Package name -> version for every tracked package the flake ref exposes.
+        def package-versions [flake_ref: string, packages: list<string>]: nothing -> record {
+          $packages
+          | each { |package| { name: $package, version: (package-version $flake_ref $package) } }
+          | where { |entry| $entry.version | is-not-empty }
+          | reduce --fold {} { |entry, versions| $versions | insert $entry.name $entry.version }
+        }
 
-            if [ -n "$target_rev" ]; then
-              echo "Found commit from $commit_date: ${target_rev:0:8}"
+        # Packages that moved to another version. Packages that exist on only one
+        # side are left out because there is no before/after pair to report.
+        def render-version-diff [before: record, after: record]: nothing -> string {
+          $after
+          | items { |package, version| { package: $package, before: ($before | get -o $package), after: $version } }
+          | where { |change| $change.before != null and $change.before != $change.after }
+          | each { |change| $"($change.package) ($change.before) → ($change.after)" }
+          | str join ', '
+        }
 
-              # Check if this is the same as current revision
-              if [ "${target_rev:0:40}" = "${current_rev:0:40}" ]; then
-                echo "Target revision is the same as current. No update needed."
-                echo "updated=false" >> "$GITHUB_OUTPUT"
-                exit 0
-              fi
+        # flake.lock stores lastModified in Unix seconds, but `into datetime` reads
+        # plain integers as nanoseconds.
+        def from-unix [seconds: int]: nothing -> datetime {
+          ($seconds * 1_000_000_000) | into datetime
+        }
 
-              # Check if target is older than current (would be a downgrade)
-              if [ -n "$current_rev" ] && [ "$current_rev" != "unknown" ]; then
-                current_commit_date=$(gh api "repos/${INPUT_OWNER}/${INPUT_REPO}/commits/${current_rev}" --jq '.commit.committer.date' 2>/dev/null || echo "")
-                if [ -n "$current_commit_date" ] && [ -n "$commit_date" ]; then
-                  current_ts=$(date -d "$current_commit_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$current_commit_date" +%s 2>/dev/null || echo "0")
-                  target_ts=$(date -d "$commit_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$commit_date" +%s 2>/dev/null || echo "0")
-                  if [ "$target_ts" -lt "$current_ts" ]; then
-                    echo "Target revision (${target_rev:0:8} from $commit_date) is older than current (${current_rev:0:8} from $current_commit_date). Skipping to avoid downgrade."
-                    echo "updated=false" >> "$GITHUB_OUTPUT"
-                    exit 0
-                  fi
-                fi
-              fi
-            else
-              echo "No commits found older than $MIN_AGE_DAYS days. Skipping update."
-              echo "updated=false" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
-          else
-            echo "Warning: Failed to fetch commits via GitHub API, falling back to standard update"
-          fi
-        fi
+        # The GitHub API expects UTC, and `format date` would otherwise render local
+        # time under a `Z` suffix.
+        def utc-timestamp [moment: datetime]: nothing -> string {
+          $moment | date to-timezone UTC | format date $GITHUB_DATE
+        }
 
-        # Perform the update
-        if [ -n "$target_rev" ]; then
-          # Update to specific revision
-          echo "Running: nix flake update $INPUT_NAME --override-input $INPUT_NAME github:${INPUT_OWNER}/${INPUT_REPO}/${target_rev}"
-          if ! nix flake update "$INPUT_NAME" --override-input "$INPUT_NAME" "github:${INPUT_OWNER}/${INPUT_REPO}/${target_rev}"; then
-            echo "::error::Failed to update $INPUT_NAME to specific revision"
-            exit 1
-          fi
-        else
-          # Standard update (latest)
-          echo "Running: nix flake update $INPUT_NAME"
-          if ! nix flake update "$INPUT_NAME"; then
-            echo "::error::Failed to update $INPUT_NAME"
-            exit 1
-          fi
-        fi
+        # `git diff --quiet` exits 1 when the path differs, which Nushell surfaces as
+        # a command failure, so the exit code has to be inspected instead of raised.
+        def has-changes [path: string]: nothing -> bool {
+          (git diff --quiet -- $path | complete | get exit_code) != 0
+        }
 
-        # Check if there were actual changes
-        if git diff --quiet flake.lock; then
-          echo "No changes detected for $INPUT_NAME"
-          echo "updated=false" >> "$GITHUB_OUTPUT"
+        # Newest commit that is already older than the release-age window. A failing
+        # API call is reported as `unavailable` so the caller can fall back to a plain
+        # update, which differs from the repository having no commit that old.
+        def aged-commit [owner: string, repo: string, git_ref: string, cutoff: datetime]: nothing -> record {
+          let query = { until: (utc-timestamp $cutoff), per_page: 1 }
+            | merge (if ($git_ref | is-empty) { {} } else { { sha: $git_ref } })
+            | items { |key, value| $"($key)=($value)" }
+            | str join '&'
+          let commits = try { gh api $"repos/($owner)/($repo)/commits?($query)" | from json } catch { null }
+
+          match $commits {
+            null => { status: 'unavailable' }
+            [] => { status: 'none' }
+            [$commit, ..] => {
+              { status: 'found', sha: $commit.sha, date: ($commit.commit.committer.date | into datetime) }
+            }
+          }
+        }
+
+        # When a revision was committed, or null when the API cannot tell us.
+        def commit-date [owner: string, repo: string, rev: string] {
+          try {
+            gh api $"repos/($owner)/($repo)/commits/($rev)" | from json | get commit.committer.date | into datetime
+          } catch {
+            null
+          }
+        }
+
+        # Report "nothing to do" and stop, leaving flake.lock as it was found.
+        def skip [reason: string] {
+          print $reason
+          github-output { updated: false }
           exit 0
-        fi
+        }
 
-        # Get new revision info
-        new_metadata=$(nix flake metadata --json --no-write-lock-file 2>/dev/null)
-        new_rev=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.rev // \"unknown\"")
-        new_owner=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.owner // \"unknown\"")
-        new_repo=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.repo // \"unknown\"")
-        echo "New revision: $new_rev"
+        let name = $env.INPUT_NAME
+        let owner = $env.INPUT_OWNER
+        let repo = $env.INPUT_REPO
+        let skip_delay = ($env.SKIP_DELAY == 'true')
+        let min_age = (($env.MIN_AGE_DAYS | into int) * 1day)
+        let packages = ($TRACKED_PACKAGES | get -o $name | default [])
+        let before = (locked-input $name)
 
-        # Get new package versions for special inputs
-        new_pkg_versions=""
-        pkg_version_diff=""
-        if [ "$INPUT_NAME" = "llm-agents" ] || [ "$INPUT_NAME" = "nix-bun" ]; then
-          echo "Fetching new package versions..."
-          new_pkg_versions=$(get_package_versions "github:${new_owner}/${new_repo}/${new_rev}")
-          echo "New package versions: $new_pkg_versions"
+        print $"=== Updating input: ($name) ==="
+        print $"Current revision: ($before.rev? | default 'unknown')"
+        print (match $skip_delay {
+          true => 'Release age check: skipped'
+          false => $"Minimum release age: ($min_age)"
+        })
 
-          # Build version diff for changed packages
-          if [ -n "$current_pkg_versions" ] && [ -n "$new_pkg_versions" ]; then
-            # Parse and compare versions
-            declare -A old_versions new_versions
-            IFS=', ' read -ra old_pairs <<< "$current_pkg_versions"
-            for pair in "${old_pairs[@]}"; do
-              key="${pair%%=*}"
-              val="${pair#*=}"
-              old_versions["$key"]="$val"
-            done
-            IFS=', ' read -ra new_pairs <<< "$new_pkg_versions"
-            for pair in "${new_pairs[@]}"; do
-              key="${pair%%=*}"
-              val="${pair#*=}"
-              new_versions["$key"]="$val"
-            done
+        let versions_before = (package-versions (flake-ref $before) $packages)
+        if ($packages | is-not-empty) { print $"Current package versions: ($versions_before)" }
 
-            # Find changed versions
-            changed_pkgs=""
-            for key in "${!new_versions[@]}"; do
-              old_val="${old_versions[$key]:-}"
-              new_val="${new_versions[$key]}"
-              if [ "$old_val" != "$new_val" ] && [ -n "$old_val" ]; then
-                if [ -n "$changed_pkgs" ]; then
-                  changed_pkgs="${changed_pkgs}, ${key} ${old_val} → ${new_val}"
-                else
-                  changed_pkgs="${key} ${old_val} → ${new_val}"
-                fi
-              fi
-            done
+        # Resolving the target revision up front keeps a too-new commit out of
+        # flake.lock, rather than writing it and reverting afterwards.
+        let target = if $skip_delay or ($owner | is-empty) or ($repo | is-empty) {
+          { status: 'skipped' }
+        } else {
+          aged-commit $owner $repo $env.INPUT_REF ((date now) - $min_age)
+        }
 
-            if [ -n "$changed_pkgs" ]; then
-              pkg_version_diff="$changed_pkgs"
-              echo "Package version changes: $pkg_version_diff"
-            fi
-          fi
-        fi
+        match $target.status {
+          'none' => (skip $"No commit older than ($min_age) found. Skipping update.")
+          'unavailable' => (print '::warning::Could not query commits; falling back to the latest revision')
+          'found' => {
+            print $"Target revision: ($target.sha | str substring ..<8) from (utc-timestamp $target.date)"
+            if $target.sha == ($before.rev? | default '') {
+              skip 'Target revision matches the current one. No update needed.'
+            }
+            let before_date = (commit-date $owner $repo ($before.rev? | default ''))
+            if $before_date != null and $target.date < $before_date {
+              skip $"Target revision predates the current one \((utc-timestamp $before_date)). Skipping to avoid a downgrade."
+            }
+          }
+          _ => {}
+        }
 
-        # Verify release age for standard updates (when target_rev was not pre-determined)
-        if [ -z "$target_rev" ] && [ "$SKIP_DELAY" = "false" ]; then
-          echo "Verifying release age (minimum: $MIN_AGE_DAYS days)..."
+        let target_sha = if $target.status == 'found' { $target.sha } else { null }
+        try {
+          match $target_sha {
+            null => { nix flake update $name }
+            $sha => { nix flake update $name --override-input $name $"github:($owner)/($repo)/($sha)" }
+          }
+        } catch {
+          print $"::error::Failed to update ($name)"
+          exit 1
+        }
 
-          last_modified=$(echo "$new_metadata" | jq -r ".locks.nodes.\"$INPUT_NAME\".locked.lastModified // 0")
+        if not (has-changes 'flake.lock') { skip $"No changes detected for ($name)" }
 
-          if [ "$last_modified" != "0" ] && [ "$last_modified" != "null" ]; then
-            current_time=$(date +%s)
-            age_seconds=$((current_time - last_modified))
-            age_days=$((age_seconds / 86400))
+        let after = (locked-input $name)
+        print $"New revision: ($after.rev? | default 'unknown')"
 
-            echo "Release age: $age_days days ($age_seconds seconds)"
+        # A plain update lands on whatever HEAD is, so its age can only be checked
+        # once the new revision is in the lock file.
+        if $target_sha == null and not $skip_delay {
+          match ($after.lastModified? | default 0) {
+            0 => (print '::warning::Could not determine lastModified; keeping the update')
+            $seconds => {
+              let age = ((date now) - (from-unix $seconds))
+              print $"Release age: ($age)"
+              if $age < $min_age {
+                git checkout flake.lock
+                skip $"Release is younger than ($min_age). Skipping update."
+              }
+            }
+          }
+        }
 
-            if [ "$age_seconds" -lt "$min_age_seconds" ]; then
-              echo "Release is too new (less than $MIN_AGE_DAYS days old). Skipping update."
-              git checkout flake.lock
-              echo "updated=false" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
+        let versions_after = (package-versions (flake-ref $after) $packages)
+        let version_diff = (render-version-diff $versions_before $versions_after)
+        if ($version_diff | is-not-empty) { print $"Package version changes: ($version_diff)" }
 
-            echo "Release age check passed (>= $MIN_AGE_DAYS days old)"
-          else
-            echo "Warning: Could not determine lastModified timestamp, proceeding with update"
-          fi
-        else
-          if [ -n "$target_rev" ]; then
-            echo "Update to pre-validated revision (>= $MIN_AGE_DAYS days old)"
-          else
-            echo "Skipping release age check (skip_delay=true)"
-          fi
-        fi
-
-        echo "Update successful!"
-        echo "updated=true" >> "$GITHUB_OUTPUT"
-        echo "new_version=${new_rev:0:8}" >> "$GITHUB_OUTPUT"
-        echo "current_pkg_versions=${current_pkg_versions}" >> "$GITHUB_OUTPUT"
-        echo "new_pkg_versions=${new_pkg_versions}" >> "$GITHUB_OUTPUT"
-        echo "pkg_version_diff=${pkg_version_diff}" >> "$GITHUB_OUTPUT"
+        github-output {
+          updated: true
+          new_version: ($after.rev? | default 'unknown' | str substring ..<8)
+          current_pkg_versions: ($versions_before | to json --raw)
+          new_pkg_versions: ($versions_after | to json --raw)
+          pkg_version_diff: $version_diff
+        }
+        print 'Update successful!'
 
     - name: Create pull request
       id: create-pr
       if: steps.update.outputs.updated == 'true'
-      shell: bash
+      shell: nu {0}
       env:
         GH_TOKEN: ${{ inputs.github-token }}
         INPUT_NAME: ${{ inputs.input-name }}
@@ -312,126 +277,83 @@ runs:
         NEW_PKG_VERSIONS: ${{ steps.update.outputs.new_pkg_versions }}
         PKG_VERSION_DIFF: ${{ steps.update.outputs.pkg_version_diff }}
       run: |
-        set -euo pipefail
+        # Step outputs arrive as strings; an empty value means no packages are tracked.
+        def parse-versions [raw: string]: nothing -> record {
+          if ($raw | is-empty) { {} } else { $raw | from json }
+        }
 
-        branch="update-flake-${INPUT_NAME}"
+        # Markdown rows comparing every known package version before and after.
+        def version-rows [before: record, after: record]: nothing -> list<string> {
+          $after
+          | items { |package, version|
+            let previous = ($before | get -o $package | default 'N/A')
+            let marker = if $previous == $version { '' } else { ' :arrow_up:' }
+            $"| ($package) | `($previous)` | `($version)`($marker) |"
+          }
+        }
 
-        # Build PR title with package version diff if available
-        if [ -n "$PKG_VERSION_DIFF" ]; then
-          pr_title="chore(nix): update ${INPUT_NAME} (${PKG_VERSION_DIFF})"
-        else
-          pr_title="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
-        fi
+        let name = $env.INPUT_NAME
+        let new_version = $env.NEW_VERSION
+        let branch = $"update-flake-($name)"
+        let rows = (version-rows (parse-versions $env.CURRENT_PKG_VERSIONS) (parse-versions $env.NEW_PKG_VERSIONS))
 
-        # Create PR body
-        if [ "$SKIP_DELAY" = "true" ]; then
-          delay_note=":zap: This input is configured to skip the release age check."
-        else
-          delay_note=":hourglass: This update passed the ${MIN_AGE_DAYS}-day minimum release age check."
-        fi
+        # Package versions say more than a revision, so they win the title whenever
+        # the update moved any of them.
+        let title = match $env.PKG_VERSION_DIFF {
+          '' => $"chore\(nix): update flake input ($name) to ($new_version)"
+          $diff => $"chore\(nix): update ($name) \(($diff))"
+        }
 
-        # Build package versions section if available
-        pkg_versions_section=""
-        if [ -n "$NEW_PKG_VERSIONS" ]; then
-          pkg_versions_section="
-        ## Package Versions
-        | Package | Old | New |
-        |---------|-----|-----|"
+        let note = match $env.SKIP_DELAY {
+          'true' => ':zap: This input is configured to skip the release age check.'
+          _ => $":hourglass: This update passed the ($env.MIN_AGE_DAYS)-day minimum release age check."
+        }
 
-          # Parse current and new versions into arrays
-          declare -A old_versions new_versions
-          if [ -n "$CURRENT_PKG_VERSIONS" ]; then
-            IFS=', ' read -ra old_pairs <<< "$CURRENT_PKG_VERSIONS"
-            for pair in "${old_pairs[@]}"; do
-              key="${pair%%=*}"
-              val="${pair#*=}"
-              old_versions["$key"]="$val"
-            done
-          fi
-          IFS=', ' read -ra new_pairs <<< "$NEW_PKG_VERSIONS"
-          for pair in "${new_pairs[@]}"; do
-            key="${pair%%=*}"
-            val="${pair#*=}"
-            new_versions["$key"]="$val"
-          done
+        let versions_section = match $rows {
+          [] => []
+          $table => ['' '## Package Versions' '' '| Package | Old | New |' '|---------|-----|-----|' ...$table]
+        }
 
-          # Build table rows
-          for key in "${!new_versions[@]}"; do
-            old_val="${old_versions[$key]:-N/A}"
-            new_val="${new_versions[$key]}"
-            if [ "$old_val" != "$new_val" ]; then
-              pkg_versions_section="${pkg_versions_section}
-        | ${key} | \`${old_val}\` | \`${new_val}\` :arrow_up: |"
-            else
-              pkg_versions_section="${pkg_versions_section}
-        | ${key} | \`${old_val}\` | \`${new_val}\` |"
-            fi
-          done
-        fi
+        let body = [
+          $"Automated update of flake input `($name)`."
+          ''
+          '## Changes'
+          $"- **($name)**: `($env.CURRENT_VERSION)` :arrow_right: `($new_version)`"
+          ...$versions_section
+          ''
+          '## Notes'
+          $note
+          ''
+          '---'
+          'This PR was automatically created by the flake update workflow.'
+        ] | str join "\n"
 
-        pr_body="Automated update of flake input \`${INPUT_NAME}\`.
-
-        ## Changes
-        - **${INPUT_NAME}**: \`${CURRENT_VERSION}\` :arrow_right: \`${NEW_VERSION}\`
-        ${pkg_versions_section}
-
-        ## Notes
-        ${delay_note}
-
-        ---
-        This PR was automatically created by the flake update workflow."
-
-        # Stage changes
         git add flake.lock
+        git checkout -b $branch
+        git commit -m $title
+        # A re-run of the same workflow reuses the branch name, so the push is forced.
+        git push --force origin $branch
 
-        # Create branch
-        git checkout -b "$branch"
+        match (gh pr list --head $branch --json number | from json | get -o 0.number) {
+          null => {
+            print $"Creating a pull request for ($branch)"
+            let label_args = ($env.PR_LABELS | split row ',' | each { |label| ['--label' ($label | str trim)] } | flatten)
+            gh pr create --title $title --body $body --base main --head $branch ...$label_args
+          }
+          $existing => {
+            print $"Updating existing PR #($existing)"
+            gh pr edit $existing --title $title --body $body
+          }
+        }
 
-        # Build commit message with package version diff if available
-        if [ -n "$PKG_VERSION_DIFF" ]; then
-          commit_message="chore(nix): update ${INPUT_NAME} (${PKG_VERSION_DIFF})"
-        else
-          commit_message="chore(nix): update flake input ${INPUT_NAME} to ${NEW_VERSION}"
-        fi
+        let number = (gh pr list --head $branch --json number | from json | get 0.number)
+        if $env.AUTO_MERGE == 'true' {
+          # Auto-merge is rejected unless the repository has branch protection configured.
+          try { gh pr merge $number --auto --squash } catch {
+            print '::warning::Could not enable auto-merge; branch protection rules may be missing'
+          }
+        }
 
-        git commit -m "$commit_message"
-
-        # Push (force to handle re-runs)
-        git push --force origin "$branch"
-
-        # Check if PR exists
-        pr_number=$(gh pr list --head "$branch" --json number --jq '.[0].number // empty')
-
-        if [ -n "$pr_number" ]; then
-          echo "Updating existing PR #$pr_number"
-          gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
-        else
-          echo "Creating new PR"
-
-          # Build label arguments
-          label_args=""
-          IFS=',' read -ra labels <<< "$PR_LABELS"
-          for label in "${labels[@]}"; do
-            label=$(echo "$label" | xargs)
-            label_args="$label_args --label $label"
-          done
-
-          gh pr create \
-            --title "$pr_title" \
-            --body "$pr_body" \
-            --base main \
-            --head "$branch" \
-            $label_args
-
-          pr_number=$(gh pr list --head "$branch" --json number --jq '.[0].number')
-        fi
-
-        # Enable auto-merge if requested
-        if [ "$AUTO_MERGE" = "true" ] && [ -n "$pr_number" ]; then
-          echo "Enabling auto-merge for PR #$pr_number"
-          gh pr merge "$pr_number" --auto --squash || echo "Note: Auto-merge may require branch protection rules"
-        fi
-
-        pr_url=$(gh pr view "$pr_number" --json url --jq '.url')
-        echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
-        echo "PR URL: $pr_url"
+        let url = (gh pr view $number --json url | from json | get url)
+        print $"PR URL: ($url)"
+        $"pr_url=($url)\n" | save --append $env.GITHUB_OUTPUT
