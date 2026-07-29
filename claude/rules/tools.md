@@ -33,6 +33,9 @@ If `bunx <command>` fails, try: `bun x <command>`
 
 Use the `missing-tools` skill when a command is unavailable, a shell reports `command not found`, or a tool must be run without installing it globally.
 
-## Tips
+## Reading Files from GitHub Repos
 
-- if you use `gh do` command, you can pass github credentials via environment variables. See `gh do --help` for more details.
+```sh
+nix run nixpkgs#gh -- repo read-file --help
+nix run nixpkgs#gh -- repo read-dir --help
+```
