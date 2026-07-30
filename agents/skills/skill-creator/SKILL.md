@@ -1,11 +1,13 @@
 ---
 name: skill-creator
-description: Guides agent-skill creation and updates following Anthropic's SKILL.md best practices. Use when adding or editing skills under `agents/skills/`, writing SKILL.md frontmatter, references, or skill routing.
+description: Guides authoring agent-facing instructions following Anthropic's SKILL.md best practices. Use when adding or editing skills under `agents/skills/`, rules in `claude/rules/`, `CLAUDE.md`, or `agents/shared/` fragments — frontmatter, references, and routing included.
 ---
 
 # Skill Creator
 
 Use this skill when creating or updating local skills under `agents/skills/` in this dotfiles repo. They are deployed to `~/.agents/skills/` and `~/.config/claude/skills/` via `nix/modules/home/agent-skills.nix` (auto-enabled by `skills.enableAll = [ "local" ]`).
+
+The **Body** and **Documentation references** sections below apply to every agent-facing instruction file here, not just skills: `claude/rules/*.md`, `claude/CLAUDE.md`, and `agents/shared/*.md`. Rules and `CLAUDE.md` are loaded on _every_ session, so they are the least forgiving place to be verbose — keep them to judgement the agent cannot derive on its own.
 
 ## Workflow
 
@@ -73,6 +75,12 @@ Don't paste large chunks of external docs into the skill — they go stale and c
   ```
 
   Find them with `fd README.md node_modules/<package-name>` or `fd -e md . node_modules/<package-name>/docs`.
+
+- **CLI tools**: never transcribe usage, flags, or subcommands — the agent can run `<tool> --help` itself, and a copy goes stale. Write the judgement the help output cannot give (when to reach for the tool, which of several tools to pick, what not to do with it) and point at `<tool> --help` for the mechanics.
+
+  ```markdown
+  Clone it with `ghq` instead of `git clone` into `/tmp`. See `ghq --help` for usage.
+  ```
 
 - **Relevant repo files** (local skills only): if concrete files in this repo are the source of truth for the skill, list them by path so the agent reads the real thing instead of a stale copy. The `vitest-testing` skill's **Key Files** section is the model — it names `vitest.setup.ts`, `test-db.ts`, etc. by path.
 
