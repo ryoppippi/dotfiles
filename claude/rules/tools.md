@@ -35,7 +35,18 @@ Use the `missing-tools` skill when a command is unavailable, a shell reports `co
 
 ## Reading Files from GitHub Repos
 
+For a handful of known files, read them remotely instead of cloning:
+
 ```sh
 nix run nixpkgs#gh -- repo read-file --help
 nix run nixpkgs#gh -- repo read-dir --help
 ```
+
+## Cloning Repos for Investigation (ghq)
+
+When the task needs a whole repo locally — searching across it, following its git
+history, or running its build and tests — clone it with `ghq` instead of
+`git clone` into `/tmp` or inside the current project. See `ghq --help` for usage.
+
+Treat such clones as read-only reference checkouts: never commit or push to a
+repo that was cloned just to be investigated.
