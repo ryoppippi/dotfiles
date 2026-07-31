@@ -19,7 +19,9 @@ The **Body** and **Documentation references** sections below apply to every agen
 
 ## Frontmatter
 
-Required fields (see `https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices`):
+Required fields:
+
+https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices
 
 ```yaml
 ---
@@ -62,19 +64,26 @@ Keep the body procedural and repo-specific:
 
 Avoid explaining generic concepts the model already knows. Aim for under 500 lines; split larger content into `references/`.
 
+- https://simonwillison.net/2026/Jul/21/cat-and-thariq/
+- https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models
+
 ## Documentation references
 
 Don't paste large chunks of external docs into the skill — they go stale and cost tokens. Point at the authoritative source instead:
 
+- When a URL is self-descriptive, include the URL directly without adding a title or summary.
+
 - **Public docs**: include the canonical docs URL (e.g. `https://vitest.dev/api/`) so the agent can fetch the current version when needed.
-- **Installed libraries**: if the skill is about a package present in `node_modules/`, instruct the agent to read the docs the package ships locally — they match the installed version and need no network. Many packages now publish docs on npm for exactly this (see <https://ryoppippi.com/blog/2025-12-14-publish-docs-on-npm-en>).
+- **Installed libraries**: if the skill is about a package present in `node_modules/`, instruct the agent to read the docs the package ships locally — they match the installed version and need no network. Many packages now publish docs on npm for exactly this.
 
-  ```markdown
-  For API details, read `node_modules/<package-name>/README.md`
-  (or `node_modules/<package-name>/docs/**/*.md` if the package ships a docs folder).
-  ```
+https://ryoppippi.com/blog/2025-12-14-publish-docs-on-npm-en
 
-  Find them with `fd README.md node_modules/<package-name>` or `fd -e md . node_modules/<package-name>/docs`.
+```markdown
+For API details, read `node_modules/<package-name>/README.md`
+(or `node_modules/<package-name>/docs/**/*.md` if the package ships a docs folder).
+```
+
+Find them with `fd README.md node_modules/<package-name>` or `fd -e md . node_modules/<package-name>/docs`.
 
 - **CLI tools**: never transcribe usage, flags, or subcommands — the agent can run `<tool> --help` itself, and a copy goes stale. Write the judgement the help output cannot give (when to reach for the tool, which of several tools to pick, what not to do with it) and point at `<tool> --help` for the mechanics.
 
@@ -97,7 +106,7 @@ Never paste the same instructions into two skills — pick a single home and lin
 
 Use `` !`command` `` inside fenced blocks to inject live state (current branch, tool version, detected test runner). Prefer dynamic blocks for environment info; keep static text for workflow steps and best practices.
 
-Reference: <https://code.claude.com/docs/en/skills#inject-dynamic-context>
+https://code.claude.com/docs/en/skills#inject-dynamic-context
 
 ## References
 

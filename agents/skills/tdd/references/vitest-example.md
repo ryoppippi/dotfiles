@@ -29,7 +29,7 @@ Use built-in modifiers instead of commenting out or deleting tests:
 
 Modifiers can be chained (e.g. `it.skip.concurrent(...)`, `it.fails.only(...)`).
 
-See https://vitest.dev/api/test for the full API.
+https://vitest.dev/api/test
 
 ## TDD Example
 

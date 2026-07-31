@@ -17,8 +17,8 @@ Arguments:
 
 Steps:
 
-1. Read https://markdown.new/https://react.dev/learn/you-might-not-need-an-effect to understand the guidelines
-   1.1 if you cannot access the link, go directly to https://react.dev/learn/you-might-not-need-an-effect and read the content there.
+1. https://markdown.new/https://react.dev/learn/you-might-not-need-an-effect
+   If inaccessible: https://react.dev/learn/you-might-not-need-an-effect
 2. Analyze the specified scope for useEffect anti-patterns
 3. If fix=true, apply the fixes. If fix=false, propose the fixes without applying.
 4. If you REALLY REALLY need to use useEffect, add a comment in the code explaining why it's necessary and link to the relevant section of the guidelines.
