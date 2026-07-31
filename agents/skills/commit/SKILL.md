@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Creates atomic Conventional Commits. Use when committing code changes, splitting hunks into revertable units, or writing detailed commit messages.
+description: Creates atomic Conventional Commits. Use when committing code changes, splitting hunks into revertable units, or writing commit messages.
 ---
 
 <!--
@@ -9,96 +9,42 @@ Example prompts:
   /commit push=true
 -->
 
-Arguments:
+# Commit
 
-- push: whether to push after committing (default: false). Set to true to push to remote.
+Create small, independently revertable Conventional Commits.
 
-You are an expert git commit architect creating fine-grained, independently revertable commits following Conventional Commits specification.
+## Arguments
 
-Before committing, inspect the current state:
-
-```sh
-git status --short
-git diff HEAD
-git log --oneline -10
-```
-
-## Core Philosophy
-
-**Revertability First**: Each commit must be revertable independently without breaking other functionality. Prefer smaller, granular commits over large groupings. Split by hunks within files, not just entire files.
-
-PR branches are normally squash-merged, so do not compress review work with `git commit --amend` by default. Keep review fixes as small follow-up commits that can be reverted independently. Amend only for unpublished local mistakes or when the user explicitly asks.
-
-Tiny commits are expected. A single review comment, one wording correction, one reference-file extraction, one symlink sync, or one generated formatting pass can each be its own commit when independently revertable.
-
-Tiny does not mean incomplete. For moves, renames, or extractions, one commit must include both sides of the operation: remove or update the old location, add the new location, update references, and sync generated links if required. Never commit only the destination of a move while leaving the source/reference cleanup for a later commit.
-
-For concrete good and bad examples, read `references/revertable-commits.md`.
+- `push`: whether to push after committing (default: `false`). Set to `true` to push.
 
 ## Workflow
 
-1. **Analyse the changes above**: Review the git state already provided
-2. **Review history**: Match existing commit patterns and inspect relevant file history before deciding commit boundaries
-3. **Identify revertable units**: Examine each hunk separately - can it be reverted independently?
-4. **For each unit**:
-   - Extract specific hunks using `git diff <file>`
-   - Create patch with only desired hunks
-   - Stage only that patch with `git apply --cached -v <patch>`
-   - Craft message following format below
-   - Commit and verify with `git show HEAD`
+1. Inspect the current state:
 
-**NEVER use `git add -p` or `git add --interactive`** - Claude Code cannot handle interactive commands.
+   ```sh
+   git status --short
+   git diff HEAD
+   git log --oneline -10
+   ```
 
-## Patch Staging
+2. Review relevant history and split the changes into the smallest independently revertable units. Keep unrelated changes out of the commit. For moves or extractions, include both sides and update references.
 
-Use `git apply --cached -v` to stage precise non-interactive patches. Read `references/git-apply.md` when a patch fails, needs whitespace handling, or must be staged without touching unrelated hunks.
+3. Stage each unit non-interactively with `git apply --cached -v`. Never use `git add -p` or interactive staging. Read `references/git-apply.md` when precise staging needs troubleshooting.
 
-## History Inspection
+4. Write an English Conventional Commit message using UK spelling:
 
-Use standard git history commands to understand intent before committing. Prefer targeted commands such as `git log --follow -- <file>`, `git show <commit> -- <file>`, and `git blame <file>`. Match the repository's existing commit granularity, scopes, and explanation style.
+   ```text
+   <type>(<scope>): <subject>
 
-## Commit Message Format
+   <body>
+   ```
 
-```text
-<type>(<scope>): <subject>
+   Use a standard type such as `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`, `build`, `perf`, or `revert`. Keep the body concise and explain what changed and why when the subject is not sufficient. When CI is unnecessary for the change, append `[ci skip]` to the commit message.
 
-<body>
+5. Commit and verify with `git show HEAD` and `git diff --check`.
 
-<footer>
-```
+Keep published review fixes as separate follow-up commits; amend only unpublished local mistakes or when explicitly requested. Read `references/revertable-commits.md` for detailed examples.
 
-**Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+## Push
 
-**Body should explain**:
-
-- WHAT changed and WHY
-- Problem context and solution rationale
-- Implementation decisions
-- Potential impacts
-- Wrap at 72 characters
-
-## Quality Checks
-
-- Can this be reverted without breaking other functionality?
-- Is this the smallest logical unit?
-- Does message clearly explain the change?
-- Does it match project's commit patterns?
-- No debugging statements or commented code without explanation
-
-## Key Principles
-
-- Always use **English** for commit messages with **UK English spelling** (e.g. "colour", "organise", "initialise")
-- **Never push to main branch directly** - create a PR instead
-- When in doubt, prefer smaller commits (can squash later, can't easily split)
-- On PR branches, stack small revertable commits instead of amending away review history unless explicitly asked
-- Prefer many tiny commits over a tidy-looking but broad commit; squash merge will clean PR history later
-- Match project's established scope naming and conventions
-- Include issue/PR references when applicable
-- Each commit must pass: "If I revert this, will it break other features?"
-- If the commit is just for applying formatter use `chore(xxx): format` or just `chore: format`
-
-## Push (if push=true)
-
-After all commits are complete, push to remote. Let repository git hooks run; if pre-commit or pre-push runs format, sync, lint, typecheck, or tests, treat those hooks as part of the normal validation path and fix any failures in a new small commit.
-
-Read `references/push.md` for the exact upstream check and push commands.
+When `push=true`, push after all commits are complete and let repository hooks run. Read `references/push.md` for the exact push procedure.

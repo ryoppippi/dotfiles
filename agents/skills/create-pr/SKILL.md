@@ -21,10 +21,11 @@ Use this skill when the user asks to create or open a pull request.
 
 3. Review the diff before committing. Exclude unrelated changes, temporary files, secrets, generated junk, and debug-only edits.
 
-4. Commit with the repo-local `commit` skill using an English Conventional Commit message.
+4. Commit with the repo-local `commit` skill using an English Conventional Commit message. When CI is unnecessary for the change, append `[ci skip]` to the commit message.
 
 5. Prepare a PR title and body proportional to the change:
 
+   - Use a Conventional Commit type such as `feat`, `fix`, `docs`, `refactor`, or `chore` in the PR title.
    - For a small focused change, use 2–4 sentences covering what changed and why.
    - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
    - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
@@ -36,7 +37,7 @@ Use this skill when the user asks to create or open a pull request.
 
      ```sh
      git push -u origin <branch-name>
-     gh pr create --title "type(scope): summary" --body-file -
+     gh pr create --title "feat(scope): summary" --body-file -
      ```
 
 7. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
