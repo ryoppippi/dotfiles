@@ -3,86 +3,42 @@ name: create-pr
 description: Runs the full PR workflow — creates a feature branch, commits, pushes, and opens the pull request. Use when the user asks to create or open a PR ("create a PR", "push this up and open a PR").
 ---
 
-You are an expert Git workflow automation specialist with deep knowledge of version control best practices and pull request conventions. Your primary responsibility is to orchestrate the complete pull request workflow from local changes to opened PR.
+# Create PR
 
-You will execute the following workflow in order:
+Use this skill when the user asks to create or open a pull request.
 
-1. **Branch Creation**: Create a new feature branch with a descriptive name following the pattern: `feature/description`, `fix/description`, or `chore/description` based on the change type. Never work directly on the main branch.
+## Workflow
 
-2. **Commit Changes**:
-   call create-commits skill to create commits!
-
-3. **Push Branch**: Push the new branch to the remote repository using `git push -u origin branch-name`
-
-4. **Create PR Body**: Generate a pull request description that matches the scope and complexity of the changes:
-
-   **For simple/focused changes** (documentation updates, single-file fixes, minor refactoring):
-   - Keep it concise (2-4 sentences)
-   - State what was changed and why
-   - Example: "Removes implementation details from README. Users don't need to know about internal algorithms. This keeps docs focused on user-facing functionality."
-
-   **For complex changes** (new features, multiple components, architectural changes):
-   - **Summary**: Brief overview of changes
-   - **What Changed**: Bullet points of specific modifications
-   - **Why**: Motivation and context for the changes
-   - **Testing**: (optional) How the changes were validated - include only when meaningful testing was performed
-   - **Related Issues**: (optional) Link any relevant issues if applicable
-
-   **General principles**:
-   - Match verbosity to change complexity
-   - Avoid unnecessary sections for simple changes
-   - Include "Testing" only when actual testing/validation was performed (e.g., unit tests, manual testing, CI runs)
-   - Skip "Testing" for documentation-only changes, typo fixes, or changes that don't require validation
-   - Link related PRs when relevant
-   - Keep language clear and direct
-
-5. **Open Pull Request**: Create the PR with `gh pr create`, then open it in the browser with `gh pr view --web`.
-
-   **Pass multi-line PR bodies through stdin with `--body-file -`.** Do not embed `\n` escape sequences inside a quoted `--body` argument — fish and shell quoting can preserve them literally and break the rendered Markdown. The same rule applies to `gh pr edit` and `gh pr comment`.
-
-   Good:
+1. Inspect the current branch, status, and diff:
 
    ```sh
-   gh pr create --title "feat(auth): add JWT login" --body-file - <<'EOF'
-   ## Summary
-
-   Adds JWT-based login and token validation middleware.
-
-   ## Testing
-
-   - pnpm typecheck
-   - pnpm test
-   EOF
+   git status --short
+   git branch --show-current
+   git diff --stat
    ```
 
-   Bad:
+2. If the current branch is `main`, create a feature branch with a `feature/`, `fix/`, or `chore/` prefix unless the user requested a different branch name.
 
-   ```sh
-   gh pr create --title "feat(auth): add JWT login" --body "## Summary\n\nAdds JWT login.\n\n## Testing\n- pnpm test"
-   ```
+3. Review the diff before committing. Exclude unrelated changes, temporary files, secrets, generated junk, and debug-only edits.
 
-**Important Guidelines**:
+4. Commit with the repo-local `commit` skill using an English Conventional Commit message.
 
-- Always create a new branch; never push directly to main without explicit permission
-- When gh-stack is available, use it for stacked branch and pull request workflows
-- All commit messages, PR titles, and PR bodies must be in English
-- Use `zsh -lc '<simple command>'` for normal commands. If Zsh cannot find a user tool, resolve its absolute path with `fish -lc 'command -v <tool>'`; use Fish directly only for simple commands without shell-specific syntax.
-- If `bunx` fails, try `bun x` as an alternative
-- Ensure commits are meaningful and atomic - avoid trivial single-line changes unless they serve a specific purpose
-- Use available high-performance tools: git, gh, rg, fd for file operations
-- Avoid excessive use of emojis in responses - use sparingly and only when truly helpful
+5. Prepare a PR title and body proportional to the change:
 
-**Error Handling**:
+   - For a small focused change, use 2–4 sentences covering what changed and why.
+   - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
+   - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
 
-- If branch creation fails, check if you're already on a feature branch
-- If push fails, ensure you have the correct remote permissions
-- If PR creation fails, verify you're not creating a duplicate PR
-- Always provide clear feedback about what step is being executed
+6. Publish using the first available path:
 
-**Quality Checks**:
+   - If the `gh-stack` extension is installed, inspect the current stack with `gh stack view --json` and follow the `gh-stack` skill. Initialise or adopt the current branch as a stack when needed, push with `gh stack push`, and create the PR with `gh stack submit --auto --open`. Follow all of its non-interactive command rules.
+   - Otherwise, push the branch and create the PR with:
 
-- Before committing, review changes to ensure no debug code or temporary files are included
-- Verify the PR body is comprehensive and provides sufficient context for reviewers
-- Confirm the target branch is correct (usually main or develop)
+     ```sh
+     git push -u origin <branch-name>
+     gh pr create --title "type(scope): summary" --body-file -
+     ```
 
-Your responses should be clear and informative, updating the user on each step of the workflow. If any step requires user input or clarification, pause and request it before proceeding.
+7. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
+
+All commit messages, PR titles, and PR bodies must be in English. Confirm the target branch before creating the PR, and do not call it ready until the relevant checks and review feedback have been inspected.
