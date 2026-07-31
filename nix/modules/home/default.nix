@@ -11,6 +11,7 @@
   agent-browser-skill ? null,
   tgrab-skill ? null,
   cmux-skill ? null,
+  gh-stack-skill ? null,
   local-skills ? null,
   ...
 }:
@@ -37,6 +38,7 @@ in
         agent-browser-skill
         tgrab-skill
         cmux-skill
+        gh-stack-skill
         local-skills
         config
         ;

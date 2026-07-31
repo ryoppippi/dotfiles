@@ -11,6 +11,7 @@
   agent-browser-skill,
   tgrab-skill,
   cmux-skill,
+  gh-stack-skill,
   local-skills,
   ...
 }:
@@ -37,6 +38,10 @@
       };
       cmux = {
         path = cmux-skill;
+        subdir = "skills";
+      };
+      gh-stack = {
+        path = gh-stack-skill;
         subdir = "skills";
       };
       # Local: skills from this dotfiles repo
@@ -115,6 +120,11 @@
     skills.explicit.cmux-markdown = {
       from = "cmux";
       path = "cmux-markdown";
+    };
+
+    skills.explicit.gh-stack = {
+      from = "gh-stack";
+      path = "gh-stack";
     };
 
     skills.explicit.agent-browser =

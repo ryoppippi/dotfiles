@@ -107,6 +107,11 @@
       flake = false;
     };
 
+    gh-stack-skill = {
+      url = "github:github/gh-stack";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -131,6 +136,7 @@
       agent-browser-skill,
       tgrab-skill,
       cmux-skill,
+      gh-stack-skill,
       ...
     }:
     let
@@ -201,6 +207,7 @@
                       agent-browser-skill
                       tgrab-skill
                       cmux-skill
+                      gh-stack-skill
                       ;
                     inherit local-skills;
                     homedir = linuxHomedir;
@@ -588,6 +595,7 @@
                           agent-browser-skill
                           tgrab-skill
                           cmux-skill
+                          gh-stack-skill
                           ;
                         inherit local-skills;
                         homedir = darwinHomedir;

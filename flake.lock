@@ -289,6 +289,22 @@
         "type": "github"
       }
     },
+    "gh-stack-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785424405,
+        "narHash": "sha256-RrVYkqUX0vKPUC0zextQSR+SG59j/HaILPZ/tBCXspQ=",
+        "owner": "github",
+        "repo": "gh-stack",
+        "rev": "8c9c8331309529e2114d4c34e77f4edea543f9fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "github",
+        "repo": "gh-stack",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -564,11 +580,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1784876459,
-        "narHash": "sha256-aPwGdQmNiV5pVO2KE9neROYKJi9IiQ+7s0i32EAzCno=",
-        "owner": "NixOS",
+        "lastModified": 1785454630,
+        "narHash": "sha256-LQy14TZp77TwbQf40gg1V3jo8FwJG0jGDkAH+zRHqg8=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e64b9b73734dd5f3bbc9093be349dc0dd01c2008",
+        "rev": "1559d3daa3ecc813a650b79375ea61b6741b8746",
         "type": "github"
       },
       "original": {
@@ -589,6 +605,7 @@
         "fish-na": "fish-na",
         "flake-parts": "flake-parts",
         "gh-nippou": "gh-nippou",
+        "gh-stack-skill": "gh-stack-skill",
         "git-hooks": "git-hooks_2",
         "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
