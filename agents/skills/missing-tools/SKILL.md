@@ -12,9 +12,9 @@ Use this workflow when a required command is unavailable:
    ```
 
 2. Try the project environment: `direnv exec . <command>`.
-3. Try comma: `, <command>`.
-4. Use `nix run nixpkgs#<package> -- <args>` when a package is known.
-5. Use `nix shell nixpkgs#<package> --command <command>` as a last resort.
+3. Use `nix run nixpkgs#<package> -- <args>` when a package is known.
+4. Use `nix shell nixpkgs#<package> --command <command>` when a package is known but a temporary shell is required.
+5. `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`
 
 For GitHub-backed Nix fetches, use the `nix-github-rate-limit` skill.
 
