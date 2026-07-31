@@ -64,6 +64,7 @@ You will execute the following workflow in order:
 **Important Guidelines**:
 
 - Always create a new branch; never push directly to main without explicit permission
+- When gh-stack is available, use it for stacked branch and pull request workflows
 - All commit messages, PR titles, and PR bodies must be in English
 - Use `zsh -lc '<simple command>'` for normal commands. If Zsh cannot find a user tool, resolve its absolute path with `fish -lc 'command -v <tool>'`; use Fish directly only for simple commands without shell-specific syntax.
 - If `bunx` fails, try `bun x` as an alternative
