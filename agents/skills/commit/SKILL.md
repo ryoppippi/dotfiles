@@ -39,7 +39,7 @@ Create small, independently revertable Conventional Commits.
    <body>
    ```
 
-   Use a standard type such as `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`, `build`, `perf`, or `revert`. Keep the body concise and explain what changed and why when the subject is not sufficient. When CI is unnecessary for the change, append `[ci skip]` to the commit message.
+   Use a standard type such as `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`, `build`, `perf`, or `revert`. Keep the body concise and explain what changed and why when the subject is not sufficient. When CI is unnecessary and repository instructions permit skipping it, append `[ci skip]` to the commit message.
 
 5. Commit and verify with `git show HEAD` and `git diff --check`.
 

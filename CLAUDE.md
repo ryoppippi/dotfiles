@@ -56,7 +56,7 @@ nix run .#build                # Test build
 ## Git Workflow
 
 - **Main branch**: `main`
-- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**. Do NOT open a pull request unless explicitly asked.
+- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**. This is an explicit exception to the global commit skill's main-branch rule. Do NOT open a pull request unless explicitly asked.
 - Use **Conventional Commits** with UK English spelling
 - Commits are GPG-signed with SSH
 
@@ -107,8 +107,7 @@ nix run .#switch                  # Apply changes
 
 **Local (in `agents/skills/`):**
 
-- git-commit-crafter
-- pr-workflow-manager
+All directories under `agents/skills/` are enabled automatically.
 
 ## System Info
 

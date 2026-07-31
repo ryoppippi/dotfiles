@@ -1,11 +1,6 @@
 # Push Reference
 
-Check the current branch before any push:
-
-```fish
-set current_branch (git branch --show-current)
-test "$current_branch" != main; and test "$current_branch" != master
-```
+Check repository instructions and the current branch before pushing. Follow any branch or pull request requirements they define.
 
 If the current branch is `main` or `master`, stop and create a feature branch before pushing.
 
