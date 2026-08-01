@@ -39,12 +39,25 @@ let
 
     features = {
       goals = true;
-      js_repl = true;
+      memories = true;
       multi_agent = true;
-      terminal_resize_reflow = true;
     };
 
     notice.fast_default_opt_out = false;
+
+    desktop = {
+      preventSleepWhileRunning = true;
+      "show-context-window-usage" = true;
+      "hotkey-window-projectless-default-enabled" = false;
+      "enabled-reasoning-efforts" = [
+        "low"
+        "medium"
+        "high"
+        "xhigh"
+        "ultra"
+        "max"
+      ];
+    };
 
     plugins."github@openai-curated" = {
       enabled = true;
