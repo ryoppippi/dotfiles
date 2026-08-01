@@ -22,14 +22,14 @@ let
   ];
 
   settings = {
-    model = "gpt-5.6-sol";
+    model = "gpt-5.6-luna";
     approval_policy = "on-request";
     approvals_reviewer = "auto_review";
     allow_login_shell = true;
-    model_reasoning_effort = "medium";
+    model_reasoning_effort = "max";
     web_search_request = true;
     personality = "pragmatic";
-    service_tier = "standard"; # "standard" or "fast"
+    service_tier = "fast"; # "standard" or "fast"
     project_doc_fallback_filenames = [ "CLAUDE.md" ];
 
     shell_environment_policy = {
