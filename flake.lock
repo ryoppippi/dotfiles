@@ -403,7 +403,7 @@
         "flake-compat": "flake-compat_3",
         "gitignore": "gitignore_2",
         "nixpkgs": [
-          "tgrab-skill",
+          "tgrab",
           "nixpkgs"
         ]
       },
@@ -446,7 +446,7 @@
     "gitignore_2": {
       "inputs": {
         "nixpkgs": [
-          "tgrab-skill",
+          "tgrab",
           "git-hooks",
           "nixpkgs"
         ]
@@ -740,14 +740,14 @@
         "nix-homebrew": "nix-homebrew",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
-        "tgrab-skill": "tgrab-skill",
+        "tgrab": "tgrab",
         "treefmt-nix": "treefmt-nix_4"
       }
     },
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
-          "tgrab-skill",
+          "tgrab",
           "nixpkgs"
         ]
       },
@@ -780,7 +780,7 @@
         "type": "github"
       }
     },
-    "tgrab-skill": {
+    "tgrab": {
       "inputs": {
         "crane": "crane",
         "flake-parts": "flake-parts_4",
@@ -849,7 +849,7 @@
     "treefmt-nix_3": {
       "inputs": {
         "nixpkgs": [
-          "tgrab-skill",
+          "tgrab",
           "nixpkgs"
         ]
       },
