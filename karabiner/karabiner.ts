@@ -29,6 +29,15 @@ k.writeToProfile('Default profile', [
 			}),
 	]),
 
+	k.rule('Open cmux directly with control-comma').manipulators([
+		k
+			.map({
+				key_code: 'comma',
+				modifiers: { mandatory: ['control'], optional: ['caps_lock'] },
+			})
+			.to$('/usr/bin/open -b com.cmuxterm.app'),
+	]),
+
 	k.rule('Tap CMD to toggle Kana/Eisuu', devices.ifNotSelfMadeKeyboard).manipulators([
 		k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>({
 			left_command: 'japanese_eisuu',
@@ -56,27 +65,16 @@ k.writeToProfile('Default profile', [
 				}),
 		]),
 
-	k.rule('toggle fn + h/j/k/l to arrow keys', devices.ifNotSelfMadeKeyboard).manipulators([
-		k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>({
-			h: 'left_arrow',
-			j: 'down_arrow',
-			k: 'up_arrow',
-			l: 'right_arrow',
-		} as const)((key, arrow) =>
+	k
+		.rule('Hold fn to super key, tap fn for the macOS input switch', devices.ifNotSelfMadeKeyboard)
+		.manipulators([
 			k
-				.map({
-					key_code: key,
-					modifiers: { mandatory: ['fn'] },
-				})
-				.to({ key_code: arrow })
-				.description(`Tap ${key} to ${arrow}`),
-		),
-	]),
-
-	k.rule('Right option to super key in Macbook', devices.ifNotSelfMadeKeyboard).manipulators([
-		k.map({ key_code: 'right_option' }).to({
-			key_code: 'right_command',
-			modifiers: ['right_option', 'right_shift', 'right_control'],
-		}),
-	]),
+				.map({ key_code: 'fn' })
+				.toIfAlone({ key_code: 'fn', lazy: true })
+				.toIfHeldDown({ key_code: 'fn', repeat: true })
+				.to({
+					key_code: 'left_command',
+					modifiers: ['left_option', 'left_shift', 'left_control'],
+				}),
+		]),
 ]);
