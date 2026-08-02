@@ -65,19 +65,15 @@ k.writeToProfile('Default profile', [
 				}),
 		]),
 
+	k.rule('Map fn to super key in MacBook', devices.ifNotSelfMadeKeyboard).manipulators([
+		k.map({ key_code: 'fn' }).to({
+			key_code: 'left_command',
+			lazy: true,
+			modifiers: ['left_option', 'left_shift', 'left_control'],
+		}),
+	]),
+
 	k
-		.rule(
-			'Hold right option to super key, tap right option for the macOS input switch',
-			devices.ifNotSelfMadeKeyboard,
-		)
-		.manipulators([
-			k
-				.map({ key_code: 'right_option' })
-				.toIfAlone({ key_code: 'fn', lazy: true })
-				.to({
-					key_code: 'left_command',
-					lazy: true,
-					modifiers: ['left_option', 'left_shift', 'left_control'],
-				}),
-		]),
+		.rule('Map right option to fn in MacBook', devices.ifNotSelfMadeKeyboard)
+		.manipulators([k.map({ key_code: 'right_option' }).to({ key_code: 'fn', lazy: true })]),
 ]);

@@ -211,24 +211,46 @@
 						]
 					},
 					{
-						"description": "Hold right option to super key, tap right option for the macOS input switch",
+						"description": "Map fn to super key in MacBook",
+						"manipulators": [
+							{
+								"type": "basic",
+								"from": {
+									"key_code": "fn"
+								},
+								"to": [
+									{
+										"key_code": "left_command",
+										"lazy": true,
+										"modifiers": ["left_option", "left_shift", "left_control"]
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"description": "Map right option to fn in MacBook",
 						"manipulators": [
 							{
 								"type": "basic",
 								"from": {
 									"key_code": "right_option"
 								},
-								"to_if_alone": [
+								"to": [
 									{
 										"key_code": "fn",
 										"lazy": true
-									}
-								],
-								"to": [
-									{
-										"key_code": "left_command",
-										"lazy": true,
-										"modifiers": ["left_option", "left_shift", "left_control"]
 									}
 								],
 								"conditions": [
