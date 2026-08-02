@@ -29,6 +29,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    omniwm = {
+      url = "github:DavSanchez/nix-dotfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.darwin.follows = "nix-darwin";
+    };
+
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     nix-claude-code = {
@@ -121,6 +128,7 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
+      omniwm,
       llm-agents,
       nix-claude-code,
       nix-bun,
@@ -168,6 +176,7 @@
           ]
           ++ nixpkgs.lib.optionals isDarwin [
             brew-nix.overlays.default
+            omniwm.overlays.additions
           ];
         };
 
@@ -583,6 +592,10 @@
                   {
                     imports = [
                       agent-skills.homeManagerModules.default
+
+                      (import ./nix/modules/darwin/programs/omniwm.nix {
+                        omniwmModule = omniwm.homeModules.omniwm;
+                      })
 
                       (import ./nix/modules/home {
                         inherit
