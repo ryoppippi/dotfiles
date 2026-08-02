@@ -677,12 +677,12 @@ binding = "Unassigned"
 id = "moveColumnToIndex.9"
 
 [[hotkeys]]
-binding = "Hyper+N"
-id = "cycleSizeForward"
+binding = "Hyper+,"
+id = "cycleSizeBackward"
 
 [[hotkeys]]
-binding = "Unassigned"
-id = "cycleSizeBackward"
+binding = "Hyper+G"
+id = "cycleSizeForward"
 
 [[hotkeys]]
 binding = "Unassigned"
