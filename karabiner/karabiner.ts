@@ -3,7 +3,7 @@ import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
 k.writeToProfile('Default profile', [
-	k.rule('Tap Ctrl -> japanese_eisuu + ESC').manipulators([
+	k.rule('Tap Ctrl -> japanese_eisuu + ESC', devices.ifNotSelfMadeKeyboard).manipulators([
 		k
 			.map({ key_code: 'left_control', modifiers: { optional: ['any'] } })
 			.to({ key_code: 'left_control', lazy: true })
@@ -11,7 +11,7 @@ k.writeToProfile('Default profile', [
 	]),
 
 	k
-		.rule('Tap ESC -> japanese_eisuu + esc')
+		.rule('Tap ESC -> japanese_eisuu + esc', devices.ifNotSelfMadeKeyboard)
 		.manipulators([
 			k.map({ key_code: 'escape' }).to([{ key_code: 'japanese_eisuu' }, { key_code: 'escape' }]),
 		]),

@@ -30,6 +30,17 @@
 									{
 										"key_code": "escape"
 									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
 								]
 							}
 						]
@@ -48,6 +59,17 @@
 									},
 									{
 										"key_code": "escape"
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
 									}
 								]
 							}
