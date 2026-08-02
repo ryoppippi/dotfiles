@@ -209,6 +209,41 @@
 								]
 							}
 						]
+					},
+					{
+						"description": "Hold right option to super key, tap right option for the macOS input switch",
+						"manipulators": [
+							{
+								"type": "basic",
+								"from": {
+									"key_code": "right_option"
+								},
+								"to_if_alone": [
+									{
+										"key_code": "fn",
+										"lazy": true
+									}
+								],
+								"to": [
+									{
+										"key_code": "left_command",
+										"lazy": true,
+										"modifiers": ["left_option", "left_shift", "left_control"]
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
+							}
+						]
 					}
 				],
 				"parameters": {
