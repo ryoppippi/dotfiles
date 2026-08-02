@@ -98,8 +98,7 @@
     };
 
     tgrab-skill = {
-      url = "github:ryoppippi/tgrab";
-      flake = false;
+      url = "github:ryoppippi/tgrab/bf5e8d3b3dc71cea03852af2bfcfc5d529ae91b5";
     };
 
     cmux-skill = {

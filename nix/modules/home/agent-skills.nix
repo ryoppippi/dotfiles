@@ -15,6 +15,15 @@
   local-skills,
   ...
 }:
+let
+  localSkillNames =
+    if local-skills == null then
+      [ ]
+    else
+      lib.filter (name: name != "web-fetch") (
+        builtins.attrNames (builtins.readDir "${local-skills}/agents/skills")
+      );
+in
 {
   programs.agent-skills = {
     enable = true;
@@ -33,7 +42,7 @@
       };
       # External: tgrab skill
       tgrab = {
-        path = tgrab-skill;
+        path = tgrab-skill.outPath;
         subdir = "skills";
       };
       cmux = {
@@ -51,7 +60,7 @@
       };
     };
 
-    skills.enableAll = [ "local" ];
+    skills.enable = localSkillNames;
 
     skills.explicit.ast-grep =
       let
@@ -85,6 +94,21 @@
     skills.explicit.tgrab = {
       from = "tgrab";
       path = "tgrab";
+      packages = [ tgrab-skill.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      rewriteCommands = false;
+      transform =
+        { original, dependencies }:
+        ''
+          ${builtins.replaceStrings [ "nix run github:ryoppippi/tgrab --" ] [ "./tgrab" ] original}
+          ${dependencies}
+        '';
+    };
+
+    skills.explicit.web-fetch = {
+      from = "local";
+      path = "web-fetch";
+      packages = [ pkgs.llm-agents.ax ];
+      rewriteCommands = false;
     };
 
     skills.explicit.cmux = {
