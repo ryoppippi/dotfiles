@@ -209,46 +209,6 @@
 								]
 							}
 						]
-					},
-					{
-						"description": "Hold fn to super key, tap fn for the macOS input switch",
-						"manipulators": [
-							{
-								"type": "basic",
-								"from": {
-									"key_code": "fn"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "fn",
-										"lazy": true
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "fn",
-										"repeat": true
-									}
-								],
-								"to": [
-									{
-										"key_code": "left_command",
-										"modifiers": ["left_option", "left_shift", "left_control"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
-									}
-								]
-							}
-						]
 					}
 				],
 				"parameters": {

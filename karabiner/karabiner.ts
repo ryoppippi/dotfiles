@@ -64,17 +64,4 @@ k.writeToProfile('Default profile', [
 					modifiers: ['left_option', 'left_shift', 'left_control'],
 				}),
 		]),
-
-	k
-		.rule('Hold fn to super key, tap fn for the macOS input switch', devices.ifNotSelfMadeKeyboard)
-		.manipulators([
-			k
-				.map({ key_code: 'fn' })
-				.toIfAlone({ key_code: 'fn', lazy: true })
-				.toIfHeldDown({ key_code: 'fn', repeat: true })
-				.to({
-					key_code: 'left_command',
-					modifiers: ['left_option', 'left_shift', 'left_control'],
-				}),
-		]),
 ]);
