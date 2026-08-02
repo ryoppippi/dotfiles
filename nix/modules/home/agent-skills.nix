@@ -9,7 +9,7 @@
   lib,
   ast-grep-skill,
   agent-browser-skill,
-  tgrab-skill,
+  tgrab,
   cmux-skill,
   gh-stack-skill,
   local-skills,
@@ -38,11 +38,6 @@ in
       # External: agent-browser skill
       agent-browser = {
         path = agent-browser-skill;
-        subdir = "skills";
-      };
-      # External: tgrab skill
-      tgrab = {
-        path = tgrab-skill.outPath;
         subdir = "skills";
       };
       cmux = {
@@ -91,23 +86,13 @@ in
           '';
       };
 
-    skills.explicit.tgrab = {
-      from = "tgrab";
-      path = "tgrab";
-      packages = [ tgrab-skill.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-      rewriteCommands = false;
-      transform =
-        { original, dependencies }:
-        ''
-          ${builtins.replaceStrings [ "nix run github:ryoppippi/tgrab --" ] [ "./tgrab" ] original}
-          ${dependencies}
-        '';
-    };
-
     skills.explicit.web-fetch = {
       from = "local";
       path = "web-fetch";
-      packages = [ pkgs.llm-agents.ax ];
+      packages = [
+        pkgs.llm-agents.ax
+        tgrab.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
       rewriteCommands = false;
     };
 

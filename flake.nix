@@ -104,7 +104,7 @@
       flake = false;
     };
 
-    tgrab-skill = {
+    tgrab = {
       url = "github:ryoppippi/tgrab/bf5e8d3b3dc71cea03852af2bfcfc5d529ae91b5";
     };
 
@@ -141,7 +141,7 @@
       agent-skills,
       ast-grep-skill,
       agent-browser-skill,
-      tgrab-skill,
+      tgrab,
       cmux-skill,
       gh-stack-skill,
       ...
@@ -213,7 +213,7 @@
                       fish-na
                       ast-grep-skill
                       agent-browser-skill
-                      tgrab-skill
+                      tgrab
                       cmux-skill
                       gh-stack-skill
                       ;
@@ -605,7 +605,7 @@
                           fish-na
                           ast-grep-skill
                           agent-browser-skill
-                          tgrab-skill
+                          tgrab
                           cmux-skill
                           gh-stack-skill
                           ;

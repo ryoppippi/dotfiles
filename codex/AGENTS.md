@@ -36,9 +36,9 @@ Use the `missing-tools` skill when a command is unavailable, a shell reports `co
 
 ## Social Media Posts & YouTube Transcripts
 
-For X/Twitter, Bluesky, and YouTube, use the `tgrab` skill. It provides the packaged `tgrab` executable for fetching supported URLs.
+For X/Twitter, Bluesky, and YouTube, use the `web-fetch` skill. It provides the packaged `tgrab` executable for fetching supported URLs.
 
-Always fetch via a subagent to keep the main conversation clean. See the `tgrab` skill for supported URL patterns and options.
+Always fetch via a subagent to keep the main conversation clean. See the `web-fetch` skill for supported URL patterns and options.
 
 ## Tips
 
