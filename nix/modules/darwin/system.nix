@@ -80,6 +80,15 @@ in
       fi
     '';
 
+    activationScripts.userDefaults.text = lib.mkAfter ''
+      user_id=$(/usr/bin/id -u -- ${username})
+      for shortcut_id in 25 26; do
+        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$shortcut_id" '{enabled = 0;}'
+      done
+      /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/defaults read com.apple.symbolichotkeys >/dev/null
+      /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
+
     # macOS system defaults
     defaults = {
       # Dock settings
@@ -167,6 +176,10 @@ in
         askForPasswordDelay = 0;
       };
 
+      universalaccess = {
+        reduceTransparency = false;
+      };
+
       # Trackpad settings
       trackpad = {
         Clicking = false;
@@ -194,6 +207,11 @@ in
         NSGlobalDomain = {
           AppleAccentColor = -1;
           AppleReduceDesktopTinting = false;
+        };
+        "com.apple.universalaccess" = {
+          contrast = 0.0;
+          flashScreen = false;
+          increaseContrast = false;
         };
         "com.apple.WindowManager" = {
           EnableStandardClickToShowDesktop = false;
