@@ -106,6 +106,36 @@ nix run .#update
 nix run .#build
 ```
 
+### OmniWM Keyboard Workflow
+
+The complete configuration is in
+[`omniwm-settings.toml`](nix/modules/darwin/programs/omniwm-settings.toml), and
+the physical CLAW44 layers are shown in
+[`keymap/claw44.pdf`](keymap/claw44.pdf).
+
+`Hyper` means Control + Option + Shift + Command. Hold either language key on
+the CLAW44, or hold Fn on the MacBook keyboard, to emit Hyper. Right Option
+provides the original Fn key on the MacBook keyboard.
+
+| Shortcut              | Action                                         |
+| --------------------- | ---------------------------------------------- |
+| `Hyper+H/J/K/L`       | Focus left/down/up/right                       |
+| `Hyper+U/O`           | Move the focused window left/right             |
+| `Hyper+I/P`           | Move the focused window down/up within a stack |
+| `Hyper+Z/X`           | Move the whole column left/right               |
+| `Hyper+,/.`           | Cycle the focused column smaller/larger        |
+| `Hyper+M`             | Toggle near-full display width                 |
+| `Hyper+Return`        | Toggle fullscreen                              |
+| `Hyper+/`             | Toggle floating                                |
+| `Hyper+Space`         | Open the OmniWM command palette                |
+| `Control+Command+Tab` | Focus the next monitor                         |
+| `Control+Command+\``  | Focus the last monitor                         |
+
+OmniWM workspace 1 belongs to the main display and workspace 2 belongs to the
+secondary display. `cmux` opens on workspace 2. `Hyper+Tab` switches back and
+forth between the two workspaces. Direct move-to-workspace shortcuts are
+currently unassigned.
+
 ### Available Nix Apps
 
 #### macOS
