@@ -1,7 +1,7 @@
 # docs
 # https://cmux.com/docs/configuration
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   jsonFormat = pkgs.formats.json { };
 
@@ -118,6 +118,12 @@ in
     source = jsonFormat.generate "cmux.json" cmuxSettings;
     force = true;
   };
+
+  home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.isDarwin (
+    lib.hm.dag.entryAfter [ "writeBoundary" "writeCodexConfig" ] ''
+      cmux hooks setup -y
+    ''
+  );
 
   home = {
     packages = [ browserOpen ] ++ (if pkgs.stdenv.isDarwin then [ openShim ] else [ ]);
