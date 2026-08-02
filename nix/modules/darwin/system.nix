@@ -82,10 +82,10 @@ in
 
     activationScripts.userDefaults.text = lib.mkAfter ''
       user_id=$(/usr/bin/id -u -- ${username})
+      user_preferences=/Users/${username}/Library/Preferences/com.apple.symbolichotkeys.plist
       for shortcut_id in 25 26; do
-        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$shortcut_id" '{enabled = 0;}'
+        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/plutil -replace "AppleSymbolicHotKeys.$shortcut_id.enabled" -bool false "$user_preferences"
       done
-      /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/defaults read com.apple.symbolichotkeys >/dev/null
       /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
 
