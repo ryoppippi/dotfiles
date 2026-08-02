@@ -9,7 +9,7 @@
   fish-na ? null,
   ast-grep-skill ? null,
   agent-browser-skill ? null,
-  tgrab-skill ? null,
+  tgrab ? null,
   cmux-skill ? null,
   gh-stack-skill ? null,
   local-skills ? null,
@@ -36,7 +36,7 @@ in
         lib
         ast-grep-skill
         agent-browser-skill
-        tgrab-skill
+        tgrab
         cmux-skill
         gh-stack-skill
         local-skills
