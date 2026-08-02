@@ -28,7 +28,6 @@ in
     ]
     # brew-nix packages (Homebrew casks managed via Nix)
     ++ (with pkgs.brewCasks; [
-      alt-tab
       appcleaner
       beekeeper-studio
       betterdisplay
