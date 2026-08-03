@@ -595,7 +595,7 @@
 
                       (import ./nix/modules/darwin/programs/omniwm {
                         omniwmModule = omniwm.homeModules.omniwm;
-                        inherit lib;
+                        inherit config lib pkgs;
                       })
 
                       (import ./nix/modules/home {

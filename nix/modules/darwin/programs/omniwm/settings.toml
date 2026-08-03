@@ -55,7 +55,7 @@ top = 0.0
 animationsEnabled = true
 defaultLayoutType = "niri"
 hotkeysEnabled = true
-ipcEnabled = false
+ipcEnabled = true
 preventSleepEnabled = false
 systemHyperTrigger = "None"
 updateChecksEnabled = true
@@ -68,9 +68,9 @@ scrollEnabled = true
 scrollModifierKey = "optionShift"
 scrollSensitivity = 5.0
 trackpadScrollStyle = "snap"
-workspaceSwipeAxis = "vertical"
-workspaceSwipeEnabled = false
-workspaceSwipeFingerCount = 3
+workspaceSwipeAxis = "horizontal"
+workspaceSwipeEnabled = true
+workspaceSwipeFingerCount = 4
 
 [hiddenBar]
 enabled = true
@@ -367,10 +367,6 @@ id = "focus.up"
 [[hotkeys]]
 binding = "Hyper+L"
 id = "focus.right"
-
-[[hotkeys]]
-binding = "Option+Command+Tab"
-id = "focusPrevious"
 
 [[hotkeys]]
 binding = "Unassigned"
