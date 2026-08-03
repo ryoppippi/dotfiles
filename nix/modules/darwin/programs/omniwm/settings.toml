@@ -813,7 +813,7 @@ binding = "Unassigned"
 id = "preselectClear"
 
 [[hotkeys]]
-binding = "Hyper+Semicolon"
+binding = "Hyper+Space"
 id = "openCommandPalette"
 
 [[hotkeys]]

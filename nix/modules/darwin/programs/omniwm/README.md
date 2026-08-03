@@ -29,7 +29,7 @@ start narrow, while cmux starts at full column width on workspace 2.
 | `Hyper+M`             | Toggle near-full display width                 |
 | `Hyper+Return`        | Toggle fullscreen                              |
 | `Hyper+/`             | Toggle floating                                |
-| `Hyper+;`             | Open the OmniWM command palette                |
+| `Hyper+Space`         | Open the OmniWM command palette                |
 | `Control+Command+Tab` | Focus the next monitor                         |
 | `Control+Command+\``  | Focus the last monitor                         |
 
