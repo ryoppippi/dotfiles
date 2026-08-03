@@ -413,11 +413,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Shift+Command+Left"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Shift+Command+Right"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]

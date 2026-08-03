@@ -19,19 +19,21 @@ start narrow, while cmux starts at full column width on workspace 2.
 
 ## Window Shortcuts
 
-| Shortcut              | Action                                         |
-| --------------------- | ---------------------------------------------- |
-| `Hyper+H/J/K/L`       | Focus left/down/up/right                       |
-| `Hyper+U/O`           | Move the focused window left/right             |
-| `Hyper+I/P`           | Move the focused window down/up within a stack |
-| `Hyper+Z/X`           | Move the whole column left/right               |
-| `Hyper+,/.`           | Cycle the focused column smaller/larger        |
-| `Hyper+M`             | Toggle near-full display width                 |
-| `Hyper+Return`        | Toggle fullscreen                              |
-| `Hyper+/`             | Toggle floating                                |
-| `Hyper+Space`         | Open the OmniWM command palette                |
-| `Control+Command+Tab` | Focus the next monitor                         |
-| `Control+Command+\``  | Focus the last monitor                         |
+| Shortcut                 | Action                                         |
+| ------------------------ | ---------------------------------------------- |
+| `Hyper+H/J/K/L`          | Focus left/down/up/right                       |
+| `Hyper+U/O`              | Move the focused window left/right             |
+| `Hyper+I/P`              | Move the focused window down/up within a stack |
+| `Hyper+Z/X`              | Move the whole column left/right               |
+| `Hyper+,/.`              | Cycle the focused column smaller/larger        |
+| `Hyper+M`                | Toggle near-full display width                 |
+| `Hyper+Return`           | Toggle fullscreen                              |
+| `Hyper+/`                | Toggle floating                                |
+| `Hyper+Space`            | Open the OmniWM command palette                |
+| `Option+Shift+Command+←` | Move the window to the main display            |
+| `Option+Shift+Command+→` | Move the window to the secondary display       |
+| `Control+Command+Tab`    | Focus the next monitor                         |
+| `Control+Command+\``     | Focus the last monitor                         |
 
 ## Workspaces
 
