@@ -233,22 +233,6 @@
         "type": "github"
       }
     },
-    "exa-skills": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1784842804,
-        "narHash": "sha256-SsvRLYtfsPdv9BeHkf6LvK6HDUv9tYKBXT8yWxryldY=",
-        "owner": "exa-labs",
-        "repo": "agent-skills",
-        "rev": "c784e78b944f69e9a12f484b6c5d92377d3a4b2b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "exa-labs",
-        "repo": "agent-skills",
-        "type": "github"
-      }
-    },
     "fish-na": {
       "flake": false,
       "locked": {
@@ -1149,7 +1133,6 @@
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
         "cmux-skill": "cmux-skill",
-        "exa-skills": "exa-skills",
         "fish-na": "fish-na",
         "flake-parts": "flake-parts",
         "gh-nippou": "gh-nippou",

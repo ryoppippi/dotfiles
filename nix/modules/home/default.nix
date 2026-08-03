@@ -12,7 +12,6 @@
   tgrab ? null,
   cmux-skill ? null,
   gh-stack-skill ? null,
-  exa-skills ? null,
   local-skills ? null,
   ...
 }:
@@ -40,7 +39,6 @@ in
         tgrab
         cmux-skill
         gh-stack-skill
-        exa-skills
         local-skills
         config
         ;
