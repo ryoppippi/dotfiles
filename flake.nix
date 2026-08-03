@@ -118,6 +118,11 @@
       flake = false;
     };
 
+    exa-skills = {
+      url = "github:exa-labs/agent-skills";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -144,6 +149,7 @@
       tgrab,
       cmux-skill,
       gh-stack-skill,
+      exa-skills,
       ...
     }:
     let
@@ -216,6 +222,7 @@
                       tgrab
                       cmux-skill
                       gh-stack-skill
+                      exa-skills
                       ;
                     inherit local-skills;
                     homedir = linuxHomedir;
@@ -609,6 +616,7 @@
                           tgrab
                           cmux-skill
                           gh-stack-skill
+                          exa-skills
                           ;
                         inherit local-skills;
                         homedir = darwinHomedir;

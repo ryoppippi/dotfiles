@@ -12,10 +12,18 @@
   tgrab,
   cmux-skill,
   gh-stack-skill,
+  exa-skills,
   local-skills,
   ...
 }:
 let
+  # Exa skills read the API key from $EXA_API_KEY; resolve it at execution
+  # time via the 1Password CLI so the secret never appears in command text.
+  exaTransform =
+    { original, ... }:
+    builtins.replaceStrings [ "$EXA_API_KEY" ] [ ''$(op read "op://keys/EXA_API_KEY/credential")'' ]
+      original;
+
   localSkillNames =
     if local-skills == null then
       [ ]
@@ -46,6 +54,11 @@ in
       };
       gh-stack = {
         path = gh-stack-skill;
+        subdir = "skills";
+      };
+      # External: Exa API skills
+      exa = {
+        path = exa-skills;
         subdir = "skills";
       };
       # Local: skills from this dotfiles repo
@@ -134,6 +147,20 @@ in
     skills.explicit.gh-stack = {
       from = "gh-stack";
       path = "gh-stack";
+    };
+
+    skills.explicit.exa-search = {
+      from = "exa";
+      path = "exa-search";
+      rewriteCommands = false;
+      transform = exaTransform;
+    };
+
+    skills.explicit.exa-contents = {
+      from = "exa";
+      path = "exa-contents";
+      rewriteCommands = false;
+      transform = exaTransform;
     };
 
     skills.explicit.agent-browser =
