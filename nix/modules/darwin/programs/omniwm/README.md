@@ -19,21 +19,20 @@ start narrow, while cmux starts at full column width on workspace 2.
 
 ## Window Shortcuts
 
-| Shortcut              | Action                                         |
-| --------------------- | ---------------------------------------------- |
-| `Hyper+H/J/K/L`       | Focus left/down/up/right                       |
-| `Hyper+U/I`           | Move the focused window left/right             |
-| `Hyper+O/P`           | Move the focused window down/up within a stack |
-| `Hyper+Z/X`           | Move the whole column left/right               |
-| `Hyper+N/M`           | Cycle the focused column smaller/larger        |
-| `Hyper+G`             | Toggle near-full display width                 |
-| `Hyper+Return`        | Toggle fullscreen                              |
-| `Hyper+/`             | Toggle floating                                |
-| `Hyper+Space`         | Open the OmniWM command palette                |
-| `Hyper+E`             | Move the window to the previous workspace      |
-| `Hyper+R`             | Move the window to the next workspace          |
-| `Control+Command+Tab` | Focus the next monitor                         |
-| `Control+Command+\``  | Focus the last monitor                         |
+| Shortcut              | Action                                     |
+| --------------------- | ------------------------------------------ |
+| `Hyper+H/J/K/L`       | Focus left/down/up/right                   |
+| `Hyper+Y/U/I/O`       | Move the focused window left/down/up/right |
+| `Hyper+Z/X`           | Move the whole column left/right           |
+| `Hyper+N/M`           | Cycle the focused column smaller/larger    |
+| `Hyper+G`             | Toggle near-full display width             |
+| `Hyper+Return`        | Toggle fullscreen                          |
+| `Hyper+/`             | Toggle floating                            |
+| `Hyper+Space`         | Open the OmniWM command palette            |
+| `Hyper+E`             | Move the window to the previous workspace  |
+| `Hyper+R`             | Move the window to the next workspace      |
+| `Control+Command+Tab` | Focus the next monitor                     |
+| `Control+Command+\``  | Focus the last monitor                     |
 
 ## Workspaces
 

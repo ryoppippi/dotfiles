@@ -465,8 +465,20 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Hyper+U"
+binding = "Hyper+Y"
 id = "move.left"
+
+[[hotkeys]]
+binding = "Hyper+U"
+id = "moveWindowDown"
+
+[[hotkeys]]
+binding = "Hyper+I"
+id = "moveWindowUp"
+
+[[hotkeys]]
+binding = "Hyper+O"
+id = "move.right"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -475,18 +487,6 @@ id = "move.down"
 [[hotkeys]]
 binding = "Unassigned"
 id = "move.up"
-
-[[hotkeys]]
-binding = "Hyper+I"
-id = "move.right"
-
-[[hotkeys]]
-binding = "Hyper+O"
-id = "moveWindowDown"
-
-[[hotkeys]]
-binding = "Hyper+P"
-id = "moveWindowUp"
 
 [[hotkeys]]
 binding = "Unassigned"
