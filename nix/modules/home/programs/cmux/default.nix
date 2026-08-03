@@ -4,6 +4,7 @@
 { pkgs, lib, ... }:
 let
   jsonFormat = pkgs.formats.json { };
+  cmuxCli = "/Applications/cmux.app/Contents/Resources/bin/cmux";
 
   # `writeShellApplication` only shellchecks the bash trampoline, so gate every
   # Nushell source on a parse check of its own. Sourcing a definition-only
@@ -121,7 +122,7 @@ in
 
   home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.isDarwin (
     lib.hm.dag.entryAfter [ "writeBoundary" "writeCodexConfig" ] ''
-      cmux hooks setup -y
+      ${cmuxCli} hooks setup -y
     ''
   );
 

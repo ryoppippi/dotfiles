@@ -80,6 +80,15 @@ in
       fi
     '';
 
+    activationScripts.userDefaults.text = lib.mkAfter ''
+      user_id=$(/usr/bin/id -u -- ${username})
+      user_preferences=/Users/${username}/Library/Preferences/com.apple.symbolichotkeys.plist
+      for shortcut_id in 25 26; do
+        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/plutil -replace "AppleSymbolicHotKeys.$shortcut_id.enabled" -bool false "$user_preferences"
+      done
+      /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
+
     # macOS system defaults
     defaults = {
       # Dock settings
@@ -167,6 +176,10 @@ in
         askForPasswordDelay = 0;
       };
 
+      universalaccess = {
+        reduceTransparency = false;
+      };
+
       # Trackpad settings
       trackpad = {
         Clicking = false;
@@ -175,16 +188,16 @@ in
         FirstClickThreshold = 0;
         ForceSuppressed = false;
         SecondClickThreshold = 0;
-        TrackpadFourFingerHorizSwipeGesture = 2;
+        TrackpadFourFingerHorizSwipeGesture = 0;
         TrackpadFourFingerPinchGesture = 2;
-        TrackpadFourFingerVertSwipeGesture = 2;
+        TrackpadFourFingerVertSwipeGesture = 0;
         TrackpadPinch = true;
         TrackpadRightClick = true;
         TrackpadRotate = true;
         TrackpadThreeFingerDrag = false;
         TrackpadThreeFingerHorizSwipeGesture = 2;
         TrackpadThreeFingerTapGesture = 0;
-        TrackpadThreeFingerVertSwipeGesture = 2;
+        TrackpadThreeFingerVertSwipeGesture = 0;
         TrackpadTwoFingerDoubleTapGesture = true;
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
       };
@@ -194,6 +207,11 @@ in
         NSGlobalDomain = {
           AppleAccentColor = -1;
           AppleReduceDesktopTinting = false;
+        };
+        "com.apple.universalaccess" = {
+          contrast = 0.0;
+          flashScreen = false;
+          increaseContrast = false;
         };
         "com.apple.WindowManager" = {
           EnableStandardClickToShowDesktop = false;

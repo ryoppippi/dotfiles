@@ -106,6 +106,10 @@ nix run .#update
 nix run .#build
 ```
 
+### Window Management
+
+See the [OmniWM configuration and keyboard workflow](nix/modules/darwin/programs/omniwm/README.md).
+
 ### Available Nix Apps
 
 #### macOS

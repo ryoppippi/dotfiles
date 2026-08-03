@@ -9,25 +9,37 @@ let
   checkJsonschema = lib.getExe pkgs.check-jsonschema;
   jq = lib.getExe pkgs.jq;
 
-  # Read settings from external JSON file
   settingsJsonText = builtins.readFile ./settings.json;
+  settingsFile = builtins.toFile "opencode-settings.json" settingsJsonText;
   tuiSettingsJsonText = builtins.readFile ./tui.json;
 in
 {
-  # OpenCode package
   home.packages = lib.mkAfter [ pkgs.llm-agents.opencode ];
 
-  # Generate opencode.json from settings file
-  xdg.configFile."opencode/opencode.json" = {
-    text = settingsJsonText;
-  };
   xdg.configFile."opencode/tui.json" = {
     text = tuiSettingsJsonText;
     force = true;
   };
 
-  # Validate OpenCode opencode.json after generation
-  home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+  home.activation.configureOpenCodeSettings =
+    lib.hm.dag.entryAfter ([ "linkGeneration" ] ++ lib.optional pkgs.stdenv.isDarwin "installCmuxHooks")
+      ''
+        SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
+        mkdir -p "${opencodeConfigDir}"
+
+        if [ -f "$SETTINGS_FILE" ]; then
+          TEMP_FILE="$(mktemp "${opencodeConfigDir}/.opencode.json.XXXXXX")"
+          if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" "${settingsFile}" > "$TEMP_FILE"; then
+            rm -f "$TEMP_FILE"
+            exit 1
+          fi
+          mv "$TEMP_FILE" "$SETTINGS_FILE"
+        else
+          cp "${settingsFile}" "$SETTINGS_FILE"
+        fi
+      '';
+
+  home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "configureOpenCodeSettings" ] ''
     SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
     SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
 

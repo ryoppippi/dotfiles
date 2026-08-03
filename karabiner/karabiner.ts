@@ -3,7 +3,24 @@ import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
 k.writeToProfile('Default profile', [
-	k.rule('Tap Ctrl -> japanese_eisuu + ESC').manipulators([
+	k
+		.rule('Block control tap while Tab window modifier is held', devices.ifNotSelfMadeKeyboard)
+		.manipulators([
+			k
+				.map({
+					key_code: 'caps_lock',
+					modifiers: { mandatory: ['command', 'option', 'shift'], optional: ['any'] },
+				})
+				.toNone(),
+			k
+				.map({
+					key_code: 'left_control',
+					modifiers: { mandatory: ['command', 'option', 'shift'], optional: ['any'] },
+				})
+				.toNone(),
+		]),
+
+	k.rule('Tap Ctrl -> japanese_eisuu + ESC', devices.ifNotSelfMadeKeyboard).manipulators([
 		k
 			.map({ key_code: 'left_control', modifiers: { optional: ['any'] } })
 			.to({ key_code: 'left_control', lazy: true })
@@ -11,7 +28,7 @@ k.writeToProfile('Default profile', [
 	]),
 
 	k
-		.rule('Tap ESC -> japanese_eisuu + esc')
+		.rule('Tap ESC -> japanese_eisuu + esc', devices.ifNotSelfMadeKeyboard)
 		.manipulators([
 			k.map({ key_code: 'escape' }).to([{ key_code: 'japanese_eisuu' }, { key_code: 'escape' }]),
 		]),
@@ -29,6 +46,15 @@ k.writeToProfile('Default profile', [
 			}),
 	]),
 
+	k.rule('Open cmux directly with control-comma').manipulators([
+		k
+			.map({
+				key_code: 'comma',
+				modifiers: { mandatory: ['control'], optional: ['caps_lock'] },
+			})
+			.to$('/usr/bin/open -b com.cmuxterm.app'),
+	]),
+
 	k.rule('Tap CMD to toggle Kana/Eisuu', devices.ifNotSelfMadeKeyboard).manipulators([
 		k.withMapper<k.ModifierKeyCode, k.JapaneseKeyCode>({
 			left_command: 'japanese_eisuu',
@@ -44,7 +70,7 @@ k.writeToProfile('Default profile', [
 	]),
 
 	k
-		.rule('Hold tab to super key, tap tab to tab in Macbook', devices.ifNotSelfMadeKeyboard)
+		.rule('Hold tab to window modifier, tap tab to tab in MacBook', devices.ifNotSelfMadeKeyboard)
 		.manipulators([
 			k
 				.map({ key_code: 'tab' })
@@ -52,31 +78,19 @@ k.writeToProfile('Default profile', [
 				.toIfHeldDown({ key_code: 'tab', repeat: true })
 				.to({
 					key_code: 'left_command',
-					modifiers: ['left_option', 'left_shift', 'left_control'],
+					modifiers: ['left_option', 'left_shift'],
 				}),
 		]),
 
-	k.rule('toggle fn + h/j/k/l to arrow keys', devices.ifNotSelfMadeKeyboard).manipulators([
-		k.withMapper<k.LetterKeyCode, k.ArrowKeyCode>({
-			h: 'left_arrow',
-			j: 'down_arrow',
-			k: 'up_arrow',
-			l: 'right_arrow',
-		} as const)((key, arrow) =>
-			k
-				.map({
-					key_code: key,
-					modifiers: { mandatory: ['fn'] },
-				})
-				.to({ key_code: arrow })
-				.description(`Tap ${key} to ${arrow}`),
-		),
-	]),
-
-	k.rule('Right option to super key in Macbook', devices.ifNotSelfMadeKeyboard).manipulators([
-		k.map({ key_code: 'right_option' }).to({
-			key_code: 'right_command',
-			modifiers: ['right_option', 'right_shift', 'right_control'],
+	k.rule('Map fn to super key in MacBook', devices.ifNotSelfMadeKeyboard).manipulators([
+		k.map({ key_code: 'fn' }).to({
+			key_code: 'left_command',
+			lazy: true,
+			modifiers: ['left_option', 'left_shift', 'left_control'],
 		}),
 	]),
+
+	k
+		.rule('Map right option to fn in MacBook', devices.ifNotSelfMadeKeyboard)
+		.manipulators([k.map({ key_code: 'right_option' }).to({ key_code: 'fn', lazy: true })]),
 ]);
