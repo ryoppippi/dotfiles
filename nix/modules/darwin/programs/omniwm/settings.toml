@@ -465,7 +465,7 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Hyper+Y"
+binding = "Hyper+Left"
 id = "move.left"
 
 [[hotkeys]]
@@ -477,7 +477,7 @@ binding = "Hyper+I"
 id = "moveWindowUp"
 
 [[hotkeys]]
-binding = "Hyper+O"
+binding = "Hyper+Right"
 id = "move.right"
 
 [[hotkeys]]
@@ -677,11 +677,11 @@ binding = "Unassigned"
 id = "moveColumnToIndex.9"
 
 [[hotkeys]]
-binding = "Hyper+N"
+binding = "Unassigned"
 id = "cycleSizeBackward"
 
 [[hotkeys]]
-binding = "Hyper+M"
+binding = "Unassigned"
 id = "cycleSizeForward"
 
 [[hotkeys]]
@@ -713,11 +713,11 @@ binding = "Unassigned"
 id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+Minus"
 id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+Equal"
 id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]
@@ -729,11 +729,11 @@ binding = "Unassigned"
 id = "setWindowPrimarySpan.increase10Percent"
 
 [[hotkeys]]
-binding = "Hyper+Minus"
+binding = "Unassigned"
 id = "setWindowSecondarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Hyper+Equal"
+binding = "Unassigned"
 id = "setWindowSecondarySpan.increase10Percent"
 
 [[hotkeys]]

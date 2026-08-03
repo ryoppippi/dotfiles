@@ -22,9 +22,10 @@ start narrow, while cmux starts at full column width on workspace 2.
 | Shortcut              | Action                                     |
 | --------------------- | ------------------------------------------ |
 | `Hyper+H/J/K/L`       | Focus left/down/up/right                   |
-| `Hyper+Y/U/I/O`       | Move the focused window left/down/up/right |
+| `Hyper+Left/Right`    | Move the focused window left/right         |
+| `Hyper+U/I`           | Move the focused window down/up in a stack |
 | `Hyper+Z/X`           | Move the whole column left/right           |
-| `Hyper+N/M`           | Cycle the focused column smaller/larger    |
+| `Hyper+Minus/Equal`   | Resize the focused column smaller/larger   |
 | `Hyper+G`             | Toggle near-full display width             |
 | `Hyper+Return`        | Toggle fullscreen                          |
 | `Hyper+/`             | Toggle floating                            |
