@@ -66,26 +66,29 @@ Claude Code skills are managed via [agent-skills-nix](https://github.com/Kyure-A
 
 Configuration: `nix/modules/home/agent-skills.nix`
 
+External skill repositories are pinned in `registry/sources/`, not as flake inputs.
+
 ### Adding a new external skill
 
-1. Add flake input in `flake.nix`:
+1. Add a pin manifest `registry/sources/my-skill.nix`:
    ```nix
-   my-skill = {
-     url = "github:owner/repo";
-     flake = false;
-   };
-   ```
-2. Add source in `agent-skills.nix`:
-   ```nix
-   sources.my-skill = {
-     path = my-skill;
+   {
+     pin = {
+       type = "github";
+       owner = "owner";
+       repo = "repo";
+       branch = "main";
+     };
+
      subdir = "path/to/skills";
-   };
+     idPrefix = "my-skill";
+     filter.maxDepth = 1;
+   }
    ```
-3. Enable the skill:
-   ```nix
-   skills.enable = [ "skill-id" ];
-   ```
+2. Resolve the pin: `nix run .#skills-sources-lock`
+3. Select the skill in `agent-skills.nix` — `skills.explicit.<id>` when it needs
+   `packages` or a `transform`, otherwise add its prefixed catalog ID to
+   `skills.enable`
 4. Run `git add . && nix run .#switch`
 
 ### Adding a local skill
@@ -95,15 +98,15 @@ Create a new skill directory in `agents/skills/` with a `SKILL.md` file, then en
 ### Updating external skills
 
 ```bash
-nix flake update ast-grep-skill  # Update specific skill
-nix run .#switch                  # Apply changes
+nix run .#skills-sources-lock  # Re-resolve every pin in registry/sources/
+nix run .#switch               # Apply changes
 ```
+
+Editing a manifest without regenerating the lock fails evaluation, so the two always stay in sync.
 
 ### Current skills
 
-**External:**
-
-- **ast-grep**: [ast-grep/claude-skill](https://github.com/ast-grep/claude-skill)
+**External:** one manifest per repository in `registry/sources/`.
 
 **Local (in `agents/skills/`):**
 
