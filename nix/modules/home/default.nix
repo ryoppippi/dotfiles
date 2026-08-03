@@ -7,11 +7,9 @@
   system ? null,
   nodePackages ? null,
   fish-na ? null,
-  ast-grep-skill ? null,
-  agent-browser-skill ? null,
+  agentSkillsLib ? null,
+  skillRegistry ? null,
   tgrab ? null,
-  cmux-skill ? null,
-  gh-stack-skill ? null,
   local-skills ? null,
   ...
 }:
@@ -34,11 +32,9 @@ in
       inherit
         pkgs
         lib
-        ast-grep-skill
-        agent-browser-skill
+        agentSkillsLib
+        skillRegistry
         tgrab
-        cmux-skill
-        gh-stack-skill
         local-skills
         config
         ;

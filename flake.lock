@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "agent-browser-skill": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785476272,
-        "narHash": "sha256-IShC4VS1Z5ur0rp6QsM/ssHfhdMR9DEDRb7FeB4W3EY=",
-        "owner": "vercel-labs",
-        "repo": "agent-browser",
-        "rev": "da1237e2543de87119cfd48cb48284402bd4dc40",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vercel-labs",
-        "repo": "agent-browser",
-        "type": "github"
-      }
-    },
     "agent-skills": {
       "inputs": {
         "blueprint": "blueprint",
@@ -51,22 +35,6 @@
       "original": {
         "owner": "nvmd",
         "repo": "argononed",
-        "type": "github"
-      }
-    },
-    "ast-grep-skill": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1783087819,
-        "narHash": "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=",
-        "owner": "ast-grep",
-        "repo": "claude-skill",
-        "rev": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ast-grep",
-        "repo": "claude-skill",
         "type": "github"
       }
     },
@@ -199,22 +167,6 @@
       "original": {
         "owner": "catppuccin",
         "repo": "nix",
-        "type": "github"
-      }
-    },
-    "cmux-skill": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785481141,
-        "narHash": "sha256-o5kpjNeKabv+sif6FKiaW6px6Nh/3K7Cp70Tq1tP5Xk=",
-        "owner": "manaflow-ai",
-        "repo": "cmux",
-        "rev": "3ba2e6e49250c4c681e4645c11592dbe35adea54",
-        "type": "github"
-      },
-      "original": {
-        "owner": "manaflow-ai",
-        "repo": "cmux",
         "type": "github"
       }
     },
@@ -468,22 +420,6 @@
       "original": {
         "owner": "ryoppippi",
         "repo": "gh-nippou",
-        "type": "github"
-      }
-    },
-    "gh-stack-skill": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785424405,
-        "narHash": "sha256-RrVYkqUX0vKPUC0zextQSR+SG59j/HaILPZ/tBCXspQ=",
-        "owner": "github",
-        "repo": "gh-stack",
-        "rev": "8c9c8331309529e2114d4c34e77f4edea543f9fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "github",
-        "repo": "gh-stack",
         "type": "github"
       }
     },
@@ -1150,16 +1086,12 @@
     },
     "root": {
       "inputs": {
-        "agent-browser-skill": "agent-browser-skill",
         "agent-skills": "agent-skills",
-        "ast-grep-skill": "ast-grep-skill",
         "brew-api": "brew-api",
         "brew-nix": "brew-nix",
-        "cmux-skill": "cmux-skill",
         "fish-na": "fish-na",
         "flake-parts": "flake-parts",
         "gh-nippou": "gh-nippou",
-        "gh-stack-skill": "gh-stack-skill",
         "git-hooks": "git-hooks_2",
         "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",

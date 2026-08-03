@@ -93,29 +93,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Claude Code skills (flake = false for non-flake repos)
-    ast-grep-skill = {
-      url = "github:ast-grep/claude-skill";
-      flake = false;
-    };
-
-    agent-browser-skill = {
-      url = "github:vercel-labs/agent-browser";
-      flake = false;
-    };
-
     tgrab = {
       url = "github:ryoppippi/tgrab/bf5e8d3b3dc71cea03852af2bfcfc5d529ae91b5";
-    };
-
-    cmux-skill = {
-      url = "github:manaflow-ai/cmux";
-      flake = false;
-    };
-
-    gh-stack-skill = {
-      url = "github:github/gh-stack";
-      flake = false;
     };
 
   };
@@ -139,11 +118,7 @@
       fish-na,
       nix-index-database,
       agent-skills,
-      ast-grep-skill,
-      agent-browser-skill,
       tgrab,
-      cmux-skill,
-      gh-stack-skill,
       ...
     }:
     let
@@ -154,6 +129,15 @@
       local-skills = nixpkgs.lib.fileset.toSource {
         root = ./.;
         fileset = ./agents/skills;
+      };
+
+      agentSkillsLib = agent-skills.lib.agent-skills;
+
+      # External skill repositories are pinned here instead of as flake inputs;
+      # refresh them with `nix run .#skills-sources-lock`.
+      skillRegistry = {
+        manifestsDir = ./registry/sources;
+        lockFile = ./registry/sources.lock.json;
       };
 
       # Create pkgs with overlays
@@ -211,13 +195,9 @@
                       config
                       lib
                       fish-na
-                      ast-grep-skill
-                      agent-browser-skill
                       tgrab
-                      cmux-skill
-                      gh-stack-skill
                       ;
-                    inherit local-skills;
+                    inherit local-skills agentSkillsLib skillRegistry;
                     homedir = linuxHomedir;
                     system = linuxSystem;
                     nodePackages = import ./nix/packages/node { inherit pkgs; };
@@ -389,6 +369,18 @@
 
           # Apps
           apps = {
+            # Resolve every registry/sources/*.nix pin and rewrite
+            # registry/sources.lock.json. Replaces `nix flake update <skill>`
+            # for skill repositories.
+            skills-sources-lock = {
+              type = "app";
+              program = "${
+                agent-skills.lib.agent-skills.mkSourceLockProgram {
+                  pkgs = localPkgs;
+                }
+              }/bin/skills-sources-lock";
+            };
+
             nvim-restore = {
               type = "app";
               program = toString (
@@ -604,13 +596,9 @@
                           config
                           lib
                           fish-na
-                          ast-grep-skill
-                          agent-browser-skill
                           tgrab
-                          cmux-skill
-                          gh-stack-skill
                           ;
-                        inherit local-skills;
+                        inherit local-skills agentSkillsLib skillRegistry;
                         homedir = darwinHomedir;
                         system = "aarch64-darwin";
                         nodePackages = import ./nix/packages/node { inherit pkgs; };

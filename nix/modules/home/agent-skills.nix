@@ -7,27 +7,18 @@
   pkgs,
   config,
   lib,
-  ast-grep-skill,
-  agent-browser-skill,
+  agentSkillsLib,
+  skillRegistry,
   tgrab,
-  cmux-skill,
-  gh-stack-skill,
   local-skills,
   ...
 }:
 let
-  # Skills selected via skills.explicit keep the attr name as their ID, so
-  # prefixing only namespaces *discovered* IDs. Without it, discoverCatalog
-  # throws on any duplicate ID, meaning an unrelated upstream bump that adds a
-  # skill named like a local one would break every switch. Only `local` stays
-  # bare, because skills.enable selects it by plain name.
-  externalSource = idPrefix: path: {
-    inherit idPrefix path;
-    subdir = "skills";
-    # Every skill here sits directly under subdir; the upstream default of
-    # unlimited recursion would also surface nested SKILL.md files.
-    filter.maxDepth = 1;
-  };
+  # External skill repositories are pinned in registry/sources/*.nix rather than
+  # as flake inputs, so `nix run .#skills-sources-lock` updates them all without
+  # touching flake.lock. Each manifest also carries its own subdir, idPrefix,
+  # and depth filter.
+  externalSources = agentSkillsLib.sourcesFromLock skillRegistry;
 
   localSkillNames =
     if local-skills == null then
@@ -41,17 +32,10 @@ in
   programs.agent-skills = {
     enable = true;
 
-    # Skill sources (from flake inputs)
-    sources = {
-      # External: ast-grep official skill
-      ast-grep = (externalSource "ast-grep" ast-grep-skill) // {
-        subdir = "ast-grep/skills";
-      };
-      # External: agent-browser skill
-      agent-browser = externalSource "agent-browser" agent-browser-skill;
-      cmux = externalSource "cmux" cmux-skill;
-      gh-stack = externalSource "gh-stack" gh-stack-skill;
-      # Local: skills from this dotfiles repo
+    # External sources come from the pin registry; only this repo's own skills
+    # stay a direct path. `local` keeps bare IDs because skills.enable selects
+    # it by plain name.
+    sources = externalSources // {
       local = {
         path = local-skills;
         subdir = "agents/skills";
