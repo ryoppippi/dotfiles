@@ -1,6 +1,6 @@
 ---
 name: web-fetch
-description: Fetches and searches web content with ax, tgrab, grok, codex, and agent-browser. Use for text from a URL, web/tweet search, or social/video content.
+description: Fetches and searches web content with ax, tgrab, grok, codex, exa, and agent-browser. Use for text from a URL, web/tweet/semantic search, or social/video content.
 ---
 
 # Web Fetch
