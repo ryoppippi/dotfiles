@@ -2,10 +2,72 @@
 	"global": {
 		"show_in_menu_bar": false
 	},
+	"machine_specific": {
+		"krbn-62f37c1f-b121-4de4-ab65-5391cdce53d1": {
+			"enable_multitouch_extension": true
+		}
+	},
 	"profiles": [
 		{
 			"complex_modifications": {
 				"rules": [
+					{
+						"description": "Block control tap while Tab window modifier is held",
+						"manipulators": [
+							{
+								"type": "basic",
+								"from": {
+									"key_code": "caps_lock",
+									"modifiers": {
+										"mandatory": ["command", "option", "shift"],
+										"optional": ["any"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "vk_none"
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "basic",
+								"from": {
+									"key_code": "left_control",
+									"modifiers": {
+										"mandatory": ["command", "option", "shift"],
+										"optional": ["any"]
+									}
+								},
+								"to": [
+									{
+										"key_code": "vk_none"
+									}
+								],
+								"conditions": [
+									{
+										"type": "device_unless",
+										"identifiers": [
+											{
+												"product_id": 1,
+												"vendor_id": 22854
+											}
+										]
+									}
+								]
+							}
+						]
+					},
 					{
 						"description": "Tap Ctrl -> japanese_eisuu + ESC",
 						"manipulators": [

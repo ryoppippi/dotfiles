@@ -3,6 +3,23 @@ import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
 k.writeToProfile('Default profile', [
+	k
+		.rule('Block control tap while Tab window modifier is held', devices.ifNotSelfMadeKeyboard)
+		.manipulators([
+			k
+				.map({
+					key_code: 'caps_lock',
+					modifiers: { mandatory: ['command', 'option', 'shift'], optional: ['any'] },
+				})
+				.toNone(),
+			k
+				.map({
+					key_code: 'left_control',
+					modifiers: { mandatory: ['command', 'option', 'shift'], optional: ['any'] },
+				})
+				.toNone(),
+		]),
+
 	k.rule('Tap Ctrl -> japanese_eisuu + ESC', devices.ifNotSelfMadeKeyboard).manipulators([
 		k
 			.map({ key_code: 'left_control', modifiers: { optional: ['any'] } })
