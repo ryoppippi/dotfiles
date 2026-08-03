@@ -13,4 +13,6 @@
       keepAlive = true;
     };
   };
+
+  xdg.configFile."omniwm/settings.toml".force = true;
 }

@@ -413,11 +413,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Option+Shift+Command+Left"
+binding = "Hyper+E"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Option+Shift+Command+Right"
+binding = "Hyper+R"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]
@@ -477,11 +477,11 @@ binding = "Unassigned"
 id = "move.up"
 
 [[hotkeys]]
-binding = "Hyper+O"
+binding = "Hyper+I"
 id = "move.right"
 
 [[hotkeys]]
-binding = "Hyper+I"
+binding = "Hyper+O"
 id = "moveWindowDown"
 
 [[hotkeys]]
@@ -677,11 +677,11 @@ binding = "Unassigned"
 id = "moveColumnToIndex.9"
 
 [[hotkeys]]
-binding = "Hyper+,"
+binding = "Hyper+N"
 id = "cycleSizeBackward"
 
 [[hotkeys]]
-binding = "Hyper+."
+binding = "Hyper+M"
 id = "cycleSizeForward"
 
 [[hotkeys]]
@@ -701,7 +701,7 @@ binding = "Unassigned"
 id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
-binding = "Hyper+M"
+binding = "Hyper+G"
 id = "toggleContainerFullPrimarySpan"
 
 [[hotkeys]]
@@ -870,7 +870,11 @@ layoutType = "niri"
 name = "1"
 
 [workspaces.monitorAssignment]
-type = "main"
+type = "specificDisplay"
+
+[workspaces.monitorAssignment.output]
+displayUUID = "5F129C20-8DDC-4167-B365-41567CECAD93"
+name = "DELL U5226KW"
 
 [[workspaces]]
 id = "454CECD4-5E9D-4ED1-95D7-979D48817F5F"
@@ -878,4 +882,8 @@ layoutType = "niri"
 name = "2"
 
 [workspaces.monitorAssignment]
-type = "secondary"
+type = "specificDisplay"
+
+[workspaces.monitorAssignment.output]
+displayUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
+name = "Built-in Retina Display"

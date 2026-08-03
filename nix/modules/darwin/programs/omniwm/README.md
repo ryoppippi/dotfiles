@@ -19,26 +19,28 @@ start narrow, while cmux starts at full column width on workspace 2.
 
 ## Window Shortcuts
 
-| Shortcut                 | Action                                         |
-| ------------------------ | ---------------------------------------------- |
-| `Hyper+H/J/K/L`          | Focus left/down/up/right                       |
-| `Hyper+U/O`              | Move the focused window left/right             |
-| `Hyper+I/P`              | Move the focused window down/up within a stack |
-| `Hyper+Z/X`              | Move the whole column left/right               |
-| `Hyper+,/.`              | Cycle the focused column smaller/larger        |
-| `Hyper+M`                | Toggle near-full display width                 |
-| `Hyper+Return`           | Toggle fullscreen                              |
-| `Hyper+/`                | Toggle floating                                |
-| `Hyper+Space`            | Open the OmniWM command palette                |
-| `Option+Shift+Command+←` | Move the window to the main display            |
-| `Option+Shift+Command+→` | Move the window to the secondary display       |
-| `Control+Command+Tab`    | Focus the next monitor                         |
-| `Control+Command+\``     | Focus the last monitor                         |
+| Shortcut              | Action                                         |
+| --------------------- | ---------------------------------------------- |
+| `Hyper+H/J/K/L`       | Focus left/down/up/right                       |
+| `Hyper+U/I`           | Move the focused window left/right             |
+| `Hyper+O/P`           | Move the focused window down/up within a stack |
+| `Hyper+Z/X`           | Move the whole column left/right               |
+| `Hyper+N/M`           | Cycle the focused column smaller/larger        |
+| `Hyper+G`             | Toggle near-full display width                 |
+| `Hyper+Return`        | Toggle fullscreen                              |
+| `Hyper+/`             | Toggle floating                                |
+| `Hyper+Space`         | Open the OmniWM command palette                |
+| `Hyper+E`             | Move the window to the previous workspace      |
+| `Hyper+R`             | Move the window to the next workspace          |
+| `Control+Command+Tab` | Focus the next monitor                         |
+| `Control+Command+\``  | Focus the last monitor                         |
 
 ## Workspaces
 
-Workspace 1 belongs to the main display and workspace 2 belongs to the
-secondary display. cmux opens on workspace 2. `Hyper+Tab` switches back and
-forth between the two workspaces.
+Workspace 1 is pinned to the Dell U5226KW and workspace 2 is pinned to the
+built-in MacBook display. cmux opens on workspace 2. `Hyper+Tab` switches back
+and forth between the two workspaces.
 
-Direct move-to-workspace shortcuts are currently unassigned.
+`Hyper+E/R` moves the focused window between the two display workspaces. This
+moves only the window; the workspace itself stays assigned to its display.
+`Hyper+Tab` changes the active workspace without moving a window.
