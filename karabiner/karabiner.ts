@@ -53,7 +53,7 @@ k.writeToProfile('Default profile', [
 	]),
 
 	k
-		.rule('Hold tab to super key, tap tab to tab in Macbook', devices.ifNotSelfMadeKeyboard)
+		.rule('Hold tab to window modifier, tap tab to tab in MacBook', devices.ifNotSelfMadeKeyboard)
 		.manipulators([
 			k
 				.map({ key_code: 'tab' })
@@ -61,7 +61,7 @@ k.writeToProfile('Default profile', [
 				.toIfHeldDown({ key_code: 'tab', repeat: true })
 				.to({
 					key_code: 'left_command',
-					modifiers: ['left_option', 'left_shift', 'left_control'],
+					modifiers: ['left_option', 'left_shift'],
 				}),
 		]),
 

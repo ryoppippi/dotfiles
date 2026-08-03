@@ -193,7 +193,7 @@
 						]
 					},
 					{
-						"description": "Hold tab to super key, tap tab to tab in Macbook",
+						"description": "Hold tab to window modifier, tap tab to tab in MacBook",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -215,7 +215,7 @@
 								"to": [
 									{
 										"key_code": "left_command",
-										"modifiers": ["left_option", "left_shift", "left_control"]
+										"modifiers": ["left_option", "left_shift"]
 									}
 								],
 								"conditions": [

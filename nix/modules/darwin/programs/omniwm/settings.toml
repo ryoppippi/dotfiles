@@ -369,7 +369,7 @@ binding = "Hyper+L"
 id = "focus.right"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Tab"
 id = "focusPrevious"
 
 [[hotkeys]]
@@ -413,11 +413,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Hyper+E"
+binding = "Option+Command+Shift+Left"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Hyper+R"
+binding = "Option+Command+Shift+Right"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]
@@ -465,19 +465,19 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Hyper+Left"
+binding = "Option+Command+Shift+H"
 id = "move.left"
 
 [[hotkeys]]
-binding = "Hyper+U"
+binding = "Option+Command+Shift+J"
 id = "moveWindowDown"
 
 [[hotkeys]]
-binding = "Hyper+I"
+binding = "Option+Command+Shift+K"
 id = "moveWindowUp"
 
 [[hotkeys]]
-binding = "Hyper+Right"
+binding = "Option+Command+Shift+L"
 id = "move.right"
 
 [[hotkeys]]
@@ -513,7 +513,7 @@ binding = "Unassigned"
 id = "expelWindowFromColumn"
 
 [[hotkeys]]
-binding = "Control+Command+Tab"
+binding = "Option+Command+Shift+Tab"
 id = "focusMonitorNext"
 
 [[hotkeys]]
@@ -521,11 +521,11 @@ binding = "Unassigned"
 id = "focusMonitorPrevious"
 
 [[hotkeys]]
-binding = "Control+Command+Grave"
+binding = "Unassigned"
 id = "focusMonitorLast"
 
 [[hotkeys]]
-binding = "Hyper+Return"
+binding = "Hyper+F"
 id = "toggleFullscreen"
 
 [[hotkeys]]
@@ -533,11 +533,11 @@ binding = "Unassigned"
 id = "toggleNativeFullscreen"
 
 [[hotkeys]]
-binding = "Hyper+Z"
+binding = "Hyper+Y"
 id = "moveColumn.left"
 
 [[hotkeys]]
-binding = "Hyper+X"
+binding = "Hyper+O"
 id = "moveColumn.right"
 
 [[hotkeys]]
@@ -557,7 +557,7 @@ binding = "Unassigned"
 id = "moveColumnToLast"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+T"
 id = "toggleColumnTabbed"
 
 [[hotkeys]]
@@ -709,15 +709,15 @@ binding = "Unassigned"
 id = "expandContainerToAvailablePrimarySpan"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+R"
 id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
-binding = "Hyper+Minus"
+binding = "Option+Command+Left"
 id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Hyper+Equal"
+binding = "Option+Command+Right"
 id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]
@@ -729,11 +729,11 @@ binding = "Unassigned"
 id = "setWindowPrimarySpan.increase10Percent"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Down"
 id = "setWindowSecondarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Up"
 id = "setWindowSecondarySpan.increase10Percent"
 
 [[hotkeys]]
@@ -825,7 +825,7 @@ binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Hyper+Slash"
+binding = "Hyper+D"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]
