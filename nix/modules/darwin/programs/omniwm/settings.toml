@@ -413,11 +413,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Option+Command+Shift+Left"
+binding = "Option+Command+Shift+Left Arrow"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Option+Command+Shift+Right"
+binding = "Option+Command+Shift+Right Arrow"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]
@@ -525,7 +525,7 @@ binding = "Unassigned"
 id = "focusMonitorLast"
 
 [[hotkeys]]
-binding = "Hyper+F"
+binding = "Unassigned"
 id = "toggleFullscreen"
 
 [[hotkeys]]
@@ -533,11 +533,11 @@ binding = "Unassigned"
 id = "toggleNativeFullscreen"
 
 [[hotkeys]]
-binding = "Hyper+Y"
+binding = "Unassigned"
 id = "moveColumn.left"
 
 [[hotkeys]]
-binding = "Hyper+O"
+binding = "Unassigned"
 id = "moveColumn.right"
 
 [[hotkeys]]
@@ -701,7 +701,7 @@ binding = "Unassigned"
 id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
-binding = "Hyper+G"
+binding = "Hyper+F"
 id = "toggleContainerFullPrimarySpan"
 
 [[hotkeys]]
@@ -713,11 +713,11 @@ binding = "Hyper+R"
 id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
-binding = "Option+Command+Left"
+binding = "Hyper+Y"
 id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Command+Right"
+binding = "Hyper+O"
 id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]
@@ -729,11 +729,11 @@ binding = "Unassigned"
 id = "setWindowPrimarySpan.increase10Percent"
 
 [[hotkeys]]
-binding = "Option+Command+Down"
+binding = "Hyper+U"
 id = "setWindowSecondarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Command+Up"
+binding = "Hyper+I"
 id = "setWindowSecondarySpan.increase10Percent"
 
 [[hotkeys]]

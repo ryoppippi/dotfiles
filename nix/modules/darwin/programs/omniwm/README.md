@@ -25,13 +25,12 @@ start narrow, while cmux starts at full column width on workspace 2.
 | ---------------------------------------------- | ------------------------------ | ---------------------------- | ----------------------------------- |
 | Focus left/down/up/right                       | `Hyper+H/J/K/L`                | Left BS hold + `H/J/K/L`     | Fn hold + `H/J/K/L`                 |
 | Move window left/down/up/right                 | `Option+Command+Shift+H/J/K/L` | `S+D` hold + `H/J/K/L`       | Tab hold + `H/J/K/L`                |
-| Move whole column left/right                   | `Hyper+Y/O`                    | Left BS hold + `Y/O`         | Fn hold + `Y/O`                     |
-| Resize column smaller/larger                   | `Option+Command+←/→`           | `D+F` hold + Layer 2 + `H/L` | Left Option + Command + `←/→`       |
-| Resize window shorter/taller                   | `Option+Command+↓/↑`           | `D+F` hold + Layer 2 + `J/K` | Left Option + Command + `↓/↑`       |
-| Toggle near-full display width                 | `Hyper+G`                      | Lang1 hold + `G`             | Fn hold + `G`                       |
+| Resize column smaller/larger                   | `Hyper+Y/O`                    | Left BS hold + `Y/O`         | Fn hold + `Y/O`                     |
+| Resize window shorter/taller                   | `Hyper+U/I`                    | Left BS hold + `U/I`         | Fn hold + `U/I`                     |
+| Toggle near-full display width                 | `Hyper+F`                      | Lang1 hold + `F`             | Fn hold + `F`                       |
 | Reset window height                            | `Hyper+R`                      | Lang1 hold + `R`             | Fn hold + `R`                       |
 | Toggle tabbed column                           | `Hyper+T`                      | Lang1 hold + `T`             | Fn hold + `T`                       |
-| Toggle fullscreen                              | `Hyper+F`                      | Lang1 hold + `F`             | Fn hold + `F`                       |
+| Toggle fullscreen                              | `Unassigned`                   | —                            | —                                   |
 | Toggle floating                                | `Hyper+D`                      | Lang1 hold + `D`             | Fn hold + `D`                       |
 | Open command palette                           | `Hyper+Space`                  | Lang1 hold + Space           | Fn hold + Space                     |
 | Focus previous window                          | `Option+Command+Tab`           | `D+F` hold + right Tab       | Left Option + Command + Tab         |
@@ -49,6 +48,15 @@ and forth between the two workspaces.
 workspaces. This moves only the window; the workspace itself stays assigned to
 its display.
 `Hyper+Tab` changes the active workspace without moving a window.
+
+## Configuration ownership
+
+OmniWM writes the complete canonical `settings.toml` when settings are saved in
+the GUI. Home Manager therefore copies the repository template to a writable
+file during activation instead of managing a read-only Nix store symlink. The
+repository template remains authoritative: edit it and run the Darwin switch
+to apply persistent changes. GUI edits to the live file are overwritten by the
+next switch.
 
 On the CLAW44, holding `Enter` activates Layer 2. The tables write `Layer 2`
 instead of `Enter` to describe the layer action rather than the physical key.
