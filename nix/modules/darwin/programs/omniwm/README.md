@@ -24,13 +24,13 @@ start narrow, while cmux starts at full column width on workspace 2.
 | Action                                         | OmniWM shortcut                | CLAW44 keys                  | MacBook keys                        |
 | ---------------------------------------------- | ------------------------------ | ---------------------------- | ----------------------------------- |
 | Focus left/down/up/right                       | `Hyper+H/J/K/L`                | Left BS hold + `H/J/K/L`     | Fn hold + `H/J/K/L`                 |
-| Move window left/down/up/right                 | `Option+Command+Shift+H/J/K/L` | `S+D` hold + `H/J/K/L`       | Tab hold + `H/J/K/L`                |
+| Move column left/right                         | `Hyper+←/→`                    | Left BS hold + `←/→`         | Fn hold + `←/→`                     |
+| Reorder window down/up                         | `Hyper+↓/↑`                    | Left BS hold + `↓/↑`         | Fn hold + `↓/↑`                     |
 | Resize column smaller/larger                   | `Hyper+Y/O`                    | Left BS hold + `Y/O`         | Fn hold + `Y/O`                     |
 | Resize window shorter/taller                   | `Hyper+U/I`                    | Left BS hold + `U/I`         | Fn hold + `U/I`                     |
 | Toggle near-full display width                 | `Hyper+F`                      | Lang1 hold + `F`             | Fn hold + `F`                       |
 | Reset window height                            | `Hyper+R`                      | Lang1 hold + `R`             | Fn hold + `R`                       |
 | Toggle tabbed column                           | `Hyper+T`                      | Lang1 hold + `T`             | Fn hold + `T`                       |
-| Toggle fullscreen                              | `Unassigned`                   | —                            | —                                   |
 | Toggle floating                                | `Hyper+D`                      | Lang1 hold + `D`             | Fn hold + `D`                       |
 | Open command palette                           | `Hyper+Space`                  | Lang1 hold + Space           | Fn hold + Space                     |
 | Focus previous window                          | `Option+Command+Tab`           | `D+F` hold + right Tab       | Left Option + Command + Tab         |
