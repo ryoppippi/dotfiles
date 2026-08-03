@@ -341,7 +341,7 @@ binding = "Unassigned"
 id = "moveToWorkspace.8"
 
 [[hotkeys]]
-binding = "Hyper+Tab"
+binding = "Option+Command+Shift+Tab"
 id = "workspaceBackAndForth"
 
 [[hotkeys]]
@@ -367,6 +367,10 @@ id = "focus.up"
 [[hotkeys]]
 binding = "Hyper+L"
 id = "focus.right"
+
+[[hotkeys]]
+binding = "Hyper+Tab"
+id = "focus.previous"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -509,11 +513,11 @@ binding = "Unassigned"
 id = "expelWindowFromColumn"
 
 [[hotkeys]]
-binding = "Option+Command+Shift+Tab"
+binding = "Option+Command+Shift+Up Arrow"
 id = "focusMonitorNext"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Shift+Down Arrow"
 id = "focusMonitorPrevious"
 
 [[hotkeys]]
@@ -853,7 +857,7 @@ binding = "Unassigned"
 id = "toggleWorkspaceLayout"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Shift+Space"
 id = "toggleOverview"
 
 [[hotkeys]]
