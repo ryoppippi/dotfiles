@@ -593,7 +593,7 @@
                     imports = [
                       agent-skills.homeManagerModules.default
 
-                      (import ./nix/modules/darwin/programs/omniwm.nix {
+                      (import ./nix/modules/darwin/programs/omniwm {
                         omniwmModule = omniwm.homeModules.omniwm;
                       })
 

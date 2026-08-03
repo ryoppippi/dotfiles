@@ -7,7 +7,7 @@
 
   programs.omniwm = {
     enable = true;
-    settings = ./omniwm-settings.toml;
+    settings = ./settings.toml;
     launchd = {
       enable = true;
       keepAlive = true;
