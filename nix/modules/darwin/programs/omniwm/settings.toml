@@ -497,11 +497,11 @@ binding = "Unassigned"
 id = "moveWindowUpOrToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+N"
 id = "consumeOrExpelWindowLeft"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+M"
 id = "consumeOrExpelWindowRight"
 
 [[hotkeys]]

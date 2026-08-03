@@ -33,6 +33,7 @@ modifier names.
 | Focus previous window                          | `Hyper+Tab`       | Lang1 hold + left Tab        | Fn hold + Tab                       |
 | Move column left/right                         | `Hyper+←/→`       | Left BS hold + `←/→`         | Fn hold + `←/→`                     |
 | Reorder window down/up                         | `Hyper+↓/↑`       | Left BS hold + `↓/↑`         | Fn hold + `↓/↑`                     |
+| Consume/expel window left/right                | `Hyper+N/M`       | Left BS hold + `N/M`         | Fn hold + `N/M`                     |
 | Resize column smaller/larger                   | `Hyper+Y/O`       | Left BS hold + `Y/O`         | Fn hold + `Y/O`                     |
 | Resize window shorter/taller                   | `Hyper+U/I`       | Left BS hold + `U/I`         | Fn hold + `U/I`                     |
 | Toggle near-full display width                 | `Hyper+F`         | Lang1 hold + `F`             | Fn hold + `F`                       |
