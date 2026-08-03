@@ -16,6 +16,19 @@
   ...
 }:
 let
+  # Skills selected via skills.explicit keep the attr name as their ID, so
+  # prefixing only namespaces *discovered* IDs. Without it, discoverCatalog
+  # throws on any duplicate ID, meaning an unrelated upstream bump that adds a
+  # skill named like a local one would break every switch. Only `local` stays
+  # bare, because skills.enable selects it by plain name.
+  externalSource = idPrefix: path: {
+    inherit idPrefix path;
+    subdir = "skills";
+    # Every skill here sits directly under subdir; the upstream default of
+    # unlimited recursion would also surface nested SKILL.md files.
+    filter.maxDepth = 1;
+  };
+
   localSkillNames =
     if local-skills == null then
       [ ]
@@ -31,27 +44,18 @@ in
     # Skill sources (from flake inputs)
     sources = {
       # External: ast-grep official skill
-      ast-grep = {
-        path = ast-grep-skill;
+      ast-grep = (externalSource "ast-grep" ast-grep-skill) // {
         subdir = "ast-grep/skills";
       };
       # External: agent-browser skill
-      agent-browser = {
-        path = agent-browser-skill;
-        subdir = "skills";
-      };
-      cmux = {
-        path = cmux-skill;
-        subdir = "skills";
-      };
-      gh-stack = {
-        path = gh-stack-skill;
-        subdir = "skills";
-      };
+      agent-browser = externalSource "agent-browser" agent-browser-skill;
+      cmux = externalSource "cmux" cmux-skill;
+      gh-stack = externalSource "gh-stack" gh-stack-skill;
       # Local: skills from this dotfiles repo
       local = {
         path = local-skills;
         subdir = "agents/skills";
+        filter.maxDepth = 1;
       };
     };
 
@@ -169,11 +173,17 @@ in
     targets = {
       # Standard ~/.agents/skills directory
       agents = {
-        dest = ".agents/skills";
+        enable = true;
+        # Absolute: a global target's dest must not depend on the activation cwd.
+        dest = "$HOME/.agents/skills";
         structure = "copy-tree";
       };
-      # Claude Code user config
+      # Claude Code user config. Deliberately not the upstream default of
+      # ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills: CLAUDE_CONFIG_DIR comes from
+      # home.sessionVariables, which is not exported during activation, so that
+      # default would silently expand to the wrong directory.
       claude = {
+        enable = true;
         dest = ".config/claude/skills";
         structure = "link";
       };
