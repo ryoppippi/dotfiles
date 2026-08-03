@@ -1,0 +1,146 @@
+name: 'Bot: Update skill source pins'
+
+on:
+  schedule:
+    # Half an hour after the stable flake update, so the two bots do not race
+    # for the same checkout.
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository (for local actions)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up git bot identity
+        id: bot
+        uses: ./.github/actions/setup-git-bot
+        with:
+          app-id: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_ID }}
+          private-key: ${{ secrets.RYOPPIPPI_NIX_UPDATER_APP_PRIVATE_KEY }}
+
+      - name: Checkout repository (with bot token)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          token: ${{ steps.bot.outputs.token }}
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+
+      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+        with:
+          version: '0.114.1'
+
+      - name: Resolve pins and open a pull request
+        shell: nu {0}
+        env:
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
+        run: |
+          const LOCK = 'registry/sources.lock.json'
+          const BRANCH = 'bot/update-skill-sources'
+
+          # Revisions before the refresh, so the PR can show what actually moved.
+          let before = (open $LOCK | get npins.pins)
+
+          nix run .#skills-sources-lock
+
+          # One row per pin whose revision moved. Short revisions keep the table readable.
+          let moved = (
+            open $LOCK
+            | get npins.pins
+            | transpose name pin
+            | each { |row|
+                let old = ($before | get -o $row.name | get -o revision)
+                let new = ($row.pin | get -o revision)
+                if $old == $new {
+                  null
+                } else {
+                  {
+                    name: $row.name
+                    old: ($old | default 'new' | str substring 0..7)
+                    new: ($new | default 'unknown' | str substring 0..7)
+                  }
+                }
+              }
+            | compact
+          )
+
+          let rows = ($moved | each { |m| $"| `($m.name)` | `($m.old)` | `($m.new)` |" })
+
+          if ($moved | is-empty) {
+            print 'Every pin is already at its latest revision.'
+            [
+              '## Skill Source Pins'
+              ''
+              ':white_check_mark: No pin moved; the lock is unchanged.'
+              ''
+            ]
+            | str join "\n"
+            | save --append $env.GITHUB_STEP_SUMMARY
+          } else {
+            let title = match ($moved | length) {
+              1 => $"chore\(skills): update pin ($moved.0.name) to ($moved.0.new)"
+              $n => $"chore\(skills): update ($n) skill source pins"
+            }
+
+            let body = [
+              'Automated refresh of the skill source registry.'
+              ''
+              '## Changes'
+              ''
+              '| Source | Old | New |'
+              '|--------|-----|-----|'
+              ...$rows
+              ''
+              '## Notes'
+              'Deliberately not auto-merged: these pins carry agent instructions, so the diff wants a human read.'
+              ''
+              '---'
+              'This PR was automatically created by the skill source update workflow.'
+            ]
+            | str join "\n"
+
+            git add $LOCK
+            git checkout -b $BRANCH
+            git commit -m $title
+            # A re-run reuses the branch name, so the push is forced.
+            git push --force origin $BRANCH
+
+            match (gh pr list --head $BRANCH --json number | from json | get -o 0.number) {
+              null => {
+                print $"Creating a pull request for ($BRANCH)"
+                (
+                  gh pr create
+                  --title $title
+                  --body $body
+                  --base main
+                  --head $BRANCH
+                  --label dependencies
+                  --label automated
+                )
+              }
+              $existing => {
+                print $"Updating existing PR #($existing)"
+                gh pr edit $existing --title $title --body $body
+              }
+            }
+
+            let url = (gh pr view $BRANCH --json url | from json | get url)
+            [
+              '## Skill Source Pins'
+              ''
+              '| Source | Old | New |'
+              '|--------|-----|-----|'
+              ...$rows
+              ''
+              $"PR: ($url)"
+              ''
+            ]
+            | str join "\n"
+            | save --append $env.GITHUB_STEP_SUMMARY
+          }
