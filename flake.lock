@@ -703,11 +703,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1785353713,
+        "lastModified": 1785544760,
         "narHash": "sha256-qV6OoNuly4ntqpCg7esIeJjUboxSnQNlLPxz+y5h9/o=",
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "99ea1e395ed6456304c5fd67f1549c9eee7fcc65",
+        "rev": "937ce52c7d046310571f3a070713804ead496843",
         "type": "github"
       },
       "original": {
