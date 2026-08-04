@@ -64,8 +64,19 @@ Keep the body procedural and repo-specific:
 
 Avoid explaining generic concepts the model already knows. Aim for under 500 lines; split larger content into `references/`.
 
+Rules that are easy to violate without noticing:
+
+- One term per concept, used consistently throughout.
+- No time-sensitive wording ("after August 2025…"); put superseded guidance in an "old patterns" section instead.
+- Concrete examples, never abstract placeholders.
+- One default per task, not a menu of equivalent options.
+- Forward-slash paths only.
+- MCP tools written as `Server:tool_name`.
+- Reference links one level deep from `SKILL.md` — agents only preview nested files.
+
 - https://simonwillison.net/2026/Jul/21/cat-and-thariq/
 - https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models
+- https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
 
 ## Documentation references
 
@@ -115,38 +126,7 @@ Two thresholds for `SKILL.md` length:
 - **~150 lines — consider splitting.** Once the body passes this, it is usually no longer a tight, scannable workflow. Move conditional or long-form detail into `references/*.md`. The `vitest-testing` skill is the model: a ~50-line `SKILL.md` that routes to ten focused `references/*.md` files.
 - **~500 lines — hard ceiling** (Anthropic guidance). Never exceed this; split aggressively before you get here.
 
-Reference files load only when the agent follows the link, so splitting keeps the always-loaded surface small without losing detail.
-
-```text
-agents/skills/example-skill/
-├── SKILL.md
-└── references/
-    ├── api.md
-    └── examples.md
-```
-
-### When to split into references
-
-Split content out as soon as it stops being needed on every run of the skill. Concrete triggers:
-
-- **Runner / platform-specific guidance** — e.g. Vitest vs Rust vs Zig examples for the `tdd` skill. The main SKILL.md keeps the universal cycle; each runner file is loaded only for that stack.
-- **Long good/bad example galleries** — keep one representative example inline, push the rest to `references/examples.md`.
-- **Failure-recovery and edge-case playbooks** — e.g. `references/git-apply.md` for patch-staging recovery: only read when the happy path fails.
-- **Command catalogues** — long lists of `gh` / `git` invocations belong in `references/<topic>-commands.md`, with the main file linking by purpose.
-- **Templates, schemas, or large tables** — anything > ~30 lines that the agent only needs as a lookup.
-
-Stop splitting when:
-
-- The detail is consulted on every invocation (keep it inline).
-- A reference would be < ~20 lines (just inline it — the extra file read costs more than the tokens it saves).
-
-### How to split
-
-1. Identify a self-contained section in `SKILL.md`.
-2. Move it verbatim to `references/<topic>.md`. Give it an H1 and, if > 100 lines, a contents list at the top so partial reads (`head -100`) still surface the scope.
-3. Replace the original location with a one-line pointer that names the trigger condition: e.g. `When a patch fails or needs whitespace handling, read references/git-apply.md.`
-4. Link reference files **directly from `SKILL.md`**. Keep links one level deep — agents may only preview nested references.
-5. Prefer `references/<topic>.md` over top-level `<topic>-example.md`; the dedicated folder makes the boundary obvious and is the convention used across this repo and the ccusage skills.
+Reference files load only when the agent follows the link, so splitting keeps the always-loaded surface small without losing detail. When a skill passes the soft threshold, or when deciding whether a section earns its own file, read [`references/splitting.md`](references/splitting.md).
 
 ## Scripts
 
