@@ -20,4 +20,4 @@ If `ax` or `tgrab` fails, fall back to the host's web fetch/search tool or `curl
 
 A browser is the last resort, only for a page the tools above cannot read — JavaScript rendering, a login, or interaction. Which browser to reach for, in order: [references/browser.md](references/browser.md).
 
-Always run these CLIs via a subagent to keep the main conversation context clean.
+Run these CLIs through `pi-sub` rather than in this session — see the `pi-subagent` skill. It keeps whole pages and JSON payloads out of the context and bills the Codex subscription. The exception is text you need verbatim, such as the exa docs pages above: fetch those here with `./ax`, since a digest rewrites the exact names you came for.
