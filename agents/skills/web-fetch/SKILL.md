@@ -15,6 +15,6 @@ Pick the tool by task, then read its reference for usage:
 
 If `ax` or `tgrab` fails, fall back to the host's web fetch/search tool or `curl`.
 
-A page that needs JavaScript, a login, or interaction is outside this skill: hand off to the `agent-browser` skill, keeping the constraints in [references/agent-browser.md](references/agent-browser.md).
+A browser is the last resort, only for a page the tools above cannot read — JavaScript rendering, a login, or interaction. Which browser to reach for, in order: [references/browser.md](references/browser.md).
 
 Always run these CLIs via a subagent to keep the main conversation context clean.
