@@ -7,7 +7,7 @@ description: Fetches and searches web content with ax, tgrab, grok, codex, and e
 
 With a URL in hand:
 
-- Static page text: `./ax` — [references/ax.md](references/ax.md)
+- Static page text: `./ax <url>`; read `./ax --help` for the current syntax
 - X/Twitter, Bluesky, YouTube posts/transcripts: `./tgrab` — [references/tgrab.md](references/tgrab.md)
 
 Searching, in this order:
