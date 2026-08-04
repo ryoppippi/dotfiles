@@ -1,7 +1,6 @@
 # agent-browser
 
-Use for JavaScript-heavy pages, navigation, interaction, login, testing, or screenshots. Also usable for web search.
+Constraints that apply when a fetch or search task hands off to the `agent-browser` skill; that skill covers its own usage.
 
-- Keep it in the background (headless, the default); never pass `--headed` for fetch/search tasks.
-- Use Chrome MCP instead when an existing signed-in session is needed.
-- Load the `agent-browser` skill for full usage.
+- Keep it in the background: headless is the default, so never pass `--headed`.
+- Prefer Chrome MCP when an existing signed-in session is needed.
