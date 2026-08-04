@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  tgrab,
   ...
 }:
 let
@@ -10,60 +9,6 @@ let
   codexXdgDir = "${config.xdg.configHome}/codex";
 
   tomlFormat = pkgs.formats.toml { };
-
-  # Reachable by a delegated subagent through shell_environment_policy below,
-  # which passes this PATH into the sandboxed shell. ax and tgrab live only in
-  # the web-fetch skill directory otherwise, out of reach of a codex process
-  # started from an arbitrary cwd; rg and fd are how it investigates a codebase.
-  subagentTools = [
-    pkgs.llm-agents.ax
-    tgrab.packages.${pkgs.stdenv.hostPlatform.system}.default
-    pkgs.llm-agents.grok
-    pkgs.bun
-    pkgs.ripgrep
-    pkgs.fd
-  ];
-
-  # Grunt work — searching, page reading, codebase investigation, summarising —
-  # delegated off the calling agent's context and onto the Codex subscription.
-  # The flags keep it throwaway: nothing persisted, no goals or memories, and a
-  # reasoning effort well below the interactive config's. Effort stays at medium
-  # because low answered a "latest release version" search from stale knowledge.
-  # multi_agent must stay enabled: native web search runs through it, and
-  # disabling it makes any search task hang indefinitely.
-  codex-sub = pkgs.writeShellApplication {
-    name = "codex-sub";
-    runtimeInputs = subagentTools;
-    text = ''
-      transcript=$(mktemp)
-      digest=$(mktemp)
-      trap 'rm -f "$transcript" "$digest"' EXIT
-
-      # Only the final message reaches the caller: the transcript echoes every
-      # command and page the subagent touched, which is the bulk this wrapper
-      # exists to keep out. It is also the only clue when codex itself fails,
-      # so a failure prints it on stderr rather than swallowing it.
-      if ${lib.getExe pkgs.llm-agents.codex} exec \
-        --skip-git-repo-check \
-        --ephemeral \
-        --sandbox "''${CODEX_SUB_SANDBOX:-workspace-write}" \
-        --disable goals \
-        --disable memories \
-        -m "''${CODEX_SUB_MODEL:-gpt-5.6-luna}" \
-        -c approval_policy=never \
-        -c model_reasoning_effort="''${CODEX_SUB_EFFORT:-medium}" \
-        -c sandbox_workspace_write.network_access=true \
-        -c web_search_request=true \
-        -o "$digest" \
-        "$@" >"$transcript" 2>&1; then
-        # codex writes the last message without a trailing newline.
-        printf '%s\n' "$(cat "$digest")"
-      else
-        cat "$transcript" >&2
-        exit 1
-      fi
-    '';
-  };
 
   # Global instructions are assembled from the Codex-specific file plus the
   # shared fragments in agents/shared/, which are the single source of truth
@@ -135,10 +80,7 @@ in
   };
 
   home = {
-    packages = [
-      pkgs.llm-agents.codex
-      codex-sub
-    ];
+    packages = [ pkgs.llm-agents.codex ];
 
     sessionVariables = {
       CODEX_HOME = codexHomeDir;

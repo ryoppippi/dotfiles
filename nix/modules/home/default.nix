@@ -51,7 +51,6 @@ in
         helpers
         nodePackages
         fish-na
-        tgrab
         ;
     })
 

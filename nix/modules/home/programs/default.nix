@@ -6,7 +6,6 @@
   helpers,
   nodePackages ? null,
   fish-na,
-  tgrab,
   ...
 }:
 {
@@ -41,7 +40,6 @@
         lib
         config
         dotfilesDir
-        tgrab
         ;
     })
 
