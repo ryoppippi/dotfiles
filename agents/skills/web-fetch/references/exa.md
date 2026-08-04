@@ -2,10 +2,11 @@
 
 Semantic search and LLM-ready extraction. Use bun + TypeScript with the `exa-js` SDK — the REST/cURL recipes floating around are stale (`livecrawl` and `type: "neural" | "keyword"` no longer exist).
 
-Read the API surface from the docs rather than from memory:
+Read the API surface from the docs rather than from memory. Append `.md` to any docs URL to get the source markdown, and grep the fetched file for the option you need — exact names matter here, so do not route these pages through a summarising web tool:
 
-- https://exa.ai/docs/sdks/typescript-sdk-specification — full reference: every option and response field
-- https://exa.ai/docs/sdks/javascript-sdk — quickstart with runnable examples
+- https://exa.ai/docs/sdks/typescript-sdk-specification.md — full reference: every option and response field
+- https://exa.ai/docs/sdks/javascript-sdk.md — quickstart with runnable examples
+- https://exa.ai/docs/llms.txt — index of every docs page
 
 The key lives in 1Password, so read it at execution time instead of exporting it:
 
