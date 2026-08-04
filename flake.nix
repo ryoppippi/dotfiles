@@ -94,7 +94,7 @@
     };
 
     tgrab = {
-      url = "github:ryoppippi/tgrab/bf5e8d3b3dc71cea03852af2bfcfc5d529ae91b5";
+      url = "github:ryoppippi/tgrab/22a9bbb9267b7a8603a325dd0c1148be5fa69d4e";
     };
 
   };
