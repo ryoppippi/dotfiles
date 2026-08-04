@@ -1,6 +1,6 @@
 ---
 name: ask-codex
-description: Runs Codex CLI for a second opinion on a decision, or as a cheap subagent via codex-sub. Use before a significant approach is settled, or instead of reading pages and long output here.
+description: Runs Codex CLI for a second opinion on a decision, or as a cheap subagent for bulky work. Use before a significant approach is settled, or instead of reading pages and long output here.
 ---
 
 <!--
@@ -28,15 +28,28 @@ intact, and prefer established project patterns where they conflict.
 ## Delegated grunt work
 
 ```sh
-codex-sub "<task>"
+codex exec --skip-git-repo-check --ephemeral -m gpt-5.6-luna "<task>"
 ```
 
 For work whose output is bulky but whose conclusion is small: web search, page
 reading, codebase investigation, summarising long output, drafting a commit message
-from a diff. The wrapper pins a cheap model, a sandbox with network access and no
-persisted session, then prints only the final message — a failure prints the
-transcript on stderr instead. `CODEX_SUB_MODEL`, `CODEX_SUB_EFFORT` and
-`CODEX_SUB_SANDBOX` override the defaults.
+from a diff. A cheap model is the point — the subscription pays for it and only the
+answer costs tokens here. `codex exec --help` carries the rest; reach for `-o` to
+capture the final message alone, and `--sandbox`/`--add-dir` to widen what it may
+touch.
+
+Measured, and not visible in the help output:
+
+- Keep `model_reasoning_effort` at `medium` or above. At `low` it answered a
+  "latest release version" search from stale knowledge.
+- Never `--disable multi_agent`. Native web search runs through it, so disabling it
+  makes a search task hang indefinitely with no tool call.
+- Shell commands only reach the network under `--sandbox workspace-write` with
+  `-c sandbox_workspace_write.network_access=true`. The native web search needs
+  neither.
+- `exa` cannot run there at all: no sandbox mode reaches its 1Password key, so run
+  exa in this session. `ax` and `tgrab` live in `~/.agents/skills/web-fetch/` —
+  prepend that to PATH when the task needs them.
 
 Briefing it:
 
@@ -44,6 +57,5 @@ Briefing it:
   `file:line`.
 - Ask for verbatim quotes wherever exact spelling matters: API options, flags,
   version numbers. A digest paraphrases them away.
-- `ax`, `tgrab`, `grok`, `rg`, `fd` and `bun` are on its PATH, and the `web-fetch`
-  skill holds the search tool selection. `exa` is the exception — the sandbox
-  cannot reach its 1Password key, so run exa here.
+- The `web-fetch` skill holds the search tool selection; name the choice rather
+  than leaving it open.
