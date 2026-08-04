@@ -41,6 +41,7 @@
         lib
         config
         dotfilesDir
+        tgrab
         ;
     })
 
@@ -140,10 +141,5 @@
 
     # Pip configuration
     ./pip.nix
-
-    # pi CLI and the pi-search wrapper used to delegate search
-    (import ./pi.nix {
-      inherit pkgs tgrab;
-    })
   ];
 }
