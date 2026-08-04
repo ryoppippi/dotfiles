@@ -19,6 +19,7 @@ let
     ../../../../agents/shared/code-comments.md
     ../../../../agents/shared/command-privacy.md
     ../../../../agents/shared/git-worktrees.md
+    ../../../../agents/shared/delegate-work.md
   ];
 
   settings = {
