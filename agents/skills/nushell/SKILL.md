@@ -1,6 +1,6 @@
 ---
 name: nushell
-description: Write idiomatic, functional Nushell — the default language for shell scripts here. Use when writing or reviewing any new script, .nu files, `shell: nu {0}` CI steps, or when porting bash/POSIX shell to Nushell.
+description: 'Write idiomatic, functional Nushell — the default language for shell scripts here. Use when writing or reviewing any new script, .nu files, `shell: nu {0}` CI steps, or when porting bash/POSIX shell to Nushell.'
 ---
 
 # Nushell
