@@ -20,4 +20,4 @@ If `ax` or `tgrab` fails, fall back to the host's web fetch/search tool or `curl
 
 A browser is the last resort, only for a page the tools above cannot read — JavaScript rendering, a login, or interaction. Which browser to reach for, in order: [references/browser.md](references/browser.md).
 
-Run these CLIs through `pi-sub` rather than in this session — see the `pi-subagent` skill. It keeps whole pages and JSON payloads out of the context and bills the Codex subscription. The exception is text you need verbatim, such as the exa docs pages above: fetch those here with `./ax`, since a digest rewrites the exact names you came for.
+Delegate the reading, not only the fetching: `codex-sub "<task>"` runs its own web search, `./ax`, `./tgrab` and `grok` on the Codex subscription and hands back a digest, so whole pages and JSON payloads never enter this context — see the `ask-codex` skill. Two things stay here: `exa`, whose 1Password key the subagent's sandbox cannot reach, and anything wanted verbatim, such as the exa docs pages above, where a digest rewrites the exact names you came for.
