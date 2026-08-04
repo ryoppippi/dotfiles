@@ -885,5 +885,29 @@ name = "2"
 type = "specificDisplay"
 
 [workspaces.monitorAssignment.output]
+displayUUID = "5F129C20-8DDC-4167-B365-41567CECAD93"
+name = "DELL U5226KW"
+
+[[workspaces]]
+id = "164E1F30-02BB-489E-9C72-725B4CB9CFD6"
+layoutType = "niri"
+name = "3"
+
+[workspaces.monitorAssignment]
+type = "specificDisplay"
+
+[workspaces.monitorAssignment.output]
+displayUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
+name = "Built-in Retina Display"
+
+[[workspaces]]
+id = "43493D4A-23D2-4719-979F-51C0E8689007"
+layoutType = "niri"
+name = "4"
+
+[workspaces.monitorAssignment]
+type = "specificDisplay"
+
+[workspaces.monitorAssignment.output]
 displayUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
 name = "Built-in Retina Display"

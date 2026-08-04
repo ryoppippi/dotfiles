@@ -48,10 +48,11 @@ modifier names.
 
 ## Workspaces
 
-Workspace 1 is pinned to the Dell U5226KW and workspace 2 is pinned to the
-built-in MacBook display. cmux opens on workspace 2.
+Workspaces 1 and 2 are pinned to the Dell U5226KW, and workspaces 3 and 4 to the
+built-in MacBook display. Opening the lid therefore never pulls workspace 2 onto
+the built-in display. cmux opens on workspace 2.
 
-`Workspace+←/→` moves the focused window between the two display workspaces.
+`Workspace+←/→` moves the focused window between the workspaces of a display.
 This moves only the window; the workspace itself stays assigned to its display.
 `Workspace+Tab` changes the active workspace without moving a window.
 `Hyper+Tab` focuses the previously focused window within the current workspace.
