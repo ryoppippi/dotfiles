@@ -46,8 +46,13 @@ abbr -a dcd "docker compose down"
 abbr -a dcr "docker compose restart"
 
 # nix
+# Route nix through gh-nix so GitHub-backed fetches are authenticated and do
+# not hit the anonymous API rate limit. Expansion is command-position only, so
+# a hand-written `gh-nix nix ...` is left alone.
+abbr -a nix 'gh-nix nix'
 abbr -a ngc nix-collect-garbage
-abbr -a nrn --set-cursor nix run nixpkgs#\%
+# `nixpkgs:ripgrep` runs that package; see _abbr_nixpkgs_run.
+abbr -a nixpkgs-run --regex 'nixpkgs:[\w.:@+-]+' --function _abbr_nixpkgs_run
 abbr -a gnix gh-nix
 
 abbr -a dv devenv
