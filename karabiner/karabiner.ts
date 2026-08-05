@@ -2,6 +2,11 @@ import * as k from 'karabiner.ts';
 import * as devices from './devices.ts';
 import * as utils from './utils.ts';
 
+const omniwmctl = Bun.which('omniwmctl');
+if (omniwmctl == null) {
+	throw new Error('omniwmctl not found on PATH; is the omniwm module active?');
+}
+
 k.writeToProfile('Default profile', [
 	k
 		.rule('Block control tap while Tab window modifier is held', devices.ifNotSelfMadeKeyboard)
@@ -81,6 +86,96 @@ k.writeToProfile('Default profile', [
 					modifiers: ['left_option', 'left_shift'],
 				}),
 		]),
+
+	// OmniWM binds one shortcut per command, and `Workspace+Tab` (switch to the
+	// last active workspace) is unreachable on the MacBook because holding Tab is
+	// what produces the Workspace layer in the first place. Aliasing Return onto
+	// Tab within that layer adds a second way in without taking the first away,
+	// so the CLAW44 keeps the Tab it can press comfortably and both keyboards
+	// accept either key. Deliberately not restricted to one device: rewriting a
+	// modifier+key combination collides with nothing in the CLAW44 firmware.
+	k.rule('Workspace+Return also switches workspace back and forth').manipulators([
+		k
+			.map({
+				key_code: 'return_or_enter',
+				modifiers: { mandatory: ['command', 'option', 'shift'] },
+			})
+			.to({ key_code: 'tab', modifiers: ['left_command', 'left_option', 'left_shift'] }),
+	]),
+
+	// Ctrl navigates, Ctrl+Shift carries the focused window along. Vertical
+	// crosses displays, horizontal stays within one display's workspaces.
+	k
+		.rule('Ctrl+Up/Down focuses the other display in MacBook', devices.ifNotSelfMadeKeyboard)
+		.manipulators(
+			(['up_arrow', 'down_arrow'] as const).map((arrow) =>
+				k.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } }).to({
+					key_code: arrow,
+					modifiers: ['left_command', 'left_option', 'left_shift'],
+				}),
+			),
+		),
+
+	k
+		.rule('Ctrl+Left/Right switches workspace in MacBook', devices.ifNotSelfMadeKeyboard)
+		.manipulators(
+			(
+				[
+					['left_arrow', 'prev'],
+					['right_arrow', 'next'],
+				] as const
+			).map(([arrow, target]) =>
+				k
+					.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } })
+					.to$(`${omniwmctl} command switch-workspace ${target}`),
+			),
+		),
+
+	// Absolute workspace numbers, not `move-to-workspace on-monitor <n> <up|down>`.
+	// Workspaces are pinned to the main/secondary display, so naming one already
+	// names a display. The directional form would additionally depend on OmniWM's
+	// Custom Monitor Routing Arrangement, which lives outside this repository
+	// because it is keyed by display UUID, and it needs the destination workspace
+	// anyway — so the direction argument buys nothing.
+	k
+		.rule(
+			'Ctrl+Shift+Up/Down moves the focused window across displays in MacBook',
+			devices.ifNotSelfMadeKeyboard,
+		)
+		.manipulators(
+			(
+				[
+					['up_arrow', '1'],
+					['down_arrow', '3'],
+				] as const
+			).map(([arrow, workspace]) =>
+				k
+					.map({
+						key_code: arrow,
+						modifiers: { mandatory: ['left_control', 'left_shift'] },
+					})
+					.to$(`${omniwmctl} command move-to-workspace ${workspace}`),
+			),
+		),
+
+	k
+		.rule(
+			'Ctrl+Shift+Left/Right moves the focused window within the display in MacBook',
+			devices.ifNotSelfMadeKeyboard,
+		)
+		.manipulators(
+			(['left_arrow', 'right_arrow'] as const).map((arrow) =>
+				k
+					.map({
+						key_code: arrow,
+						modifiers: { mandatory: ['left_control', 'left_shift'] },
+					})
+					.to({
+						key_code: arrow,
+						modifiers: ['left_command', 'left_option', 'left_shift'],
+					}),
+			),
+		),
 
 	k.rule('Map fn to super key in MacBook', devices.ifNotSelfMadeKeyboard).manipulators([
 		k.map({ key_code: 'fn' }).to({
