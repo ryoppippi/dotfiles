@@ -1,8 +1,12 @@
 {
   lib,
+  pkgs,
   omniwmModule,
   ...
 }:
+let
+  nu = lib.getExe pkgs.nushell;
+in
 {
   imports = [ omniwmModule ];
 
@@ -15,13 +19,10 @@
     };
   };
 
+  # merge-settings.nu explains why this is a merge rather than a copy: the
+  # monitor settings in the live file are keyed by display UUID and belong to
+  # the machine, not to this repository.
   home.activation.writeOmniWMSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    settings_path="$HOME/.config/omniwm/settings.toml"
-    temporary_settings_path="$settings_path.nix-tmp"
-
-    mkdir -p "$HOME/.config/omniwm"
-    cp ${./settings.toml} "$temporary_settings_path"
-    chmod 644 "$temporary_settings_path"
-    mv -f "$temporary_settings_path" "$settings_path"
+    ${nu} ${./merge-settings.nu} ${./settings.toml} "$HOME/.config/omniwm/settings.toml"
   '';
 }
