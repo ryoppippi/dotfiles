@@ -25,7 +25,7 @@ Skills are configured in `nix/modules/home/agent-skills.nix` and deployed to:
    ```nix
    skills.enable = [ "my-skill" ];
    ```
-3. Run `git add . && nix run .#switch`
+3. Run `git add skills/<my-skill> ../nix/modules/home/agent-skills.nix && nix run .#switch`
 
 ## Skill Design Guidelines
 

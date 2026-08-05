@@ -9,10 +9,14 @@ See @README.md for full documentation.
 ## Core Commands
 
 ```bash
-git add . && nix run .#switch  # Apply changes
-nix run .#update               # Update dependencies
-nix run .#build                # Test build
+git add <changed paths> && nix run .#switch  # Apply changes
+nix run .#update                             # Update dependencies
+nix run .#build                              # Test build
 ```
+
+Nix flakes only see tracked, staged files, so `git add` is required before
+`switch`. Stage the paths you changed — never `git add -A`, `git add .`, or
+`git add -u`. That staging is a build prerequisite, not a commit plan.
 
 ## Command Privacy and Secret Handling
 
@@ -89,7 +93,7 @@ External skill repositories are pinned in `registry/sources/`, not as flake inpu
 3. Select the skill in `agent-skills.nix` — `skills.explicit.<id>` when it needs
    `packages` or a `transform`, otherwise add its prefixed catalog ID to
    `skills.enable`
-4. Run `git add . && nix run .#switch`
+4. Run `git add registry/ nix/modules/home/agent-skills.nix && nix run .#switch`
 
 ### Adding a local skill
 

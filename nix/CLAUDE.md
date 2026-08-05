@@ -13,8 +13,8 @@
 ## Commands
 
 ```bash
-# Apply changes (always git add first!)
-git add . && nix run .#switch
+# Apply changes (stage the paths you changed first!)
+git add <changed paths> && nix run .#switch
 
 # Update dependencies
 nix run .#update
@@ -42,6 +42,8 @@ nix run .#build
 
 ## Important
 
-- Always `git add` changes before `nix run .#switch`
+- Always `git add` changes before `nix run .#switch` — flakes only see tracked,
+  staged files. Stage explicit paths; never `git add -A`, `git add .`, or
+  `git add -u`. Staging for `switch` is a build prerequisite, not a commit plan
 - Prefer Nix packages over Homebrew when available
 - Dotfiles use `mkOutOfStoreSymlink` for mutability
