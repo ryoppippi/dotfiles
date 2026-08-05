@@ -39,7 +39,6 @@ in
       maestral
       obs
       signal
-      stats
       vlc
       zed
       zoom
@@ -57,7 +56,6 @@ in
   launchd.agents = {
     bluesnooze = mkLoginAgent pkgs.brewCasks.bluesnooze "Bluesnooze";
     is-there-net = mkLoginAgent pkgs.brewCasks.istherenet "IsThereNet";
-    stats = mkLoginAgent pkgs.brewCasks.stats "Stats";
   };
 
 }
