@@ -29,7 +29,11 @@ Create small, independently revertable Conventional Commits.
 
 2. Review relevant history and split the changes into the smallest independently revertable units. Keep unrelated changes out of the commit. For moves or extractions, include both sides and update references.
 
-3. Stage each unit non-interactively with `git apply --cached -v`. Never use `git add -p` or interactive staging. Read `references/git-apply.md` when precise staging needs troubleshooting.
+3. Stage each unit non-interactively with `git apply --cached -v`. Read `references/git-apply.md` when precise staging needs troubleshooting.
+
+   Never stage with `git add -A`, `git add --all`, `git add .`, or `git add -u` — they sweep unrelated working-tree changes into the commit. When a whole file belongs to the unit, name it: `git add <path>`. Never use `git add -p` or any other interactive staging. `git commit -a`/`-am` carries the same hazard — commit from the index only.
+
+   The index may already hold changes staged for an earlier build (`nix run .#switch` needs staged files). Treat a pre-populated index as untrusted: check `git diff --cached --stat` and unstage anything outside the current unit with `git restore --staged <path>` before committing.
 
 4. Write an English Conventional Commit message using UK spelling:
 
