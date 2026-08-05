@@ -5,16 +5,15 @@ description: Resolves missing CLI tools. Use when a command is unavailable, a sh
 
 Use this workflow when a required command is unavailable:
 
-1. For scripts, read the shebang and run with its Nix package:
-
-   ```sh
-   nix shell nixpkgs#<package> --command ./<script>
-   ```
-
+1. Try comma: `, <command>`.
 2. Try the project environment: `direnv exec . <command>`.
 3. Use `nix run nixpkgs#<package> -- <args>` when a package is known.
 4. Use `nix shell nixpkgs#<package> --command <command>` when a package is known but a temporary shell is required.
-5. `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`
+
+Exceptions:
+
+- Script with a missing interpreter: read its shebang and run it with `nix shell nixpkgs#<package> --command ./<script>`.
+- Last resort: `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`.
 
 For GitHub-backed Nix fetches, use the `nix-github-rate-limit` skill.
 
