@@ -12,6 +12,8 @@ Personal preferences that apply to all projects.
 
 @~/.config/claude/shared/command-privacy.md
 
+@~/.config/claude/shared/git-staging.md
+
 @~/.config/claude/shared/git-worktrees.md
 
 @~/.config/claude/shared/delegate-work.md
