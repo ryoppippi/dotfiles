@@ -32,7 +32,7 @@ jobs:
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
 
-      - uses: hustcer/setup-nu@ccd5bb5426b05a32009c2ba967946231f3919c97 # v3.25
+      - uses: hustcer/setup-nu@f3fd65374ffc4d60974c0dd2f7263c6c5c285f81 # v3.26
         with:
           version: '0.114.1'
 
