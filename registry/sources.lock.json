@@ -1,138 +1,138 @@
 {
-	"manifests": {
-		"agent-browser": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "agent-browser",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "vercel-labs",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "agent-browser",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
-		},
-		"ast-grep": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "ast-grep",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "ast-grep",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "claude-skill",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "ast-grep/skills"
-		},
-		"cmux": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "cmux",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "manaflow-ai",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "cmux",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
-		},
-		"gh-stack": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "gh-stack",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "github",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "gh-stack",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
-		}
-	},
-	"npins": {
-		"pins": {
-			"agent-browser": {
-				"branch": "main",
-				"hash": "sha256-hQKr6s8gqaDm4AVbQomd1TMZcowOGCVNF5DnuIm/fCs=",
-				"repository": {
-					"owner": "vercel-labs",
-					"repo": "agent-browser",
-					"type": "GitHub"
-				},
-				"revision": "01c1147da66940c034a5ccea497447e52c2f6dfe",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/01c1147da66940c034a5ccea497447e52c2f6dfe.tar.gz"
-			},
-			"ast-grep": {
-				"branch": "main",
-				"hash": "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=",
-				"repository": {
-					"owner": "ast-grep",
-					"repo": "claude-skill",
-					"type": "GitHub"
-				},
-				"revision": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/ast-grep/claude-skill/archive/c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a.tar.gz"
-			},
-			"cmux": {
-				"branch": "main",
-				"hash": "sha256-hm1t2EyMgHhh7ojTpd1H+8yGdLEFXKtu42v9nV2u+iw=",
-				"repository": {
-					"owner": "manaflow-ai",
-					"repo": "cmux",
-					"type": "GitHub"
-				},
-				"revision": "d35187ec47cffbe70ef42b6ce460296d10b0ca7c",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/d35187ec47cffbe70ef42b6ce460296d10b0ca7c.tar.gz"
-			},
-			"gh-stack": {
-				"branch": "main",
-				"hash": "sha256-RrVYkqUX0vKPUC0zextQSR+SG59j/HaILPZ/tBCXspQ=",
-				"repository": {
-					"owner": "github",
-					"repo": "gh-stack",
-					"type": "GitHub"
-				},
-				"revision": "8c9c8331309529e2114d4c34e77f4edea543f9fa",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/8c9c8331309529e2114d4c34e77f4edea543f9fa.tar.gz"
-			}
-		},
-		"version": 8
-	},
-	"schemaVersion": 1
+  "manifests": {
+    "agent-browser": {
+      "filter": {
+        "maxDepth": 1,
+        "nameRegex": null
+      },
+      "idPrefix": "agent-browser",
+      "pin": {
+        "at": null,
+        "branch": "main",
+        "owner": "vercel-labs",
+        "preReleases": false,
+        "releasePrefix": null,
+        "repo": "agent-browser",
+        "submodules": false,
+        "type": "github",
+        "versionUpperBound": null
+      },
+      "subdir": "skills"
+    },
+    "ast-grep": {
+      "filter": {
+        "maxDepth": 1,
+        "nameRegex": null
+      },
+      "idPrefix": "ast-grep",
+      "pin": {
+        "at": null,
+        "branch": "main",
+        "owner": "ast-grep",
+        "preReleases": false,
+        "releasePrefix": null,
+        "repo": "claude-skill",
+        "submodules": false,
+        "type": "github",
+        "versionUpperBound": null
+      },
+      "subdir": "ast-grep/skills"
+    },
+    "cmux": {
+      "filter": {
+        "maxDepth": 1,
+        "nameRegex": null
+      },
+      "idPrefix": "cmux",
+      "pin": {
+        "at": null,
+        "branch": "main",
+        "owner": "manaflow-ai",
+        "preReleases": false,
+        "releasePrefix": null,
+        "repo": "cmux",
+        "submodules": false,
+        "type": "github",
+        "versionUpperBound": null
+      },
+      "subdir": "skills"
+    },
+    "gh-stack": {
+      "filter": {
+        "maxDepth": 1,
+        "nameRegex": null
+      },
+      "idPrefix": "gh-stack",
+      "pin": {
+        "at": null,
+        "branch": "main",
+        "owner": "github",
+        "preReleases": false,
+        "releasePrefix": null,
+        "repo": "gh-stack",
+        "submodules": false,
+        "type": "github",
+        "versionUpperBound": null
+      },
+      "subdir": "skills"
+    }
+  },
+  "npins": {
+    "pins": {
+      "agent-browser": {
+        "branch": "main",
+        "hash": "sha256-GtN5IvyBSvOJ76lB5LSYNGr1m9MhpBDNASG/8iH3tVM=",
+        "repository": {
+          "owner": "vercel-labs",
+          "repo": "agent-browser",
+          "type": "GitHub"
+        },
+        "revision": "acbc22bdc5d4f6c5a88d97d4a4745d3c5eb0591f",
+        "submodules": false,
+        "type": "Git",
+        "url": "https://github.com/vercel-labs/agent-browser/archive/acbc22bdc5d4f6c5a88d97d4a4745d3c5eb0591f.tar.gz"
+      },
+      "ast-grep": {
+        "branch": "main",
+        "hash": "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=",
+        "repository": {
+          "owner": "ast-grep",
+          "repo": "claude-skill",
+          "type": "GitHub"
+        },
+        "revision": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a",
+        "submodules": false,
+        "type": "Git",
+        "url": "https://github.com/ast-grep/claude-skill/archive/c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a.tar.gz"
+      },
+      "cmux": {
+        "branch": "main",
+        "hash": "sha256-M0V5CS+DSFjk/pI2jyQ7bopIbfCfhwV8Vr66p/m+Oqk=",
+        "repository": {
+          "owner": "manaflow-ai",
+          "repo": "cmux",
+          "type": "GitHub"
+        },
+        "revision": "219f2b971ef9f9eaa7daf300f9efbb8014fc0989",
+        "submodules": false,
+        "type": "Git",
+        "url": "https://github.com/manaflow-ai/cmux/archive/219f2b971ef9f9eaa7daf300f9efbb8014fc0989.tar.gz"
+      },
+      "gh-stack": {
+        "branch": "main",
+        "hash": "sha256-SBP6z6G35wGY31RMhPpsZ1QDOhmVBlLv7ktLXIA3HwI=",
+        "repository": {
+          "owner": "github",
+          "repo": "gh-stack",
+          "type": "GitHub"
+        },
+        "revision": "14fc42ed9b6c376a53b2f999f138d3bd26dac546",
+        "submodules": false,
+        "type": "Git",
+        "url": "https://github.com/github/gh-stack/archive/14fc42ed9b6c376a53b2f999f138d3bd26dac546.tar.gz"
+      }
+    },
+    "version": 8
+  },
+  "schemaVersion": 1
 }
