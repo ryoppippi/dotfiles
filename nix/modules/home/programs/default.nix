@@ -34,7 +34,7 @@
     })
 
     # Codex configuration
-    (import ./codex.nix {
+    (import ./codex {
       inherit
         pkgs
         lib

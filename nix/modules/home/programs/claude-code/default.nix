@@ -115,10 +115,25 @@ in
       CLAUDE_CONFIG_DIR = claudeConfigDir;
     };
 
+    # Merged rather than copied: Claude Code writes to this same file itself —
+    # `/permissions` appends allow rules, `/config` stores UI preferences — and
+    # a wholesale copy would drop all of it on every switch. The keys below win,
+    # everything else in the live file is left alone.
     activation.writeClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      SETTINGS_FILE="${claudeConfigDir}/settings.json"
       mkdir -p "${claudeConfigDir}"
-      cp --no-preserve=mode,ownership ${jsonFormat.generate "claude-settings.json" settings} "${claudeConfigDir}/settings.json"
-      chmod 644 "${claudeConfigDir}/settings.json"
+
+      if [ -f "$SETTINGS_FILE" ]; then
+        TEMP_FILE="$(mktemp "${claudeConfigDir}/.settings.json.XXXXXX")"
+        if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" ${jsonFormat.generate "claude-settings.json" settings} > "$TEMP_FILE"; then
+          rm -f "$TEMP_FILE"
+          exit 1
+        fi
+        mv "$TEMP_FILE" "$SETTINGS_FILE"
+      else
+        cp --no-preserve=mode,ownership ${jsonFormat.generate "claude-settings.json" settings} "$SETTINGS_FILE"
+      fi
+      chmod 644 "$SETTINGS_FILE"
     '';
 
     # Validate Claude Code settings.json after generation
