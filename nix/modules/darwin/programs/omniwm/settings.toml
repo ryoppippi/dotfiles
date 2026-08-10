@@ -281,7 +281,7 @@ binding = "Unassigned"
 id = "switchWorkspace.1"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Shift+Up Arrow"
 id = "moveToWorkspace.1"
 
 [[hotkeys]]
@@ -297,7 +297,7 @@ binding = "Unassigned"
 id = "switchWorkspace.3"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Command+Shift+Down Arrow"
 id = "moveToWorkspace.3"
 
 [[hotkeys]]
@@ -513,11 +513,11 @@ binding = "Unassigned"
 id = "expelWindowFromColumn"
 
 [[hotkeys]]
-binding = "Option+Command+Shift+Up Arrow"
+binding = "Unassigned"
 id = "focusMonitorNext"
 
 [[hotkeys]]
-binding = "Option+Command+Shift+Down Arrow"
+binding = "Unassigned"
 id = "focusMonitorPrevious"
 
 [[hotkeys]]

@@ -47,27 +47,40 @@ modifier names.
 | Toggle floating                                | `Hyper+D`         | Lang1 hold + `D`                 | Fn hold + `D`       |
 | Open command palette                           | `Hyper+Space`     | Lang1 hold + Space               | Fn hold + Space     |
 | Switch workspace back and forth                | `Workspace+Tab`   | `S+D` hold + right Tab or Return | Tab hold + Return   |
-| Focus next/previous monitor                    | `Workspace+↑/↓`   | `S+D` hold + Layer 2 + `↑/↓`     | Tab hold + `↑/↓`    |
+| Move window to previous/next display           | `Workspace+↑/↓`   | `S+D` hold + Layer 2 + `↑/↓`     | Tab hold + `↑/↓`    |
 | Move window to previous/next display workspace | `Workspace+←/→`   | `S+D` hold + Layer 2 + `H/L`     | Tab hold + `←/→`    |
 | Toggle Overview                                | `Workspace+Space` | `S+D` hold + Space               | Tab hold + Space    |
 
-On the MacBook keyboard only, [`karabiner.ts`](../../../../../karabiner/karabiner.ts)
-adds a Ctrl-based scheme that mirrors the arrow keys instead of stacking onto
-Fn/Tab:
+`Workspace+↑/↓` binds the native `moveToWorkspace.1`/`moveToWorkspace.3`
+hotkeys to `Option+Command+Shift+Up/Down Arrow` in [`settings.toml`](settings.toml).
+There is no dedicated "focus the other monitor" shortcut on this layer — see
+`Ctrl+↑/↓` below for that.
+
+On any keyboard, [`karabiner.ts`](../../../../../karabiner/karabiner.ts) adds a
+Ctrl-based scheme that mirrors the arrow keys instead of stacking onto
+Hyper/Workspace:
 
 Ctrl navigates, Ctrl+Shift carries the focused window along. Vertical crosses
 displays; horizontal stays within one display's own workspaces.
 
-| Action                                      | MacBook keys     |
+| Action                                      | Keys             |
 | ------------------------------------------- | ---------------- |
 | Focus the other display                     | `Ctrl+↑/↓`       |
 | Switch workspace                            | `Ctrl+←/→`       |
 | Move window across displays                 | `Ctrl+Shift+↑/↓` |
 | Move window between workspaces of a display | `Ctrl+Shift+←/→` |
 
-`Ctrl+←/→` and `Ctrl+Shift+↑/↓` shell out to `omniwmctl` because OmniWM exposes
-no bindable hotkey action for either one — for monitors only `focus-monitor` is
-bindable, never "move the focused window to another monitor".
+`Ctrl+↑/↓`, `Ctrl+←/→`, and `Ctrl+Shift+↑/↓` shell out to `omniwmctl` directly
+rather than remapping to a synthetic keypress. `Ctrl+←/→` and
+`Ctrl+Shift+↑/↓` do this because OmniWM exposes no bindable hotkey action for
+either one — for monitors only `focus-monitor` is bindable, never "move the
+focused window to another monitor". `Ctrl+↑/↓` shells out to `focus-monitor`
+for a different reason: `Option+Command+Shift+Up/Down Arrow` (the synthetic
+keypress it used to remap to) is now claimed by `moveToWorkspace.1`/`.3` above,
+so giving focus its own physical trigger needs the CLI rather than a shared
+key. `Ctrl+Shift+←/→` is the one exception that still remaps to a synthetic
+keypress, landing on the same native `moveWindowToWorkspaceUp`/`Down` hotkeys
+that `Workspace+←/→` uses.
 
 `Ctrl+Shift+↑/↓` names its destination workspace outright
 (`move-to-workspace 1` / `move-to-workspace 3`) rather than using the
@@ -76,6 +89,14 @@ directional form additionally depends on the Monitor Routing Arrangement below
 — without a custom one, every direction except `left` returns `not_found`, and
 `left` reports success without moving anything — and since the destination
 workspace has to be named either way, the direction buys nothing.
+
+On the CLAW44, `Ctrl+↑/↓` and `Ctrl+←/→` work (hold `Esc` or `G` for Ctrl, hold
+`Enter` for Layer 2, tap `K`/`J`/`H`/`L`). `Ctrl+Shift+↑/↓` and
+`Ctrl+Shift+←/→` additionally need Shift held (the thumb `Tab` key) at the same
+time — a fourth simultaneous hold alongside Ctrl and Layer 2 — which the
+CLAW44's QMK tap/hold resolution does not reliably register. Use
+`Workspace+↑/↓`/`Workspace+←/→` on the CLAW44 for those two instead; they reach
+the same actions.
 
 ## Workspaces
 

@@ -103,33 +103,35 @@ k.writeToProfile('Default profile', [
 			.to({ key_code: 'tab', modifiers: ['left_command', 'left_option', 'left_shift'] }),
 	]),
 
-	// Ctrl navigates, Ctrl+Shift carries the focused window along. Vertical
-	// crosses displays, horizontal stays within one display's workspaces.
-	k
-		.rule('Ctrl+Up/Down focuses the other display in MacBook', devices.ifNotSelfMadeKeyboard)
-		.manipulators(
-			(['up_arrow', 'down_arrow'] as const).map((arrow) =>
-				k.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } }).to({
-					key_code: arrow,
-					modifiers: ['left_command', 'left_option', 'left_shift'],
-				}),
-			),
+	// Ctrl+Shift carries the focused window along. Vertical crosses displays,
+	// horizontal stays within one display's workspaces. Not restricted to one
+	// device: any keyboard that can send Ctrl/Ctrl+Shift plus an arrow key gets
+	// the same behaviour.
+	k.rule('Ctrl+Up/Down focuses the other display').manipulators(
+		(
+			[
+				['up_arrow', 'next'],
+				['down_arrow', 'prev'],
+			] as const
+		).map(([arrow, target]) =>
+			k
+				.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } })
+				.to$(`${omniwmctl} command focus-monitor ${target}`),
 		),
+	),
 
-	k
-		.rule('Ctrl+Left/Right switches workspace in MacBook', devices.ifNotSelfMadeKeyboard)
-		.manipulators(
-			(
-				[
-					['left_arrow', 'prev'],
-					['right_arrow', 'next'],
-				] as const
-			).map(([arrow, target]) =>
-				k
-					.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } })
-					.to$(`${omniwmctl} command switch-workspace ${target}`),
-			),
+	k.rule('Ctrl+Left/Right switches workspace').manipulators(
+		(
+			[
+				['left_arrow', 'prev'],
+				['right_arrow', 'next'],
+			] as const
+		).map(([arrow, target]) =>
+			k
+				.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } })
+				.to$(`${omniwmctl} command switch-workspace ${target}`),
 		),
+	),
 
 	// Absolute workspace numbers, not `move-to-workspace on-monitor <n> <up|down>`.
 	// Workspaces are pinned to the main/secondary display, so naming one already
@@ -137,45 +139,35 @@ k.writeToProfile('Default profile', [
 	// Custom Monitor Routing Arrangement, which lives outside this repository
 	// because it is keyed by display UUID, and it needs the destination workspace
 	// anyway — so the direction argument buys nothing.
-	k
-		.rule(
-			'Ctrl+Shift+Up/Down moves the focused window across displays in MacBook',
-			devices.ifNotSelfMadeKeyboard,
-		)
-		.manipulators(
-			(
-				[
-					['up_arrow', '1'],
-					['down_arrow', '3'],
-				] as const
-			).map(([arrow, workspace]) =>
-				k
-					.map({
-						key_code: arrow,
-						modifiers: { mandatory: ['left_control', 'left_shift'] },
-					})
-					.to$(`${omniwmctl} command move-to-workspace ${workspace}`),
-			),
+	k.rule('Ctrl+Shift+Up/Down moves the focused window across displays').manipulators(
+		(
+			[
+				['up_arrow', '1'],
+				['down_arrow', '3'],
+			] as const
+		).map(([arrow, workspace]) =>
+			k
+				.map({
+					key_code: arrow,
+					modifiers: { mandatory: ['left_control', 'left_shift'] },
+				})
+				.to$(`${omniwmctl} command move-to-workspace ${workspace}`),
 		),
+	),
 
-	k
-		.rule(
-			'Ctrl+Shift+Left/Right moves the focused window within the display in MacBook',
-			devices.ifNotSelfMadeKeyboard,
-		)
-		.manipulators(
-			(['left_arrow', 'right_arrow'] as const).map((arrow) =>
-				k
-					.map({
-						key_code: arrow,
-						modifiers: { mandatory: ['left_control', 'left_shift'] },
-					})
-					.to({
-						key_code: arrow,
-						modifiers: ['left_command', 'left_option', 'left_shift'],
-					}),
-			),
+	k.rule('Ctrl+Shift+Left/Right moves the focused window within the display').manipulators(
+		(['left_arrow', 'right_arrow'] as const).map((arrow) =>
+			k
+				.map({
+					key_code: arrow,
+					modifiers: { mandatory: ['left_control', 'left_shift'] },
+				})
+				.to({
+					key_code: arrow,
+					modifiers: ['left_command', 'left_option', 'left_shift'],
+				}),
 		),
+	),
 
 	k.rule('Map fn to super key in MacBook', devices.ifNotSelfMadeKeyboard).manipulators([
 		k.map({ key_code: 'fn' }).to({

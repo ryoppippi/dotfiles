@@ -315,7 +315,7 @@
 						]
 					},
 					{
-						"description": "Ctrl+Up/Down focuses the other display in MacBook",
+						"description": "Ctrl+Up/Down focuses the other display",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -327,19 +327,7 @@
 								},
 								"to": [
 									{
-										"key_code": "up_arrow",
-										"modifiers": ["left_command", "left_option", "left_shift"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
+										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command focus-monitor next"
 									}
 								]
 							},
@@ -353,26 +341,14 @@
 								},
 								"to": [
 									{
-										"key_code": "down_arrow",
-										"modifiers": ["left_command", "left_option", "left_shift"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
+										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command focus-monitor prev"
 									}
 								]
 							}
 						]
 					},
 					{
-						"description": "Ctrl+Left/Right switches workspace in MacBook",
+						"description": "Ctrl+Left/Right switches workspace",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -385,17 +361,6 @@
 								"to": [
 									{
 										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command switch-workspace prev"
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
 									}
 								]
 							},
@@ -411,23 +376,12 @@
 									{
 										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command switch-workspace next"
 									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
-									}
 								]
 							}
 						]
 					},
 					{
-						"description": "Ctrl+Shift+Up/Down moves the focused window across displays in MacBook",
+						"description": "Ctrl+Shift+Up/Down moves the focused window across displays",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -440,17 +394,6 @@
 								"to": [
 									{
 										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command move-to-workspace 1"
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
 									}
 								]
 							},
@@ -466,23 +409,12 @@
 									{
 										"shell_command": "/Users/ryoppippi/.local/state/home-manager/gcroots/current-home/home-path/bin/omniwmctl command move-to-workspace 3"
 									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
-									}
 								]
 							}
 						]
 					},
 					{
-						"description": "Ctrl+Shift+Left/Right moves the focused window within the display in MacBook",
+						"description": "Ctrl+Shift+Left/Right moves the focused window within the display",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -496,17 +428,6 @@
 									{
 										"key_code": "left_arrow",
 										"modifiers": ["left_command", "left_option", "left_shift"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
 									}
 								]
 							},
@@ -522,17 +443,6 @@
 									{
 										"key_code": "right_arrow",
 										"modifiers": ["left_command", "left_option", "left_shift"]
-									}
-								],
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
 									}
 								]
 							}
