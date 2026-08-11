@@ -47,6 +47,12 @@ let
       multi_agent = true;
     };
 
+    agents = {
+      max_concurrent_threads_per_session = 100;
+      default_subagent_model = "gpt-5.6-luna";
+      default_subagent_reasoning_effort = "max";
+    };
+
     notice.fast_default_opt_out = false;
 
     desktop = {
