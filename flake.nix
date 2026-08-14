@@ -628,16 +628,21 @@
 
                     programs.nix-secure-enclave-key = {
                       enable = true; # Install the package and configure SSH/Git integration.
-                      keyFile = "~/.ssh/id_enclave_key"; # Non-secret SSH stub used for login and signing.
-                      label = "nix-secure-enclave-key"; # CryptoTokenKit identity label.
-                      protection = "none"; # Avoid Touch ID prompts; "bio" enables biometric protection.
-                      autoEnsure = true; # Create the Secure Enclave identity and SSH stub during activation.
-                      signByDefault = true; # Sign Git commits with the Secure Enclave-backed key.
-                      github = {
-                        autoAdd = true; # Register the public key during user activation.
-                        type = "both"; # Register both SSH authentication and Git signing.
-                        # Omit title to derive a machine- and public-key-specific GitHub title.
+                      identities = {
+                        git-signing = {
+                          keyFile = "~/.ssh/id_enclave_key"; # Non-secret SSH stub used for login and signing.
+                          label = "nix-secure-enclave-key"; # Reuse the existing CryptoTokenKit identity.
+                          protection = "none"; # Avoid Touch ID prompts; "bio" enables biometric protection.
+                          autoEnsure = true; # Create the Secure Enclave identity and SSH stub during activation.
+                          github = {
+                            autoAdd = true; # Register the public key during user activation.
+                            type = "both"; # Register both SSH authentication and Git signing.
+                            # Omit title to derive a machine- and public-key-specific GitHub title.
+                          };
+                        };
                       };
+                      signingIdentity = "git-signing"; # Select the identity used for Git SSH signing.
+                      signByDefault = true; # Sign Git commits with the Secure Enclave-backed key.
                     };
 
                     programs.ssh.extraConfig = "Include ~/.orbstack/ssh/config";
