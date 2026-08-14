@@ -37,7 +37,6 @@ in
     enable = true;
 
     signing = {
-      key = null;
       signByDefault = true;
       format = "ssh";
     };

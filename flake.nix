@@ -43,6 +43,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-secure-enclave-key = {
+      url = "github:ryoppippi/nix-secure-enclave-key";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-bun = {
       url = "github:ryoppippi/nix-bun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -110,6 +116,7 @@
       omniwm,
       llm-agents,
       nix-claude-code,
+      nix-secure-enclave-key,
       nix-bun,
       treefmt-nix,
       git-hooks,
@@ -566,6 +573,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
+                backupFileExtension = "before-nix-secure-enclave-key";
                 useGlobalPkgs = false;
                 useUserPackages = true;
                 extraSpecialArgs = {
@@ -583,6 +591,8 @@
                   in
                   {
                     imports = [
+                      nix-secure-enclave-key.homeManagerModules.default
+
                       agent-skills.homeManagerModules.default
 
                       (import ./nix/modules/darwin/programs/omniwm {
@@ -615,6 +625,22 @@
                         dotfilesDir = "${darwinHomedir}/ghq/github.com/ryoppippi/dotfiles";
                       })
                     ];
+
+                    programs.nix-secure-enclave-key = {
+                      enable = true; # Install the package and configure SSH/Git integration.
+                      keyFile = "~/.ssh/id_enclave_key"; # Non-secret SSH stub used for login and signing.
+                      label = "nix-secure-enclave-key"; # CryptoTokenKit identity label.
+                      protection = "none"; # Avoid Touch ID prompts; "bio" enables biometric protection.
+                      autoEnsure = true; # Create the Secure Enclave identity and SSH stub during activation.
+                      signByDefault = true; # Sign Git commits with the Secure Enclave-backed key.
+                      github = {
+                        autoAdd = true; # Register the public key during user activation.
+                        type = "both"; # Register both SSH authentication and Git signing.
+                        title = "nix-secure-enclave-key"; # GitHub title for new key registrations.
+                      };
+                    };
+
+                    programs.ssh.extraConfig = "Include ~/.orbstack/ssh/config";
                   };
               };
             }

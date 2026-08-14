@@ -712,6 +712,29 @@
         "type": "github"
       }
     },
+    "nix-secure-enclave-key": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786723833,
+        "narHash": "sha256-x6qu3heqndshmG5DPoqLNBw3aec+uWrrq2FgnGhWBUw=",
+        "owner": "ryoppippi",
+        "repo": "nix-secure-enclave-key",
+        "rev": "3a109cc09679be73b54f5fa7a8426aee7744aad3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryoppippi",
+        "repo": "nix-secure-enclave-key",
+        "type": "github"
+      }
+    },
     "nixos-images": {
       "inputs": {
         "nixos-stable": [
@@ -962,6 +985,7 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nix-index-database": "nix-index-database",
+        "nix-secure-enclave-key": "nix-secure-enclave-key",
         "nixpkgs": "nixpkgs_2",
         "omniwm": "omniwm",
         "tgrab": "tgrab",

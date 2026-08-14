@@ -299,7 +299,6 @@ in
       "openvpn-connect"
       "orbstack"
       "raycast"
-      "secretive"
       "steam"
       "telegram"
       "typewhisper/tap/typewhisper"

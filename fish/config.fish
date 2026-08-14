@@ -103,10 +103,6 @@ if not test -d $HM_PATH_BIN
 end
 fish_add_path $HM_PATH_BIN
 
-# Secretive
-set SSH_SECRETIVE_SSH_SOCK $HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-test -e $SSH_SECRETIVE_SSH_SOCK && set -x SSH_AUTH_SOCK $SSH_SECRETIVE_SSH_SOCK
-
 set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
 if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     mkdir -p $FISH_CACHE_DIR
