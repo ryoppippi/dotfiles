@@ -636,7 +636,7 @@
                       github = {
                         autoAdd = true; # Register the public key during user activation.
                         type = "both"; # Register both SSH authentication and Git signing.
-                        title = "nix-secure-enclave-key"; # GitHub title for new key registrations.
+                        # Omit title to derive a machine- and public-key-specific GitHub title.
                       };
                     };
 
