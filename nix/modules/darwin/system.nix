@@ -316,6 +316,7 @@ in
       "Command X" = 6448461551;
       "Consent-O-Matic" = 1606897889;
       "DevCleaner" = 1388020431;
+      "Dockitty" = 6743999434;
       "Document Generator" = 1437883178;
       "Gifski" = 1351639930;
       "Hush" = 1544743900;
