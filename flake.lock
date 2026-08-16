@@ -956,11 +956,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1786353890,
-        "narHash": "sha256-l7EkCXjsb+EUPd9p8Sc9dk+A+qyD/vvQf9f4LuQAIrU=",
+        "lastModified": 1786447939,
+        "narHash": "sha256-JsUbCwpf5dIKdX4R9Ay5MF3euFzDSo3pftHCvhlDIbM=",
         "owner": "DavSanchez",
         "repo": "nix-dotfiles",
-        "rev": "3fe4d0cba689c5c81051f0b7785310d33f1d3ed2",
+        "rev": "5fa21e75d38b12ae0ff8b4271f8ce9ce4452c406",
         "type": "github"
       },
       "original": {
@@ -1021,11 +1021,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783174389,
-        "narHash": "sha256-aCWC8ngycU7OdJrU2+Je3qf+1a2ykuBvpPhZT/9tXMc=",
+        "lastModified": 1786375908,
+        "narHash": "sha256-G7qDAT98nywA4EFmJCwIRO5wKvDlBBN3BWpsOnjAto8=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "f1406619a3884cd5c47992a70b8b35c9c0fcb4c9",
+        "rev": "d1337e05ba0a8e88a75d2c0e1595d82f3b3e2ac4",
         "type": "github"
       },
       "original": {
