@@ -141,7 +141,14 @@ useWorkspaceId = true
 backgroundOpacity = 0.1
 deduplicateAppIcons = false
 enabled = true
-excludedBundleIDs = []
+excludedBundleIDs = [
+	"com.1password.1password",
+	"com.apple.ActivityMonitor",
+	"com.apple.Passwords",
+	"com.apple.ScreenContinuity",
+	"jp.kiok.nani",
+	"pl.maketheweb.cleanshotx",
+]
 height = 24.0
 hideEmptyWorkspaces = false
 notchActiveZoneWidth = 180.0
