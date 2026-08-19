@@ -40,4 +40,4 @@ This avoids the overhead of setting up a full dev shell in CI.
 
 ## Misc
 
-- prefer `flake-parts` over `flake-utils` for better modularity and maintainability
+- Keep a simple flake dependency-free: plain `outputs` needs no framework. Once per-system boilerplate becomes unwieldy, reach for `flake-parts` modules — never `flake-utils`.
