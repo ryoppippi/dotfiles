@@ -36,6 +36,12 @@ return {
 			TeleScopePrompt = false,
 			["*"] = true,
 		},
+		should_attach = function(bufnr, bufname)
+			if vim.g.copilot_disable_project then
+				return false
+			end
+			return require("copilot.config.should_attach").default(bufnr, bufname)
+		end,
 	},
 	config = function(_, opts)
 		vim.defer_fn(function()
