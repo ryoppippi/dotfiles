@@ -62,6 +62,9 @@ let
         focusDown = "cmd+shift+j";
         focusUp = "cmd+shift+k";
         focusRight = "cmd+shift+l";
+        # cmux binds clearScreenKeepScrollback to cmd+shift+k by default,
+        # which shadows focusUp above
+        clearScreenKeepScrollback = "none";
         toggleSplitZoom = "cmd+z";
         goToWorkspace = "cmd+s";
 
