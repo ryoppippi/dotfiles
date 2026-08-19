@@ -1,5 +1,8 @@
 vim.g.mapleader = t("<Space>")
 
+vim.opt.exrc = true
+vim.opt.secure = true
+
 vim.opt.backup = true
 vim.opt.backupdir = vim.fn.expand(vim.fn.stdpath("cache") .. "/.vim_backup")
 vim.opt.swapfile = false
