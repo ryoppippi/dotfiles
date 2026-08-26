@@ -1063,11 +1063,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1787264342,
-        "narHash": "sha256-gwIOPinUzPscwfB0m6wI/xHDoS9juATZijX7W/iw47o=",
+        "lastModified": 1787415596,
+        "narHash": "sha256-fgGVsd8h6i0IAe98N7GWyM7cCj8EZHyVT5TzAbXhYtQ=",
         "owner": "DavSanchez",
         "repo": "nix-dotfiles",
-        "rev": "2617fca1dd96339b48f4b707c595039e0297a2e5",
+        "rev": "af6cb11b0ecec14f77f09f37c851d9809ae29216",
         "type": "github"
       },
       "original": {
