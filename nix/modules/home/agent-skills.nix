@@ -9,7 +9,6 @@
   lib,
   agentSkillsLib,
   skillRegistry,
-  tgrab,
   local-skills,
   ...
 }:
@@ -79,7 +78,7 @@ in
       path = "web-fetch";
       packages = [
         pkgs.llm-agents.ax
-        tgrab.packages.${pkgs.stdenv.hostPlatform.system}.default
+        pkgs.llm-agents.tgrab
       ];
       rewriteCommands = false;
     };

@@ -9,7 +9,6 @@
   fish-na ? null,
   agentSkillsLib ? null,
   skillRegistry ? null,
-  tgrab ? null,
   local-skills ? null,
   ...
 }:
@@ -34,7 +33,6 @@ in
         lib
         agentSkillsLib
         skillRegistry
-        tgrab
         local-skills
         config
         ;

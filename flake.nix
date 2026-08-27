@@ -99,10 +99,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    tgrab = {
-      url = "github:ryoppippi/tgrab/22a9bbb9267b7a8603a325dd0c1148be5fa69d4e";
-    };
-
   };
 
   outputs =
@@ -125,7 +121,6 @@
       fish-na,
       nix-index-database,
       agent-skills,
-      tgrab,
       ...
     }:
     let
@@ -202,7 +197,6 @@
                       config
                       lib
                       fish-na
-                      tgrab
                       ;
                     inherit local-skills agentSkillsLib skillRegistry;
                     homedir = linuxHomedir;
@@ -606,7 +600,6 @@
                           config
                           lib
                           fish-na
-                          tgrab
                           ;
                         inherit local-skills agentSkillsLib skillRegistry;
                         homedir = darwinHomedir;
