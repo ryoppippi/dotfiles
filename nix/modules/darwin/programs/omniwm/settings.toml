@@ -377,7 +377,7 @@ id = "focus.right"
 
 [[hotkeys]]
 binding = "Hyper+Tab"
-id = "focus.previous"
+id = "focusPrevious"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -472,7 +472,7 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+N"
 id = "move.left"
 
 [[hotkeys]]
@@ -484,7 +484,7 @@ binding = "Hyper+Up Arrow"
 id = "moveWindowUp"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+M"
 id = "move.right"
 
 [[hotkeys]]
@@ -502,14 +502,6 @@ id = "moveWindowDownOrToWorkspaceDown"
 [[hotkeys]]
 binding = "Unassigned"
 id = "moveWindowUpOrToWorkspaceUp"
-
-[[hotkeys]]
-binding = "Hyper+N"
-id = "consumeOrExpelWindowLeft"
-
-[[hotkeys]]
-binding = "Hyper+M"
-id = "consumeOrExpelWindowRight"
 
 [[hotkeys]]
 binding = "Unassigned"
