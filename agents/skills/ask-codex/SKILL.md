@@ -1,6 +1,6 @@
 ---
 name: ask-codex
-description: Runs Codex CLI for a second opinion on a decision, or as a cheap subagent for bulky work. Use before a significant approach is settled, or instead of reading pages and long output here.
+description: Gets a Codex second opinion or delegates bulky work to a Codex subagent. Use before a significant approach is settled, or instead of reading pages and long output here.
 ---
 
 <!--
@@ -11,10 +11,33 @@ Example prompts:
 
 # Ask Codex
 
-Two jobs, two commands. Both take a self-contained prompt: Codex sees none of this
+This skill is shared by Codex Desktop, Codex CLI, and other agents. Choose the
+execution path that matches the current agent:
+
+- **Inside Codex (Desktop or CLI):** delegate to a native subagent. Never run
+  `codex exec` from here; that starts a nested Codex process.
+- **Outside Codex:** use the Codex CLI path below for an independent agent.
+
+Both paths take a self-contained prompt: the subagent sees none of this
 conversation, so whatever it cannot infer has to be in the prompt.
 
-## Second opinion
+## Native subagent path
+
+Use one native subagent for either job. Ask it to return the requested facts with
+citations (`URL` or `file:line`), and ask for verbatim quotes where exact spelling
+matters.
+
+For a second opinion, ask for an independent assessment, then compare it with
+your own reading and preserve disagreements in the response. For delegated grunt
+work, ask for the small conclusion rather than forwarding the whole transcript.
+
+The repository's Codex configuration sets native subagents to `gpt-5.6-luna`
+with `max` reasoning and the `fast` service tier. Keep those defaults unless the
+user requests another model or effort.
+
+## Codex CLI path
+
+Use this path only outside Codex:
 
 ```sh
 codex exec "<question>"

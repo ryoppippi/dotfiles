@@ -1,12 +1,12 @@
 ---
 name: codex-review
-description: Run a code review using Codex CLI. Use when the user wants a code review of uncommitted changes, a specific commit, or changes against a base branch.
+description: Run a code review using Codex or a native subagent. Use when the user wants a code review of uncommitted changes, a specific commit, or changes against a base branch.
 ---
 
 Use the review path that matches the current session:
 
 - Outside Codex: use `codex exec review`.
-- Inside Codex: delegate the review to a subagent; do not start a nested Codex process.
+- Inside Codex (Desktop or CLI): delegate the review to a native subagent; do not start a nested Codex process.
 
 ## Scope
 
