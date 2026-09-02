@@ -48,6 +48,9 @@ jobs:
           let before = (open $LOCK | get npins.pins)
 
           nix run .#skills-sources-lock
+          # The lock tool emits its own JSON style; the lint job runs treefmt
+          # with --fail-on-change, so format before committing.
+          nix run .#fmt -- $LOCK
 
           # One row per pin whose revision moved. Short revisions keep the table readable.
           let moved = (
