@@ -62,6 +62,7 @@ jobs:
             print '::endgroup::'
 
             let updated = (has-changes $OVERLAY_DIR)
+            nix run .#fmt -- $OVERLAY_DIR
             # Stage as we go so the next package is compared against a clean tree.
             git add $OVERLAY_DIR
             $updated
