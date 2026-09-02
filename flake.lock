@@ -469,11 +469,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1787126215,
-        "narHash": "sha256-QLi0/g8gT5fDhsihWH8Wjk6ilCUWmWNPzqyPgEPcGP4=",
+        "lastModified": 1787921295,
+        "narHash": "sha256-BdxS2feCzWKfMBeqWtCwExvNmeswbLzVjRT3dZogHqc=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "63565fa26b00a2096247064785c4380aafab2303",
+        "rev": "9978706e9303dbf990d90e744b131361449d73b9",
         "type": "github"
       },
       "original": {
@@ -807,11 +807,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1786943417,
-        "narHash": "sha256-b4qgjdFtlz5TAZ1Hi7DFJeqX3sjaDUnrwr9OO+O1rM0=",
+        "lastModified": 1787848966,
+        "narHash": "sha256-7gDpu5hpq0rOYnYMcOWqSzquK4HA/xU8Xf3CjUBOOJA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0dd31db7e6dbf9ce05697c4545f6fe01accec994",
+        "rev": "d57af924f160a5084293c71c2043f058bd1cdb60",
         "type": "github"
       },
       "original": {
@@ -938,11 +938,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1787415596,
-        "narHash": "sha256-fgGVsd8h6i0IAe98N7GWyM7cCj8EZHyVT5TzAbXhYtQ=",
+        "lastModified": 1787925482,
+        "narHash": "sha256-UlCiuJ7bkKX0tv89jXncUUUB+O4I2StjgnKWKnQF+Eg=",
         "owner": "DavSanchez",
         "repo": "nix-dotfiles",
-        "rev": "af6cb11b0ecec14f77f09f37c851d9809ae29216",
+        "rev": "afb0b46018c9746e6192334cfa374fbacd9cc705",
         "type": "github"
       },
       "original": {
