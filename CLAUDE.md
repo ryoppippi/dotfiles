@@ -2,10 +2,6 @@
 
 ryoppippi's personal dotfiles managed via **Nix Flake** (nix-darwin + home-manager).
 
-## Quick Reference
-
-See @README.md for full documentation.
-
 ## Core Commands
 
 ```bash
@@ -14,41 +10,13 @@ nix run .#update                             # Update dependencies
 nix run .#build                              # Test build
 ```
 
-Nix flakes only see tracked, staged files, so `git add` is required before
-`switch`. Stage the paths you changed — never `git add -A`, `git add .`, or
-`git add -u`. That staging is a build prerequisite, not a commit plan.
+Nix flakes only see tracked, staged files, so stage the paths you changed before `switch`.
 
-## Command Privacy and Secret Handling
+## Layout Notes
 
-- Before running any command, make sure the command text, shell history, process list, terminal output, tool invocation log, and coding-agent transcript will not contain raw secrets.
-- Never put raw secrets, tokens, API keys, passwords, private keys, session cookies, or credential-bearing environment variable values directly in command strings.
-- Use command substitution, existing credential helpers, or existing variable references instead, such as `$(gh auth token)`, `$(ghtkn get)`, or `$GITHUB_TOKEN`, so terminal history and agent transcripts do not contain the secret value.
-- Do not echo, print, log, summarise, commit, or paste secret values. If a raw secret is accidentally exposed, rotate or revoke it; deleting shell history is not sufficient.
-
-## Project Structure
-
-```
-.
-├── flake.nix           # Nix entry point
-├── nix/modules/        # Nix configuration modules
-│   ├── home/           # Cross-platform (home-manager)
-│   ├── darwin/         # macOS (nix-darwin)
-│   └── linux/          # Linux
-├── fish/               # Fish shell config
-├── nvim/               # Neovim config
-├── agents/skills/      # Shared AI agent skills (Claude, Codex)
-├── claude/             # Claude Code config (user memory)
-└── .claude/rules/      # Path-specific rules
-```
-
-## Dotfiles Locations
-
-| Config  | Location                                | Notes                            |
-| ------- | --------------------------------------- | -------------------------------- |
-| Fish    | `fish/`                                 | Modular config in `fish/config/` |
-| Neovim  | `nvim/`                                 | Lua-based, uses Lazy.nvim        |
-| Git     | `nix/modules/home/programs/git/`        | Declarative via Home Manager     |
-| Ghostty | `nix/modules/home/programs/ghostty.nix` | Declarative                      |
+- `agents/shared/` fragments are imported by `claude/CLAUDE.md` and concatenated into Codex's `AGENTS.md` at switch time. Edit them once; never copy text between the two.
+- `claude/` is symlinked to `~/.config/claude`, so edits there apply to the running Claude Code without a switch.
+- Git and Ghostty are declarative under `nix/modules/home/programs/`; Fish and Neovim keep plain config in `fish/` and `nvim/`.
 
 ## Scripting Language Choice
 
@@ -59,18 +27,12 @@ Nix flakes only see tracked, staged files, so `git add` is required before
 
 ## Git Workflow
 
-- **Main branch**: `main`
 - This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**. This is an explicit exception to the global commit skill's main-branch rule. Do NOT open a pull request unless explicitly asked.
-- Use **Conventional Commits** with UK English spelling
-- Commits are GPG-signed with SSH
+- Conventional Commits, UK English spelling.
 
 ## External Skills (agent-skills-nix)
 
-Claude Code skills are managed via [agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix).
-
-Configuration: `nix/modules/home/agent-skills.nix`
-
-External skill repositories are pinned in `registry/sources/`, not as flake inputs.
+Skills are managed via [agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix) in `nix/modules/home/agent-skills.nix`. External skill repositories are pinned in `registry/sources/`, not as flake inputs. Local skills live in `agents/skills/` and are enabled automatically — see the `skill-creator` skill.
 
 ### Adding a new external skill
 
@@ -95,29 +57,5 @@ External skill repositories are pinned in `registry/sources/`, not as flake inpu
    `skills.enable`
 4. Run `git add registry/ nix/modules/home/agent-skills.nix && nix run .#switch`
 
-### Adding a local skill
-
-Create a new skill directory in `agents/skills/` with a `SKILL.md` file, then enable it in `agent-skills.nix`.
-
-### Updating external skills
-
-```bash
-nix run .#skills-sources-lock  # Re-resolve every pin in registry/sources/
-nix run .#switch               # Apply changes
-```
-
-Editing a manifest without regenerating the lock fails evaluation, so the two always stay in sync.
-
-### Current skills
-
-**External:** one manifest per repository in `registry/sources/`.
-
-**Local (in `agents/skills/`):**
-
-All directories under `agents/skills/` are enabled automatically.
-
-## System Info
-
-- **Platform**: aarch64-darwin (Apple Silicon)
-- **Shell**: Fish
-- **Editor**: Neovim
+Updating external skills is the same lock-then-switch pair. Editing a manifest
+without regenerating the lock fails evaluation, so the two always stay in sync.

@@ -15,50 +15,19 @@ Use these tools instead of their standard alternatives:
 | `jq`             | -        | JSON processor      |
 | `gh`             | git      | GitHub CLI          |
 
-## Shell Fallback
+For code pattern searches (constructs, structure, not plain text), use the `ast-grep` skill rather than `rg`.
 
-Fish is the environment bootstrap shell, not necessarily the syntax shell.
+## Shell
 
-Use `fish -lc '<simple command>'` for simple commands so PATH and exported environment are initialised consistently.
-
-If a command depends on bash/zsh syntax, run that shell from Fish so the environment is inherited, for example:
-
-```sh
-fish -lc 'bash -lc "<posix command>"'
-```
-
-If `bunx <command>` fails, try: `bun x <command>`
-
-## Missing Tools
-
-Use the `missing-tools` skill when a command is unavailable, a shell reports `command not found`, or a tool must be run without installing it globally.
+Fish bootstraps the environment; it is not necessarily the syntax shell. Run simple commands as `fish -lc '<command>'` so PATH and exports are initialised. When a command needs bash/zsh syntax, nest it: `fish -lc 'bash -lc "<posix command>"'`.
 
 ## Opening URLs
 
-Inside cmux (`$CMUX_SURFACE_ID` is set), open a URL the user is meant to look at — a pull request, a preview deployment, docs — as a browser surface beside the terminal:
+Inside cmux (`$CMUX_SURFACE_ID` is set), open a URL the user is meant to look at — a PR, a preview deployment, docs — beside the terminal with `cmux browser open <url>` instead of `open` or `gh pr view --web`. Resolve the URL first (`gh pr view --json url -q .url`). For anything beyond opening a page, use the `cmux-browser` skill.
 
-```sh
-cmux browser open <url>
-```
+Authentication is the exception: send sign-in, OAuth, and device-code URLs to the system browser with `open <url>`, where the sessions and passkeys live.
 
-Prefer it over `gh pr view --web` and `open <url>`, which hand the URL to the system browser and lose the split. Resolve the URL without opening it first, e.g. `gh pr view --json url -q .url`. For anything past opening a page, use the `cmux-browser` skill.
+## Reading Other Repositories
 
-Authentication is the exception. Send sign-in, OAuth, and device-code URLs to the system browser with `open <url>`: that is where the sessions, password manager, and passkeys are, and a fresh embedded session has none of them.
-
-## Reading Files from GitHub Repos
-
-For a handful of known files, read them remotely instead of cloning:
-
-```sh
-nix run nixpkgs#gh -- repo read-file --help
-nix run nixpkgs#gh -- repo read-dir --help
-```
-
-## Cloning Repos for Investigation (ghq)
-
-When the task needs a whole repo locally — searching across it, following its git
-history, or running its build and tests — clone it with `ghq` instead of
-`git clone` into `/tmp` or inside the current project. See `ghq --help` for usage.
-
-Treat such clones as read-only reference checkouts: never commit or push to a
-repo that was cloned just to be investigated.
+- A handful of known files: `gh repo read-file` / `gh repo read-dir` instead of cloning.
+- A whole repo (searching, history, running builds): clone with `ghq` instead of `git clone` into `/tmp` or the current project. Treat the clone as read-only reference; never commit or push to it.
