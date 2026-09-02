@@ -81,7 +81,7 @@ let
     };
   };
 
-  darwinSettings = lib.optionalAttrs pkgs.stdenv.isDarwin {
+  darwinSettings = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
     permissions = {
       defaultMode = "auto";
       allow = [

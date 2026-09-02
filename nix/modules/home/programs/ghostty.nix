@@ -33,7 +33,7 @@ in
   # Ghostty terminal configuration
   # On macOS, Ghostty is installed via Homebrew, so we use xdg.configFile directly
   # On Linux, we use the full programs.ghostty module with pkgs.ghostty
-  programs.ghostty = lib.mkIf (!pkgs.stdenv.isDarwin) {
+  programs.ghostty = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
     enable = true;
     package = pkgs.ghostty;
     enableFishIntegration = true;
@@ -41,7 +41,7 @@ in
   };
 
   # On macOS, just generate the config file (Ghostty installed via Homebrew)
-  xdg.configFile."ghostty/config" = lib.mkIf pkgs.stdenv.isDarwin {
+  xdg.configFile."ghostty/config" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     text = lib.concatStringsSep "\n" (
       lib.mapAttrsToList (
         name: value:
@@ -57,7 +57,7 @@ in
 
   # Ghostty on macOS also looks for config in Application Support
   # Create a symlink to ensure it finds our XDG config
-  home.activation.linkGhosttyConfig = lib.mkIf pkgs.stdenv.isDarwin (
+  home.activation.linkGhosttyConfig = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     lib.hm.dag.entryAfter [ "linkGeneration" ] ''
       ${helpers.activation.mkLinkForce}
       $DRY_RUN_CMD mkdir -p "${config.home.homeDirectory}/Library/Application Support/com.mitchellh.ghostty"

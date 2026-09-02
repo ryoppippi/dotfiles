@@ -16,7 +16,7 @@ The configuration is organised into modular files:
 - **`nix/home.nix`** - Home Manager configuration (cross-platform)
   - Dotfiles symlinks using `home.file`
   - User package list
-  - Platform-specific packages via `pkgs.stdenv.isDarwin`
+  - Platform-specific packages via `pkgs.stdenv.hostPlatform.isDarwin`
 - **`nix/darwin.nix`** - macOS system configuration (nix-darwin)
   - System settings and user configuration
   - Homebrew packages (taps, brews, casks, masApps)
