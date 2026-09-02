@@ -44,7 +44,7 @@ jobs:
         id: update
         shell: nu {0}
         run: |
-          bash nix/packages/node/update.sh
+          nix run .#update-node-packages
 
           # `git diff --quiet` exits 1 when something changed, which Nushell
           # surfaces as a command failure, so the exit code has to be inspected.
