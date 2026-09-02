@@ -34,7 +34,15 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
    - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
    - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
 
-6. Publish using the path that matches the PR structure:
+6. When the change is visual (UI, layout, rendering, or a bug that is clearer on screen), attach local screenshots or short videos to the PR with `gh pr create --attach` (`gh` ≥ 2.99.0). Prefer real artifacts already produced while implementing or testing — do not invent media, and skip attach when there is nothing useful to show. If `gh pr create --help` does not list `--attach`, skip media upload and open the PR with text only (nixpkgs will pick up a new enough `gh` in time).
+
+   - Put Markdown image/video references in the body using local paths (e.g. `![Login after fix](./after.png)`). `gh` rewrites those paths to uploaded URLs in place and keeps the alt text.
+   - Pass each file with `--attach` (repeatable). Optional alt text after `#` when the body does not already reference the path: `--attach './after.png#Login after fix'`.
+   - Supported types include PNG, JPEG, GIF, WebP, SVG, MP4, MOV, and WebM. Size limits match the web upload flow.
+   - If media appears only after the PR exists (e.g. a walkthrough recorded while verifying), attach it with `gh pr edit --attach` or `gh pr comment --attach` instead of recreating the PR.
+   - See `gh pr create --help` for flag syntax. Overview: https://gh.io/gh-attach
+
+7. Publish using the path that matches the PR structure:
 
    - Use `gh-stack` only when requested or when the branch is already stacked; verify parent-child ancestry before linking.
    - For an ordinary PR, push the branch and create the PR with:
@@ -44,6 +52,8 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
      gh pr create --title "feat(scope): summary" --body-file -
      ```
 
-7. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
+     When step 6 produced media, add one `--attach <path>` (or `--attach 'path#alt'`) per file on that `gh pr create` invocation.
+
+8. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, `gh` version, or duplicate PR state before retrying.
 
 All commit messages, PR titles, and PR bodies must be in English. Confirm the target branch before creating the PR, and do not call it ready until the relevant checks and review feedback have been inspected.
