@@ -34,7 +34,9 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
    - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
    - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
 
-6. Publish using the path that matches the PR structure:
+6. When the change is visual (UI, layout, rendering, or a bug clearer on screen), attach real local screenshots or short videos with `gh pr create --attach`. Do not invent media; skip when there is nothing useful to show, or when `gh pr create --help` does not list `--attach`. Prefer Markdown references to local paths in the body so alt text survives upload. If media appears only after the PR exists, attach with `gh pr edit` / `gh pr comment` instead of recreating the PR. See `gh pr create --help` and https://gh.io/gh-attach.
+
+7. Publish using the path that matches the PR structure:
 
    - Use `gh-stack` only when requested or when the branch is already stacked; verify parent-child ancestry before linking.
    - For an ordinary PR, push the branch and create the PR with:
@@ -44,6 +46,8 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
      gh pr create --title "feat(scope): summary" --body-file -
      ```
 
-7. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
+     Add `--attach` on that invocation when step 6 applies.
+
+8. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
 
 All commit messages, PR titles, and PR bodies must be in English. Confirm the target branch before creating the PR, and do not call it ready until the relevant checks and review feedback have been inspected.
