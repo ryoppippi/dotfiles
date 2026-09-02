@@ -85,7 +85,7 @@ in
     force = true;
   };
 
-  home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.isDarwin (
+  home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     lib.hm.dag.entryAfter [ "writeBoundary" "writeCodexConfig" ] ''
       ${cmuxCli} hooks setup -y
     ''

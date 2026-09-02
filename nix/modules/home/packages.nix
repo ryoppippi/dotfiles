@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
   # Check if we're on a platform that supports certain packages
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
   isX86Linux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
 in
 {

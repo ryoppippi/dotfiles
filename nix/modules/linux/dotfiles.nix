@@ -12,7 +12,7 @@ in
 {
   # Linux-specific dotfile symlinks
   home.activation.linkDotfilesLinux = lib.hm.dag.entryAfter [ "linkGeneration" ] (
-    lib.optionalString (!pkgs.stdenv.isDarwin) ''
+    lib.optionalString (!pkgs.stdenv.hostPlatform.isDarwin) ''
       ${helpers.activation.mkLinkForce}
 
       # Pip configuration (Linux paths)

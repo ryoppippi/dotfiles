@@ -241,7 +241,7 @@
         let
           localPkgs = mkPkgs system;
           inherit (localPkgs) lib;
-          inherit (localPkgs.stdenv) isDarwin;
+          inherit (localPkgs.stdenv.hostPlatform) isDarwin;
           homedir = if isDarwin then darwinHomedir else linuxHomedir;
           hostname = username;
           bash = lib.getExe localPkgs.bash;

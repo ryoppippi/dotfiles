@@ -22,7 +22,8 @@ in
   };
 
   home.activation.configureOpenCodeSettings =
-    lib.hm.dag.entryAfter ([ "linkGeneration" ] ++ lib.optional pkgs.stdenv.isDarwin "installCmuxHooks")
+    lib.hm.dag.entryAfter
+      ([ "linkGeneration" ] ++ lib.optional pkgs.stdenv.hostPlatform.isDarwin "installCmuxHooks")
       ''
         SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
         mkdir -p "${opencodeConfigDir}"
