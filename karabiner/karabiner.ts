@@ -9,7 +9,7 @@ if (omniwmctl == null) {
 
 k.writeToProfile('Default profile', [
 	k
-		.rule('Block control tap while Tab window modifier is held', devices.ifNotSelfMadeKeyboard)
+		.rule('Block control tap while a window modifier is held', devices.ifNotSelfMadeKeyboard)
 		.manipulators([
 			k
 				.map({
@@ -74,26 +74,10 @@ k.writeToProfile('Default profile', [
 		),
 	]),
 
-	k
-		.rule('Hold tab to window modifier, tap tab to tab in MacBook', devices.ifNotSelfMadeKeyboard)
-		.manipulators([
-			k
-				.map({ key_code: 'tab' })
-				.toIfAlone({ key_code: 'tab', lazy: true })
-				.toIfHeldDown({ key_code: 'tab', repeat: true })
-				.to({
-					key_code: 'left_command',
-					modifiers: ['left_option', 'left_shift'],
-				}),
-		]),
-
-	// OmniWM binds one shortcut per command, and `Workspace+Tab` (switch to the
-	// last active workspace) is unreachable on the MacBook because holding Tab is
-	// what produces the Workspace layer in the first place. Aliasing Return onto
-	// Tab within that layer adds a second way in without taking the first away,
-	// so the CLAW44 keeps the Tab it can press comfortably and both keyboards
-	// accept either key. Deliberately not restricted to one device: rewriting a
-	// modifier+key combination collides with nothing in the CLAW44 firmware.
+	// A CLAW44 convenience: the Workspace layer lives on `S+D` there, so both Tab
+	// and Return are free to reach `workspaceBackAndForth`. The MacBook has no
+	// Workspace layer at all, so this rule never fires on it — Ctrl+Left/Right
+	// already flips between the two workspaces a display owns.
 	k.rule('Workspace+Return also switches workspace back and forth').manipulators([
 		k
 			.map({

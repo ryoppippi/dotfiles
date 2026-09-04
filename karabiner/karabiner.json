@@ -12,7 +12,7 @@
 			"complex_modifications": {
 				"rules": [
 					{
-						"description": "Block control tap while Tab window modifier is held",
+						"description": "Block control tap while a window modifier is held",
 						"manipulators": [
 							{
 								"type": "basic",
@@ -240,46 +240,6 @@
 								"parameters": {
 									"basic.to_if_held_down_threshold_milliseconds": 100
 								},
-								"conditions": [
-									{
-										"type": "device_unless",
-										"identifiers": [
-											{
-												"product_id": 1,
-												"vendor_id": 22854
-											}
-										]
-									}
-								]
-							}
-						]
-					},
-					{
-						"description": "Hold tab to window modifier, tap tab to tab in MacBook",
-						"manipulators": [
-							{
-								"type": "basic",
-								"from": {
-									"key_code": "tab"
-								},
-								"to_if_alone": [
-									{
-										"key_code": "tab",
-										"lazy": true
-									}
-								],
-								"to_if_held_down": [
-									{
-										"key_code": "tab",
-										"repeat": true
-									}
-								],
-								"to": [
-									{
-										"key_code": "left_command",
-										"modifiers": ["left_option", "left_shift"]
-									}
-								],
 								"conditions": [
 									{
 										"type": "device_unless",
