@@ -3,6 +3,7 @@ monitorDwindleOverrides = []
 monitorGapOverrides = []
 monitorOrientationOverrides = []
 monitorRoutingOverrides = []
+schemaVersion = 1
 
 [[monitorNiriOverrides]]
 id = "CBECEE67-4488-474E-81A4-9780A82EA7BC"
@@ -166,6 +167,7 @@ systemStatsButton = false
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
+hideInNativeFullscreen = false
 
 [workspaceBar.iconOverrides]
 
@@ -913,3 +915,5 @@ name = "4"
 
 [workspaces.monitorAssignment]
 type = "secondary"
+
+[scratchpads.labels]
