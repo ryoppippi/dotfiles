@@ -198,6 +198,22 @@ read-only Nix store symlink, and ownership is split:
 - **This repository owns everything else.** Edit [`settings.toml`](settings.toml)
   and run the Darwin switch to apply persistent changes. GUI edits to those
   settings are discarded by the next switch.
+- **The app owns the schema.** `schemaVersion` and the list of hotkey ids come
+  from the live file, which OmniWM migrates in place on every upgrade. The
+  template lists only the hotkeys it binds; activation overrides those bindings
+  by id and leaves every other entry as the app wrote it. OmniWM validates the
+  hotkey list strictly, so a committed copy of the full list broke on every
+  release that renamed or added an action — and the failure was silent: the app
+  logs one line and keeps the settings it loaded last. An id the template names
+  but the running build lacks is reported during activation and skipped.
+
+If a setting change does not take effect, check whether the app rejected the
+file:
+
+```bash
+log show --last 10m --predicate 'subsystem == "com.barut.OmniWM"' --style compact
+```
+
 - **The GUI owns the monitor settings** — `monitorBarOverrides`,
   `monitorDwindleOverrides`, `monitorGapOverrides`, `monitorNiriOverrides`,
   `monitorOrientationOverrides`, `monitorRoutingOverrides`, and
