@@ -1,11 +1,14 @@
 monitorBarOverrides = []
 monitorDwindleOverrides = []
 monitorGapOverrides = []
-monitorNiriOverrides = [
-	{ id = "CBECEE67-4488-474E-81A4-9780A82EA7BC", monitorName = "Built-in Retina Display", monitorDisplayUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230", visibleContainerCount = 2 },
-]
 monitorOrientationOverrides = []
 monitorRoutingOverrides = []
+
+[[monitorNiriOverrides]]
+id = "CBECEE67-4488-474E-81A4-9780A82EA7BC"
+monitorName = "Built-in Retina Display"
+monitorDisplayUUID = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
+visibleContainerCount = 2
 
 [appearance]
 mode = "automatic"
@@ -41,9 +44,11 @@ followsWindowToMonitor = true
 lockModifier = "off"
 moveCrossesMonitorAtEdge = false
 moveMouseToFocusedWindow = false
+raiseOnMouseFocus = true
 
 [gaps]
 size = 16.0
+fullscreenUsesOuterGaps = false
 
 [gaps.outer]
 bottom = 0.0
@@ -98,8 +103,6 @@ alpha = 1.0
 blue = 0.08
 green = 0.05
 red = 0.05
-
-[overview.windowBorders]
 
 [overview.windowBorders.hovered]
 alpha = 1.0
@@ -476,24 +479,24 @@ binding = "Hyper+N"
 id = "move.left"
 
 [[hotkeys]]
-binding = "Hyper+Down Arrow"
-id = "moveWindowDown"
-
-[[hotkeys]]
-binding = "Hyper+Up Arrow"
-id = "moveWindowUp"
-
-[[hotkeys]]
-binding = "Hyper+M"
-id = "move.right"
-
-[[hotkeys]]
 binding = "Unassigned"
 id = "move.down"
 
 [[hotkeys]]
 binding = "Unassigned"
 id = "move.up"
+
+[[hotkeys]]
+binding = "Hyper+M"
+id = "move.right"
+
+[[hotkeys]]
+binding = "Hyper+Down Arrow"
+id = "moveWindowDown"
+
+[[hotkeys]]
+binding = "Hyper+Up Arrow"
+id = "moveWindowUp"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -522,6 +525,38 @@ id = "focusMonitorPrevious"
 [[hotkeys]]
 binding = "Unassigned"
 id = "focusMonitorLast"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.left"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.right"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.up"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.down"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.left"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.right"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.up"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.down"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -677,11 +712,11 @@ id = "moveColumnToIndex.9"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleSizeBackward"
+id = "cycleSizeForward"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleSizeForward"
+id = "cycleSizeBackward"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -753,35 +788,19 @@ id = "swapSplit"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.left"
+id = "resizeGrow.horizontal"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.right"
+id = "resizeGrow.vertical"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.up"
+id = "resizeShrink.horizontal"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.down"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.left"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.right"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.up"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.down"
+id = "resizeShrink.vertical"
 
 [[hotkeys]]
 binding = "Unassigned"
