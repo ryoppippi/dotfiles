@@ -939,11 +939,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1788138350,
-        "narHash": "sha256-ay6S6B52ahwgx+bggzO0Yph6oNTro2kF93N1CWfZA+k=",
+        "lastModified": 1788201449,
+        "narHash": "sha256-WBTYMO7Et7xZz72mV9W9N2Gf2he05r9Em0mhWEbtV1k=",
         "owner": "DavSanchez",
         "repo": "nix-dotfiles",
-        "rev": "2e0b32ed65ee66c7db84833192388f80be58f342",
+        "rev": "5a5111bf0272539f978007d049bb24a29d87ad33",
         "type": "github"
       },
       "original": {
