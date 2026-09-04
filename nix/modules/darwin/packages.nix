@@ -31,7 +31,6 @@ in
       appcleaner
       beekeeper-studio
       betterdisplay
-      bluesnooze
       cursor
       dockdoor
       figma
@@ -54,7 +53,6 @@ in
     ];
 
   launchd.agents = {
-    bluesnooze = mkLoginAgent pkgs.brewCasks.bluesnooze "Bluesnooze";
     is-there-net = mkLoginAgent pkgs.brewCasks.istherenet "IsThereNet";
   };
 
