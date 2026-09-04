@@ -167,7 +167,7 @@ systemStatsButton = false
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
-hideInNativeFullscreen = false
+hideInNativeFullscreen = true
 
 [workspaceBar.iconOverrides]
 
