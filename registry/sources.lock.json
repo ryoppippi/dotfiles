@@ -81,55 +81,55 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-hQKr6s8gqaDm4AVbQomd1TMZcowOGCVNF5DnuIm/fCs=",
+				"hash": "sha256-EGK2Hh5a7IL0fM0C6G9vpoDgr6SKv7XaFolN1Uie9vI=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "01c1147da66940c034a5ccea497447e52c2f6dfe",
+				"revision": "4a98df79bd232fcde5ca3a4a48e1337b8108b160",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/01c1147da66940c034a5ccea497447e52c2f6dfe.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/4a98df79bd232fcde5ca3a4a48e1337b8108b160.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
-				"hash": "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=",
+				"hash": "sha256-esxl6g4U2+0KPkcDAq0HsIYkZaHM3iYy0rqylM83/bk=",
 				"repository": {
 					"owner": "ast-grep",
 					"repo": "claude-skill",
 					"type": "GitHub"
 				},
-				"revision": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a",
+				"revision": "6b668aa526afdc623c1a9ed1d6ae920e04a717ad",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/ast-grep/claude-skill/archive/c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a.tar.gz"
+				"url": "https://github.com/ast-grep/claude-skill/archive/6b668aa526afdc623c1a9ed1d6ae920e04a717ad.tar.gz"
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-hm1t2EyMgHhh7ojTpd1H+8yGdLEFXKtu42v9nV2u+iw=",
+				"hash": "sha256-XqIKL81PERiQWG233f5J7qec/Y3tmccvswxV8QXmqDY=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "d35187ec47cffbe70ef42b6ce460296d10b0ca7c",
+				"revision": "a520942e96ae6ca2c0f71e7fff85b06c60804e74",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/d35187ec47cffbe70ef42b6ce460296d10b0ca7c.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/a520942e96ae6ca2c0f71e7fff85b06c60804e74.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
-				"hash": "sha256-RrVYkqUX0vKPUC0zextQSR+SG59j/HaILPZ/tBCXspQ=",
+				"hash": "sha256-jwfqiCnCOOW0AKA52hbgvCCoLzfFX+QfM+vXABkzZgw=",
 				"repository": {
 					"owner": "github",
 					"repo": "gh-stack",
 					"type": "GitHub"
 				},
-				"revision": "8c9c8331309529e2114d4c34e77f4edea543f9fa",
+				"revision": "2bd699a544a09cb5c45a013d03416e0894b0454e",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/8c9c8331309529e2114d4c34e77f4edea543f9fa.tar.gz"
+				"url": "https://github.com/github/gh-stack/archive/2bd699a544a09cb5c45a013d03416e0894b0454e.tar.gz"
 			}
 		},
 		"version": 8
