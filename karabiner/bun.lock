@@ -5,14 +5,14 @@
     "": {
       "name": "karabiner-config",
       "dependencies": {
-        "karabiner.ts": "^1.36.0",
-        "zod": "^4.3.6",
+        "karabiner.ts": "^1.38.0",
+        "zod": "^4.5.4",
       },
     },
   },
   "packages": {
-    "karabiner.ts": ["karabiner.ts@1.36.0", "", {}, "sha512-iXg3/yZ46XodUXu2+TrIkrtbR71UFXR1dhDwpF8R6vCgd5i2r2+H7evfwQZM970oPd04PWdJk5AhvJY/582M7Q=="],
+    "karabiner.ts": ["karabiner.ts@1.38.0", "", {}, "sha512-ZF9fXZWoHuTbwasBj6LDUy4TP447x+onlWrjp5AMYMdJFXac+u832ut1tlhSDrpoy6n4sQzoOaS+3aytByzPRg=="],
 
-    "zod": ["zod@4.3.6", "", {}, "sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg=="],
+    "zod": ["zod@4.5.4", "", {}, "sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA=="],
   }
 }
