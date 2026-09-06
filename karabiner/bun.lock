@@ -6,13 +6,10 @@
       "name": "karabiner-config",
       "dependencies": {
         "karabiner.ts": "^1.38.0",
-        "zod": "^4.5.4",
       },
     },
   },
   "packages": {
     "karabiner.ts": ["karabiner.ts@1.38.0", "", {}, "sha512-ZF9fXZWoHuTbwasBj6LDUy4TP447x+onlWrjp5AMYMdJFXac+u832ut1tlhSDrpoy6n4sQzoOaS+3aytByzPRg=="],
-
-    "zod": ["zod@4.5.4", "", {}, "sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA=="],
   }
 }

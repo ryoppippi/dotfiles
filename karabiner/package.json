@@ -2,11 +2,11 @@
 	"name": "karabiner-config",
 	"type": "module",
 	"scripts": {
-		"build": "bun run karabiner.ts",
-		"watch": "bun run --watch karabiner.ts"
+		"check": "bun run karabiner.ts --dry-run",
+		"watch": "bun run --watch karabiner.ts --dry-run",
+		"postinstall": "bun2nix -o bun.nix"
 	},
 	"dependencies": {
-		"karabiner.ts": "^1.38.0",
-		"zod": "^4.5.4"
+		"karabiner.ts": "^1.38.0"
 	}
 }

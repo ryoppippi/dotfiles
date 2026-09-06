@@ -1,13 +1,19 @@
 import * as k from 'karabiner.ts';
 import * as devices from './devices.ts';
-import * as utils from './utils.ts';
 
-const omniwmctl = Bun.which('omniwmctl');
+// The Nix build passes the store path explicitly because the sandbox has no
+// omniwmctl on PATH; the PATH lookup is only a convenience for local dry runs.
+const omniwmctl = process.env.OMNIWMCTL ?? Bun.which('omniwmctl');
 if (omniwmctl == null) {
-	throw new Error('omniwmctl not found on PATH; is the omniwm module active?');
+	throw new Error('omniwmctl not found; set OMNIWMCTL or activate the omniwm module');
 }
 
-k.writeToProfile('Default profile', [
+// Without KARABINER_JSON karabiner.ts falls back to ~/.config/karabiner/karabiner.json.
+const writeTarget = process.argv.includes('--dry-run')
+	? '--dry-run'
+	: { name: 'Default profile', karabinerJsonPath: process.env.KARABINER_JSON };
+
+k.writeToProfile(writeTarget, [
 	k
 		.rule('Block control tap while a window modifier is held', devices.ifNotSelfMadeKeyboard)
 		.manipulators([

@@ -11,18 +11,37 @@ This directory contains TypeScript-based configuration for Karabiner-Elements us
 ## Overview
 
 - **Main config**: `karabiner.ts` - TypeScript configuration that generates `karabiner.json`
-- **Device definitions**: `devices.ts` - Device identifier utilities
+- **Device definitions**: `devices.ts` - Device identifiers (fixed constants; the Nix sandbox cannot query HID devices)
 - **Utilities**: `utils.ts` - Helper functions for configuration
+- **Base template**: `karabiner.base.json` - Everything Karabiner owns outside the generated rules (profile, devices, simple modifications, fn keys). `writeToProfile` merges the rules into a copy of this file.
+- **Nix module**: `nix/modules/darwin/programs/karabiner/default.nix` - Builds `karabiner.json` with bun2nix and links it to `~/.config/karabiner/karabiner.json`
 
 ## Building
 
-```bash
-# Build once
-bun run build
+`karabiner.json` is generated inside a Nix derivation and is not committed. Apply changes with:
 
-# Watch mode (auto-rebuild on changes)
+```bash
+nix run .#switch
+```
+
+The script reads two environment variables, both set by the Nix build:
+
+- `OMNIWMCTL` - path to `omniwmctl`, embedded into the `shell_command` rules. Falls back to a PATH lookup for local runs.
+- `KARABINER_JSON` - the file to read the profile from and write the result to. Falls back to `~/.config/karabiner/karabiner.json`, which is a read-only store link after switch, so use the dry run locally.
+
+```bash
+# Print the generated profile to stdout without writing anything
+bun run check
+
+# Same, re-running on every change
 bun run watch
 ```
+
+## Dependencies
+
+npm dependencies are pinned twice: `bun.lock` for Bun and `bun.nix` for Nix. `package.json` runs `bun2nix -o bun.nix` as a `postinstall` script, so any `bun install`/`bun update` keeps the two in sync. `bun2nix` is installed by the Nix module; if it is missing, run `nix run github:nix-community/bun2nix -- -o bun.nix` once.
+
+Editing `package.json` without regenerating `bun.nix` fails the Nix build.
 
 ## Key Concepts
 
@@ -174,11 +193,11 @@ k.map({
 2. Use `lazy: true` for modifier keys to prevent accidental triggering
 3. Group related rules together for better organization
 4. Use descriptive rule names for easier debugging
-5. Test changes incrementally - build after each rule addition
-6. Check `karabiner.json` if something doesn't work as expected
+5. Test changes incrementally - run `bun run check` after each rule addition
+6. Check `~/.config/karabiner/karabiner.json` if something doesn't work as expected
 
 ## Debugging
 
-- Generated JSON is in `karabiner.json` - check this if rules aren't working
+- Generated JSON is at `~/.config/karabiner/karabiner.json` (a link into the Nix store) - check this if rules aren't working
 - Karabiner-Elements logs available in the app
 - Use descriptive `.description()` to identify rules in Karabiner-Elements UI
