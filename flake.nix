@@ -54,6 +54,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bun2nix = {
+      url = "github:nix-community/bun2nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,6 +123,7 @@
       nix-claude-code,
       nix-secure-enclave-key,
       nix-bun,
+      bun2nix,
       treefmt-nix,
       git-hooks,
       gh-nippou,
@@ -157,6 +167,7 @@
               _nix-claude-code = nix-claude-code;
             })
             nix-bun.overlays.default
+            bun2nix.overlays.default
             gh-nippou.overlays.default
             (import ./nix/overlays/default.nix)
           ]
