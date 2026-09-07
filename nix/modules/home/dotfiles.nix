@@ -33,9 +33,6 @@ in
     # Aqua package manager configuration
     link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
 
-    # Scripts directory
-    link_force "${dotfilesDir}/my_scripts" "${homeDirectory}/.scripts"
-
     # EFM Language Server configuration
     link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
 
