@@ -8,6 +8,7 @@ in
     inputs.git-hooks.flakeModule
 
     ./pkgs.nix
+    ./writers.nix
     ./formatter.nix
     ./apps
     ./hosts

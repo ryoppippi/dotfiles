@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   perSystem =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      writeNu,
+      ...
+    }:
     let
       nu = lib.getExe pkgs.nushell;
     in
@@ -22,11 +27,12 @@
         update = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript "flake-update" ''
-              set -e
-              echo "Updating flake.lock..."
-              nix flake update
-              echo "Done! Run 'nix run .#switch' to apply changes."
+            writeNu "flake-update" ''
+              def main [] {
+                print "Updating flake.lock..."
+                ^nix flake update
+                print "Done! Run 'nix run .#switch' to apply changes."
+              }
             ''
           );
         };
@@ -34,21 +40,27 @@
         update-ai-tools = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript "update-ai-tools" ''
-              set -e
-              echo "Updating AI tools inputs..."
-              nix flake update llm-agents
-              echo "Done! Run 'nix run .#switch' to apply changes."
+            writeNu "update-ai-tools" ''
+              def main [] {
+                print "Updating AI tools inputs..."
+                ^nix flake update llm-agents
+                print "Done! Run 'nix run .#switch' to apply changes."
+              }
             ''
           );
         };
 
+        # Runs the working-tree copy rather than a store one because it rewrites
+        # the generated files back into the repository.
         update-node-packages = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript "update-node-packages" ''
-              set -e
-              exec ${nu} nix/packages/node/update.nu "$@"
+            writeNu "update-node-packages" ''
+              # --wrapped so unknown flags reach update.nu instead of being parsed
+              # as flags to main.
+              def --wrapped main [...rest] {
+                exec ${nu} nix/packages/node/update.nu ...$rest
+              }
             ''
           );
         };

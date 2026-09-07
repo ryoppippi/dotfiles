@@ -4,6 +4,7 @@
       config,
       pkgs,
       lib,
+      writeNu,
       ...
     }:
     let
@@ -100,8 +101,12 @@
       apps.fmt = {
         type = "app";
         program = toString (
-          pkgs.writeShellScript "treefmt-wrapper" ''
-            exec ${treefmt} "$@"
+          writeNu "treefmt-wrapper" ''
+            # --wrapped so unknown flags reach treefmt instead of being parsed
+            # as flags to main.
+            def --wrapped main [...rest] {
+              exec ${treefmt} ...$rest
+            }
           ''
         );
       };

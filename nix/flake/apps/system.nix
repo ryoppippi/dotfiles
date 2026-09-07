@@ -5,6 +5,7 @@
       pkgs,
       lib,
       system,
+      writeNu,
       ...
     }:
     let
@@ -22,31 +23,43 @@
         else
           "homeConfigurations.${username}.activationPackage";
 
-      # Detect AI agent environments to skip nix-output-monitor
+      # nix-output-monitor redraws a live TUI, which is unreadable once it lands
+      # in an agent transcript, so agents get the plain builder output instead.
       isAgentCheck = ''
-        IS_AI_AGENT=false
-        for var in CLAUDE_CODE CLAUDECODE CODEX_SANDBOX CODEX_THREAD_ID GEMINI_CLI OPENCODE AUGMENT_AGENT GOOSE_PROVIDER CURSOR_AGENT AI_AGENT; do
-          eval "val=\''${!var:-}"
-          if [ -n "$val" ]; then
-            IS_AI_AGENT=true
-            break
-          fi
-        done
+        def is-ai-agent [] {
+          [
+            CLAUDE_CODE
+            CLAUDECODE
+            CODEX_SANDBOX
+            CODEX_THREAD_ID
+            GEMINI_CLI
+            OPENCODE
+            AUGMENT_AGENT
+            GOOSE_PROVIDER
+            CURSOR_AGENT
+            AI_AGENT
+          ] | any {|name| $env | get --optional $name | default "" | is-not-empty }
+        }
       '';
+
       nixBuildFlags = lib.optionalString isDarwin " --accept-flake-config --print-build-logs --show-trace";
       darwinBuildFlags = lib.optionalString isDarwin " --option accept-flake-config true --print-build-logs --show-trace";
+
+      # A full rebuild outlasts sudo's timestamp timeout, so keep refreshing it.
+      # The job is a thread inside this process rather than bash's detached
+      # subshell, so it needs no exit trap — it dies when the script does.
       sudoKeepAlive = lib.optionalString isDarwin ''
-        if [ -t 0 ]; then
-          sudo -v
-          (
-            while kill -0 "$$" 2>/dev/null; do
-              sudo -n -v || exit 0
-              sleep 60
-            done
-          ) &
-          SUDO_KEEPALIVE_PID=$!
-          trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true' EXIT
-        fi
+        def keep-sudo-alive [] {
+          if (is-terminal --stdin) {
+            ^sudo --validate
+            job spawn {
+              loop {
+                sleep 60sec
+                try { ^sudo --non-interactive --validate } catch { break }
+              }
+            } | ignore
+          }
+        }
       '';
     in
     {
@@ -54,16 +67,18 @@
         build = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript (if isDarwin then "darwin-build" else "home-manager-build") ''
-              set -e
+            writeNu (if isDarwin then "darwin-build" else "home-manager-build") ''
               ${isAgentCheck}
-              echo "Building ${kind} configuration..."
-              if [ "$IS_AI_AGENT" = true ]; then
-                nix build .#${buildTarget}${nixBuildFlags}
-              else
-                ${nom} build .#${buildTarget}${nixBuildFlags}
-              fi
-              echo "Build successful! Run 'nix run .#switch' to apply."
+
+              def main [] {
+                print "Building ${kind} configuration..."
+                if (is-ai-agent) {
+                  ^nix build .#${buildTarget}${nixBuildFlags}
+                } else {
+                  ^${nom} build .#${buildTarget}${nixBuildFlags}
+                }
+                print "Build successful! Run 'nix run .#switch' to apply."
+              }
             ''
           );
         };
@@ -71,29 +86,35 @@
         switch = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript (if isDarwin then "darwin-switch" else "home-manager-switch") ''
-              set -eo pipefail
+            writeNu (if isDarwin then "darwin-switch" else "home-manager-switch") ''
               ${isAgentCheck}
               ${sudoKeepAlive}
-              echo "Building and switching to ${kind} configuration..."
-              if [ "$IS_AI_AGENT" = true ]; then
-                ${
-                  if isDarwin then
-                    "sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags}"
-                  else
-                    "nix run nixpkgs#home-manager -- switch --flake .#${username}"
+
+              def main [] {
+                ${lib.optionalString isDarwin "keep-sudo-alive"}
+                print "Building and switching to ${kind} configuration..."
+                if (is-ai-agent) {
+                  ${
+                    if isDarwin then
+                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags}"
+                    else
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${username}"
+                  }
+                } else {
+                  ${
+                    if isDarwin then
+                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} o+e>| ^${nom}"
+                    else
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${username} o+e>| ^${nom}"
+                  }
                 }
-              else
-                ${
-                  if isDarwin then
-                    "sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} |& ${nom}"
-                  else
-                    "nix run nixpkgs#home-manager -- switch --flake .#${username} |& ${nom}"
+                print "Clearing fish cache..."
+                let tmpdir = $env | get --optional TMPDIR | default ""
+                if ($tmpdir | is-not-empty) {
+                  rm --recursive --force ($tmpdir | path join "fish-cache")
                 }
-              fi
-              echo "Clearing fish cache..."
-              rm -rf "$TMPDIR/fish-cache"
-              echo "Done!"
+                print "Done!"
+              }
             ''
           );
         };

@@ -1,48 +1,59 @@
 { constants, ... }:
 {
   perSystem =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      writeNu,
+      ...
+    }:
     let
       homedir =
         if pkgs.stdenv.hostPlatform.isDarwin then constants.darwinHomedir else constants.linuxHomedir;
 
       bash = lib.getExe pkgs.bash;
+      bun = lib.getExe pkgs.bun;
       neovim = lib.getExe pkgs.neovim;
+
+      # Both apps write into the repository, so they need the working tree, not
+      # the store copy of it.
+      resolveDotfiles = ''
+        def dotfiles-dir [] {
+          let configured = $env | get --optional DOTFILES_DIR | default "${homedir}/ghq/github.com/ryoppippi/dotfiles"
+          if ($configured | path type) == "dir" { $configured } else { pwd }
+        }
+      '';
     in
     {
       apps = {
         nvim-restore = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript "nvim-restore" ''
-              : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
-              if [ ! -d "$DOTFILES_DIR" ]; then
-                DOTFILES_DIR="$(pwd)"
-              fi
-              exec ${bash} \
-                ${../../modules/home/programs/neovim/check.sh} \
-                "$DOTFILES_DIR/nvim" \
-                "$HOME/.local/share/nvim/lazy" \
-                ${neovim}
+            writeNu "nvim-restore" ''
+              ${resolveDotfiles}
+
+              def main [] {
+                exec ${bash} ${../../modules/home/programs/neovim/check.sh} (
+                  dotfiles-dir | path join "nvim"
+                ) ($env.HOME | path join ".local/share/nvim/lazy") ${neovim}
+              }
             ''
           );
         };
 
         # Regenerate the Nix-served lazy.nvim plugin sources from the
-        # runtime plugin table and lazy-lock.json. Runs against the
-        # working tree (not the store copy) because it writes the
-        # generated files back into the repository.
+        # runtime plugin table and lazy-lock.json.
         lazy2nix = {
           type = "app";
           program = toString (
-            pkgs.writeShellScript "lazy2nix" ''
-              set -e
-              : "''${DOTFILES_DIR:=${homedir}/ghq/github.com/ryoppippi/dotfiles}"
-              if [ ! -d "$DOTFILES_DIR" ]; then
-                DOTFILES_DIR="$(pwd)"
-              fi
-              export PATH=${pkgs.bun}/bin:$PATH
-              exec bun run "$DOTFILES_DIR/nix/modules/home/programs/neovim/lazy2nix/generate.ts"
+            writeNu "lazy2nix" ''
+              ${resolveDotfiles}
+
+              def main [] {
+                exec ${bun} run (
+                  dotfiles-dir | path join "nix/modules/home/programs/neovim/lazy2nix/generate.ts"
+                )
+              }
             ''
           );
         };
