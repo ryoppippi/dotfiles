@@ -2,7 +2,13 @@
 
 ## Structure
 
-- **Entry point**: `flake.nix` (in repo root)
+- **Entry point**: `flake.nix` (in repo root) — inputs only
+- **Flake outputs**: `flake/` — flake-parts modules
+  - `apps/` - `nix run .#<app>` entry points
+  - `hosts/` - `darwinConfigurations` and `homeConfigurations`
+  - `formatter.nix` - treefmt, git hooks, devShell
+  - `pkgs.nix` - overrides the `pkgs` module argument with `../pkgs.nix`
+- **Package set**: `pkgs.nix` — overlaid nixpkgs, used by `perSystem` and the hosts
 - **Modules**: `modules/`
   - `home/` - Cross-platform (home-manager)
   - `darwin/` - macOS-specific (nix-darwin)
