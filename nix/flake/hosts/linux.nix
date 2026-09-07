@@ -19,7 +19,7 @@ let
   mkLinuxHomeConfig =
     system:
     home-manager.lib.homeManagerConfiguration {
-      pkgs = import ../../pkgs.nix { inherit inputs system; };
+      pkgs = import ../../mk-pkgs.nix { inherit inputs system; };
       modules = [
         {
           home.username = username;

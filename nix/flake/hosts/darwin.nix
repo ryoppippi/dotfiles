@@ -20,7 +20,7 @@ let
     ;
 
   system = "aarch64-darwin";
-  darwinPkgs = import ../../pkgs.nix { inherit inputs system; };
+  darwinPkgs = import ../../mk-pkgs.nix { inherit inputs system; };
   agentSkillsLib = agent-skills.lib.agent-skills;
 in
 {
