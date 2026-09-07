@@ -10,13 +10,13 @@ ryoppippi's dotfiles, managed as a Nix flake: nix-darwin plus Home Manager on ma
 
 - `flake.nix` — inputs only; the outputs are flake-parts modules under `nix/flake/`
 - `nix/flake/` — flake-parts modules: `apps/`, `hosts/`, `formatter.nix`, `pkgs.nix`
-- `nix/pkgs.nix` — the overlaid nixpkgs instance shared by `perSystem` and the hosts
+- `nix/mk-pkgs.nix` — the overlaid nixpkgs instance shared by `perSystem` and the hosts
 - `nix/modules/home/` — cross-platform Home Manager modules (packages, programs, dotfile symlinks)
 - `nix/modules/darwin/` — macOS system settings, Homebrew, OmniWM
 - `nix/modules/linux/` — Linux-only modules
 - `nix/overlays/` — custom packages, also exposed as flake `packages`
 - `nix/packages/node/` — Node packages built with Nix
-- `fish/`, `nvim/` — plain config, symlinked into place by Home Manager
+- `fish/`, `nvim/`, `karabiner/` — plain config, symlinked or generated into place by Home Manager
 - `agents/skills/`, `agents/shared/` — skills and instruction fragments shared by Claude Code and Codex
 - `registry/sources/` — pinned external skill repositories
 
