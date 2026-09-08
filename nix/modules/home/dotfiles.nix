@@ -33,9 +33,6 @@ in
     # Aqua package manager configuration
     link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
 
-    # EFM Language Server configuration
-    link_force "${dotfilesDir}/efm-langserver" "${configHome}/efm-langserver"
-
     # Pip fallback location (both platforms)
     $DRY_RUN_CMD mkdir -p "${homeDirectory}/.pip"
     link_force "${dotfilesDir}/pip/pip.conf" "${homeDirectory}/.pip/pip.conf"

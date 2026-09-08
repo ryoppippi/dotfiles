@@ -84,17 +84,11 @@ in
         # Language servers
         lua-language-server # Lua LSP
         nixd # Nix LSP
-        efm-langserver # General purpose LSP
         typos-lsp # Spell checker LSP
         nushell # Nushell (`nu --lsp` language server)
 
         # Python tools
         ruff # Python linter/formatter with built-in language server
-
-        # Formatters & Linters (used by efm-langserver)
-        stylua # Lua formatter
-        hadolint # Dockerfile linter
-        actionlint # GitHub Actions linter
       ])
       ++ (with pkgs; [
 
@@ -104,7 +98,6 @@ in
         prisma-language-server # Prisma
         svelte-language-server # Svelte
         tailwindcss-language-server # Tailwind CSS
-        textlint # Natural language linter
         vscode-langservers-extracted # HTML/CSS/JSON/ESLint
         yaml-language-server # YAML
       ]);
