@@ -1,18 +1,16 @@
 {
   lib,
   pkgs,
-  omniwmModule,
   ...
 }:
 let
   nu = lib.getExe pkgs.nushell;
 in
 {
-  imports = [ omniwmModule ];
+  imports = [ ./module.nix ];
 
   programs.omniwm = {
     enable = true;
-    settings = { };
     launchd = {
       enable = true;
       keepAlive = true;

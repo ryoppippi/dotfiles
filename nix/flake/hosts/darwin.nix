@@ -5,7 +5,6 @@ let
     nix-darwin
     nix-homebrew
     home-manager
-    omniwm
     nix-secure-enclave-key
     fish-na
     nix-index-database
@@ -74,7 +73,6 @@ in
                 agent-skills.homeManagerModules.default
 
                 (import ../../modules/darwin/programs/omniwm {
-                  omniwmModule = omniwm.homeModules.omniwm;
                   inherit config lib pkgs;
                 })
 
