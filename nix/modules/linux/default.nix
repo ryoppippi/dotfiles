@@ -11,17 +11,6 @@
   imports = [
     # Linux-specific packages
     ./packages.nix
-
-    # Linux-specific dotfiles
-    (import ./dotfiles.nix {
-      inherit
-        pkgs
-        lib
-        config
-        dotfilesDir
-        helpers
-        ;
-    })
   ];
 
   # nix-index for command-not-found and comma

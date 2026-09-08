@@ -14,9 +14,6 @@ in
   home.activation.linkDotfilesCommon = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     ${helpers.activation.mkLinkForce}
 
-    # IdeaVim configuration
-    link_force "${dotfilesDir}/ideavimrc" "${homeDirectory}/.ideavimrc"
-
     # Fish shell configuration
     link_force "${dotfilesDir}/fish" "${configHome}/fish"
 
@@ -29,12 +26,5 @@ in
     # Bash configuration
     link_force "${dotfilesDir}/bash/.bash_profile" "${homeDirectory}/.bash_profile"
     link_force "${dotfilesDir}/bash/.bashrc" "${homeDirectory}/.bashrc"
-
-    # Aqua package manager configuration
-    link_force "${dotfilesDir}/aqua" "${configHome}/aquaproj-aqua"
-
-    # Pip fallback location (both platforms)
-    $DRY_RUN_CMD mkdir -p "${homeDirectory}/.pip"
-    link_force "${dotfilesDir}/pip/pip.conf" "${homeDirectory}/.pip/pip.conf"
   '';
 }

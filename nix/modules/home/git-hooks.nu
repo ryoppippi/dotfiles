@@ -12,7 +12,7 @@
 # Usage: git-hooks.nu <pre-commit|post-commit|post-checkout|post-merge|post-rewrite> [hook args...]
 
 # Touching any of these means the Nix configuration has to be re-applied.
-const NIX_PATTERN = '^(flake\.nix|flake\.lock|nix/|aqua/aqua\.yaml)'
+const NIX_PATTERN = '^(flake\.nix|flake\.lock|nix/)'
 const DICT_PATTERN = '^typewhisper/dictionary\.json'
 const LAZY2NIX_DIR = 'nix/modules/home/programs/neovim/lazy2nix'
 const LAZY2NIX_OUTPUTS = ['nixpkgs-plugins.nix', 'pinned-plugins.json']

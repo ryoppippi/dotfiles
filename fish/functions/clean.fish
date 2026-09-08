@@ -1,7 +1,4 @@
 function clean
-
-    # aqua
-    type -q aqua && aqua rm --all
     # brew
     type -q brew && brew cleanup -s
     # mise
