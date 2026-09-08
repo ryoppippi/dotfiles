@@ -72,11 +72,26 @@ def merge-hotkeys [overlay: list<any>]: list<any> -> list<any> {
 # records. Leaf values from $overlay win; keys absent from it keep their live
 # value. Recursing is what lets a template key sit beside an app-owned one
 # within the same table instead of the whole table being replaced.
+#
+# A template key the live file does not have is reported and skipped, never
+# added. OmniWM validates the whole settings file against the keys its build
+# knows and rejects it outright over a single unrecognised one, falling back to
+# its defaults with nothing but a log line — which loses every binding at once.
+# Taking the live key set, which the app itself writes and migrates, and
+# overriding only the values within it keeps the file exactly as valid as the
+# app left it. This is the same rule merge-hotkeys applies to hotkey ids.
 def deep-merge [overlay: record]: record -> record {
     let base = $in
+    let live_keys = $base | columns
+
+    let unknown = $overlay | columns | where $it not-in $live_keys
+    if ($unknown | is-not-empty) {
+        print --stderr $"OmniWM settings keys not in this build, skipped: ($unknown | str join ', ')"
+    }
 
     $overlay
     | columns
+    | where $it in $live_keys
     | reduce --fold $base {|key, merged|
         let new = $overlay | get $key
         let old = $merged | get --optional $key
