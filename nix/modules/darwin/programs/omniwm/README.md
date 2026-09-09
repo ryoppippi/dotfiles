@@ -1,8 +1,8 @@
 # OmniWM
 
-OmniWM provides Niri-style scrolling window management on macOS. The Home
-Manager module lives in [`module.nix`](module.nix), this repository's settings
-for it in [`default.nix`](default.nix), and the application settings in
+OmniWM provides Niri-style scrolling window management on macOS. Home Manager
+ships the `programs.omniwm` module; this repository's settings for it live in
+[`default.nix`](default.nix), and the application settings in
 [`settings.toml`](settings.toml).
 
 The external display shows three containers at once. The built-in MacBook

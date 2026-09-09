@@ -7,8 +7,6 @@ let
   nu = lib.getExe pkgs.nushell;
 in
 {
-  imports = [ ./module.nix ];
-
   programs.omniwm = {
     enable = true;
     launchd = {
