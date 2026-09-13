@@ -602,11 +602,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789082013,
-        "narHash": "sha256-4fytoZhG/ROyWuWgfHlj/E8ndq9BDyv5HNlBNBiFujk=",
+        "lastModified": 1789263069,
+        "narHash": "sha256-kjAxPxz8/vwXyDEIG4Zh6FAqVNatl//WogyeZsReBzM=",
         "owner": "ryoppippi",
         "repo": "nix-bun",
-        "rev": "c802f45bf5bf368add444687abe3fed5850b324b",
+        "rev": "d6558118cd90e854725a8dcb89a4be5ad98e52c2",
         "type": "github"
       },
       "original": {
