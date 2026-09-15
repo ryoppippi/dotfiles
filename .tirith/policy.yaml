@@ -1,0 +1,12 @@
+# Tirith policy for the CI security gate (.github/workflows/nix-build.yaml).
+#
+# The workflow loads this file through TIRITH_POLICY_ROOT so it is trusted
+# (org scope). A repo-scoped .tirith/policy.yaml found by walking up from the
+# scan root may only tighten defaults, so without that env var everything in
+# here that lowers a severity is silently neutralised.
+severity_overrides:
+  # tirith cannot analyse Nushell run steps (`shell: nu {0}`) and reports each
+  # one as a HIGH analysis_incomplete finding. Nushell is this repository's
+  # default scripting language, so keep the finding visible but below the
+  # `--fail-on high` gate.
+  analysis_incomplete: medium
