@@ -36,12 +36,14 @@ jobs:
         with:
           version: '0.114.1'
 
-      - name: Rebase open flake update PRs
+      - name: Rebase open bot PRs
         shell: nu {0}
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
         run: |
-          const BRANCH_PREFIX = 'update-flake-'
+          # Every branch here belongs to a PR that auto-merges, so it has to stay
+          # current with main for its required checks to mean anything.
+          const BRANCH_PREFIXES = ['update-flake-', 'bot/update-skill-sources']
 
           def commits-behind-main [branch: string]: nothing -> int {
             git rev-list --count $"origin/($branch)..origin/main" | str trim | into int
@@ -83,15 +85,15 @@ jobs:
           let prs = (
             gh pr list --state open --json number,headRefName
             | from json
-            | where { |pr| $pr.headRefName | str starts-with $BRANCH_PREFIX }
+            | where { |pr| $BRANCH_PREFIXES | any { |prefix| $pr.headRefName | str starts-with $prefix } }
           )
 
           if ($prs | is-empty) {
-            print 'No open flake update PRs found'
+            print 'No open bot PRs found'
             exit 0
           }
 
-          print $"Found ($prs | length) flake update PR\(s):"
+          print $"Found ($prs | length) bot PR\(s):"
           print ($prs | select number headRefName)
 
           for pr in $prs { rebase-pr $pr }

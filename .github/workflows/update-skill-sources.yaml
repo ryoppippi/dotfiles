@@ -37,6 +37,7 @@ jobs:
           version: '0.114.1'
 
       - name: Resolve pins and open a pull request
+        id: pr
         shell: nu {0}
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
@@ -99,7 +100,7 @@ jobs:
               ...$rows
               ''
               '## Notes'
-              'Deliberately not auto-merged: these pins carry agent instructions, so the diff wants a human read.'
+              'Auto-merges once the required checks pass; the auto-rebase bot keeps the branch current with main.'
               ''
               '---'
               'This PR was automatically created by the skill source update workflow.'
@@ -131,6 +132,9 @@ jobs:
               }
             }
 
+            let number = (gh pr view $BRANCH --json number | from json | get number)
+            $"pr_number=($number)\n" | save --append $env.GITHUB_OUTPUT
+
             let url = (gh pr view $BRANCH --json url | from json | get url)
             [
               '## Skill Source Pins'
@@ -145,3 +149,10 @@ jobs:
             | str join "\n"
             | save --append $env.GITHUB_STEP_SUMMARY
           }
+
+      - name: Enable auto-merge
+        if: steps.pr.outputs.pr_number != ''
+        uses: ./.github/actions/auto-merge-pr
+        with:
+          pr-number: ${{ steps.pr.outputs.pr_number }}
+          github-token: ${{ steps.bot.outputs.token }}
