@@ -921,11 +921,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1789167879,
-        "narHash": "sha256-xUHIFySDxisf76AQ7BVLcI/vNtrk/73QBr8ZhnDyjKM=",
+        "lastModified": 1789215995,
+        "narHash": "sha256-4eDOqwrkzD5TjsAhGcd3rzXWxSDJNHaHv4AXHnXMsyA=",
         "owner": "DavSanchez",
         "repo": "nix-dotfiles",
-        "rev": "6c1d21fb4d2c4b188a3460948d3d5ecfcd214092",
+        "rev": "98c7acd11383273aa7e04701dda26adca7a874f2",
         "type": "github"
       },
       "original": {
