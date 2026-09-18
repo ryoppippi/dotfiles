@@ -155,12 +155,13 @@ in
   # Symlink directories and files to ~/.config/claude/
   # Note: All skills (external and local) are managed by agent-skills module
   xdg.configFile = {
-    "claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/CLAUDE.md";
+    # User-scope memory is only read under the name CLAUDE.md, so the shared
+    # agents/AGENTS.md is linked into place under that name.
+    "claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/AGENTS.md";
     "claude/shared".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/shared";
     "claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
     "claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
     "claude/output-styles".source =
       config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
-    "claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/rules";
   };
 }

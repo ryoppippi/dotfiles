@@ -17,7 +17,7 @@ ryoppippi's dotfiles, managed as a Nix flake: nix-darwin plus Home Manager on ma
 - `nix/overlays/` — custom packages, also exposed as flake `packages`
 - `nix/packages/node/` — Node packages built with Nix
 - `fish/`, `nvim/`, `karabiner/` — plain config, symlinked or generated into place by Home Manager
-- `agents/skills/`, `agents/shared/` — skills and instruction fragments shared by Claude Code and Codex
+- `agents/AGENTS.md`, `agents/shared/`, `agents/skills/` — global instructions, their fragments, and skills shared by Claude Code and Codex
 - `registry/sources/` — pinned external skill repositories
 
 ## Setup

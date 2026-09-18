@@ -2,14 +2,14 @@
 
 Shared skills for AI agents (Claude Code, Codex, etc.) managed via [agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix).
 
-## Shared Instructions (`shared/`)
+## Global Instructions (`AGENTS.md` and `shared/`)
 
-`agents/shared/*.md` is the single source of truth for instruction sections used by multiple agents (Code Comments Policy, Command Privacy, Git Worktrees, Delegating Work):
+`agents/AGENTS.md` is the single global instruction file for every agent — there is no per-agent copy and no `CLAUDE.md` anywhere in this repository. Its sections are kept as fragments in `agents/shared/*.md` and pulled in with `@` imports:
 
-- **Claude Code**: `claude/CLAUDE.md` imports them via `@~/.config/claude/shared/*.md` (symlinked by `nix/modules/home/programs/claude-code/default.nix`)
-- **Codex**: `~/.codex/AGENTS.md` is generated at switch time by concatenating `codex/AGENTS.md` with these fragments (`nix/modules/home/programs/codex.nix`)
+- **Claude Code**: `agents/AGENTS.md` is symlinked to `~/.config/claude/CLAUDE.md` and `agents/shared/` to `~/.config/claude/shared/` (`nix/modules/home/programs/claude-code/default.nix`). User-scope memory is only read under the name `CLAUDE.md`; project-scope `AGENTS.md` files are read by the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin. Both are out-of-store symlinks, so edits apply without a switch.
+- **Codex**: `~/.codex/AGENTS.md` is generated at switch time by dropping the `@` imports and concatenating the fragments (`nix/modules/home/programs/codex/default.nix`). A new fragment must be added to both the import list and `sharedFragments` there.
 
-Edit the fragments here, never the per-agent copies. Codex picks up changes only after `nix run .#switch`.
+Edit the fragments here, never the deployed copies. Codex picks up changes only after `nix run .#switch`.
 
 ## Configuration
 

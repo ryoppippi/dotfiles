@@ -12,18 +12,30 @@ let
 
   nu = lib.getExe pkgs.nushell;
 
-  # Global instructions are assembled from the Codex-specific file plus the
-  # shared fragments in agents/shared/, which are the single source of truth
-  # also imported by claude/CLAUDE.md. Codex has no import mechanism, so the
-  # final AGENTS.md is generated at switch time instead of symlinked.
-  agentsMdText = lib.concatMapStringsSep "\n" builtins.readFile [
-    ../../../../../codex/AGENTS.md
+  # Codex has no import mechanism, so ~/.codex/AGENTS.md is generated at switch
+  # time from the shared entry point: its `@` imports — which only Claude Code
+  # resolves — are dropped and the fragments they name are appended instead.
+  sharedFragments = [
+    ../../../../../agents/shared/tools.md
+    ../../../../../agents/shared/nix.md
     ../../../../../agents/shared/code-comments.md
     ../../../../../agents/shared/command-privacy.md
     ../../../../../agents/shared/git-staging.md
     ../../../../../agents/shared/git-worktrees.md
     ../../../../../agents/shared/delegate-work.md
+    ../../../../../agents/shared/browser.md
   ];
+
+  dropClaudeImports =
+    text:
+    lib.concatStringsSep "\n" (
+      lib.filter (line: !(lib.hasPrefix "@~/.config/claude/shared/" line)) (lib.splitString "\n" text)
+    );
+
+  agentsMdText = lib.concatStringsSep "\n" (
+    [ (dropClaudeImports (builtins.readFile ../../../../../agents/AGENTS.md)) ]
+    ++ map builtins.readFile sharedFragments
+  );
 
   settings = {
     model = "gpt-5.6-luna";

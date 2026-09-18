@@ -14,7 +14,8 @@ Nix flakes only see tracked, staged files, so stage the paths you changed before
 
 ## Layout Notes
 
-- `agents/shared/` fragments are imported by `claude/CLAUDE.md` and concatenated into Codex's `AGENTS.md` at switch time. Edit them once; never copy text between the two.
+- `agents/AGENTS.md` is the single global instruction file for every agent; its sections live in `agents/shared/`. Claude Code reads it as `~/.config/claude/CLAUDE.md` (user-scope memory is only read under that name) and resolves the `@` imports; Codex gets the same file with the fragments concatenated at switch time.
+- This repository keeps no `CLAUDE.md`: Claude Code loads this `AGENTS.md` as project instructions through the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin.
 - `claude/` is symlinked to `~/.config/claude`, so edits there apply to the running Claude Code without a switch.
 - Git and Ghostty are declarative under `nix/modules/home/programs/`; Fish and Neovim keep plain config in `fish/` and `nvim/`.
 - Per-directory notes live in each directory's `README.md` (`nix/`, `fish/`, `nvim/`, `karabiner/`); read the relevant one before editing there.

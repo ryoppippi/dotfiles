@@ -1,13 +1,13 @@
 ---
 name: skill-creator
-description: Guides authoring agent-facing instructions following Anthropic's SKILL.md best practices. Use when adding or editing skills under `agents/skills/`, rules in `claude/rules/`, `CLAUDE.md`, or `agents/shared/` fragments — frontmatter, references, and routing included.
+description: Guides authoring agent-facing instructions following Anthropic's SKILL.md best practices. Use when adding or editing skills under `agents/skills/`, the global instructions in `agents/AGENTS.md`, or the `agents/shared/` fragments — frontmatter, references, and routing included.
 ---
 
 # Skill Creator
 
 Use this skill when creating or updating local skills under `agents/skills/` in this dotfiles repo. They are deployed to `~/.agents/skills/` and `~/.config/claude/skills/` via `nix/modules/home/agent-skills.nix` (auto-enabled by `skills.enableAll = [ "local" ]`).
 
-The **Body** and **Documentation references** sections below apply to every agent-facing instruction file here, not just skills: `claude/rules/*.md`, `claude/CLAUDE.md`, and `agents/shared/*.md`. Rules and `CLAUDE.md` are loaded on _every_ session, so they are the least forgiving place to be verbose — keep them to judgement the agent cannot derive on its own.
+The **Body** and **Documentation references** sections below apply to every agent-facing instruction file here, not just skills: `agents/AGENTS.md`, `agents/shared/*.md`, and this repository's own `AGENTS.md`. Global instructions are loaded on _every_ session, so they are the least forgiving place to be verbose — keep them to judgement the agent cannot derive on its own.
 
 ## Workflow
 
