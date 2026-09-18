@@ -11,7 +11,7 @@ Nushell is a functional, structured-data language that happens to be a shell. Wr
 
 Functional over structured data: JSON, `ls`, and command output stay records through the whole pipeline instead of being re-parsed as text. So no `jq`/`sed`/`awk`/`date` to install, wrap, or write twice for macOS and Linux — and Nix pins the interpreter.
 
-Which language to pick for a given script is in the repo's `CLAUDE.md`.
+Which language to pick for a given script is in the repo's `AGENTS.md`.
 
 ## Steps
 
