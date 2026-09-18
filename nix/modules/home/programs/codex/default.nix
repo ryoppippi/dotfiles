@@ -28,9 +28,17 @@ let
 
   dropClaudeImports =
     text:
-    lib.concatStringsSep "\n" (
-      lib.filter (line: !(lib.hasPrefix "@~/.config/claude/shared/" line)) (lib.splitString "\n" text)
-    );
+    let
+      kept = lib.filter (line: !(lib.hasPrefix "@~/.config/claude/shared/" line)) (
+        lib.splitString "\n" text
+      );
+      # Each import sits in its own paragraph, so removing them leaves a run of
+      # blank lines where the import block was.
+      squashed = lib.foldl' (
+        acc: line: if line == "" && acc != [ ] && lib.last acc == "" then acc else acc ++ [ line ]
+      ) [ ] kept;
+    in
+    lib.concatStringsSep "\n" squashed;
 
   agentsMdText = lib.concatStringsSep "\n" (
     [ (dropClaudeImports (builtins.readFile ../../../../../agents/AGENTS.md)) ]
