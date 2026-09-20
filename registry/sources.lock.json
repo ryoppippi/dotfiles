@@ -107,16 +107,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-bNSgJOFe/AiQ/hpoyyApSdIcRxFQltFtyLPNm2n2Mx8=",
+				"hash": "sha256-JLUYl+nbA2io8WVH3jC098uVis9YERGwhlLxRlPleFI=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "6565b59ebc7bd498022c7af519be643500b0941d",
+				"revision": "02cd0320ddde88d982f9303c2c3d0db3e1880332",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/6565b59ebc7bd498022c7af519be643500b0941d.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/02cd0320ddde88d982f9303c2c3d0db3e1880332.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
