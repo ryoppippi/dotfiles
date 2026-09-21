@@ -22,39 +22,47 @@ ryoppippi's dotfiles, managed as a Nix flake: nix-darwin plus Home Manager on ma
 
 ## Setup
 
-### macOS
-
-1. Install [Nix](https://nixos.org/download/):
-
-   ```sh
-   curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
-   ```
-
-2. Clone with ghq:
-
-   ```sh
-   nix shell nixpkgs#ghq nixpkgs#git --command ghq get github.com/ryoppippi/dotfiles
-   cd "$(nix shell nixpkgs#ghq --command ghq root)/github.com/ryoppippi/dotfiles"
-   ```
-
-3. Sign in to the Mac App Store (`open -a "App Store"`) so `masApps` can install.
-
-4. Apply the configuration. This also installs Homebrew:
-
-   ```sh
-   sudo xcodebuild -license accept
-   nix --accept-flake-config run .#switch
-   exec fish
-   ```
-
-### Linux
+Installing Nix is the one manual step, because everything after it is a Nix
+command. Pick the installer for the platform:
 
 ```sh
+# macOS
+curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
+
+# Linux
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.nixos.org | sh -s -- install
-nix shell nixpkgs#ghq nixpkgs#git --command ghq get github.com/ryoppippi/dotfiles
-cd "$(nix shell nixpkgs#ghq --command ghq root)/github.com/ryoppippi/dotfiles"
-nix run .#switch
 ```
+
+Then one command does the rest, on both platforms:
+
+```sh
+nix run --accept-flake-config github:ryoppippi/dotfiles
+```
+
+It fetches this repository with `ghq` into `~/ghq/github.com/ryoppippi/dotfiles`
+— the path the modules symlink the live fish, zsh and Neovim configuration out
+of, and the ghq root the configuration goes on to set — then runs that
+checkout's own `nix run .#switch`, so everything is applied from a tree that can
+be edited afterwards rather than from the store. On macOS it first offers to
+open the App Store, since `masApps` needs an account signed in, and accepts the
+Xcode licence when full Xcode is present. On Linux there is nothing to do before
+the switch, which runs Home Manager as the user.
+
+`--accept-flake-config` is what lets the binary caches in `nixConfig` be used
+without a prompt for each one.
+
+Afterwards, `exec fish` picks up the new shell.
+
+### Applying later changes
+
+From inside the checkout:
+
+```sh
+git add <changed paths> && nix run .#switch
+```
+
+Nix flakes only see tracked, staged files, so stage what changed before
+switching.
 
 ### GitHub API rate limit
 
