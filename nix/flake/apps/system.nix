@@ -13,6 +13,10 @@
       inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
       hostname = username;
+
+      # hosts/linux.nix registers one Home Manager configuration per
+      # architecture, so the bare username is the x86_64 one.
+      homeConfigName = if pkgs.stdenv.hostPlatform.isAarch64 then "${username}-aarch64" else username;
       darwinRebuild = lib.getExe inputs.nix-darwin.packages.${system}.darwin-rebuild;
       nom = lib.getExe pkgs.nix-output-monitor;
 
@@ -21,7 +25,7 @@
         if isDarwin then
           "darwinConfigurations.${hostname}.system"
         else
-          "homeConfigurations.${username}.activationPackage";
+          "homeConfigurations.${homeConfigName}.activationPackage";
 
       # nix-output-monitor redraws a live TUI, which is unreadable once it lands
       # in an agent transcript, so agents get the plain builder output instead.
@@ -98,14 +102,14 @@
                     if isDarwin then
                       "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags}"
                     else
-                      "^nix run nixpkgs#home-manager -- switch --flake .#${username}"
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName}"
                   }
                 } else {
                   ${
                     if isDarwin then
                       "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} o+e>| ^${nom}"
                     else
-                      "^nix run nixpkgs#home-manager -- switch --flake .#${username} o+e>| ^${nom}"
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} o+e>| ^${nom}"
                   }
                 }
                 print "Clearing fish cache..."
