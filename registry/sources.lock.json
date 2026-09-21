@@ -75,22 +75,41 @@
 				"versionUpperBound": null
 			},
 			"subdir": "skills"
+		},
+		"orca": {
+			"filter": {
+				"maxDepth": 1,
+				"nameRegex": null
+			},
+			"idPrefix": "orca",
+			"pin": {
+				"at": null,
+				"branch": "main",
+				"owner": "stablyai",
+				"preReleases": false,
+				"releasePrefix": null,
+				"repo": "orca",
+				"submodules": false,
+				"type": "github",
+				"versionUpperBound": null
+			},
+			"subdir": "skills"
 		}
 	},
 	"npins": {
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-eizpqhV2AVAOl5uaihkWEdNNeGaMxrYGaLMR4fXYYZQ=",
+				"hash": "sha256-IO/94iUDvpHCv5ikicBxaIncQREieA0DgJA3fIKMtVY=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "44583ac8385d814ab98cbf40feec97620376b50e",
+				"revision": "a527a4e5a26217147e61d41edeb82355a83219be",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/44583ac8385d814ab98cbf40feec97620376b50e.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/a527a4e5a26217147e61d41edeb82355a83219be.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
@@ -107,16 +126,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-YQ3PWN9v6nenuFyBxJP9a+guZJNNg6dTlZr2DA+0AZg=",
+				"hash": "sha256-PWhtQq+71KgqIxqejuodEr9cCe2sukEhOO16E3G+cA8=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "45b5024ec7bfbaed5968abb4ff88916e03449017",
+				"revision": "3e5f50f5d96c29c6b50ea66a474af52fada3ee1b",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/45b5024ec7bfbaed5968abb4ff88916e03449017.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/3e5f50f5d96c29c6b50ea66a474af52fada3ee1b.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
@@ -130,6 +149,19 @@
 				"submodules": false,
 				"type": "Git",
 				"url": "https://github.com/github/gh-stack/archive/2bd699a544a09cb5c45a013d03416e0894b0454e.tar.gz"
+			},
+			"orca": {
+				"branch": "main",
+				"hash": "sha256-BuWbrfjUNTHVV9h9XfCjZeTLxk4Eg+Zz/Unpdr2vrRc=",
+				"repository": {
+					"owner": "stablyai",
+					"repo": "orca",
+					"type": "GitHub"
+				},
+				"revision": "4aaa6c7fb48513e1e1e037eb648f0ab81826aeb3",
+				"submodules": false,
+				"type": "Git",
+				"url": "https://github.com/stablyai/orca/archive/4aaa6c7fb48513e1e1e037eb648f0ab81826aeb3.tar.gz"
 			}
 		},
 		"version": 8

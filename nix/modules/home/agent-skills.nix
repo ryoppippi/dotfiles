@@ -123,6 +123,50 @@ in
       path = "gh-stack";
     };
 
+    # Orca ships discovery stubs that pull the version-matched guide from the
+    # `orca` binary the Homebrew cask installs, so they need no packages here.
+    # Selecting them explicitly keeps the installed IDs flat rather than nested
+    # under the source's `orca/` prefix.
+    skills.explicit.computer-use = {
+      from = "orca";
+      path = "computer-use";
+    };
+
+    skills.explicit.linear-tickets = {
+      from = "orca";
+      path = "linear-tickets";
+    };
+
+    skills.explicit.orca-cli = {
+      from = "orca";
+      path = "orca-cli";
+    };
+
+    skills.explicit.orca-emulator = {
+      from = "orca";
+      path = "orca-emulator";
+    };
+
+    skills.explicit.orca-emulator-android = {
+      from = "orca";
+      path = "orca-emulator-android";
+    };
+
+    skills.explicit.orca-linear = {
+      from = "orca";
+      path = "orca-linear";
+    };
+
+    skills.explicit.orca-per-workspace-env = {
+      from = "orca";
+      path = "orca-per-workspace-env";
+    };
+
+    skills.explicit.orchestration = {
+      from = "orca";
+      path = "orchestration";
+    };
+
     skills.explicit.agent-browser =
       let
         agentBrowserBin = "${config.home.homeDirectory}/.agents/skills/agent-browser/agent-browser";
