@@ -47,7 +47,7 @@ in
       (pkgs.brewCasks.suspicious-package.overrideAttrs (oldAttrs: {
         src = pkgs.fetchurl {
           url = builtins.head oldAttrs.src.urls;
-          hash = "sha256-W4IVt6ZTbR1B8aNIXjQos5+NPQ8kcasaDGm+2yLfTls=";
+          hash = "sha256-y+F7GhwdYTfo82RDYihjdzcJ1BXAruxo5Bspzj+tKX8=";
         };
       }))
     ];
