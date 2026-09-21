@@ -271,7 +271,6 @@ in
       "arto-app/tap"
       "stablyai/orca"
       "typewhisper/tap"
-      "xykong/tap"
     ];
 
     brews = [
@@ -304,7 +303,6 @@ in
       "steam"
       "telegram"
       "typewhisper/tap/typewhisper"
-      "xykong/tap/flux-markdown"
     ];
 
     masApps = {
