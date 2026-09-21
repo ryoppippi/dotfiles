@@ -1,9 +1,11 @@
 # OmniWM
 
-OmniWM provides Niri-style scrolling window management on macOS. Home Manager
-ships the `programs.omniwm` module; this repository's settings for it live in
-[`default.nix`](default.nix), and the application settings in
-[`settings.toml`](settings.toml).
+OmniWM provides Niri-style scrolling window management on macOS. The package
+and the `programs.omniwm` module come from
+[omniwm.nix](https://github.com/mst-mkt/omniwm.nix), which disables the module
+Home Manager ships and merges the settings given to it over the packaged
+OmniWM version's own defaults. This repository's settings therefore live
+entirely in [`default.nix`](default.nix) and name only what they change.
 
 The external display shows three containers at once. The built-in MacBook
 display overrides this to two containers. Chat and dictionary applications
@@ -103,7 +105,7 @@ is the CLAW44's route to those two, and the only route to Overview.
 | Toggle Overview                                | `Workspace+Space` | `S+D` hold + Space               | unbound                |
 
 `Workspace+↑/↓` binds the native `moveToWorkspace.1`/`moveToWorkspace.3`
-hotkeys to `Option+Command+Shift+Up/Down Arrow` in [`settings.toml`](settings.toml).
+hotkeys to `Option+Command+Shift+Up/Down Arrow` in [`default.nix`](default.nix).
 There is no dedicated "focus the other monitor" shortcut on this layer — use
 `Ctrl+↑/↓` for that.
 
@@ -177,8 +179,8 @@ exist and both matter:
   never resolve a clean up/down/left/right relationship.
 - **OmniWM Routing Arrangement** (OmniWM Settings > Monitors > Custom
   Arrangement): a separate map that should match the real desk. This is what
-  `monitorRoutingOverrides` and `[routing] mode = "custom"` in `settings.toml`
-  represent. Displays must connect by a shared edge, not just a corner, or
+  `routing.arrangements` and `[routing] mode = "custom"` in the live
+  `settings.toml` represent. Displays must connect by a shared edge, not just a corner, or
   directional commands return `not_found`.
 - **Mouse Warp** must stay enabled (`[mouseWarp] enabled = true`). It moves the
   pointer across display edges using the OmniWM routing map, not the macOS
@@ -191,22 +193,34 @@ Setup...**. It does not belong in this repository — see below.
 ## Configuration ownership
 
 OmniWM writes the complete canonical `settings.toml` when settings are saved in
-the GUI, and it has no include mechanism, so there is no separate file for
-machine-local settings. Home Manager therefore rebuilds the live file during
-activation with [`merge-settings.nu`](merge-settings.nu) instead of managing a
-read-only Nix store symlink, and ownership is split:
+the GUI, and it has no include mechanism, so `~/.config/omniwm/settings.toml`
+is the only settings source and every writer has to produce the whole file.
+Ownership is split between this repository and the GUI.
 
-- **This repository owns everything else.** Edit [`settings.toml`](settings.toml)
-  and run the Darwin switch to apply persistent changes. GUI edits to those
-  settings are discarded by the next switch.
-- **The app owns the schema.** `schemaVersion` and the list of hotkey ids come
-  from the live file, which OmniWM migrates in place on every upgrade. The
-  template lists only the hotkeys it binds; activation overrides those bindings
-  by id and leaves every other entry as the app wrote it. OmniWM validates the
-  hotkey list strictly, so a committed copy of the full list broke on every
-  release that renamed or added an action — and the failure was silent: the app
-  logs one line and keeps the settings it loaded last. An id the template names
-  but the running build lacks is reported during activation and skipped.
+- **This repository owns everything it names.** Edit the `settings` attribute
+  set in [`default.nix`](default.nix) and run the Darwin switch. The module
+  merges it over the defaults of the packaged OmniWM version and installs the
+  result, keeping the previous file as `settings.toml.bak`. GUI edits to a
+  setting named there are discarded by the next switch.
+- **The flake owns the schema.** `schemaVersion` and the full list of hotkey
+  ids come from `settings-defaults.toml`, which is regenerated from the
+  packaged OmniWM on every version bump, so new keys arrive with the package.
+  A binding for an id the packaged build does not know fails the Nix
+  evaluation. This matters because the runtime failure is silent: OmniWM
+  rejects the whole file over one unrecognised hotkey id, logs a line, and
+  keeps running on whatever it loaded last.
+- **The GUI owns the display settings** — `monitorBarOverrides`,
+  `monitorDwindleOverrides`, `monitorGapOverrides`, `monitorNiriOverrides`,
+  `monitorOrientationOverrides`, and the whole `[routing]` table. Each is keyed
+  by `monitorDisplayUUID`, which makes them a description of the machine and
+  the desk it sits on rather than of this configuration: the external display
+  differs between home and the office, so a committed UUID would be wrong in
+  one of them. [`display-state.nu`](display-state.nu) snapshots them before the
+  module writes and layers them back afterwards, so they survive a switch and
+  need to be configured once per machine.
+
+`monitorRoutingOverrides` was removed in OmniWM 0.6.9 (settings schema 3); the
+routing map lives in `routing.arrangements` now.
 
 If a setting change does not take effect, check whether the app rejected the
 file:
@@ -214,16 +228,6 @@ file:
 ```bash
 log show --last 10m --predicate 'subsystem == "com.barut.OmniWM"' --style compact
 ```
-
-- **The GUI owns the monitor settings** — `monitorBarOverrides`,
-  `monitorDwindleOverrides`, `monitorGapOverrides`, `monitorNiriOverrides`,
-  `monitorOrientationOverrides`, `monitorRoutingOverrides`, and
-  `[routing] mode`. Each is keyed by `monitorDisplayUUID`, which makes them a
-  description of the machine and the desk it sits on rather than of this
-  configuration: the external display differs between home and the office, so a
-  committed UUID would be wrong in one of them. Activation reads these back
-  from the live file and layers them over the template, so they survive a
-  switch and need to be configured once per machine.
 
 On the CLAW44, holding `Enter` activates Layer 2. The tables write `Layer 2`
 instead of `Enter` to describe the layer action rather than the physical key.

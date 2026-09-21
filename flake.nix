@@ -30,10 +30,8 @@
     };
 
     omniwm = {
-      url = "github:DavSanchez/nix-dotfiles";
+      url = "github:mst-mkt/omniwm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.darwin.follows = "nix-darwin";
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";

@@ -72,8 +72,10 @@ in
 
                 agent-skills.homeManagerModules.default
 
+                inputs.omniwm.homeManagerModules.default
                 (import ../../modules/darwin/programs/omniwm {
                   inherit config lib pkgs;
+                  omniwmLib = inputs.omniwm.lib;
                 })
 
                 (import ../../modules/home {

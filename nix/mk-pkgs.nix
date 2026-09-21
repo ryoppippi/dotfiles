@@ -31,6 +31,6 @@ import nixpkgs {
   ]
   ++ nixpkgs.lib.optionals isDarwin [
     brew-nix.overlays.default
-    omniwm.overlays.additions
+    omniwm.overlays.default
   ];
 }
