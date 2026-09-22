@@ -23,6 +23,9 @@
         ;
     })
 
+    # Tailscale CLI from the GUI app instead of nixpkgs
+    ./programs/tailscale.nix
+
     # Docker configuration (OrbStack)
     ./programs/docker.nix
 
