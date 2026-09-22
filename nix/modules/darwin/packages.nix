@@ -19,6 +19,7 @@ in
       # CLI tools
       blueutil
       audio-priority-bar
+      xcodes
 
       # GUI applications (available in nixpkgs)
       cyberduck

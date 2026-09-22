@@ -337,7 +337,6 @@ in
       "Userscripts" = 1463298887;
       "Velja" = 1607635845;
       "WhatsApp" = 310633997;
-      "Xcode" = 497799835;
       "uBlacklist for Safari" = 1547912640;
     };
   };
