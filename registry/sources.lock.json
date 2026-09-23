@@ -100,16 +100,16 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-arVZxio95/KW3KZZ7bXl7M6jrPabPR/SXRuLxa6Pcm8=",
+				"hash": "sha256-QJwKiWbFh2lLXDhpEvWq02aqhbneRgqi9DTdO+/4Js0=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "b0f3962a131292805fe7c4e276e4bf7a50a4e876",
+				"revision": "d01253d9db28d75080e36da3c1c31ef89454731e",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/b0f3962a131292805fe7c4e276e4bf7a50a4e876.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/d01253d9db28d75080e36da3c1c31ef89454731e.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
@@ -126,16 +126,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-G4Y/0RVfLTwuUZncbkqNlB6FPdxuNe7aOltzIg/1NAs=",
+				"hash": "sha256-q1y6Lc9/wwByam4eGQ/9C4ga6nfmBZBw3Cvip950yIg=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "cc018d5c7af43caa1842c453beb740e9c13b8464",
+				"revision": "b79a83bd1540092f890415d3d1e4ad8f2c8617b0",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/cc018d5c7af43caa1842c453beb740e9c13b8464.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/b79a83bd1540092f890415d3d1e4ad8f2c8617b0.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
@@ -152,16 +152,16 @@
 			},
 			"orca": {
 				"branch": "main",
-				"hash": "sha256-f/gaDmdAsOpkxSZU/VfiqdN4mENKAH7Qy0vYLwOk91Q=",
+				"hash": "sha256-tNOHfs68DrBpRBEOXnyYx/pj1jRZgctUNklX5CzpY+4=",
 				"repository": {
 					"owner": "stablyai",
 					"repo": "orca",
 					"type": "GitHub"
 				},
-				"revision": "bf8d63bc6765b8fb6340924646ea2ad211e97745",
+				"revision": "293c2508fcd3a8efc9e40bfe0ed0061d9606291b",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/stablyai/orca/archive/bf8d63bc6765b8fb6340924646ea2ad211e97745.tar.gz"
+				"url": "https://github.com/stablyai/orca/archive/293c2508fcd3a8efc9e40bfe0ed0061d9606291b.tar.gz"
 			}
 		},
 		"version": 8
