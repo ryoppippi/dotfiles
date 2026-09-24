@@ -18,9 +18,8 @@ start narrow, while cmux starts at full column width on workspace 2.
 alias; OmniWM settings use the literal modifiers because it has no custom
 modifier names.
 
-- CLAW44: hold the left-half Backspace key; tapping it still sends Backspace.
-  The right-half Backspace key remains a normal repeatable Backspace. `Lang1`
-  also provides Hyper while held, and `Lang2` provides Command. See the
+- CLAW44: hold `;`; tapping it still sends `;`. `Lang1` also provides Hyper
+  while held, and `Lang2` provides Command. See the
   [generated keymap](../../../../../keymap/claw44.pdf) for all layers.
 - CLAW44: hold `S+D` for the Workspace layer.
 - CLAW44: [`karabiner.ts`](../../../../../karabiner/karabiner.ts) aliases
@@ -28,7 +27,11 @@ modifier names.
   back-and-forth. OmniWM binds one shortcut per command, which is why the alias
   lives in Karabiner. This relies on a tapped `Enter` still sending Return while
   only a held one reaches Layer 2.
-- MacBook keyboard: hold Fn. Right Option provides the original Fn key.
+- MacBook keyboard: hold `;`, the same key as on the CLAW44.
+  [`karabiner.ts`](../../../../../karabiner/karabiner.ts) only enters the layer
+  after 200 ms, and a key pressed before then sends `;` first, so typing `; `
+  quickly stays text. Fn is Ctrl+Shift instead (see below), and Right Option
+  provides the original Fn key.
 - **MacBook keyboard: there is no Workspace layer.** The Ctrl scheme below is
   the whole of workspace and monitor control there — see
   [Why the MacBook has no Workspace layer](#why-the-macbook-has-no-workspace-layer).
@@ -38,20 +41,20 @@ modifier names.
 Everything within a single workspace lives on Hyper, and both keyboards reach it
 the same way.
 
-| Action                          | OmniWM shortcut | CLAW44 keys              | MacBook keys        |
-| ------------------------------- | --------------- | ------------------------ | ------------------- |
-| Focus left/down/up/right        | `Hyper+H/J/K/L` | Left BS hold + `H/J/K/L` | Fn hold + `H/J/K/L` |
-| Focus previous window           | `Hyper+Tab`     | Lang1 hold + left Tab    | Fn hold + Tab       |
-| Move column left/right          | `Hyper+←/→`     | Left BS hold + `←/→`     | Fn hold + `←/→`     |
-| Reorder window down/up          | `Hyper+↓/↑`     | Left BS hold + `↓/↑`     | Fn hold + `↓/↑`     |
-| Consume/expel window left/right | `Hyper+N/M`     | Left BS hold + `N/M`     | Fn hold + `N/M`     |
-| Resize column smaller/larger    | `Hyper+Y/O`     | Left BS hold + `Y/O`     | Fn hold + `Y/O`     |
-| Resize window shorter/taller    | `Hyper+U/I`     | Left BS hold + `U/I`     | Fn hold + `U/I`     |
-| Toggle near-full display width  | `Hyper+F`       | Lang1 hold + `F`         | Fn hold + `F`       |
-| Reset window height             | `Hyper+R`       | Lang1 hold + `R`         | Fn hold + `R`       |
-| Toggle tabbed column            | `Hyper+T`       | Lang1 hold + `T`         | Fn hold + `T`       |
-| Toggle floating                 | `Hyper+D`       | Lang1 hold + `D`         | Fn hold + `D`       |
-| Open command palette            | `Hyper+Space`   | Lang1 hold + Space       | Fn hold + Space     |
+| Action                          | OmniWM shortcut | CLAW44 keys           | MacBook keys         |
+| ------------------------------- | --------------- | --------------------- | -------------------- |
+| Focus left/down/up/right        | `Hyper+H/J/K/L` | `;` hold + `H/J/K/L`  | `;` hold + `H/J/K/L` |
+| Focus previous window           | `Hyper+Tab`     | Lang1 hold + left Tab | `;` hold + Tab       |
+| Move column left/right          | `Hyper+←/→`     | `;` hold + `←/→`      | `;` hold + `←/→`     |
+| Reorder window down/up          | `Hyper+↓/↑`     | `;` hold + `↓/↑`      | `;` hold + `↓/↑`     |
+| Consume/expel window left/right | `Hyper+N/M`     | `;` hold + `N/M`      | `;` hold + `N/M`     |
+| Resize column smaller/larger    | `Hyper+Y/O`     | `;` hold + `Y/O`      | `;` hold + `Y/O`     |
+| Resize window shorter/taller    | `Hyper+U/I`     | `;` hold + `U/I`      | `;` hold + `U/I`     |
+| Toggle near-full display width  | `Hyper+F`       | Lang1 hold + `F`      | `;` hold + `F`       |
+| Reset window height             | `Hyper+R`       | Lang1 hold + `R`      | `;` hold + `R`       |
+| Toggle tabbed column            | `Hyper+T`       | Lang1 hold + `T`      | `;` hold + `T`       |
+| Toggle floating                 | `Hyper+D`       | Lang1 hold + `D`      | `;` hold + `D`       |
+| Open command palette            | `Hyper+Space`   | Lang1 hold + Space    | `;` hold + Space     |
 
 ## Workspace and display shortcuts
 
@@ -67,6 +70,9 @@ displays, horizontal stays within one display's own workspaces.
 | Switch workspace                            | `Ctrl+←/→`       |
 | Move window across displays                 | `Ctrl+Shift+↑/↓` |
 | Move window between workspaces of a display | `Ctrl+Shift+←/→` |
+
+On the MacBook, Fn is Ctrl+Shift, so moving a window takes Fn and an arrow key
+alone.
 
 `Ctrl+↑/↓`, `Ctrl+←/→`, and `Ctrl+Shift+↑/↓` shell out to `omniwmctl` directly
 rather than remapping to a synthetic keypress. `Ctrl+←/→` and

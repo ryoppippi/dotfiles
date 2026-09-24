@@ -159,13 +159,49 @@ k.writeToProfile(writeTarget, [
 		),
 	),
 
-	k.rule('Map fn to super key in MacBook', devices.ifNotSelfMadeKeyboard).manipulators([
-		k.map({ key_code: 'fn' }).to({
-			key_code: 'left_command',
-			lazy: true,
-			modifiers: ['left_option', 'left_shift', 'left_control'],
-		}),
-	]),
+	// Mirrors the CLAW44, whose firmware already turns a held `;` into Hyper, so
+	// OmniWM's in-workspace shortcuts sit under the same finger on both keyboards.
+	// Delay mode only enters the layer after the hold threshold, and emits `;`
+	// when another key arrives first, so a rolled `; ` stays text instead of
+	// opening the command palette.
+	k
+		.layer('semicolon', 'semicolon-hyper')
+		.delay(200)
+		.condition(devices.ifNotSelfMadeKeyboard)
+		.manipulators(
+			(
+				[
+					'h',
+					'j',
+					'k',
+					'l',
+					'tab',
+					'n',
+					'm',
+					'left_arrow',
+					'right_arrow',
+					'down_arrow',
+					'up_arrow',
+					'y',
+					'o',
+					'u',
+					'i',
+					'r',
+					'f',
+					't',
+					'd',
+					'spacebar',
+				] as const
+			).map((key) => k.map(key).to(key, 'Hyper')),
+		),
+
+	// Not lazy: the Ctrl+Shift+arrow rules above must see these modifiers as
+	// held, and a bare Ctrl+Shift tap is harmless.
+	k
+		.rule('Map fn to Ctrl+Shift in MacBook', devices.ifNotSelfMadeKeyboard)
+		.manipulators([
+			k.map({ key_code: 'fn' }).to({ key_code: 'left_control', modifiers: ['left_shift'] }),
+		]),
 
 	k
 		.rule('Map right option to fn in MacBook', devices.ifNotSelfMadeKeyboard)
