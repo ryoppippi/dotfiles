@@ -221,9 +221,9 @@ Ownership is split between this repository and the GUI.
   by `monitorDisplayUUID`, which makes them a description of the machine and
   the desk it sits on rather than of this configuration: the external display
   differs between home and the office, so a committed UUID would be wrong in
-  one of them. [`display-state.nu`](display-state.nu) snapshots them before the
-  module writes and layers them back afterwards, so they survive a switch and
-  need to be configured once per machine.
+  one of them. The module's `preserveSettings` keeps whatever the live file
+  already holds at those paths instead of regenerating them, so they survive a
+  switch and need to be configured once per machine.
 
 `monitorRoutingOverrides` was removed in OmniWM 0.6.9 (settings schema 3); the
 routing map lives in `routing.arrangements` now.

@@ -1,16 +1,9 @@
 {
-  config,
-  lib,
   pkgs,
   omniwmLib,
   ...
 }:
 let
-  nu = lib.getExe pkgs.nushell;
-
-  settingsFile = "${config.xdg.configHome}/omniwm/settings.toml";
-  displayState = "${config.xdg.stateHome}/omniwm/display-state.toml";
-
   # Chat and dictionary applications open narrow beside whatever has focus.
   narrowCompanion = {
     initialContainerPrimarySpan = 0.2;
@@ -23,11 +16,26 @@ in
     enable = true;
     package = pkgs.omniwm;
     launchd.enable = true;
+    # The module's default lets a deliberate quit stick. OmniWM is load bearing
+    # for every window shortcut here, so restart it unconditionally.
+    launchd.keepAlive = true;
+
+    # Keyed by display UUID, and the external display differs between home and
+    # the office, so these belong to the machine rather than this repository.
+    # `routing` is the whole table: the arrangement map and the mode selecting it.
+    preserveSettings = [
+      "monitorBarOverrides"
+      "monitorDwindleOverrides"
+      "monitorGapOverrides"
+      "monitorNiriOverrides"
+      "monitorOrientationOverrides"
+      "routing"
+    ];
 
     # Only the settings that differ from the packaged OmniWM version's own
     # defaults; the module merges them over the full schema. The keys OmniWM
     # derives from the hardware — the monitor overrides and the routing map —
-    # are deliberately absent, because display-state.nu carries them over
+    # are deliberately absent, because preserveSettings carries them over
     # instead. See the README for why they cannot be committed.
     settings = {
       appearance.mode = "automatic";
@@ -197,16 +205,4 @@ in
       };
     };
   };
-
-  # The module's own KeepAlive lets a deliberate quit stick. OmniWM is load
-  # bearing for every window shortcut here, so restart it unconditionally.
-  launchd.agents.omniwm.config.KeepAlive = true;
-
-  home.activation.omniwmSaveDisplayState = lib.hm.dag.entryBefore [ "omniwmSettings" ] ''
-    ${nu} ${./display-state.nu} save ${lib.escapeShellArg settingsFile} ${lib.escapeShellArg displayState}
-  '';
-
-  home.activation.omniwmRestoreDisplayState = lib.hm.dag.entryAfter [ "omniwmSettings" ] ''
-    ${nu} ${./display-state.nu} restore ${lib.escapeShellArg displayState} ${lib.escapeShellArg settingsFile}
-  '';
 }
