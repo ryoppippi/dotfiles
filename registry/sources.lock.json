@@ -126,16 +126,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-TqJYQ6msf0xU5dyGV0fZrbDRnelA+lQaBIZXJ99ZPO0=",
+				"hash": "sha256-lzIvG20WqxFTZ1B1FzuhlE+VYsWWkReVR05l+jioYXo=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "02e2c39e987039d986a94231d5aaa769e568ec30",
+				"revision": "64a1765fcc7ae57656e19adbb193288ee5dd82b3",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/02e2c39e987039d986a94231d5aaa769e568ec30.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/64a1765fcc7ae57656e19adbb193288ee5dd82b3.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
@@ -152,16 +152,16 @@
 			},
 			"orca": {
 				"branch": "main",
-				"hash": "sha256-4CBeOzwlexwuhlx4CvrF62WBoo74TKvnmh4/3WMW+ow=",
+				"hash": "sha256-qe4wgGvbJhFbEdxSYLGix2hxrkxe9qefIxymTqDTB9c=",
 				"repository": {
 					"owner": "stablyai",
 					"repo": "orca",
 					"type": "GitHub"
 				},
-				"revision": "5560e534ff77657196eb3c0f44de59b998ad2c24",
+				"revision": "8b01590847d90c6ec55151697819e66729ced88d",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/stablyai/orca/archive/5560e534ff77657196eb3c0f44de59b998ad2c24.tar.gz"
+				"url": "https://github.com/stablyai/orca/archive/8b01590847d90c6ec55151697819e66729ced88d.tar.gz"
 			}
 		},
 		"version": 8
