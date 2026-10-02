@@ -75,25 +75,6 @@
 				"versionUpperBound": null
 			},
 			"subdir": "skills"
-		},
-		"orca": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "orca",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "stablyai",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "orca",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
 		}
 	},
 	"npins": {
@@ -149,19 +130,6 @@
 				"submodules": false,
 				"type": "Git",
 				"url": "https://github.com/github/gh-stack/archive/2bd699a544a09cb5c45a013d03416e0894b0454e.tar.gz"
-			},
-			"orca": {
-				"branch": "main",
-				"hash": "sha256-b/lBof+yWtnW+NbEr1SlV9veQ4YiFsueglnfeprW1+A=",
-				"repository": {
-					"owner": "stablyai",
-					"repo": "orca",
-					"type": "GitHub"
-				},
-				"revision": "d4ae6a904beb552ea195332747025b01879844ea",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/stablyai/orca/archive/d4ae6a904beb552ea195332747025b01879844ea.tar.gz"
 			}
 		},
 		"version": 8

@@ -269,7 +269,6 @@ in
 
     taps = [
       "arto-app/tap"
-      "stablyai/orca"
       "typewhisper/tap"
     ];
 
@@ -298,7 +297,6 @@ in
       "ollama-app"
       "openvpn-connect"
       "orbstack"
-      "stablyai/orca/orca"
       "raycast"
       "steam"
       "telegram"
