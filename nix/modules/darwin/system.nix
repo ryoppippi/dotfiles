@@ -299,6 +299,7 @@ in
       "orbstack"
       "raycast"
       "steam"
+      "t3-code"
       "telegram"
       "typewhisper/tap/typewhisper"
     ];
