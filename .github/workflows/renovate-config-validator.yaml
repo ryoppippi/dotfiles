@@ -14,4 +14,4 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: suzuki-shunsuke/github-action-renovate-config-validator@394f7a3d2641cad2995938f9dc7e54580c8a7089 # v2.3.0
+      - uses: suzuki-shunsuke/github-action-renovate-config-validator@1e1604219a6b38ae9a10aff42a28a3656322c31a # v2.4.1
