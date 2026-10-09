@@ -39,6 +39,7 @@ let
             imports = [
               nix-index-database.hmModules.nix-index
               agent-skills.homeManagerModules.default
+              inputs.nvimx.homeModules.nvimx
 
               (import ../../modules/home {
                 inherit

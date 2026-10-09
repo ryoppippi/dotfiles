@@ -88,8 +88,7 @@ Flakes only see tracked, staged files, so `git add` changed paths before switchi
 | `nix run .#update-ai-tools`      | Update only the `llm-agents` input                                |
 | `nix run .#update-node-packages` | Refresh `nix/packages/node/`                                      |
 | `nix run .#skills-sources-lock`  | Re-resolve the external skill pins in `registry/sources/`         |
-| `nix run .#lazy2nix`             | Regenerate Nix-served lazy.nvim plugin sources from the lock      |
-| `nix run .#nvim-restore`         | Restore Neovim plugins from `nvim/lazy-lock.json`                 |
+| `nix run .#nvim-lock`            | Pin new Neovim plugins with nvimx (`-- --update` moves them all)  |
 
 Scheduled GitHub Actions open PRs for flake inputs, overlays, node packages, and skill pins.
 

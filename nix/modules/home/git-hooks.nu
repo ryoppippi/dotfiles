@@ -12,15 +12,12 @@
 # Usage: git-hooks.nu <pre-commit|post-commit|post-checkout|post-merge|post-rewrite> [hook args...]
 
 # Touching any of these means the Nix configuration has to be re-applied.
-const NIX_PATTERN = '^(flake\.nix|flake\.lock|nix/)'
+const NIX_PATTERN = '^(flake\.nix|flake\.lock|nix/|nvim/nvimx-lock/)'
 const DICT_PATTERN = '^typewhisper/dictionary\.json'
-const LAZY2NIX_DIR = 'nix/modules/home/programs/neovim/lazy2nix'
-const LAZY2NIX_OUTPUTS = ['nixpkgs-plugins.nix', 'pinned-plugins.json']
-
-# Editing a plugin spec invalidates the generated Nix-served plugin sources.
-def lazy2nix-pattern []: nothing -> string {
-    '^(nvim/lua/plugin/|nvim/lazy-lock\.json|' + $LAZY2NIX_DIR + '/(config\.json|generate\.ts|dump\.lua))'
-}
+# Editing a plugin spec can add or drop plugins the nvimx lock has to pin.
+const NVIM_SPEC_PATTERN = '^nvim/lua/plugin/'
+const NVIMX_LOCK_DIR = 'nvim/nvimx-lock'
+const NVIMX_LOCK_OUTPUTS = ['plugins.json', 'flake.nix', 'flake.lock']
 
 # Paths touched in a diff range. Empty when git cannot resolve the range, which
 # is how a missing HEAD^ or ORIG_HEAD has always been treated here.
@@ -65,23 +62,24 @@ def staged-files []: nothing -> list<string> {
     | where {|path| $path | is-not-empty }
 }
 
-# Regenerate the Nix-served plugin sources when a plugin spec changed, and
-# return the files that now need staging. A failure only warns: unmapped
-# plugins keep working through lazy.nvim's dev.fallback until the next run.
-def regenerate-lazy2nix [staged: list<string>]: nothing -> list<string> {
-    if not ($staged | any {|path| $path =~ (lazy2nix-pattern) }) {
+# Re-lock the Neovim plugins when a plugin spec changed, and return the files
+# that now need staging. Existing pins stay put; only added or removed plugins
+# change the lock. A failure only warns: a plugin missing from the lock is
+# simply absent until the next run.
+def relock-nvim [staged: list<string>]: nothing -> list<string> {
+    if not ($staged | any {|path| $path =~ $NVIM_SPEC_PATTERN }) {
         return []
     }
 
-    print 'Neovim plugin specs changed. Regenerating lazy2nix sources...'
-    let result = do { ^nix run .#lazy2nix } | complete
+    print 'Neovim plugin specs changed. Re-locking with nvimx...'
+    let result = do { ^nix run .#nvim-lock } | complete
 
     if $result.exit_code != 0 {
-        print --stderr "warning: lazy2nix failed; run 'nix run .#lazy2nix' manually"
+        print --stderr "warning: nvimx-lock failed; run 'nix run .#nvim-lock' manually"
         return []
     }
 
-    let generated = $LAZY2NIX_OUTPUTS | each {|name| $LAZY2NIX_DIR | path join $name }
+    let generated = $NVIMX_LOCK_OUTPUTS | each {|name| $NVIMX_LOCK_DIR | path join $name }
     ^git add ...$generated
     $generated
 }
@@ -108,7 +106,7 @@ def pre-commit []: nothing -> nothing {
 
     # Regenerating adds files to the commit, so fold them into the set that is
     # re-staged after formatting.
-    let tracked = $staged | append (regenerate-lazy2nix $staged)
+    let tracked = $staged | append (relock-nvim $staged)
 
     print 'Running treefmt on staged files...'
     let stashed = stash-unstaged

@@ -5,6 +5,8 @@ on:
     paths:
       - 'nvim/**'
       - 'flake.nix'
+      - 'flake.lock'
+      - 'nix/modules/home/programs/neovim/**'
       - '.github/workflows/nix-neovim.yaml'
   pull_request:
   workflow_dispatch:
@@ -22,7 +24,17 @@ jobs:
 
       - uses: ./.github/actions/setup-nix
 
-      - name: Check Neovim configuration
-        run: nix run .#nvim-restore
+      # The wrapper nvimx builds from nvim/nvimx-lock, i.e. exactly what a
+      # switch installs, so a plugin that fails to build fails here.
+      - name: Build Neovim with locked plugins
+        run: nix build .#homeConfigurations.ryoppippi-aarch64.config.programs.nvimx.env.wrapped --out-link nvim-result
+
+      # XDG_CONFIG_HOME points at the checkout so the repository's nvim/ is the
+      # config under test; any startup error makes headless nvim print to stderr.
+      - name: Start Neovim with the repository config
         env:
-          DOTFILES_DIR: ${{ github.workspace }}
+          XDG_CONFIG_HOME: ${{ github.workspace }}
+        run: |
+          ./nvim-result/bin/nvim --headless '+Lazy! load all' +qa 2> stderr.log
+          cat stderr.log
+          test ! -s stderr.log

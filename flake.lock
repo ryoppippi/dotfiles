@@ -20,6 +20,22 @@
         "type": "github"
       }
     },
+    "anthropic-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784744409,
+        "narHash": "sha256-XPXKd05IEiyTPlAPkowfJUal1UfRlxEHo+GgszgHQCI=",
+        "owner": "anthropics",
+        "repo": "skills",
+        "rev": "1f630fdf9259cec4a14913127dfd7c3b69ef72eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "brew-api": {
       "flake": false,
       "locked": {
@@ -354,6 +370,22 @@
         "type": "github"
       }
     },
+    "lazy-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765971162,
+        "narHash": "sha256-5A4kducPwKb5fKX4oSUFvo898P0dqfsqqLxFaXBsbQY=",
+        "owner": "folke",
+        "repo": "lazy.nvim",
+        "rev": "306a05526ada86a7b30af95c5cc81ffba93fef97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "lazy.nvim",
+        "type": "github"
+      }
+    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix_2",
@@ -559,6 +591,37 @@
         "type": "github"
       }
     },
+    "nvimx": {
+      "inputs": {
+        "agent-skills": [
+          "agent-skills"
+        ],
+        "anthropic-skills": "anthropic-skills",
+        "home-manager": [
+          "home-manager"
+        ],
+        "lazy-nvim": "lazy-nvim",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790054966,
+        "narHash": "sha256-SINPXsXObxthHFw8bHcZZYTcvaAKuF3kxXWzfR1k6Ls=",
+        "owner": "myuron",
+        "repo": "nvimx",
+        "rev": "74aa086b98d349a718c6a8d70f192804d617b319",
+        "type": "github"
+      },
+      "original": {
+        "owner": "myuron",
+        "repo": "nvimx",
+        "type": "github"
+      }
+    },
     "omniwm": {
       "inputs": {
         "nixpkgs": [
@@ -598,6 +661,7 @@
         "nix-index-database": "nix-index-database",
         "nix-secure-enclave-key": "nix-secure-enclave-key",
         "nixpkgs": "nixpkgs_2",
+        "nvimx": "nvimx",
         "omniwm": "omniwm",
         "treefmt-nix": "treefmt-nix_3"
       }

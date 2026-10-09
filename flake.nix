@@ -100,6 +100,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Neovim plugins pinned in a flake.lock from the lazy.nvim spec
+    nvimx = {
+      url = "github:myuron/nvimx";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        treefmt-nix.follows = "treefmt-nix";
+        agent-skills.follows = "agent-skills";
+      };
+    };
+
     # Agent skills framework for managing Claude Code skills
     agent-skills = {
       url = "github:Kyure-A/agent-skills-nix";

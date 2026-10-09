@@ -27,6 +27,7 @@ jobs:
               - 'flake.nix'
               - 'flake.lock'
               - 'nix/**'
+              - 'nvim/nvimx-lock/**'
               - '.github/workflows/nix-build.yaml'
               - '.github/actions/setup-nix/**'
 

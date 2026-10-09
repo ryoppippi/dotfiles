@@ -10,59 +10,34 @@
 let
   nvimDotfilesDir = "${dotfilesDir}/nvim";
   nvimConfigDir = "${config.xdg.configHome}/nvim";
-
-  # Pre-built plugins by Nix
-  #
-  # nvim-treesitter's `withAllGrammars` ships no compiled `parser/*.so` on the
-  # main branch (it only carries the plugin source + `runtime/queries`), so
-  # loading it alone leaves every non-builtin language without a parser. Join
-  # the per-language `grammarPlugins` (each provides `parser/<lang>.so`) and
-  # graft the plugin's `runtime/queries` in as `queries/` so both the parsers
-  # and the matching highlight queries resolve from a single runtimepath entry.
-  treesitterGrammars = pkgs.symlinkJoin {
-    name = "nvim-treesitter-grammars-with-queries";
-    paths = builtins.attrValues pkgs.vimPlugins.nvim-treesitter.grammarPlugins;
-    postBuild = ''
-      ln -s ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries $out/queries
-    '';
-  };
-  # Plugins served from the Nix store instead of lazy.nvim's git clones
-  #
-  # lazy2nix generates the plugin sources (see lazy2nix/default.nix); each
-  # plugin is linked into one farm whose entry names lazy.nvim's `dev.path`
-  # resolves directly. Plugins excluded in lazy2nix/config.json keep being
-  # cloned by lazy.nvim at the lazy-lock.json commit (`dev.fallback = true`
-  # on the Lua side). The farm must NOT be derived from lazy-lock.json:
-  # lazy.nvim drops dev-served plugins from the lock file on the next lock
-  # update, so keying the farm off the lock would unserve everything after
-  # one restore.
-  lazyNixPlugins = pkgs.linkFarm "lazy-nix-plugins" (import ./lazy2nix { inherit pkgs lib; }).plugins;
-
-  bash = lib.getExe pkgs.bash;
-  # the wrapped neovim, NOT pkgs.neovim: the activation-time `Lazy! restore`
-  # needs the wrapper's LAZY_NIX_PLUGINS (otherwise lazy.nvim treats every
-  # Nix-served plugin as a missing git plugin, clones all of them at HEAD and
-  # rewrites lazy-lock.json) and the wrapper's extraPackages on PATH
-  nvim = lib.getExe config.programs.neovim.finalPackage;
 in
 {
-  programs.neovim = {
+  # Plugins are resolved from the lazy.nvim spec by `nvimx-lock` and pinned in
+  # nvim/nvimx-lock/flake.lock; lazy.nvim only loads them from the Nix store.
+  # See ROADMAP.md for why nvimx replaced lazy2nix.
+  programs.nvimx = {
     enable = true;
 
-    # Keep legacy provider defaults (Neovim 0.11 era) — silences the
-    # home-manager warning that fires when home.stateVersion < "26.05".
-    withRuby = true;
-    withPython3 = true;
+    # The config is symlinked from the working tree below so edits apply
+    # without a switch; nvimx only needs the lock.
+    manageConfig = false;
+    lockDir = ../../../../../nvim/nvimx-lock;
 
-    # Set environment variables only for Neovim session
-    extraWrapperArgs = [
-      "--set"
-      "TREESITTER_GRAMMARS"
-      "${treesitterGrammars}"
-      "--set"
-      "LAZY_NIX_PLUGINS"
-      "${lazyNixPlugins}"
+    lock = {
+      projectDir = dotfilesDir;
+      configDirRelative = "nvim";
+      lockDirRelative = "nvim/nvimx-lock";
+    };
+
+    # Own plugins (`dev = true` in the spec) load from the mutable ghq checkout
+    devPath = "~/ghq/github.com/ryoppippi";
+
+    plugins.nixpkgsFallback = [
+      # its spec build runs `nix develop`, which cannot work in the sandbox
+      "parinfer-rust"
     ];
+
+    treesitter.grammars = "all";
 
     # These packages are only available when NeoVim is running
     extraPackages =
@@ -77,9 +52,7 @@ in
       )
       ++ (with pkgs; [
 
-        # Plugin build dependencies (lazy.nvim build steps)
-        cmake # some plugins requiring cmake
-        tree-sitter # CLI needed by nvim-treesitter to install grammars absent from the Nix farm (e.g. moonbit)
+        tree-sitter # CLI needed by nvim-treesitter to install grammars nixpkgs does not ship (e.g. moonbit)
 
         # Language servers
         lua-language-server # Lua LSP
@@ -101,31 +74,11 @@ in
         vscode-langservers-extracted # HTML/CSS/JSON/ESLint
         yaml-language-server # YAML
       ]);
-
   };
-
-  xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
   # Create symlink to NeoVim configuration in dotfiles (bypassing Nix store)
   home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ${helpers.activation.mkLinkForce}
     link_force "${nvimDotfilesDir}" "${nvimConfigDir}"
-  '';
-
-  # Restore Neovim plugins via Lazy.nvim when lock file changes
-  # (Lazy.nvim itself is auto-installed by Lua config)
-  home.activation.restoreNeovimPlugins = lib.hm.dag.entryAfter [ "linkNvimConfig" ] ''
-    LAZY_DIR="$HOME/.local/share/nvim/lazy"
-    LAZY_LOCK="${nvimDotfilesDir}/lazy-lock.json"
-    LAZY_LOCK_TIMESTAMP="$LAZY_DIR/.lazy-lock-timestamp"
-
-    # Only restore if lock file has been updated
-    if [[ ! -f "$LAZY_LOCK_TIMESTAMP" ]] || [[ "$LAZY_LOCK" -nt "$LAZY_LOCK_TIMESTAMP" ]]; then
-      ${bash} \
-        ${./check.sh} \
-        "${nvimDotfilesDir}" \
-        "$LAZY_DIR" \
-        ${nvim}
-    fi
   '';
 }
