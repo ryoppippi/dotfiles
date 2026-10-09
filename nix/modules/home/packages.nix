@@ -39,7 +39,6 @@ in
       devenv
       nodejs_24
       bun
-      deno
       pnpm
       uv
       # Miscellaneous utilities

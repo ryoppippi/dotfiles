@@ -70,7 +70,7 @@ let
       };
     }
 
-    # Bun + Deno + Node switcher
+    # Jump to parent directories with fzf
     {
       name = "bdf.fish";
       src = pkgs.fetchFromGitHub {
