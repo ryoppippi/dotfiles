@@ -566,11 +566,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790959873,
-        "narHash": "sha256-WxSBcImCuECRSLSqyo3INdzpBtLXGFXR3xkPhX+xjTM=",
+        "lastModified": 1791264311,
+        "narHash": "sha256-2mtvAl9B0rWpH/p1yFKWTUO7YB/NCPANuOWA5R88Sjc=",
         "owner": "mst-mkt",
         "repo": "omniwm.nix",
-        "rev": "ad411c8bd52ea10b77f89e1b027c302766b5a3a2",
+        "rev": "fdf725c935b8a15e7f3adb17ecbbfcfd9d776474",
         "type": "github"
       },
       "original": {
