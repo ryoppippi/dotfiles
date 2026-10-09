@@ -46,7 +46,7 @@ let
   );
 
   settings = {
-    model = "gpt-5.6-luna";
+    model = "gpt-6-luna";
     approval_policy = "on-request";
     approvals_reviewer = "auto_review";
     allow_login_shell = true;
@@ -69,7 +69,7 @@ let
 
     agents = {
       max_concurrent_threads_per_session = 100;
-      default_subagent_model = "gpt-5.6-luna";
+      default_subagent_model = "gpt-6-luna";
       default_subagent_reasoning_effort = "max";
     };
 
