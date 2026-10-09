@@ -51,7 +51,7 @@ return {
 				"unocss",
 				"html",
 				"stylelint_lsp",
-				"tsgo",
+				"tsc",
 
 				-- go
 				"gopls",

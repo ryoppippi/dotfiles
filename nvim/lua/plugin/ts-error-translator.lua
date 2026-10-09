@@ -15,7 +15,7 @@ return {
 		servers = {
 			"astro",
 			"svelte",
-			"tsgo",
+			"tsc",
 		},
 	},
 }
