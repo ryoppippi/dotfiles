@@ -57,9 +57,6 @@ abbr -a gnix gh-nix
 
 abbr -a dv devenv
 
-# deno
-abbr -a deno-cache-clear "rm -rf (deno info | string match --entire --regex 'DENO_DIR*' | string split ' ')[-1]"
-
 abbr -a pbc pbcopy
 abbr -a pbp pbpaste
 

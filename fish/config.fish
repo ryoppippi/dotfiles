@@ -69,9 +69,6 @@ fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.bun/bin
 fish_add_path $HOME/.cache/.bun/bin
 
-## deno
-fish_add_path $HOME/.deno/bin
-
 # go
 set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
@@ -168,5 +165,5 @@ if status is-interactive
     stty start undef &
 end
 
-set -g NA_PACKAGE_MANAGER_LIST bun deno pnpm npm yarn
+set -g NA_PACKAGE_MANAGER_LIST bun pnpm npm yarn
 set -g NA_FUZZYFINDER_OPTIONS --bind 'one:accept' --query '^'
