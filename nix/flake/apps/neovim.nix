@@ -3,7 +3,7 @@
   perSystem =
     {
       pkgs,
-      system,
+      lib,
       writeNu,
       ...
     }:
@@ -11,7 +11,14 @@
       homedir =
         if pkgs.stdenv.hostPlatform.isDarwin then constants.darwinHomedir else constants.linuxHomedir;
 
-      nvimxLock = inputs.nvimx.apps.${system}.lock.program;
+      # Built from nvimx's lib rather than taken from its `apps`, which only
+      # cover x86_64-linux and aarch64-darwin (myuron/nvimx#76).
+      nvimxLock =
+        lib.getExe
+          (import "${inputs.nvimx}/nix/lib" {
+            inherit pkgs;
+            lazyNvimSeed = inputs.nvimx.inputs.lazy-nvim;
+          }).lockApp;
     in
     {
       apps = {

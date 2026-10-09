@@ -65,7 +65,8 @@ def staged-files []: nothing -> list<string> {
 # Re-lock the Neovim plugins when a plugin spec changed, and return the files
 # that now need staging. Existing pins stay put; only added or removed plugins
 # change the lock. A failure only warns: a plugin missing from the lock is
-# simply absent until the next run.
+# simply absent until the next run. An offline `nvimx-lock --check`
+# (myuron/nvimx#78) would make this cheaper.
 def relock-nvim [staged: list<string>]: nothing -> list<string> {
     if not ($staged | any {|path| $path =~ $NVIM_SPEC_PATTERN }) {
         return []

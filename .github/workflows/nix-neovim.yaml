@@ -30,11 +30,16 @@ jobs:
         run: nix build .#homeConfigurations.ryoppippi-aarch64.config.programs.nvimx.env.wrapped --out-link nvim-result
 
       # XDG_CONFIG_HOME points at the checkout so the repository's nvim/ is the
-      # config under test; any startup error makes headless nvim print to stderr.
+      # config under test. Only store-served plugins are loaded: `dev = true`
+      # ones live in ~/ghq checkouts CI does not have. Plugins also report
+      # progress on stderr, so only real errors fail the job. Replace with
+      # nvimx's own startup check once myuron/nvimx#79 lands.
       - name: Start Neovim with the repository config
         env:
           XDG_CONFIG_HOME: ${{ github.workspace }}
         run: |
-          ./nvim-result/bin/nvim --headless '+Lazy! load all' +qa 2> stderr.log
+          ./nvim-result/bin/nvim --headless \
+            -c 'lua local lazy = require("lazy"); local names = {}; for _, p in ipairs(lazy.plugins()) do if p._.installed then names[#names + 1] = p.name end end; lazy.load({ plugins = names })' \
+            +qa 2> stderr.log
           cat stderr.log
-          test ! -s stderr.log
+          ! grep -E 'E[0-9]+:|Error|stack traceback' stderr.log
