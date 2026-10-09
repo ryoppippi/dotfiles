@@ -40,6 +40,7 @@ in
       nodejs_24
       bun
       pnpm
+      typescript
       uv
       # Miscellaneous utilities
       fixjson
