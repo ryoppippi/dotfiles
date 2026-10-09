@@ -83,8 +83,12 @@ in
     activationScripts.userDefaults.text = lib.mkAfter ''
       user_id=$(/usr/bin/id -u -- ${username})
       user_preferences=/Users/${username}/Library/Preferences/com.apple.symbolichotkeys.plist
-      for shortcut_id in 25 26; do
-        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/plutil -replace "AppleSymbolicHotKeys.$shortcut_id.enabled" -bool false "$user_preferences"
+      # 32-35 are Mission Control and Application Windows on Ctrl(+Shift)+Up/Down,
+      # 79-82 move a Space left/right on Ctrl(+Shift)+Left/Right; OmniWM and
+      # karabiner.ts own those keys. An untouched shortcut has no entry in the
+      # plist, so the whole entry is replaced rather than only its `enabled` key.
+      for shortcut_id in 25 26 32 33 34 35 79 80 81 82; do
+        /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /usr/bin/plutil -replace "AppleSymbolicHotKeys.$shortcut_id" -json '{"enabled":false}' "$user_preferences"
       done
       /bin/launchctl asuser "$user_id" /usr/bin/sudo --user=${username} -- /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
