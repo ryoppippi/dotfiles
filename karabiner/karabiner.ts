@@ -93,23 +93,11 @@ k.writeToProfile(writeTarget, [
 			.to({ key_code: 'tab', modifiers: ['left_command', 'left_option', 'left_shift'] }),
 	]),
 
-	// Ctrl+Shift carries the focused window along. Vertical crosses displays,
-	// horizontal stays within one display's workspaces. Not restricted to one
-	// device: any keyboard that can send Ctrl/Ctrl+Shift plus an arrow key gets
-	// the same behaviour.
-	k.rule('Ctrl+Up/Down focuses the other display').manipulators(
-		(
-			[
-				['up_arrow', 'next'],
-				['down_arrow', 'prev'],
-			] as const
-		).map(([arrow, target]) =>
-			k
-				.map({ key_code: arrow, modifiers: { mandatory: ['left_control'] } })
-				.to$(`${omniwmctl} command focus-monitor ${target}`),
-		),
-	),
-
+	// Ctrl navigates, Ctrl+Shift carries the focused window along. Vertical
+	// crosses displays, horizontal stays within one display's workspaces. Not
+	// restricted to one device: any keyboard that can send Ctrl/Ctrl+Shift plus
+	// an arrow key gets the same behaviour. Ctrl+Up/Down is bound natively in
+	// OmniWM, so it needs no rule here.
 	k.rule('Ctrl+Left/Right switches workspace').manipulators(
 		(
 			[
@@ -123,30 +111,15 @@ k.writeToProfile(writeTarget, [
 		),
 	),
 
-	// Absolute workspace numbers, not `move-to-workspace on-monitor <n> <up|down>`.
-	// Workspaces are pinned to the main/secondary display, so naming one already
-	// names a display. The directional form would additionally depend on OmniWM's
-	// Custom Monitor Routing Arrangement, which lives outside this repository
-	// because it is keyed by display UUID, and it needs the destination workspace
-	// anyway — so the direction argument buys nothing.
-	k.rule('Ctrl+Shift+Up/Down moves the focused window across displays').manipulators(
-		(
-			[
-				['up_arrow', '1'],
-				['down_arrow', '3'],
-			] as const
-		).map(([arrow, workspace]) =>
-			k
-				.map({
-					key_code: arrow,
-					modifiers: { mandatory: ['left_control', 'left_shift'] },
-				})
-				.to$(`${omniwmctl} command move-to-workspace ${workspace}`),
-		),
-	),
-
-	k.rule('Ctrl+Shift+Left/Right moves the focused window within the display').manipulators(
-		(['left_arrow', 'right_arrow'] as const).map((arrow) =>
+	// Lands on the Workspace layer's own bindings, so OmniWM keeps one shortcut
+	// per command. Up/Down are `moveToWorkspace.1`/`.3`: absolute workspace
+	// numbers rather than the directional `moveWindowToMonitor.up`/`.down`,
+	// because workspaces are pinned to the main/secondary display, so naming one
+	// already names a display, and the directional form would additionally
+	// depend on OmniWM's Custom Monitor Routing Arrangement, which lives outside
+	// this repository because it is keyed by display UUID.
+	k.rule('Ctrl+Shift+arrows move the focused window').manipulators(
+		(['up_arrow', 'down_arrow', 'left_arrow', 'right_arrow'] as const).map((arrow) =>
 			k
 				.map({
 					key_code: arrow,

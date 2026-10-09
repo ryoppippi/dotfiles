@@ -196,6 +196,12 @@ in
         "toggleFocusedWindowFloating" = "Hyper+D";
         "openCommandPalette" = "Hyper+Space";
 
+        # The Ctrl scheme from karabiner.ts; with only two displays, next and
+        # previous both reach the other one. macOS' own Ctrl+Up/Down shortcuts
+        # are disabled in system.nix so Mission Control cannot claim them.
+        "focusMonitorNext" = "Control+Up Arrow";
+        "focusMonitorPrevious" = "Control+Down Arrow";
+
         "moveToWorkspace.1" = "Option+Command+Shift+Up Arrow";
         "moveToWorkspace.3" = "Option+Command+Shift+Down Arrow";
         "moveWindowToWorkspaceUp" = "Option+Command+Shift+Left Arrow";

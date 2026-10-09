@@ -59,40 +59,36 @@ the same way.
 ## Workspace and display shortcuts
 
 Everything that crosses a workspace or a display boundary lives on Ctrl, on both
-keyboards, in [`karabiner.ts`](../../../../../karabiner/karabiner.ts). It
-mirrors the arrow keys rather than stacking onto Hyper/Workspace: Ctrl
-navigates, Ctrl+Shift carries the focused window along, vertical crosses
+keyboards. It mirrors the arrow keys rather than stacking onto Hyper/Workspace:
+Ctrl navigates, Ctrl+Shift carries the focused window along, vertical crosses
 displays, horizontal stays within one display's own workspaces.
 
-| Action                                      | Keys             |
-| ------------------------------------------- | ---------------- |
-| Focus the other display                     | `Ctrl+↑/↓`       |
-| Switch workspace                            | `Ctrl+←/→`       |
-| Move window across displays                 | `Ctrl+Shift+↑/↓` |
-| Move window between workspaces of a display | `Ctrl+Shift+←/→` |
+| Action                                      | Keys             | Handled by                           |
+| ------------------------------------------- | ---------------- | ------------------------------------ |
+| Focus the other display                     | `Ctrl+↑/↓`       | OmniWM `focusMonitorNext`/`Previous` |
+| Switch workspace                            | `Ctrl+←/→`       | `karabiner.ts` → `omniwmctl`         |
+| Move window across displays                 | `Ctrl+Shift+↑/↓` | `karabiner.ts` → `Workspace+↑/↓`     |
+| Move window between workspaces of a display | `Ctrl+Shift+←/→` | `karabiner.ts` → `Workspace+←/→`     |
 
 On the MacBook, Fn is Ctrl+Shift, so moving a window takes Fn and an arrow key
 alone.
 
-`Ctrl+↑/↓`, `Ctrl+←/→`, and `Ctrl+Shift+↑/↓` shell out to `omniwmctl` directly
-rather than remapping to a synthetic keypress. `Ctrl+←/→` and
-`Ctrl+Shift+↑/↓` do this because OmniWM exposes no bindable hotkey action for
-either one — for monitors only `focus-monitor` is bindable, never "move the
-focused window to another monitor". `Ctrl+↑/↓` shells out to `focus-monitor`
-for a different reason: `Option+Command+Shift+Up/Down Arrow` (the synthetic
-keypress it used to remap to) is now claimed by `moveToWorkspace.1`/`.3`,
-so giving focus its own physical trigger needs the CLI rather than a shared
-key. `Ctrl+Shift+←/→` is the one exception that still remaps to a synthetic
-keypress, landing on the same native `moveWindowToWorkspaceUp`/`Down` hotkeys
-that `Workspace+←/→` uses.
+`Ctrl+↑/↓` is bound in [`default.nix`](default.nix) directly. With two
+displays, next and previous both reach the other one. macOS binds the same keys
+to Mission Control and Application Windows, so `system.nix` disables those
+symbolic hotkeys, along with the Space-switching ones on `Ctrl+←/→`.
 
-`Ctrl+Shift+↑/↓` names its destination workspace outright
-(`move-to-workspace 1` / `move-to-workspace 3`) rather than using the
-directional `move-to-workspace on-monitor <workspace> <up|down>`. The
-directional form additionally depends on the Monitor Routing Arrangement below
-— without a custom one, every direction except `left` returns `not_found`, and
-`left` reports success without moving anything — and since the destination
-workspace has to be named either way, the direction buys nothing.
+`Ctrl+Shift+↑/↓` and `Ctrl+Shift+←/→` are remapped in
+[`karabiner.ts`](../../../../../karabiner/karabiner.ts) to the Workspace
+layer's own `Option+Command+Shift` bindings, because OmniWM binds one shortcut
+per command. Up/Down land on `moveToWorkspace.1`/`.3`, which name the
+destination workspace outright rather than using the directional
+`moveWindowToMonitor.up`/`.down`. The directional form depends on the Monitor
+Routing Arrangement below, and since workspaces are pinned to the main and
+secondary displays, naming a workspace already names a display.
+
+`Ctrl+←/→` is the one rule that still shells out to `omniwmctl command
+switch-workspace prev/next`.
 
 ### The Workspace layer, CLAW44 only
 
