@@ -40,7 +40,6 @@ return {
 
 				-- web/javascript
 				"svelte",
-				"denols",
 				"prismals",
 				"astro",
 				"biome",
