@@ -54,7 +54,26 @@ Local escape hatches in use (`default.nix`):
   when `nvim/lua/plugin/` changes; existing pins never move
 - moving pins: `nix run .#nvim-lock -- --update [name...]`, then commit and
   switch. Unlike lazy2nix, nixpkgs updates no longer move plugins, so this
-  is the only way they advance — a scheduled bot for it is still TODO
+  is the only way they advance. The daily `Bot: Update Neovim plugins`
+  workflow runs it and opens a PR listing every moved plugin with a compare
+  link; that PR is never auto-merged
+
+### Glue waiting on nvimx
+
+Repository-side workarounds for gaps reported upstream. Each issue was
+written to be fixed by nvimx itself, so this repository sends no PRs: when
+one lands, bump the `nvimx` input and delete the matching glue.
+
+| Issue                                                                                            | Glue it removes                                                                                          |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| [myuron/nvimx#76](https://github.com/myuron/nvimx/issues/76) aarch64-linux outputs               | `nvim-lock` app builds `lockApp` from nvimx's lib (`nix/flake/apps/neovim.nix`)                          |
+| [myuron/nvimx#77](https://github.com/myuron/nvimx/issues/77) machine-readable `--update` summary | the update bot re-derives moved plugins from `flake.lock` (`.github/workflows/update-nvim-plugins.yaml`) |
+| [myuron/nvimx#78](https://github.com/myuron/nvimx/issues/78) offline `nvimx-lock --check`        | the pre-commit hook re-locks on every spec change (`nix/modules/home/git-hooks.nu`)                      |
+| [myuron/nvimx#79](https://github.com/myuron/nvimx/issues/79) headless startup check              | the hand-written startup step in `.github/workflows/nix-neovim.yaml`                                     |
+
+Not blocking anything here, adopt when they land: #72 `extraWrapperArgs`,
+#73 provider options, #74 `devPatterns`, #75 the deprecated
+`nixfmt-rfc-style` warning on every switch.
 
 ## Possible target: Nix supply + lz.n loader
 
