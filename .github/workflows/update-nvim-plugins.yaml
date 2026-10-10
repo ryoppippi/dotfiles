@@ -58,9 +58,11 @@ jobs:
           # plugin name -> locked node of its flake input
           def locked-plugins [] {
             let nodes = open --raw ($LOCK_DIR | path join 'flake.lock') | from json | get nodes
-            open ($LOCK_DIR | path join 'plugins.json')
-            | get plugins
+            let lock = open ($LOCK_DIR | path join 'plugins.json')
+            # lazy.nvim itself is pinned too, but kept outside `plugins`
+            $lock.plugins
             | transpose name plugin
+            | append {name: 'lazy.nvim', plugin: $lock.lazyNvim}
             | each {|row| {name: $row.name, locked: ($nodes | get -o $row.plugin.inputName | get -o locked)} }
           }
 
