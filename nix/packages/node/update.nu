@@ -37,14 +37,11 @@ def packages [text: string]: nothing -> table {
     | get block
     | each {|block|
         let pname = field $block pname
-        {
-            block: $block
-            pname: $pname
-            npm_name: (field $block npmName | default $pname)
-            version: (field $block version)
-            hash: (field $block hash)
-            deps_hash: (field $block npmDepsHash)
-        }
+        let npm_name = field $block npmName | default $pname
+        let version = field $block version
+        let hash = field $block hash
+        let deps_hash = field $block npmDepsHash
+        {block: $block, pname: $pname, npm_name: $npm_name, version: $version, hash: $hash, deps_hash: $deps_hash}
     }
 }
 
