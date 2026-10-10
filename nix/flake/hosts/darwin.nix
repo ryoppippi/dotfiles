@@ -71,6 +71,7 @@ in
                 nix-secure-enclave-key.homeManagerModules.default
 
                 agent-skills.homeManagerModules.default
+                inputs.nvimx.homeModules.nvimx
 
                 inputs.omniwm.homeManagerModules.default
                 (import ../../modules/darwin/programs/omniwm {
