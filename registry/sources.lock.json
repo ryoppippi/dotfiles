@@ -81,16 +81,16 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-NJJZD4lcZdyWhBJEGwy2IYHEWYkL1gXDgBTMe1zV6oM=",
+				"hash": "sha256-8Og2ruMaY+ObT9WiYqCyoXAcwZ/6t2g6SeU3+wF15ck=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "0207911f1bd4d0393eddaa90f2e50f96e0fb8974",
+				"revision": "44af39842650f0bb9c1afb7354df9a82921d4f09",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/0207911f1bd4d0393eddaa90f2e50f96e0fb8974.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/44af39842650f0bb9c1afb7354df9a82921d4f09.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
@@ -107,29 +107,29 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-TyHoqNaNKoxRY0IpjK2/o9ibeXVD1FUsBYfIb+/beL0=",
+				"hash": "sha256-hM2xOg/jenBpOn9vuGSjwjBwDiXSUZZeRMvtr9V2RkA=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "f6532b1d361fa8a1a8562a8ddcb76b9a63be6d33",
+				"revision": "bbb3633af923dea15c075600e5060e018d139f05",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/f6532b1d361fa8a1a8562a8ddcb76b9a63be6d33.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/bbb3633af923dea15c075600e5060e018d139f05.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
-				"hash": "sha256-/TpZwsIvLczKzqCU+Ez/TGeGsXegUHSoQdXo/nLhC/o=",
+				"hash": "sha256-Mq4jAqeSHDuCiDYSa40okrq06UhC3dZGjgCXJKMbgzU=",
 				"repository": {
 					"owner": "github",
 					"repo": "gh-stack",
 					"type": "GitHub"
 				},
-				"revision": "fc2b03d34528917574b41d4d749a477263a6afc5",
+				"revision": "29a36d314be664583705f18e41cebdf2b61ad514",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/fc2b03d34528917574b41d4d749a477263a6afc5.tar.gz"
+				"url": "https://github.com/github/gh-stack/archive/29a36d314be664583705f18e41cebdf2b61ad514.tar.gz"
 			}
 		},
 		"version": 8
