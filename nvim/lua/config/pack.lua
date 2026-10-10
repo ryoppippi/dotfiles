@@ -1,6 +1,6 @@
 require("core.plugin").init()
--- nvimx wraps lazy.setup to serve every plugin read-only from the Nix store;
--- see nix/modules/home/programs/neovim/
+-- nvimx wraps lazy.setup to serve every non-dev plugin read-only from the Nix
+-- store; see nix/modules/home/programs/neovim/
 local lazy = require("lazy")
 
 if vim.env.NVIM_COLORSCHEME == nil then

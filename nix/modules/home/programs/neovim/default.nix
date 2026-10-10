@@ -76,6 +76,15 @@ in
       ]);
   };
 
+  # lazy.nvim used to clone itself here; nvimx links its locked copy to the
+  # same path, and checkLinkTargets refuses to replace a real directory.
+  home.activation.moveLegacyLazyNvim = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+    legacy="${config.xdg.dataHome}/nvim/lazy/lazy.nvim"
+    if [ -d "$legacy" ] && [ ! -L "$legacy" ]; then
+      run mv "$legacy" "$legacy.pre-nvimx"
+    fi
+  '';
+
   # Create symlink to NeoVim configuration in dotfiles (bypassing Nix store)
   home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ${helpers.activation.mkLinkForce}

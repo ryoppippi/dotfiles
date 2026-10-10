@@ -9,7 +9,7 @@
 ## Plugin Manager
 
 **Lazy.nvim** loads plugins; [**nvimx**](https://github.com/myuron/nvimx)
-supplies every one of them read-only from the Nix store
+supplies every non-dev one read-only from the Nix store
 (`nix/modules/home/programs/neovim/`):
 
 - `nvimx-lock` (or `nix run .#nvim-lock` before the first switch) evaluates

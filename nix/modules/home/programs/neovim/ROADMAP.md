@@ -27,9 +27,9 @@ switches its git/install/checker machinery off.
 
 What this bought over the previous lazy2nix setup:
 
-- **every plugin is Nix-supplied**: no git-managed excludes, no
-  `lazy-lock.json`, no activation-time `Lazy! restore`; a new machine is
-  fully offline once the store is populated
+- **every third-party plugin is Nix-supplied**: no git-managed excludes, no
+  `lazy-lock.json`, no activation-time `Lazy! restore`; once the store is
+  populated a new machine only needs the `dev = true` checkouts in ~/ghq
 - **spec pins apply again**: `version = "1.*"`, `branch = "stable"` and
   `commit = ...` are resolved at lock time instead of being ignored
 - **build steps are handled**: blink.cmp's Rust matcher is built from the

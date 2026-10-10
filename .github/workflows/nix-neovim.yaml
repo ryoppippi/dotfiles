@@ -40,6 +40,7 @@ jobs:
         run: |
           ./nvim-result/bin/nvim --headless \
             -c 'lua local lazy = require("lazy"); local names = {}; for _, p in ipairs(lazy.plugins()) do if p._.installed then names[#names + 1] = p.name end end; lazy.load({ plugins = names })' \
-            +qa 2> stderr.log
+            +qa 2> stderr.log || status=$?
           cat stderr.log
+          [ "${status:-0}" -eq 0 ]
           ! grep -E 'E[0-9]+:|Error|stack traceback' stderr.log

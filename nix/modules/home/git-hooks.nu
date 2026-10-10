@@ -56,8 +56,8 @@ def apply-implied [range: string, occasion: string = '']: nothing -> nothing {
     }
 }
 
-def staged-files []: nothing -> list<string> {
-    ^git diff --cached --name-only --diff-filter=ACMR
+def staged-files [--filter: string = 'ACMR']: nothing -> list<string> {
+    ^git diff --cached --name-only $"--diff-filter=($filter)"
     | lines
     | where {|path| $path | is-not-empty }
 }
@@ -67,13 +67,16 @@ def staged-files []: nothing -> list<string> {
 # change the lock. A failure only warns: a plugin missing from the lock is
 # simply absent until the next run. An offline `nvimx-lock --check`
 # (myuron/nvimx#78) would make this cheaper.
-def relock-nvim [staged: list<string>]: nothing -> list<string> {
-    if not ($staged | any {|path| $path =~ $NVIM_SPEC_PATTERN }) {
+def relock-nvim []: nothing -> list<string> {
+    # Deletions count too: dropping a spec file drops its plugin from the lock.
+    if not (staged-files --filter 'ACMRD' | any {|path| $path =~ $NVIM_SPEC_PATTERN }) {
         return []
     }
 
     print 'Neovim plugin specs changed. Re-locking with nvimx...'
-    let result = do { ^nix run .#nvim-lock } | complete
+    # Without DOTFILES_DIR the app locks the main checkout, not this worktree.
+    let root = ^git rev-parse --show-toplevel | str trim
+    let result = with-env {DOTFILES_DIR: $root} { do { ^nix run .#nvim-lock } | complete }
 
     if $result.exit_code != 0 {
         print --stderr "warning: nvimx-lock failed; run 'nix run .#nvim-lock' manually"
@@ -101,16 +104,19 @@ def stash-unstaged []: nothing -> bool {
 
 def pre-commit []: nothing -> nothing {
     let staged = staged-files
-    if ($staged | is-empty) {
+    # A commit that only deletes files can still drop a plugin spec.
+    if ($staged | is-empty) and (staged-files --filter 'D' | is-empty) {
         return
     }
 
-    # Regenerating adds files to the commit, so fold them into the set that is
-    # re-staged after formatting.
-    let tracked = $staged | append (relock-nvim $staged)
+    let stashed = stash-unstaged
+
+    # Re-lock only once the stash leaves the working tree equal to the index,
+    # so the lock matches the specs being committed. Regenerating adds files to
+    # the commit, so fold them into the set that is re-staged after formatting.
+    let tracked = $staged | append (relock-nvim)
 
     print 'Running treefmt on staged files...'
-    let stashed = stash-unstaged
     let formatted = do { ^nix run .#fmt } | complete
 
     # treefmt may have rewritten staged files. Re-stage those exact paths and
