@@ -142,5 +142,8 @@
 
     # Pip configuration
     ./pip.nix
+
+    # T3 Code configuration
+    ./t3code
   ];
 }
