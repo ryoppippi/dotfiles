@@ -297,6 +297,7 @@ in
       "discord"
       "google-chrome"
       "google-drive"
+      "grok-bot"
       "karabiner-elements"
       "ollama-app"
       "openvpn-connect"
