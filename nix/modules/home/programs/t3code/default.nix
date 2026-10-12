@@ -42,21 +42,35 @@ let
     # Pinning store paths stops T3 Code from resolving agents through PATH, where
     # self-updating installs such as ~/.local/bin/cursor-agent would shadow the
     # Nix-managed binaries.
+    providers = lib.genAttrs [ "cursor" "grok" "opencode" ] (_: {
+      enabled = true;
+    });
+
     # T3 Code rejects the whole settings.json when an instance lacks `driver`,
     # so every entry names its driver explicitly.
-    providerInstances = lib.mapAttrs (driver: instance: { inherit driver; } // instance) {
-      claudeAgent.config = {
-        binaryPath = lib.getExe pkgs.claude-code;
-        homePath = sessionVariables.CLAUDE_CONFIG_DIR;
-      };
-      codex.config = {
-        binaryPath = lib.getExe pkgs.llm-agents.codex;
-        homePath = sessionVariables.CODEX_HOME;
-      };
-      cursor.config.binaryPath = lib.getExe pkgs.llm-agents.cursor-agent;
-      grok.config.binaryPath = lib.getExe pkgs.llm-agents.grok;
-      opencode.config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
-    };
+    providerInstances =
+      lib.mapAttrs
+        (
+          driver: instance:
+          {
+            inherit driver;
+            enabled = true;
+          }
+          // instance
+        )
+        {
+          claudeAgent.config = {
+            binaryPath = lib.getExe pkgs.claude-code;
+            homePath = sessionVariables.CLAUDE_CONFIG_DIR;
+          };
+          codex.config = {
+            binaryPath = lib.getExe pkgs.llm-agents.codex;
+            homePath = sessionVariables.CODEX_HOME;
+          };
+          cursor.config.binaryPath = lib.getExe pkgs.llm-agents.cursor-agent;
+          grok.config.binaryPath = lib.getExe pkgs.llm-agents.grok;
+          opencode.config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
+        };
   };
   settingsFile = pkgs.writeText "t3code-settings.json" (builtins.toJSON settings);
 in
