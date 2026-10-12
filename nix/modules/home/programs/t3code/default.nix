@@ -42,7 +42,9 @@ let
     # Pinning store paths stops T3 Code from resolving agents through PATH, where
     # self-updating installs such as ~/.local/bin/cursor-agent would shadow the
     # Nix-managed binaries.
-    providerInstances = {
+    # T3 Code rejects the whole settings.json when an instance lacks `driver`,
+    # so every entry names its driver explicitly.
+    providerInstances = lib.mapAttrs (driver: instance: { inherit driver; } // instance) {
       claudeAgent.config = {
         binaryPath = lib.getExe pkgs.claude-code;
         homePath = sessionVariables.CLAUDE_CONFIG_DIR;
