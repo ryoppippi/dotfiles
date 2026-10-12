@@ -13,6 +13,12 @@ let
     defaultModelSelection = {
       instanceId = "claudeAgent";
       model = "claude-opus-5-5";
+      options = [
+        {
+          id = "effort";
+          value = "high";
+        }
+      ];
     };
     defaultRuntimeMode = "auto";
 
