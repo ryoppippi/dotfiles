@@ -20,10 +20,9 @@ If `ax` or `tgrab` fails, fall back to the host's web fetch/search tool or `curl
 
 A browser is the last resort, only for a page the tools above cannot read — JavaScript rendering, a login, or interaction. Which browser to reach for, in order: [references/browser.md](references/browser.md).
 
-Delegate the reading, not only the fetching: hand the whole task to the
-environment-appropriate path in the `ask-codex` skill. Inside Codex Desktop or
-Codex CLI, use a native subagent; outside Codex, use `codex exec`. Either path
-searches on the Codex subscription and returns a digest, so whole pages and JSON
-payloads never enter this context. Two things stay here: `exa`, whose 1Password
-key no sandbox mode reaches, and anything wanted verbatim, such as the exa docs
-pages above, where a digest rewrites the exact names you came for.
+Delegate the reading, not only the fetching: hand the whole task to the current
+agent's own subagent (the Agent tool in Claude Code, a native subagent in Codex)
+and ask for a digest, so whole pages and JSON payloads never enter this
+context. Two things stay here: `exa`, whose 1Password key no Codex sandbox mode
+reaches, and anything wanted verbatim, such as the exa docs pages above, where a
+digest rewrites the exact names you came for.
