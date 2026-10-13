@@ -186,8 +186,13 @@ in
         "moveWindowDown" = "Hyper+Down Arrow";
         "moveWindowUp" = "Hyper+Up Arrow";
 
-        "setContainerPrimarySpan.decrease10Percent" = "Hyper+Y";
-        "setContainerPrimarySpan.increase10Percent" = "Hyper+O";
+        # Stepping through the span presets lands on exact widths such as 25%
+        # and 50%, which 10% steps from a third never reach. The 10% steps are
+        # unassigned so their Option+Minus/Equal defaults stay typeable.
+        "cycleSizeBackward" = "Hyper+Y";
+        "cycleSizeForward" = "Hyper+O";
+        "setContainerPrimarySpan.decrease10Percent" = "Unassigned";
+        "setContainerPrimarySpan.increase10Percent" = "Unassigned";
         "setWindowSecondarySpan.decrease10Percent" = "Hyper+U";
         "setWindowSecondarySpan.increase10Percent" = "Hyper+I";
         "resetWindowSecondarySpan" = "Hyper+R";
