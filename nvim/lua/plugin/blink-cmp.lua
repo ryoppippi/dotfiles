@@ -159,7 +159,9 @@ return {
 			completion = {
 				menu = { auto_show = true },
 				list = {
-					selection = { preselect = false, auto_insert = false },
+					-- auto_insert lets <Tab> write the selected candidate into the cmdline,
+					-- while no preselect keeps <CR> running exactly what was typed
+					selection = { preselect = false, auto_insert = true },
 				},
 			},
 		},
