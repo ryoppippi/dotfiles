@@ -10,3 +10,9 @@ nested CLI process of the agent you are running in.
 
 What stays here: anything that needs this conversation's own history, and every
 edit to the repo.
+
+**Codex** is the exception for edits: the main session runs a sol model at high
+effort as the orchestrator, and its native subagents run luna at max effort.
+Plan, split, and review there; hand each implementation step to a subagent with
+a self-contained brief (files, intended change, how to verify), then check its
+diff before moving on.
