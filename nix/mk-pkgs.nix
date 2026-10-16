@@ -20,7 +20,9 @@ import nixpkgs {
   inherit system;
   config.allowUnfree = true;
   overlays = [
-    llm-agents.overlays.shared-nixpkgs
+    (_final: _prev: {
+      llm-agents = llm-agents.packages.${system};
+    })
     (_final: _prev: {
       _nix-claude-code = nix-claude-code;
     })
