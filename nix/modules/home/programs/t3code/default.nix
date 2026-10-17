@@ -70,6 +70,7 @@ let
           cursor.config.binaryPath = lib.getExe pkgs.llm-agents.cursor-agent;
           grok.config.binaryPath = lib.getExe pkgs.llm-agents.grok;
           opencode.config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
+          pi.config.binaryPath = lib.getExe pkgs.llm-agents.pi;
         };
   };
   settingsFile = pkgs.writeText "t3code-settings.json" (builtins.toJSON settings);
