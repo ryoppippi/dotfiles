@@ -99,29 +99,39 @@ let
           };
         };
   };
-  settingsFile = pkgs.writeText "t3code-settings.json" (builtins.toJSON settings);
-in
-{
-  home.packages = [ pkgs.llm-agents.t3code ];
 
-  # Merged rather than linked: T3 Code rewrites settings.json atomically from
-  # its settings UI, which would replace a store symlink with a plain file and
-  # break the next switch. The keys above win; everything else is left alone.
-  home.activation.configureT3codeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    SETTINGS_DIR="${t3codeStateDir}"
-    SETTINGS_FILE="$SETTINGS_DIR/settings.json"
-    mkdir -p "$SETTINGS_DIR"
+  # Desktop-only preferences live apart from the server settings.
+  clientSettings = {
+    confirmQuit = "direct";
+  };
 
+  # Merged rather than linked: T3 Code rewrites both files atomically from its
+  # settings UI, which would replace a store symlink with a plain file and break
+  # the next switch. The keys declared here win; everything else is left alone.
+  mergeSettings = name: value: ''
+    SETTINGS_FILE="$SETTINGS_DIR/${name}"
+    SOURCE_FILE="${pkgs.writeText "t3code-${name}" (builtins.toJSON value)}"
     if [ -f "$SETTINGS_FILE" ]; then
-      TEMP_FILE="$(mktemp "$SETTINGS_DIR/.settings.json.XXXXXX")"
-      if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" "${settingsFile}" > "$TEMP_FILE"; then
+      TEMP_FILE="$(mktemp "$SETTINGS_DIR/.${name}.XXXXXX")"
+      if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" "$SOURCE_FILE" > "$TEMP_FILE"; then
         rm -f "$TEMP_FILE"
         exit 1
       fi
       chmod 644 "$TEMP_FILE"
       mv "$TEMP_FILE" "$SETTINGS_FILE"
     else
-      ${jq} . "${settingsFile}" > "$SETTINGS_FILE"
+      ${jq} . "$SOURCE_FILE" > "$SETTINGS_FILE"
     fi
+  '';
+in
+{
+  home.packages = [ pkgs.llm-agents.t3code ];
+
+  home.activation.configureT3codeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    SETTINGS_DIR="${t3codeStateDir}"
+    mkdir -p "$SETTINGS_DIR"
+
+    ${mergeSettings "settings.json" settings}
+    ${mergeSettings "client-settings.json" clientSettings}
   '';
 }
