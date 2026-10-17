@@ -87,9 +87,10 @@ jobs:
           }
 
           let rows = $moved | each {|m| describe $m.entry $m.change }
-          let title = match ($moved | length) {
-            1 => $"chore\(nvim): update plugin ($moved.0.entry.name) to (short $moved.0.entry.to)"
-            $n => $"chore\(nvim): update ($n) Neovim plugins"
+          let title = match [($moved | length), ($moved.0.change)] {
+            [1, 'removed'] => $"chore\(nvim): drop plugin ($moved.0.entry.name) from the lock"
+            [1, _] => $"chore\(nvim): update plugin ($moved.0.entry.name) to (short $moved.0.entry.to)"
+            [$n, _] => $"chore\(nvim): update ($n) Neovim plugins"
           }
 
           let table = ['| Plugin | Old | New |', '|--------|-----|-----|', ...$rows]

@@ -80,6 +80,14 @@ def relock-nvim []: nothing -> list<string> {
         return []
     }
 
+    # Exit 1 also covers extraction failures; only a stale lock ends with the
+    # refresh hint, and anything else would fail the real lock the same way.
+    if not ($check.stderr | str contains 'without --check to refresh') {
+        print --stderr $check.stderr
+        print --stderr "warning: nvimx-lock --check failed; see the output above"
+        return []
+    }
+
     print 'Neovim plugin lock is stale. Re-locking with nvimx...'
     let result = with-env {DOTFILES_DIR: $root} { do { ^nix run .#nvim-lock } | complete }
 
