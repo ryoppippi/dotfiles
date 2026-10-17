@@ -25,27 +25,33 @@ let
     # Worktrees always land in ~/.t3/worktrees/<repo>/<branch>; T3 Code has no
     # per-repository location setting.
     defaultThreadEnvMode = "worktree";
-    worktreeCleanup = {
-      mode = "custom";
-      rules = {
-        worktreeAfterDays = 14;
-        worktreeOnMerge = true;
-        worktreeOnDelete = true;
-        worktreeUnchanged = true;
-      };
+
+    # `storageCleanup` is the global policy the settings UI edits; a top-level
+    # `worktreeCleanup` would override it wholesale, so it is cleared to keep a
+    # single source of truth.
+    storageCleanup = {
+      worktreeKeepWhen = "uncommitted-changes";
+      worktreeAfterDays = 14;
+      worktreeOnMerge = true;
+      worktreeOnDelete = true;
+      worktreeUnchanged = true;
+      browserArtifactsAfterDays = 30;
+      logsAfterDays = 30;
     };
+    worktreeCleanup = null;
 
     # Agent versions are pinned through llm-agents, so upstream update notices
     # are noise.
     enableProviderUpdateChecks = false;
 
+    enableDeviceSupport = true;
+    enableAgentDeviceAccess = true;
+    cursorKeychainUsageEnabled = true;
+
     # Pinning store paths stops T3 Code from resolving agents through PATH, where
     # self-updating installs such as ~/.local/bin/cursor-agent would shadow the
     # Nix-managed binaries.
-    providers = lib.genAttrs [ "cursor" "grok" "opencode" ] (_: {
-      enabled = true;
-    });
-
+    #
     # T3 Code rejects the whole settings.json when an instance lacks `driver`,
     # so every entry names its driver explicitly. `displayName` is pinned too:
     # T3 Code can persist the resolved binary path as the label, which shows a
