@@ -63,19 +63,32 @@ def staged-files [--filter: string = 'ACMR']: nothing -> list<string> {
 }
 
 # Re-lock the Neovim plugins when a plugin spec changed, and return the files
-# that now need staging. Existing pins stay put; only added or removed plugins
-# change the lock. A failure only warns: a plugin missing from the lock is
-# simply absent until the next run. An offline `nvimx-lock --check`
-# (myuron/nvimx#78) would make this cheaper.
+# that now need staging. The offline `--check` keeps the network-bound lock to
+# the commits that really add, drop or re-pin a plugin; existing pins stay put.
+# A failure only warns: a plugin missing from the lock is simply absent until
+# the next run.
 def relock-nvim []: nothing -> list<string> {
     # Deletions count too: dropping a spec file drops its plugin from the lock.
     if not (staged-files --filter 'ACMRD' | any {|path| $path =~ $NVIM_SPEC_PATTERN }) {
         return []
     }
 
-    print 'Neovim plugin specs changed. Re-locking with nvimx...'
     # Without DOTFILES_DIR the app locks the main checkout, not this worktree.
     let root = ^git rev-parse --show-toplevel | str trim
+    let check = with-env {DOTFILES_DIR: $root} { do { ^nix run .#nvim-lock -- --check } | complete }
+    if $check.exit_code == 0 {
+        return []
+    }
+
+    # Exit 1 also covers extraction failures; only a stale lock ends with the
+    # refresh hint, and anything else would fail the real lock the same way.
+    if not ($check.stderr | str contains 'without --check to refresh') {
+        print --stderr $check.stderr
+        print --stderr "warning: nvimx-lock --check failed; see the output above"
+        return []
+    }
+
+    print 'Neovim plugin lock is stale. Re-locking with nvimx...'
     let result = with-env {DOTFILES_DIR: $root} { do { ^nix run .#nvim-lock } | complete }
 
     if $result.exit_code != 0 {

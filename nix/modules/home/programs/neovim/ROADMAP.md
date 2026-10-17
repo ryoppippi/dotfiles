@@ -58,22 +58,19 @@ Local escape hatches in use (`default.nix`):
   workflow runs it and opens a PR listing every moved plugin with a compare
   link; that PR is never auto-merged
 
-### Glue waiting on nvimx
+### Checks
 
-Repository-side workarounds for gaps reported upstream. Each issue was
-written to be fixed by nvimx itself, so this repository sends no PRs: when
-one lands, bump the `nvimx` input and delete the matching glue.
+- the pre-commit hook runs the offline `nvimx-lock --check` when
+  `nvim/lua/plugin/` changes and only re-locks when it reports the lock stale
+- CI builds `programs.nvimx.env.check`: the installed wrapper started
+  headless and offline with this repository's `nvim/`, loading every store
+  plugin. Plugin runtime tools (`gh`, `git`, `copilot-language-server`) are
+  in `extraPackages` so it passes without the login shell's `PATH`
+- the update bot builds its PR body from `nvimx-lock --summary-json`
 
-| Issue                                                                                            | Glue it removes                                                                                          |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
-| [myuron/nvimx#76](https://github.com/myuron/nvimx/issues/76) aarch64-linux outputs               | `nvim-lock` app builds `lockApp` from nvimx's lib (`nix/flake/apps/neovim.nix`)                          |
-| [myuron/nvimx#77](https://github.com/myuron/nvimx/issues/77) machine-readable `--update` summary | the update bot re-derives moved plugins from `flake.lock` (`.github/workflows/update-nvim-plugins.yaml`) |
-| [myuron/nvimx#78](https://github.com/myuron/nvimx/issues/78) offline `nvimx-lock --check`        | the pre-commit hook re-locks on every spec change (`nix/modules/home/git-hooks.nu`)                      |
-| [myuron/nvimx#79](https://github.com/myuron/nvimx/issues/79) headless startup check              | the hand-written startup step in `.github/workflows/nix-neovim.yaml`                                     |
-
-Not blocking anything here, adopt when they land: #72 `extraWrapperArgs`,
-#73 provider options, #74 `devPatterns`, #75 the deprecated
-`nixfmt-rfc-style` warning on every switch.
+All of these replaced repository-side glue after nvimx shipped them
+upstream (myuron/nvimx#76–#79). Gaps go upstream as issues first; this
+repository does not send nvimx PRs.
 
 ## Possible target: Nix supply + lz.n loader
 
