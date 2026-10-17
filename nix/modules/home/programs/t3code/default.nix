@@ -47,7 +47,9 @@ let
     });
 
     # T3 Code rejects the whole settings.json when an instance lacks `driver`,
-    # so every entry names its driver explicitly.
+    # so every entry names its driver explicitly. `displayName` is pinned too:
+    # T3 Code can persist the resolved binary path as the label, which shows a
+    # Nix store path in the UI and survives the merge below.
     providerInstances =
       lib.mapAttrs
         (
@@ -59,18 +61,36 @@ let
           // instance
         )
         {
-          claudeAgent.config = {
-            binaryPath = lib.getExe pkgs.claude-code;
-            homePath = sessionVariables.CLAUDE_CONFIG_DIR;
+          claudeAgent = {
+            displayName = "Claude";
+            config = {
+              binaryPath = lib.getExe pkgs.claude-code;
+              homePath = sessionVariables.CLAUDE_CONFIG_DIR;
+            };
           };
-          codex.config = {
-            binaryPath = lib.getExe pkgs.llm-agents.codex;
-            homePath = sessionVariables.CODEX_HOME;
+          codex = {
+            displayName = "Codex";
+            config = {
+              binaryPath = lib.getExe pkgs.llm-agents.codex;
+              homePath = sessionVariables.CODEX_HOME;
+            };
           };
-          cursor.config.binaryPath = lib.getExe pkgs.llm-agents.cursor-agent;
-          grok.config.binaryPath = lib.getExe pkgs.llm-agents.grok;
-          opencode.config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
-          pi.config.binaryPath = lib.getExe pkgs.llm-agents.pi;
+          cursor = {
+            displayName = "Cursor";
+            config.binaryPath = lib.getExe pkgs.llm-agents.cursor-agent;
+          };
+          grok = {
+            displayName = "Grok";
+            config.binaryPath = lib.getExe pkgs.llm-agents.grok;
+          };
+          opencode = {
+            displayName = "OpenCode";
+            config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
+          };
+          pi = {
+            displayName = "Pi";
+            config.binaryPath = lib.getExe pkgs.llm-agents.pi;
+          };
         };
   };
   settingsFile = pkgs.writeText "t3code-settings.json" (builtins.toJSON settings);
