@@ -26,23 +26,8 @@ jobs:
 
       - uses: ./.github/actions/setup-nix
 
-      # The wrapper nvimx builds from nvim/nvimx-lock, i.e. exactly what a
-      # switch installs, so a plugin that fails to build fails here.
-      - name: Build Neovim with locked plugins
-        run: nix build .#homeConfigurations.ryoppippi-aarch64.config.programs.nvimx.env.wrapped --out-link nvim-result
-
-      # XDG_CONFIG_HOME points at the checkout so the repository's nvim/ is the
-      # config under test. Only store-served plugins are loaded: `dev = true`
-      # ones live in ~/ghq checkouts CI does not have. Plugins also report
-      # progress on stderr, so only real errors fail the job. Replace with
-      # nvimx's own startup check once myuron/nvimx#79 lands.
-      - name: Start Neovim with the repository config
-        env:
-          XDG_CONFIG_HOME: ${{ github.workspace }}
-        run: |
-          ./nvim-result/bin/nvim --headless \
-            -c 'lua local lazy = require("lazy"); local names = {}; for _, p in ipairs(lazy.plugins()) do if p._.installed then names[#names + 1] = p.name end end; lazy.load({ plugins = names })' \
-            +qa 2> stderr.log || status=$?
-          cat stderr.log
-          [ "${status:-0}" -eq 0 ]
-          ! grep -E 'E[0-9]+:|Error|stack traceback' stderr.log
+      # nvimx's startup check: the wrapper a switch installs, started headless
+      # and offline with the repository's nvim/, loading every store plugin.
+      # A plugin that fails to build or errors on load fails here.
+      - name: Start Neovim with the locked plugins
+        run: nix build .#homeConfigurations.ryoppippi-aarch64.config.programs.nvimx.env.check --print-build-logs
