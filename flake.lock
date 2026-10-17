@@ -609,11 +609,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791792760,
+        "lastModified": 1791888000,
         "narHash": "sha256-WkIvLlk4eJ7CN1vlxE7lsvn7QUCpqxJFIQNNpvMzTMU=",
         "owner": "myuron",
         "repo": "nvimx",
-        "rev": "f381f886685e4b3d4da73f2d54161beedde9a004",
+        "rev": "3cdf9058452a03d542795d58524ed1e51ecfe638",
         "type": "github"
       },
       "original": {
