@@ -93,9 +93,7 @@ let
       enabled = true;
     };
 
-    # T3 Code's MCP server for sessions T3 did not start; T3 injects its own
-    # `t3-code` server into the threads it runs. Sign in once with
-    # `codex mcp login t3`.
+    # For sessions outside T3 Code; its threads get `t3-code` injected.
     mcp_servers.t3.url = "http://127.0.0.1:3773/mcp";
   };
 in
