@@ -109,10 +109,6 @@
       url = "github:lukas-reineke/lsp-format.nvim/e2b4ae87545c1aadebcf1dfc1b5dffe28dcf2ffb";
       flake = false;
     };
-    mark-code-action-nvim = {
-      url = "github:crwebb85/mark-code-action.nvim/7129ba61349bcb03defb5a482aa5677fecca1462";
-      flake = false;
-    };
     marks-nvim = {
       url = "github:chentoast/marks.nvim/f353e8c08c50f39e99a9ed474172df7eddd89b72";
       flake = false;
@@ -147,10 +143,6 @@
     };
     mini-trailspace = {
       url = "github:echasnovski/mini.trailspace/f8083ca969e1b2098480c10f3c3c4d2ce3586680";
-      flake = false;
-    };
-    mkdir-nvim = {
-      url = "github:jghauser/mkdir.nvim/c55d1dee4f099528a1853b28bb28caa802eba217";
       flake = false;
     };
     modes-nvim = {
@@ -241,10 +233,6 @@
       url = "github:rgroli/other.nvim/d36a66a";
       flake = false;
     };
-    parinfer-rust = {
-      url = "github:eraserhd/parinfer-rust";
-      flake = false;
-    };
     peridot-vim = {
       url = "github:monaqa/peridot.vim/5dda71a487d225c16209617d34acff08afb2d50b";
       flake = false;
@@ -313,10 +301,6 @@
       url = "github:mtdl9/vim-log-highlighting/1037e26f3120e6a6a2c0c33b14a84336dee2a78f";
       flake = false;
     };
-    vim-manpager = {
-      url = "github:lambdalisue/vim-manpager/ba60d59a79c096775f5c7f7d76fdffa396efdfca";
-      flake = false;
-    };
     vim-matchup = {
       url = "github:andymass/vim-matchup/0106b1afd4a2f7e1098037b5ceb161bab7471088";
       flake = false;
@@ -333,10 +317,6 @@
       url = "github:mattn/vim-sonictemplate/050450414ca69885df7c26936821d74678ff4904";
       flake = false;
     };
-    vim-startuptime = {
-      url = "github:dstein64/vim-startuptime/5f33e50f1e2e2a80370c9094e4c303ea54cd2aea";
-      flake = false;
-    };
     vim-table-mode = {
       url = "github:dhruvasagar/vim-table-mode/bb025308a45c67c7c8f0763ba37bc2ee3f534df0";
       flake = false;
@@ -347,10 +327,6 @@
     };
     vim-textobj-user = {
       url = "github:kana/vim-textobj-user/41a675ddbeefd6a93664a4dc52f302fe3086a933";
-      flake = false;
-    };
-    vim-visual-multi = {
-      url = "github:mg979/vim-visual-multi/a6975e7c1ee157615bbc80fc25e4392f71c344d4";
       flake = false;
     };
     wb-only-current-line-nvim = {

@@ -459,23 +459,6 @@
         "type": "github"
       }
     },
-    "mark-code-action-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741448697,
-        "narHash": "sha256-HKFEjcIVH0prWJa3VycF4iiV4cJXZTuWm5LYp+b1CaY=",
-        "owner": "crwebb85",
-        "repo": "mark-code-action.nvim",
-        "rev": "7129ba61349bcb03defb5a482aa5677fecca1462",
-        "type": "github"
-      },
-      "original": {
-        "owner": "crwebb85",
-        "repo": "mark-code-action.nvim",
-        "rev": "7129ba61349bcb03defb5a482aa5677fecca1462",
-        "type": "github"
-      }
-    },
     "marks-nvim": {
       "flake": false,
       "locked": {
@@ -626,23 +609,6 @@
         "owner": "echasnovski",
         "repo": "mini.trailspace",
         "rev": "f8083ca969e1b2098480c10f3c3c4d2ce3586680",
-        "type": "github"
-      }
-    },
-    "mkdir-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1658576606,
-        "narHash": "sha256-Q+zlQVR8wVB1BqVTd0lkjZaFu/snt/hcb9jxw9fc/n4=",
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
-        "rev": "c55d1dee4f099528a1853b28bb28caa802eba217",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
-        "rev": "c55d1dee4f099528a1853b28bb28caa802eba217",
         "type": "github"
       }
     },
@@ -1020,22 +986,6 @@
         "type": "github"
       }
     },
-    "parinfer-rust": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786817341,
-        "narHash": "sha256-JIajcU3zAPDDoC775FNHwfYtpOhEKFozagAuhigSKig=",
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "rev": "0d334950099cd30a8e1ca520026f8da9ea1382fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "type": "github"
-      }
-    },
     "peridot-vim": {
       "flake": false,
       "locked": {
@@ -1133,7 +1083,6 @@
         "kanagawa-nvim": "kanagawa-nvim",
         "lazy-nvim": "lazy-nvim",
         "lsp-format-nvim": "lsp-format-nvim",
-        "mark-code-action-nvim": "mark-code-action-nvim",
         "marks-nvim": "marks-nvim",
         "mini-ai": "mini-ai",
         "mini-extra": "mini-extra",
@@ -1143,7 +1092,6 @@
         "mini-splitjoin": "mini-splitjoin",
         "mini-surround": "mini-surround",
         "mini-trailspace": "mini-trailspace",
-        "mkdir-nvim": "mkdir-nvim",
         "modes-nvim": "modes-nvim",
         "modesearch-vim": "modesearch-vim",
         "moonbit-nvim": "moonbit-nvim",
@@ -1166,7 +1114,6 @@
         "oil-git-status-nvim": "oil-git-status-nvim",
         "oil-nvim": "oil-nvim",
         "other-nvim": "other-nvim",
-        "parinfer-rust": "parinfer-rust",
         "peridot-vim": "peridot-vim",
         "persistence-nvim": "persistence-nvim",
         "plenary-nvim": "plenary-nvim",
@@ -1184,16 +1131,13 @@
         "vim-asterisk": "vim-asterisk",
         "vim-illuminate": "vim-illuminate",
         "vim-log-highlighting": "vim-log-highlighting",
-        "vim-manpager": "vim-manpager",
         "vim-matchup": "vim-matchup",
         "vim-partedit": "vim-partedit",
         "vim-repeat": "vim-repeat",
         "vim-sonictemplate": "vim-sonictemplate",
-        "vim-startuptime": "vim-startuptime",
         "vim-table-mode": "vim-table-mode",
         "vim-textobj-blockwise": "vim-textobj-blockwise",
         "vim-textobj-user": "vim-textobj-user",
-        "vim-visual-multi": "vim-visual-multi",
         "wb-only-current-line-nvim": "wb-only-current-line-nvim",
         "which-key-nvim": "which-key-nvim",
         "winresizer": "winresizer"
@@ -1420,23 +1364,6 @@
         "type": "github"
       }
     },
-    "vim-manpager": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1658589646,
-        "narHash": "sha256-VLYGk6RiT/Vej3woPmpOe9ebiDDQms6B8xKw1aGouoQ=",
-        "owner": "lambdalisue",
-        "repo": "vim-manpager",
-        "rev": "ba60d59a79c096775f5c7f7d76fdffa396efdfca",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lambdalisue",
-        "repo": "vim-manpager",
-        "rev": "ba60d59a79c096775f5c7f7d76fdffa396efdfca",
-        "type": "github"
-      }
-    },
     "vim-matchup": {
       "flake": false,
       "locked": {
@@ -1505,23 +1432,6 @@
         "type": "github"
       }
     },
-    "vim-startuptime": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780178822,
-        "narHash": "sha256-5QXRm7glmtqBuyTjQo6gCbgk/8pS19yetAyqqV8SvaY=",
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "rev": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "rev": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
-        "type": "github"
-      }
-    },
     "vim-table-mode": {
       "flake": false,
       "locked": {
@@ -1570,23 +1480,6 @@
         "owner": "kana",
         "repo": "vim-textobj-user",
         "rev": "41a675ddbeefd6a93664a4dc52f302fe3086a933",
-        "type": "github"
-      }
-    },
-    "vim-visual-multi": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1725214162,
-        "narHash": "sha256-KzBWkB/PYph6OfuF0GgNFYgqUAwMYbQQZbaaG9XuWZY=",
-        "owner": "mg979",
-        "repo": "vim-visual-multi",
-        "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mg979",
-        "repo": "vim-visual-multi",
-        "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
         "type": "github"
       }
     },

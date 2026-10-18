@@ -504,24 +504,6 @@
       "tag": null,
       "version": null
     },
-    "mark-code-action.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "mark-code-action-nvim",
-      "pin": null,
-      "resolvedRef": "7129ba61349bcb03defb5a482aa5677fecca1462",
-      "source": {
-        "owner": "crwebb85",
-        "repo": "mark-code-action.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "marks.nvim": {
       "branch": null,
       "build": {
@@ -681,24 +663,6 @@
       "source": {
         "owner": "echasnovski",
         "repo": "mini.trailspace",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "mkdir.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "mkdir-nvim",
-      "pin": null,
-      "resolvedRef": "c55d1dee4f099528a1853b28bb28caa802eba217",
-      "source": {
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
         "type": "github"
       },
       "tag": null,
@@ -1123,25 +1087,6 @@
       "tag": null,
       "version": null
     },
-    "parinfer-rust": {
-      "branch": null,
-      "build": {
-        "cmd": "nix develop --command bash -c 'cargo build --release'",
-        "kind": "shell"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "parinfer-rust",
-      "pin": null,
-      "resolvedRef": null,
-      "source": {
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "peridot.vim": {
       "branch": null,
       "build": {
@@ -1450,24 +1395,6 @@
       "tag": null,
       "version": null
     },
-    "vim-manpager": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-manpager",
-      "pin": null,
-      "resolvedRef": "ba60d59a79c096775f5c7f7d76fdffa396efdfca",
-      "source": {
-        "owner": "lambdalisue",
-        "repo": "vim-manpager",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "vim-matchup": {
       "branch": null,
       "build": {
@@ -1542,24 +1469,6 @@
       "tag": null,
       "version": null
     },
-    "vim-startuptime": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-startuptime",
-      "pin": null,
-      "resolvedRef": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
-      "source": {
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "vim-table-mode": {
       "branch": null,
       "build": {
@@ -1611,24 +1520,6 @@
       "source": {
         "owner": "kana",
         "repo": "vim-textobj-user",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "vim-visual-multi": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-visual-multi",
-      "pin": null,
-      "resolvedRef": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
-      "source": {
-        "owner": "mg979",
-        "repo": "vim-visual-multi",
         "type": "github"
       },
       "tag": null,
