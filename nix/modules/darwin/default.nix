@@ -23,6 +23,9 @@
         ;
     })
 
+    # Display goes dark (and locks) on idle even while apps hold it awake
+    ./display-sleep.nix
+
     # Tailscale CLI from the GUI app instead of nixpkgs
     ./programs/tailscale.nix
 
