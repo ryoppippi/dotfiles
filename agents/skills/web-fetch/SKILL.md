@@ -13,7 +13,7 @@ With a URL in hand:
 Searching, in this order:
 
 1. `exa` — semantic search with filters, plus extraction in the same call. Default choice: one HTTP round trip, and it returns sources to judge rather than a conclusion to trust. [references/exa.md](references/exa.md)
-2. `grok -p "<prompt>"` — tweet search; it has the native X index. Inside T3 Code, follow the `t3-delegate` skill with the `grok` provider, `role: "research"`, and `mode: "wait"` instead; the same X search tools are there. Feed the URLs it returns to `./tgrab` when full content is needed.
+2. `grok -p "<prompt>"` — tweet search; it has the native X index. Inside T3 Code, use the `t3-delegate` skill with the `grok` provider instead. Feed the URLs it returns to `./tgrab` when full content is needed.
 3. `codex` — escalation, not a first stop: use the environment-appropriate Codex path when the question needs multi-step digging or synthesis across sources, when exa's results are ambiguous and an independent reading helps, or when the 1Password key exa needs is unavailable. [references/codex.md](references/codex.md)
 
 If `ax` or `tgrab` fails, fall back to the host's web fetch/search tool or `curl`.

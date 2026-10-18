@@ -27,9 +27,8 @@ rather than dumping the whole codebase.
 
 ## Inside T3 Code
 
-When the `t3-code` MCP tools are available, use the `t3-delegate` skill instead
-of every CLI below, keeping the model choice each section names; the CLIs are
-the fallback outside T3.
+Use the `t3-delegate` skill instead of the CLIs below, keeping each section's
+model choice.
 
 ## Codex
 

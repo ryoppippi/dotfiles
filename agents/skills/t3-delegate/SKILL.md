@@ -10,14 +10,9 @@ T3 Code injects the `t3-code` MCP server into every thread it runs, and its
 can watch. Inside T3, use it instead of the agent CLIs; outside T3, the calling
 skill's CLI path still applies.
 
-The tools are present when `t3-code:delegate_task` is listed, possibly
-normalised to `mcp__t3_code__delegate_task` or deferred behind a tool search.
-If the catalogue does not show them, make one direct
-`t3-code:orchestrator_capabilities` call before falling back to a CLI.
-
-For your own provider, keep using the native subagent when it can run the
-model you want; `delegate_task` is for other providers and for models the
-native subagent cannot run.
+If `t3-code:delegate_task` is not listed (it may be deferred or normalised to
+`mcp__t3_code__delegate_task`), call `t3-code:orchestrator_capabilities` once
+before falling back to a CLI.
 
 ## Workflow
 
