@@ -46,7 +46,9 @@ let
     SCHEMA_URL=$(${jq} -r '.["$schema"]' "$TARGET")
 
     echo "🔍 Validating OpenCode ${name}..."
-    if ${checkJsonschema} --schemafile "$SCHEMA_URL" "$TARGET" 2>&1; then
+    # opencode.ai sends no Last-Modified header, so check-jsonschema would keep
+    # validating against a stale cached schema forever.
+    if ${checkJsonschema} --no-cache --schemafile "$SCHEMA_URL" "$TARGET" 2>&1; then
       echo "✅ OpenCode ${name} validation passed"
     else
       echo "❌ OpenCode ${name} validation failed" >&2
