@@ -99,17 +99,13 @@ if not test -d $HM_PATH_BIN
 end
 fish_add_path $HM_PATH_BIN
 
-# homebrew
-if test -x /opt/homebrew/bin/brew
-    /opt/homebrew/bin/brew shellenv fish | source
-end
-
 # xcode
 # Append (and keep) Xcode's bin at the end of fish_user_paths so its
 # bundled tools (git, etc.) never shadow the Nix/home-manager ones
 if command -q xcode-select
-    fish_add_path --append --move (xcode-select -p)/usr/bin
-    set -gx SDKROOT (xcrun --sdk macosx --show-sdk-path)
+    set -l xcode_dir (xcode-select -p)
+    fish_add_path --append --move $xcode_dir/usr/bin
+    set -gx SDKROOT $xcode_dir/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 end
 
 if not status is-interactive; and command -q direnv
