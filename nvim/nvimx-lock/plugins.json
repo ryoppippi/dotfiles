@@ -1359,24 +1359,6 @@
       "tag": null,
       "version": null
     },
-    "vim-illuminate": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-illuminate",
-      "pin": null,
-      "resolvedRef": "1cc33d347c574c3bd21a4852fc9ffed677c1c58c",
-      "source": {
-        "owner": "RRethy",
-        "repo": "vim-illuminate",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "vim-log-highlighting": {
       "branch": null,
       "build": {

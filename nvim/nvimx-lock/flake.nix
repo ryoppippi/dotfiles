@@ -293,10 +293,6 @@
       url = "github:haya14busa/vim-asterisk/77e97061d6691637a034258cc415d98670698459";
       flake = false;
     };
-    vim-illuminate = {
-      url = "github:RRethy/vim-illuminate/1cc33d347c574c3bd21a4852fc9ffed677c1c58c";
-      flake = false;
-    };
     vim-log-highlighting = {
       url = "github:mtdl9/vim-log-highlighting/1037e26f3120e6a6a2c0c33b14a84336dee2a78f";
       flake = false;

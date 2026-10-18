@@ -1129,7 +1129,6 @@
         "troublesum-nvim": "troublesum-nvim",
         "ts-error-translator-nvim": "ts-error-translator-nvim",
         "vim-asterisk": "vim-asterisk",
-        "vim-illuminate": "vim-illuminate",
         "vim-log-highlighting": "vim-log-highlighting",
         "vim-matchup": "vim-matchup",
         "vim-partedit": "vim-partedit",
@@ -1327,23 +1326,6 @@
         "owner": "haya14busa",
         "repo": "vim-asterisk",
         "rev": "77e97061d6691637a034258cc415d98670698459",
-        "type": "github"
-      }
-    },
-    "vim-illuminate": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787624072,
-        "narHash": "sha256-OezN45HvyZ711ovFw6f2CgvH+4QcUywc2ZsabIhNi6s=",
-        "owner": "RRethy",
-        "repo": "vim-illuminate",
-        "rev": "1cc33d347c574c3bd21a4852fc9ffed677c1c58c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "RRethy",
-        "repo": "vim-illuminate",
-        "rev": "1cc33d347c574c3bd21a4852fc9ffed677c1c58c",
         "type": "github"
       }
     },
