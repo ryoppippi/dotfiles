@@ -9,7 +9,7 @@
 
 ## Key Environment Variables
 
-- `EDITOR=nvim`, `GIT_EDITOR=nvim`, `MANPAGER=nvim`
+- `EDITOR=nvim`, `GIT_EDITOR=nvim`, `MANPAGER="nvim +Man!"`
 - `CLAUDE_CONFIG_DIR=$XDG_CONFIG_HOME/claude`
 - `CODEX_HOME=$XDG_CONFIG_HOME/codex`
 

@@ -245,4 +245,11 @@ in
     source = yamlFormat.generate "efm-langserver-config.yaml" settings;
     force = true;
   };
+
+  # Read by `nvim/after/lsp/efm.lua` so efm only attaches to buffers it has
+  # tools for, without repeating the language list there.
+  xdg.configFile."efm-langserver/filetypes.json" = {
+    text = builtins.toJSON (builtins.attrNames settings.languages);
+    force = true;
+  };
 }

@@ -127,17 +127,32 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
 	group = folding,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+-- FileWritePre covers `:write other/path` from a buffer with a different name
+vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
 	pattern = "*",
 	callback = function(args)
-		-- URL-like names (oil://, scp://, ...) are handled by their own writers
-		if args.match:match("^%w+://") then
+		-- URL-like names (oil://, oil-ssh://, scp://, ...) are handled by their own writers
+		if args.match:match("^%a[%w+.-]*://") then
 			return
 		end
 		vim.fn.mkdir(vim.fs.dirname(vim.fn.fnamemodify(args.match, ":p")), "p")
 	end,
 	desc = "create missing parent directories on write",
 })
+
+-- Neovim never rotates its logs, and a noisy language server can grow lsp.log
+-- by hundreds of MB, so drop any log past the limit on startup. This runs while
+-- the config loads, before any client has opened lsp.log for appending.
+local LOG_SIZE_LIMIT = 10 * 1024 * 1024
+for _, path in ipairs({
+	vim.lsp.log.get_filename(),
+	vim.env.NVIM_LOG_FILE or vim.fs.joinpath(vim.fn.stdpath("log"), "nvim.log"),
+}) do
+	local stat = vim.uv.fs_stat(path)
+	if stat and stat.size > LOG_SIZE_LIMIT then
+		vim.uv.fs_unlink(path)
+	end
+end
 
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
