@@ -5,6 +5,7 @@ description: Run a code review using Codex or a native subagent. Use when the us
 
 Use the review path that matches the current session:
 
+- Inside T3 Code (the `t3-code` MCP `delegate_task` tool is available): delegate the review as a T3 child task; see [T3 Code](#t3-code).
 - Outside Codex: use `codex exec review`.
 - Inside Codex (Desktop or CLI): delegate the review to a native subagent; do not start a nested Codex process.
 
@@ -26,6 +27,16 @@ codex exec review "Focus on error handling and edge cases"
 ```
 
 The positional prompt cannot be combined with a scope flag. Run `codex exec review --help` when flags are unclear.
+
+## T3 Code
+
+T3 has no `codex exec review` equivalent for agents, so brief a child task:
+
+- Pick the `codex` provider instance and a model from `orchestrator_capabilities` (its live catalog replaces the list below), and pass `target.model` explicitly.
+- Call `delegate_task` with `role: "review"`, `interactionMode: "plan"`, and `mode: "async"`. Leave `runtimeMode` unset so the child never waits on an approval this thread cannot give.
+- Name the scope as the git command from [Scope](#scope) for the reviewer to run, tell it not to edit files, and ask for critical findings separately from suggestions with `file:line` references.
+- Keep the default shared checkout: `isolation: "worktree"` starts from the last commit and drops uncommitted changes.
+- End the turn and wait for the completion notification. For a re-review, call `delegate_task` again with the original brief, the prior findings, and what changed, under a new `clientRequestId`.
 
 ## Available Models
 

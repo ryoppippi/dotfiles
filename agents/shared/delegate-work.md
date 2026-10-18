@@ -6,7 +6,9 @@ message from a diff — belongs in a subagent, not in this context. Delegate it
 to the current agent's own native subagent: the Agent tool in Claude Code, a
 native subagent in Codex. The `ask-coding-cli` skill is for an
 independent second opinion from another agent, not routine delegation. Never start a
-nested CLI process of the agent you are running in.
+nested CLI process of the agent you are running in. Inside T3 Code, reach another
+provider, or a model the native subagent cannot run, through the `t3-code` MCP
+`delegate_task` tool rather than its CLI.
 
 What stays here: anything that needs this conversation's own history, and every
 edit to the repo.
