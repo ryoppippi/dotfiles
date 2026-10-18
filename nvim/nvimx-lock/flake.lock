@@ -1020,22 +1020,6 @@
         "type": "github"
       }
     },
-    "parinfer-rust": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786817341,
-        "narHash": "sha256-JIajcU3zAPDDoC775FNHwfYtpOhEKFozagAuhigSKig=",
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "rev": "0d334950099cd30a8e1ca520026f8da9ea1382fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "type": "github"
-      }
-    },
     "peridot-vim": {
       "flake": false,
       "locked": {
@@ -1166,7 +1150,6 @@
         "oil-git-status-nvim": "oil-git-status-nvim",
         "oil-nvim": "oil-nvim",
         "other-nvim": "other-nvim",
-        "parinfer-rust": "parinfer-rust",
         "peridot-vim": "peridot-vim",
         "persistence-nvim": "persistence-nvim",
         "plenary-nvim": "plenary-nvim",

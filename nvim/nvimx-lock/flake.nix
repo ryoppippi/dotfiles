@@ -241,10 +241,6 @@
       url = "github:rgroli/other.nvim/d36a66a";
       flake = false;
     };
-    parinfer-rust = {
-      url = "github:eraserhd/parinfer-rust";
-      flake = false;
-    };
     peridot-vim = {
       url = "github:monaqa/peridot.vim/5dda71a487d225c16209617d34acff08afb2d50b";
       flake = false;

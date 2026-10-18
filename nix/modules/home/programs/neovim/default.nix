@@ -34,11 +34,6 @@ in
     # Own plugins (`dev = true` in the spec) load from the mutable ghq checkout
     devPath = "~/ghq/github.com/ryoppippi";
 
-    plugins.nixpkgsFallback = [
-      # its spec build runs `nix develop`, which cannot work in the sandbox
-      "parinfer-rust"
-    ];
-
     treesitter.grammars = "all";
 
     # These packages are only available when NeoVim is running

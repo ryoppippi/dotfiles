@@ -40,8 +40,6 @@ What this bought over the previous lazy2nix setup:
 
 Local escape hatches in use (`default.nix`):
 
-- `plugins.nixpkgsFallback = [ "parinfer-rust" ]` — its spec build runs
-  `nix develop`, which cannot work in the sandbox
 - `treesitter.grammars = "all"` — parsers from nixpkgs merged into the
   locked nvim-treesitter; grammars nixpkgs lacks (moonbit) still go through
   `:TSInstall` with the `tree-sitter` CLI

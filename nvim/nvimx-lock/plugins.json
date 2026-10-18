@@ -1123,25 +1123,6 @@
       "tag": null,
       "version": null
     },
-    "parinfer-rust": {
-      "branch": null,
-      "build": {
-        "cmd": "nix develop --command bash -c 'cargo build --release'",
-        "kind": "shell"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "parinfer-rust",
-      "pin": null,
-      "resolvedRef": null,
-      "source": {
-        "owner": "eraserhd",
-        "repo": "parinfer-rust",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "peridot.vim": {
       "branch": null,
       "build": {
