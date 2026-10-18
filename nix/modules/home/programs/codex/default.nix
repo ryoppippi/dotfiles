@@ -92,6 +92,11 @@ let
     plugins."github@openai-curated" = {
       enabled = true;
     };
+
+    # T3 Code's MCP server for sessions T3 did not start; T3 injects its own
+    # `t3-code` server into the threads it runs. Sign in once with
+    # `codex mcp login t3`.
+    mcp_servers.t3.url = "http://127.0.0.1:3773/mcp";
   };
 in
 {
