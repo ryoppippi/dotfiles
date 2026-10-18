@@ -1487,24 +1487,6 @@
       "tag": null,
       "version": null
     },
-    "vim-startuptime": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-startuptime",
-      "pin": null,
-      "resolvedRef": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
-      "source": {
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "vim-table-mode": {
       "branch": null,
       "build": {

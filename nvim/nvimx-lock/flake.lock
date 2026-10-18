@@ -1153,7 +1153,6 @@
         "vim-partedit": "vim-partedit",
         "vim-repeat": "vim-repeat",
         "vim-sonictemplate": "vim-sonictemplate",
-        "vim-startuptime": "vim-startuptime",
         "vim-table-mode": "vim-table-mode",
         "vim-textobj-blockwise": "vim-textobj-blockwise",
         "vim-textobj-user": "vim-textobj-user",
@@ -1449,23 +1448,6 @@
         "owner": "mattn",
         "repo": "vim-sonictemplate",
         "rev": "050450414ca69885df7c26936821d74678ff4904",
-        "type": "github"
-      }
-    },
-    "vim-startuptime": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780178822,
-        "narHash": "sha256-5QXRm7glmtqBuyTjQo6gCbgk/8pS19yetAyqqV8SvaY=",
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "rev": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dstein64",
-        "repo": "vim-startuptime",
-        "rev": "5f33e50f1e2e2a80370c9094e4c303ea54cd2aea",
         "type": "github"
       }
     },

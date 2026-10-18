@@ -321,10 +321,6 @@
       url = "github:mattn/vim-sonictemplate/050450414ca69885df7c26936821d74678ff4904";
       flake = false;
     };
-    vim-startuptime = {
-      url = "github:dstein64/vim-startuptime/5f33e50f1e2e2a80370c9094e4c303ea54cd2aea";
-      flake = false;
-    };
     vim-table-mode = {
       url = "github:dhruvasagar/vim-table-mode/bb025308a45c67c7c8f0763ba37bc2ee3f534df0";
       flake = false;
