@@ -103,6 +103,8 @@ let
   # Desktop-only preferences live apart from the server settings.
   clientSettings = {
     confirmQuit = "direct";
+    notificationMode = "notifications-and-sound";
+    inAppNotificationsEnabled = true;
   };
 
   # Merged rather than linked: T3 Code rewrites both files atomically from its
