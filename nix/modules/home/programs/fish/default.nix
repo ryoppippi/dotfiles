@@ -2,6 +2,7 @@
   pkgs,
   fish-na,
   lib,
+  config,
   ...
 }:
 let
@@ -168,6 +169,23 @@ in
     # Source conf.d files from plugins
     ${confDFiles}
   '';
+
+  # Generated at build time so the hooks follow the installed tool versions
+  # without a runtime cache to invalidate. tirith still runs at startup because
+  # `init` writes its hook under the user's home directory.
+  xdg.configFile."fish/conf.d/02-tool-hooks.fish".source =
+    pkgs.runCommand "fish-tool-hooks.fish" { }
+      ''
+        export HOME="$TMPDIR"
+        {
+          ${lib.getExe config.programs.direnv.package} hook fish
+          ${lib.getExe pkgs.zoxide} init fish
+          echo "${lib.getExe pkgs.tirith} init --shell fish | source"
+          ${lib.getExe pkgs.git-wt} --init fish
+          ${lib.getExe pkgs.git-wtpr} --init fish
+          echo "set -gx LS_COLORS '$(${lib.getExe pkgs.vivid} generate gruvbox-dark)'"
+        } > "$out"
+      '';
 
   # Add nix-darwin system path (for comma, nix-locate, etc.)
   xdg.configFile."fish/conf.d/01-nix-darwin-path.fish".text = ''

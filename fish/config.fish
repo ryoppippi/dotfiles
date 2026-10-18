@@ -40,7 +40,6 @@ end
 # define fish config paths
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
-set -g FISH_CACHE_DIR /tmp/fish-cache
 
 # load user config (functions/ is auto-loaded by Fish)
 for file in $FISH_CONFIG_DIR/config/*.fish
@@ -100,55 +99,18 @@ if not test -d $HM_PATH_BIN
 end
 fish_add_path $HM_PATH_BIN
 
-set -l CONFIG_CACHE $FISH_CACHE_DIR/config.fish
-if not test -f "$CONFIG_CACHE"; or test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
-    mkdir -p $FISH_CACHE_DIR
-
-    # Build the cache in a per-process temp file and only swap it into place
-    # once it is fully written. Appending directly to $CONFIG_CACHE means an
-    # interrupted shell (closed/killed mid-generation) leaves a truncated cache
-    # that every later shell keeps sourcing — silently dropping direnv/zoxide/etc.
-    # Writing to $CONFIG_CACHE_TMP then `mv` makes the swap atomic, so a partial
-    # build never poisons the real cache.
-    set -l CONFIG_CACHE_TMP $CONFIG_CACHE.tmp.$fish_pid
-    echo '' >$CONFIG_CACHE_TMP
-
-    # homebrew
-    echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE_TMP
-    echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE_TMP
-
-    # xcode
-    # Append (and keep) Xcode's bin at the end of fish_user_paths so its
-    # bundled tools (git, etc.) never shadow the Nix/home-manager ones
-    echo "fish_add_path --append --move $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE_TMP
-    echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE_TMP
-
-    # ruby
-    echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE_TMP
-    echo "fish_add_path $(ensure_installed gem environment gemdir)/bin" >>$CONFIG_CACHE_TMP
-
-    # tools
-    ensure_installed direnv hook fish >>$CONFIG_CACHE_TMP
-    ensure_installed zoxide init fish >>$CONFIG_CACHE_TMP
-    ensure_installed tirith init --shell fish >>$CONFIG_CACHE_TMP
-    ensure_installed git-wt --init fish >>$CONFIG_CACHE_TMP
-    ensure_installed git-wtpr --init fish >>$CONFIG_CACHE_TMP
-    # starship init fish >>$CONFIG_CACHE_TMP
-
-    # set vivid colors
-    echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE_TMP
-
-    # jj
-    ensure_installed jj util completion fish >>$CONFIG_CACHE_TMP
-
-    # Atomically replace the cache only after a complete build.
-    mv -f $CONFIG_CACHE_TMP $CONFIG_CACHE
-
-    set_color brmagenta --bold --underline
-    echo "config cache updated"
-    set_color normal
+# homebrew
+if test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv fish | source
 end
-source $CONFIG_CACHE
+
+# xcode
+# Append (and keep) Xcode's bin at the end of fish_user_paths so its
+# bundled tools (git, etc.) never shadow the Nix/home-manager ones
+if command -q xcode-select
+    fish_add_path --append --move (xcode-select -p)/usr/bin
+    set -gx SDKROOT (xcrun --sdk macosx --show-sdk-path)
+end
 
 if not status is-interactive; and command -q direnv
     direnv export fish | source

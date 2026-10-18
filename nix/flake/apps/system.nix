@@ -112,8 +112,6 @@
                       "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} o+e>| ^${nom}"
                   }
                 }
-                print "Clearing fish cache..."
-                rm --recursive --force /tmp/fish-cache
                 print "Done!"
               }
             ''
