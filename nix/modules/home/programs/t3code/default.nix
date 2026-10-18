@@ -130,7 +130,7 @@ let
   '';
 in
 {
-  home.packages = [ pkgs.llm-agents.t3code ];
+  home.sessionPath = [ "$HOME/.t3/bin" ];
 
   home.activation.configureT3codeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     SETTINGS_DIR="${t3codeStateDir}"
