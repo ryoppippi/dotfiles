@@ -16,7 +16,7 @@ let
       options = [
         {
           id = "effort";
-          value = "high";
+          value = "medium";
         }
       ];
     };
