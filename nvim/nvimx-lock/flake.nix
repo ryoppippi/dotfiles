@@ -109,10 +109,6 @@
       url = "github:lukas-reineke/lsp-format.nvim/e2b4ae87545c1aadebcf1dfc1b5dffe28dcf2ffb";
       flake = false;
     };
-    mark-code-action-nvim = {
-      url = "github:crwebb85/mark-code-action.nvim/7129ba61349bcb03defb5a482aa5677fecca1462";
-      flake = false;
-    };
     marks-nvim = {
       url = "github:chentoast/marks.nvim/f353e8c08c50f39e99a9ed474172df7eddd89b72";
       flake = false;

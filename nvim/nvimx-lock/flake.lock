@@ -459,23 +459,6 @@
         "type": "github"
       }
     },
-    "mark-code-action-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741448697,
-        "narHash": "sha256-HKFEjcIVH0prWJa3VycF4iiV4cJXZTuWm5LYp+b1CaY=",
-        "owner": "crwebb85",
-        "repo": "mark-code-action.nvim",
-        "rev": "7129ba61349bcb03defb5a482aa5677fecca1462",
-        "type": "github"
-      },
-      "original": {
-        "owner": "crwebb85",
-        "repo": "mark-code-action.nvim",
-        "rev": "7129ba61349bcb03defb5a482aa5677fecca1462",
-        "type": "github"
-      }
-    },
     "marks-nvim": {
       "flake": false,
       "locked": {
@@ -1100,7 +1083,6 @@
         "kanagawa-nvim": "kanagawa-nvim",
         "lazy-nvim": "lazy-nvim",
         "lsp-format-nvim": "lsp-format-nvim",
-        "mark-code-action-nvim": "mark-code-action-nvim",
         "marks-nvim": "marks-nvim",
         "mini-ai": "mini-ai",
         "mini-extra": "mini-extra",
