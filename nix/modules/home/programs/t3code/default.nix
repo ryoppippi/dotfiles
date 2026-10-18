@@ -25,6 +25,8 @@ let
     # Worktrees always land in ~/.t3/worktrees/<repo>/<branch>; T3 Code has no
     # per-repository location setting.
     defaultThreadEnvMode = "worktree";
+    branchNamingMode = "semantic";
+    branchNamePrefix = "ryoppippi";
 
     # `storageCleanup` is the global policy the settings UI edits; a top-level
     # `worktreeCleanup` would override it wholesale, so it is cleared to keep a
