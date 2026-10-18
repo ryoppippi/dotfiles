@@ -27,29 +27,9 @@ rather than dumping the whole codebase.
 
 ## Inside T3 Code
 
-When the `t3-code` MCP tools are available (`delegate_task`, possibly
-normalised to `mcp__t3_code__delegate_task`), use them instead of every CLI
-below; the CLIs are the fallback when those tools are absent. T3 runs the other
-agent as a child thread the user can watch, and its completion wakes this
-thread instead of blocking a shell.
-
-1. Call `orchestrator_capabilities` and pick the provider instance and model
-   from its live catalog, applying the same model choice as the sections
-   below. Always pass `target.model`: a provider without one falls back to its
-   first advertised model, not its newest.
-2. Call `delegate_task` with the self-contained prompt as `task`,
-   `mode: "async"`, and a `role` such as `review`, `research`, or `design`.
-   `role` only prefixes the prompt, so keep a second opinion read-only with
-   `interactionMode: "plan"` and say so in the task; drop plan mode only when
-   the user hands the agent a task to carry out.
-3. Leave `runtimeMode` unset. Approval-requiring modes stall the child on a
-   prompt this thread cannot answer.
-4. Leave `isolation` at the default shared checkout when the task concerns
-   uncommitted work; a worktree starts from the last commit.
-5. End the turn and wait for the completion notification rather than polling.
-   For another round, call `delegate_task` again with the original brief, the
-   earlier findings, and your responses, under a new `clientRequestId`; do not
-   continue through `t3_thread_send` on the child thread.
+When the `t3-code` MCP tools are available, use the `t3-delegate` skill instead
+of every CLI below, keeping the model choice each section names; the CLIs are
+the fallback outside T3.
 
 ## Codex
 
