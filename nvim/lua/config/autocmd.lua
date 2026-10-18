@@ -127,11 +127,12 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
 	group = folding,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+-- FileWritePre covers `:write other/path` from a buffer with a different name
+vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
 	pattern = "*",
 	callback = function(args)
-		-- URL-like names (oil://, scp://, ...) are handled by their own writers
-		if args.match:match("^%w+://") then
+		-- URL-like names (oil://, oil-ssh://, scp://, ...) are handled by their own writers
+		if args.match:match("^%a[%w+.-]*://") then
 			return
 		end
 		vim.fn.mkdir(vim.fs.dirname(vim.fn.fnamemodify(args.match, ":p")), "p")
