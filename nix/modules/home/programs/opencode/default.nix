@@ -9,47 +9,65 @@ let
   checkJsonschema = lib.getExe pkgs.check-jsonschema;
   jq = lib.getExe pkgs.jq;
 
-  settingsJsonText = builtins.readFile ./settings.json;
-  settingsFile = builtins.toFile "opencode-settings.json" settingsJsonText;
-  tuiSettingsJsonText = builtins.readFile ./tui.json;
+  settingsFile = builtins.toFile "opencode-settings.json" (builtins.readFile ./settings.json);
+  cliSettingsFile = builtins.toFile "opencode-cli.json" (builtins.readFile ./cli.json);
+
+  # llm-agents installs v2 as `opencode2` so it can coexist with v1; we only
+  # install v2, so expose it under its upstream name as well.
+  opencode = pkgs.symlinkJoin {
+    name = "opencode-${pkgs.llm-agents.opencode2.version}";
+    paths = [ pkgs.llm-agents.opencode2 ];
+    postBuild = ''
+      ln -s opencode2 $out/bin/opencode
+    '';
+    meta.mainProgram = "opencode";
+  };
+
+  # OpenCode writes back to its own config (cli.json holds TUI state), so merge
+  # the managed keys into a mutable file instead of symlinking a store path.
+  mergeJson = name: source: ''
+    TARGET="${opencodeConfigDir}/${name}"
+    if [ -f "$TARGET" ] && [ ! -L "$TARGET" ]; then
+      TEMP_FILE="$(mktemp "${opencodeConfigDir}/.${name}.XXXXXX")"
+      if ! ${jq} -s '.[0] * .[1]' "$TARGET" "${source}" > "$TEMP_FILE"; then
+        rm -f "$TEMP_FILE"
+        exit 1
+      fi
+      mv "$TEMP_FILE" "$TARGET"
+    else
+      rm -f "$TARGET"
+      cp "${source}" "$TARGET"
+      chmod 600 "$TARGET"
+    fi
+  '';
+
+  validateJson = name: ''
+    TARGET="${opencodeConfigDir}/${name}"
+    SCHEMA_URL=$(${jq} -r '.["$schema"]' "$TARGET")
+
+    echo "🔍 Validating OpenCode ${name}..."
+    if ${checkJsonschema} --schemafile "$SCHEMA_URL" "$TARGET" 2>&1; then
+      echo "✅ OpenCode ${name} validation passed"
+    else
+      echo "❌ OpenCode ${name} validation failed" >&2
+      exit 1
+    fi
+  '';
 in
 {
-  home.packages = lib.mkAfter [ pkgs.llm-agents.opencode ];
-
-  xdg.configFile."opencode/tui.json" = {
-    text = tuiSettingsJsonText;
-    force = true;
-  };
+  home.packages = lib.mkAfter [ opencode ];
 
   home.activation.configureOpenCodeSettings =
     lib.hm.dag.entryAfter
       ([ "linkGeneration" ] ++ lib.optional pkgs.stdenv.hostPlatform.isDarwin "installCmuxHooks")
       ''
-        SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
         mkdir -p "${opencodeConfigDir}"
-
-        if [ -f "$SETTINGS_FILE" ]; then
-          TEMP_FILE="$(mktemp "${opencodeConfigDir}/.opencode.json.XXXXXX")"
-          if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" "${settingsFile}" > "$TEMP_FILE"; then
-            rm -f "$TEMP_FILE"
-            exit 1
-          fi
-          mv "$TEMP_FILE" "$SETTINGS_FILE"
-        else
-          cp "${settingsFile}" "$SETTINGS_FILE"
-        fi
+        ${mergeJson "opencode.json" settingsFile}
+        ${mergeJson "cli.json" cliSettingsFile}
       '';
 
   home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "configureOpenCodeSettings" ] ''
-    SETTINGS_FILE="${opencodeConfigDir}/opencode.json"
-    SCHEMA_URL=$(${jq} -r '.["$schema"]' "$SETTINGS_FILE")
-
-    echo "🔍 Validating OpenCode opencode.json..."
-    if ${checkJsonschema} --schemafile "$SCHEMA_URL" "$SETTINGS_FILE" 2>&1; then
-      echo "✅ OpenCode opencode.json validation passed"
-    else
-      echo "❌ OpenCode opencode.json validation failed" >&2
-      exit 1
-    fi
+    ${validateJson "opencode.json"}
+    ${validateJson "cli.json"}
   '';
 }
