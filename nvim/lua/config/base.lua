@@ -17,7 +17,6 @@ vim.g.loaded_vimball = 1
 vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
-vim.g.loaded_man = 1
 
 vim.g.loaded_fzf = 1
 vim.g.loaded_gtags = 1

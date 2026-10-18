@@ -1450,24 +1450,6 @@
       "tag": null,
       "version": null
     },
-    "vim-manpager": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "vim-manpager",
-      "pin": null,
-      "resolvedRef": "ba60d59a79c096775f5c7f7d76fdffa396efdfca",
-      "source": {
-        "owner": "lambdalisue",
-        "repo": "vim-manpager",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "vim-matchup": {
       "branch": null,
       "build": {

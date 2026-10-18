@@ -313,10 +313,6 @@
       url = "github:mtdl9/vim-log-highlighting/1037e26f3120e6a6a2c0c33b14a84336dee2a78f";
       flake = false;
     };
-    vim-manpager = {
-      url = "github:lambdalisue/vim-manpager/ba60d59a79c096775f5c7f7d76fdffa396efdfca";
-      flake = false;
-    };
     vim-matchup = {
       url = "github:andymass/vim-matchup/0106b1afd4a2f7e1098037b5ceb161bab7471088";
       flake = false;

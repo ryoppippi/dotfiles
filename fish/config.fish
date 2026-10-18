@@ -116,7 +116,7 @@ end
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
 set -gx VISUAL nvim
-set -gx MANPAGER "nvim -c ASMANPAGER -"
+set -gx MANPAGER "nvim +Man!"
 
 if status is-interactive
     stty stop undef &
