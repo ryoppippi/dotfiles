@@ -127,6 +127,18 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
 	group = folding,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		-- URL-like names (oil://, scp://, ...) are handled by their own writers
+		if args.match:match("^%w+://") then
+			return
+		end
+		vim.fn.mkdir(vim.fs.dirname(vim.fn.fnamemodify(args.match, ":p")), "p")
+	end,
+	desc = "create missing parent directories on write",
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "*",
 	callback = function()

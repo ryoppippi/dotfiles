@@ -686,24 +686,6 @@
       "tag": null,
       "version": null
     },
-    "mkdir.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "mkdir-nvim",
-      "pin": null,
-      "resolvedRef": "c55d1dee4f099528a1853b28bb28caa802eba217",
-      "source": {
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "modes.nvim": {
       "branch": null,
       "build": {

@@ -629,23 +629,6 @@
         "type": "github"
       }
     },
-    "mkdir-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1658576606,
-        "narHash": "sha256-Q+zlQVR8wVB1BqVTd0lkjZaFu/snt/hcb9jxw9fc/n4=",
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
-        "rev": "c55d1dee4f099528a1853b28bb28caa802eba217",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jghauser",
-        "repo": "mkdir.nvim",
-        "rev": "c55d1dee4f099528a1853b28bb28caa802eba217",
-        "type": "github"
-      }
-    },
     "modes-nvim": {
       "flake": false,
       "locked": {
@@ -1127,7 +1110,6 @@
         "mini-splitjoin": "mini-splitjoin",
         "mini-surround": "mini-surround",
         "mini-trailspace": "mini-trailspace",
-        "mkdir-nvim": "mkdir-nvim",
         "modes-nvim": "modes-nvim",
         "modesearch-vim": "modesearch-vim",
         "moonbit-nvim": "moonbit-nvim",

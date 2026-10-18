@@ -149,10 +149,6 @@
       url = "github:echasnovski/mini.trailspace/f8083ca969e1b2098480c10f3c3c4d2ce3586680";
       flake = false;
     };
-    mkdir-nvim = {
-      url = "github:jghauser/mkdir.nvim/c55d1dee4f099528a1853b28bb28caa802eba217";
-      flake = false;
-    };
     modes-nvim = {
       url = "github:mvllow/modes.nvim/2badf8771dbb2d1e1066fd6a5dddaad2fc836e72";
       flake = false;
