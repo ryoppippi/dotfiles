@@ -91,7 +91,7 @@ let
           };
           opencode = {
             displayName = "OpenCode";
-            config.binaryPath = lib.getExe pkgs.llm-agents.opencode;
+            config.binaryPath = lib.getExe pkgs.llm-agents.opencode2;
           };
           pi = {
             displayName = "Pi";
