@@ -1,13 +1,21 @@
--- Generated next to efm's config.yaml by nix/modules/home/programs/efm-langserver.nix
+-- Generated next to efm's config.yaml by nix/modules/home/programs/efm-langserver.nix,
+-- resolved the same way efm itself finds config.yaml
 local filetypes_file =
 	vim.fs.joinpath(vim.env.XDG_CONFIG_HOME or vim.fs.normalize("~/.config"), "efm-langserver", "filetypes.json")
 
+---@return string[]
 local function read_filetypes()
-	local ok, lines = pcall(vim.fn.readfile, filetypes_file)
-	if not ok then
-		return nil
+	local ok, filetypes = pcall(function()
+		return vim.json.decode(table.concat(vim.fn.readfile(filetypes_file), "\n"))
+	end)
+	if ok then
+		return filetypes
 	end
-	return vim.json.decode(table.concat(lines, "\n"))
+	-- fail closed: an absent `filetypes` would attach efm to every buffer again
+	vim.schedule(function()
+		vim.notify(("efm disabled: cannot read %s"):format(filetypes_file), vim.log.levels.WARN)
+	end)
+	return {}
 end
 
 ---@type vim.lsp.Config
