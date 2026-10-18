@@ -27,6 +27,7 @@ let
     defaultThreadEnvMode = "worktree";
     branchNamingMode = "semantic";
     branchNamePrefix = "ryoppippi";
+    removeAgentCreditsOnMerge = true;
 
     # `storageCleanup` is the global policy the settings UI edits; a top-level
     # `worktreeCleanup` would override it wholesale, so it is cleared to keep a
