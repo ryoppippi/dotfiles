@@ -1,5 +1,8 @@
 local event = { "InsertEnter", "VeryLazy" }
 
+-- Nix puts the server on the wrapper's PATH; without it copilot.lua downloads one
+local server_path = vim.fn.exepath("copilot-language-server")
+
 return {
 	"zbirenbaum/copilot.lua",
 	enabled = true,
@@ -7,6 +10,10 @@ return {
 	cmd = { "Copilot" },
 	event = event,
 	opts = {
+		server = {
+			type = "binary",
+			custom_server_filepath = server_path ~= "" and server_path or nil,
+		},
 		panel = {
 			auto_refresh = true,
 			layout = {

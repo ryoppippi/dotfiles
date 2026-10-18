@@ -53,46 +53,32 @@ jobs:
           const LOCK_DIR = 'nvim/nvimx-lock'
           const BRANCH = 'bot/update-nvim-plugins'
 
-          # Re-derives nvimx-lock's own update summary; replace with its
-          # machine-readable form once myuron/nvimx#77 lands.
-          # plugin name -> locked node of its flake input
-          def locked-plugins [] {
-            let nodes = open --raw ($LOCK_DIR | path join 'flake.lock') | from json | get nodes
-            let lock = open ($LOCK_DIR | path join 'plugins.json')
-            # lazy.nvim itself is pinned too, but kept outside `plugins`
-            $lock.plugins
-            | transpose name plugin
-            | append {name: 'lazy.nvim', plugin: $lock.lazyNvim}
-            | each {|row| {name: $row.name, locked: ($nodes | get -o $row.plugin.inputName | get -o locked)} }
-          }
+          # nvimx-lock's own record of what moved; kept outside the lock dir so
+          # it never shows up as an untracked file there.
+          let summary_path = $env.RUNNER_TEMP | path join 'nvimx-summary.json'
 
           def short [rev] { $rev | default '' | str substring 0..7 }
 
           # A GitHub compare link for moved plugins, a plain revision otherwise
-          def describe [name: string, old, new] {
-            let o = $old.rev? | default null
-            let n = $new.rev? | default null
-            let repo = if ($new.type? == 'github') { $"($new.owner)/($new.repo)" } else { null }
-            match [$o, $n] {
-              [null, _] => $"| `($name)` | added | `(short $n)` |"
-              [_, null] => $"| `($name)` | `(short $o)` | removed |"
-              _ if $repo != null => $"| [`($name)`]\(https://github.com/($repo)) | `(short $o)` | [`(short $n)`]\(https://github.com/($repo)/compare/($o)...($n)) |"
-              _ => $"| `($name)` | `(short $o)` | `(short $n)` |"
+          def describe [entry: record, change: string] {
+            let repo = if ($entry.source.type? == 'github') { $"($entry.source.owner)/($entry.source.repo)" } else { null }
+            let name = if $repo != null { $"[`($entry.name)`]\(https://github.com/($repo))" } else { $"`($entry.name)`" }
+            match $change {
+              'added' => $"| ($name) | added | `(short $entry.to)` |"
+              'removed' => $"| ($name) | `(short $entry.from)` | removed |"
+              _ if $entry.compareUrl != null => $"| ($name) | `(short $entry.from)` | [`(short $entry.to)`]\(($entry.compareUrl)) |"
+              _ => $"| ($name) | `(short $entry.from)` | `(short $entry.to)` |"
             }
           }
 
-          let before = locked-plugins
+          nix run .#nvim-lock -- --update --summary-json $summary_path
+          let summary = open $summary_path
 
-          nix run .#nvim-lock -- --update
-
-          let after = locked-plugins
-          let names = $before | append $after | get name | uniq | sort
-
-          let moved = $names | each {|name|
-            let old = $before | where name == $name | get -o 0.locked
-            let new = $after | where name == $name | get -o 0.locked
-            if ($old.rev? | default null) == ($new.rev? | default null) { null } else { {name: $name, old: $old, new: $new} }
-          } | compact
+          let moved = [
+            ...($summary.updated | each {|e| {entry: $e, change: 'updated'} })
+            ...($summary.added | each {|e| {entry: $e, change: 'added'} })
+            ...($summary.removed | each {|e| {entry: $e, change: 'removed'} })
+          ] | sort-by {|m| $m.entry.name }
 
           if ($moved | is-empty) {
             print 'Every plugin is already at its latest revision.'
@@ -100,10 +86,11 @@ jobs:
             exit 0
           }
 
-          let rows = $moved | each {|m| describe $m.name $m.old $m.new }
-          let title = match ($moved | length) {
-            1 => $"chore\(nvim): update plugin ($moved.0.name) to (short $moved.0.new.rev?)"
-            $n => $"chore\(nvim): update ($n) Neovim plugins"
+          let rows = $moved | each {|m| describe $m.entry $m.change }
+          let title = match [($moved | length), ($moved.0.change)] {
+            [1, 'removed'] => $"chore\(nvim): drop plugin ($moved.0.entry.name) from the lock"
+            [1, _] => $"chore\(nvim): update plugin ($moved.0.entry.name) to (short $moved.0.entry.to)"
+            [$n, _] => $"chore\(nvim): update ($n) Neovim plugins"
           }
 
           let table = ['| Plugin | Old | New |', '|--------|-----|-----|', ...$rows]
