@@ -329,10 +329,6 @@
       url = "github:kana/vim-textobj-user/41a675ddbeefd6a93664a4dc52f302fe3086a933";
       flake = false;
     };
-    vim-visual-multi = {
-      url = "github:mg979/vim-visual-multi/a6975e7c1ee157615bbc80fc25e4392f71c344d4";
-      flake = false;
-    };
     wb-only-current-line-nvim = {
       url = "github:yutkat/wb-only-current-line.nvim/93ebd5eadfee2b0cb911806ce30dc8a798a6a17b";
       flake = false;

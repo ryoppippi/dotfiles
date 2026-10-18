@@ -1138,7 +1138,6 @@
         "vim-table-mode": "vim-table-mode",
         "vim-textobj-blockwise": "vim-textobj-blockwise",
         "vim-textobj-user": "vim-textobj-user",
-        "vim-visual-multi": "vim-visual-multi",
         "wb-only-current-line-nvim": "wb-only-current-line-nvim",
         "which-key-nvim": "which-key-nvim",
         "winresizer": "winresizer"
@@ -1481,23 +1480,6 @@
         "owner": "kana",
         "repo": "vim-textobj-user",
         "rev": "41a675ddbeefd6a93664a4dc52f302fe3086a933",
-        "type": "github"
-      }
-    },
-    "vim-visual-multi": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1725214162,
-        "narHash": "sha256-KzBWkB/PYph6OfuF0GgNFYgqUAwMYbQQZbaaG9XuWZY=",
-        "owner": "mg979",
-        "repo": "vim-visual-multi",
-        "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mg979",
-        "repo": "vim-visual-multi",
-        "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
         "type": "github"
       }
     },
