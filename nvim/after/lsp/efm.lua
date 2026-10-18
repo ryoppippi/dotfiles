@@ -8,7 +8,7 @@ local function read_filetypes()
 	local ok, filetypes = pcall(function()
 		return vim.json.decode(table.concat(vim.fn.readfile(filetypes_file), "\n"))
 	end)
-	if ok then
+	if ok and vim.islist(filetypes) then
 		return filetypes
 	end
 	-- fail closed: an absent `filetypes` would attach efm to every buffer again
