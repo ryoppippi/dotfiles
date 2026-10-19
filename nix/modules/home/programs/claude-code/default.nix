@@ -52,10 +52,10 @@ let
                 "input=$(cat);"
                 "cmd=$(echo \"$input\" | ${jq} -r '.tool_input.command // \"\"');"
                 "if echo \"$cmd\" | grep -q 'gh pr create'; then"
-                "if [ -f /tmp/.claude-codex-review-done ]; then"
-                "rm -f /tmp/.claude-codex-review-done; exit 0;"
+                "if [ -f /tmp/.claude-review-done ]; then"
+                "rm -f /tmp/.claude-review-done; exit 0;"
                 "else"
-                "echo 'BLOCKED: You must run the codex-review skill first before creating a PR. Use Skill(codex-review) to review changes against the base branch.' >&2;"
+                "echo 'BLOCKED: You must run the review skill first before creating a PR. Use Skill(review) to review changes against the base branch.' >&2;"
                 "exit 2;"
                 "fi; fi; exit 0"
               ];
@@ -72,8 +72,8 @@ let
               command = builtins.concatStringsSep " " [
                 "input=$(cat);"
                 "skill=$(echo \"$input\" | ${jq} -r '.tool_input.skill // .tool_input.skillName // \"\"');"
-                "if [ \"$skill\" = \"codex-review\" ]; then"
-                "touch /tmp/.claude-codex-review-done;"
+                "if [ \"$skill\" = \"review\" ]; then"
+                "touch /tmp/.claude-review-done;"
                 "fi; exit 0"
               ];
             }
