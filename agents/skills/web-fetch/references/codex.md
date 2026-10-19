@@ -4,10 +4,7 @@ For a Codex Desktop or Codex CLI session, delegate the search to a native
 subagent. Do not run `codex exec` from inside Codex; keep the model, effort,
 and service tier from Codex's own config.
 
-Inside T3 Code, use the `t3-delegate` skill with the `codex` provider and the
-newest luna model.
-
-Elsewhere, use the CLI:
+Elsewhere outside T3 Code, use the CLI:
 
 ```sh
 codex exec --skip-git-repo-check --ephemeral --sandbox read-only \
