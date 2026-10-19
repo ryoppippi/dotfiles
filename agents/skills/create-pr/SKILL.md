@@ -38,7 +38,7 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
 
 7. Publish using the path that matches the PR structure:
 
-   - Use `gh-stack` only when requested or when the branch is already stacked; verify parent-child ancestry before linking.
+   - Use the `create-stacked-pr` skill only when requested or when the branch is already stacked; verify parent-child ancestry before linking.
    - For an ordinary PR, push the branch and create the PR with:
 
      ```sh
