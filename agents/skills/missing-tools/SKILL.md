@@ -5,7 +5,7 @@ description: Resolves missing CLI tools. Use when a command is unavailable, a sh
 
 Use this workflow when a required command is unavailable:
 
-1. Try comma: `, <command>`.
+1. Try comma: `, <command>`. When several packages provide the command and there is no terminal, it runs the one named after the command and says which on stderr; if that is the wrong one, list them with `, -p <command>` and use step 3 or 4.
 2. Try the project environment: `direnv exec . <command>`.
 3. Use `nix run nixpkgs#<package> -- <args>` when a package is known.
 4. Use `nix shell nixpkgs#<package> --command <command>` when a package is known but a temporary shell is required.

@@ -12,6 +12,7 @@ let
     gh-nippou
     brew-nix
     omniwm
+    nix-index-database
     ;
 
   isDarwin = builtins.match ".*-darwin" system != null;
@@ -30,6 +31,11 @@ import nixpkgs {
     bun2nix.overlays.default
     gh-nippou.overlays.default
     (import ./overlays/default.nix)
+    (final: _prev: {
+      comma-auto-pick = final.callPackage ./packages/comma {
+        inherit (nix-index-database.packages.${system}) comma-with-db;
+      };
+    })
   ]
   ++ nixpkgs.lib.optionals isDarwin [
     brew-nix.overlays.default

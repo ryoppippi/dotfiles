@@ -13,7 +13,6 @@
     ./packages.nix
   ];
 
-  # nix-index for command-not-found and comma
+  # nix-index for command-not-found; comma is comma-auto-pick in home.packages
   programs.nix-index.enable = true;
-  programs.nix-index-database.comma.enable = true;
 }
