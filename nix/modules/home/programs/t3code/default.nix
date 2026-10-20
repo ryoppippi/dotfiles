@@ -22,6 +22,9 @@ let
     };
     defaultRuntimeMode = "auto";
 
+    autoResumeLimitedThreads = true;
+    snoozeLimitedThreads = true;
+
     # Worktrees always land in ~/.t3/worktrees/<repo>/<branch>; T3 Code has no
     # per-repository location setting.
     defaultThreadEnvMode = "worktree";
