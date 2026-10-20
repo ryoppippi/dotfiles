@@ -14,7 +14,7 @@ concurrency:
 jobs:
   # Check if Nix-related files changed
   changes:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-26.04-arm
     outputs:
       nix: ${{ steps.filter.outputs.nix }}
     steps:
@@ -34,7 +34,7 @@ jobs:
   # Security gate: scan the repo for hidden content and config poisoning
   # before any build runs. Build jobs depend on this passing.
   security:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-26.04-arm
     timeout-minutes: 15
     steps:
       - name: Checkout repository
