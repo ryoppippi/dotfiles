@@ -22,6 +22,31 @@ let
     };
     defaultRuntimeMode = "auto";
 
+    # Kept only on this machine; T3 Code does not sync them. The merge replaces
+    # the whole list, so favourites added from the UI need recording here.
+    favorites = [
+      {
+        provider = "claudeAgent";
+        model = "claude-opus-5-5";
+      }
+      {
+        provider = "claudeAgent";
+        model = "claude-sonnet-5-5";
+      }
+      {
+        provider = "codex";
+        model = "gpt-6-astra";
+      }
+      {
+        provider = "codex";
+        model = "gpt-6.1-sol";
+      }
+      {
+        provider = "codex";
+        model = "gpt-6-luna";
+      }
+    ];
+
     autoResumeLimitedThreads = true;
     snoozeLimitedThreads = true;
 
