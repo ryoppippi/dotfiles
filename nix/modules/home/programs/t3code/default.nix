@@ -110,15 +110,26 @@ let
     inAppNotificationsEnabled = true;
   };
 
-  # Merged rather than linked: T3 Code rewrites both files atomically from its
+  # Only the bindings that differ from T3 Code's defaults. A user rule for a
+  # command replaces every default for that command, and T3 Code backfills the
+  # defaults of all other commands on startup.
+  keybindings = [
+    {
+      key = "mod+enter";
+      command = "thread.steerQueuedMessage";
+      when = "!terminalFocus";
+    }
+  ];
+
+  # Merged rather than linked: T3 Code rewrites these files atomically from its
   # settings UI, which would replace a store symlink with a plain file and break
-  # the next switch. The keys declared here win; everything else is left alone.
-  mergeSettings = name: value: ''
+  # the next switch. What is declared here wins; everything else is left alone.
+  mergeJson = filter: name: value: ''
     SETTINGS_FILE="$SETTINGS_DIR/${name}"
     SOURCE_FILE="${pkgs.writeText "t3code-${name}" (builtins.toJSON value)}"
     if [ -f "$SETTINGS_FILE" ]; then
       TEMP_FILE="$(mktemp "$SETTINGS_DIR/.${name}.XXXXXX")"
-      if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" "$SOURCE_FILE" > "$TEMP_FILE"; then
+      if ! ${jq} -s '${filter}' "$SETTINGS_FILE" "$SOURCE_FILE" > "$TEMP_FILE"; then
         rm -f "$TEMP_FILE"
         exit 1
       fi
@@ -128,6 +139,10 @@ let
       ${jq} . "$SOURCE_FILE" > "$SETTINGS_FILE"
     fi
   '';
+  mergeSettings = mergeJson ".[0] * .[1]";
+  # Drops the existing rules for each declared command, mirroring how T3 Code
+  # lets a user rule shadow that command's defaults.
+  mergeKeybindings = mergeJson "(.[1] | map(.command)) as $declared | [.[0][] | select(.command as $c | $declared | index($c) | not)] + .[1]";
 in
 {
   home.sessionPath = [ "$HOME/.t3/bin" ];
@@ -138,5 +153,6 @@ in
 
     ${mergeSettings "settings.json" settings}
     ${mergeSettings "client-settings.json" clientSettings}
+    ${mergeKeybindings "keybindings.json" keybindings}
   '';
 }
