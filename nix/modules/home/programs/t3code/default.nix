@@ -116,13 +116,20 @@ let
   # Only the bindings that differ from T3 Code's defaults. A user rule for a
   # command replaces every default for that command, and T3 Code backfills the
   # defaults of all other commands on startup.
-  keybindings = [
-    {
-      key = "mod+enter";
-      command = "thread.steerQueuedMessage";
-      when = "!terminalFocus";
-    }
-  ];
+  #
+  # T3 Code has no unbind syntax, so `when = "false"` disables a command. These
+  # leave mod+enter in the composer to send, or to steer while a turn runs.
+  keybindings =
+    map
+      (command: {
+        key = "mod+alt+enter";
+        inherit command;
+        when = "false";
+      })
+      [
+        "composer.sendBackground"
+        "composer.sendAndNewThread"
+      ];
 
   # Merged rather than linked: T3 Code rewrites these files atomically from its
   # settings UI, which would replace a store symlink with a plain file and break
