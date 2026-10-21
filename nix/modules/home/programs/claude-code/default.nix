@@ -38,7 +38,7 @@ let
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
     useAutoModeDuringPlan = true;
-    effortLevel = "high";
+    effortLevel = "medium";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
     hooks = {
