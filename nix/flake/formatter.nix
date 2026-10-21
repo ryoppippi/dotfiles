@@ -42,31 +42,6 @@
                 "nvim/template/**"
               ];
             };
-            gitleaks = {
-              command = gitleaks;
-              options = [
-                "detect"
-                "--no-git"
-                "--exit-code"
-                "0"
-              ];
-              includes = [ "*" ];
-              excludes = [
-                "*.png"
-                "*.jpg"
-                "*.jpeg"
-                "*.gif"
-                "*.ico"
-                "*.pdf"
-                "*.woff"
-                "*.woff2"
-                "*.ttf"
-                "*.eot"
-                "node_modules/**"
-                ".direnv/**"
-                "nix/packages/node/**/package-lock.json"
-              ];
-            };
             renovate-validator = {
               command = renovateConfigValidator;
               options = [ "--strict" ];
@@ -90,6 +65,13 @@
       pre-commit = {
         check.enable = false;
         settings.hooks = {
+          gitleaks = {
+            enable = true;
+            entry = "${gitleaks} git --pre-commit --staged --redact=100 --verbose --no-color --no-banner";
+            language = "system";
+            pass_filenames = false;
+            always_run = true;
+          };
           treefmt = {
             enable = true;
             package = config.treefmt.build.wrapper;
@@ -111,6 +93,24 @@
           ''
         );
       };
+
+      apps.gitleaks = {
+        type = "app";
+        program = gitleaks;
+        meta.description = "Scan source code for secrets";
+      };
+
+      checks.gitleaks =
+        pkgs.runCommand "gitleaks"
+          {
+            nativeBuildInputs = [ pkgs.gitleaks ];
+            src = ../..;
+          }
+          ''
+            cd "$src"
+            gitleaks dir --redact=100 --verbose --no-color --no-banner .
+            touch "$out"
+          '';
 
       devShells.default = pkgs.mkShell {
         shellHook = ''

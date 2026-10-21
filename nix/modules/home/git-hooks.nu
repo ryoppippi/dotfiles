@@ -139,13 +139,24 @@ def pre-commit []: nothing -> nothing {
         ^git add ...$present
     }
 
+    let secrets = do {
+        ^nix run .#gitleaks -- git --pre-commit --staged --redact=100 --verbose --no-color --no-banner
+    } | complete
+
     if $stashed {
         ^git stash pop --quiet
     }
 
     print $formatted.stdout
+    print $secrets.stdout
+    print --stderr $secrets.stderr
     if $formatted.exit_code != 0 {
         print --stderr 'treefmt failed'
+        exit 1
+    }
+
+    if $secrets.exit_code != 0 {
+        print --stderr 'gitleaks scan failed'
         exit 1
     }
 }
