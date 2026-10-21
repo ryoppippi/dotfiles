@@ -271,11 +271,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1786914409,
-        "narHash": "sha256-0XyfHqhTehW0bMziJNi5FBmX3Xd3SnG/oDyP9RJRnC0=",
+        "lastModified": 1792289026,
+        "narHash": "sha256-ofeWQ8oqXdS4S3D6K0fWxh2uwM5dRZJPVd61yS18qXI=",
         "owner": "ryoppippi",
         "repo": "gh-nippou",
-        "rev": "bc02f9df49c0e6555294c2244b2d1c4a78758c31",
+        "rev": "acc6a3611581447e07f57cce4fec77e963dca664",
         "type": "github"
       },
       "original": {
