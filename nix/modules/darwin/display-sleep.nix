@@ -25,15 +25,22 @@ let
         | $in * 60
     }
 
-    # Someone watching a video is idle on purpose
-    def video-playing []: nothing -> bool {
-        ^/usr/bin/pmset -g assertions | str contains 'Video Wake Lock'
+    # Someone watching a video, sitting in a call, or presenting is idle on
+    # purpose. These apps release their assertion when that ends — Zoom holds
+    # "Describe Activity Type" only for the length of a meeting — unlike the
+    # stale ones this agent exists to override.
+    def watched-on-purpose []: nothing -> bool {
+        let honoured_apps = [zoom.us FaceTime MSTeams Keynote 'CleanShot X']
+        ^/usr/bin/pmset -g assertions
+        | parse --regex 'pid \d+\((?<process>[^)]+)\): \[\S+\] \S+ (?<type>\w+) named: "(?<name>[^"]*)"'
+        | where type in [NoDisplaySleepAssertion PreventUserIdleDisplaySleep]
+        | any {|a| $a.name == 'Video Wake Lock' or $a.process in $honoured_apps }
     }
 
     def main [] {
         let timeout = display-sleep-seconds
         # 0 means the user turned display sleep off
-        if $timeout > 0 and (idle-seconds) >= $timeout and not (video-playing) {
+        if $timeout > 0 and (idle-seconds) >= $timeout and not (watched-on-purpose) {
             ^/usr/bin/pmset displaysleepnow
         }
     }
