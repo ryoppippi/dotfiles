@@ -107,29 +107,29 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-U9+0FQ7q3cJhAvGvp7iMdHtWzbzTVyp2Ib+IuctwrIg=",
+				"hash": "sha256-LAZWTE/oYzT8Cb4uG/m1ZYPbNT3wTE4AdmQVRIuVwxE=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "dea5e18f130a1a09d9af4e54ae129114ef6f32d1",
+				"revision": "006f9e7c82961b7b710ba7857d6c11abd93b322f",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/dea5e18f130a1a09d9af4e54ae129114ef6f32d1.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/006f9e7c82961b7b710ba7857d6c11abd93b322f.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
-				"hash": "sha256-ZJiWfQJhhV07d5BH7H6yHSkPpeBPtj8P8FlAz1zF7Ak=",
+				"hash": "sha256-3lm5a9R1Ax8BmV3j1POevPOeHJd43D2Dk2KGQGiAc+I=",
 				"repository": {
 					"owner": "github",
 					"repo": "gh-stack",
 					"type": "GitHub"
 				},
-				"revision": "c477b7d1f290a9df463b86773742a5237d14b980",
+				"revision": "f63271237b45fb121affa4ae69e4dd0b2785a37b",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/c477b7d1f290a9df463b86773742a5237d14b980.tar.gz"
+				"url": "https://github.com/github/gh-stack/archive/f63271237b45fb121affa4ae69e4dd0b2785a37b.tar.gz"
 			}
 		},
 		"version": 8
