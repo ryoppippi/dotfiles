@@ -1,7 +1,12 @@
 # docs
 # https://cmux.com/docs/configuration
 
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   jsonFormat = pkgs.formats.json { };
   cmuxCli = "/Applications/cmux.app/Contents/Resources/bin/cmux";
@@ -87,7 +92,9 @@ in
 
   home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     lib.hm.dag.entryAfter [ "writeBoundary" "writeCodexConfig" ] ''
-      ${cmuxCli} hooks setup -y
+      # Activation runs without the user profile on PATH, so cmux would skip
+      # every agent it cannot resolve there.
+      PATH="${config.home.path}/bin:$PATH" ${cmuxCli} hooks setup -y
     ''
   );
 }
