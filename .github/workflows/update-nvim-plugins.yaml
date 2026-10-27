@@ -112,8 +112,13 @@ jobs:
           git add $LOCK_DIR
           git checkout -b $BRANCH
           git commit -m $title
-          # A re-run reuses the branch name, so the push is forced.
-          git push --force origin $BRANCH
+          # The app lacks the `workflows` permission, so moving an existing branch
+          # across a workflow change on main is refused; recreating it is not.
+          # Deleting the branch closes its stale PR, and a fresh one is opened below.
+          if (git ls-remote --heads origin $BRANCH | is-not-empty) {
+            git push origin --delete $BRANCH
+          }
+          git push origin $BRANCH
 
           match (gh pr list --head $BRANCH --json number | from json | get -o 0.number) {
             null => {
