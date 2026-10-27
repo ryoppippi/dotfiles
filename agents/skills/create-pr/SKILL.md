@@ -29,7 +29,12 @@ A PR is a reviewable responsibility unit; one PR may contain multiple atomic com
 
 5. Prepare a PR title and body proportional to the change:
 
-   - Use a Conventional Commit type such as `feat`, `fix`, `docs`, `refactor`, or `chore` in the PR title.
+   - PR titles usually become commit messages, so follow the repository's title conventions; check recently merged PRs and `git log` for examples. Default to a Conventional Commit type such as `feat`, `fix`, `docs`, `refactor`, or `chore`.
+   - Keep the title concise and human-readable, stating why the change matters rather than the mechanism:
+
+     - ❌ `perf(server): negotiate permessage-deflate on the websocket`
+     - ✅ `perf(server): cut websocket frame size by 70%+ with gzipping`
+
    - For a small focused change, use 2–4 sentences covering what changed and why.
    - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
    - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
