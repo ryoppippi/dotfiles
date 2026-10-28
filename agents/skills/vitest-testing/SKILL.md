@@ -5,7 +5,7 @@ description: Write or review Vitest tests with clear behaviour-focused assertion
 
 # Vitest Testing
 
-Use the `tdd` skill when the task is a logic change or bug fix that should start with a failing test. This skill covers Vitest-specific test shape and review rules.
+Use the `tdd` skill when a logic change should become an executable contract; its [testing reference](../tdd/references/testing.md#judging-a-test) says when a test is worth keeping. This skill covers Vitest-specific test shape and review rules.
 
 ## Setup
 
