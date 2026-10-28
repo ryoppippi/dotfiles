@@ -154,6 +154,7 @@ abbr -a clf clause --model fable
 abbr -a oc opencode
 abbr -a cx codex
 abbr -a ca cursor-agent
+abbr -a t3o 't3 app .'
 
 # misc
 abbr -a n -f _na
