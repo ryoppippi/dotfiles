@@ -6,5 +6,5 @@
 - Default to no comment. Add one only when a future reader of the code, without the PR or commit at hand, would misread it or undo it by mistake.
 - Do not comment config entries (ignore lists, globs, entry patterns, dependency pins) or small diffs whose reason fits in the commit message; put the reason there instead. Neighbouring entries having comments is not a reason to add one.
 - Do NOT remove existing comments that explain logic, behaviour, or intent, even if they seem obvious. Only remove comments that are outdated or factually wrong.
-- Write JSDoc for exported functions, classes, types, and interfaces, with `@param`, `@returns`, and `@example` where appropriate.
+- Write JSDoc for public API: exports that other packages or external users consume. Add `@param`, `@returns`, or `@example` only when the signature and name leave something unclear; skip JSDoc on internal helpers and app or tooling code whose name already says what it does.
 - For non-trivial logic (algorithms, bitwise operations, state machines, multi-step transformations), add line-by-line comments so the reader does not have to reverse-engineer it. Skip comments only for truly self-explanatory code.
