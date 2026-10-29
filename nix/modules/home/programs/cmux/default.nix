@@ -93,8 +93,12 @@ in
   home.activation.installCmuxHooks = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     lib.hm.dag.entryAfter [ "writeBoundary" "writeCodexConfig" ] ''
       # Activation runs without the user profile on PATH, so cmux would skip
-      # every agent it cannot resolve there.
-      PATH="${config.home.path}/bin:$PATH" ${cmuxCli} hooks setup -y
+      # every agent it cannot resolve there. It also lacks the socket path that
+      # cmux exports into its terminals, which grok's install needs to reach
+      # the running app.
+      PATH="${config.home.path}/bin:$PATH" \
+        CMUX_SOCKET_PATH="''${CMUX_SOCKET_PATH:-${config.xdg.stateHome}/cmux/cmux.sock}" \
+        ${cmuxCli} hooks setup -y
     ''
   );
 }
