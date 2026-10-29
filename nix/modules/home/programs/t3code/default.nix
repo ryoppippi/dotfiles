@@ -57,6 +57,8 @@ let
     branchNamingMode = "semantic";
     branchNamePrefix = "ryoppippi";
     removeAgentCreditsOnMerge = true;
+    defaultAutoPull = true;
+    reviewGuidesEnabled = true;
 
     # `storageCleanup` is the global policy the settings UI edits; a top-level
     # `worktreeCleanup` would override it wholesale, so it is cleared to keep a
@@ -79,6 +81,11 @@ let
     enableDeviceSupport = true;
     enableAgentDeviceAccess = true;
     cursorKeychainUsageEnabled = true;
+
+    # Labs betas. Each machine keeps its own copy, and linking only works once
+    # both ends have `linkedEnvironmentsEnabled` on.
+    guestSharingEnabled = true;
+    linkedEnvironmentsEnabled = true;
 
     # Pinning store paths stops T3 Code from resolving agents through PATH, where
     # self-updating installs such as ~/.local/bin/cursor-agent would shadow the
@@ -138,6 +145,8 @@ let
     notificationMode = "notifications-and-sound";
     inAppNotificationsEnabled = true;
     sidebarWorkingShelfEnabled = true;
+    boringSidebarEnabled = true;
+    boringSidebarMultilineRows = true;
   };
 
   # Only the bindings that differ from T3 Code's defaults. A user rule for a
