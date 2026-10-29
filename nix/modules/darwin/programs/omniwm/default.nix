@@ -60,9 +60,9 @@ in
 
       niri = {
         centerFocusedColumn = "onOverflow";
-        # The extra 0.25 preset is the width the chat applications start at.
+        # The extra 0.2 preset is the width the chat applications start at.
         containerPrimarySpanPresets = [
-          0.25
+          0.2
           0.3333333333333333
           0.5
           0.6666666666666666
@@ -150,7 +150,7 @@ in
           minWidth = 800.0;
         })
         (omniwmLib.appRule "com.hnc.Discord" {
-          initialContainerPrimarySpan = 0.25;
+          initialContainerPrimarySpan = 0.2;
           minHeight = 200.0;
           minWidth = 320.0;
         })
@@ -186,7 +186,7 @@ in
         "moveWindowDown" = "Hyper+Down Arrow";
         "moveWindowUp" = "Hyper+Up Arrow";
 
-        # Stepping through the span presets lands on exact widths such as 25%
+        # Stepping through the span presets lands on exact widths such as 20%
         # and 50%, which 10% steps from a third never reach. The 10% steps are
         # unassigned so their Option+Minus/Equal defaults stay typeable.
         "cycleSizeBackward" = "Hyper+Y";

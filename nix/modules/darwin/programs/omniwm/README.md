@@ -57,7 +57,7 @@ the same way.
 | Open command palette            | `Hyper+Space`   | Lang1 hold + Space    | `;` hold + Space     |
 
 `Hyper+Y/O` step the focused column through the width presets in
-[`default.nix`](default.nix) — 25%, 33%, 50%, 66% — rather than by 10%, so a
+[`default.nix`](default.nix) — 20%, 33%, 50%, 66% — rather than by 10%, so a
 column lands on an exact width.
 
 ## Workspace and display shortcuts
