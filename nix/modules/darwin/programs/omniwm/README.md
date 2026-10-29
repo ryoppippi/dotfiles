@@ -59,7 +59,7 @@ the same way.
 `Hyper+Y/O` halve and double the focused column's width, stopping at 320pt and
 at the full display width rather than wrapping round like OmniWM's preset cycle.
 Karabiner handles them by running
-[`omniwm-span`](../../../../packages/omniwm-span/omniwm-span.nu), so OmniWM
+[`omniwm-span`](../../../../packages/omniwm-span/omniwm-span.sh), so OmniWM
 leaves its own `cycleSize` hotkeys unassigned.
 
 ## Workspace and display shortcuts
