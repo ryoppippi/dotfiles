@@ -186,11 +186,11 @@ in
         "moveWindowDown" = "Hyper+Down Arrow";
         "moveWindowUp" = "Hyper+Up Arrow";
 
-        # Stepping through the span presets lands on exact widths such as 20%
-        # and 50%, which 10% steps from a third never reach. The 10% steps are
+        # Hyper+Y/O halve and double the column width through omniwm-span in
+        # karabiner.ts, since the preset cycle wraps round. The 10% steps are
         # unassigned so their Option+Minus/Equal defaults stay typeable.
-        "cycleSizeBackward" = "Hyper+Y";
-        "cycleSizeForward" = "Hyper+O";
+        "cycleSizeBackward" = "Unassigned";
+        "cycleSizeForward" = "Unassigned";
         "setContainerPrimarySpan.decrease10Percent" = "Unassigned";
         "setContainerPrimarySpan.increase10Percent" = "Unassigned";
         "setWindowSecondarySpan.decrease10Percent" = "Hyper+U";

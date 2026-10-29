@@ -17,6 +17,10 @@ let
 
   karabinerDir = ../../../../../karabiner;
 
+  omniwmSpan = pkgs.callPackage ../../../../packages/omniwm-span {
+    omniwm = config.programs.omniwm.package;
+  };
+
   karabinerConfig = pkgs.stdenv.mkDerivation {
     pname = "karabiner-config";
     version = "0-unstable";
@@ -50,6 +54,7 @@ let
 
     # karabiner.ts embeds this path into shell_command rules
     env.OMNIWMCTL = lib.getExe' config.programs.omniwm.package "omniwmctl";
+    env.OMNIWM_SPAN = lib.getExe omniwmSpan;
 
     buildPhase = ''
       runHook preBuild

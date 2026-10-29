@@ -48,7 +48,7 @@ the same way.
 | Move column left/right          | `Hyper+←/→`     | `;` hold + `←/→`      | `;` hold + `←/→`     |
 | Reorder window down/up          | `Hyper+↓/↑`     | `;` hold + `↓/↑`      | `;` hold + `↓/↑`     |
 | Consume/expel window left/right | `Hyper+N/M`     | `;` hold + `N/M`      | `;` hold + `N/M`     |
-| Cycle column width presets      | `Hyper+Y/O`     | `;` hold + `Y/O`      | `;` hold + `Y/O`     |
+| Halve/double column width       | `Hyper+Y/O`     | `;` hold + `Y/O`      | `;` hold + `Y/O`     |
 | Resize window shorter/taller    | `Hyper+U/I`     | `;` hold + `U/I`      | `;` hold + `U/I`     |
 | Toggle near-full display width  | `Hyper+F`       | Lang1 hold + `F`      | `;` hold + `F`       |
 | Reset window height             | `Hyper+R`       | Lang1 hold + `R`      | `;` hold + `R`       |
@@ -56,9 +56,11 @@ the same way.
 | Toggle floating                 | `Hyper+D`       | Lang1 hold + `D`      | `;` hold + `D`       |
 | Open command palette            | `Hyper+Space`   | Lang1 hold + Space    | `;` hold + Space     |
 
-`Hyper+Y/O` step the focused column through the width presets in
-[`default.nix`](default.nix) — 20%, 33%, 50%, 66% — rather than by 10%, so a
-column lands on an exact width.
+`Hyper+Y/O` halve and double the focused column's width, stopping at 320pt and
+at the full display width rather than wrapping round like OmniWM's preset cycle.
+Karabiner handles them by running
+[`omniwm-span`](../../../../packages/omniwm-span/omniwm-span.nu), so OmniWM
+leaves its own `cycleSize` hotkeys unassigned.
 
 ## Workspace and display shortcuts
 

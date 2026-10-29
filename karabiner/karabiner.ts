@@ -7,6 +7,17 @@ const omniwmctl = process.env.OMNIWMCTL ?? Bun.which('omniwmctl');
 if (omniwmctl == null) {
 	throw new Error('omniwmctl not found; set OMNIWMCTL or activate the omniwm module');
 }
+const omniwmSpan = process.env.OMNIWM_SPAN ?? Bun.which('omniwm-span');
+if (omniwmSpan == null) {
+	throw new Error('omniwm-span not found; set OMNIWM_SPAN or build the omniwm-span package');
+}
+
+// Halve and double rather than OmniWM's own preset cycle, which wraps round
+// from the widest preset back to the narrowest.
+const spanKeys = [
+	['y', 'halve'],
+	['o', 'double'],
+] as const;
 
 // Without KARABINER_JSON karabiner.ts falls back to ~/.config/karabiner/karabiner.json.
 const writeTarget = process.argv.includes('--dry-run')
@@ -132,6 +143,15 @@ k.writeToProfile(writeTarget, [
 		),
 	),
 
+	// The CLAW44 firmware sends Hyper itself; the MacBook's `;` layer below
+	// emits it from Karabiner, whose output never re-enters these rules, so the
+	// layer binds the same keys directly.
+	k
+		.rule('Hyper+Y/O halve or double the column width')
+		.manipulators(
+			spanKeys.map(([key, direction]) => k.map(key, 'Hyper').to$(`${omniwmSpan} ${direction}`)),
+		),
+
 	// Mirrors the CLAW44, whose firmware already turns a held `;` into Hyper, so
 	// OmniWM's in-workspace shortcuts sit under the same finger on both keyboards.
 	// Delay mode only enters the layer after the hold threshold, and emits `;`
@@ -155,8 +175,6 @@ k.writeToProfile(writeTarget, [
 					'right_arrow',
 					'down_arrow',
 					'up_arrow',
-					'y',
-					'o',
 					'u',
 					'i',
 					'r',
@@ -165,7 +183,9 @@ k.writeToProfile(writeTarget, [
 					'd',
 					'spacebar',
 				] as const
-			).map((key) => k.map(key).to(key, 'Hyper')),
+			)
+				.map((key) => k.map(key).to(key, 'Hyper'))
+				.concat(spanKeys.map(([key, direction]) => k.map(key).to$(`${omniwmSpan} ${direction}`))),
 		),
 
 	// Not lazy: the Ctrl+Shift+arrow rules above must see these modifiers as
