@@ -74,15 +74,15 @@ NIX_CONFIG="access-tokens = github.com=$GITHUB_TOKEN" \
 
 Flakes only see tracked, staged files, so `git add` changed paths before switching.
 
-| Command                          | What it does                                                      |
-| -------------------------------- | ----------------------------------------------------------------- |
-| `nix run .#switch`               | Build and apply the darwin (macOS) or Home Manager (Linux) config |
-| `nix run .#build`                | Build without applying                                            |
-| `nix run .#fmt`                  | Run treefmt (`-- --fail-on-change` is what CI runs)               |
-| `nix run .#update`               | Update every flake input                                          |
-| `nix run .#update-ai-tools`      | Update only the `llm-agents` input                                |
-| `nix run .#skills-sources-lock`  | Re-resolve the external skill pins in `registry/sources/`         |
-| `nix run .#nvim-lock`            | Pin new Neovim plugins with nvimx (`-- --update` moves them all)  |
+| Command                         | What it does                                                      |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `nix run .#switch`              | Build and apply the darwin (macOS) or Home Manager (Linux) config |
+| `nix run .#build`               | Build without applying                                            |
+| `nix run .#fmt`                 | Run treefmt (`-- --fail-on-change` is what CI runs)               |
+| `nix run .#update`              | Update every flake input                                          |
+| `nix run .#update-ai-tools`     | Update only the `llm-agents` input                                |
+| `nix run .#skills-sources-lock` | Re-resolve the external skill pins in `registry/sources/`         |
+| `nix run .#nvim-lock`           | Pin new Neovim plugins with nvimx (`-- --update` moves them all)  |
 
 Scheduled GitHub Actions open PRs for flake inputs, overlays, and skill pins.
 
