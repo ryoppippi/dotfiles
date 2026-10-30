@@ -27,11 +27,6 @@ end, { expr = true })
 vim.keymap.set({ "n", "v" }, "s", "<Nop>")
 vim.keymap.set({ "n", "v" }, "S", "<Nop>")
 
-vim.keymap.set("n", "gh", "<Nop>")
-vim.keymap.set("n", "gj", "<Nop>")
-vim.keymap.set("n", "gk", "<Nop>")
-vim.keymap.set("n", "gl", "<Nop>")
-
 -- remap H M L
 vim.keymap.set("n", "gH", "H")
 vim.keymap.set("n", "gM", "M")
