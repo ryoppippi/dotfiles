@@ -32,8 +32,8 @@ What this bought over the previous lazy2nix setup:
   populated a new machine only needs the `dev = true` checkouts in ~/ghq
 - **spec pins apply again**: `version = "1.*"`, `branch = "stable"` and
   `commit = ...` are resolved at lock time instead of being ignored
-- **build steps are handled**: blink.cmp's Rust matcher is built from the
-  locked source; unrunnable builds are reported by `nvimx-lock`
+- **build steps are handled**: plugin build commands are run from the locked
+  source; unrunnable builds are reported by `nvimx-lock`
 - **no hand-written hacks**: the `dev.path` function, the helptags
   monkeypatch and the pinned-rev carry-forward wart are gone, along with
   `generate.ts`/`dump.lua`
@@ -62,8 +62,8 @@ Local escape hatches in use (`default.nix`):
   `nvim/lua/plugin/` changes and only re-locks when it reports the lock stale
 - CI builds `programs.nvimx.env.check`: the installed wrapper started
   headless and offline with this repository's `nvim/`, loading every store
-  plugin. Plugin runtime tools (`gh`, `git`, `copilot-language-server`) are
-  in `extraPackages` so it passes without the login shell's `PATH`
+  plugin. Plugin runtime tools (`gh`, `git`) are in `extraPackages` so it
+  passes without the login shell's `PATH`
 - the update bot builds its PR body from `nvimx-lock --summary-json`
 
 All of these replaced repository-side glue after nvimx shipped them

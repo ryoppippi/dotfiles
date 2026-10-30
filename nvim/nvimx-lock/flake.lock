@@ -12,59 +12,8 @@
       },
       "original": {
         "owner": "saghen",
+        "ref": "refs/tags/v1.10.2",
         "repo": "blink.cmp",
-        "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
-        "type": "github"
-      }
-    },
-    "blink-cmp-git": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1779950429,
-        "narHash": "sha256-Q/QUN2R3zgrJwyypD3b7da1PVOnn8zyoqctoyhZdK+M=",
-        "owner": "Kaiser-Yang",
-        "repo": "blink-cmp-git",
-        "rev": "d3f2a9067ab028e779d08e61bf0b054939011316",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kaiser-Yang",
-        "repo": "blink-cmp-git",
-        "rev": "d3f2a9067ab028e779d08e61bf0b054939011316",
-        "type": "github"
-      }
-    },
-    "blink-cmp-spell": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1749263405,
-        "narHash": "sha256-xyh4n1dM/aJ7L9kgSAptTPSlotM7mz92tgl7232dBME=",
-        "owner": "ribru17",
-        "repo": "blink-cmp-spell",
-        "rev": "2bd0e0d5e7735c047e72b6918a0458f3e8fadaba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ribru17",
-        "repo": "blink-cmp-spell",
-        "rev": "2bd0e0d5e7735c047e72b6918a0458f3e8fadaba",
-        "type": "github"
-      }
-    },
-    "blink-emoji-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1775942320,
-        "narHash": "sha256-qBJ0zwkKlxZ6S6VzMusm9CCKx+EN1YOaBfdMb7xKQ5A=",
-        "owner": "moyiz",
-        "repo": "blink-emoji.nvim",
-        "rev": "dff709139ad5389fb55ebab026e75278a12b325a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "moyiz",
-        "repo": "blink-emoji.nvim",
-        "rev": "dff709139ad5389fb55ebab026e75278a12b325a",
         "type": "github"
       }
     },
@@ -133,23 +82,6 @@
         "owner": "nvim-zh",
         "repo": "colorful-winsep.nvim",
         "rev": "6134b5cd4a38990c7b720adc90973ed32f726179",
-        "type": "github"
-      }
-    },
-    "copilot-lua": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1790214455,
-        "narHash": "sha256-zL2yBu52mnMEj52tutE1aa++O75CAYGr9uHafDH8Qv0=",
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "rev": "f76a0a281de089e27b605ec8017093f1aab73b07",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "rev": "f76a0a281de089e27b605ec8017093f1aab73b07",
         "type": "github"
       }
     },
@@ -784,14 +716,10 @@
     "root": {
       "inputs": {
         "blink-cmp": "blink-cmp",
-        "blink-cmp-git": "blink-cmp-git",
-        "blink-cmp-spell": "blink-cmp-spell",
-        "blink-emoji-nvim": "blink-emoji-nvim",
         "bufresize-nvim": "bufresize-nvim",
         "capture-vim": "capture-vim",
         "chowcho-nvim": "chowcho-nvim",
         "colorful-winsep-nvim": "colorful-winsep-nvim",
-        "copilot-lua": "copilot-lua",
         "crates-nvim": "crates-nvim",
         "dropbar-nvim": "dropbar-nvim",
         "fileline-nvim": "fileline-nvim",
