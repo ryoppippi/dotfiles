@@ -578,6 +578,22 @@
         "type": "github"
       }
     },
+    "moonbit-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783161803,
+        "narHash": "sha256-jDJ1ACAT86oeyimQ+/k9rEHSAqoJe7u8hpcW3jQoGjk=",
+        "owner": "moonbit-community",
+        "repo": "moonbit.nvim",
+        "rev": "907c8240d3d2f96fa8e8569c73973e8604a7b1e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moonbit-community",
+        "repo": "moonbit.nvim",
+        "type": "github"
+      }
+    },
     "noice-nvim": {
       "flake": false,
       "locked": {
@@ -971,6 +987,7 @@
         "mini-trailspace": "mini-trailspace",
         "modes-nvim": "modes-nvim",
         "modesearch-vim": "modesearch-vim",
+        "moonbit-nvim": "moonbit-nvim",
         "noice-nvim": "noice-nvim",
         "nui-nvim": "nui-nvim",
         "nvim-FeMaco-lua": "nvim-FeMaco-lua",

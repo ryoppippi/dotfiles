@@ -629,6 +629,26 @@
       "tag": null,
       "version": null
     },
+    "moonbit.nvim": {
+      "branch": null,
+      "build": {
+        "kind": "none"
+      },
+      "commit": null,
+      "dependencies": [
+        "nvim-treesitter"
+      ],
+      "inputName": "moonbit-nvim",
+      "pin": null,
+      "resolvedRef": null,
+      "source": {
+        "owner": "moonbit-community",
+        "repo": "moonbit.nvim",
+        "type": "github"
+      },
+      "tag": null,
+      "version": null
+    },
     "noice.nvim": {
       "branch": null,
       "build": {

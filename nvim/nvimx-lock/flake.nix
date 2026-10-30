@@ -137,6 +137,10 @@
       url = "github:monaqa/modesearch.vim/71f123cadbb86e0cbacc12f472d18684fc3308a8";
       flake = false;
     };
+    moonbit-nvim = {
+      url = "github:moonbit-community/moonbit.nvim";
+      flake = false;
+    };
     noice-nvim = {
       url = "github:folke/noice.nvim/7bfd942445fb63089b59f97ca487d605e715f155";
       flake = false;
