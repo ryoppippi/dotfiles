@@ -4,7 +4,9 @@ return {
 	event = "CmdlineEnter",
 	cond = not is_vscode(),
 	opts = {
-		enabled = false,
+		enabled = function()
+			return false
+		end,
 		cmdline = {
 			enabled = true,
 			keymap = { preset = "cmdline" },
