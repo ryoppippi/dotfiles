@@ -50,20 +50,6 @@
           );
         };
 
-        # Runs the working-tree copy rather than a store one because it rewrites
-        # the generated files back into the repository.
-        update-node-packages = {
-          type = "app";
-          program = toString (
-            writeNu "update-node-packages" ''
-              # --wrapped so unknown flags reach update.nu instead of being parsed
-              # as flags to main.
-              def --wrapped main [...rest] {
-                exec ${nu} nix/packages/node/update.nu ...$rest
-              }
-            ''
-          );
-        };
       };
     };
 }

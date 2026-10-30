@@ -15,7 +15,6 @@ ryoppippi's dotfiles, managed as a Nix flake: nix-darwin plus Home Manager on ma
 - `nix/modules/darwin/` — macOS system settings, Homebrew, OmniWM
 - `nix/modules/linux/` — Linux-only modules
 - `nix/overlays/` — custom packages, also exposed as flake `packages`
-- `nix/packages/node/` — Node packages built with Nix
 - `fish/`, `nvim/`, `karabiner/` — plain config, symlinked or generated into place by Home Manager
 - `agents/AGENTS.md`, `agents/shared/`, `agents/skills/` — global instructions, their fragments, and skills shared by Claude Code and Codex
 - `registry/sources/` — pinned external skill repositories
@@ -82,11 +81,10 @@ Flakes only see tracked, staged files, so `git add` changed paths before switchi
 | `nix run .#fmt`                  | Run treefmt (`-- --fail-on-change` is what CI runs)               |
 | `nix run .#update`               | Update every flake input                                          |
 | `nix run .#update-ai-tools`      | Update only the `llm-agents` input                                |
-| `nix run .#update-node-packages` | Refresh `nix/packages/node/`                                      |
 | `nix run .#skills-sources-lock`  | Re-resolve the external skill pins in `registry/sources/`         |
 | `nix run .#nvim-lock`            | Pin new Neovim plugins with nvimx (`-- --update` moves them all)  |
 
-Scheduled GitHub Actions open PRs for flake inputs, overlays, node packages, and skill pins.
+Scheduled GitHub Actions open PRs for flake inputs, overlays, and skill pins.
 
 ## Window Management
 
