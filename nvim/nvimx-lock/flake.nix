@@ -5,6 +5,10 @@
       url = "github:folke/lazy.nvim/85c7ff3711b730b4030d03144f6db6375044ae82";
       flake = false;
     };
+    blink-cmp = {
+      url = "github:saghen/blink.cmp/refs/tags/v1.10.2";
+      flake = false;
+    };
     bufresize-nvim = {
       url = "github:kwkarlwang/bufresize.nvim/3b19527ab936d6910484dcc20fb59bdb12322d8b";
       flake = false;

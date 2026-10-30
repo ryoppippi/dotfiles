@@ -23,6 +23,24 @@
     "ryoppippi-term.nvim": {}
   },
   "plugins": {
+    "blink.cmp": {
+      "branch": null,
+      "build": {
+        "kind": "none"
+      },
+      "commit": null,
+      "dependencies": [],
+      "inputName": "blink-cmp",
+      "pin": null,
+      "resolvedRef": "refs/tags/v1.10.2",
+      "source": {
+        "owner": "saghen",
+        "repo": "blink.cmp",
+        "type": "github"
+      },
+      "tag": null,
+      "version": "1.*"
+    },
     "bufresize.nvim": {
       "branch": null,
       "build": {

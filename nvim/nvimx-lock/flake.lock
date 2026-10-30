@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "blink-cmp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775330305,
+        "narHash": "sha256-C1FpyGw0f35NdHvDUGPXxmKdOgw3SpIteK1gAjVy6Ns=",
+        "owner": "saghen",
+        "repo": "blink.cmp",
+        "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saghen",
+        "ref": "refs/tags/v1.10.2",
+        "repo": "blink.cmp",
+        "type": "github"
+      }
+    },
     "bufresize-nvim": {
       "flake": false,
       "locked": {
@@ -698,6 +715,7 @@
     },
     "root": {
       "inputs": {
+        "blink-cmp": "blink-cmp",
         "bufresize-nvim": "bufresize-nvim",
         "capture-vim": "capture-vim",
         "chowcho-nvim": "chowcho-nvim",
