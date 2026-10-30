@@ -31,7 +31,6 @@ in
       appcleaner
       beekeeper-studio
       betterdisplay
-      cursor
       dockdoor
       figma
       istherenet
