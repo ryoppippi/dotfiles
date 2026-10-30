@@ -1,5 +1,3 @@
-local has = require("core.plugin").has
-
 ---Check if there is a word just before the cursor
 ---@return boolean
 local function has_words_before()
@@ -68,30 +66,10 @@ return {
 					components = {
 						kind_icon = {
 							text = function(ctx)
-								local icon = ctx.kind_icon
-								if has("nvim-highlight-colors") and ctx.item.source_name == "LSP" then
-									local color_item = require("nvim-highlight-colors").format(
-										ctx.item.documentation,
-										{ kind = ctx.kind }
-									)
-									if color_item and color_item.abbr ~= "" then
-										icon = color_item.abbr
-									end
-								end
-								return icon .. ctx.icon_gap
+								return ctx.kind_icon .. ctx.icon_gap
 							end,
 							highlight = function(ctx)
-								local highlight = "BlinkCmpKind" .. ctx.kind
-								if has("nvim-highlight-colors") and ctx.item.source_name == "LSP" then
-									local color_item = require("nvim-highlight-colors").format(
-										ctx.item.documentation,
-										{ kind = ctx.kind }
-									)
-									if color_item and color_item.abbr_hl_group then
-										highlight = color_item.abbr_hl_group
-									end
-								end
-								return highlight
+								return "BlinkCmpKind" .. ctx.kind
 							end,
 						},
 					},
@@ -128,11 +106,11 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "emoji", "spell" },
+			default = { "path", "snippets", "buffer", "emoji", "spell" },
 			per_filetype = {
-				gitcommit = { "git", "lsp", "path", "emoji", "buffer", "spell" },
-				octo = { "git", "lsp", "path", "emoji", "buffer", "spell" },
-				markdown = { "git", "lsp", "path", "emoji", "buffer", "spell" },
+				gitcommit = { "git", "path", "emoji", "buffer", "spell" },
+				octo = { "git", "path", "emoji", "buffer", "spell" },
+				markdown = { "git", "path", "emoji", "buffer", "spell" },
 			},
 			providers = {
 				emoji = {

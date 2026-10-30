@@ -5,10 +5,6 @@
       url = "github:folke/lazy.nvim/85c7ff3711b730b4030d03144f6db6375044ae82";
       flake = false;
     };
-    actions-preview-nvim = {
-      url = "github:aznhe21/actions-preview.nvim/0ac9c2aa3cfc8c885321c0862b50b6b1c3392405";
-      flake = false;
-    };
     blink-cmp-git = {
       url = "github:Kaiser-Yang/blink-cmp-git/d3f2a9067ab028e779d08e61bf0b054939011316";
       flake = false;
@@ -85,10 +81,6 @@
       url = "github:lewis6991/gitsigns.nvim/a462f416e2ce4744531c6256252dee99a7d34a83";
       flake = false;
     };
-    glance-nvim = {
-      url = "github:dnlhc/glance.nvim/5a8eab1c1c48bfa19a33b556328a3c553138366e";
-      flake = false;
-    };
     guess-indent-nvim = {
       url = "github:NMAC427/guess-indent.nvim/84a4987ff36798c2fc1169cbaff67960aed9776f";
       flake = false;
@@ -97,16 +89,8 @@
       url = "github:tzachar/highlight-undo.nvim/ee32e12693d70e66f954d09a504a7371d110fc27";
       flake = false;
     };
-    inc-rename-nvim = {
-      url = "github:smjonas/inc-rename.nvim/ddff8bd3eccedf043bd73f5bf89cf90d2d6d8105";
-      flake = false;
-    };
     kanagawa-nvim = {
       url = "github:rebelot/kanagawa.nvim/8ad3b4cdcc804b332c32db8f9743667e1bb82b99";
-      flake = false;
-    };
-    lsp-format-nvim = {
-      url = "github:lukas-reineke/lsp-format.nvim/e2b4ae87545c1aadebcf1dfc1b5dffe28dcf2ffb";
       flake = false;
     };
     marks-nvim = {
@@ -153,10 +137,6 @@
       url = "github:monaqa/modesearch.vim/71f123cadbb86e0cbacc12f472d18684fc3308a8";
       flake = false;
     };
-    moonbit-nvim = {
-      url = "github:moonbit-community/moonbit.nvim/907c8240d3d2f96fa8e8569c73973e8604a7b1e6";
-      flake = false;
-    };
     noice-nvim = {
       url = "github:folke/noice.nvim/7bfd942445fb63089b59f97ca487d605e715f155";
       flake = false;
@@ -183,14 +163,6 @@
     };
     nvim-insx = {
       url = "github:hrsh7th/nvim-insx/fbba86031f3927ecbc11556217b4976a149c29c6";
-      flake = false;
-    };
-    nvim-lightbulb = {
-      url = "github:kosayoda/nvim-lightbulb/b8c08c5f3b1586dfcdd9f34d7d54fe6982e01ac9";
-      flake = false;
-    };
-    nvim-lspconfig = {
-      url = "github:neovim/nvim-lspconfig/4d363f93c3581b9212a24f7a830d7590b3f050af";
       flake = false;
     };
     nvim-treesitter = {
@@ -249,16 +221,8 @@
       url = "github:stevearc/quicker.nvim/4a6883cb13fe097a20a046eb55f6dffd239276e3";
       flake = false;
     };
-    rustaceanvim = {
-      url = "github:mrcjkb/rustaceanvim/e9c5aaba16fead831379d5f44617547a90b913c7";
-      flake = false;
-    };
     satellite-nvim = {
       url = "github:lewis6991/satellite.nvim/87843c9c8f28b54332497302de380a6d94c9e82b";
-      flake = false;
-    };
-    schemastore-nvim = {
-      url = "github:b0o/schemastore.nvim/12dd0de1f15d598db2cc0d075f4f0d13a3290d4d";
       flake = false;
     };
     snacks-nvim = {
@@ -279,14 +243,6 @@
     };
     term-edit-nvim = {
       url = "github:chomosuke/term-edit.nvim/b190a91178ef98beefac2ec0823db047978ea327";
-      flake = false;
-    };
-    troublesum-nvim = {
-      url = "github:ivanjermakov/troublesum.nvim/b00301bb565bfcb6fcfa41f2012e43a0528da65b";
-      flake = false;
-    };
-    ts-error-translator-nvim = {
-      url = "github:dmmulroy/ts-error-translator.nvim/558abff11b9e8f4cefc0de09df780c56841c7a4b";
       flake = false;
     };
     vim-asterisk = {

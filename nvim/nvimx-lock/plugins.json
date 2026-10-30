@@ -24,27 +24,6 @@
     "ryoppippi-term.nvim": {}
   },
   "plugins": {
-    "actions-preview.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [
-        "nvim-lspconfig",
-        "snacks.nvim"
-      ],
-      "inputName": "actions-preview-nvim",
-      "pin": null,
-      "resolvedRef": "0ac9c2aa3cfc8c885321c0862b50b6b1c3392405",
-      "source": {
-        "owner": "aznhe21",
-        "repo": "actions-preview.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "blink-cmp-git": {
       "branch": null,
       "build": {
@@ -395,24 +374,6 @@
       "tag": null,
       "version": null
     },
-    "glance.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "glance-nvim",
-      "pin": null,
-      "resolvedRef": "5a8eab1c1c48bfa19a33b556328a3c553138366e",
-      "source": {
-        "owner": "dnlhc",
-        "repo": "glance.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "guess-indent.nvim": {
       "branch": null,
       "build": {
@@ -449,24 +410,6 @@
       "tag": null,
       "version": null
     },
-    "inc-rename.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "inc-rename-nvim",
-      "pin": null,
-      "resolvedRef": "ddff8bd3eccedf043bd73f5bf89cf90d2d6d8105",
-      "source": {
-        "owner": "smjonas",
-        "repo": "inc-rename.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "kanagawa.nvim": {
       "branch": null,
       "build": {
@@ -481,24 +424,6 @@
       "source": {
         "owner": "rebelot",
         "repo": "kanagawa.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "lsp-format.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "lsp-format-nvim",
-      "pin": null,
-      "resolvedRef": "e2b4ae87545c1aadebcf1dfc1b5dffe28dcf2ffb",
-      "source": {
-        "owner": "lukas-reineke",
-        "repo": "lsp-format.nvim",
         "type": "github"
       },
       "tag": null,
@@ -704,26 +629,6 @@
       "tag": null,
       "version": null
     },
-    "moonbit.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [
-        "nvim-treesitter"
-      ],
-      "inputName": "moonbit-nvim",
-      "pin": null,
-      "resolvedRef": "907c8240d3d2f96fa8e8569c73973e8604a7b1e6",
-      "source": {
-        "owner": "moonbit-community",
-        "repo": "moonbit.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
     "noice.nvim": {
       "branch": null,
       "build": {
@@ -847,44 +752,6 @@
       "source": {
         "owner": "hrsh7th",
         "repo": "nvim-insx",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "nvim-lightbulb": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "nvim-lightbulb",
-      "pin": null,
-      "resolvedRef": "b8c08c5f3b1586dfcdd9f34d7d54fe6982e01ac9",
-      "source": {
-        "owner": "kosayoda",
-        "repo": "nvim-lightbulb",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "nvim-lspconfig": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [
-        "schemastore.nvim"
-      ],
-      "inputName": "nvim-lspconfig",
-      "pin": null,
-      "resolvedRef": "4d363f93c3581b9212a24f7a830d7590b3f050af",
-      "source": {
-        "owner": "neovim",
-        "repo": "nvim-lspconfig",
         "type": "github"
       },
       "tag": null,
@@ -1159,24 +1026,6 @@
       "tag": null,
       "version": null
     },
-    "rustaceanvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "rustaceanvim",
-      "pin": null,
-      "resolvedRef": "e9c5aaba16fead831379d5f44617547a90b913c7",
-      "source": {
-        "owner": "mrcjkb",
-        "repo": "rustaceanvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": "^5"
-    },
     "satellite.nvim": {
       "branch": null,
       "build": {
@@ -1192,24 +1041,6 @@
       "source": {
         "owner": "lewis6991",
         "repo": "satellite.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "schemastore.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "schemastore-nvim",
-      "pin": null,
-      "resolvedRef": "12dd0de1f15d598db2cc0d075f4f0d13a3290d4d",
-      "source": {
-        "owner": "b0o",
-        "repo": "schemastore.nvim",
         "type": "github"
       },
       "tag": null,
@@ -1304,42 +1135,6 @@
       },
       "tag": null,
       "version": "1.*"
-    },
-    "troublesum.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "troublesum-nvim",
-      "pin": null,
-      "resolvedRef": "b00301bb565bfcb6fcfa41f2012e43a0528da65b",
-      "source": {
-        "owner": "ivanjermakov",
-        "repo": "troublesum.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "ts-error-translator.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "ts-error-translator-nvim",
-      "pin": null,
-      "resolvedRef": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
-      "source": {
-        "owner": "dmmulroy",
-        "repo": "ts-error-translator.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
     },
     "vim-asterisk": {
       "branch": null,
