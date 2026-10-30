@@ -10,13 +10,6 @@ return {
 		return
 		---@type NoiceConfig
 		{
-			lsp = {
-				-- override markdown rendering so that plugins use **Treesitter**
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-				},
-			},
 			popupmenu = {
 				enabled = true,
 				backend = "nui",
@@ -33,8 +26,6 @@ return {
 				view = "mini",
 			},
 			presets = {
-				inc_rename = true,
-				lsp_doc_border = true,
 				long_message_to_split = true,
 			},
 		}

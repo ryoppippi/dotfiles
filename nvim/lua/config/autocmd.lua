@@ -140,12 +140,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
 	desc = "create missing parent directories on write",
 })
 
--- Neovim never rotates its logs, and a noisy language server can grow lsp.log
--- by hundreds of MB, so drop any log past the limit on startup. This runs while
--- the config loads, before any client has opened lsp.log for appending.
+-- Neovim appends to its log file, so cap it between runs to avoid unbounded growth.
 local LOG_SIZE_LIMIT = 10 * 1024 * 1024
 for _, path in ipairs({
-	vim.lsp.log.get_filename(),
 	vim.env.NVIM_LOG_FILE or vim.fs.joinpath(vim.fn.stdpath("log"), "nvim.log"),
 }) do
 	local stat = vim.uv.fs_stat(path)

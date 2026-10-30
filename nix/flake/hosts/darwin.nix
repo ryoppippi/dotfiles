@@ -89,7 +89,6 @@ in
                   inherit local-skills agentSkillsLib skillRegistry;
                   homedir = darwinHomedir;
                   inherit system;
-                  nodePackages = import ../../packages/node { inherit pkgs; };
                 })
 
                 (import ../../modules/darwin {

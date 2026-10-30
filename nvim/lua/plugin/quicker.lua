@@ -18,9 +18,6 @@ return {
 				local refresh = require("quicker").refresh
 
 				refresh()
-				require("core.plugin").on_attach(function()
-					refresh()
-				end)
 			end,
 		})
 	end,
