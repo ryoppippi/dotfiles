@@ -20,6 +20,10 @@ let
         }
       ];
     };
+    fallbackModelSelection = {
+      instanceId = "codex";
+      model = "gpt-6.1-sol";
+    };
     defaultRuntimeMode = "auto";
 
     # Kept only on this machine; T3 Code does not sync them. The merge replaces
