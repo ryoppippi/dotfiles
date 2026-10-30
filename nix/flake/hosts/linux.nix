@@ -51,7 +51,6 @@ let
                 inherit local-skills agentSkillsLib skillRegistry;
                 homedir = linuxHomedir;
                 inherit system;
-                nodePackages = import ../../packages/node { inherit pkgs; };
               })
 
               (import ../../modules/linux {

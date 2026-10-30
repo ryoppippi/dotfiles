@@ -5,7 +5,6 @@
   homedir,
   dotfilesDir ? "${homedir}/ghq/github.com/ryoppippi/dotfiles",
   system ? null,
-  nodePackages ? null,
   fish-na ? null,
   agentSkillsLib ? null,
   skillRegistry ? null,
@@ -47,7 +46,6 @@ in
         dotfilesDir
         system
         helpers
-        nodePackages
         fish-na
         ;
     })

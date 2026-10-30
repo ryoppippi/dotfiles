@@ -4,7 +4,6 @@
   config,
   dotfilesDir,
   helpers,
-  nodePackages ? null,
   ...
 }:
 let
@@ -37,45 +36,14 @@ in
     treesitter.grammars = "all";
 
     # These packages are only available when NeoVim is running
-    extraPackages =
-      # buildNpmPackage packages (language servers from npm)
-      lib.optionals (nodePackages != null) (
-        with nodePackages;
-        [
-          cssmodules-language-server
-          gh-actions-language-server
-          unocss-language-server
-        ]
-      )
-      ++ (with pkgs; [
+    extraPackages = with pkgs; [
+      tree-sitter # CLI needed by nvim-treesitter to install grammars nixpkgs does not ship (e.g. moonbit)
 
-        tree-sitter # CLI needed by nvim-treesitter to install grammars nixpkgs does not ship (e.g. moonbit)
-
-        # Plugin runtime dependencies, so Neovim does not rely on the login shell's PATH
-        gh # octo.nvim
-        git # git-conflict.nvim and friends
-        copilot-language-server # copilot.lua uses it instead of downloading its own
-
-        # Language servers
-        lua-language-server # Lua LSP
-        nixd # Nix LSP
-        typos-lsp # Spell checker LSP
-        nushell # Nushell (`nu --lsp` language server)
-
-        # Python tools
-        ruff # Python linter/formatter with built-in language server
-      ])
-      ++ (with pkgs; [
-
-        # Node.js-based language servers
-        astro-language-server # Astro
-        emmet-language-server # Emmet
-        prisma-language-server # Prisma
-        svelte-language-server # Svelte
-        tailwindcss-language-server # Tailwind CSS
-        vscode-langservers-extracted # HTML/CSS/JSON/ESLint
-        yaml-language-server # YAML
-      ]);
+      # Plugin runtime dependencies, so Neovim does not rely on the login shell's PATH
+      gh # octo.nvim
+      git # git-conflict.nvim and friends
+      copilot-language-server # copilot.lua uses it instead of downloading its own
+    ];
   };
 
   # lazy.nvim used to clone itself here; nvimx links its locked copy to the
