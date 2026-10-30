@@ -5,22 +5,6 @@
       url = "github:folke/lazy.nvim/85c7ff3711b730b4030d03144f6db6375044ae82";
       flake = false;
     };
-    blink-cmp-git = {
-      url = "github:Kaiser-Yang/blink-cmp-git/d3f2a9067ab028e779d08e61bf0b054939011316";
-      flake = false;
-    };
-    blink-cmp-spell = {
-      url = "github:ribru17/blink-cmp-spell/2bd0e0d5e7735c047e72b6918a0458f3e8fadaba";
-      flake = false;
-    };
-    blink-emoji-nvim = {
-      url = "github:moyiz/blink-emoji.nvim/dff709139ad5389fb55ebab026e75278a12b325a";
-      flake = false;
-    };
-    blink-cmp = {
-      url = "github:saghen/blink.cmp/78336bc89ee5365633bcf754d93df01678b5c08f";
-      flake = false;
-    };
     bufresize-nvim = {
       url = "github:kwkarlwang/bufresize.nvim/3b19527ab936d6910484dcc20fb59bdb12322d8b";
       flake = false;
@@ -35,10 +19,6 @@
     };
     colorful-winsep-nvim = {
       url = "github:nvim-zh/colorful-winsep.nvim/6134b5cd4a38990c7b720adc90973ed32f726179";
-      flake = false;
-    };
-    copilot-lua = {
-      url = "github:zbirenbaum/copilot.lua/f76a0a281de089e27b605ec8017093f1aab73b07";
       flake = false;
     };
     crates-nvim = {

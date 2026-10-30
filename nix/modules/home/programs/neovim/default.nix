@@ -42,7 +42,6 @@ in
       # Plugin runtime dependencies, so Neovim does not rely on the login shell's PATH
       gh # octo.nvim
       git # git-conflict.nvim and friends
-      copilot-language-server # copilot.lua uses it instead of downloading its own
     ];
   };
 

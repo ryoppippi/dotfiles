@@ -23,84 +23,6 @@
     "ryoppippi-term.nvim": {}
   },
   "plugins": {
-    "blink-cmp-git": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [
-        "plenary.nvim"
-      ],
-      "inputName": "blink-cmp-git",
-      "pin": null,
-      "resolvedRef": "d3f2a9067ab028e779d08e61bf0b054939011316",
-      "source": {
-        "owner": "Kaiser-Yang",
-        "repo": "blink-cmp-git",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "blink-cmp-spell": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "blink-cmp-spell",
-      "pin": null,
-      "resolvedRef": "2bd0e0d5e7735c047e72b6918a0458f3e8fadaba",
-      "source": {
-        "owner": "ribru17",
-        "repo": "blink-cmp-spell",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "blink-emoji.nvim": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "blink-emoji-nvim",
-      "pin": null,
-      "resolvedRef": "dff709139ad5389fb55ebab026e75278a12b325a",
-      "source": {
-        "owner": "moyiz",
-        "repo": "blink-emoji.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "blink.cmp": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [
-        "blink-cmp-git",
-        "blink-cmp-spell",
-        "blink-emoji.nvim"
-      ],
-      "inputName": "blink-cmp",
-      "pin": null,
-      "resolvedRef": "78336bc89ee5365633bcf754d93df01678b5c08f",
-      "source": {
-        "owner": "saghen",
-        "repo": "blink.cmp",
-        "type": "github"
-      },
-      "tag": null,
-      "version": "1.*"
-    },
     "bufresize.nvim": {
       "branch": null,
       "build": {
@@ -168,24 +90,6 @@
       "source": {
         "owner": "nvim-zh",
         "repo": "colorful-winsep.nvim",
-        "type": "github"
-      },
-      "tag": null,
-      "version": null
-    },
-    "copilot.lua": {
-      "branch": null,
-      "build": {
-        "kind": "none"
-      },
-      "commit": null,
-      "dependencies": [],
-      "inputName": "copilot-lua",
-      "pin": null,
-      "resolvedRef": "f76a0a281de089e27b605ec8017093f1aab73b07",
-      "source": {
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
         "type": "github"
       },
       "tag": null,
