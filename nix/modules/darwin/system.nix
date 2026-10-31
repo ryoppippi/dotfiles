@@ -276,8 +276,8 @@ in
     };
 
     taps = [
+      "anomalyco/tap"
       "arto-app/tap"
-      "typewhisper/tap"
     ];
 
     brews = [
@@ -287,6 +287,7 @@ in
     casks = [
       "1password"
       "alfred"
+      "anomalyco/tap/hex"
       "arc"
       "arto-app/tap/arto"
       "audacity"
@@ -310,7 +311,6 @@ in
       "steam"
       "t3-code"
       "telegram"
-      "typewhisper/tap/typewhisper"
     ];
 
     masApps = {
