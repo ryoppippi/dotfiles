@@ -17,7 +17,7 @@ upstream repository beats a separate repro repository.
    500 is the issue's first line. Check the latest release first.
 2. **Read upstream first.** Search for duplicates
    (`gh search issues --repo <owner>/<repo> "<symptom>"`), read the contributing
-   guide and issue templates, and use `ghq get -u -s` when the cause is
+   guide and issue templates, and use `ghq get -s <upstream-repository>` when the cause is
    worth finding.
 3. **Reduce.** Copy the failing file into a scratch directory outside any repo,
    stub its imports, and delete until one thing is left; drop framework layers
