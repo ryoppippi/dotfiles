@@ -1,6 +1,6 @@
 ---
 name: nushell
-description: When writing, reviewing, or porting a shell script, a `.nu` file, or a `shell: nu {0}` CI step.
+description: 'When writing, reviewing, or porting a shell script, a `.nu` file, or a `shell: nu {0}` CI step.'
 ---
 
 # Nushell
