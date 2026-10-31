@@ -1,4 +1,4 @@
-# Nix Build Rules
+## Nix
 
 - Add `--print-build-logs --show-trace` only when debugging a failing build or evaluation; leave them off otherwise.
 - In CI, prefer `nix profile install --inputs-from . nixpkgs#<tool>` (or `.#<package>`) over `nix develop` — a full dev shell is slow to set up.
