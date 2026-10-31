@@ -14,8 +14,8 @@ Nix flakes only see tracked, staged files, so stage the paths you changed before
 
 ## Layout Notes
 
-- `agents/AGENTS.md` is the single global instruction file for every agent; its sections live in `agents/shared/`. Claude Code reads it as `~/.config/claude/CLAUDE.md` (user-scope memory is only read under that name) and resolves the `@` imports; Codex gets the same file with the fragments concatenated at switch time.
-- This repository keeps no `CLAUDE.md`: Claude Code loads this `AGENTS.md` as project instructions through the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin.
+- `agents/AGENTS.md` is the single global instruction file for every agent, with its sections in `agents/shared/`; skills live in `agents/skills/`. Use the `agent-instructions` skill before editing any of them.
+- This repository keeps no `CLAUDE.md`: Claude Code loads this `AGENTS.md` through the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin.
 - `claude/` is symlinked to `~/.config/claude`, so edits there apply to the running Claude Code without a switch.
 - Git and Ghostty are declarative under `nix/modules/home/programs/`; Fish and Neovim keep plain config in `fish/` and `nvim/`.
 - Per-directory notes live in each directory's `README.md` (`nix/`, `fish/`, `nvim/`, `karabiner/`); read the relevant one before editing there.
@@ -29,35 +29,5 @@ Nix flakes only see tracked, staged files, so stage the paths you changed before
 
 ## Git Workflow
 
-- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**. This is an explicit exception to the global commit skill's main-branch rule. Do NOT open a pull request unless explicitly asked.
+- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**, overriding the usual feature-branch rule. Do NOT open a pull request unless explicitly asked.
 - Conventional Commits, UK English spelling.
-
-## External Skills (agent-skills-nix)
-
-Skills are managed via [agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix) in `nix/modules/home/agent-skills.nix`. External skill repositories are pinned in `registry/sources/`, not as flake inputs. Local skills live in `agents/skills/` and are enabled automatically — see the `skill-creator` skill.
-
-### Adding a new external skill
-
-1. Add a pin manifest `registry/sources/my-skill.nix`:
-   ```nix
-   {
-     pin = {
-       type = "github";
-       owner = "owner";
-       repo = "repo";
-       branch = "main";
-     };
-
-     subdir = "path/to/skills";
-     idPrefix = "my-skill";
-     filter.maxDepth = 1;
-   }
-   ```
-2. Resolve the pin: `nix run .#skills-sources-lock`
-3. Select the skill in `agent-skills.nix` — `skills.explicit.<id>` when it needs
-   `packages` or a `transform`, otherwise add its prefixed catalog ID to
-   `skills.enable`
-4. Run `git add registry/ nix/modules/home/agent-skills.nix && nix run .#switch`
-
-Updating external skills is the same lock-then-switch pair. Editing a manifest
-without regenerating the lock fails evaluation, so the two always stay in sync.

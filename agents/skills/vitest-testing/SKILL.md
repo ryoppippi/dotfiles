@@ -1,67 +1,46 @@
 ---
 name: vitest-testing
-description: Write or review Vitest tests with clear behaviour-focused assertions, appropriate globals/imports, file snapshots for terminal output, and readable fixture setup. Use when adding tests, fixing Vitest failures, or improving TypeScript test quality.
+description: When writing, reviewing, or fixing Vitest tests.
 ---
 
 # Vitest Testing
 
-Use the `tdd` skill when a logic change should become an executable contract; its [testing reference](../tdd/references/testing.md#judging-a-test) says when a test is worth keeping. This skill covers Vitest-specific test shape and review rules.
+Whether a test is worth writing is the `tdd` skill's call; this covers the
+shape of Vitest tests. Each test should read as one behaviour, top to bottom,
+without jumping to shared context.
 
 ## Setup
 
-- Check `vitest.config.*` before assuming globals are enabled.
-- If globals are enabled, use `describe`, `it`, `expect`, `vi`, `beforeEach`, and `assert` directly without importing them.
-- If globals are not enabled, import only the Vitest APIs used by the file.
-- Avoid `await import()` and other dynamic imports in tests unless the behaviour under test is dynamic loading.
-- Use `vi.stubEnv()` instead of mutating `process.env` directly.
+- Check `vitest.config.*` for `globals`: when enabled, use `describe`, `it`,
+  `expect`, `vi`, and `assert` without importing; otherwise import only what the
+  file uses.
+- Use `vi.stubEnv()` rather than mutating `process.env`; avoid dynamic
+  `import()` unless dynamic loading is the behaviour under test.
+- Run `pnpm vitest --changed` during a cycle; see https://vitest.dev/api/test
+  for modifiers (`it.todo`, `it.fails`, `it.each`, …).
 
 ## Readability
 
-- Test one behaviour per `it`.
-- Name tests after observable behaviour, not implementation details.
-- Avoid `try`/`catch` for expected failures. Use `expect(...).toThrow()`, `await expect(...).rejects`, or explicit Result failure assertions.
-- Avoid `if` branches inside test bodies. Split behaviours into separate tests or use `it.each` for table-driven cases.
-- KISS > DRY: do not over-DRY tests. Keep repeated setup inline when it makes the behaviour easier to read.
-- Keep assertions in the test unless a helper name is clearer than the assertion it hides.
-- Use `assert` to make preconditions explicit and narrow nullable values instead of using non-null assertions.
-
-## Output Tests
-
-- Prefer JSON assertions for structured behaviour.
-- Use file snapshots with `toMatchFileSnapshot` for human-readable CLI/table output so layout changes are reviewable.
-- For responsive terminal output, capture or set the terminal width used by the command.
-
-## Examples
-
-Expected failure:
-
-```ts
-it('rejects invalid config', async () => {
-	await expect(loadConfig('bad.json')).rejects.toThrow(Error);
-});
-```
-
-Table-driven case:
-
-```ts
-it.each([
-	['daily', '2026-05-16'],
-	['monthly', '2026-05'],
-])('groups %s rows by period', (reportType, expectedPeriod) => {
-	const rows = groupUsage(reportType, usage);
-
-	expect(rows[0]?.period).toBe(expectedPeriod);
-});
-```
-
-Narrowing with `assert`:
+- One behaviour per `it`, named for what a caller observes.
+- Expected failures use `expect(...).toThrow()` / `.rejects`, not `try`/`catch`.
+- No `if` in test bodies: split the test, or use `it.each` when cases share one
+  behaviour.
+- KISS over DRY: repeat setup and write concrete values inline when that reads
+  better. Helpers are for genuinely noisy fixtures, and assertions stay in the
+  test.
+- Narrow nullable values with `assert` instead of non-null assertions.
 
 ```ts
 it('returns the first row', () => {
-	const rows = getRows();
-	const firstRow = rows[0];
+	const firstRow = getRows()[0];
 	assert.isDefined(firstRow, 'expected at least one row');
 
 	expect(firstRow.id).toBe('row-1');
 });
 ```
+
+## Output
+
+Prefer JSON assertions for structured results. Use `toMatchFileSnapshot` for
+human-readable CLI or table output so layout changes are reviewable, and fix the
+terminal width for responsive output.

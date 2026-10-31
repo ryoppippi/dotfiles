@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Creates atomic Conventional Commits. Use when committing code changes, splitting hunks into revertable units, or writing commit messages.
+description: When committing changes, committing and pushing without a PR, or writing a commit message.
 ---
 
 <!--
@@ -11,44 +11,41 @@ Example prompts:
 
 # Commit
 
-Create small, independently revertable Conventional Commits.
+Make small Conventional Commits that can each be reverted on their own.
 
-## Arguments
-
-- `push`: whether to push after committing (default: `false`). Set to `true` to push.
+Argument `push` (default `false`): push once all commits are made. Use it for
+"commit and push" requests.
 
 ## Workflow
 
-1. Inspect the current state:
-
-   ```sh
-   git status --short
-   git diff HEAD
-   git log --oneline -10
-   ```
-
-2. Review relevant history and split the changes into the smallest independently revertable units. Keep unrelated changes out of the commit. For moves or extractions, include both sides and update references.
-
-3. Stage each unit non-interactively with `git apply --cached -v`. Read `references/git-apply.md` when precise staging needs troubleshooting.
-
-   Never stage with `git add -A`, `git add --all`, `git add .`, or `git add -u` — they sweep unrelated working-tree changes into the commit. When a whole file belongs to the unit, name it: `git add <path>`. Never use `git add -p` or any other interactive staging. `git commit -a`/`-am` carries the same hazard — commit from the index only.
-
-   The index may already hold changes staged for an earlier build (`nix run .#switch` needs staged files). Treat a pre-populated index as untrusted: check `git diff --cached --stat` and unstage anything outside the current unit with `git restore --staged <path>` before committing.
-
-4. Write an English Conventional Commit message using UK spelling:
+1. Read `git status --short`, `git diff HEAD`, and `git log --oneline -10`.
+2. Split the changes into the smallest units that each make sense and revert
+   cleanly. A move or extraction keeps both sides and the updated references in
+   one commit; unrelated changes stay out.
+3. Stage each unit non-interactively: `git add <path>` for whole files,
+   `git apply --cached` with a patch for parts of a file. Never `git add -p`.
+   The index may already hold changes staged for `nix run .#switch`; check
+   `git diff --cached --stat` before each commit.
+4. Write the message in English with UK spelling:
 
    ```text
    <type>(<scope>): <subject>
 
-   <body>
+   <body: the cause, and why this change>
    ```
 
-   Use a standard type such as `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`, `build`, `perf`, or `revert`. Keep the body concise and explain what changed and why when the subject is not sufficient. When CI is unnecessary and repository instructions permit skipping it, append `[ci skip]` to the commit message.
+   Use a standard type (`feat`, `fix`, `docs`, `refactor`, `chore`, `test`,
+   `ci`, `build`, `perf`, `revert`). Append `[ci skip]` only when CI is
+   unnecessary and the repository allows skipping it.
 
-5. Commit and verify with `git show HEAD` and `git diff --check`.
+5. Commit, then check `git show HEAD` and `git diff --check`.
 
-Keep published review fixes as separate follow-up commits; amend only unpublished local mistakes or when explicitly requested. Read `references/revertable-commits.md` for detailed examples.
+Fixes for published review comments go in follow-up commits; amend only
+unpublished local mistakes or when asked.
 
 ## Push
 
-When `push=true`, push after all commits are complete and let repository hooks run. Read `references/push.md` for the exact push procedure.
+Follow the repository's branch rules. On `main`/`master`, create a feature
+branch first unless the repository allows pushing there. Push with `git push`;
+if the branch has no upstream, ask before `git push -u origin HEAD`. Report the
+branch and the pushed commits.

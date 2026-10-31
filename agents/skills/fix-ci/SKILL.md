@@ -1,14 +1,12 @@
 ---
 name: fix-ci
-description: Diagnoses and fixes CI failures with the gh CLI. Use when GitHub Actions checks are red and the failing logs need to be fetched, analysed, and resolved.
+description: When GitHub Actions checks are failing on the current branch or PR.
 ---
 
 <!--
 Example prompts:
   /fix-ci
 -->
-
-Let's fix whatever error we can find in CI using the `gh` CLI.
 
 **Current branch:** `!`git branch --show-current``
 
@@ -18,10 +16,9 @@ Let's fix whatever error we can find in CI using the `gh` CLI.
 !`gh pr checks 2>/dev/null || echo "No PR found for current branch"`
 ```
 
-## Steps
-
-1. **Analyse the check status above**: Identify which actions are failing
-2. If nothing is broken, bail.
-3. Fetch the logs for the broken action using `gh run view <run-id> --log-failed`
-4. Make a quick plan on what needs to be fixed
-5. Fix the error
+1. If nothing is failing, stop.
+2. Read the failing logs: `gh run view <run-id> --log-failed`.
+3. Find why it fails — the code, the workflow, or the environment — before
+   changing anything. Check whether other jobs or workflows share the cause.
+4. Fix the cause. Re-running, skipping, loosening a check, or adding a retry is
+   a fix only when the failure really is external flakiness; say so when it is.

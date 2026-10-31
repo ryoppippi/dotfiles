@@ -1,58 +1,34 @@
 ---
 name: create-pr
-description: Runs the full PR workflow — creates a feature branch, commits, pushes, and opens the pull request. Use when the user asks to create or open a PR ("create a PR", "push this up and open a PR").
+description: When asked to create or open a pull request, including a stack of dependent PRs.
 ---
 
 # Create PR
 
-Use this skill when the user asks to create or open a pull request.
-
-## PR Granularity
-
-A PR is a reviewable responsibility unit; one PR may contain multiple atomic commits. A branch is not a PR boundary: split independent work into separate PRs and stack only dependent work.
+A PR is one reviewable responsibility and may hold several commits. Split
+independent work into separate PRs; stack only work that depends on another PR.
 
 ## Workflow
 
-1. Inspect the current branch, status, and diff:
-
-   ```sh
-   git status --short
-   git branch --show-current
-   git diff --stat
-   ```
-
-2. If the current branch is `main`, create a feature branch with a `feature/`, `fix/`, or `chore/` prefix unless the user requested a different branch name.
-
-3. Review the diff before committing. Exclude unrelated changes, temporary files, secrets, generated junk, and debug-only edits.
-
-4. Commit with the repo-local `commit` skill using an English Conventional Commit message. When CI is unnecessary and repository instructions permit skipping it, append `[ci skip]` to the commit message.
-
-5. Prepare a PR title and body proportional to the change:
-
-   - PR titles usually become commit messages, so follow the repository's title conventions; check recently merged PRs and `git log` for examples. Default to a Conventional Commit type such as `feat`, `fix`, `docs`, `refactor`, or `chore`.
-   - Keep the title concise and human-readable, stating why the change matters rather than the mechanism:
-
-     - ❌ `perf(server): negotiate permessage-deflate on the websocket`
-     - ✅ `perf(server): cut websocket frame size by 70%+ with gzipping`
-
-   - For a small focused change, use 2–4 sentences covering what changed and why.
-   - For a larger change, include Summary, What Changed, Why, and Testing only when tests were actually run. Add Related Issues only when relevant.
-   - Use `--body-file -` for multi-line bodies. Do not embed `\n` escape sequences in `--body`.
-
-6. When the change is visual (UI, layout, rendering, or a bug clearer on screen), attach real local screenshots or short videos with `gh pr create --attach`. Do not invent media; skip when there is nothing useful to show, or when `gh pr create --help` does not list `--attach`. Prefer Markdown references to local paths in the body so alt text survives upload. If media appears only after the PR exists, attach with `gh pr edit` / `gh pr comment` instead of recreating the PR. See `gh pr create --help` and https://gh.io/gh-attach.
-
-7. Publish using the path that matches the PR structure:
-
-   - Use the `create-stacked-pr` skill only when requested or when the branch is already stacked; verify parent-child ancestry before linking.
-   - For an ordinary PR, push the branch and create the PR with:
-
-     ```sh
-     git push -u origin <branch-name>
-     gh pr create --title "feat(scope): summary" --body-file -
-     ```
-
-     Add `--attach` on that invocation when step 6 applies.
-
-8. Report the PR URL. If publishing fails, inspect the error and verify the branch, remote, authentication, or duplicate PR state before retrying.
-
-All commit messages, PR titles, and PR bodies must be in English. Confirm the target branch before creating the PR, and do not call it ready until the relevant checks and review feedback have been inspected.
+1. Read `git status --short`, `git branch --show-current`, and `git diff --stat`.
+   On `main`, create a `feature/`, `fix/`, or `chore/` branch unless the user
+   named one.
+2. Leave out unrelated changes, temporary files, secrets, and debug edits, then
+   commit with the `commit` skill.
+3. Title: follow the repository's convention (check recent merged PRs; default
+   to a Conventional Commit type). State why the change matters, not the
+   mechanism:
+   - ❌ `perf(server): negotiate permessage-deflate on the websocket`
+   - ✅ `perf(server): cut websocket frame size by 70%+ with gzipping`
+4. Body, in proportion to the change: what changed, the root cause, and why this
+   fix. Add a Testing section only for tests actually run. Pass multi-line
+   bodies with `--body-file -`.
+5. For a visible change, attach real screenshots or short videos with
+   `gh pr create --attach` (see `gh pr create --help`); never invent media.
+6. Publish:
+   - Ordinary PR: `git push -u origin <branch>` and `gh pr create`.
+   - Stacked PRs (when asked, or the branch is already stacked): use the
+     `gh-stack` skill, verifying parent-child ancestry, and report every PR URL
+     from bottom to top.
+7. Report the PR URL. Don't call it ready until checks and review feedback have
+   been looked at.

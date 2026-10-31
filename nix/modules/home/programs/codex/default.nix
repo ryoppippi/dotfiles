@@ -20,10 +20,8 @@ let
     ../../../../../agents/shared/nix.md
     ../../../../../agents/shared/code-comments.md
     ../../../../../agents/shared/command-privacy.md
-    ../../../../../agents/shared/git-staging.md
-    ../../../../../agents/shared/git-worktrees.md
+    ../../../../../agents/shared/git.md
     ../../../../../agents/shared/delegate-work.md
-    ../../../../../agents/shared/browser.md
   ];
 
   dropClaudeImports =

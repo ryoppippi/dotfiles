@@ -1,20 +1,20 @@
 ---
 name: missing-tools
-description: Resolves missing CLI tools. Use when a command is unavailable, a shell reports command not found, or a tool must be run without installing it globally.
+description: When a command is not found, or a tool must run without being installed globally.
 ---
 
-Use this workflow when a required command is unavailable:
+Try, in order:
 
-1. Try comma: `, <command>`. When several packages provide the command and there is no terminal, it runs the one named after the command and says which on stderr; if that is the wrong one, list them with `, -p <command>` and use step 3 or 4.
-2. Try the project environment: `direnv exec . <command>`.
-3. Use `nix run nixpkgs#<package> -- <args>` when a package is known.
-4. Use `nix shell nixpkgs#<package> --command <command>` when a package is known but a temporary shell is required.
+1. `, <command>` (comma). When several packages provide the command it runs the
+   one named after it and says so on stderr; if that is wrong, list them with
+   `, -p <command>` and use step 3.
+2. `direnv exec . <command>` for the project environment.
+3. `nix run nixpkgs#<package> -- <args>`, or
+   `nix shell nixpkgs#<package> --command <command>` when it needs a shell.
+4. Last resort: `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`.
 
-Exceptions:
+A script whose interpreter is missing: read its shebang and run
+`nix shell nixpkgs#<package> --command ./<script>`.
 
-- Script with a missing interpreter: read its shebang and run it with `nix shell nixpkgs#<package> --command ./<script>`.
-- Last resort: `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`.
-
-For GitHub-backed Nix fetches, use the `nix-github-rate-limit` skill.
-
-Never install tools globally. Use Zsh for normal commands; if a user tool is only on Fish's PATH, resolve it with `fish -lc 'command -v <tool>'` and invoke the resulting path.
+For Nix fetches from GitHub, use the `nix-github-rate-limit` skill. Never
+install tools globally.
