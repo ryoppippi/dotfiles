@@ -16,5 +16,7 @@ Arguments: `scope` (default: current changes; e.g. "diff to main", "PR #123",
    https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns
 2. Review the scope for misplaced boundaries: `'use client'` higher than the
    interactivity needs, server-only work pulled into client components, and
-   non-serialisable props crossing the boundary.
+   props that React cannot serialise across the boundary. Server Functions
+   marked with `use server` are supported references, not invalid function props:
+   https://react.dev/reference/rsc/use-server
 3. Apply the fixes, or propose them when `fix=false`.

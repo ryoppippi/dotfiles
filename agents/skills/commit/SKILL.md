@@ -25,7 +25,8 @@ Argument `push` (default `false`): push once all commits are made. Use it for
 3. Stage each unit non-interactively: `git add <path>` for whole files,
    `git apply --cached` with a patch for parts of a file. Never `git add -p`.
    The index may already hold changes staged for `nix run .#switch`; check
-   `git diff --cached --stat` before each commit.
+   the full staged diff before each commit and unstage anything outside the
+   current commit unit.
 4. Write the message in English with UK spelling:
 
    ```text
@@ -45,7 +46,7 @@ unpublished local mistakes or when asked.
 
 ## Push
 
-Follow the repository's branch rules. On `main`/`master`, create a feature
+Only when `push=true`, follow the repository's branch rules. On `main`/`master`, create a feature
 branch first unless the repository allows pushing there. Push with `git push`;
 if the branch has no upstream, ask before `git push -u origin HEAD`. Report the
 branch and the pushed commits.

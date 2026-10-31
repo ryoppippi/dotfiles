@@ -24,7 +24,7 @@ Searching, in this order:
 Inside T3 Code, run grok and codex as
 [references/inside-t3.md](references/inside-t3.md) describes.
 
-If `ax` or `tgrab` fails, fall back to the host's web fetch tool or `curl`. A
+If `ax` or `tgrab` fails, fall back to the host's web fetch/search tools or `curl`. A
 browser is the last resort, for pages that need JavaScript, a login, or
 interaction: [references/browser.md](references/browser.md).
 

@@ -10,6 +10,8 @@ codex exec --skip-git-repo-check --ephemeral --sandbox read-only \
   -m "$("<skill-dir>/scripts/codex-model.nu")" -c service_tier=fast "<task>"
 ```
 
+For an explicitly requested edit task, use `--sandbox workspace-write`.
+
 Measured, and not visible in the help output:
 
 - Keep `model_reasoning_effort` at `medium` or above; at `low` it answered a

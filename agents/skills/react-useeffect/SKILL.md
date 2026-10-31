@@ -19,5 +19,5 @@ Arguments: `scope` (default: current changes; e.g. "diff to main", "PR #123",
 3. Apply the fixes, or propose them when `fix=false`.
 
 `useEffect` is an escape hatch for synchronising with external systems. Keep one
-only when nothing else fits, with a comment saying which external system it
-synchronises with.
+when synchronisation is needed. Comment only when its reason is non-obvious
+and a future reader might otherwise remove it.

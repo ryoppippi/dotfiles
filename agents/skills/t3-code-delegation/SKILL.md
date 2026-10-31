@@ -20,8 +20,9 @@ to a CLI or another provider without the user asking.
 3. Call `t3-code:delegate_task`:
    - `interactionMode: "plan"` for anything read-only, and say "do not edit
      files" in the task too.
-   - Leave `runtimeMode` unset: approval-requiring modes stall the child on a
-     prompt this thread cannot answer.
+   - Check inherited interaction and runtime modes in capabilities. Edit work
+     needs an edit-capable parent; do not escalate permissions to avoid an
+     approval prompt. Runtime approvals may need the user’s intervention.
    - Select the shared checkout explicitly for uncommitted work; this repo
      defaults to `worktree`, which starts from the last commit.
    - `mode: "wait"` when the answer gates your next step; otherwise `"async"`,
@@ -31,10 +32,11 @@ to a CLI or another provider without the user asking.
    earlier findings, and your responses — not `t3_thread_send`.
 5. Use the child thread link returned by T3 verbatim.
 
-A `wait` returning `hasPendingQuestion` needs an answer via
-`t3-code:t3_pending_request_respond` (with the child's `threadId`) or from the
-user. Follow the tool response’s `next` instruction for a running child;
-do not poll it.
+For `hasPendingQuestion`, use `t3-code:t3_pending_request` to read the question
+and respond with `action: "respond"`, its `requestId`, the child’s `threadId`,
+and `answers`, or let the user answer. This cannot approve runtime permissions.
+A `waitTimedOut` child is still running: retain its task ID and follow the
+response’s `next` instruction for completion; do not poll or start a duplicate.
 
 Design background:
 https://github.com/pingdotgg/t3code/blob/main/docs/orchestration-v2/orchestrator-mcp-server.md

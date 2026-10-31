@@ -11,8 +11,8 @@ independent work into separate PRs; stack only work that depends on another PR.
 ## Workflow
 
 1. Read `git status --short`, `git branch --show-current`, and `git diff --stat`.
-   On `main`, create a `feature/`, `fix/`, or `chore/` branch unless the user
-   named one.
+   Work on the user’s named branch, creating or switching to it as needed.
+   Otherwise create a `feature/`, `fix/`, or `chore/` branch when on `main`.
 2. Leave out unrelated changes, temporary files, secrets, and debug edits, then
    commit with the `commit` skill.
 3. Title: follow the repository's convention (check recent merged PRs; default

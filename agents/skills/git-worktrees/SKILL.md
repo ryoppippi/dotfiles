@@ -6,7 +6,9 @@ description: When creating, switching, listing, renaming, or deleting git worktr
 # Git Worktrees
 
 Use `git wt` (and `git wtpr` for pull requests) rather than raw
-`git worktree add`/`remove`/`move`/`prune` or `gh pr checkout`.
+`git worktree add`/`remove`/`move`/`prune` or `gh pr checkout`, except
+`git worktree remove <path>` when the branch must be kept: `git wt -d`
+deletes both the worktree and branch.
 
 ## Are you already in one?
 

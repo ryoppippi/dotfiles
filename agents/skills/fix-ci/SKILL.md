@@ -13,11 +13,14 @@ Example prompts:
 **PR check status:**
 
 ```
-!`gh pr checks 2>/dev/null || echo "No PR found for current branch"`
+!`gh pr checks`
 ```
 
-1. If no PR exists, inspect branch runs with
-   `gh run list --branch <current-branch>` instead. If nothing is failing, stop.
+1. Establish whether a PR exists with `gh pr view`; distinguish an absent PR
+   from authentication or network errors. For a confirmed absent PR, inspect
+   `gh run list --branch <current-branch>`. A non-zero `gh pr checks` status
+   can mean failing or pending checks, not a missing PR. Stop only after
+   confirming there are no failures.
 2. Read the failing logs: `gh run view <run-id> --log-failed`.
 3. Find why it fails — the code, the workflow, or the environment — before
    changing anything. Check whether other jobs or workflows share the cause.

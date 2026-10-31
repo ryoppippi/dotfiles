@@ -11,7 +11,6 @@ Try, in order:
 2. `direnv exec . <command>` for the project environment.
 3. `nix run nixpkgs#<package> -- <args>`, or
    `nix shell nixpkgs#<package> --command <command>` when it needs a shell.
-4. Last resort: `docker run --rm -v "$PWD:/workspace" -w /workspace <image> <command>`.
 
 A script whose interpreter is missing: read its shebang and run
 `nix shell nixpkgs#<package> --command ./<script>`.

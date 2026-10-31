@@ -1,6 +1,6 @@
 ---
 name: agent-instructions
-description: When adding, editing, renaming, or auditing skills in `agents/skills/`, the global `agents/AGENTS.md` and its `agents/shared/` fragments, or a repository's `AGENTS.md`.
+description: When authoring or auditing agent instructions or skills, including adding or updating external skills.
 ---
 
 # Agent Instructions
@@ -80,13 +80,15 @@ inputs.
      filter.maxDepth = 1;
    }
    ```
-2. Resolve it with `nix run .#skills-sources-lock`. A manifest without a
+2. Stage the new manifest by its exact path so Nix can see it, then resolve it
+   with `nix run .#skills-sources-lock`. A manifest without a
    regenerated lock fails evaluation, so always run the two together; updating
    pins is the same pair.
 3. Select the skill in `agent-skills.nix`: `skills.explicit.<id>` when it needs
    `packages` or a `transform`, otherwise its prefixed catalogue ID in
    `skills.enable`.
-4. `git add registry/ nix/modules/home/agent-skills.nix && nix run .#switch`
+4. Review and stage only the changed manifest, `registry/sources.lock.json`,
+   and `nix/modules/home/agent-skills.nix`, then run `nix run .#switch`.
 
 ## Auditing the Collection
 

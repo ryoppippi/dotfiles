@@ -26,7 +26,7 @@ upstream repository beats a separate repro repository.
    default, a short env var such as `RSVELTE=1` for the tool), with scripts
    `repro` / `repro:official` and a `show` pair printing each one's output. The
    diff of those outputs is the evidence. If the baseline fails too, the
-   harness is wrong, not the tool.
+   harness is wrong: fix it before continuing.
 5. **Find the likely cause** in upstream source. Write it as a hypothesis, name
    the file and commit read, and say it was not patched and rebuilt.
 6. **Publish the repro, then the issue** — [references/templates.md](references/templates.md).
@@ -38,6 +38,8 @@ upstream repository beats a separate repro repository.
   `gh repo license view mit` (author: the user's GitHub name, current year).
 - Creating the repo and filing the issue are public posts: do them when asked,
   otherwise show the draft first. Never name or link a private repository.
+  Describe the private app generically; remove
+  identifying names, paths, URLs, and metadata from the public repro and report.
 - Pin exact versions of the tool, baseline, runtime, and `packageManager` (pnpm),
   and record them in the README. Clean-install from the frozen lockfile and run both scripts before
   pushing, and claim only what that run showed.

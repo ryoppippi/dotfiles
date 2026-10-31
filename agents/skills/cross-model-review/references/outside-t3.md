@@ -9,11 +9,12 @@ running in. Each CLI's `--help` carries the rest.
 Use `codex exec` with the complete brief from `SKILL.md`, including the selected
 scope, so root-cause criteria and reporting requirements reach the reviewer. The
 `ask-other-agent` skill's `scripts/codex-model.nu` resolves the newest slug of a
-family:
+family. Select the first available family from `SKILL.md`’s preference order
+before invoking the command; report if none is available:
 
 ```sh
 codex exec --sandbox read-only \
-  -m "$("<ask-other-agent-dir>/scripts/codex-model.nu" astra)" "<brief>"
+  -m "$("<ask-other-agent-dir>/scripts/codex-model.nu" "<selected-family>")" "<brief>"
 ```
 
 ## Claude Code
