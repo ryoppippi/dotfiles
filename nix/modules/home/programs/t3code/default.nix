@@ -149,6 +149,7 @@ let
     notificationMode = "notifications-and-sound";
     inAppNotificationsEnabled = true;
     sidebarWorkingShelfEnabled = true;
+    boringSidebarMultilineRows = true;
   };
 
   # Only the bindings that differ from T3 Code's defaults. A user rule for a
