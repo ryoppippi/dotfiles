@@ -16,7 +16,7 @@ without jumping to shared context.
   file uses.
 - Use `vi.stubEnv()` rather than mutating `process.env`; avoid dynamic
   `import()` unless dynamic loading is the behaviour under test.
-- Run `pnpm vitest --changed` during a cycle; see https://vitest.dev/api/test
+- Run the repository’s Vitest command with `--changed` during a cycle; see https://vitest.dev/api/test
   for modifiers (`it.todo`, `it.fails`, `it.each`, …).
 
 ## Readability

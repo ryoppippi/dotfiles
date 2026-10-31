@@ -16,7 +16,8 @@ Example prompts:
 !`gh pr checks 2>/dev/null || echo "No PR found for current branch"`
 ```
 
-1. If nothing is failing, stop.
+1. If no PR exists, inspect branch runs with
+   `gh run list --branch <current-branch>` instead. If nothing is failing, stop.
 2. Read the failing logs: `gh run view <run-id> --log-failed`.
 3. Find why it fails — the code, the workflow, or the environment — before
    changing anything. Check whether other jobs or workflows share the cause.

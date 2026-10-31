@@ -20,5 +20,5 @@ execution time:
 NIX_CONFIG="access-tokens = github.com=$(gh auth token)" nix <command>
 ```
 
-`$GITHUB_TOKEN` and `$(ghtkn get)` work the same way. If `gh` is not
-authenticated, ask the user to run `gh auth login`.
+`$GITHUB_TOKEN` and `$(ghtkn get)` work the same way. Ask for `gh auth login`
+only when the chosen source requires `gh` authentication and it is missing.

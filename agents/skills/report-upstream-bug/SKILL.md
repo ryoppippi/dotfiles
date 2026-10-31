@@ -39,7 +39,7 @@ upstream repository beats a separate repro repository.
 - Creating the repo and filing the issue are public posts: do them when asked,
   otherwise show the draft first. Never name or link a private repository.
 - Pin exact versions of the tool, baseline, runtime, and `packageManager` (pnpm),
-  and record them in the README. Clean-install and run both scripts before
+  and record them in the README. Clean-install from the frozen lockfile and run both scripts before
   pushing, and claim only what that run showed.
 - Keep the issue's commands identical to the repro's script names.
 - Afterwards, disable issues and projects with `gh repo edit`, and set

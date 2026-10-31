@@ -4,5 +4,5 @@
 - If a workaround needs a paragraph to justify it, the code is wrong — fix the code ([Rewriting Bun in Rust](https://bun.com/blog/bun-in-rust)).
 - Change history and the reasons for config entries or small diffs belong in the commit message, not in comments.
 - Keep existing comments that explain intent; remove only outdated or wrong ones.
-- Give non-trivial logic (algorithms, bit operations, state machines, multi-step transformations) step-by-step comments.
+- Explain non-obvious intent and invariants in complex logic; keep self-explanatory steps uncommented.
 - Write JSDoc only for public API that other packages or users consume.

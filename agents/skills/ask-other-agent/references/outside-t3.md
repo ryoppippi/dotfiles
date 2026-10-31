@@ -6,8 +6,8 @@ opinion read-only; drop them only when the user hands the agent a task.
 ## Codex
 
 ```sh
-codex exec --skip-git-repo-check --ephemeral \
-  -m "$(<skill-dir>/scripts/codex-model.nu)" -c service_tier=fast "<task>"
+codex exec --skip-git-repo-check --ephemeral --sandbox read-only \
+  -m "$("<skill-dir>/scripts/codex-model.nu")" -c service_tier=fast "<task>"
 ```
 
 Measured, and not visible in the help output:

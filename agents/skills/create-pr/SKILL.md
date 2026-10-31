@@ -26,7 +26,8 @@ independent work into separate PRs; stack only work that depends on another PR.
 5. For a visible change, attach real screenshots or short videos with
    `gh pr create --attach` (see `gh pr create --help`); never invent media.
 6. Publish:
-   - Ordinary PR: `git push -u origin <branch>` and `gh pr create`.
+   - Ordinary PR: `git push -u origin <branch>` and `gh pr create --base <target-branch>`
+     using the requested target, or the repository default when unspecified.
    - Stacked PRs (when asked, or the branch is already stacked): use the
      `gh-stack` skill, verifying parent-child ancestry, and report every PR URL
      from bottom to top.

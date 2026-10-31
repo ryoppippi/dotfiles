@@ -5,7 +5,7 @@ running `codex exec`. Elsewhere outside T3 Code, use the CLI:
 
 ```sh
 codex exec --skip-git-repo-check --ephemeral --sandbox read-only \
-  -m "$(<ask-other-agent skill dir>/scripts/codex-model.nu)" -c service_tier=fast \
+  -m "$("<ask-other-agent skill dir>/scripts/codex-model.nu")" -c service_tier=fast \
   "<search prompt>. Do not use agent-browser; use your native web search."
 ```
 

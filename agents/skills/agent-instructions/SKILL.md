@@ -49,8 +49,8 @@ Background: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/be
 
 - Local skills in `agents/skills/<name>/` are enabled automatically by
   `nix/modules/home/agent-skills.nix` and deployed to `~/.agents/skills/` and
-  `~/.config/claude/skills/`. A skill that needs packages or a transform also
-  has a `skills.explicit.<name>` entry there.
+  `~/.config/claude/skills/`. For packages or a transform, exclude the skill
+  from `localSkillNames` and use `skills.explicit.<name>` instead, as `web-fetch` does.
 - Renaming a skill means updating every reference:
   `rg -n '<old-name>' --hidden -g '!.git'`. Besides other skills and
   `agents/`, the Claude Code hook in
@@ -90,7 +90,7 @@ inputs.
 
 ## Auditing the Collection
 
-1. Run `scripts/audit.nu` for SKILL.md lengths and frontmatter limits.
+1. From the repository root, run `agents/skills/agent-instructions/scripts/audit.nu` for SKILL.md lengths and frontmatter limits.
 2. Read every name and description together —
    `rg -N '^(name|description):' agents/skills/*/SKILL.md` — and look for
    overlapping triggers (merge, or cross-link by name), descriptions that

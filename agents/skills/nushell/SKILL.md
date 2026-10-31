@@ -1,6 +1,6 @@
 ---
 name: nushell
-description: 'When writing, reviewing, or porting a shell script, a `.nu` file, or a `shell: nu {0}` CI step.'
+description: 'When writing or reviewing Nushell files or CI steps, or porting a script to Nushell.'
 ---
 
 # Nushell
@@ -38,7 +38,8 @@ Write it functionally. In review, these signal bash habits:
 
 Give scripts a `def main`, type command signatures, keep times as `datetime` and
 `duration` rather than strings, and fail with `error make` rather than a
-sentinel value.
+sentinel value. Convert explicitly with `date to-timezone UTC` when an external
+boundary requires UTC.
 
 ## In this repository
 

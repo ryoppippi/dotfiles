@@ -11,7 +11,8 @@ Example prompts:
 
 # Ask Another Agent
 
-Use the agent the user names. Otherwise pick one that is not the agent you are
+Use the agent the user names; for the current harness, use its native
+subagent instead of a nested CLI. Otherwise pick one that is not the agent you are
 running in — Codex from Claude Code, Claude Code from Codex — since a second
 opinion from the same model adds little. Routine searches go to your own
 subagents instead.

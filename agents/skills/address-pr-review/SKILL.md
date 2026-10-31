@@ -16,7 +16,8 @@ description: When addressing review comments on the current pull request.
 ```
 
 Inline review comments are not in the output above; fetch them with
-`gh api repos/{owner}/{repo}/pulls/<number>/comments`.
+`gh api --paginate repos/{owner}/{repo}/pulls/<number>/comments`, resolving
+`<number>` from `gh pr view --json number --jq .number`.
 
 For each comment:
 

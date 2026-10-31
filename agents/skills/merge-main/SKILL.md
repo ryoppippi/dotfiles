@@ -12,4 +12,5 @@ description: When syncing the current branch with the latest main.
    merge its `main` (`git merge origin/main` or `git merge upstream/main`).
 3. Resolve conflicts by understanding what each side intended, not by picking a
    side per hunk; explain each resolution.
-4. Run the relevant checks, then push the branch.
+4. Stage resolved paths and complete a conflicted merge with `git merge --continue`.
+   Run the relevant checks, then push the branch.

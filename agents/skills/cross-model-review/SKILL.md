@@ -27,7 +27,7 @@ untracked files), a branch (`git diff <base>...HEAD`), or a commit
 (`git show <sha>`). Brief the reviewer with that command:
 
 ```text
-Review the changes in `git diff main...HEAD`. Look for correctness bugs and for
+Review <selected scope command and any applicable untracked files>. Look for correctness bugs and for
 fixes that treat a symptom instead of its cause. Do not edit files. Cite
 file:line for every finding, and list critical findings separately from
 suggestions.

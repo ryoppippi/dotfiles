@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: When the user asks for TDD or a regression test, or a change has an obvious cheap test target in an existing suite.
+description: When the user asks for TDD, a failing test, or a regression test, or a change has an obvious cheap test target in an existing suite.
 ---
 
 # TDD
