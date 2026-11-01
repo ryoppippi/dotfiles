@@ -169,6 +169,7 @@ in
         (omniwmLib.appRule "com.apple.finder" { layout = "float"; })
         (omniwmLib.appRule "anomaly.hex" { layout = "float"; })
         (omniwmLib.appRule "com.1password.1password" { layout = "float"; })
+        (omniwmLib.appRule "com.apple.Passwords" { layout = "float"; })
       ];
 
       # Everything within one workspace lives on Hyper. Everything that crosses
