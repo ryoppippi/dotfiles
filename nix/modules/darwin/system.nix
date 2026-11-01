@@ -252,6 +252,15 @@ in
   # Add fish to system shells
   environment.shells = [ pkgs.fish ];
 
+  # Fish is the login shell, so nothing has set up the Nix environment before
+  # it starts. The nixpkgs fish binary sources nix-darwin's preinit file, which
+  # applies setEnvironment natively; babelfish translates it at build time, so
+  # no bash runs at shell startup.
+  programs.fish = {
+    enable = true;
+    useBabelfish = true;
+  };
+
   # Font configuration
   fonts = {
     packages = with pkgs; [

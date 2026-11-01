@@ -104,17 +104,6 @@ let
       };
     }
 
-    # Nix environment support
-    {
-      name = "nix-env.fish";
-      src = pkgs.fetchFromGitHub {
-        owner = "lilyball";
-        repo = "nix-env.fish";
-        rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
-        sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
-      };
-    }
-
     # Runtime version switcher
     {
       name = "fish-na";
@@ -187,12 +176,15 @@ in
         } > "$out"
       '';
 
-  # Add nix-darwin system path (for comma, nix-locate, etc.)
-  xdg.configFile."fish/conf.d/01-nix-darwin-path.fish".text = ''
-    # Add nix-darwin system packages to PATH
-    # This includes comma, nix-locate, and other system-level packages
-    if test -d /run/current-system/sw/bin
-      fish_add_path /run/current-system/sw/bin
-    end
-  '';
+  # home-manager only ships hm-session-vars.sh; translating it at build time
+  # replaces the bash round trip config.fish used to make on every start.
+  xdg.configFile."fish/conf.d/01-hm-session-vars.fish".source =
+    pkgs.runCommandLocal "hm-session-vars.fish" { }
+      ''
+        # The guard is dropped so nested shells pick up a switch without a new login.
+        {
+          echo "set -e __HM_SESS_VARS_SOURCED"
+          ${lib.getExe pkgs.babelfish} < ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh
+        } > "$out"
+      '';
 }
