@@ -51,8 +51,6 @@ let
       }
     ];
 
-    autoResumeLimitedThreads = true;
-    snoozeLimitedThreads = true;
     idleCompaction = "beforeCacheExpires";
 
     # Worktrees always land in ~/.t3/worktrees/<repo>/<branch>; T3 Code has no
