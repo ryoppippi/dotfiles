@@ -15,6 +15,9 @@ to a CLI or another provider without the user asking.
 1. Call `t3-code:orchestrator_capabilities` and take the provider and model from
    its live catalogue. Always pass `target.model`: without it a provider falls
    back to its first advertised model, not its newest.
+   Check remaining quota before choosing:
+   `nix run github:ryoppippi/t3-limits -- --cached --json` (drop `--cached` for a
+   fresh, slower probe). Route away from a provider near its limit.
 2. Write a self-contained `task`: the child sees none of this conversation, so
    name the files, the decision at stake, the constraints, and the answer shape.
 3. Call `t3-code:delegate_task`:
