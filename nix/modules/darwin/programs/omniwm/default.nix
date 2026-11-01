@@ -166,6 +166,9 @@ in
         (omniwmLib.appRule "jp.naver.line.mac" narrowCompanion)
         (omniwmLib.appRule "com.tinyspeck.slackmacgap" (narrowCompanion // { minHeight = 600.0; }))
         (omniwmLib.appRule "com.apple.Dictionary" narrowCompanion)
+        (omniwmLib.appRule "com.apple.finder" { layout = "float"; })
+        (omniwmLib.appRule "anomaly.hex" { layout = "float"; })
+        (omniwmLib.appRule "com.1password.1password" { layout = "float"; })
       ];
 
       # Everything within one workspace lives on Hyper. Everything that crosses
