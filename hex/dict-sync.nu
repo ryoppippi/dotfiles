@@ -139,6 +139,20 @@ def main [--strict, --dry-run, ...args: string]: nothing -> nothing {
         return
     }
 
+    let settings_file = (script-dir) | path join settings.json
+    if $dry_run {
+        print $"hex-dict-sync: dry run; would apply ($settings_file)"
+    } else {
+        # `settings apply` writes settings.json directly when Hex is stopped, so this runs before the running check.
+        (require-status
+            (
+                decode-reply (run-hex $binary ['settings' 'apply' $settings_file '--json']) 'apply settings'
+            )
+            'done'
+            'apply settings'
+        ) | ignore
+    }
+
     let vocabulary_result = try { run-hex $binary ['vocabulary' 'list' '--json'] } catch { null }
     if $vocabulary_result == null or $vocabulary_result.exit_code == 3 {
         if $strict { error make {msg: 'hex-dict-sync: Hex is not running'} }

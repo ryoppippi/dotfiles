@@ -13,7 +13,7 @@
 
 # Touching any of these means the Nix configuration has to be re-applied.
 const NIX_PATTERN = '^(flake\.nix|flake\.lock|nix/|nvim/nvimx-lock/)'
-const DICT_PATTERN = '^hex/dictionary\.json'
+const DICT_PATTERN = '^hex/(dictionary|settings)\.json'
 # Editing a plugin spec can add or drop plugins the nvimx lock has to pin.
 const NVIM_SPEC_PATTERN = '^nvim/lua/plugin/'
 const NVIMX_LOCK_DIR = 'nvim/nvimx-lock'
@@ -50,7 +50,7 @@ def apply-implied [range: string, occasion: string = '']: nothing -> nothing {
     }
 
     if ($files | any {|path| $path =~ $DICT_PATTERN }) {
-        print $"Hex dictionary changed($occasion). Syncing..."
+        print $"Hex dictionary or settings changed($occasion). Syncing..."
         # The commit has already happened, so a failed sync must not fail the hook.
         do --ignore-errors { ^./hex/dict-sync.nu } | ignore
     }

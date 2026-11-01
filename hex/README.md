@@ -1,4 +1,4 @@
-# Hex Dictionary
+# Hex Dictionary and Settings
 
 `dictionary.json` is the managed source for Hex's vocabulary and Global text
 corrections. It contains `terms` (strings) and `corrections` records with
@@ -14,3 +14,7 @@ same original phrase ignoring case, and preserves other Hex rules. Removing an
 item from this file does not delete it from Hex. Hex applies vocabulary decoder
 bias only with supported models; the current Cohere transcription model does
 not use that bias, while Global corrections still run on its transcripts.
+
+`settings.json` holds managed Hex settings as `key: value` pairs, applied with
+`hex settings apply` on every sync; settings it omits keep their values. Unlike
+the dictionary, it is applied even while Hex is stopped.
