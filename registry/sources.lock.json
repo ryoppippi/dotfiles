@@ -75,6 +75,25 @@
 				"versionUpperBound": null
 			},
 			"subdir": "skills"
+		},
+		"t3-limits": {
+			"filter": {
+				"maxDepth": 1,
+				"nameRegex": null
+			},
+			"idPrefix": "t3-limits",
+			"pin": {
+				"at": null,
+				"branch": "main",
+				"owner": "ryoppippi",
+				"preReleases": false,
+				"releasePrefix": null,
+				"repo": "t3-limits",
+				"submodules": false,
+				"type": "github",
+				"versionUpperBound": null
+			},
+			"subdir": "skills"
 		}
 	},
 	"npins": {
@@ -130,6 +149,19 @@
 				"submodules": false,
 				"type": "Git",
 				"url": "https://github.com/github/gh-stack/archive/2a49e6751238633db504655d8a8eba3e433e827d.tar.gz"
+			},
+			"t3-limits": {
+				"branch": "main",
+				"hash": "sha256-LuSN3RKbNLKYDh0k93pIxnuDNzo6qhCi9Xs8zlCXE3Y=",
+				"repository": {
+					"owner": "ryoppippi",
+					"repo": "t3-limits",
+					"type": "GitHub"
+				},
+				"revision": "28c7789342444675326e5a7b71b870625e184f60",
+				"submodules": false,
+				"type": "Git",
+				"url": "https://github.com/ryoppippi/t3-limits/archive/28c7789342444675326e5a7b71b870625e184f60.tar.gz"
 			}
 		},
 		"version": 8

@@ -123,6 +123,13 @@ in
       path = "gh-stack";
     };
 
+    # The binary comes from ai-tools.nix via the t3-limits flake input, so the
+    # skill's plain `t3-limits` commands resolve on PATH.
+    skills.explicit.t3-limits = {
+      from = "t3-limits";
+      path = "t3-limits";
+    };
+
     skills.explicit.agent-browser =
       let
         agentBrowserBin = "${config.home.homeDirectory}/.agents/skills/agent-browser/agent-browser";

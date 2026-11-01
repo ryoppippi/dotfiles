@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs.llm-agents; [
-    cursor-agent
-    grok
-    pi
+  home.packages = [
+    pkgs.llm-agents.cursor-agent
+    pkgs.llm-agents.grok
+    pkgs.llm-agents.pi
+    pkgs.t3-limits
   ];
 }
