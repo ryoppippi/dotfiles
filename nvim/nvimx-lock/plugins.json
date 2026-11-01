@@ -4,7 +4,7 @@
     "commit": null,
     "inputName": "lazy-nvim",
     "pin": null,
-    "resolvedRef": "85c7ff3711b730b4030d03144f6db6375044ae82",
+    "resolvedRef": "refs/tags/v11.17.5",
     "source": {
       "owner": "folke",
       "repo": "lazy.nvim",
@@ -50,7 +50,7 @@
       "dependencies": [],
       "inputName": "bufresize-nvim",
       "pin": null,
-      "resolvedRef": "3b19527ab936d6910484dcc20fb59bdb12322d8b",
+      "resolvedRef": null,
       "source": {
         "owner": "kwkarlwang",
         "repo": "bufresize.nvim",
@@ -68,7 +68,7 @@
       "dependencies": [],
       "inputName": "capture-vim",
       "pin": null,
-      "resolvedRef": "857ee11cfe1193948d3d45dcb8d511fded8533fb",
+      "resolvedRef": null,
       "source": {
         "owner": "tyru",
         "repo": "capture.vim",
@@ -86,7 +86,7 @@
       "dependencies": [],
       "inputName": "chowcho-nvim",
       "pin": null,
-      "resolvedRef": "c87ba3be2059070e16c89bf1710762dd70cb3007",
+      "resolvedRef": null,
       "source": {
         "owner": "tkmpypy",
         "repo": "chowcho.nvim",
@@ -104,7 +104,7 @@
       "dependencies": [],
       "inputName": "colorful-winsep-nvim",
       "pin": null,
-      "resolvedRef": "6134b5cd4a38990c7b720adc90973ed32f726179",
+      "resolvedRef": null,
       "source": {
         "owner": "nvim-zh",
         "repo": "colorful-winsep.nvim",
@@ -122,7 +122,7 @@
       "dependencies": [],
       "inputName": "crates-nvim",
       "pin": null,
-      "resolvedRef": "7039bc1d130e424232a7aa64ceddb170a154ff5b",
+      "resolvedRef": null,
       "source": {
         "owner": "saecki",
         "repo": "crates.nvim",
@@ -140,7 +140,7 @@
       "dependencies": [],
       "inputName": "dropbar-nvim",
       "pin": null,
-      "resolvedRef": "808ba31cde89aec8833e9789f5e04557cd31c9e1",
+      "resolvedRef": null,
       "source": {
         "owner": "Bekaboo",
         "repo": "dropbar.nvim",
@@ -158,7 +158,7 @@
       "dependencies": [],
       "inputName": "fileline-nvim",
       "pin": null,
-      "resolvedRef": "c116aa8dd7aa7e1db6938f872285e598dc9ee00b",
+      "resolvedRef": null,
       "source": {
         "owner": "lewis6991",
         "repo": "fileline.nvim",
@@ -176,7 +176,7 @@
       "dependencies": [],
       "inputName": "flash-nvim",
       "pin": null,
-      "resolvedRef": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a",
+      "resolvedRef": null,
       "source": {
         "owner": "folke",
         "repo": "flash.nvim",
@@ -194,7 +194,7 @@
       "dependencies": [],
       "inputName": "flatten-nvim",
       "pin": null,
-      "resolvedRef": "d92ca41e9c330f45c1b854a80c89c8488a9d730c",
+      "resolvedRef": null,
       "source": {
         "owner": "willothy",
         "repo": "flatten.nvim",
@@ -212,7 +212,7 @@
       "dependencies": [],
       "inputName": "git-conflict-nvim",
       "pin": null,
-      "resolvedRef": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4",
+      "resolvedRef": null,
       "source": {
         "owner": "akinsho",
         "repo": "git-conflict.nvim",
@@ -230,7 +230,7 @@
       "dependencies": [],
       "inputName": "git-rebase-auto-diff-nvim",
       "pin": null,
-      "resolvedRef": "6fd2f5ba63828e5c4fd59bb1b75ef7525a5ce39f",
+      "resolvedRef": null,
       "source": {
         "owner": "yutkat",
         "repo": "git-rebase-auto-diff.nvim",
@@ -248,7 +248,7 @@
       "dependencies": [],
       "inputName": "gitignore-nvim",
       "pin": null,
-      "resolvedRef": "15ed88abbaeb5deffe6d7c6d51af9b6ff784135f",
+      "resolvedRef": null,
       "source": {
         "owner": "wintermute-cell",
         "repo": "gitignore.nvim",
@@ -268,7 +268,7 @@
       ],
       "inputName": "gitsigns-nvim",
       "pin": null,
-      "resolvedRef": "a462f416e2ce4744531c6256252dee99a7d34a83",
+      "resolvedRef": null,
       "source": {
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
@@ -286,7 +286,7 @@
       "dependencies": [],
       "inputName": "guess-indent-nvim",
       "pin": null,
-      "resolvedRef": "84a4987ff36798c2fc1169cbaff67960aed9776f",
+      "resolvedRef": null,
       "source": {
         "owner": "NMAC427",
         "repo": "guess-indent.nvim",
@@ -304,7 +304,7 @@
       "dependencies": [],
       "inputName": "highlight-undo-nvim",
       "pin": null,
-      "resolvedRef": "ee32e12693d70e66f954d09a504a7371d110fc27",
+      "resolvedRef": null,
       "source": {
         "owner": "tzachar",
         "repo": "highlight-undo.nvim",
@@ -323,7 +323,7 @@
       "dependencies": [],
       "inputName": "kanagawa-nvim",
       "pin": null,
-      "resolvedRef": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
+      "resolvedRef": null,
       "source": {
         "owner": "rebelot",
         "repo": "kanagawa.nvim",
@@ -341,7 +341,7 @@
       "dependencies": [],
       "inputName": "marks-nvim",
       "pin": null,
-      "resolvedRef": "f353e8c08c50f39e99a9ed474172df7eddd89b72",
+      "resolvedRef": null,
       "source": {
         "owner": "chentoast",
         "repo": "marks.nvim",
@@ -361,7 +361,7 @@
       ],
       "inputName": "mini-ai",
       "pin": null,
-      "resolvedRef": "bfb26d9072670c3aaefab0f53024b2f3729c8083",
+      "resolvedRef": null,
       "source": {
         "owner": "echasnovski",
         "repo": "mini.ai",
@@ -379,7 +379,7 @@
       "dependencies": [],
       "inputName": "mini-extra",
       "pin": null,
-      "resolvedRef": "31f82562238a4fadd30997757ead6c7f1770e7ea",
+      "resolvedRef": null,
       "source": {
         "owner": "echasnovski",
         "repo": "mini.extra",
@@ -397,7 +397,7 @@
       "dependencies": [],
       "inputName": "mini-icons",
       "pin": null,
-      "resolvedRef": "e56797f90192d81f1fda02e662fc3e8e3d775027",
+      "resolvedRef": null,
       "source": {
         "owner": "echasnovski",
         "repo": "mini.icons",
@@ -415,7 +415,7 @@
       "dependencies": [],
       "inputName": "mini-jump",
       "pin": null,
-      "resolvedRef": "99799e8ca33fe936b81a70b5ab9a081f8794c8a1",
+      "resolvedRef": null,
       "source": {
         "owner": "echasnovski",
         "repo": "mini.jump",
@@ -433,7 +433,7 @@
       "dependencies": [],
       "inputName": "modes-nvim",
       "pin": null,
-      "resolvedRef": "2badf8771dbb2d1e1066fd6a5dddaad2fc836e72",
+      "resolvedRef": null,
       "source": {
         "owner": "mvllow",
         "repo": "modes.nvim",
@@ -451,7 +451,7 @@
       "dependencies": [],
       "inputName": "modesearch-vim",
       "pin": null,
-      "resolvedRef": "71f123cadbb86e0cbacc12f472d18684fc3308a8",
+      "resolvedRef": null,
       "source": {
         "owner": "monaqa",
         "repo": "modesearch.vim",
@@ -491,7 +491,7 @@
       ],
       "inputName": "noice-nvim",
       "pin": null,
-      "resolvedRef": "7bfd942445fb63089b59f97ca487d605e715f155",
+      "resolvedRef": null,
       "source": {
         "owner": "folke",
         "repo": "noice.nvim",
@@ -509,7 +509,7 @@
       "dependencies": [],
       "inputName": "nui-nvim",
       "pin": null,
-      "resolvedRef": "f535005e6ad1016383f24e39559833759453564e",
+      "resolvedRef": null,
       "source": {
         "owner": "MunifTanjim",
         "repo": "nui.nvim",
@@ -527,7 +527,7 @@
       "dependencies": [],
       "inputName": "nvim-bqf",
       "pin": null,
-      "resolvedRef": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7",
+      "resolvedRef": null,
       "source": {
         "owner": "kevinhwang91",
         "repo": "nvim-bqf",
@@ -545,7 +545,7 @@
       "dependencies": [],
       "inputName": "nvim-early-retirement",
       "pin": null,
-      "resolvedRef": "d73ddf7b8b776aa917947142873a05f733103757",
+      "resolvedRef": null,
       "source": {
         "owner": "chrisgrieser",
         "repo": "nvim-early-retirement",
@@ -563,7 +563,7 @@
       "dependencies": [],
       "inputName": "nvim-highlight-colors",
       "pin": null,
-      "resolvedRef": "e4c7af0211866162d999ce0bdd6a029302e19139",
+      "resolvedRef": null,
       "source": {
         "owner": "brenoprata10",
         "repo": "nvim-highlight-colors",
@@ -583,7 +583,7 @@
       ],
       "inputName": "nvim-treesitter",
       "pin": null,
-      "resolvedRef": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
+      "resolvedRef": null,
       "source": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
@@ -601,7 +601,7 @@
       "dependencies": [],
       "inputName": "nvim-treesitter-context",
       "pin": null,
-      "resolvedRef": "b0c45cefe2c8f7b55fc46f34e563bc428ef99636",
+      "resolvedRef": null,
       "source": {
         "owner": "romgrk",
         "repo": "nvim-treesitter-context",
@@ -619,7 +619,7 @@
       "dependencies": [],
       "inputName": "nvim-treesitter-textobjects",
       "pin": null,
-      "resolvedRef": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
+      "resolvedRef": null,
       "source": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter-textobjects",
@@ -641,7 +641,7 @@
       ],
       "inputName": "octo-nvim",
       "pin": null,
-      "resolvedRef": "af2411604b51cb4a0f3e2de50b1b7cacc2581c48",
+      "resolvedRef": null,
       "source": {
         "owner": "pwntester",
         "repo": "octo.nvim",
@@ -659,7 +659,7 @@
       "dependencies": [],
       "inputName": "oil-git-status-nvim",
       "pin": null,
-      "resolvedRef": "a3e2ccb00cb8822115e28a9a1791eda051d940c9",
+      "resolvedRef": null,
       "source": {
         "owner": "refractalize",
         "repo": "oil-git-status.nvim",
@@ -681,7 +681,7 @@
       ],
       "inputName": "oil-nvim",
       "pin": null,
-      "resolvedRef": "17c0a8faaf48298a0c0cfb0d757c0eaee4ff7a32",
+      "resolvedRef": null,
       "source": {
         "owner": "stevearc",
         "repo": "oil.nvim",
@@ -717,7 +717,7 @@
       "dependencies": [],
       "inputName": "peridot-vim",
       "pin": null,
-      "resolvedRef": "5dda71a487d225c16209617d34acff08afb2d50b",
+      "resolvedRef": null,
       "source": {
         "owner": "monaqa",
         "repo": "peridot.vim",
@@ -735,7 +735,7 @@
       "dependencies": [],
       "inputName": "persistence-nvim",
       "pin": null,
-      "resolvedRef": "b20b2a7887bd39c1a356980b45e03250f3dce49c",
+      "resolvedRef": null,
       "source": {
         "owner": "folke",
         "repo": "persistence.nvim",
@@ -753,7 +753,7 @@
       "dependencies": [],
       "inputName": "plenary-nvim",
       "pin": null,
-      "resolvedRef": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "resolvedRef": null,
       "source": {
         "owner": "nvim-lua",
         "repo": "plenary.nvim",
@@ -771,7 +771,7 @@
       "dependencies": [],
       "inputName": "quicker-nvim",
       "pin": null,
-      "resolvedRef": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
+      "resolvedRef": null,
       "source": {
         "owner": "stevearc",
         "repo": "quicker.nvim",
@@ -791,7 +791,7 @@
       ],
       "inputName": "satellite-nvim",
       "pin": null,
-      "resolvedRef": "87843c9c8f28b54332497302de380a6d94c9e82b",
+      "resolvedRef": null,
       "source": {
         "owner": "lewis6991",
         "repo": "satellite.nvim",
@@ -809,7 +809,7 @@
       "dependencies": [],
       "inputName": "snacks-nvim",
       "pin": null,
-      "resolvedRef": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "resolvedRef": null,
       "source": {
         "owner": "folke",
         "repo": "snacks.nvim",
@@ -827,7 +827,7 @@
       "dependencies": [],
       "inputName": "stickybuf-nvim",
       "pin": null,
-      "resolvedRef": "0c1e5f1a3eb36eea2cea57083828269cc62c58e4",
+      "resolvedRef": null,
       "source": {
         "owner": "stevearc",
         "repo": "stickybuf.nvim",
@@ -845,7 +845,7 @@
       "dependencies": [],
       "inputName": "term-edit-nvim",
       "pin": null,
-      "resolvedRef": "b190a91178ef98beefac2ec0823db047978ea327",
+      "resolvedRef": "refs/tags/v1.4.0",
       "source": {
         "owner": "chomosuke",
         "repo": "term-edit.nvim",
@@ -863,7 +863,7 @@
       "dependencies": [],
       "inputName": "vim-asterisk",
       "pin": null,
-      "resolvedRef": "77e97061d6691637a034258cc415d98670698459",
+      "resolvedRef": null,
       "source": {
         "owner": "haya14busa",
         "repo": "vim-asterisk",
@@ -881,7 +881,7 @@
       "dependencies": [],
       "inputName": "vim-log-highlighting",
       "pin": null,
-      "resolvedRef": "1037e26f3120e6a6a2c0c33b14a84336dee2a78f",
+      "resolvedRef": null,
       "source": {
         "owner": "mtdl9",
         "repo": "vim-log-highlighting",
@@ -899,7 +899,7 @@
       "dependencies": [],
       "inputName": "vim-matchup",
       "pin": null,
-      "resolvedRef": "0106b1afd4a2f7e1098037b5ceb161bab7471088",
+      "resolvedRef": null,
       "source": {
         "owner": "andymass",
         "repo": "vim-matchup",
@@ -917,7 +917,7 @@
       "dependencies": [],
       "inputName": "vim-repeat",
       "pin": null,
-      "resolvedRef": "65846025c15494983dafe5e3b46c8f88ab2e9635",
+      "resolvedRef": null,
       "source": {
         "owner": "tpope",
         "repo": "vim-repeat",
@@ -937,7 +937,7 @@
       ],
       "inputName": "vim-textobj-blockwise",
       "pin": null,
-      "resolvedRef": "c731da12fbd5728a22fb8d3c800b8bcdcbf94da8",
+      "resolvedRef": null,
       "source": {
         "owner": "osyo-manga",
         "repo": "vim-textobj-blockwise",
@@ -955,7 +955,7 @@
       "dependencies": [],
       "inputName": "vim-textobj-user",
       "pin": null,
-      "resolvedRef": "41a675ddbeefd6a93664a4dc52f302fe3086a933",
+      "resolvedRef": null,
       "source": {
         "owner": "kana",
         "repo": "vim-textobj-user",
@@ -973,7 +973,7 @@
       "dependencies": [],
       "inputName": "wb-only-current-line-nvim",
       "pin": null,
-      "resolvedRef": "93ebd5eadfee2b0cb911806ce30dc8a798a6a17b",
+      "resolvedRef": null,
       "source": {
         "owner": "yutkat",
         "repo": "wb-only-current-line.nvim",
@@ -991,7 +991,7 @@
       "dependencies": [],
       "inputName": "which-key-nvim",
       "pin": null,
-      "resolvedRef": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "resolvedRef": null,
       "source": {
         "owner": "folke",
         "repo": "which-key.nvim",
@@ -1009,7 +1009,7 @@
       "dependencies": [],
       "inputName": "winresizer",
       "pin": null,
-      "resolvedRef": "299076f7f79e2e2f7706b2dfacbb3c074ce53257",
+      "resolvedRef": null,
       "source": {
         "owner": "simeji",
         "repo": "winresizer",
