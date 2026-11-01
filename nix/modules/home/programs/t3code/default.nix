@@ -21,8 +21,8 @@ let
       ];
     };
     fallbackModelSelection = {
-      instanceId = "codex";
-      model = "gpt-6.1-sol";
+      instanceId = "claudeAgent";
+      model = "claude-fable-5-1";
     };
     defaultRuntimeMode = "auto";
 
