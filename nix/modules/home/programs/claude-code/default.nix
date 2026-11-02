@@ -43,6 +43,7 @@ let
     autoMemoryEnabled = false;
     useAutoModeDuringPlan = true;
     effortLevel = "medium";
+    subagentPromptCacheTtl = "1h";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
     hooks = {
