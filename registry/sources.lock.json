@@ -126,16 +126,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-JlVmkJVlOzqqX1IQ1OG0XB7ayBwvIoXUQ73fh9VeP78=",
+				"hash": "sha256-7C4RgXWOvZNJKqvxssaTDDMzy5gEQcR9uWg1w73DuqM=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "183d315a8d6a6092d44002b7a9139e8fe775f1ef",
+				"revision": "4ac6e872ac1982c6a82bd633d23ce4d0e348ff1f",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/183d315a8d6a6092d44002b7a9139e8fe775f1ef.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/4ac6e872ac1982c6a82bd633d23ce4d0e348ff1f.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
@@ -152,16 +152,16 @@
 			},
 			"t3-limits": {
 				"branch": "main",
-				"hash": "sha256-LuSN3RKbNLKYDh0k93pIxnuDNzo6qhCi9Xs8zlCXE3Y=",
+				"hash": "sha256-tJ8uCrs/qA4awXlqYYVe8ViywUyEUjnOeYSANjZuGi0=",
 				"repository": {
 					"owner": "ryoppippi",
 					"repo": "t3-limits",
 					"type": "GitHub"
 				},
-				"revision": "28c7789342444675326e5a7b71b870625e184f60",
+				"revision": "3918559d9f7ba8d7caed113482ae7370c6194726",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/ryoppippi/t3-limits/archive/28c7789342444675326e5a7b71b870625e184f60.tar.gz"
+				"url": "https://github.com/ryoppippi/t3-limits/archive/3918559d9f7ba8d7caed113482ae7370c6194726.tar.gz"
 			}
 		},
 		"version": 8
