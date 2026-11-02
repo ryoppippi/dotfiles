@@ -19,21 +19,65 @@ let
   # and depth filter.
   externalSources = agentSkillsLib.sourcesFromLock skillRegistry;
 
+  localSkillsDir = "${local-skills}/agents/skills";
+
   localSkillNames =
-    if local-skills == null then
-      [ ]
-    else
-      lib.filter (name: name != "web-fetch") (
-        builtins.attrNames (builtins.readDir "${local-skills}/agents/skills")
+    if local-skills == null then [ ] else builtins.attrNames (builtins.readDir localSkillsDir);
+
+  # `metadata.agents` in a local SKILL.md lists the targets that receive it.
+  # Nix cannot parse YAML, so only the one-line flow form
+  # `  agents: [claude, agents]` is read; any other spelling fails evaluation
+  # rather than silently installing the skill everywhere.
+  skillAgents =
+    name:
+    let
+      lines = lib.splitString "\n" (builtins.readFile "${localSkillsDir}/${name}/SKILL.md");
+      body = lib.drop 1 lines;
+      frontmatterEnd = lib.lists.findFirstIndex (line: line == "---") null body;
+      frontmatter =
+        if lib.head lines == "---" && frontmatterEnd != null then lib.take frontmatterEnd body else [ ];
+      metadataStart = lib.lists.findFirstIndex (line: line == "metadata:") null frontmatter;
+      afterMetadata = if metadataStart == null then [ ] else lib.drop (metadataStart + 1) frontmatter;
+      metadataEnd = lib.lists.findFirstIndex (
+        line: builtins.match "[[:space:]].*" line == null
+      ) (builtins.length afterMetadata) afterMetadata;
+      agentsLines = lib.filter (line: builtins.match "[[:space:]]+agents:.*" line != null) (
+        lib.take metadataEnd afterMetadata
       );
+      parsed = builtins.match "[[:space:]]+agents:[[:space:]]*\\[([^]]*)]" (lib.head agentsLines);
+      names = lib.filter (agent: agent != "") (map lib.trim (lib.splitString "," (lib.head parsed)));
+      fail = reason: throw "agent-skills: ${name}/SKILL.md metadata.agents ${reason}";
+    in
+    if agentsLines == [ ] then
+      null
+    else if builtins.length agentsLines > 1 then
+      fail "is declared more than once"
+    else if parsed == null then
+      fail "must be a one-line list such as [claude, agents]"
+    else if !lib.all (agent: builtins.match "[A-Za-z0-9_-]+" agent != null) names then
+      fail "entries must be bare target names"
+    else
+      names;
 in
 {
+  # Explicit rather than skills.enable: only explicit skills can carry the
+  # per-target `agents` allowlist.
+  imports = [
+    {
+      programs.agent-skills.skills.explicit = lib.genAttrs localSkillNames (name: {
+        from = "local";
+        path = name;
+        agents = skillAgents name;
+      });
+    }
+  ];
+
   programs.agent-skills = {
     enable = true;
 
     # External sources come from the pin registry; only this repo's own skills
-    # stay a direct path. `local` keeps bare IDs because skills.enable selects
-    # it by plain name.
+    # stay a direct path. `local` keeps bare IDs because skills.explicit names
+    # its skills by plain name.
     sources = externalSources // {
       local = {
         path = local-skills;
@@ -41,8 +85,6 @@ in
         filter.maxDepth = 1;
       };
     };
-
-    skills.enable = localSkillNames;
 
     skills.explicit.ast-grep =
       let
@@ -74,8 +116,6 @@ in
       };
 
     skills.explicit.web-fetch = {
-      from = "local";
-      path = "web-fetch";
       packages = [
         pkgs.llm-agents.ax
         pkgs.llm-agents.tgrab

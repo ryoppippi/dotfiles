@@ -49,8 +49,10 @@ Background: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/be
 
 - Local skills in `agents/skills/<name>/` are enabled automatically by
   `nix/modules/home/agent-skills.nix` and deployed to `~/.agents/skills/` and
-  `~/.config/claude/skills/`. For packages or a transform, exclude the skill
-  from `localSkillNames` and use `skills.explicit.<name>` instead, as `web-fetch` does.
+  `~/.config/claude/skills/`. To limit a skill to some of those targets, add
+  `metadata:` with a one-line `  agents: [claude]` (target names: `claude`,
+  `agents`) to its frontmatter. For packages or a transform, add them under
+  `skills.explicit.<name>`, as `web-fetch` does.
 - Renaming a skill means updating every reference:
   `rg -n '<old-name>' --hidden -g '!.git'`. Besides other skills and
   `agents/`, the Claude Code hook in
