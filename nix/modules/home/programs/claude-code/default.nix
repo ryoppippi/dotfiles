@@ -7,10 +7,16 @@
 }:
 let
   claudeConfigDir = "${config.xdg.configHome}/claude";
+  # Every profile is a separate CLAUDE_CONFIG_DIR, so each signs in to its own
+  # account while sharing the managed settings, instructions, and agents.
+  claudeProfiles = [
+    "claude"
+    "claude-personal-0"
+  ];
   claudeDotfilesDir = "${dotfilesDir}/claude";
 
   # Binary paths from Nix store
-  bun = lib.getExe pkgs.bun;
+  ccusageBin = lib.getExe pkgs.llm-agents.ccusage;
   checkJsonschema = lib.getExe pkgs.check-jsonschema;
   jq = lib.getExe pkgs.jq;
   jsonFormat = pkgs.formats.json { };
@@ -31,7 +37,7 @@ let
     includeCoAuthoredBy = false;
     statusLine = {
       type = "command";
-      command = "${bun} x ccusage statusline --cost-source both";
+      command = "${ccusageBin} statusline --cost-source both";
     };
     alwaysThinkingEnabled = true;
     autoMemoryEnabled = false;
@@ -104,11 +110,24 @@ let
     base // override // { hooks = mergedHooks; };
 
   settings = mergeSettings baseSettings darwinSettings;
+
+  # ccusage reads every directory in a comma-separated CLAUDE_CONFIG_DIR, but
+  # Claude Code itself needs a single path there, so the combined list is only
+  # set for ccusage run from a shell. The statusline keeps the session's own
+  # profile, since each account has its own limits.
+  ccusage = pkgs.writeShellScriptBin "ccusage" ''
+    CLAUDE_CONFIG_DIR="${
+      lib.concatMapStringsSep "," (profile: "${config.xdg.configHome}/${profile}") claudeProfiles
+    }" exec ${ccusageBin} "$@"
+  '';
 in
 {
   home = {
     # Claude Code package from overlay
-    packages = [ pkgs.claude-code ];
+    packages = [
+      pkgs.claude-code
+      ccusage
+    ];
 
     # Set CLAUDE_CONFIG_DIR environment variable (sourced via hm-session-vars.sh in fish)
     sessionVariables = {
@@ -119,22 +138,25 @@ in
     # `/permissions` appends allow rules, `/config` stores UI preferences — and
     # a wholesale copy would drop all of it on every switch. The keys below win,
     # everything else in the live file is left alone.
-    activation.writeClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      SETTINGS_FILE="${claudeConfigDir}/settings.json"
-      mkdir -p "${claudeConfigDir}"
+    activation.writeClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+      lib.concatMapStrings (profile: ''
+        CONFIG_DIR="${config.xdg.configHome}/${profile}"
+        SETTINGS_FILE="$CONFIG_DIR/settings.json"
+        mkdir -p "$CONFIG_DIR"
 
-      if [ -f "$SETTINGS_FILE" ]; then
-        TEMP_FILE="$(mktemp "${claudeConfigDir}/.settings.json.XXXXXX")"
-        if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" ${jsonFormat.generate "claude-settings.json" settings} > "$TEMP_FILE"; then
-          rm -f "$TEMP_FILE"
-          exit 1
+        if [ -f "$SETTINGS_FILE" ]; then
+          TEMP_FILE="$(mktemp "$CONFIG_DIR/.settings.json.XXXXXX")"
+          if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" ${jsonFormat.generate "claude-settings.json" settings} > "$TEMP_FILE"; then
+            rm -f "$TEMP_FILE"
+            exit 1
+          fi
+          mv "$TEMP_FILE" "$SETTINGS_FILE"
+        else
+          cp --no-preserve=mode,ownership ${jsonFormat.generate "claude-settings.json" settings} "$SETTINGS_FILE"
         fi
-        mv "$TEMP_FILE" "$SETTINGS_FILE"
-      else
-        cp --no-preserve=mode,ownership ${jsonFormat.generate "claude-settings.json" settings} "$SETTINGS_FILE"
-      fi
-      chmod 644 "$SETTINGS_FILE"
-    '';
+        chmod 644 "$SETTINGS_FILE"
+      '') claudeProfiles
+    );
 
     # Validate Claude Code settings.json after generation
     activation.validateClaudeSettings = lib.hm.dag.entryAfter [ "writeClaudeSettings" ] ''
@@ -150,16 +172,19 @@ in
     '';
   };
 
-  # Symlink directories and files to ~/.config/claude/
+  # Symlink directories and files into every profile directory
   # Note: All skills (external and local) are managed by agent-skills module
-  xdg.configFile = {
-    # User-scope memory is only read under the name CLAUDE.md, so the shared
-    # agents/AGENTS.md is linked into place under that name.
-    "claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/AGENTS.md";
-    "claude/shared".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/shared";
-    "claude/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
-    "claude/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
-    "claude/output-styles".source =
-      config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
-  };
+  xdg.configFile = lib.mergeAttrsList (
+    map (profile: {
+      # User-scope memory is only read under the name CLAUDE.md, so the shared
+      # agents/AGENTS.md is linked into place under that name.
+      "${profile}/CLAUDE.md".source =
+        config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/AGENTS.md";
+      "${profile}/shared".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/agents/shared";
+      "${profile}/commands".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/commands";
+      "${profile}/agents".source = config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/agents";
+      "${profile}/output-styles".source =
+        config.lib.file.mkOutOfStoreSymlink "${claudeDotfilesDir}/output-styles";
+    }) claudeProfiles
+  );
 }

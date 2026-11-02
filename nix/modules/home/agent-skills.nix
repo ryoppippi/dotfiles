@@ -177,6 +177,11 @@ in
         dest = ".config/claude/skills";
         structure = "link";
       };
+      claude-personal-0 = {
+        enable = true;
+        dest = ".config/claude-personal-0/skills";
+        structure = "link";
+      };
     };
   };
 }
