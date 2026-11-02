@@ -11,7 +11,7 @@ let
 
   settings = {
     defaultModelSelection = {
-      instanceId = "claudeAgent";
+      instanceId = "claudePersonal0";
       model = "claude-opus-5-5";
       options = [
         {
@@ -22,7 +22,7 @@ let
     };
     fallbackModelSelection = {
       instanceId = "claudeAgent";
-      model = "claude-fable-5-1";
+      model = "claude-opus-5-5";
     };
     defaultRuntimeMode = "auto";
 
@@ -100,9 +100,9 @@ let
     providerInstances =
       lib.mapAttrs
         (
-          driver: instance:
+          id: instance:
           {
-            inherit driver;
+            driver = id;
             enabled = true;
           }
           // instance
@@ -113,6 +113,14 @@ let
             config = {
               binaryPath = lib.getExe pkgs.claude-code;
               homePath = sessionVariables.CLAUDE_CONFIG_DIR;
+            };
+          };
+          claudePersonal0 = {
+            driver = "claudeAgent";
+            displayName = "Claude (personal 0)";
+            config = {
+              binaryPath = lib.getExe pkgs.claude-code;
+              homePath = "${config.xdg.configHome}/claude-personal-0";
             };
           };
           codex = {
