@@ -1,6 +1,6 @@
 ---
 name: address-pr-review
-description: When addressing review comments on the current pull request.
+description: Fetches review comments on the current PR and addresses them. Use when the user asks to address or fix review comments.
 ---
 
 **PR:**

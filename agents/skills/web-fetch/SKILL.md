@@ -1,6 +1,6 @@
 ---
 name: web-fetch
-description: When reading a URL, searching the web or X, or fetching social posts and YouTube transcripts.
+description: Reads URLs and searches the web, X, Bluesky, and YouTube. Use when the user gives a URL or asks to search the web or look something up.
 ---
 
 # Web Fetch

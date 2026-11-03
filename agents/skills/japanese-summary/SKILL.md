@@ -1,11 +1,11 @@
 ---
-name: session-summary-japanese
-description: When the user asks for a summary or handoff of the current session.
+name: japanese-summary
+description: Summarises the session in Japanese. Trigger this if the user says 'in japanese' or '日本語で'.
 ---
 
 <!--
 Example prompts:
-  /session-summary-japanese
+  /japanese-summary
 -->
 
 Summarise this session concisely in Japanese, as bullet points, under these

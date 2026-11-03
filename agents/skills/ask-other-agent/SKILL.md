@@ -1,6 +1,6 @@
 ---
 name: ask-other-agent
-description: When the user asks Codex, Claude Code, Grok, or Cursor for an opinion or a task, or before settling a significant approach.
+description: Gets an opinion from, or hands a task to, Codex, Claude Code, Grok, or Cursor. Use when the user asks to ask one of them.
 ---
 
 <!--

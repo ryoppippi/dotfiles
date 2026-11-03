@@ -1,6 +1,6 @@
 # grok and codex inside T3 Code
 
-Follow the `t3-code-delegation` skill instead of running `grok -p` or
+Follow the `t3-delegate` skill instead of running `grok -p` or
 `codex exec`, with `interactionMode: "plan"`:
 
 - Tweet search: the `grok` provider on its default model.

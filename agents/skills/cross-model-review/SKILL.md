@@ -1,6 +1,6 @@
 ---
 name: cross-model-review
-description: When the user asks for a code review, or before opening a pull request.
+description: Reviews changes with another vendor's model. Use when the user asks for a review or code review, or before opening a pull request.
 ---
 
 # Cross-Model Review
