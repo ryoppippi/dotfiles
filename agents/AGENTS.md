@@ -1,9 +1,5 @@
 # Global Agent Instructions
 
-The single global instruction file, shared by every agent. Claude Code reads it
-as `~/.config/claude/CLAUDE.md` and resolves the `@` imports; Codex gets the
-`shared/` fragments concatenated in at switch time.
-
 ## About Me
 
 - My name is ryoppippi

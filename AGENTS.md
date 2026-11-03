@@ -12,6 +12,8 @@ nix run .#build                              # Test build
 
 Nix flakes only see tracked, staged files, so stage the paths you changed before `switch`.
 
+Local changes to `nix/modules/home/programs/codex/default.nix` may contain private repository names; review them before staging or publishing.
+
 ## Layout Notes
 
 - `agents/AGENTS.md` is the single global instruction file for every agent, with its sections in `agents/shared/`; skills live in `agents/skills/`. Use the `edit-skills` skill before editing any of them.
