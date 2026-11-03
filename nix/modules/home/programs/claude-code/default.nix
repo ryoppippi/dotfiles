@@ -60,7 +60,7 @@ let
                 "if [ -f /tmp/.claude-review-done ]; then"
                 "rm -f /tmp/.claude-review-done; exit 0;"
                 "else"
-                "echo 'BLOCKED: You must run the cross-model-review skill first before creating a PR. Use Skill(cross-model-review) to review changes against the base branch.' >&2;"
+                "echo 'BLOCKED: You must run the review-loop skill first before creating a PR. Use Skill(review-loop) to review changes against the base branch.' >&2;"
                 "exit 2;"
                 "fi; fi; exit 0"
               ];
@@ -77,7 +77,7 @@ let
               command = builtins.concatStringsSep " " [
                 "input=$(cat);"
                 "skill=$(echo \"$input\" | ${jq} -r '.tool_input.skill // .tool_input.skillName // \"\"');"
-                "if [ \"$skill\" = \"cross-model-review\" ]; then"
+                "if [ \"$skill\" = \"review-loop\" ]; then"
                 "touch /tmp/.claude-review-done;"
                 "fi; exit 0"
               ];
