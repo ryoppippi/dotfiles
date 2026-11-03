@@ -6,4 +6,4 @@ Global instructions and skills shared by every coding agent (Claude Code, Codex,
 - `shared/` — the sections of `AGENTS.md`. A new fragment needs an `@` import in `AGENTS.md` and an entry in `sharedFragments` in the Codex module.
 - `skills/` — local skills, enabled automatically by `nix/modules/home/agent-skills.nix` ([agent-skills-nix](https://github.com/Kyure-A/agent-skills-nix)) and deployed to `~/.agents/skills/` and `~/.config/claude/skills/`. External skills are pinned in `../registry/sources/`.
 
-How to write and maintain all of these: the `agent-instructions` skill.
+How to write and maintain all of these: the `edit-skills` skill.

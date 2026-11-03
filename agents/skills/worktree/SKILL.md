@@ -1,6 +1,6 @@
 ---
-name: git-worktrees
-description: When creating, switching, listing, renaming, or deleting git worktrees, or checking out a pull request in a worktree.
+name: worktree
+description: Manages git worktrees with git-wt, including PR checkouts. Use when the user asks to create, switch, or delete a worktree, or check out a PR.
 ---
 
 # Git Worktrees

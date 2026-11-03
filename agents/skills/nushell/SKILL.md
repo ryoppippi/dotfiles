@@ -1,6 +1,6 @@
 ---
 name: nushell
-description: 'When writing or reviewing Nushell files or CI steps, or porting a script to Nushell.'
+description: Idiomatic Nushell, the default language for new scripts here. Use when writing or reviewing Nushell.
 ---
 
 # Nushell

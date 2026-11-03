@@ -1,6 +1,6 @@
 ---
-name: agent-instructions
-description: When authoring or auditing agent instructions or skills, including adding or updating external skills.
+name: edit-skills
+description: Conventions for agent instructions and skills in this repository. Use when the user asks to add, edit, or audit a skill or agent instructions.
 ---
 
 # Agent Instructions
@@ -25,13 +25,14 @@ session; skill bodies load only when chosen. Every line has to earn that cost.
 
 ## Skills
 
-- The `name` (and directory) says what the skill is about:
-  `nix-github-rate-limit`, not `helper`. Lowercase and hyphens, at most 64
-  characters.
-- The `description` says only **when** to read the skill, in one short
-  sentence: `When committing changes or writing a commit message.` Agents pick
-  skills from the name and description alone, so a content summary there costs
-  tokens in every session and blurs the trigger.
+- The `name` (and directory) is the word the user would use: `commit`,
+  `web-fetch`, `fix-ci`, not `helper`. Lowercase and hyphens, at
+  most 64 characters.
+- The `description` says what the skill does, then when to use it in the words
+  the user types: `Creates atomic Conventional Commits. Use when the user asks
+to commit, or commit and push.` For a keyword trigger, write `Trigger this if
+the user says '<keyword>'.` Agents match the request against the name and
+  description alone, so an abstract situation misses.
 - Keep `SKILL.md` a short workflow. Move detail only some runs need into
   `references/<topic>.md`, linked directly from `SKILL.md` with the condition for
   reading it.
@@ -94,11 +95,12 @@ inputs.
 
 ## Auditing the Collection
 
-1. From the repository root, run `agents/skills/agent-instructions/scripts/audit.nu` for SKILL.md lengths and frontmatter limits.
+1. From the repository root, run `agents/skills/edit-skills/scripts/audit.nu` for SKILL.md lengths and frontmatter limits.
 2. Read every name and description together —
    `rg -N '^(name|description):' agents/skills/*/SKILL.md` — and look for
    overlapping triggers (merge, or cross-link by name), descriptions that
-   summarise instead of saying when, and vague names.
+   lack what the skill does or the words the user types, and names
+   that are not the word the user would use.
 3. Read each body for stale paths and commands, copied docs, duplicated global
    rules, and micro-rules that tooling could enforce.
 4. Report one line per finding (skill, issue, fix), then fix.

@@ -1,6 +1,6 @@
 ---
 name: merge-main
-description: When syncing the current branch with the latest main.
+description: Merges the latest main into the current branch. Use when the user asks to merge main or sync with main.
 ---
 
 **Current branch:** `!`git branch --show-current``

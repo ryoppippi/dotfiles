@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: When the user asks for TDD, a failing test, or a regression test, or a change has an obvious cheap test target in an existing suite.
+description: Red-Green-Refactor TDD. Use when the user asks for TDD, a failing test, or a regression test.
 ---
 
 # TDD
@@ -20,7 +20,7 @@ behaviour is observable. Where `CONTEXT.md` or ADRs exist, use their vocabulary.
 For judging tests and anti-patterns, read
 [references/testing.md](references/testing.md); for test doubles, read
 [references/mocking.md](references/mocking.md). For Vitest, use the
-`vitest-testing` skill.
+`vitest` skill.
 
 ## Cycle
 

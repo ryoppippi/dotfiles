@@ -1,6 +1,6 @@
 ---
 name: nix-github-rate-limit
-description: When a Nix or comma command may fetch from GitHub, or fails on a GitHub rate limit.
+description: Avoids and recovers from GitHub rate limits in Nix. Use when a Nix or comma command fetches from GitHub or hits a rate limit.
 ---
 
 Prefix the command with `gh-nix`; it reads the token from the authenticated

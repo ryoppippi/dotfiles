@@ -1,6 +1,6 @@
 ---
-name: typescript-style
-description: When writing or reviewing TypeScript or TSX, including test fixtures, mocks, and config objects.
+name: typescript
+description: TypeScript style rules preferring `satisfies` over unsafe assertions. Use when writing or reviewing TypeScript.
 ---
 
 # TypeScript Style

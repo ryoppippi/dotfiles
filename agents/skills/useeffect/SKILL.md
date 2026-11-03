@@ -1,12 +1,12 @@
 ---
-name: react-useeffect
-description: When writing or reviewing React code that uses or adds `useEffect`.
+name: useeffect
+description: Finds unnecessary `useEffect` per react.dev. Use when writing or reviewing React code with `useEffect`.
 ---
 
 <!--
 Example prompts:
-  /react-useeffect scope=diff to main
-  /react-useeffect fix=false
+  /useeffect scope=diff to main
+  /useeffect fix=false
 -->
 
 Arguments: `scope` (default: current changes; e.g. "diff to main", "PR #123",

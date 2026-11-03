@@ -1,6 +1,6 @@
 ---
 name: commit
-description: When committing changes, committing and pushing without a PR, or writing a commit message.
+description: Creates atomic Conventional Commits. Use when the user asks to commit, or commit and push.
 ---
 
 <!--

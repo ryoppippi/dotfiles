@@ -1,6 +1,6 @@
 ---
-name: t3-code-delegation
-description: When running inside T3 Code and work should go to another provider or model, instead of shelling out to `codex`, `claude -p`, `grok -p`, or `cursor-agent`.
+name: t3-delegate
+description: Delegates work to another provider or model as a T3 Code child task. Use inside T3 Code when the user asks to delegate, or instead of shelling out to `codex` or `claude -p`.
 ---
 
 # Delegate inside T3 Code

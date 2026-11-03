@@ -1,6 +1,6 @@
 ---
 name: react-server-components
-description: When writing or reviewing React Server/Client Component boundaries or `'use client'` placement.
+description: Checks React Server/Client Component boundaries. Use when writing or reviewing RSC code or `'use client'` placement.
 ---
 
 <!--

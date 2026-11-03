@@ -1,6 +1,6 @@
 ---
-name: vitest-testing
-description: When writing, reviewing, or fixing Vitest tests.
+name: vitest
+description: Vitest conventions for assertions, snapshots, and fixtures. Use when writing, reviewing, or fixing Vitest tests.
 ---
 
 # Vitest Testing

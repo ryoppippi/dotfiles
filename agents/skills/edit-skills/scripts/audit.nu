@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 # Audit every local skill for the mechanical, countable parts of the
-# agent-instructions skill's conventions: SKILL.md length, frontmatter
+# edit-skills skill's conventions: SKILL.md length, frontmatter
 # name/description length, and whether references/ and scripts/ exist.
 # Returns one row per skill and flags violations in the `flags` column.
 # Judgement-based checks (duplication, doc links, repo-file pointers) are NOT

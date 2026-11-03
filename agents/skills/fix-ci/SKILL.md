@@ -1,6 +1,6 @@
 ---
 name: fix-ci
-description: When GitHub Actions checks are failing on the current branch or PR.
+description: Fetches failing GitHub Actions logs and fixes the cause. Use when the user asks to fix CI or says CI is failing.
 ---
 
 <!--

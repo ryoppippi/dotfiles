@@ -1,6 +1,6 @@
 ---
 name: report-upstream-bug
-description: When a bug lies in someone else's open-source tool and needs a minimal reproduction or an upstream issue.
+description: Reduces a bug in someone else's tool to a minimal repro and files the upstream issue. Use when the user asks for a repro or an upstream issue.
 ---
 
 # Report an Upstream Bug

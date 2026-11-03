@@ -12,9 +12,11 @@ nix run .#build                              # Test build
 
 Nix flakes only see tracked, staged files, so stage the paths you changed before `switch`.
 
+Local changes to `nix/modules/home/programs/codex/default.nix` may contain private repository names; review them before staging or publishing.
+
 ## Layout Notes
 
-- `agents/AGENTS.md` is the single global instruction file for every agent, with its sections in `agents/shared/`; skills live in `agents/skills/`. Use the `agent-instructions` skill before editing any of them.
+- `agents/AGENTS.md` is the single global instruction file for every agent, with its sections in `agents/shared/`; skills live in `agents/skills/`. Use the `edit-skills` skill before editing any of them.
 - This repository keeps no `CLAUDE.md`: Claude Code loads this `AGENTS.md` through the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin.
 - `claude/` is symlinked to `~/.config/claude`, so edits there apply to the running Claude Code without a switch.
 - Git and Ghostty are declarative under `nix/modules/home/programs/`; Fish and Neovim keep plain config in `fish/` and `nvim/`.
