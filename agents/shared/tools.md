@@ -10,7 +10,7 @@ Fish bootstraps the environment; it is not necessarily the syntax shell.
 
 - Claude Code: run commands directly; its zsh already loads PATH and direnv. Use `fish -lc '<command>'` only when a tool is found on Fish's PATH but not here.
 - Codex: use `zsh -lc '<command>'`; it loads direnv. If a tool is only on Fish's PATH, resolve it with `fish -lc 'command -v <tool>'` and call the absolute path.
-- Commands already start in the working directory. Don't prefix them with `cd <path> &&`; use `git -C <path>` or absolute paths for another directory.
+- Commands already start in the working directory, so don't add a redundant `cd <path> &&`. For another directory, use the harness's working-directory parameter where it has one, or the command's own option (`git -C`, `pnpm -C`); tools that read config or direnv from the working directory need one of these, not just absolute paths.
 
 ### Web, Browsers, and Other Repositories
 
