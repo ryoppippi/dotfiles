@@ -258,9 +258,9 @@ def emit [w, key: string, line: string] {
 
 def finish [w, code: int, lines: list<string> = []] {
     let w = $lines | reduce -f $w {|line, acc| say $acc $line }
-    # A run that stops before finishing its first poll has recorded no baseline;
-    # saving it would make the next run replay every existing comment.
-    if not $w.baseline { save-state $w }
+    # A baseline that stopped before recording the PR would make the next run
+    # report every existing comment as new. Let that run baseline again.
+    if (not $w.baseline) or $w.recorded { save-state $w }
     exit $code
 }
 
@@ -559,6 +559,8 @@ def poll [w] {
     ]
     let summary = $parts | where $it != '' | str join '; '
     let checks_key = $"checks:($head)"
+    # Every comment, review, thread, bot, base and merge-state event is recorded.
+    $w = $w | update recorded true
 
     # Decide whether to stop. A green or ready line carries the same summary as
     # the checks line, so it marks that event as reported.
@@ -627,6 +629,7 @@ def main [
         )
         reported: ($state.reported? | default [])
         printed: []
+        recorded: false
         events: 0
         required: null
         prev_snapshot: null
