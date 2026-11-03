@@ -14,7 +14,7 @@ right.
 ## Waiting
 
 Never write your own watcher, polling loop, or `sleep` loop. Use one watcher
-per PR: `watch_pull_request` in T3 Code, `pr-wait` everywhere else. Never run
+per PR: `watch_pull_request` in T3 Code, `gh pr checks --watch` everywhere else. Never run
 both on the same PR. Every watcher on a GitHub account shares one rate limit.
 
 ### In T3 Code: `watch_pull_request`
@@ -38,36 +38,21 @@ branch conflicts.
   watch again. If `remaining` is near 0, wait for `reset` with one background
   command, then watch again. Never watch again in a tight loop.
 
-### Everywhere else: `pr-wait`
+### Everywhere else: `gh pr checks --watch`
 
-Wait with `scripts/pr-wait` from this skill's directory (use its absolute
-path).
+Wait for CI with one long command, in Claude Code through the Monitor tool:
 
 ```bash
-pr-wait <pr> [--repo owner/name] [--until ready|green|any-change]
+gh pr checks <pr> --watch --fail-fast
 ```
 
-It prints one line per real event. It exits 0 when the `--until` condition is
-met or the PR merges, 1 when it needs you (a required check failed, conflicts,
-unresolved threads, PR closed), and 2 on bad input.
+It ends when the checks finish or one fails. It does not report comments,
+reviews, or base-branch moves, so after each wake read new comments and review
+threads and check `gh pr view <pr> --json mergeStateStatus` before deciding the
+next step. Start it again after each push.
 
-- `ready` (default): required checks green, Greptile or Macroscope reviewed the
-  head, and no unresolved threads. Use this to babysit.
-- `green`: required checks only. Use it when the repo has no Greptile or
-  Macroscope.
-- `any-change`: exit on the first event.
-
-In Claude Code, run it with the Monitor tool (`timeout_ms: 3600000`), so each
-line wakes you. Without a monitor, run it as one long command. It ends on its
-own.
-
-Start it again after you push, after you handle an exit 1, and after a resume.
-It remembers what it already reported, so nothing that arrived in between is
-lost. If it says another pid already watches the PR, do not start a second one.
-Kill the old one only if its events do not reach you.
-
-With either watcher: when an event needs no action, end your turn without a
-message. Never post or say "still waiting".
+When an event needs no action, end your turn without a message. Never post or
+say "still waiting".
 
 ## GitHub rate limits
 
@@ -103,16 +88,14 @@ narrows code.
 
 ## Base branch and merging
 
-Keep an eye on changes to `main` and rebase when needed. `pr-wait` reports when
-new base commits touch this PR's files, and when the PR becomes BEHIND or DIRTY.
-`watch_pull_request` reports conflicts only, so check for BEHIND yourself
-before you call the PR ready.
+Keep an eye on changes to `main` and rebase when needed. Neither watcher reports
+a BEHIND branch, so check `mergeStateStatus` yourself before you call the PR
+ready.
 If an overlapping PR makes this one obsolete, stop monitoring, report it to the
 user, and ask before closing the PR unless closure was explicitly authorized.
 
 If nothing has changed, stay quiet rather than posting filler comments. Stop
-when `pr-wait` exits 0, or in T3 Code when the merge gate passes on the latest
-head. Merge only when the user explicitly requested it;
+when the merge gate passes on the latest head. Merge only when the user explicitly requested it;
 otherwise report that the PR is ready. Right before a merge, run `git fetch` and
 check the PR again. Never merge when it is BEHIND or DIRTY, or when base commits
 that landed after the last green run touch this PR's files. Rebase, push, and
