@@ -9,9 +9,6 @@ let
   fishPath = lib.getExe pkgs.fish;
 in
 {
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # nix-darwin's HTML manual builder passes `--sidebar-depth` to
   # `nixos-render-docs manual html`, but the current nixpkgs revision ships a
   # `nixos-render-docs` that rejects that flag, so `darwin-manual-html` fails
