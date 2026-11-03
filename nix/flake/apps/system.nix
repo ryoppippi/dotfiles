@@ -46,8 +46,8 @@
         }
       '';
 
-      nixBuildFlags = lib.optionalString isDarwin " --accept-flake-config --print-build-logs --show-trace";
-      darwinBuildFlags = lib.optionalString isDarwin " --option accept-flake-config true --print-build-logs --show-trace";
+      nixBuildFlags = lib.optionalString isDarwin " --accept-flake-config";
+      darwinBuildFlags = lib.optionalString isDarwin " --option accept-flake-config true";
 
       # A full rebuild outlasts sudo's timestamp timeout, so keep refreshing it.
       # The job is a thread inside this process rather than bash's detached
@@ -74,12 +74,12 @@
             writeNu (if isDarwin then "darwin-build" else "home-manager-build") ''
               ${isAgentCheck}
 
-              def main [] {
+              def --wrapped main [...args: string] {
                 print "Building ${kind} configuration..."
                 if (is-ai-agent) {
-                  ^nix build .#${buildTarget}${nixBuildFlags}
+                  ^nix build .#${buildTarget}${nixBuildFlags} ...$args
                 } else {
-                  ^${nom} build .#${buildTarget}${nixBuildFlags}
+                  ^${nom} build .#${buildTarget}${nixBuildFlags} ...$args
                 }
                 print "Build successful! Run 'nix run .#switch' to apply."
               }
@@ -94,22 +94,22 @@
               ${isAgentCheck}
               ${sudoKeepAlive}
 
-              def main [] {
+              def --wrapped main [...args: string] {
                 ${lib.optionalString isDarwin "keep-sudo-alive"}
                 print "Building and switching to ${kind} configuration..."
                 if (is-ai-agent) {
                   ${
                     if isDarwin then
-                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags}"
+                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} ...$args"
                     else
-                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName}"
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} ...$args"
                   }
                 } else {
                   ${
                     if isDarwin then
-                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} o+e>| ^${nom}"
+                      "^sudo ${darwinRebuild} switch --flake .#${hostname}${darwinBuildFlags} ...$args o+e>| ^${nom}"
                     else
-                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} o+e>| ^${nom}"
+                      "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} ...$args o+e>| ^${nom}"
                   }
                 }
                 print "Done!"
