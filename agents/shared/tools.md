@@ -8,9 +8,9 @@ When a command is missing, use the `missing-tools` skill; never install tools gl
 
 Fish bootstraps the environment; it is not necessarily the syntax shell.
 
-- Claude Code: run simple commands as `fish -lc '<command>'` so PATH and exports are initialised.
+- Claude Code: run commands directly; its zsh already loads PATH and direnv. Use `fish -lc '<command>'` only when a tool is found on Fish's PATH but not here.
 - Codex: use `zsh -lc '<command>'`; it loads direnv. If a tool is only on Fish's PATH, resolve it with `fish -lc 'command -v <tool>'` and call the absolute path.
-- For bash syntax (heredocs, arrays, inline env assignments, fragile quoting), call Bash explicitly — `fish -lc 'bash -lc "<command>"'` — or write a temporary script.
+- Commands already start in the working directory. Don't prefix them with `cd <path> &&`; use `git -C <path>` or absolute paths for another directory.
 
 ### Web, Browsers, and Other Repositories
 
