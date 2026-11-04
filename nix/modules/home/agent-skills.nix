@@ -70,6 +70,19 @@ in
         agents = skillAgents name;
       });
     }
+    {
+      # tstack's file-pr and sol-loop are not installed: create-pr and
+      # review-loop do their jobs here, so references to them are renamed.
+      programs.agent-skills.skills.explicit =
+        lib.genAttrs [ "babysit-pr" "full-send" "full-stop" "leaving-pr-comments" "modernize" "takeover" ]
+          (name: {
+            from = "tstack";
+            path = name;
+            transform =
+              { original, ... }:
+              builtins.replaceStrings [ "`file-pr`" "`sol-loop`" ] [ "`create-pr`" "`review-loop`" ] original;
+          });
+    }
   ];
 
   programs.agent-skills = {
