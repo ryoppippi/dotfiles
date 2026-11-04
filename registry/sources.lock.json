@@ -38,25 +38,6 @@
 			},
 			"subdir": "ast-grep/skills"
 		},
-		"cmux": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "cmux",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "manaflow-ai",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "cmux",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
-		},
 		"gh-stack": {
 			"filter": {
 				"maxDepth": 1,
@@ -123,19 +104,6 @@
 				"submodules": false,
 				"type": "Git",
 				"url": "https://github.com/ast-grep/claude-skill/archive/f2175aff21f20cfb8e2db30c28febeb3a2d42b61.tar.gz"
-			},
-			"cmux": {
-				"branch": "main",
-				"hash": "sha256-iu63q/AcmWmFYFXMgrfNjg6ASKhzdbMv46JcYqW94Lg=",
-				"repository": {
-					"owner": "manaflow-ai",
-					"repo": "cmux",
-					"type": "GitHub"
-				},
-				"revision": "21dcc2b27b2ed014d723067ed253702e914d97ca",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/21dcc2b27b2ed014d723067ed253702e914d97ca.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
