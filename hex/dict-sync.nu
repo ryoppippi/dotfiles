@@ -35,7 +35,9 @@ def parse-dictionary [data, source: string]: nothing -> record {
         error make {msg: $"($source): terms must be an array of strings"}
     }
     if ($terms | length) > 500 or ($terms | any {|term| (clean-term $term | is-empty) or (clean-term $term) != $term or ($term | str length --chars) > 64}) {
-        error make {msg: $"($source): terms must be non-empty, normalised strings of at most 64 characters; Hex allows 500"}
+        error make {
+            msg: $"($source): terms must be non-empty, normalised strings of at most 64 characters; Hex allows 500"
+        }
     }
     let term_keys = $terms | each {|term| term-key $term}
     if ($term_keys | group-by | columns | length) != ($term_keys | length) {
@@ -47,16 +49,22 @@ def parse-dictionary [data, source: string]: nothing -> record {
     }
     for correction in $corrections {
         if ($correction | describe) !~ '^record' or (($correction | columns | sort) != ['caseSensitive' 'original' 'replacement']) {
-            error make {msg: $"($source): each correction must contain original, replacement, and caseSensitive"}
+            error make {
+                msg: $"($source): each correction must contain original, replacement, and caseSensitive"
+            }
         }
         if ($correction.original | describe) != 'string' or ($correction.replacement | describe) != 'string' or ($correction.caseSensitive | describe) != 'bool' {
             error make {msg: $"($source): correction fields have invalid types"}
         }
         if ($correction.original | str trim | is-empty) or ($correction.replacement | str trim | is-empty) {
-            error make {msg: $"($source): correction phrases and replacements must be non-empty"}
+            error make {
+                msg: $"($source): correction phrases and replacements must be non-empty"
+            }
         }
         if $correction.caseSensitive {
-            error make {msg: $"($source): case-sensitive corrections cannot be represented by Hex"}
+            error make {
+                msg: $"($source): case-sensitive corrections cannot be represented by Hex"
+            }
         }
     }
     let correction_keys = $corrections | each {|correction| correction-key $correction.original}
@@ -92,7 +100,9 @@ def run-hex [binary: string, args: list<string>]: nothing -> record {
 
 def decode-reply [result: record, operation: string]: nothing -> record {
     if $result.exit_code != 0 {
-        error make {msg: $"hex-dict-sync: Hex failed to ($operation) (exit ($result.exit_code))"}
+        error make {
+            msg: $"hex-dict-sync: Hex failed to ($operation) (exit ($result.exit_code))"
+        }
     }
     let reply = try {
         $result.stdout | from json
@@ -100,21 +110,27 @@ def decode-reply [result: record, operation: string]: nothing -> record {
         error make {msg: $"hex-dict-sync: Hex returned invalid JSON for ($operation)"}
     }
     if ($reply | describe) !~ '^record' or $reply.version? != 4 {
-        error make {msg: $"hex-dict-sync: Hex returned an unexpected response for ($operation)"}
+        error make {
+            msg: $"hex-dict-sync: Hex returned an unexpected response for ($operation)"
+        }
     }
     $reply
 }
 
 def require-status [reply: record, status: string, operation: string]: nothing -> record {
     if $reply.status? != $status {
-        error make {msg: $"hex-dict-sync: Hex returned an unexpected response for ($operation)"}
+        error make {
+            msg: $"hex-dict-sync: Hex returned an unexpected response for ($operation)"
+        }
     }
     $reply
 }
 
 def main [--strict, --dry-run, ...args: string]: nothing -> nothing {
     if ($args | length) > 1 {
-        error make {msg: 'usage: hex/dict-sync.nu [--strict] [--dry-run] [dictionary.json]'}
+        error make {
+            msg: 'usage: hex/dict-sync.nu [--strict] [--dry-run] [dictionary.json]'
+        }
     }
     let file = if ($args | is-empty) {
         (script-dir) | path join dictionary.json
@@ -172,14 +188,18 @@ def main [--strict, --dry-run, ...args: string]: nothing -> nothing {
     }
     let existing_terms = $vocabulary.entries | each {|entry| term-key $entry.term}
     if (($existing_terms | group-by | columns | length) != ($existing_terms | length)) or ($existing_terms | length) > 500 {
-        error make {msg: 'hex-dict-sync: Hex vocabulary is invalid or exceeds its 500-term limit'}
+        error make {
+            msg: 'hex-dict-sync: Hex vocabulary is invalid or exceeds its 500-term limit'
+        }
     }
     let terms_to_add = $dictionary.terms | where {|term|
         let key = term-key $term
         not ($existing_terms | any {|existing| $existing == $key})
     }
     if (($existing_terms | length) + ($terms_to_add | length)) > 500 {
-        error make {msg: 'hex-dict-sync: adding these terms would exceed Hex’s 500-term limit'}
+        error make {
+            msg: 'hex-dict-sync: adding these terms would exceed Hex’s 500-term limit'
+        }
     }
 
     let settings_result = run-hex $binary ['settings' 'get' 'dictation_processing.default_mode' '--json']
