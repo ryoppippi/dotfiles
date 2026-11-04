@@ -8,6 +8,43 @@
 let
   fishPath = lib.getExe pkgs.fish;
 in
+{ config, ... }:
+let
+  inherit (config.homebrew) onActivation;
+
+  # nix-darwin runs `brew bundle` from activation as root through
+  # `sudo --user`, so every sudo Homebrew needs for a cask lands on a fresh pty
+  # whose timestamp the caller's authentication does not cover. `nix run
+  # .#switch` runs this as the user after activation instead.
+  brewBundle = pkgs.writeShellScript "brew-bundle" ''
+    export PATH=${config.homebrew.prefix}/bin:${lib.makeBinPath [ pkgs.mas ]}:$PATH
+    ${lib.optionalString (!onActivation.autoUpdate) "export HOMEBREW_NO_AUTO_UPDATE=1"}
+    ${lib.concatLines (
+      lib.mapAttrsToList (name: value: "export ${name}=${lib.escapeShellArg value}") onActivation.extraEnv
+    )}
+    if ! command -v brew >/dev/null; then
+      echo "error: Homebrew is not installed" >&2
+      exit 1
+    fi
+
+    brew bundle --file=${pkgs.writeText "Brewfile" config.homebrew.brewfile} ${
+      lib.escapeShellArgs (
+        lib.optional (!onActivation.upgrade) "--no-upgrade"
+        ++ lib.optional (onActivation.cleanup == "uninstall") "--force-cleanup"
+        ++ lib.optionals (onActivation.cleanup == "zap") [
+          "--zap"
+          "--force-cleanup"
+        ]
+        ++ onActivation.extraFlags
+      )
+    }
+
+    # Arto comes from a third-party tap and is not notarised.
+    if [ -e /Applications/Arto.app ]; then
+      xattr -dr com.apple.quarantine /Applications/Arto.app 2>/dev/null || true
+    fi
+  '';
+in
 {
   # nix-darwin's HTML manual builder passes `--sidebar-depth` to
   # `nixos-render-docs manual html`, but the current nixpkgs revision ships a
@@ -50,7 +87,12 @@ in
     # Set primary user for homebrew
     primaryUser = username;
 
-    activationScripts.homebrew.text = lib.mkBefore ''
+    systemBuilderCommands = ''
+      ln -s ${brewBundle} $out/brew-bundle
+    '';
+
+    # Only the root-side preparation stays here; `brewBundle` does the rest.
+    activationScripts.homebrew.text = lib.mkForce ''
       if ! /usr/sbin/pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
         /usr/sbin/softwareupdate --install-rosetta --agree-to-license
       fi
@@ -59,22 +101,12 @@ in
       if [ -x "$xcodebuild" ] && ! "$xcodebuild" -license check >/dev/null 2>&1; then
         "$xcodebuild" -license accept
       fi
-
-      if [ -t 0 ]; then
-        /usr/bin/sudo --user=${username} --set-home /usr/bin/sudo --validate
-      fi
     '';
 
     # Set user shell on activation
     activationScripts.postActivation.text = ''
       echo "Setting login shell to fish..."
       sudo chsh -s ${fishPath} ${username} || true
-
-      # Remove quarantine attribute from Arto.app (third-party tap)
-      if [ -e "/Applications/Arto.app" ]; then
-        echo "Removing quarantine from Arto.app..."
-        xattr -dr com.apple.quarantine /Applications/Arto.app 2>/dev/null || true
-      fi
 
       # Stay awake on AC power so T3 Code remains reachable through T3 Connect
       # while the screen is locked; battery keeps the default so an unplugged

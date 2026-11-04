@@ -112,6 +112,7 @@
                       "^nix run nixpkgs#home-manager -- switch --flake .#${homeConfigName} ...$args o+e>| ^${nom}"
                   }
                 }
+                ${lib.optionalString isDarwin "^/run/current-system/brew-bundle"}
                 print "Done!"
               }
             ''
