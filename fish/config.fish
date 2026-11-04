@@ -7,11 +7,7 @@ set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME $HOME/.local/share
 set -q XDG_CACHE_HOME || set -gx XDG_CACHE_HOME $HOME/.cache
 
 if test "$TERM" = '$TERM'
-    if set -q CMUX_BUNDLE_ID
-        set -gx TERM xterm-256color
-    else
-        set -gx TERM xterm-ghostty
-    end
+    set -gx TERM xterm-ghostty
 end
 
 # define fish config paths

@@ -9,7 +9,7 @@ entirely in [`default.nix`](default.nix) and name only what they change.
 
 The external display shows three containers at once. The built-in MacBook
 display overrides this to two containers. Chat and dictionary applications
-start narrow, while cmux starts at full column width on workspace 2.
+start narrow, while Ghostty starts at full column width on workspace 2.
 
 ## Modifier layers
 
@@ -148,7 +148,7 @@ non-main display. With an external monitor set as the main display, that means
 opening the lid never pulls workspace 2 onto the built-in display. The
 assignment uses `type = "main"` / `type = "secondary"` rather than
 `specificDisplay`, so replacing the external monitor needs no configuration
-change. cmux opens on workspace 2.
+change. Ghostty opens on workspace 2.
 
 `Ctrl+Shift+←/→` (`Workspace+←/→` on the CLAW44) moves the focused window
 between the workspaces of a display. This moves only the window; the workspace

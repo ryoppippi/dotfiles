@@ -96,9 +96,6 @@
         ;
     })
 
-    # cmux terminal configuration
-    ./cmux
-
     # Bat configuration
     ./bat.nix
 
