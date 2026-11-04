@@ -45,8 +45,14 @@ def apply-implied [range: string, occasion: string = '']: nothing -> nothing {
     let files = changed $range
 
     if ($files | any {|path| $path =~ $NIX_PATTERN }) {
-        print $"Nix configuration changed($occasion). Applying changes..."
-        ^nix run .#switch
+        # The system should only ever run what main holds; a feature branch or
+        # worktree would otherwise activate unmerged configuration.
+        if (^git branch --show-current | str trim) == 'main' {
+            print $"Nix configuration changed($occasion). Applying changes..."
+            ^nix run .#switch
+        } else {
+            print $"Nix configuration changed($occasion), but not on main. Skipping switch."
+        }
     }
 
     if ($files | any {|path| $path =~ $DICT_PATTERN }) {
