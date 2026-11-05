@@ -100,16 +100,16 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-OlNEEl0slPZYouaxTcCg6An4lHJmgD9CeZrjrpZA8gA=",
+				"hash": "sha256-RPwtickmM+tdiZsw9pGQDucDTE3f5LLN7tY8K+DYBAs=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "6682da310c75bed8af340b39cc10b7f71bded155",
+				"revision": "794de3c037c15c2cd475fc282314953e298fd072",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/6682da310c75bed8af340b39cc10b7f71bded155.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/794de3c037c15c2cd475fc282314953e298fd072.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
@@ -126,16 +126,16 @@
 			},
 			"cmux": {
 				"branch": "main",
-				"hash": "sha256-8NbQQLKdM4gK7Mdpx9xk157kiOyWtDhJcR7sBNu/upY=",
+				"hash": "sha256-qwKcys5hYCuW3/cCr6iQsE7kmwVLE8uzC1qs4YWUoRQ=",
 				"repository": {
 					"owner": "manaflow-ai",
 					"repo": "cmux",
 					"type": "GitHub"
 				},
-				"revision": "b4822bb2b8c9ab4188226a6fd9b9f0b8dc3e99c8",
+				"revision": "524243ac586b4ec32a0575681a2e3a3674eee0d3",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/manaflow-ai/cmux/archive/b4822bb2b8c9ab4188226a6fd9b9f0b8dc3e99c8.tar.gz"
+				"url": "https://github.com/manaflow-ai/cmux/archive/524243ac586b4ec32a0575681a2e3a3674eee0d3.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
