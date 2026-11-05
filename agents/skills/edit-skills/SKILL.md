@@ -58,7 +58,7 @@ Background: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/be
   `rg -n '<old-name>' --hidden -g '!.git'`. Besides other skills and
   `agents/`, the Claude Code hook in
   `nix/modules/home/programs/claude-code/default.nix` matches the
-  `cross-model-review` skill by name.
+  `review-loop` skill by name.
 - A new `agents/shared/` fragment needs an `@` import in `agents/AGENTS.md` and
   an entry in `sharedFragments` in `nix/modules/home/programs/codex/default.nix`.
 - Deploy by staging the changed paths, then `nix run .#switch`.
