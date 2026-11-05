@@ -81,42 +81,42 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-2soHKar4hR2ijiD4pVdSbbnNY6Z/qNmOFfIN4Cpdm4w=",
+				"hash": "sha256-RPwtickmM+tdiZsw9pGQDucDTE3f5LLN7tY8K+DYBAs=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "2d1271baefa026161de333a0da55c0f9e118a07f",
+				"revision": "794de3c037c15c2cd475fc282314953e298fd072",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/2d1271baefa026161de333a0da55c0f9e118a07f.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/794de3c037c15c2cd475fc282314953e298fd072.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
-				"hash": "sha256-dORqiMdFOUQVEF6wn1IZiTIcslzO+441A0GZP4KNcOQ=",
+				"hash": "sha256-HFZVX/UYsct8EMtkczBGJNr9RjjDz77zY6SHS1WlKkc=",
 				"repository": {
 					"owner": "ast-grep",
 					"repo": "claude-skill",
 					"type": "GitHub"
 				},
-				"revision": "f2175aff21f20cfb8e2db30c28febeb3a2d42b61",
+				"revision": "0613dc7f82bbfb3b557380b54726b92f73358460",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/ast-grep/claude-skill/archive/f2175aff21f20cfb8e2db30c28febeb3a2d42b61.tar.gz"
+				"url": "https://github.com/ast-grep/claude-skill/archive/0613dc7f82bbfb3b557380b54726b92f73358460.tar.gz"
 			},
 			"gh-stack": {
 				"branch": "main",
-				"hash": "sha256-dENuxVuz68Y7P8WW5C7pzVbfJRxGMGIKQ2AnWrTacOs=",
+				"hash": "sha256-HJiO7w03capDX2qCmvmXb80KdgtLTB3d2CXq0yYWqDc=",
 				"repository": {
 					"owner": "github",
 					"repo": "gh-stack",
 					"type": "GitHub"
 				},
-				"revision": "2a49e6751238633db504655d8a8eba3e433e827d",
+				"revision": "bd0a32504f9ae9f795875a9e6bb90ff7408fda08",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/2a49e6751238633db504655d8a8eba3e433e827d.tar.gz"
+				"url": "https://github.com/github/gh-stack/archive/bd0a32504f9ae9f795875a9e6bb90ff7408fda08.tar.gz"
 			},
 			"t3-limits": {
 				"branch": "main",
