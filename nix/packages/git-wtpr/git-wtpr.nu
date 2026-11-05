@@ -143,7 +143,9 @@ def --wrapped main [...args: string] {
 
     let current_result = (^gh repo view --json nameWithOwner -q .nameWithOwner | complete)
     if $current_result.exit_code != 0 {
-        error make {msg: 'could not determine current GitHub repository (is gh authenticated?)'}
+        error make {
+            msg: 'could not determine current GitHub repository (is gh authenticated?)'
+        }
     }
     let current_repo = $current_result.stdout | str trim
 

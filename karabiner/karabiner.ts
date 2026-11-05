@@ -68,13 +68,13 @@ k.writeToProfile(writeTarget, [
 			}),
 	]),
 
-	k.rule('Open cmux directly with control-comma').manipulators([
+	k.rule('Open Ghostty directly with control-comma').manipulators([
 		k
 			.map({
 				key_code: 'comma',
 				modifiers: { mandatory: ['control'], optional: ['caps_lock'] },
 			})
-			.to$('/usr/bin/open -b com.cmuxterm.app'),
+			.to$('/usr/bin/open -b com.mitchellh.ghostty'),
 	]),
 
 	k.rule('Tap CMD to toggle Kana/Eisuu', devices.ifNotSelfMadeKeyboard).manipulators([

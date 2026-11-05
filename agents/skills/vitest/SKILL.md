@@ -42,6 +42,13 @@ it('returns the first row', () => {
 
 ## Output
 
-Prefer JSON assertions for structured results. Await `toMatchFileSnapshot` in async tests for
-human-readable CLI or table output so layout changes are reviewable, and fix the
-terminal width for responsive output.
+Prefer JSON assertions for structured results. Do not write snapshot tests
+(`toMatchSnapshot`, `toMatchInlineSnapshot`, `toMatchFileSnapshot`): nobody
+reviews snapshot diffs, so they get regenerated rather than read and catch
+nothing. For CLI or table output, assert the lines that matter with explicit
+matchers, and fix the terminal width for responsive output.
+
+The exception is a code generator whose output is the product: commit the
+generated file with `toMatchFileSnapshot` in its real extension (`Output.swift`,
+not `.snap`), so a PR reviews it as code, and check it with the target
+toolchain (compile or type-check it) so the file is verified, not just recorded.

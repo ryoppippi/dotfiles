@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -15,6 +15,10 @@
         warn_timeout = "0s";
         hide_env_diff = true;
       };
+      whitelist.prefix = map (dir: "${config.home.homeDirectory}/${dir}") [
+        "ghq/github.com/rorkai"
+        ".t3/worktrees/rorkai"
+      ];
     };
     stdlib = ''
       export DIRENV_LOG_FORMAT=""
