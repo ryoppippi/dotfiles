@@ -59,14 +59,11 @@ in
 {
   home.packages = lib.mkAfter [ opencode ];
 
-  home.activation.configureOpenCodeSettings =
-    lib.hm.dag.entryAfter
-      ([ "linkGeneration" ] ++ lib.optional pkgs.stdenv.hostPlatform.isDarwin "installCmuxHooks")
-      ''
-        mkdir -p "${opencodeConfigDir}"
-        ${mergeJson "opencode.json" settingsFile}
-        ${mergeJson "cli.json" cliSettingsFile}
-      '';
+  home.activation.configureOpenCodeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    mkdir -p "${opencodeConfigDir}"
+    ${mergeJson "opencode.json" settingsFile}
+    ${mergeJson "cli.json" cliSettingsFile}
+  '';
 
   home.activation.validateOpenCodeSettings = lib.hm.dag.entryAfter [ "configureOpenCodeSettings" ] ''
     ${validateJson "opencode.json"}

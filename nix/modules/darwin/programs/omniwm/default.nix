@@ -73,7 +73,6 @@ in
 
       overview.backdrop.alpha = 1.0;
 
-      # Ghostty is the terminal here, launched by cmux rather than by OmniWM.
       quakeTerminal.enabled = false;
 
       statusBar = {
@@ -111,7 +110,7 @@ in
           minHeight = 400.0;
           minWidth = 500.0;
         })
-        (omniwmLib.appRule "com.cmuxterm.app" {
+        (omniwmLib.appRule "com.mitchellh.ghostty" {
           assignToWorkspace = "2";
           initialContainerPrimarySpan = 1.0;
           minHeight = 400.0;
@@ -153,10 +152,6 @@ in
           initialContainerPrimarySpan = 0.2;
           minHeight = 200.0;
           minWidth = 320.0;
-        })
-        (omniwmLib.appRule "com.mitchellh.ghostty" {
-          minHeight = 48.0;
-          minWidth = 90.0;
         })
         (omniwmLib.appRule "com.microsoft.Outlook" {
           minHeight = 650.0;

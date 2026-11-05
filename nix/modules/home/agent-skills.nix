@@ -123,41 +123,6 @@ in
       rewriteCommands = false;
     };
 
-    skills.explicit.cmux = {
-      from = "cmux";
-      path = "cmux";
-    };
-
-    skills.explicit.cmux-workspace = {
-      from = "cmux";
-      path = "cmux-workspace";
-    };
-
-    skills.explicit.cmux-settings = {
-      from = "cmux";
-      path = "cmux-settings";
-    };
-
-    skills.explicit.cmux-customization = {
-      from = "cmux";
-      path = "cmux-customization";
-    };
-
-    skills.explicit.cmux-diagnostics = {
-      from = "cmux";
-      path = "cmux-diagnostics";
-    };
-
-    skills.explicit.cmux-browser = {
-      from = "cmux";
-      path = "cmux-browser";
-    };
-
-    skills.explicit.cmux-markdown = {
-      from = "cmux";
-      path = "cmux-markdown";
-    };
-
     skills.explicit.gh-stack = {
       from = "gh-stack";
       path = "gh-stack";

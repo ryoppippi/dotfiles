@@ -22,7 +22,14 @@ let
     cursor-style = "block";
     cursor-style-blink = false;
 
-    keybind = [ "cmd+u=text:\\x18\\x15" ];
+    keybind = [
+      "cmd+u=text:\\x18\\x15"
+      "cmd+shift+h=goto_split:left"
+      "cmd+shift+j=goto_split:down"
+      "cmd+shift+k=goto_split:up"
+      "cmd+shift+l=goto_split:right"
+      "cmd+z=toggle_split_zoom"
+    ];
 
     mouse-hide-while-typing = true;
 
