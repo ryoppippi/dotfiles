@@ -16,7 +16,9 @@ to a CLI or another provider without the user asking.
    its live catalogue. Always pass `target.model`: without it a provider falls
    back to its first advertised model, not its newest.
    Check remaining quota with the `t3-limits` skill before choosing, and route
-   away from a provider near its limit.
+   away from a provider near its limit. Conversely, when Fable has plenty of
+   quota to spare and the task is not urgent, send it to Fable: unused quota
+   is wasted, and a slower, deeper run costs nothing here.
 2. Write a self-contained `task`: the child sees none of this conversation, so
    name the files, the decision at stake, the constraints, and the answer shape.
 3. Call `t3-code:delegate_task`:
