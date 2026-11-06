@@ -29,7 +29,10 @@ upstream repository beats a separate repro repository.
    harness is wrong: fix it before continuing.
 5. **Find the likely cause** in upstream source. Write it as a hypothesis, name
    the file and commit read, and say it was not patched and rebuilt.
-6. **Publish the repro, then the issue** — [references/templates.md](references/templates.md).
+6. **Publish the repro, file the issue, then link back.** The issue needs the repro's
+   URL and the repro needs the issue's, so push the repro first, file the issue, then
+   add the issue link to the repro's README and push again —
+   [references/templates.md](references/templates.md).
 
 ## Facts and constraints
 
