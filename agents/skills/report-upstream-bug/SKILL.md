@@ -43,6 +43,10 @@ upstream repository beats a separate repro repository.
   otherwise show the draft first. Never name or link a private repository.
   Describe the private app generically; remove
   identifying names, paths, URLs, and metadata from the public repro and report.
+- Keep confidential information out of the repro and the issue: no secrets (tokens,
+  keys, `.env` values, credential-bearing URLs), customer or company data, or logs and
+  lockfiles that embed them. Check the files and the git history before pushing; a
+  pushed secret must be revoked, not just deleted.
 - Pin exact versions of the tool, baseline, runtime, and `packageManager` (pnpm),
   and record them in the README. Clean-install from the frozen lockfile and run both scripts before
   pushing, and claim only what that run showed.
