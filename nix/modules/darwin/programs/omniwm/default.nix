@@ -67,6 +67,7 @@ in
           0.5
           0.6666666666666666
         ];
+        defaultContainerPrimarySpan = 0.25;
         infiniteLoop = true;
         visibleContainerCount = 3;
       };
