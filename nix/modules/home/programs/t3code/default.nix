@@ -53,6 +53,10 @@ let
 
     idleCompaction = "beforeCacheExpires";
 
+    # ghq treats the last `ghq.root` entry as its primary root.
+    addProjectBaseDirectory = lib.last config.programs.git.settings.ghq.root;
+    ghqCloneLayout = true;
+
     # Worktrees always land in ~/.t3/worktrees/<repo>/<branch>; T3 Code has no
     # per-repository location setting.
     defaultThreadEnvMode = "worktree";
