@@ -537,11 +537,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793665847,
-        "narHash": "sha256-UaCYRFcKNflcdUQKu11hPKa2XWRrXQEY0uFBqESBcD8=",
+        "lastModified": 1793752610,
+        "narHash": "sha256-4Fjc14N+pxBLwFRfVM+G1uYdo5VIaGdzCdiLeyPNPAY=",
         "owner": "ryoppippi",
         "repo": "nix-secure-enclave-key",
-        "rev": "f781258530f8775d9935f92aa2a2832f432a82a3",
+        "rev": "502584f7fe43cbcda154da9e490fd418ff85d8ed",
         "type": "github"
       },
       "original": {
