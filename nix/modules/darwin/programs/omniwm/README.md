@@ -20,7 +20,7 @@ modifier names.
 
 - CLAW44: hold `;`; tapping it still sends `;`. `Lang1` also provides Hyper
   while held, and `Lang2` provides Command. See the
-  [generated keymap](../../../../../keymap/claw44.pdf) for all layers.
+  [generated keymap](https://github.com/ryoppippi/qmk_userspace#layout) for all layers.
 - CLAW44: hold `S+D` for the Workspace layer.
 - CLAW44: [`karabiner.ts`](../../../../../karabiner/karabiner.ts) aliases
   `Workspace+Return` onto `Workspace+Tab`, so either key reaches
