@@ -47,6 +47,8 @@ in
         homedir = darwinHomedir;
       })
 
+      ../../modules/darwin/nh-clean.nix
+
       nix-index-database.darwinModules.nix-index
 
       home-manager.darwinModules.home-manager

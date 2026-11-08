@@ -69,7 +69,7 @@
     # Java (OpenJDK with JAVA_HOME)
     ./java.nix
 
-    # nh: Nix helper CLI with automatic periodic cleanup
+    # nh: Nix helper CLI (periodic cleanup runs as root in darwin/nh-clean.nix)
     ./nh.nix
 
     # Neovim configuration
