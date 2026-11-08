@@ -19,7 +19,7 @@ ryoppippi's picks, best first. Follow them over any assumption about which
 model is newest, and edit this list when the judgement changes. Each resolves
 to the newest version, so never pin one.
 
-- From Claude: Codex `astra`, then `sol`
+- From Claude: Codex `sol`, then `astra`
 - From Codex: Claude `opus`; `fable` only for a genuinely hard review
 
 If the user names a model ("sol loop" means Codex `sol`), use it. Inside T3
