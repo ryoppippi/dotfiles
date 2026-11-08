@@ -71,6 +71,8 @@ in
         "root"
         username
       ];
+      min-free = 10 * 1024 * 1024 * 1024;
+      max-free = 50 * 1024 * 1024 * 1024;
     };
   };
 

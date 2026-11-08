@@ -6,7 +6,10 @@
       dates = "daily";
       extraArgs = [
         "--keep-since"
-        "30d"
+        "7d"
+        "--keep"
+        "3"
+        "--optimise"
       ];
     };
   };
