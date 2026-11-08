@@ -4,7 +4,10 @@
     clean = {
       enable = true;
       dates = "daily";
-      extraArgs = "--keep-since 30d";
+      extraArgs = [
+        "--keep-since"
+        "30d"
+      ];
     };
   };
 }
