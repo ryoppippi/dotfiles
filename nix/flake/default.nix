@@ -36,6 +36,9 @@ in
           gh-user-stars
           gh-triage
           ;
+      }
+      // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+        inherit (pkgs) audio-priority-bar;
       };
     };
 }

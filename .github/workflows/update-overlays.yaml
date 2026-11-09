@@ -8,7 +8,9 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-26.04-arm
+    # macOS, because audio-priority-bar only exists for darwin and nix-update
+    # has to build its source on the package's own platform.
+    runs-on: macos-26
     permissions:
       contents: write
       pull-requests: write
@@ -41,7 +43,7 @@ jobs:
         run: |
           const OVERLAY_DIR = 'nix/overlays'
           # Packages that follow the latest GitHub release tag.
-          const TAGGED_PACKAGES = [git-now roots gh-triage]
+          const TAGGED_PACKAGES = [git-now roots gh-triage audio-priority-bar]
           # Packages that follow their default branch HEAD instead of a release.
           const BRANCH_PACKAGES = [gh-user-stars]
 
@@ -89,13 +91,14 @@ jobs:
           print $"Updated: ($updated | str join ', ')"
           $"has_changes=true\nupdated_packages=($updated | to json --raw)\n" | save --append $env.GITHUB_OUTPUT
 
-      - name: Build and test
+      - name: Build updated packages
         if: steps.update.outputs.has_changes == 'true'
+        shell: nu {0}
+        env:
+          UPDATED_PACKAGES: ${{ steps.update.outputs.updated_packages }}
         run: |
-          nix build .#darwinConfigurations.ryoppippi.system \
-            --accept-flake-config \
-            --print-build-logs \
-            --show-trace
+          let installables = ($env.UPDATED_PACKAGES | from json | each { |package| $".#($package)" })
+          nix build ...$installables --print-build-logs
 
       - name: Create Pull Request
         id: pr
