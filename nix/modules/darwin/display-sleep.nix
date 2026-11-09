@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  # The Mac stays awake on AC (system.nix), but the display should still go
+  # The Mac stays awake on AC (ac-awake.nix), but the display should still go
   # dark — and so lock, as the screensaver asks for the password immediately.
   # Apps keep it lit with display-sleep assertions that outlive any real use:
   # audio streams left open to a monitor's speakers hold coreaudiod's for days,

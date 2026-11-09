@@ -109,11 +109,6 @@ in
     activationScripts.postActivation.text = ''
       echo "Setting login shell to fish..."
       sudo chsh -s ${fishPath} ${username} || true
-
-      # Stay awake on AC power so T3 Code remains reachable through T3 Connect
-      # while the screen is locked; battery keeps the default so an unplugged
-      # laptop still sleeps.
-      /usr/bin/pmset -c sleep 0
     '';
 
     activationScripts.userDefaults.text = lib.mkAfter ''
@@ -358,7 +353,6 @@ in
       "Accelerate" = 1459809092;
       "Actions" = 1586435171;
       "AdGuard for Safari" = 1440147259;
-      "Amphetamine" = 937984704;
       "Blackmagic Disk Speed Test" = 425264550;
       "Command X" = 6448461551;
       "Consent-O-Matic" = 1606897889;

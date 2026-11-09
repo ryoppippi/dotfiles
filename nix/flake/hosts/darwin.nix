@@ -49,6 +49,8 @@ in
 
       ../../modules/darwin/nh-clean.nix
 
+      ../../modules/darwin/ac-awake.nix
+
       nix-index-database.darwinModules.nix-index
 
       home-manager.darwinModules.home-manager
