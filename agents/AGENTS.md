@@ -13,6 +13,7 @@
 - An urge to add a retry, special-case an error, loosen a type or test, or patch one call site is a signal that a symptom may be hiding a cause. Find the cause first; if a workaround is still right, say why.
 - These instructions state intent, not a checklist. When following a rule to the letter would defeat its purpose, follow the purpose and say so.
 - Commit messages and PR descriptions explain the root cause and why this fix.
+- A skill states what to do and what not to do: the decisions and boundaries I set. Leave out what an agent can work out by thinking or by reading the code — explanations, rationale, derived facts, how-to steps, and example code.
 
 @~/.config/claude/shared/tools.md
 
