@@ -46,46 +46,6 @@ let
     subagentPromptCacheTtl = "1h";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
-    hooks = {
-      PreToolUse = [
-        {
-          matcher = "Bash";
-          hooks = [
-            {
-              type = "command";
-              command = builtins.concatStringsSep " " [
-                "input=$(cat);"
-                "cmd=$(echo \"$input\" | ${jq} -r '.tool_input.command // \"\"');"
-                "if echo \"$cmd\" | grep -q 'gh pr create'; then"
-                "if [ -f /tmp/.claude-review-done ]; then"
-                "rm -f /tmp/.claude-review-done; exit 0;"
-                "else"
-                "echo 'BLOCKED: You must run the review-loop skill first before creating a PR. Use Skill(review-loop) to review changes against the base branch.' >&2;"
-                "exit 2;"
-                "fi; fi; exit 0"
-              ];
-            }
-          ];
-        }
-      ];
-      PostToolUse = [
-        {
-          matcher = "Skill";
-          hooks = [
-            {
-              type = "command";
-              command = builtins.concatStringsSep " " [
-                "input=$(cat);"
-                "skill=$(echo \"$input\" | ${jq} -r '.tool_input.skill // .tool_input.skillName // \"\"');"
-                "if [ \"$skill\" = \"review-loop\" ]; then"
-                "touch /tmp/.claude-review-done;"
-                "fi; exit 0"
-              ];
-            }
-          ];
-        }
-      ];
-    };
   };
 
   darwinSettings = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
@@ -97,20 +57,7 @@ let
     };
   };
 
-  # Deep merge with hook array concatenation
-  mergeSettings =
-    base: override:
-    let
-      baseHooks = base.hooks or { };
-      overrideHooks = override.hooks or { };
-      allHookKeys = lib.unique (lib.attrNames baseHooks ++ lib.attrNames overrideHooks);
-      mergedHooks = lib.genAttrs allHookKeys (
-        key: (baseHooks.${key} or [ ]) ++ (overrideHooks.${key} or [ ])
-      );
-    in
-    base // override // { hooks = mergedHooks; };
-
-  settings = mergeSettings baseSettings darwinSettings;
+  settings = baseSettings // darwinSettings;
 
   # ccusage reads every directory in a comma-separated CLAUDE_CONFIG_DIR, but
   # Claude Code itself needs a single path there, so the combined list is only
@@ -138,7 +85,8 @@ in
     # Merged rather than copied: Claude Code writes to this same file itself —
     # `/permissions` appends allow rules, `/config` stores UI preferences — and
     # a wholesale copy would drop all of it on every switch. The keys below win,
-    # everything else in the live file is left alone.
+    # everything else in the live file is left alone — except hooks, which come
+    # only from here, so a hook removed here is removed from the live file too.
     activation.writeClaudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] (
       lib.concatMapStrings (profile: ''
         CONFIG_DIR="${config.xdg.configHome}/${profile}"
@@ -147,7 +95,7 @@ in
 
         if [ -f "$SETTINGS_FILE" ]; then
           TEMP_FILE="$(mktemp "$CONFIG_DIR/.settings.json.XXXXXX")"
-          if ! ${jq} -s '.[0] * .[1]' "$SETTINGS_FILE" ${jsonFormat.generate "claude-settings.json" settings} > "$TEMP_FILE"; then
+          if ! ${jq} -s '(.[0] | del(.hooks)) * .[1]' "$SETTINGS_FILE" ${jsonFormat.generate "claude-settings.json" settings} > "$TEMP_FILE"; then
             rm -f "$TEMP_FILE"
             exit 1
           fi
