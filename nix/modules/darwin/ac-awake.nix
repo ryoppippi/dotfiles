@@ -30,8 +30,26 @@ let
         }
     }
   '';
+
+  # Closing the lid normally locks the Mac by putting it to sleep, which
+  # disablesleep prevents, so turn the display off instead: the screensaver
+  # asks for the password immediately. IOPMrootDomain reports the lid as it
+  # moves, so the lock does not wait for a polling interval.
+  lockOnLidClose = pkgs.runCommandCC "lock-on-lid-close" { } ''
+    mkdir -p $out/bin
+    $CC -Wall -Wextra -Werror -O2 -framework IOKit -framework CoreFoundation \
+      ${./lock-on-lid-close.c} -o $out/bin/lock-on-lid-close
+  '';
 in
 {
+  launchd.daemons.lock-on-lid-close.serviceConfig = {
+    ProgramArguments = [ "${lockOnLidClose}/bin/lock-on-lid-close" ];
+    RunAtLoad = true;
+    KeepAlive = true;
+    StandardOutPath = "/var/log/lock-on-lid-close.log";
+    StandardErrorPath = "/var/log/lock-on-lid-close.log";
+  };
+
   launchd.daemons.ac-awake.serviceConfig = {
     ProgramArguments = [ "${acAwake}" ];
     LaunchEvents."com.apple.notifyd.matching".power-source.Notification =
