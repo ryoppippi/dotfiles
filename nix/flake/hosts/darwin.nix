@@ -51,6 +51,8 @@ in
 
       ../../modules/darwin/ac-awake.nix
 
+      ../../modules/darwin/high-power-mode.nix
+
       nix-index-database.darwinModules.nix-index
 
       home-manager.darwinModules.home-manager
