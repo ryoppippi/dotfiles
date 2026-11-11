@@ -60,6 +60,9 @@ abbr -a dv devenv
 abbr -a pbc pbcopy
 abbr -a pbp pbpaste
 
+# claude: $HOME rather than ~, since fish does not expand ~ after VAR=.
+abbr -a claude0 'CLAUDE_CONFIG_DIR=$HOME/.config/claude-personal-0 claude'
+
 # git configs
 abbr -a g git
 abbr -a ga 'git add'
