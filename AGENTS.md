@@ -18,7 +18,7 @@ Local changes to `nix/modules/home/programs/codex/default.nix` may contain priva
 
 - `agents/AGENTS.md` is the single global instruction file for every agent, with its sections in `agents/shared/`; skills live in `agents/skills/`. Use the `edit-skills` skill before editing any of them.
 - This repository keeps no `CLAUDE.md`: Claude Code loads this `AGENTS.md` through the built-in [`agents-md`](https://github.com/anthropics/claude-code/tree/main/mods/agents-md) plugin.
-- `claude/` is symlinked to `~/.config/claude`, so edits there apply to the running Claude Code without a switch.
+- `claude/agents/` and `claude/output-styles/` are out-of-store symlinks in every Claude profile directory (`~/.config/claude`, `~/.config/claude-personal-0`), so edits there apply without a switch.
 - Git and Ghostty are declarative under `nix/modules/home/programs/`; Fish and Neovim keep plain config in `fish/` and `nvim/`.
 - Per-directory notes live in each directory's `README.md` (`nix/`, `fish/`, `nvim/`, `karabiner/`); read the relevant one before editing there.
 
