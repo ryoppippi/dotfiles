@@ -31,5 +31,5 @@ Local changes to `nix/modules/home/programs/codex/default.nix` may contain priva
 
 ## Git Workflow
 
-- This is a personal dotfiles repo — **committing and pushing directly to `main` is fine**, overriding the usual feature-branch rule. Do NOT open a pull request unless explicitly asked.
+- This is a personal dotfiles repo: commit and push directly to `main`, overriding the usual feature-branch rule, and open a pull request only when asked.
 - Conventional Commits, UK English spelling.
