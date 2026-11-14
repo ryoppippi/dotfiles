@@ -50,15 +50,14 @@ Background: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/be
 
 - Local skills in `agents/skills/<name>/` are enabled automatically by
   `nix/modules/home/agent-skills.nix` and deployed to `~/.agents/skills/` and
-  `~/.config/claude/skills/`. To limit a skill to some of those targets, add
-  `metadata:` with a one-line `  agents: [claude]` (target names: `claude`,
-  `agents`) to its frontmatter. For packages or a transform, add them under
+  each Claude profile's `skills/`. To limit a skill to some of those targets, add
+  `metadata:` with a one-line `  agents: [claude]` (target names are the keys of
+  `targets` in that module) to its frontmatter. For packages or a transform, add them under
   `skills.explicit.<name>`, as `web-fetch` does.
 - Renaming a skill means updating every reference:
   `rg -n '<old-name>' --hidden -g '!.git'`. Besides other skills and
-  `agents/`, the Claude Code hook in
-  `nix/modules/home/programs/claude-code/default.nix` matches the
-  `review-loop` skill by name.
+  `agents/`, `nix/modules/home/agent-skills.nix` rewrites tstack's skill
+  references to `create-pr` and `review-loop` by name.
 - A new `agents/shared/` fragment needs an `@` import in `agents/AGENTS.md` and
   an entry in `sharedFragments` in `nix/modules/home/programs/codex/default.nix`.
 - Deploy by staging the changed paths, then `nix run .#switch`.
