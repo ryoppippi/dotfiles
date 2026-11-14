@@ -100,16 +100,16 @@
 		"pins": {
 			"agent-browser": {
 				"branch": "main",
-				"hash": "sha256-vskVPhO6M2cGu5U23+XfgteC+4h4TwKtAKdecvRbssY=",
+				"hash": "sha256-cqGiNiGsZL+J8sqzD/l8+lx1lbsxb2Y2uRig2ARevNs=",
 				"repository": {
 					"owner": "vercel-labs",
 					"repo": "agent-browser",
 					"type": "GitHub"
 				},
-				"revision": "2f1649cefb82f417abbb2712f5397439d010698e",
+				"revision": "f18b8bb5275ea2be22fca5e6856886827468f41e",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/vercel-labs/agent-browser/archive/2f1649cefb82f417abbb2712f5397439d010698e.tar.gz"
+				"url": "https://github.com/vercel-labs/agent-browser/archive/f18b8bb5275ea2be22fca5e6856886827468f41e.tar.gz"
 			},
 			"ast-grep": {
 				"branch": "main",
@@ -126,16 +126,16 @@
 			},
 			"gh-stack": {
 				"branch": "main",
-				"hash": "sha256-HJiO7w03capDX2qCmvmXb80KdgtLTB3d2CXq0yYWqDc=",
+				"hash": "sha256-qc+uhjFA9X1GdoAwkSzSYJ5FWva30KiCyeUMaKw5e/c=",
 				"repository": {
 					"owner": "github",
 					"repo": "gh-stack",
 					"type": "GitHub"
 				},
-				"revision": "bd0a32504f9ae9f795875a9e6bb90ff7408fda08",
+				"revision": "b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/github/gh-stack/archive/bd0a32504f9ae9f795875a9e6bb90ff7408fda08.tar.gz"
+				"url": "https://github.com/github/gh-stack/archive/b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db.tar.gz"
 			},
 			"t3-limits": {
 				"branch": "main",
@@ -152,16 +152,16 @@
 			},
 			"tstack": {
 				"branch": "main",
-				"hash": "sha256-WpJgIBFphxPff89/CoPegyFQa8x3Orb/bkP7Nd+kMNk=",
+				"hash": "sha256-1N0fxvcM44NcGOZeYJiX/EAJuI9GoAj5rEXmu7mJc3w=",
 				"repository": {
 					"owner": "t3dotgg",
 					"repo": "tstack",
 					"type": "GitHub"
 				},
-				"revision": "1085050f3baed1ac724caa4a8166145fb2ac88af",
+				"revision": "11e37a74d0a6868c121cd0910ab2b3bd9873b92a",
 				"submodules": false,
 				"type": "Git",
-				"url": "https://github.com/t3dotgg/tstack/archive/1085050f3baed1ac724caa4a8166145fb2ac88af.tar.gz"
+				"url": "https://github.com/t3dotgg/tstack/archive/11e37a74d0a6868c121cd0910ab2b3bd9873b92a.tar.gz"
 			}
 		},
 		"version": 8
