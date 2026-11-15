@@ -93,6 +93,11 @@ in
           "pl.maketheweb.cleanshotx"
         ];
         hideInNativeFullscreen = true;
+        # Since OmniWM 0.8, a full-width bar anywhere but below the menu bar
+        # switches macOS' menu bar to always auto-hide, losing the native app
+        # menus and status items. Sit below it and keep windows clear of the bar.
+        position = "belowMenuBar";
+        reserveLayoutSpace = true;
       };
 
       # Workspaces 1 and 2 follow the main display and 3 and 4 the first
@@ -191,10 +196,10 @@ in
         # unassigned so their Option+Minus/Equal defaults stay typeable.
         "cycleSizeBackward" = "Unassigned";
         "cycleSizeForward" = "Unassigned";
-        "setContainerPrimarySpan.decrease10Percent" = "Unassigned";
-        "setContainerPrimarySpan.increase10Percent" = "Unassigned";
-        "setWindowSecondarySpan.decrease10Percent" = "Hyper+U";
-        "setWindowSecondarySpan.increase10Percent" = "Hyper+I";
+        "resizeContainerPrimarySpan.shrink" = "Unassigned";
+        "resizeContainerPrimarySpan.grow" = "Unassigned";
+        "resizeWindowSecondarySpan.shrink" = "Hyper+U";
+        "resizeWindowSecondarySpan.grow" = "Hyper+I";
         "resetWindowSecondarySpan" = "Hyper+R";
         "toggleContainerFullPrimarySpan" = "Hyper+F";
         "toggleColumnTabbed" = "Hyper+T";
