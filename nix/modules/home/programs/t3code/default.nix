@@ -138,7 +138,8 @@ let
           codex = {
             displayName = "Codex";
             config = {
-              binaryPath = lib.getExe pkgs.llm-agents.codex;
+              # The re-signed copy from the codex module, so keychain access works.
+              binaryPath = "${config.home.profileDirectory}/bin/codex";
               homePath = sessionVariables.CODEX_HOME;
             };
           };
