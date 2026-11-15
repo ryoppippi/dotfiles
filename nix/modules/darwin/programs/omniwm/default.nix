@@ -12,6 +12,18 @@ let
   };
 in
 {
+  # Since OmniWM 0.8 the bar's placement comes from the shell style, whose
+  # [workspaceBar] wins over settings.toml. The bundled Default style overlaps
+  # the menu bar at full width, and any full-width bar not below the menu bar
+  # switches macOS' menu bar to always auto-hide, losing the native app menus
+  # and status items. The bundled style is rewritten on every OmniWM update, so
+  # override it from the user layer instead of editing it.
+  xdg.configFile."omniwm/shell/shell.toml".source =
+    (pkgs.formats.toml { }).generate "omniwm-shell.toml"
+      {
+        profiles.default.workspaceBar.position = "belowMenuBar";
+      };
+
   programs.omniwm = {
     enable = true;
     package = pkgs.omniwm;
@@ -93,11 +105,6 @@ in
           "pl.maketheweb.cleanshotx"
         ];
         hideInNativeFullscreen = true;
-        # Since OmniWM 0.8, a full-width bar anywhere but below the menu bar
-        # switches macOS' menu bar to always auto-hide, losing the native app
-        # menus and status items. Sit below it and keep windows clear of the bar.
-        position = "belowMenuBar";
-        reserveLayoutSpace = true;
       };
 
       # Workspaces 1 and 2 follow the main display and 3 and 4 the first
