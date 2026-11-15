@@ -54,6 +54,9 @@ on:
 jobs:
   discover:
     runs-on: ubuntu-26.04-arm
+    permissions:
+      actions: read
+      contents: read
     outputs:
       matrix: ${{ steps.discover.outputs.matrix }}
       has-updates: ${{ steps.discover.outputs.has-updates }}
@@ -79,6 +82,7 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
     permissions:
+      actions: read
       contents: write
       pull-requests: write
     steps:

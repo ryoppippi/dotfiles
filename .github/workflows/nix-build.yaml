@@ -35,6 +35,9 @@ jobs:
   # before any build runs. Build jobs depend on this passing.
   security:
     runs-on: ubuntu-26.04-arm
+    permissions:
+      actions: read
+      contents: read
     timeout-minutes: 15
     steps:
       - name: Checkout repository
@@ -71,6 +74,9 @@ jobs:
   build-ubuntu:
     needs: [changes, security]
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
     timeout-minutes: 90
     steps:
       - name: Skip if no Nix changes

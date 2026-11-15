@@ -12,6 +12,7 @@ jobs:
     # has to build its source on the package's own platform.
     runs-on: macos-26
     permissions:
+      actions: read
       contents: write
       pull-requests: write
     steps:

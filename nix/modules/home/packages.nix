@@ -1,60 +1,46 @@
-{ pkgs, lib, ... }:
-let
-  # Check if we're on a platform that supports certain packages
-  inherit (pkgs.stdenv.hostPlatform) isLinux;
-  isX86Linux = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
-in
+{ pkgs, ... }:
 {
-  home.packages =
-    with pkgs;
-    [
-      # Essentials
-      curl
-      fish
-      tmux
-      # VCS
-      git
-      git-now
-      git-wt
-      git-wtpr
-      git-lfs
-      ghq
-      # `, <command>`; picks the package itself in an agent's tty-less shell
-      comma-auto-pick
-      # Security
-      tirith
-      # Code review TUI
-      tuicr
-      # Search & file utilities
-      ripgrep
-      fd
-      fzf
-      zoxide
-      bat
-      eza
-      jq
-      dust
-      delta
-      vivid
-      trash-cli
-      # Development languages & package managers
-      devenv
-      nodejs_24
-      bun
-      pnpm
-      typescript
-      uv
-      # Miscellaneous utilities
-      fixjson
-      gifski
-      roots
+  home.packages = with pkgs; [
+    # Essentials
+    curl
+    fish
+    tmux
+    # VCS
+    git
+    git-now
+    git-wt
+    git-wtpr
+    git-lfs
+    ghq
+    # `, <command>`; picks the package itself in an agent's tty-less shell
+    comma-auto-pick
+    # Security
+    tirith
+    # Code review TUI
+    tuicr
+    # Search & file utilities
+    ripgrep
+    fd
+    fzf
+    zoxide
+    bat
+    eza
+    jq
+    dust
+    delta
+    vivid
+    trash-cli
+    # Development languages & package managers
+    devenv
+    nodejs_24
+    bun
+    pnpm
+    typescript
+    uv
+    # Miscellaneous utilities
+    fixjson
+    gifski
+    roots
 
-    ]
-    ++ lib.optionals isLinux [
-      audacity
-    ]
-    # Platform-specific GUI applications
-    ++ lib.optionals isX86Linux [
-      telegram-desktop
-    ];
+  ];
 }

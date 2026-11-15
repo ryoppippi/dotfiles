@@ -11,6 +11,7 @@ jobs:
   update:
     runs-on: ubuntu-26.04-arm
     permissions:
+      actions: read
       contents: write
       pull-requests: write
     steps:
