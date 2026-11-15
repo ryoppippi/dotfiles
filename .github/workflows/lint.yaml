@@ -18,6 +18,9 @@ jobs:
 
       - uses: ./.github/actions/setup-nix
 
+      - name: Check flake input updates
+        run: nix run --inputs-from . nixpkgs#nushell -- --no-config-file .github/actions/flake-inputs.test.nu
+
       - name: Check flake
         run: nix flake check --all-systems --show-trace
 

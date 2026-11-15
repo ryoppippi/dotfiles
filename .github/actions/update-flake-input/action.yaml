@@ -69,7 +69,10 @@ runs:
         SKIP_DELAY: ${{ inputs.skip-delay }}
         MIN_AGE_DAYS: ${{ inputs.minimum-release-age-days }}
         GH_TOKEN: ${{ inputs.github-token }}
+        NU_LIB_DIRS: ${{ github.workspace }}/.github/actions
       run: |
+        use flake-inputs.nu [root-input aged-commit]
+
         const GITHUB_DATE = '%Y-%m-%dT%H:%M:%SZ'
         # Packages worth naming in the PR title; other inputs get no version details.
         const TRACKED_PACKAGES = {
@@ -86,7 +89,7 @@ runs:
           nix flake metadata --json --no-write-lock-file
           | from json
           | get locks.nodes
-          | get -o $name
+          | root-input $in $name
           | default {}
           | get -o locked
           | default {}
@@ -138,34 +141,6 @@ runs:
           (git diff --quiet -- $path | complete | get exit_code) != 0
         }
 
-        # Newest commit that is already older than the release-age window. A failing
-        # API call is reported as `unavailable` so the caller can fall back to a plain
-        # update, which differs from the repository having no commit that old.
-        def aged-commit [owner: string, repo: string, git_ref: string, cutoff: datetime]: nothing -> record {
-          let query = { until: (utc-timestamp $cutoff), per_page: 1 }
-            | merge (if ($git_ref | is-empty) { {} } else { { sha: $git_ref } })
-            | items { |key, value| $"($key)=($value)" }
-            | str join '&'
-          let commits = try { gh api $"repos/($owner)/($repo)/commits?($query)" | from json } catch { null }
-
-          match $commits {
-            null => { status: 'unavailable' }
-            [] => { status: 'none' }
-            [$commit, ..] => {
-              { status: 'found', sha: $commit.sha, date: ($commit.commit.committer.date | into datetime) }
-            }
-          }
-        }
-
-        # When a revision was committed, or null when the API cannot tell us.
-        def commit-date [owner: string, repo: string, rev: string] {
-          try {
-            gh api $"repos/($owner)/($repo)/commits/($rev)" | from json | get commit.committer.date | into datetime
-          } catch {
-            null
-          }
-        }
-
         # Report "nothing to do" and stop, leaving flake.lock as it was found.
         def skip [reason: string] {
           print $reason
@@ -201,15 +176,15 @@ runs:
 
         match $target.status {
           'none' => (skip $"No commit older than ($min_age) found. Skipping update.")
-          'unavailable' => (print '::warning::Could not query commits; falling back to the latest revision')
+          'unavailable' => (print '::warning::Could not query commit history; falling back to the latest revision')
           'found' => {
             print $"Target revision: ($target.sha | str substring ..<8) from (utc-timestamp $target.date)"
             if $target.sha == ($before.rev? | default '') {
               skip 'Target revision matches the current one. No update needed.'
             }
-            let before_date = (commit-date $owner $repo ($before.rev? | default ''))
-            if $before_date != null and $target.date < $before_date {
-              skip $"Target revision predates the current one \((utc-timestamp $before_date)). Skipping to avoid a downgrade."
+            let relationship = (gh api $"repos/($owner)/($repo)/compare/($before.rev)...($target.sha)" --jq '.status')
+            if $relationship != 'ahead' {
+              skip $"Target revision is ($relationship) relative to the current lock. Skipping to avoid a downgrade or branch change."
             }
           }
           _ => {}

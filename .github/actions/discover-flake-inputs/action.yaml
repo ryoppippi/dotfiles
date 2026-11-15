@@ -37,7 +37,10 @@ runs:
         INPUTS: ${{ inputs.inputs }}
         EXCLUDE_INPUTS: ${{ inputs.exclude-inputs }}
         SKIP_DELAY_INPUTS: ${{ inputs.skip-delay-inputs }}
+        NU_LIB_DIRS: ${{ github.workspace }}/.github/actions
       run: |
+        use flake-inputs.nu root-input
+
         def parse-list [raw: string]: nothing -> list<string> {
           $raw | split row -r '\s+' | where { |item| $item | is-not-empty }
         }
@@ -92,7 +95,7 @@ runs:
         let candidates = (
           $names
           | each { |name|
-            match [($name in $excluded) ($nodes | get -o $name)] {
+            match [($name in $excluded) (root-input $nodes $name)] {
               [true, _] => { name: $name, state: 'excluded' }
               [_, null] => { name: $name, state: 'missing' }
               [_, $node] => { name: $name, state: 'included', entry: (matrix-entry $name $node ($name in $skip_delay)) }
