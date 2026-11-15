@@ -77,7 +77,7 @@ jobs:
     permissions:
       actions: read
       contents: read
-    timeout-minutes: 120
+    timeout-minutes: 90
     steps:
       - name: Skip if no Nix changes
         if: needs.changes.outputs.nix != 'true' && github.event_name != 'workflow_dispatch'
