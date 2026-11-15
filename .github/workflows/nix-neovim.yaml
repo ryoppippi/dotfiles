@@ -19,6 +19,7 @@ jobs:
   neovim-check:
     runs-on: ubuntu-26.04-arm
     permissions:
+      actions: read
       contents: read
     steps:
       - name: Checkout repository

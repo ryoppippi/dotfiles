@@ -11,6 +11,7 @@ jobs:
   update:
     runs-on: ubuntu-26.04-arm
     permissions:
+      actions: read
       contents: write
       pull-requests: write
     steps:
@@ -34,6 +35,8 @@ jobs:
 
       - name: Setup Nix
         uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ steps.bot.outputs.token }}
 
       - uses: hustcer/setup-nu@1b8faed9a8ff673c8ce0beae243e0b72d0787241 # v3.30
         with:
@@ -47,7 +50,6 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.bot.outputs.token }}
           # ~90 plugin inputs exceed the anonymous GitHub API rate limit
-          NIX_CONFIG: access-tokens = github.com=${{ steps.bot.outputs.token }}
           DOTFILES_DIR: ${{ github.workspace }}
         run: |
           const LOCK_DIR = 'nvim/nvimx-lock'
