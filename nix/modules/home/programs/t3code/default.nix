@@ -127,10 +127,19 @@ let
               homePath = "${config.xdg.configHome}/claude-personal-0";
             };
           };
+          claudePersonal1 = {
+            driver = "claudeAgent";
+            displayName = "Claude (personal 1)";
+            config = {
+              binaryPath = lib.getExe pkgs.claude-code;
+              homePath = "${config.xdg.configHome}/claude-personal-1";
+            };
+          };
           codex = {
             displayName = "Codex";
             config = {
-              binaryPath = lib.getExe pkgs.llm-agents.codex;
+              # The re-signed copy from the codex module, so keychain access works.
+              binaryPath = "${config.home.profileDirectory}/bin/codex";
               homePath = sessionVariables.CODEX_HOME;
             };
           };

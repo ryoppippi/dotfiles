@@ -12,6 +12,29 @@ let
   };
 in
 {
+  # Since OmniWM 0.8 the bar's layout comes from the shell style, whose
+  # [workspaceBar] wins over settings.toml. The bundled Default style runs at
+  # full width over the menu bar, and a full-width bar anywhere but below the
+  # menu bar switches macOS' menu bar to always auto-hide, losing the native app
+  # menus and status items. Keep the pre-0.8 bar instead: compact, overlapping
+  # the menu bar, and showing only the workspaces, so the native menus and
+  # status items stay beside it. The bundled style is rewritten on every OmniWM
+  # update, so override it from the user layer instead of editing it.
+  xdg.configFile."omniwm/shell/shell.toml".source =
+    (pkgs.formats.toml { }).generate "omniwm-shell.toml"
+      {
+        profiles.default = {
+          leading = [ "workspaces" ];
+          center = [ ];
+          trailing = [ ];
+          workspaceBar = {
+            position = "overlappingMenuBar";
+            fullWidth = false;
+            reserveLayoutSpace = false;
+          };
+        };
+      };
+
   programs.omniwm = {
     enable = true;
     package = pkgs.omniwm;
@@ -191,10 +214,10 @@ in
         # unassigned so their Option+Minus/Equal defaults stay typeable.
         "cycleSizeBackward" = "Unassigned";
         "cycleSizeForward" = "Unassigned";
-        "setContainerPrimarySpan.decrease10Percent" = "Unassigned";
-        "setContainerPrimarySpan.increase10Percent" = "Unassigned";
-        "setWindowSecondarySpan.decrease10Percent" = "Hyper+U";
-        "setWindowSecondarySpan.increase10Percent" = "Hyper+I";
+        "resizeContainerPrimarySpan.shrink" = "Unassigned";
+        "resizeContainerPrimarySpan.grow" = "Unassigned";
+        "resizeWindowSecondarySpan.shrink" = "Hyper+U";
+        "resizeWindowSecondarySpan.grow" = "Hyper+I";
         "resetWindowSecondarySpan" = "Hyper+R";
         "toggleContainerFullPrimarySpan" = "Hyper+F";
         "toggleColumnTabbed" = "Hyper+T";

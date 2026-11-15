@@ -63,6 +63,8 @@ abbr -a pbp pbpaste
 # claude: $HOME rather than ~, since fish does not expand ~ after VAR=.
 abbr -a claude0 'CLAUDE_CONFIG_DIR=$HOME/.config/claude-personal-0 claude'
 abbr -a cl0 'CLAUDE_CONFIG_DIR=$HOME/.config/claude-personal-0 claude'
+abbr -a claude1 'CLAUDE_CONFIG_DIR=$HOME/.config/claude-personal-1 claude'
+abbr -a cl1 'CLAUDE_CONFIG_DIR=$HOME/.config/claude-personal-1 claude'
 
 # git configs
 abbr -a g git

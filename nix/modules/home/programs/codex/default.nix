@@ -10,6 +10,29 @@ let
 
   tomlFormat = pkgs.formats.toml { };
 
+  # The Nix build only ad-hoc signs Codex, so its code identity changes with
+  # every rebuild and macOS rejects its keychain access. The build sandbox
+  # cannot reach the signing key, so activation copies the package out of the
+  # store and re-signs it with a stable identity instead; the designated
+  # requirement then names the certificate rather than a per-build hash.
+  codex = pkgs.llm-agents.codex;
+  codexSignedDir = "${config.xdg.dataHome}/codex-signed";
+  codexSigningIdentity = "Apple Development: Ryotaro Kimura (24NNYUUHGN)";
+  codexBinaries = [
+    "codex"
+    "codex-code-mode-host"
+    "logs_client"
+  ];
+  # Points at the signed copy. Linking `share` keeps the shell completions and
+  # roots the original package, whose ripgrep and libraries the copy still uses.
+  codexSigned = pkgs.runCommand "codex-signed-${codex.version}" { meta.mainProgram = "codex"; } ''
+    mkdir -p $out/bin
+    ${lib.concatMapStrings (bin: ''
+      ln -s ${lib.escapeShellArg "${codexSignedDir}/bin/${bin}"} $out/bin/${bin}
+    '') codexBinaries}
+    ln -s ${codex}/share $out/share
+  '';
+
   nu = lib.getExe pkgs.nushell;
 
   # Codex has no import mechanism, so ~/.codex/AGENTS.md is generated at switch
@@ -110,7 +133,7 @@ in
   };
 
   home = {
-    packages = [ pkgs.llm-agents.codex ];
+    packages = [ codexSigned ];
 
     sessionVariables = {
       CODEX_HOME = codexHomeDir;
@@ -124,6 +147,32 @@ in
 
       mkdir -p "${codexHomeDir}" "$(dirname "${codexXdgDir}")"
       ln -sfn "${codexHomeDir}" "${codexXdgDir}"
+    '';
+
+    # Re-copies and re-signs only when the package changes or the copy no
+    # longer verifies. Without the identity (another machine) the copy stays
+    # ad-hoc signed, which behaves as the store package did.
+    activation.signCodex = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      src=${codex}/libexec/codex
+      dest=${lib.escapeShellArg codexSignedDir}
+      identity=${lib.escapeShellArg codexSigningIdentity}
+      if [ "$(cat "$dest/.source" 2>/dev/null)" != "$src" ] \
+        || ! /usr/bin/codesign --verify --strict "$dest/bin/codex" 2>/dev/null; then
+        mkdir -p "$(dirname "$dest")"
+        tmp=$(mktemp -d "$dest.XXXXXX")
+        cp -R "$src/." "$tmp/"
+        chmod -R u+w "$tmp"
+        if /usr/bin/security find-identity -v -p codesigning | grep -qF "\"$identity\""; then
+          for bin in ${lib.escapeShellArgs codexBinaries}; do
+            /usr/bin/codesign --force --sign "$identity" "$tmp/bin/$bin"
+          done
+        else
+          echo "signCodex: signing identity '$identity' not found; keeping the ad-hoc signature" >&2
+        fi
+        echo "$src" > "$tmp/.source"
+        rm -rf "$dest"
+        mv "$tmp" "$dest"
+      fi
     '';
 
     # merge-config.nu explains why this is a merge rather than a copy: the
