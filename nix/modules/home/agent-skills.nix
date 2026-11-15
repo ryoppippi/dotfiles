@@ -200,6 +200,11 @@ in
         dest = ".config/claude-personal-0/skills";
         structure = "link";
       };
+      claude-personal-1 = {
+        enable = true;
+        dest = ".config/claude-personal-1/skills";
+        structure = "link";
+      };
     };
   };
 }

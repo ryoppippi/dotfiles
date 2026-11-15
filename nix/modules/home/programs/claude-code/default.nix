@@ -12,6 +12,7 @@ let
   claudeProfiles = [
     "claude"
     "claude-personal-0"
+    "claude-personal-1"
   ];
   claudeDotfilesDir = "${dotfilesDir}/claude";
 
