@@ -113,7 +113,7 @@ let
         )
         {
           claudeAgent = {
-            displayName = "Claude";
+            displayName = "Rork Claude";
             config = {
               binaryPath = lib.getExe pkgs.claude-code;
               homePath = sessionVariables.CLAUDE_CONFIG_DIR;
@@ -121,7 +121,7 @@ let
           };
           claudePersonal0 = {
             driver = "claudeAgent";
-            displayName = "Claude (personal 0)";
+            displayName = "P0 Personal Claude";
             config = {
               binaryPath = lib.getExe pkgs.claude-code;
               homePath = "${config.xdg.configHome}/claude-personal-0";
@@ -129,7 +129,7 @@ let
           };
           claudePersonal1 = {
             driver = "claudeAgent";
-            displayName = "Claude (personal 1)";
+            displayName = "P1 Personal Claude";
             config = {
               binaryPath = lib.getExe pkgs.claude-code;
               homePath = "${config.xdg.configHome}/claude-personal-1";
