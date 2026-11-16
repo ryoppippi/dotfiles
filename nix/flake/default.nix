@@ -10,6 +10,7 @@ in
     ./pkgs.nix
     ./writers.nix
     ./formatter.nix
+    ./checks.nix
     ./apps
     ./hosts
   ];
