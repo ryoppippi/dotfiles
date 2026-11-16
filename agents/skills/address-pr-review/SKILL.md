@@ -26,4 +26,5 @@ For each comment:
    change rather than patching only the quoted line.
 3. Push fixes as normal follow-up commits with the `commit` skill.
 
-Report each comment with what you changed, or why you disagree.
+Report each comment with what you changed, or why you disagree. Replies posted
+in review threads use the `leaving-pr-comments` skill.
