@@ -47,6 +47,7 @@ let
     subagentPromptCacheTtl = "1h";
     skipAutoPermissionPrompt = true;
     skipDangerousModePermissionPrompt = true;
+    hooks = import ../../agent-hooks { inherit pkgs lib; };
   };
 
   darwinSettings = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {

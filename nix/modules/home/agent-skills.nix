@@ -58,6 +58,30 @@ let
       fail "entries must be bare target names"
     else
       names;
+
+  # Agents post comments as a step of other work, which the upstream
+  # description never matches, so it names those cases. The bot-command line
+  # matches the escape in agent-hooks/require-comment-attribution.nu.
+  leavingPrComments =
+    original:
+    let
+      upstream = "description: Use whenever leaving comments on GitHub.";
+    in
+    assert lib.assertMsg (lib.hasInfix upstream original)
+      "agent-skills: tstack leaving-pr-comments description changed; update its transform";
+    lib.trim (
+      builtins.replaceStrings
+        [ upstream ]
+        [
+          "description: Use before posting any GitHub comment, review, or reply, including through `gh api` or as a step of another skill."
+        ]
+        original
+    )
+    + "\n\n"
+    + ''
+      A comment that is only a bot command, such as `@coderabbitai review`, is
+      posted bare, prefixed with `GH_COMMENT_VERBATIM=1` for the hook.
+    '';
 in
 {
   # Explicit rather than skills.enable: only explicit skills can carry the
@@ -80,7 +104,12 @@ in
             path = name;
             transform =
               { original, ... }:
-              builtins.replaceStrings [ "`file-pr`" "`sol-loop`" ] [ "`create-pr`" "`review-loop`" ] original;
+              let
+                renamed =
+                  builtins.replaceStrings [ "`file-pr`" "`sol-loop`" ] [ "`create-pr`" "`review-loop`" ]
+                    original;
+              in
+              if name == "leaving-pr-comments" then leavingPrComments renamed else renamed;
           });
     }
   ];

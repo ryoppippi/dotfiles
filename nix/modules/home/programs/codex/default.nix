@@ -96,6 +96,10 @@ let
 
     notice.fast_default_opt_out = true;
 
+    # Codex skips a hook until it is trusted in `/hooks`, and trust is keyed to
+    # the definition's hash, so a changed script needs trusting again.
+    hooks = import ../../agent-hooks { inherit pkgs lib; };
+
     desktop = {
       preventSleepWhileRunning = true;
       "show-context-window-usage" = true;
