@@ -16,16 +16,20 @@ URL for its source:
 - https://docs.tinyfish.ai/fetch-api/reference.md
 - https://docs.tinyfish.ai/search-api/reference.md
 
-The key lives in 1Password; read it at execution time:
+The key lives in 1Password. Each `op read` prompts for approval, so read it once
+per command and run every request in that same command, never one `op read` per
+request:
 
 ```sh
+key=$(op read op://Employee/TINYFISH_API_KEY/credential)
+
 curl -s https://api.fetch.tinyfish.ai \
-  -H "X-API-Key: $(op read op://Employee/TINYFISH_API_KEY/credential)" \
+  -H "X-API-Key: $key" \
   -H 'content-type: application/json' \
   -d '{"urls": ["https://example.com"], "ttl": 0}' | jq -r '.results[0].text, .errors'
 
 curl -s -G https://api.search.tinyfish.ai \
-  -H "X-API-Key: $(op read op://Employee/TINYFISH_API_KEY/credential)" \
+  -H "X-API-Key: $key" \
   --data-urlencode 'query=react compiler remove useMemo' | jq '.results[] | {title, url, snippet}'
 ```
 
