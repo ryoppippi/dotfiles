@@ -16,7 +16,8 @@ URL for its source:
 - https://docs.tinyfish.ai/fetch-api/reference.md
 - https://docs.tinyfish.ai/search-api/reference.md
 
-The key lives in 1Password. Each `op read` prompts for approval, so read it once
+The key lives in 1Password. Inside T3 Code, take it from `request_secret`
+instead: [inside-t3.md](inside-t3.md#exa-and-tinyfish-keys). Each `op read` prompts for approval, so read it once
 per command and run every request in that same command, never one `op read` per
 request:
 
