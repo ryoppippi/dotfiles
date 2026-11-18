@@ -5,6 +5,7 @@
 let
   inherit (inputs)
     nixpkgs
+    nixpkgs-gifski
     llm-agents
     nix-claude-code
     nix-bun
@@ -44,5 +45,8 @@ import nixpkgs {
   ++ nixpkgs.lib.optionals isDarwin [
     brew-nix.overlays.default
     omniwm.overlays.default
+    (_final: _prev: {
+      inherit (nixpkgs-gifski.legacyPackages.${system}) gifski;
+    })
   ];
 }

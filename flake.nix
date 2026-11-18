@@ -15,6 +15,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    # Hydra has no aarch64-darwin gifski for the current nixpkgs and building it
+    # locally hangs in ffmpeg-sys-next; drop this pin once it is cached.
+    nixpkgs-gifski.url = "github:nixos/nixpkgs/4fe25e12eb9f4c744966dd3de5a05246cf098601";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nix-darwin = {
