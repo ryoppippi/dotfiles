@@ -21,7 +21,11 @@ independent work into separate PRs; stack only work that depends on another PR.
    mechanism:
    - ❌ `perf(server): negotiate permessage-deflate on the websocket`
    - ✅ `perf(server): cut websocket frame size by 70%+ with gzipping`
-4. Body, in proportion to the change: open with the problem as the user saw it,
+4. Start the body with the attribution note from the `leaving-pr-comments`
+   skill, worded `🤖 **<model> opened this on behalf of <user>**`; its
+   exclusion of PR descriptions does not apply here. Omit it only when the
+   user supplies the body verbatim.
+   Then, in proportion to the change: open with the problem as the user saw it,
    then the root cause and why this fix; never lead with an inventory of edits. Add a Testing section only for tests actually run. Pass multi-line
    bodies with `--body-file -`.
 5. For a visible change, attach real screenshots or short videos with
