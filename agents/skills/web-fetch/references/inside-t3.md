@@ -9,9 +9,11 @@ Follow the `t3-delegate` skill instead of running `grok -p` or
 
 ## exa and TinyFish keys
 
-Do not call `op read` here: every new process prompts for approval, and a
-research run triggers it every few seconds. Ask for the key once with
+Try 1Password first, bounded: `timeout 15 op read <ref>`. If it fails or times
+out, nobody is at the machine to approve it; ask the user once with
 `request_secret` and `delivery: "file"`, then read the returned path inside each
 command, e.g. `key=$(cat <file>)` or `Bun.file(path).text()`. The file lasts
-24 hours, so reuse it for the whole task instead of asking again; ask again
-only after it expires.
+24 hours: reuse it for the whole task, and ask again only after it expires.
+
+Once 1Password has prompted, do not call `op read` again for the same task; a
+second prompt means every command will prompt, so switch to `request_secret`.
