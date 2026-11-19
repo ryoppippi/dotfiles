@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   pkgs,
   omniwmLib,
   ...
@@ -239,4 +241,9 @@ in
       };
     };
   };
+
+  # The module launches OmniWM from the store; mkLoginAgent in ../../packages.nix
+  # explains why that blocks garbage collection.
+  launchd.agents.omniwm.config.Program =
+    lib.mkForce "${config.home.homeDirectory}/${config.targets.darwin.copyApps.directory}/OmniWM.app/Contents/MacOS/OmniWM";
 }

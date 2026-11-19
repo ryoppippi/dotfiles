@@ -1,10 +1,12 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
-  mkLoginAgent = package: appName: {
+  # Launch the copyApps copy, never the store path: macOS App Management
+  # protects every bundle it launches, and one protected store path aborts GC.
+  mkLoginAgent = appName: {
     enable = true;
     config = {
       ProgramArguments = [
-        "${package}/Applications/${appName}.app/Contents/MacOS/${appName}"
+        "${config.home.homeDirectory}/${config.targets.darwin.copyApps.directory}/${appName}.app/Contents/MacOS/${appName}"
       ];
       ProcessType = "Interactive";
       RunAtLoad = true;
@@ -52,7 +54,7 @@ in
     ];
 
   launchd.agents = {
-    is-there-net = mkLoginAgent pkgs.brewCasks.istherenet "IsThereNet";
+    is-there-net = mkLoginAgent "IsThereNet";
   };
 
 }
