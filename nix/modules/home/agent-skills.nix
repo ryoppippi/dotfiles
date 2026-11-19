@@ -61,7 +61,7 @@ let
 
   # Agents post comments as a step of other work, which the upstream
   # description never matches, so it names those cases. The bot-command line
-  # matches the escape in agent-hooks/require-comment-attribution.nu.
+  # matches the escape in agent-hooks/require-attribution.nu.
   leavingPrComments =
     original:
     let

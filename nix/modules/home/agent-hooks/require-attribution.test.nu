@@ -1,9 +1,10 @@
 #!/usr/bin/env nu
 
-# Usage: require-comment-attribution.test.nu
+# Usage: require-attribution.test.nu
 
-const HOOK = path self require-comment-attribution.nu
+const HOOK = path self require-attribution.nu
 const NOTE = "> [!NOTE]\n> 🤖 **Opus responding on behalf of ryoppippi**\n\nFixed."
+const PR_NOTE = "> [!NOTE]\n> 🤖 **Opus opened this on behalf of ryoppippi**\n\nWhy."
 
 def run-hook [command: string, cwd: string]: nothing -> int {
     {
@@ -21,6 +22,7 @@ def main [] {
     let dir = mktemp --directory
     $NOTE | save ($dir | path join 'with-note.md')
     'Fixed.' | save ($dir | path join 'without-note.md')
+    $PR_NOTE | save ($dir | path join 'pr-body.md')
 
     let cases = [
         [command, expected];
@@ -45,7 +47,18 @@ def main [] {
         ["git push && gh pr comment 1 --body 'done'", 2]
         ["rg 'gh pr comment' agents", 0]
         ["gh pr edit 1 --body 'new description'", 0]
-        ["gh pr create --title t --body 'description'", 0]
+        ["gh pr create --title t --body 'description'", 2]
+        ["gh pr create --fill", 2]
+        ["gh pr create --title t --body-file pr-body.md", 0]
+        ["gh pr create --title t --body-file with-note.md", 2]
+        [$"gh pr create --title t --body-file - <<'EOF'\n($PR_NOTE)\nEOF", 0]
+        ["GH_COMMENT_VERBATIM=1 gh pr create --title t --body 'given'", 0]
+        ["git push -u origin x && gh pr create --title t --body 'd'", 2]
+        ["gh api repos/o/r/pulls -f title=t -f head=x -f base=main -F body=@pr-body.md", 0]
+        ["gh api repos/o/r/pulls -f title=t -f head=x -f base=main -f body=d", 2]
+        ["gh api repos/o/r/pulls -X GET -f state=open", 0]
+        ["gh pr list", 0]
+        ["rg 'gh pr create' agents", 0]
         ["git status", 0]
     ]
 
