@@ -9,11 +9,14 @@ Follow the `t3-delegate` skill instead of running `grok -p` or
 
 ## exa and TinyFish keys
 
-Try 1Password first, bounded: `timeout 15 op read <ref>`. If it fails or times
-out, nobody is at the machine to approve it; ask the user once with
-`request_secret` and `delivery: "file"`, then read the returned path inside each
-command, e.g. `key=$(cat <file>)` or `Bun.file(path).text()`. The file lasts
-24 hours: reuse it for the whole task, and ask again only after it expires.
+Get each key once per task as a file, and read that path inside each command:
 
-Once 1Password has prompted, do not call `op read` again for the same task; a
-second prompt means every command will prompt, so switch to `request_secret`.
+1. Write it with one bounded read, `umask 077; timeout 15 op read <ref> >
+   ~/.t3/userdata/secrets/files/<task>-<service>-key`. This location is
+   approved for keys; write them nowhere else.
+2. If that fails or times out, ask the user once with `request_secret` and
+   `delivery: "file"`, and use the path it returns.
+
+Reuse the file for the whole task, and hand its path, never the key, to
+subagents and workflow agents. Call `op read` at most once per key per task.
+Delete the files you wrote with `op read` when the task ends.
