@@ -15,6 +15,6 @@ Fish bootstraps the environment; it is not necessarily the syntax shell.
 ### Web, Browsers, and Other Repositories
 
 - For web pages, search, X/Twitter, Bluesky, and YouTube, use the `web-fetch` skill.
-- For browser automation, use the host's own browser first (Codex Desktop's Browser plugin), then the `agent-browser` skill. Use the user’s existing Chrome session when the task needs its cookies, extensions, or tabs; JavaScript rendering alone can use the fallback browser.
+- For browser automation, use the host's own browser first (Codex Desktop's Browser plugin), then `ardia browse` (the user's running Ardia, with its sessions and tabs) or the `agent-browser` skill (a separate Chrome). Use the user’s existing Chrome session when the task needs its cookies, extensions, or tabs; JavaScript rendering alone can use the fallback browser.
 - Read a few files of another repository with `gh repo read-file` / `gh repo read-dir`. For broad searches, history, or builds, get a local reference with `ghq get <repository>`. Refresh an existing clone with `git fetch`, inspect the relevant fetched ref, and keep local work intact. Treat it as a read-only reference.
 - `gh do` passes GitHub credentials through environment variables; see `gh do --help`.
