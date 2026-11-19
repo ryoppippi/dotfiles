@@ -2,12 +2,13 @@
   pkgs,
   lib,
   config,
+  helpers,
   ...
 }:
 let
   checkJsonschema = lib.getExe pkgs.check-jsonschema;
   delta = lib.getExe pkgs.delta;
-  trash = lib.getExe pkgs.trash-cli;
+  trash = helpers.trashCommand pkgs;
   gitLogFormat = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate'';
 
   schemaUrl = "https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json";
@@ -73,7 +74,7 @@ in
             {{- else if .SelectedWorktree.IsCurrent -}}
             echo "Cannot trash the current worktree" >&2; exit 1
             {{- else -}}
-            ${trash} -- {{.SelectedWorktree.Path | quote}} && git worktree prune
+            ${trash} {{.SelectedWorktree.Path | quote}} && git worktree prune
             {{- end -}}
           '';
         }

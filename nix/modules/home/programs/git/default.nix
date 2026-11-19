@@ -23,7 +23,7 @@ let
   # Aliases file path (copied to Nix store to preserve original formatting)
   # Nix's toGitINI quotes all values, which breaks some git-wrapper tools
   aliasesFile = ./aliases;
-  trash = lib.getExe pkgs.trash-cli;
+  trash = helpers.trashCommand pkgs;
 in
 {
   # Delta pager configuration (used by git)

@@ -1,46 +1,48 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [
-    # Essentials
-    curl
-    fish
-    tmux
-    # VCS
-    git
-    git-now
-    git-wt
-    git-wtpr
-    git-lfs
-    ghq
-    # `, <command>`; picks the package itself in an agent's tty-less shell
-    comma-auto-pick
-    # Security
-    tirith
-    # Code review TUI
-    tuicr
-    # Search & file utilities
-    ripgrep
-    fd
-    fzf
-    zoxide
-    bat
-    eza
-    jq
-    dust
-    delta
-    vivid
-    trash-cli
-    # Development languages & package managers
-    devenv
-    nodejs_24
-    bun
-    pnpm
-    typescript
-    uv
-    # Miscellaneous utilities
-    fixjson
-    gifski
-    roots
+  home.packages =
+    with pkgs;
+    [
+      # Essentials
+      curl
+      fish
+      tmux
+      # VCS
+      git
+      git-now
+      git-wt
+      git-wtpr
+      git-lfs
+      ghq
+      # `, <command>`; picks the package itself in an agent's tty-less shell
+      comma-auto-pick
+      # Security
+      tirith
+      # Code review TUI
+      tuicr
+      # Search & file utilities
+      ripgrep
+      fd
+      fzf
+      zoxide
+      bat
+      eza
+      jq
+      dust
+      delta
+      vivid
+      # Development languages & package managers
+      devenv
+      nodejs_24
+      bun
+      pnpm
+      typescript
+      uv
+      # Miscellaneous utilities
+      fixjson
+      gifski
+      roots
 
-  ];
+    ]
+    ++ lib.optional (!pkgs.stdenv.hostPlatform.isDarwin) trash-cli;
 }

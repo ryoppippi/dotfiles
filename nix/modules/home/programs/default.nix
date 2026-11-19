@@ -117,6 +117,7 @@
       inherit
         pkgs
         lib
+        helpers
         config
         ;
     })
