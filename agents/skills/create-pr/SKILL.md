@@ -1,6 +1,6 @@
 ---
 name: create-pr
-description: Branches, commits, pushes, and opens a pull request or a stack of PRs. Use when the user asks to create, open, or file a PR.
+description: Branches, commits, pushes, and opens a pull request or a stack of PRs. Use before opening any PR, whether the user asks for one or the task calls for it.
 ---
 
 # Create PR

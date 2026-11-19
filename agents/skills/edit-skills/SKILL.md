@@ -29,10 +29,12 @@ session; skill bodies load only when chosen. Every line has to earn that cost.
   `web-fetch`, `fix-ci`, not `helper`. Lowercase and hyphens, at
   most 64 characters.
 - The `description` says what the skill does, then when to use it in the words
-  the user types: `Creates atomic Conventional Commits. Use when the user asks
-to commit, or commit and push.` For a keyword trigger, write `Trigger this if
-the user says '<keyword>'.` Agents match the request against the name and
-  description alone, so an abstract situation misses.
+  the user types. For an action agents also take unasked (commit, open a PR,
+  post a comment), name the action itself, not only the request:
+  `Creates atomic Conventional Commits. Use before any commit, whether the user
+  asks to commit or the task calls for one.` For a keyword trigger, write
+  `Trigger this if the user says '<keyword>'.` Agents match the request against
+  the name and description alone, so an abstract situation misses.
 - Keep `SKILL.md` a short workflow. Move detail only some runs need into
   `references/<topic>.md`, linked directly from `SKILL.md` with the condition for
   reading it.

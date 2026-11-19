@@ -7,7 +7,7 @@
       hooks = [
         {
           type = "command";
-          command = "${lib.getExe pkgs.nushell} --no-config-file --stdin ${./require-comment-attribution.nu}";
+          command = "${lib.getExe pkgs.nushell} --no-config-file --stdin ${./require-attribution.nu}";
         }
       ];
     }

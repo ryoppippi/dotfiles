@@ -8,7 +8,7 @@
             src = ../modules/home/agent-hooks;
           }
           ''
-            ${lib.getExe pkgs.nushell} --no-config-file "$src/require-comment-attribution.test.nu"
+            ${lib.getExe pkgs.nushell} --no-config-file "$src/require-attribution.test.nu"
             touch "$out"
           '';
     };
