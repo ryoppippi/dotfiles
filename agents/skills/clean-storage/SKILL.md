@@ -14,7 +14,7 @@ Note `df -h /` before and after. Run everything below without asking, skipping a
 - `uv cache clean`
 - `bun pm cache rm`
 - `npm cache clean --force`
-- `pnpm store prune`, then delete `~/Library/Caches/pnpm`
+- `pnpm store prune --store-dir <dir>` for each of `~/.local/share/pnpm/store` and `~/Library/pnpm/store` that exists, then delete `~/Library/Caches/pnpm`
 - `brew cleanup --prune=all -s`
 - `xcrun simctl delete unavailable`
 - Delete: `~/.cargo/registry/cache`, `~/.cargo/registry/src`, `~/.cargo/git/checkouts`, `~/Library/Caches/go-build`, `~/Library/Developer/Xcode/DerivedData`, `~/Library/Developer/Xcode/iOS DeviceSupport`, `~/Library/Developer/CoreSimulator/Caches`, `~/Library/Caches/com.apple.dt.Xcode`, `~/Library/Caches/ms-playwright`
