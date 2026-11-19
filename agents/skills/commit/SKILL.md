@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Creates atomic Conventional Commits. Use when the user asks to commit, or commit and push.
+description: Creates atomic Conventional Commits. Use before any commit, whether the user asks to commit or the task calls for one.
 ---
 
 <!--

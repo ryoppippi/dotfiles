@@ -1,6 +1,6 @@
 ---
 name: fix-ci
-description: Fetches failing GitHub Actions logs and fixes the cause. Use when the user asks to fix CI or says CI is failing.
+description: Fetches failing GitHub Actions logs and fixes the cause. Use when the user asks to fix CI, or when CI fails on a PR you are working on.
 ---
 
 <!--
