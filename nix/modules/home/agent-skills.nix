@@ -161,6 +161,18 @@ in
       packages = [
         pkgs.llm-agents.ax
         pkgs.llm-agents.tgrab
+        (pkgs.writeShellApplication {
+          name = "youtube-transcribe";
+          runtimeInputs = with pkgs; [
+            coreutils
+            curl
+            deno
+            ffmpeg-headless
+            whisper-cpp
+            yt-dlp
+          ];
+          text = builtins.readFile ./scripts/youtube-transcribe.sh;
+        })
       ];
       rewriteCommands = false;
     };

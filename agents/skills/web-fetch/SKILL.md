@@ -8,8 +8,19 @@ description: Reads URLs and searches the web, X, Bluesky, and YouTube. Use when 
 With a URL in hand:
 
 - Static page text: `./ax <url>`; `./ax agent-context` has its full guide.
-- X/Twitter, Bluesky, YouTube posts and transcripts: `./tgrab <url>`; see
-  `./tgrab --help`.
+- X/Twitter and Bluesky posts: `./tgrab <url>`; see `./tgrab --help`.
+- YouTube transcripts: run `./youtube-transcribe <url> [language]` from this
+  skill directory. It transcribes the audio locally with Whisper large-v3
+  Q5_0 and prints timestamped subtitles. Pass the spoken language if known.
+  The first run caches the model (~1.1 GB) under
+  `${XDG_CACHE_HOME:-~/.cache}/web-fetch`.
+  - For a quick skim or if audio extraction fails, use `./tgrab <url>` for
+    YouTube's available captions.
+  - For cloud transcription or speaker labels, use the extracted audio with
+    [ElevenLabs Scribe](https://elevenlabs.io/docs/api-reference/speech-to-text/convert)
+    or [Grok Voice Transcribe](https://docs.x.ai/developers/model-capabilities/audio/speech-to-text)
+    when the user requests cloud processing.
+  - Check names and quotations against the source.
 
 Searching, in this order:
 
