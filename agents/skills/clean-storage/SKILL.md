@@ -21,7 +21,7 @@ Note `df -h /` before and after. Run everything below without asking, skipping a
 
 ## Worktrees
 
-In every repository from `ghq list -p` that has a GitHub remote, run `gh poi` (it deletes merged branches and their clean, inactive worktrees), then `git worktree prune`. Leave the rest to `gh poi`'s judgement; never remove a worktree it keeps.
+Run `scripts/clean-worktrees.nu` from this skill's directory. Keep every worktree the script keeps.
 
 ## Nix
 
