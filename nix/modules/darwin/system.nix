@@ -312,6 +312,7 @@ in
 
     taps = [
       "anomalyco/tap"
+      "ardia-browser/tap"
       "arto-app/tap"
     ];
 
@@ -324,6 +325,7 @@ in
       "alfred"
       "anomalyco/tap/hex"
       "arc"
+      "ardia-browser/tap/ardia"
       "arto-app/tap/arto"
       "audacity"
       "blackhole-16ch"
