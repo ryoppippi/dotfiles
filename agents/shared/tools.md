@@ -1,6 +1,6 @@
 ## Tools
 
-Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `dust` over du, `bunx` over npx, `uv run` over `python`, and `gh` for anything on GitHub. Use `jq` for JSON, `typos` for spelling, and the `ast-grep` skill for structural code search.
+Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `dust` over du, `bunx` over npx, `uv run` over `python`, and `gh` for anything on GitHub. Use `jq` for JSON, `typos` for spelling, and the `ast-grep` skill for structural code search. List directories with `eza <path>`; add `-la` only when metadata is needed, and avoid `--tree`, `-R`, and `--git` unless asked.
 
 When a command is missing, use the `missing-tools` skill; never install tools globally.
 
