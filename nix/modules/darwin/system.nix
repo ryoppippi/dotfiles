@@ -314,6 +314,7 @@ in
       "anomalyco/tap"
       "ardia-browser/tap"
       "arto-app/tap"
+      "x-ryoppippi/tap"
     ];
 
     brews = [
@@ -349,6 +350,7 @@ in
       "t3-code"
       "telegram"
       "tinycast"
+      "x-ryoppippi/tap/dupin@nightly"
     ];
 
     masApps = {
