@@ -348,6 +348,7 @@ in
       "steam"
       "t3-code"
       "telegram"
+      "tinycast"
     ];
 
     masApps = {
