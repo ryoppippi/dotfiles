@@ -93,8 +93,11 @@ in
       ln -s ${brewBundle} $out/brew-bundle
     '';
 
-    # Only the root-side preparation stays here; `brewBundle` does the rest.
+    # Only the root-side preparation stays here; `brewBundle` does the rest. nix-homebrew links
+    # bin/brew into the store from this same script, so its setup has to stay too.
     activationScripts.homebrew.text = lib.mkForce ''
+      ${config.system.activationScripts.setup-homebrew.text}
+
       if ! /usr/sbin/pkgutil --pkg-info com.apple.pkg.RosettaUpdateAuto >/dev/null 2>&1; then
         /usr/sbin/softwareupdate --install-rosetta --agree-to-license
       fi
