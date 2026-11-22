@@ -37,18 +37,6 @@ let
         provider = "claudeAgent";
         model = "claude-sonnet-5-5";
       }
-      {
-        provider = "codex";
-        model = "gpt-6-astra";
-      }
-      {
-        provider = "codex";
-        model = "gpt-6.1-sol";
-      }
-      {
-        provider = "codex";
-        model = "gpt-6-luna";
-      }
     ];
 
     idleCompaction = "beforeCacheExpires";
