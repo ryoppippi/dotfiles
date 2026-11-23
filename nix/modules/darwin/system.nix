@@ -326,7 +326,6 @@ in
 
     casks = [
       "1password"
-      "alfred"
       "anomalyco/tap/hex"
       "arc"
       "ardia-browser/tap/ardia"
