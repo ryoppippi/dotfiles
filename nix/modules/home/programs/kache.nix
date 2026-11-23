@@ -10,6 +10,21 @@ in
   # caching still can.
   home.sessionVariables.RUSTC_WRAPPER = kache;
 
+  # GUI apps such as T3 Code never read the shell session variables, so their
+  # agents would build without the cache.
+  launchd.agents.kache-env = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "/bin/launchctl"
+        "setenv"
+        "RUSTC_WRAPPER"
+        kache
+      ];
+      RunAtLoad = true;
+    };
+  };
+
   xdg.configFile."kache/config.toml".source = (pkgs.formats.toml { }).generate "kache-config.toml" {
     cache = {
       local_max_size = "50GiB";
