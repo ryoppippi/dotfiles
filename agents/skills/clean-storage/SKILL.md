@@ -17,6 +17,7 @@ Note `df -h /` before and after. Run everything below without asking, skipping a
 - `pnpm store prune --store-dir <dir>` for each of `~/.local/share/pnpm/store` and `~/Library/pnpm/store` that exists, then delete `~/Library/Caches/pnpm`
 - `brew cleanup --prune=all -s`
 - `xcrun simctl delete unavailable`
+- Delete each `code_sign_clone.*` under `$(getconf DARWIN_USER_TEMP_DIR)/../X/com.google.Chrome.code_sign_clone` that no running process (`ps -axo command=`) starts from. Chrome leaves one behind whenever it is killed instead of quit.
 - Delete: `~/.cargo/registry/cache`, `~/.cargo/registry/src`, `~/.cargo/git/checkouts`, `~/Library/Caches/go-build`, `~/Library/Developer/Xcode/DerivedData`, `~/Library/Developer/Xcode/iOS DeviceSupport`, `~/Library/Developer/CoreSimulator/Caches`, `~/Library/Caches/com.apple.dt.Xcode`, `~/Library/Caches/ms-playwright`
 
 ## Worktrees
