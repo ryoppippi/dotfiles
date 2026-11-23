@@ -352,7 +352,6 @@ in
       "steam"
       "t3-code"
       "telegram"
-      "tinycast"
       "x-ryoppippi/tap/dupin@nightly"
     ];
 
