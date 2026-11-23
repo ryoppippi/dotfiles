@@ -27,13 +27,18 @@ For judging tests and anti-patterns, read
 1. Sketch behaviours as placeholder tests and pick one slice. For a bug, use the
    narrowest check already exercising that path; if there is none, reproduce it
    with a script rather than building a harness.
-2. **Red** — write the smallest failing test and confirm it fails as expected.
+2. **Red** — write the smallest failing test and confirm it fails for the
+   expected reason. If it passes or fails for another reason, fix the test or
+   reproduction before touching the code. For a flaky bug, make the test
+   deterministic first.
 3. **Green** — write the minimum code that passes it.
 4. **Refactor** — improve test and code while staying green; run affected tests
    after each step, then repeat.
 
-Work in vertical slices — one seam, one test, one minimal implementation — and
-never weaken a test to make the build pass.
+Work in vertical slices — one seam, one test, one minimal implementation. Never
+weaken a test to make the build pass; change an assertion only when the intended
+behaviour has changed. When the bug belongs to a wider class, test the shared
+cause you fix, not each instance.
 
 ## Report
 
