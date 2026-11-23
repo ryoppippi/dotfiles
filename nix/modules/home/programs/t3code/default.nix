@@ -59,7 +59,8 @@ let
     # single source of truth.
     storageCleanup = {
       worktreeKeepWhen = "uncommitted-changes";
-      worktreeAfterDays = 14;
+      worktreeAfterDays = 2;
+      worktreeSettledAfterDays = 1;
       worktreeOnMerge = true;
       worktreeOnDelete = true;
       worktreeUnchanged = true;
