@@ -34,8 +34,5 @@
 
     # Karabiner-Elements config generated from karabiner/karabiner.ts
     ./programs/karabiner
-
-    # Dupin launcher on Ctrl+Space, replacing Alfred
-    ./programs/dupin.nix
   ];
 }
