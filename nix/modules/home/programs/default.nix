@@ -69,6 +69,9 @@
     # Java (OpenJDK with JAVA_HOME)
     ./java.nix
 
+    # kache: Rust compiler cache shared across worktrees through APFS clones
+    ./kache.nix
+
     # nh: Nix helper CLI (periodic cleanup runs as root in darwin/nh-clean.nix)
     ./nh.nix
 

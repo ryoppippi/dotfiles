@@ -27,8 +27,11 @@ to a CLI or another provider without the user asking.
    - Check inherited interaction and runtime modes in capabilities. Edit work
      needs an edit-capable parent; do not escalate permissions to avoid an
      approval prompt. Runtime approvals may need the user’s intervention.
-   - Select the shared checkout explicitly for uncommitted work; this repo
-     defaults to `worktree`, which starts from the last commit.
+   - Leave `isolation` unset (the shared checkout) unless the child edits files
+     while other work continues in this checkout and needs nothing uncommitted.
+     Each worktree starts from the last commit, duplicates build outputs, and
+     stays on disk long after the child finishes, so read-only children
+     (review, research, verification) never get one.
    - `mode: "wait"` when the answer gates your next step; otherwise `"async"`,
      and let the completion notification wake you instead of polling.
    - A fresh, stable `clientRequestId` per round, so retries don't duplicate.
