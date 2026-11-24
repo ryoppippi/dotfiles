@@ -59,4 +59,32 @@ in
       mv "$TEMP_FILE" "$OBSERVED"
     ''
   );
+
+  # Orca's managed Claude accounts all share the login shell's
+  # CLAUDE_CONFIG_DIR projects folder, so sessions recorded under the personal
+  # profiles could be listed but not resumed. Linking each transcript entry
+  # into that folder lets any account resume them; the originals stay put.
+  home.activation.linkClaudeTranscriptsForOrca = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+    lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      SHARED="${config.home.sessionVariables.CLAUDE_CONFIG_DIR}/projects"
+      for SOURCE in ${
+        lib.escapeShellArgs (
+          map (dir: "${dir}/projects") (
+            lib.remove config.home.sessionVariables.CLAUDE_CONFIG_DIR claudeConfigDirs
+          )
+        )
+      }; do
+        [ -d "$SOURCE" ] || continue
+        for SLUG_DIR in "$SOURCE"/*/; do
+          SLUG="$(basename "$SLUG_DIR")"
+          mkdir -p "$SHARED/$SLUG"
+          for ENTRY in "$SLUG_DIR"*; do
+            [ -e "$ENTRY" ] || continue
+            TARGET="$SHARED/$SLUG/$(basename "$ENTRY")"
+            [ -e "$TARGET" ] || [ -L "$TARGET" ] || ln -s "$ENTRY" "$TARGET"
+          done
+        done
+      done
+    ''
+  );
 }
