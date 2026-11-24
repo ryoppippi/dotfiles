@@ -64,6 +64,8 @@ in
   # CLAUDE_CONFIG_DIR projects folder, so sessions recorded under the personal
   # profiles could be listed but not resumed. Linking each transcript entry
   # into that folder lets any account resume them; the originals stay put.
+  # Transcript files are hard links because Orca's resume lookup accepts only
+  # regular files; both names then append to the same transcript.
   home.activation.linkClaudeTranscriptsForOrca = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     lib.hm.dag.entryAfter [ "linkGeneration" ] ''
       SHARED="${config.home.sessionVariables.CLAUDE_CONFIG_DIR}/projects"
@@ -81,7 +83,16 @@ in
           for ENTRY in "$SLUG_DIR"*; do
             [ -e "$ENTRY" ] || continue
             TARGET="$SHARED/$SLUG/$(basename "$ENTRY")"
-            [ -e "$TARGET" ] || [ -L "$TARGET" ] || ln -s "$ENTRY" "$TARGET"
+            if [ -f "$ENTRY" ] && [ -L "$TARGET" ] && [ "$(readlink "$TARGET")" = "$ENTRY" ]; then
+              rm "$TARGET"
+            fi
+            if [ -e "$TARGET" ] || [ -L "$TARGET" ]; then
+              continue
+            elif [ -f "$ENTRY" ]; then
+              ln "$ENTRY" "$TARGET"
+            else
+              ln -s "$ENTRY" "$TARGET"
+            fi
           done
         done
       done
