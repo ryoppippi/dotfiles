@@ -22,10 +22,8 @@ to the newest version, so never pin one.
 - From Claude: Codex `sol`, then `astra`
 - From Codex: Claude `opus`; `fable` only for a genuinely hard review
 
-If the user names a model ("sol loop" means Codex `sol`), use it. Inside T3
-Code, start each round as in [references/inside-t3.md](references/inside-t3.md);
-otherwise as in [references/outside-t3.md](references/outside-t3.md). If no
-route reaches the model, report the blocker; do not substitute one.
+If the user names a model ("sol loop" means Codex `sol`), use it. Start each
+round as in [references/cli.md](references/cli.md). If no route reaches the model, report the blocker; do not substitute one.
 
 ## Budget
 

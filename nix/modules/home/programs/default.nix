@@ -140,9 +140,6 @@
     # Orca agent IDE
     ./orca.nix
 
-    # T3 Code configuration
-    ./t3code
-
     # Vite+ prefers the dev shell's Node.js and package managers
     ./vite-plus.nix
   ];

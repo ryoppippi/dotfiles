@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  # On AC power the Mac never sleeps, lid closed included, so T3 Code stays
-  # reachable through T3 Connect. `pmset -c sleep 0` cannot do this: it only
+  # On AC power the Mac never sleeps, lid closed included, so Orca and its
+  # agents stay reachable over Tailscale. `pmset -c sleep 0` cannot do this: it only
   # covers idle sleep, and clamshell sleep ignores it. disablesleep does cover
   # the lid but is global rather than per power source, so it has to follow
   # the power source here, and be cleared the moment the Mac is unplugged.

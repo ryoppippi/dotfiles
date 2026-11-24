@@ -1,4 +1,4 @@
-# Ask another agent outside T3 Code
+# Ask another agent
 
 Each CLI's `--help` carries the flags. Plan or read-only modes below keep an
 opinion read-only; drop them only when the user hands the agent a task.

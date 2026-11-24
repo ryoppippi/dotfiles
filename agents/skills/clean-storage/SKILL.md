@@ -22,9 +22,7 @@ Note `df -h /` before and after. Run everything below without asking, skipping a
 
 ## Worktrees
 
-Run `scripts/clean-worktrees.nu --keep ~/.t3/worktrees` from this skill's directory. Keep every worktree the script keeps.
-
-T3 Code's storage cleanup owns `~/.t3/worktrees`; its policy is `storageCleanup` in `nix/modules/home/programs/t3code/default.nix` of the dotfiles repository. If `dust` still shows that directory dominating, report its size and the policy instead of removing worktrees there.
+Run `scripts/clean-worktrees.nu` from this skill's directory. Keep every worktree the script keeps.
 
 ## Nix
 

@@ -76,25 +76,6 @@
 			},
 			"subdir": "skills"
 		},
-		"t3-limits": {
-			"filter": {
-				"maxDepth": 1,
-				"nameRegex": null
-			},
-			"idPrefix": "t3-limits",
-			"pin": {
-				"at": null,
-				"branch": "main",
-				"owner": "ryoppippi",
-				"preReleases": false,
-				"releasePrefix": null,
-				"repo": "t3-limits",
-				"submodules": false,
-				"type": "github",
-				"versionUpperBound": null
-			},
-			"subdir": "skills"
-		},
 		"tstack": {
 			"filter": {
 				"maxDepth": 1,
@@ -168,19 +149,6 @@
 				"submodules": false,
 				"type": "Git",
 				"url": "https://github.com/stablyai/orca/archive/150d1c3a18102c7b58c3fbb152f7d1a14e8aa31b.tar.gz"
-			},
-			"t3-limits": {
-				"branch": "main",
-				"hash": "sha256-tJ8uCrs/qA4awXlqYYVe8ViywUyEUjnOeYSANjZuGi0=",
-				"repository": {
-					"owner": "ryoppippi",
-					"repo": "t3-limits",
-					"type": "GitHub"
-				},
-				"revision": "3918559d9f7ba8d7caed113482ae7370c6194726",
-				"submodules": false,
-				"type": "Git",
-				"url": "https://github.com/ryoppippi/t3-limits/archive/3918559d9f7ba8d7caed113482ae7370c6194726.tar.gz"
 			},
 			"tstack": {
 				"branch": "main",

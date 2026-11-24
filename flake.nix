@@ -78,11 +78,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    t3-limits = {
-      url = "github:ryoppippi/t3-limits";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     brew-nix = {
       url = "github:BatteredBunny/brew-nix";
       inputs = {

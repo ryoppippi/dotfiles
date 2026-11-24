@@ -11,7 +11,6 @@ let
     nix-bun
     bun2nix
     gh-nippou
-    t3-limits
     brew-nix
     omniwm
     nix-index-database
@@ -32,9 +31,6 @@ import nixpkgs {
     nix-bun.overlays.default
     bun2nix.overlays.default
     gh-nippou.overlays.default
-    (_final: _prev: {
-      t3-limits = t3-limits.packages.${system}.default;
-    })
     (import ./overlays/default.nix)
     (final: _prev: {
       comma-auto-pick = final.callPackage ./packages/comma {

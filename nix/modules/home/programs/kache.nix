@@ -10,7 +10,7 @@ in
   # caching still can.
   home.sessionVariables.RUSTC_WRAPPER = kache;
 
-  # GUI apps such as T3 Code never read the shell session variables, so their
+  # GUI apps such as Orca never read the shell session variables, so their
   # agents would build without the cache.
   launchd.agents.kache-env = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     enable = true;

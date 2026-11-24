@@ -1,4 +1,4 @@
-# Review outside T3 Code
+# Review
 
 Run Codex from Claude Code and Claude Code from Codex, as one read-only call per
 round with the brief and ledger from `SKILL.md`. Never start the CLI of the
