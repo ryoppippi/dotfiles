@@ -721,11 +721,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1794766064,
-        "narHash": "sha256-LlNZRybpmrcSC2jQVEpotviUYmFg4UNzil0C5sAuy/g=",
+        "lastModified": 1795176876,
+        "narHash": "sha256-++E51af+aukqW0w8DQISZv8As2Pe70KTaTp8c9PKQVk=",
         "owner": "ryoppippi",
         "repo": "t3-limits",
-        "rev": "0330d93191cefbf56fafd979355724c6e4e0cf94",
+        "rev": "487e3bb025bd5d6e399230542c2c7eb36274be62",
         "type": "github"
       },
       "original": {
