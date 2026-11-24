@@ -9,6 +9,11 @@ let
   jq = lib.getExe pkgs.jq;
   inherit (config.home) sessionVariables;
 
+  telemetryEnv = {
+    T3CODE_TELEMETRY_ENABLED = "false";
+    T3CODE_OTEL_SDK_DISABLED = "true";
+  };
+
   settings = {
     defaultModelSelection = {
       instanceId = "claudePersonal0";
@@ -203,6 +208,24 @@ let
 in
 {
   home.sessionPath = [ "$HOME/.t3/bin" ];
+
+  home.sessionVariables = telemetryEnv;
+
+  # The desktop app copies only T3CODE_TELEMETRY_ENABLED from the login shell;
+  # the OTel switch must already be in its own environment.
+  launchd.agents.t3code-env = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "/bin/sh"
+        "-c"
+        (lib.concatStringsSep "; " (
+          lib.mapAttrsToList (name: value: "/bin/launchctl setenv ${name} ${value}") telemetryEnv
+        ))
+      ];
+      RunAtLoad = true;
+    };
+  };
 
   home.activation.configureT3codeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     SETTINGS_DIR="${t3codeStateDir}"
