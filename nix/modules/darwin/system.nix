@@ -317,6 +317,7 @@ in
       "anomalyco/tap"
       "ardia-browser/tap"
       "arto-app/tap"
+      "stablyai/orca"
       "x-ryoppippi/tap"
     ];
 
@@ -348,6 +349,8 @@ in
       "openvpn-connect"
       "orbstack"
       "raycast"
+      # Not the bare `orca` cask, which is Plotly's image exporter.
+      "stablyai/orca/orca"
       "steam"
       "t3-code"
       "telegram"
