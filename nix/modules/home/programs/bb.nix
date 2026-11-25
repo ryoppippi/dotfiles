@@ -32,6 +32,7 @@ let
     }
 
     http://127.0.0.1:${toString gatePort} {
+      bind 127.0.0.1
       @owner header Tailscale-User-Login ${allowedLogin}
       handle @owner {
         reverse_proxy 127.0.0.1:${toString bbPort}
