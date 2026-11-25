@@ -32,6 +32,9 @@ Searching, in this order:
    are ambiguous, or when exa's 1Password key is unavailable.
    [references/codex.md](references/codex.md)
 
+Inside T3 Code, run grok and codex, and get the exa and TinyFish keys, as
+[references/inside-t3.md](references/inside-t3.md) describes.
+
 If the site blocks `ax` (a 401, a 403, or a bot challenge), fetch it through
 TinyFish: [references/tinyfish.md](references/tinyfish.md). For forum and social
 opinion or very recent coverage, add its Search alongside `exa`.

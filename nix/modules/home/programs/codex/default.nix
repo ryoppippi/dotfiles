@@ -117,6 +117,9 @@ let
     plugins."github@openai-curated" = {
       enabled = true;
     };
+
+    # For sessions outside T3 Code; its threads get `t3-code` injected.
+    mcp_servers.t3.url = "http://127.0.0.1:3773/mcp";
   };
 in
 {

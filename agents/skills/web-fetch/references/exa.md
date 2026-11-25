@@ -8,7 +8,7 @@ Read the API surface from the docs rather than from memory. Append `.md` to any 
 - https://exa.ai/docs/sdks/javascript-sdk.md — quickstart with runnable examples
 - https://exa.ai/docs/llms.txt — index of every docs page
 
-The key lives in 1Password, so read it at execution time instead of exporting it. Each `op read` prompts for approval, so run all searches of a task in one script with one read, not one script per query:
+The key lives in 1Password, so read it at execution time instead of exporting it. Inside T3 Code, take it from `request_secret` instead: [inside-t3.md](inside-t3.md#exa-and-tinyfish-keys). Each `op read` prompts for approval, so run all searches of a task in one script with one read, not one script per query:
 
 ```ts
 const apiKey = (await Bun.$`op read op://keys/EXA_API_KEY/credential`.text()).trim();

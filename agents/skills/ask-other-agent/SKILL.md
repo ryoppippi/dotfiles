@@ -17,7 +17,8 @@ running in — Codex from Claude Code, Claude Code from Codex — since a second
 opinion from the same model adds little. Routine searches go to your own
 subagents instead.
 
-Read [references/cli.md](references/cli.md).
+Inside T3 Code, read [references/inside-t3.md](references/inside-t3.md);
+otherwise read [references/outside-t3.md](references/outside-t3.md).
 
 ## Models
 

@@ -140,8 +140,8 @@
     # Orca agent IDE
     ./orca.nix
 
-    # bb agent app, reachable over Tailscale through an identity gate
-    ./bb.nix
+    # T3 Code configuration
+    ./t3code
 
     # Vite+ prefers the dev shell's Node.js and package managers
     ./vite-plus.nix

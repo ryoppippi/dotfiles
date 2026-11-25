@@ -1,7 +1,7 @@
 # codex
 
 From a Codex session, delegate the search to a native subagent instead of
-running `codex exec`. Elsewhere, use the CLI:
+running `codex exec`. Elsewhere outside T3 Code, use the CLI:
 
 ```sh
 codex exec --skip-git-repo-check --ephemeral --sandbox read-only \

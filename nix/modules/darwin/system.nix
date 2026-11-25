@@ -332,7 +332,6 @@ in
       "ardia-browser/tap/ardia"
       "arto-app/tap/arto"
       "audacity"
-      "bb"
       "blackhole-16ch"
       "blu-ray-player-pro"
       "chatgpt"
@@ -353,6 +352,7 @@ in
       # Not the bare `orca` cask, which is Plotly's image exporter.
       "stablyai/orca/orca"
       "steam"
+      "t3-code"
       "telegram"
       "x-ryoppippi/tap/dupin@nightly"
     ];
