@@ -332,6 +332,7 @@ in
       "ardia-browser/tap/ardia"
       "arto-app/tap/arto"
       "audacity"
+      "bb"
       "blackhole-16ch"
       "blu-ray-player-pro"
       "chatgpt"
