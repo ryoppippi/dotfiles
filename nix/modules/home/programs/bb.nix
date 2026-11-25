@@ -99,9 +99,9 @@ in
       CONFIG="$BB_DIR/config.json"
       mkdir -p "$BB_DIR"
       if [ -f "$CONFIG" ]; then
-        MERGED="$(${jq} --arg url '${appUrl}' '.BB_APP_URL = $url' "$CONFIG")"
+        MERGED="$(${jq} --arg url '${appUrl}' 'del(.BB_APP_URL) | .config.BB_APP_URL = $url' "$CONFIG")"
       else
-        MERGED="$(${jq} -n --arg url '${appUrl}' '{BB_APP_URL: $url}')"
+        MERGED="$(${jq} -n --arg url '${appUrl}' '{config: {BB_APP_URL: $url}}')"
       fi
       TEMP_FILE="$(mktemp "$BB_DIR/.config.json.XXXXXX")"
       printf '%s\n' "$MERGED" > "$TEMP_FILE"
