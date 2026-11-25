@@ -53,6 +53,8 @@ in
 
       ../../modules/darwin/high-power-mode.nix
 
+      ../../modules/darwin/t3code-policy.nix
+
       nix-index-database.darwinModules.nix-index
 
       home-manager.darwinModules.home-manager
