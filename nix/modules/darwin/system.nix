@@ -352,7 +352,7 @@ in
       # Not the bare `orca` cask, which is Plotly's image exporter.
       "stablyai/orca/orca"
       "steam"
-      "t3-code"
+      "t3-code@nightly"
       "telegram"
       "x-ryoppippi/tap/dupin@nightly"
     ];
