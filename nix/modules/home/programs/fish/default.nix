@@ -169,7 +169,12 @@ in
         {
           ${lib.getExe config.programs.direnv.package} hook fish
           ${lib.getExe pkgs.zoxide} init fish
-          echo "${lib.getExe pkgs.tirith} init --shell fish | source"
+          # T3 Code types its project scripts into an interactive fish, and
+          # tirith 0.5.0's Enter binding breaks them with "'end' outside of a
+          # block in function '_tirith_check_command'" (2026-11-26).
+          echo "if status is-interactive; and not set -q T3CODE_THREAD_ID"
+          echo "  ${lib.getExe pkgs.tirith} init --shell fish | source"
+          echo "end"
           ${lib.getExe pkgs.git-wt} --init fish
           ${lib.getExe pkgs.git-wtpr} --init fish
           echo "set -gx LS_COLORS '$(${lib.getExe pkgs.vivid} generate gruvbox-dark)'"
