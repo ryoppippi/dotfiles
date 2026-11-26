@@ -184,6 +184,13 @@ let
         "composer.sendAndNewThread"
       ];
 
+  # Remote clients come in through Tailscale Serve, which proxies to loopback,
+  # so the backend never needs to listen on the LAN.
+  desktopSettings = {
+    serverExposureMode = "local-only";
+    tailscaleServeEnabled = true;
+  };
+
   # Merged rather than linked: T3 Code rewrites these files atomically from its
   # settings UI, which would replace a store symlink with a plain file and break
   # the next switch. What is declared here wins; everything else is left alone.
@@ -235,5 +242,8 @@ in
     ${mergeSettings "settings.json" settings}
     ${mergeSettings "client-settings.json" clientSettings}
     ${mergeKeybindings "keybindings.json" keybindings}
+    ${lib.optionalString pkgs.stdenv.hostPlatform.isDarwin (
+      mergeSettings "desktop-settings.json" desktopSettings
+    )}
   '';
 }
