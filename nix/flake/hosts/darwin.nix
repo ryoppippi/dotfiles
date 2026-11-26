@@ -55,6 +55,8 @@ in
 
       ../../modules/darwin/t3code-policy.nix
 
+      ../../modules/darwin/t3code-firewall.nix
+
       nix-index-database.darwinModules.nix-index
 
       home-manager.darwinModules.home-manager
