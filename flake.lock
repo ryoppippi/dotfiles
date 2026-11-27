@@ -545,11 +545,11 @@
     },
     "nixpkgs-gifski": {
       "locked": {
-        "lastModified": 1795413653,
-        "narHash": "sha256-2rEk9vOTihvLT/2Ez60ZxVAvS2spJY7KDFZSAh9CpNM=",
+        "lastModified": 1795500019,
+        "narHash": "sha256-hAdfrOkwh12uk0PrtdfkVMzea4g5ACClusGKiN4H6QA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e4bce3fcc2b5c778228ab8516c7b293443c70f41",
+        "rev": "41e2eae2723c549fab440570f1b03a06f84f265e",
         "type": "github"
       },
       "original": {
