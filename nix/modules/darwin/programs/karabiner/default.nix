@@ -3,8 +3,9 @@
 # The TypeScript config runs inside a bun2nix derivation: its npm dependencies
 # come from karabiner/bun.nix rather than a node_modules checkout, and the
 # generated karabiner.json lives in the store instead of being committed.
-# Only karabiner.json is linked. Karabiner writes automatic_backups and
-# assets next to it, so ~/.config/karabiner stays a plain writable directory.
+# karabiner.json is copied rather than linked: Karabiner-Elements 17 refuses a
+# read-only config. Karabiner also writes automatic_backups and assets next to
+# it, so ~/.config/karabiner stays a plain writable directory.
 {
   pkgs,
   lib,
@@ -76,8 +77,6 @@ in
   # bun2nix regenerates karabiner/bun.nix from package.json's postinstall hook
   home.packages = [ pkgs.bun2nix ];
 
-  xdg.configFile."karabiner/karabiner.json".source = "${karabinerConfig}/karabiner.json";
-
   home.activation.prepareKarabinerConfig = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
     # ~/.config/karabiner used to be a symlink to the dotfiles checkout; a
     # linked directory would make home-manager write karabiner.json into the
@@ -92,6 +91,15 @@ in
       echo "Restarting Karabiner console user server before config update..."
       $DRY_RUN_CMD /bin/launchctl kickstart -k gui/$(/usr/bin/id -u)/org.pqrs.service.agent.Karabiner-Console-User-Server-v3 2>/dev/null || true
       sleep 2
+    fi
+  '';
+
+  home.activation.installKarabinerConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    target="${configHome}/karabiner/karabiner.json"
+    if [ -L "$target" ] || ! ${lib.getExe' pkgs.diffutils "cmp"} -s "${karabinerConfig}/karabiner.json" "$target"; then
+      $DRY_RUN_CMD mkdir -p "${configHome}/karabiner"
+      $DRY_RUN_CMD rm -f "$target"
+      $DRY_RUN_CMD install -m644 "${karabinerConfig}/karabiner.json" "$target"
     fi
   '';
 }
