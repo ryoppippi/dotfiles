@@ -88,9 +88,9 @@ in
 
     # Restart Karabiner console user server before updating config to prevent keyboard freeze
     # The daemon can enter an inconsistent state if config changes while running
-    if /bin/launchctl list | ${grep} -q "org.pqrs.service.agent.Karabiner-Console-User-Server"; then
+    if /bin/launchctl list | ${grep} -q "org.pqrs.service.agent.Karabiner-Console-User-Server-v3"; then
       echo "Restarting Karabiner console user server before config update..."
-      $DRY_RUN_CMD /bin/launchctl kickstart -k gui/$(/usr/bin/id -u)/org.pqrs.service.agent.Karabiner-Console-User-Server 2>/dev/null || true
+      $DRY_RUN_CMD /bin/launchctl kickstart -k gui/$(/usr/bin/id -u)/org.pqrs.service.agent.Karabiner-Console-User-Server-v3 2>/dev/null || true
       sleep 2
     fi
   '';
