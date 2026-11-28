@@ -75,12 +75,21 @@
 
     gh-nippou = {
       url = "github:ryoppippi/gh-nippou";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     t3-limits = {
       url = "github:ryoppippi/t3-limits";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     brew-nix = {
