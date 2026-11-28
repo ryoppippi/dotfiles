@@ -112,16 +112,6 @@ in
               if name == "leaving-pr-comments" then leavingPrComments renamed else renamed;
           });
     }
-    {
-      # Discovery stubs: each loads its version-matched guide from the installed
-      # `orca` binary, so pinning them does not pin the guide.
-      programs.agent-skills.skills.explicit =
-        lib.genAttrs [ "orca-cli" "orchestration" "orca-emulator" ]
-          (name: {
-            from = "orca";
-            path = name;
-          });
-    }
   ];
 
   programs.agent-skills = {

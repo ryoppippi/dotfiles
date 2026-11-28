@@ -137,9 +137,6 @@
     # Pip configuration
     ./pip.nix
 
-    # Orca agent IDE
-    ./orca.nix
-
     # T3 Code configuration
     ./t3code
 
